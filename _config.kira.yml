@@ -17,7 +17,6 @@ cdn: # 这里可以修改站点使用的库的CDN
     giscus:
         js: https://giscus.app/client.js
 
-# beian: 赣ICP备2021007955号-3 # 备案号（选填，别往你们网站上挂我的备案号！！！）
 
 menu:
     回到首页:
@@ -30,7 +29,7 @@ menu:
         - /about.html
         - icon-user
     我的朋友:
-        - /friends.html
+        - /page/friends/
         - icon-team
 
 widgets:
@@ -105,7 +104,7 @@ gitalk:
 # 你们不要在这里填我的 giscus 配置项，不然你们博客下的评论会全部跑到我的仓库下面……
 # https://giscus.app/zh-CN 可以在这个网站上手动选择配置填到下方对应位置
 giscus:
-    active: true # 是否启用 giscus
+    active: false # 是否启用 giscus
     repo: -your github username-/-your giscus repo- # 存放评论的 discus 所在的 repo
     repoID: -your giscus repo ID- # GitHub repo ID
     category: Announcements # 选择新 discussions 所在的分类
@@ -123,14 +122,14 @@ sidebar: ''
 
 # 自定义样式
 # customStyles:
-#     - style
-#     - custom
+#     - style_friends.css
+
 
 # 友链配置
 friends:
-    # - avatar: <友链缩略图>
-    #   link: <跳转连接>
-    #   name: <名称>
+    - avatar: /image/eliadoarias.png
+      link:  https://eliadoarias.top/
+      name:  eliadoarias
 
 # 可复制的代码块
 copyableCodeblock: true
