@@ -35,4 +35,7 @@ article a:before {
 .kira-post-footer {
     display: none !important;
 }
+.kira-post-meta.kira-rainbow{
+    display: none !important;
+}
 </style>

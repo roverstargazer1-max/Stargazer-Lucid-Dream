@@ -23,13 +23,13 @@ menu:
         - /
         - icon-home
     文章归档:
-        - /archive.html
+        - /pages/archive/
         - icon-container
     关于本人:
-        - /about.html
+        - /pages/mine/
         - icon-user
     我的朋友:
-        - /page/friends/
+        - /pages/friends/
         - icon-team
 
 widgets:
