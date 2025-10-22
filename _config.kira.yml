@@ -35,8 +35,8 @@ menu:
 widgets:
     - social
     - category
-    - tagcloud
     - archive
+    - tagcloud
 
 maxTagcloud: 0 # 标签云组件显示的标签数量，0 表示不限制
 
@@ -130,7 +130,12 @@ friends:
     - avatar: /image/eliadoarias.png
       link:  https://eliadoarias.top/
       name:  eliadoarias
-
+    - avatar: /image/b4b722e792e464e8a75528fb1585ecb3.png
+      link:  https://zheyi.in/
+      name:  折乙
+    - avatar: /image/yyz.jpg
+      link:  https://endercrysta2.xyz/
+      name:  EnderCrysta2
 # 可复制的代码块
 copyableCodeblock: true
 
