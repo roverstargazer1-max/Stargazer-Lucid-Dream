@@ -20,7 +20,7 @@ cdn: # 这里可以修改站点使用的库的CDN
 
 menu:
     回到首页:
-        - /_posts/
+        - /
         - icon-home
     文章归档:
         - /pages/archive/
