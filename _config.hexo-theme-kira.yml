@@ -20,7 +20,7 @@ cdn: # 这里可以修改站点使用的库的CDN
 
 menu:
     回到首页:
-        - /
+        - /_posts/
         - icon-home
     文章归档:
         - /pages/archive/
@@ -47,7 +47,7 @@ social:
         - rgb(49, 174, 255)
         - rgba(49, 174, 255, .1)
     哔哩哔哩:
-        - https://space.bilibili.com/<改成你的B站uid>
+        - https://space.bilibili.com/1697331229/<改成你的B站uid>
         - icon-bilibili
         - rgb(231, 106, 141)
         - rgba(231, 106, 141, .15)
@@ -136,6 +136,9 @@ friends:
     - avatar: /image/yyz.jpg
       link:  https://endercrysta2.xyz/
       name:  EnderCrysta2
+    - avatar: /image/logo2.jpg
+      link:  https://www.h2so4.site/
+      name:  H2SO4C
 # 可复制的代码块
 copyableCodeblock: true
 

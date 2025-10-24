@@ -41,9 +41,9 @@ importers:
       hexo-server:
         specifier: ^3.0.0
         version: 3.0.0
-      hexo-theme-butterfly:
-        specifier: ^5.5.1
-        version: 5.5.1
+      hexo-tag-aplayer:
+        specifier: ^3.0.4
+        version: 3.0.4
       hexo-theme-kira:
         specifier: ^1.4.9
         version: 1.4.9
@@ -825,9 +825,6 @@ packages:
 
   hexo-tag-aplayer@3.0.4:
     resolution: {integrity: sha512-r7Onb2MnV2KZUN/Lz6r4fs3Pi14EZtmWqtwK+NNS9pPiad9WRgmjgtY7eI2aY2aKT/bdSSIrGeni5AyG/v2EwA==}
-
-  hexo-theme-butterfly@5.5.1:
-    resolution: {integrity: sha512-hyFito6cnRjUbgX12Grp/eQvBlbckn/Gq60zoyebZBsoAjnwyycCl+dtx0dJx5GUsrgWPAH2bL/dEkHmDhwvrQ==}
 
   hexo-theme-kira@1.4.9:
     resolution: {integrity: sha512-iSGx/cb+TBqTnHbKSvrCUlt71/o67D/ypIlU7wxsgSAIoeLiIc0gTOffnkXasmPxdRKWMTj13acriZeGT5HOdg==}
@@ -2685,15 +2682,6 @@ snapshots:
       hexo-log: 0.2.0
       hexo-util: 0.1.7
       meting: 1.2.0
-    transitivePeerDependencies:
-      - supports-color
-
-  hexo-theme-butterfly@5.5.1:
-    dependencies:
-      hexo-renderer-pug: 3.0.0
-      hexo-renderer-stylus: 3.0.1
-      hexo-util: 3.3.0
-      moment-timezone: 0.6.0
     transitivePeerDependencies:
       - supports-color
 
