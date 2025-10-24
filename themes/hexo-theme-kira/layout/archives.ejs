@@ -1,4 +1,19 @@
 <section class="kira-archives">
+    <div class="kira-archives-title" style="text-align: center;">
+      <!-- <h1>编年史</h1> -->
+      <% if (page.meting && page.meting.id) { %>
+        <div class="kira-archives-music" style="margin:12px 0;">
+          <meting-js
+            server="<%= page.meting.server || 'netease' %>"
+            type="<%= page.meting.type || 'playlist' %>"
+            id="<%= page.meting.id %>"
+            fixed="false"
+            autoplay="false"
+            theme="#31aeff">
+          </meting-js>
+        </div>
+      <% } %>
+    </div>
     <div class="tagcloud kira-rainbow">
         <%- list_tags({
             show_count: true,
