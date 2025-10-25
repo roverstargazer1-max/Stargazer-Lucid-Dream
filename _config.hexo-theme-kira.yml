@@ -1,10 +1,10 @@
-avatar: /image/IMG_0125.JPG # 网站 Logo
+avatar: /image/IMG_0125.webp # 网站 Logo
 background: # 既是博客的背景，又是文章默认头图
-    path: /image/LucidDreaam.jpg
+    path: /image/LucidDreaam.webp
     width: 1280
     height: 720
 favicon:
-    href: /image/ym.png # 网站图标
+    href: /image/ym.webp # 网站图标
     type: image/png # 图标类型，可能的值有(image/png, image/vnd.microsoft.icon, image/x-icon, image/gif)
 
 # 附加图标库 使用说明：https://kira.host/hexo/config/icon.html
@@ -52,7 +52,7 @@ social:
         - rgb(231, 106, 141)
         - rgba(231, 106, 141, .15)
     GitHub:
-        - https://github.com/roverstargazer1-max/<你的github id>/
+        - https://github.com/roverstargazer1-max/
         - icon-github
         - rgb(25, 23, 23)
         - rgba(25, 23, 23, .15)
@@ -127,39 +127,39 @@ sidebar: ''
 
 # 友链配置
 friends:
-    - avatar: /image/eliadoarias.png
+    - avatar: /image/eliadoarias.webp
       link:  https://eliadoarias.top/
       name:  eliadoarias
       desc:  安慕希痴蒸鹅心
-    - avatar: /image/b4b722e792e464e8a75528fb1585ecb3.png
+    - avatar: /image/b4b722e792e464e8a75528fb1585ecb3.webp
       link:  https://zheyi.in/
       name:  折乙
       desc:  死宅蒸鹅心
-    - avatar: /image/yyz.jpg
+    - avatar: /image/yyz.webp
       link:  https://endercrysta2.xyz/
       name:  EnderCrysta2
       desc:  TouHou痴
-    - avatar: /image/logo2.jpg
+    - avatar: /image/logo2.webp
       link:  https://www.h2so4.site/
       name:  H2SO4C
       desc:  🤔,ckl领域大神
-    - avatar: /image/c35f8a6f47eacf03b24a77275d9fe18c.png
+    - avatar: /image/c35f8a6f47eacf03b24a77275d9fe18c.webp
       link:  https://chalgen.online/
       name:  Luifa
       desc:  🔥批
-    - avatar: /image/d4e098418ec609b679981d47cf4d26dd.png
+    - avatar: /image/d4e098418ec609b679981d47cf4d26dd.webp
       link:  https://blog.scienct.top/
       name:  一条咸鱼
       desc:  原神大王🤔
-    - avatar: /image/b_13d1fcd3cbe27d6ec09ea14c21df87ac.jpg
+    - avatar: /image/b_13d1fcd3cbe27d6ec09ea14c21df87ac.webp
       link:  https://ysss-ee.xyz
       name:  完了啊😦
       desc:  天才啊！
-    - avatar: /image/b_b648d54f573fcbe4164c29fc56518534.jpg
+    - avatar: /image/b_b648d54f573fcbe4164c29fc56518534.webp
       link:  https://r1cewine.icu
       name:  米酒
       desc:  技术大手子啊
-    - avatar: /image/b_287a71672cdfdee8a196dacb54a2d4ae.jpg
+    - avatar: /image/b_287a71672cdfdee8a196dacb54a2d4ae.webp
       link:  https://fenghecsn.top/
       name:  枫禾
       desc:  绘画大神！
