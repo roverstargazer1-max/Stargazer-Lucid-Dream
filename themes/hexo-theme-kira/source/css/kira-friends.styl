@@ -22,7 +22,10 @@
   text-decoration: none
   color: inherit
   overflow: hidden
-  transition: background .25s ease, transform .25s ease, box-shadow .25s ease
+  background: #fff
+  box-shadow: 0 2px 16px rgba(49,174,255,.08), 0 1.5px 6px rgba(0,0,0,.04)
+  border: 1px solid rgba(49,174,255,.08)
+  transition: background .25s ease, transform .25s ease, box-shadow .25s ease, border-color .2s
 
   // 覆盖层（取代旧写法的 scale(0) -> scale(1)）
   &:before
@@ -42,9 +45,13 @@
       transform: scale(1)
       opacity: .16
 
-  // 悬停：头像旋转、标题变白
+  // 悬停：头像旋转
   &:hover .kira-friends-avatarWrapper img
     transform: rotateZ(360deg)
+
+  &:hover
+    box-shadow: 0 4px 24px rgba(49,174,255,.18), 0 2px 8px rgba(0,0,0,.08)
+    border-color: rgba(49,174,255,.18)
 
 
 
