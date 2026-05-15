@@ -1,6 +1,6 @@
 avatar: /image/IMG_0125.webp # 网站 Logo
 background: # 既是博客的背景，又是文章默认头图
-  path: /image/LucidDreaam.webp
+  path: /image/covers/LucidDreaam.webp
   width: 1280
   height: 720
 favicon:
@@ -125,39 +125,39 @@ sidebar: ""
 
 # 友链配置
 friends:
-  - avatar: /image/eliadoarias.webp
+  - avatar: /image/友链/eliadoarias.webp
     link: https://eliadoarias.top/
     name: eliadoarias
     desc: 安慕希痴蒸鹅心
-  - avatar: /image/b4b722e792e464e8a75528fb1585ecb3.webp
+  - avatar: /image/友链/b4b722e792e464e8a75528fb1585ecb3.webp
     link: https://zheyi.in/
     name: 折乙
     desc: 死宅蒸鹅心
-  - avatar: /image/yyz.webp
+  - avatar: /image/友链/yyz.webp
     link: https://endercrysta2.xyz/
     name: EnderCrysta2
     desc: TouHou痴
-  - avatar: /image/logo2.webp
+  - avatar: /image/友链/logo2.webp
     link: https://www.h2so4.site/
     name: H2SO4C
     desc: 🤔,ckl领域大神
-  - avatar: /image/c35f8a6f47eacf03b24a77275d9fe18c.webp
+  - avatar: /image/友链/c35f8a6f47eacf03b24a77275d9fe18c.webp
     link: https://chalgen.online/
     name: Luifa
     desc: 🔥批
-  - avatar: /image/d4e098418ec609b679981d47cf4d26dd.webp
+  - avatar: /image/友链/d4e098418ec609b679981d47cf4d26dd.webp
     link: https://blog.scienct.top/
     name: 一条咸鱼
     desc: 原神大王🤔
-  - avatar: /image/b_13d1fcd3cbe27d6ec09ea14c21df87ac.webp
+  - avatar: /image/友链/b_13d1fcd3cbe27d6ec09ea14c21df87ac.webp
     link: https://ysss-ee.xyz
     name: 完了啊😦
     desc: 天才啊！
-  - avatar: /image/b_b648d54f573fcbe4164c29fc56518534.webp
+  - avatar: /image/友链/b_b648d54f573fcbe4164c29fc56518534.webp
     link: https://r1cewine.icu
     name: 米酒
     desc: 技术大手子啊
-  - avatar: /image/b_287a71672cdfdee8a196dacb54a2d4ae.webp
+  - avatar: /image/友链/b_287a71672cdfdee8a196dacb54a2d4ae.webp
     link: https://fenghecsn.top/
     name: 枫禾
     desc: 绘画大神！
