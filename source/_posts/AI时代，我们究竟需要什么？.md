@@ -1,7 +1,7 @@
 ---
 title: AI时代，我们究竟需要什么？
 date: 2026-06-15 19:00:28
-cover: /image/covers/miku01.webpv
+cover: /image/covers/miku01.webp
 subheading:
 tags: 
 - Essay 随笔
