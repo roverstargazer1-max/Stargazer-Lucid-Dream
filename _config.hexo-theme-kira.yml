@@ -165,5 +165,10 @@ friends:
     link: https://gendo.dpdns.org/
     name: 天择
     desc: 苟利国家生死以 岂因祸福避趋之
+  - avatar: /image/友链/cdt.jpg
+    link: https://www.heavensdoor1.top/
+    name: 黑蚊子多
+    desc: 蚊子哥
+
 # 可复制的代码块
 copyableCodeblock: true
