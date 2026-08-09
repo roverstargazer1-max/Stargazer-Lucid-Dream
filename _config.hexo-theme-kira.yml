@@ -1,6 +1,10 @@
 avatar: /image/IMG_0125.webp # 网站 Logo
-background: # 既是博客的背景，又是文章默认头图
+background: # 既是博客的背景，又是文章默认头图（日间）
   path: /image/ztmy02.webp
+  width: 1280
+  height: 720
+backgroundDark: # 夜间模式的背景与文章默认头图，留空则沿用上面的日间图
+  path: /image/ztmy01.webp
   width: 1280
   height: 720
 favicon:

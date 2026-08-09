@@ -111,7 +111,9 @@
     padding: 14px 16px
 
 // 7) 暗色模式微调
+// 跟站点的 data-theme 走，不用 prefers-color-scheme：
+// 否则用户手动选了浅色、系统却是深色时，只有友链页会自作主张变暗。
 // 文字颜色已经由 --kira-text-* 接管，这里只剩发光阴影需要换
-@media (prefers-color-scheme: dark)
+html[data-theme='dark']
   .kira-friends-item:hover
     box-shadow: 0 0 16px rgba(255,255,255,.12)

@@ -3,6 +3,8 @@
 	<%- css('css/kira-code-copy') %>
 	<%- js('js/kira-code-copy') %>
 <% } %>
+<% var bgDay = theme.background.path;
+   var bgNight = (theme.backgroundDark && theme.backgroundDark.path) || bgDay; %>
 <div class="kira-post">
 	<article>
 		<% if (page.cover){ %>
@@ -21,7 +23,8 @@
 			style="padding-bottom: '<%= theme.background.height/theme.background.width * 100 %>%'"
 		>
 			<img
-				data-src="<%- theme.background.path %>"
+				data-src="<%- bgDay %>"
+				data-src-dark="<%- bgNight %>"
 				data-sizes="auto"
 				alt="<%= page.title %>"
 				class="lazyload kira-post-cover-image disabled-kira-image"

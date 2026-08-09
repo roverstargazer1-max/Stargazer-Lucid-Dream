@@ -1,0 +1,45 @@
+<button
+	type="button"
+	class="kira-theme-toggle mdui-fab mdui-ripple"
+	id="kira-theme-toggle"
+	aria-label="切换昼夜模式"
+	title="切换昼夜模式"
+	aria-pressed="false"
+>
+	<svg
+		class="kira-theme-icon kira-theme-icon-moon"
+		viewBox="0 0 24 24"
+		width="21"
+		height="21"
+		aria-hidden="true"
+		focusable="false"
+	>
+		<!-- 蛾眉月＝外圆 (12,12) r9 被 r7 的缺口圆咬掉右上角，两段弧交于
+		     (12,3) 与 (21,12)。缺口半径要明显大于两交点间距的一半（9√2/2≈6.36），
+		     否则 SVG 会按规范放大半径，弧就接不上、月牙缺一块 -->
+		<path
+			fill="currentColor"
+			d="M12 3A7 7 0 0 0 21 12A9 9 0 1 1 12 3Z"
+		/>
+	</svg>
+	<svg
+		class="kira-theme-icon kira-theme-icon-sun"
+		viewBox="0 0 24 24"
+		width="21"
+		height="21"
+		aria-hidden="true"
+		focusable="false"
+	>
+		<circle cx="12" cy="12" r="4.2" fill="currentColor" />
+		<g stroke="currentColor" stroke-width="2" stroke-linecap="round">
+			<line x1="12" y1="1.8" x2="12" y2="4" />
+			<line x1="12" y1="20" x2="12" y2="22.2" />
+			<line x1="1.8" y1="12" x2="4" y2="12" />
+			<line x1="20" y1="12" x2="22.2" y2="12" />
+			<line x1="4.8" y1="4.8" x2="6.4" y2="6.4" />
+			<line x1="17.6" y1="17.6" x2="19.2" y2="19.2" />
+			<line x1="4.8" y1="19.2" x2="6.4" y2="17.6" />
+			<line x1="17.6" y1="6.4" x2="19.2" y2="4.8" />
+		</g>
+	</svg>
+</button>

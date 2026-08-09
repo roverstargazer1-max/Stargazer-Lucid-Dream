@@ -44,7 +44,10 @@ figure.highlight table tbody tr td {
 	}
 }
 
+// 两张图的地址由 layout.ejs 以内联自定义属性写在元素上，
+// 浏览器只会请求计算值真正用到的那一张，没被选中的 var() 不产生请求
 .kira-background {
+	background-image: var(--kira-bg-day);
 	opacity: var(--kira-bg-opacity, 0.45);
 	background-size: cover;
 	height: 100vh;
@@ -53,6 +56,10 @@ figure.highlight table tbody tr td {
 	top: 0;
 	left: 0;
 	z-index: -1;
+}
+
+html[data-theme='dark'] .kira-background {
+	background-image: var(--kira-bg-night);
 }
 
 .kira-header {

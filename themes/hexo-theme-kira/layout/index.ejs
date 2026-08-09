@@ -1,3 +1,5 @@
+<% var bgDay = theme.background.path;
+   var bgNight = (theme.backgroundDark && theme.backgroundDark.path) || bgDay; %>
 <div class="kira-posts">
     <% page.posts.each(function (page) { %>
         <div class="kira-post">
@@ -21,7 +23,8 @@
                     style="padding-bottom: '<%= theme.background.height / theme.background.width * 100 %>%'"
                 >
                     <img
-                        data-src="<%- theme.background.path %>"
+                        data-src="<%- bgDay %>"
+                        data-src-dark="<%- bgNight %>"
                         data-sizes="auto"
                         alt="<%= page.title %>"
                         class="lazyload"

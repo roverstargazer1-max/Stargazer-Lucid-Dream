@@ -1,12 +1,12 @@
-// 配色 token
-// 颜色统一收在这里，各样式文件只引用 var(--kira-*)，
-// 方便整站换配色，也为后面加暗色模式留出接口。
+// 昼夜双主题 token
+// 浅色值放在裸 :root，只有暗色走 html[data-theme='dark']，
+// 这样即使切换脚本没跑起来也会退化成浅色，而不是退化成无样式。
 //
 // 注意：本文件只能被 layout.styl 导入一次。
 // Stylus 的 @import 不去重，而 constants.styl 被五个文件导入，
 // 从那里导入会让 :root 在输出 CSS 里出现五份。
 :root {
-	// —— 外观滑块（见 js/kira-opacity.js）——
+	// —— 外观滑块（见 js/kira-opacity.js，两个模式共用）——
 	--kira-surface-alpha: 0.78; // 内容面板不透明度，越大正文越清晰
 	--kira-bg-opacity: 0.45; // 背景图不透明度，越大背景越明显
 
@@ -38,4 +38,36 @@
 	--kira-cover-placeholder: #eee;
 	--kira-checkbox-bg: #ffffff;
 	--kira-checkbox-border: #d9d9d9;
+}
+
+// 这里不要覆盖 --kira-surface-alpha / --kira-bg-opacity：
+// kira-opacity.js 每次加载都会把它们写成 documentElement 的内联样式，
+// 内联样式优先级高于任何样式表规则，写了也不会生效。
+html[data-theme='dark'] {
+	--kira-surface-rgb: 24, 26, 32;
+	--kira-inset-rgb: 255, 255, 255;
+	--kira-inset-alpha: 0.06;
+
+	--kira-text-1: #f0f2f5;
+	--kira-text-2: #c9ced6;
+	--kira-text-3: #9aa3af;
+	--kira-text-4: #7b828c;
+
+	--kira-border: rgba(255, 255, 255, 0.12);
+	--kira-border-strong: rgba(255, 255, 255, 0.18);
+	--kira-hr: rgba(255, 255, 255, 0.14);
+
+	--kira-hover: rgba(255, 255, 255, 0.1);
+	--kira-shadow: rgba(0, 0, 0, 0.55);
+
+	--kira-fab-color: #d6dae0;
+	--kira-fab-bg: rgba(40, 44, 52, 0.72);
+	--kira-fab-bg-hover: rgba(40, 44, 52, 0.9);
+	--kira-fab-bg-solid: rgba(40, 44, 52, 0.95);
+	--kira-panel-bg: rgba(30, 33, 40, 0.94);
+
+	--kira-list-ring: transparent;
+	--kira-cover-placeholder: #23262e;
+	--kira-checkbox-bg: #2a2e37;
+	--kira-checkbox-border: rgba(255, 255, 255, 0.24);
 }

@@ -5,6 +5,27 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<% var bgDay = theme.background.path;
+		   var bgNight = (theme.backgroundDark && theme.backgroundDark.path) || bgDay; %>
+		<!-- 昼夜模式：必须内联且早于样式表，外链脚本要多一次请求，会拖到样式已可绘制之后 -->
+		<script>
+			(function () {
+				var KEY = 'kira-theme';
+				var stored = null;
+				try {
+					stored = localStorage.getItem(KEY);
+				} catch (e) {
+					/* 隐私模式下读不到就按系统偏好走 */
+				}
+				var mode =
+					stored === 'dark' || stored === 'light'
+						? stored
+						: window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+						? 'dark'
+						: 'light';
+				document.documentElement.dataset.theme = mode;
+			})();
+		</script>
 		<%- css("css/layout") %>
 		<% var title=page.title; if (is_archive()){ title=__('archive'); if
 		(is_month()){ title +='：' + page.year + '/' + page.month; } else if (is_year()){ title
@@ -39,14 +60,14 @@
 			<% }) %>
 		<% } %>
 		<%- js(["deps/js/APlayer.min", "deps/js/Meting.min"]) %>
-		<!-- 外观透明度调节 -->
-		<%- js("js/kira-opacity") %>
+		<!-- 昼夜切换与透明度调节：在 head 中同步执行，先落地 CSS 变量避免首屏闪烁 -->
+		<%- js(["js/kira-theme", "js/kira-opacity"]) %>
 	</head>
 
 	<body>
 		<div
 			class="kira-background"
-			style="background-image: url('<%= theme.background.path %>')"
+			style="--kira-bg-day: url('<%= bgDay %>'); --kira-bg-night: url('<%= bgNight %>')"
 		></div>
 		<%- include("components/header") %>
 		<div class="kira-body">

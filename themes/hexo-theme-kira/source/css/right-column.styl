@@ -13,7 +13,7 @@
 	z-index: 10;
 
 	// 整列只留 .kira-opacity 一个 margin-top: auto，
-	// 由它吸收全部剩余空间把按钮一起顶到底部。
+	// 由它吸收全部剩余空间把三个按钮一起顶到底部。
 	// 这里再来一个 auto 会把剩余空间分成两份，导致按钮被拉开
 	.kira-backtotop {
 		bottom: 20px;
@@ -27,5 +27,37 @@
 		i {
 			font-size: 22px;
 		}
+	}
+
+	.kira-theme-toggle {
+		color: var(--kira-fab-color);
+		background-color: var(--kira-fab-bg);
+		border: none;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		cursor: pointer;
+		pointer-events: all; // 父列是 pointer-events: none，必须显式打开
+		transition: 300ms;
+
+		&:hover {
+			color: $color1;
+			background-color: var(--kira-fab-bg-hover);
+		}
+
+		// 昼模式显示月亮（点了会变夜间），夜模式显示太阳
+		.kira-theme-icon-sun {
+			display: none;
+		}
+	}
+}
+
+html[data-theme='dark'] .kira-right-column .kira-theme-toggle {
+	.kira-theme-icon-moon {
+		display: none;
+	}
+
+	.kira-theme-icon-sun {
+		display: block;
 	}
 }
