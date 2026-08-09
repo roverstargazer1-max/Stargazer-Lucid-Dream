@@ -10,6 +10,12 @@
 	top: 0;
 	flex-shrink: 0;
 	transition: all 0.3s ease-out;
+	// 侧栏文字原本按纯白底配色，直接压在背景图上会看不清，
+	// 所以和正文面板用同一套半透明表面 + 毛玻璃（.kira-sidebar-modal 是兄弟节点，
+	// 不受 backdrop-filter 的 fixed 包含块影响）
+	background-color: $surface;
+	-webkit-backdrop-filter: $blurBg;
+	backdrop-filter: $blurBg;
 
 	.kira-avatar {
 		margin: 25px;
@@ -37,7 +43,7 @@
 			-ms-flex: 1;
 			flex: 1;
 			text-align: center;
-			color: #a3a8ae;
+			color: #6b7178;
 
 			span {
 				color: #363636;
@@ -51,7 +57,7 @@
 
 		&-item {
 			padding: 0 36px;
-			color: #9ca2a8;
+			color: #5a6169;
 			border-radius: $radius;
 			margin-bottom: 10px;
 			text-align: center;
@@ -76,7 +82,7 @@
 
 			i {
 				font-size: 22px;
-				color: #9ca2a8;
+				color: #5a6169;
 			}
 
 			&-content {
@@ -110,13 +116,13 @@
 			border-radius: 100%;
 			display: inline-block;
 			text-align: center;
-			color: #606266;
+			color: #4a4f55;
 		}
 	}
 
 	.kira-widget-wrap {
 		box-shadow: 0 0 1rem rgba(161, 177, 204, 0.4);
-		background-color: #fff;
+		background-color: $surfaceCard;
 		margin: 20px;
 		border-radius: $radius;
 		overflow: hidden;
@@ -200,7 +206,7 @@
 	.kira-copyright {
 		padding: 0 30px;
 		text-align: center;
-		color: #777;
+		color: #5a5f64;
 		white-space: normal;
 		margin-bottom: 20px;
 		font-size: 12px;
