@@ -1,6 +1,6 @@
 avatar: /image/IMG_0125.webp # 网站 Logo
 background: # 既是博客的背景，又是文章默认头图
-  path: /image/covers/LucidDreaam.webp
+  path: /image/ztmy02.webp
   width: 1280
   height: 720
 favicon:
