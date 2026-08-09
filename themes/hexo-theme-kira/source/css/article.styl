@@ -213,7 +213,7 @@ article {
 		color: #666;
 		margin: $gutter 0;
 		padding: 0.1em 2.2em;
-		background-color: #f8f8f8;
+		background-color: $surfaceInset;
 		line-height: 28px;
 		position: relative;
 		border-radius: 10px;
@@ -383,10 +383,10 @@ article {
 
 		thead {
 			border-bottom: 1px solid #eee;
-			background-color: #f8f8f8;
+			background-color: $surfaceInset;
 
 			tr {
-				background-color: #f8f8f8;
+				background-color: transparent;
 			}
 		}
 
@@ -402,10 +402,10 @@ article {
 		}
 
 		tr {
-			background-color: #fff;
+			background-color: transparent;
 
 			&:nth-child(2n) {
-				background-color: #f8f8f8;
+				background-color: $surfaceInset;
 			}
 		}
 	}
@@ -490,6 +490,7 @@ details {
 	}
 
 	.aplayer {
+		background: $surfaceCard;
 		-webkit-box-shadow: 0 0 0 1px #eee !important;
 		box-shadow: 0 0 0 1px #eee !important;
 		border-radius: 10px !important;
@@ -540,7 +541,7 @@ details {
 			border-top: none !important;
 
 			&.aplayer-list-light {
-				background: #f8f8f8 !important;
+				background: $surfaceInset !important;
 			}
 		}
 	}
