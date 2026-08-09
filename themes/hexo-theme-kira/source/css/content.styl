@@ -5,7 +5,7 @@
 	flex-grow: 1;
 	overflow: auto;
 	scrollbar-width: none;
-	box-shadow: 0 0 1rem rgba(138, 151, 174, 0.4);
+	box-shadow: 0 0 1rem var(--kira-shadow);
 	margin-top: 2vh;
 	margin-bottom: 2vh;
 
@@ -24,7 +24,7 @@
 			list-style: none;
 			text-align: center;
 			display: flex;
-			color: #ddd;
+			color: var(--kira-text-4);
 			background-color: $surfaceInset;
 			border-radius: $radius;
 			justify-content: center;
@@ -42,12 +42,12 @@
 			}
 
 			a:not(.current):hover {
-				background-color: rgba(155, 155, 155, 0.3);
+				background-color: var(--kira-hover);
 			}
 		}
 
 		.kira-page-nav > * {
-			color: #999;
+			color: var(--kira-text-4);
 			border-radius: $radius;
 			width: 35px;
 			height: 35px;
@@ -70,7 +70,7 @@
 			}
 
 			.kira-post:hover {
-				background-color: rgba(170, 177, 183, 0.1);
+				background-color: var(--kira-hover);
 			}
 
 			.kira-post-meta {
@@ -82,7 +82,7 @@
 			}
 
 			.kira-hr {
-				border-bottom: 1px solid rgba(135, 135, 135, 0.3);
+				border-bottom: 1px solid var(--kira-hr);
 				height: 0;
 				margin-block: 12px;
 			}

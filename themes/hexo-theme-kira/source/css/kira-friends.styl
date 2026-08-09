@@ -22,7 +22,7 @@
   text-decoration: none
   color: inherit
   overflow: hidden
-  background: #fff
+  background: $surfaceCard
   box-shadow: 0 2px 16px rgba(49,174,255,.08), 0 1.5px 6px rgba(0,0,0,.04)
   border: 1px solid rgba(49,174,255,.08)
   transition: background .25s ease, transform .25s ease, box-shadow .25s ease, border-color .2s
@@ -111,10 +111,7 @@
     padding: 14px 16px
 
 // 7) 暗色模式微调
+// 文字颜色已经由 --kira-text-* 接管，这里只剩发光阴影需要换
 @media (prefers-color-scheme: dark)
   .kira-friends-item:hover
     box-shadow: 0 0 16px rgba(255,255,255,.12)
-  .kira-friends-blogName
-    color: var(--kira-text-1, #eee)
-  .kira-friends-desc
-    color: var(--kira-text-3, #aaa)

@@ -43,10 +43,10 @@
 			-ms-flex: 1;
 			flex: 1;
 			text-align: center;
-			color: #6b7178;
+			color: var(--kira-text-3);
 
 			span {
-				color: #363636;
+				color: var(--kira-text-1);
 				display: block;
 			}
 		}
@@ -57,7 +57,7 @@
 
 		&-item {
 			padding: 0 36px;
-			color: #5a6169;
+			color: var(--kira-text-3);
 			border-radius: $radius;
 			margin-bottom: 10px;
 			text-align: center;
@@ -66,7 +66,7 @@
 			align-items: center;
 
 			&:hover {
-				background-color: rgba(0, 0, 0, 0.08);
+				background-color: var(--kira-hover);
 			}
 
 			&.true {
@@ -82,7 +82,7 @@
 
 			i {
 				font-size: 22px;
-				color: #5a6169;
+				color: var(--kira-text-3);
 			}
 
 			&-content {
@@ -116,12 +116,12 @@
 			border-radius: 100%;
 			display: inline-block;
 			text-align: center;
-			color: #4a4f55;
+			color: var(--kira-text-3);
 		}
 	}
 
 	.kira-widget-wrap {
-		box-shadow: 0 0 1rem rgba(161, 177, 204, 0.4);
+		box-shadow: 0 0 1rem var(--kira-shadow);
 		background-color: $surfaceCard;
 		margin: 20px;
 		border-radius: $radius;
@@ -150,7 +150,7 @@
 					padding: 12px 18px;
 
 					a {
-						color: #606266;
+						color: var(--kira-text-3);
 					}
 
 					&:last-child {
@@ -162,12 +162,7 @@
 
 			.category-list-count,
 			.archive-list-count {
-				background-color: rgba(
-					hexo-config('color.first.r'),
-					hexo-config('color.first.g'),
-					hexo-config('color.first.b'),
-					0.1
-				);
+				background-color: rgba($color1, 0.1);
 				display: inline-block;
 				width: 26px;
 				height: 26px;
@@ -206,7 +201,7 @@
 	.kira-copyright {
 		padding: 0 30px;
 		text-align: center;
-		color: #5a5f64;
+		color: var(--kira-text-3);
 		white-space: normal;
 		margin-bottom: 20px;
 		font-size: 12px;

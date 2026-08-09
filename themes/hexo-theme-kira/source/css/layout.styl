@@ -1,10 +1,6 @@
 @import 'constants.styl';
-
-// 外观默认值。滑块调整后由 js/kira-opacity.js 写成 documentElement 的内联样式
-:root {
-	--kira-surface-alpha: 0.78; // 内容面板不透明度，越大正文越清晰
-	--kira-bg-opacity: 0.45; // 背景图不透明度，越大背景越明显
-}
+// 昼夜 token 与外观默认值。只能在这里导入一次，详见 theme-vars.styl 顶部说明
+@import 'theme-vars.styl';
 
 body {
 	width: 100%;

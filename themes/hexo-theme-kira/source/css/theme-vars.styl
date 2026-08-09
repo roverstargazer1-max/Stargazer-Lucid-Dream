@@ -1,0 +1,41 @@
+// 配色 token
+// 颜色统一收在这里，各样式文件只引用 var(--kira-*)，
+// 方便整站换配色，也为后面加暗色模式留出接口。
+//
+// 注意：本文件只能被 layout.styl 导入一次。
+// Stylus 的 @import 不去重，而 constants.styl 被五个文件导入，
+// 从那里导入会让 :root 在输出 CSS 里出现五份。
+:root {
+	// —— 外观滑块（见 js/kira-opacity.js）——
+	--kira-surface-alpha: 0.78; // 内容面板不透明度，越大正文越清晰
+	--kira-bg-opacity: 0.45; // 背景图不透明度，越大背景越明显
+
+	--kira-primary: $color1;
+
+	--kira-surface-rgb: 255, 255, 255; // 主面板底色
+	--kira-inset-rgb: 0, 0, 0; // 面板内的浅色块
+	--kira-inset-alpha: 0.035;
+
+	--kira-text-1: #111; // 标题
+	--kira-text-2: #444; // 正文
+	--kira-text-3: #5a6169; // 次要：引用、侧栏菜单与链接
+	--kira-text-4: #999; // 更弱：分页、del、引号
+
+	--kira-border: #eee;
+	--kira-border-strong: #ccc; // hr 虚线
+	--kira-hr: rgba(135, 135, 135, 0.3);
+
+	--kira-hover: rgba(0, 0, 0, 0.08);
+	--kira-shadow: rgba(138, 151, 174, 0.4);
+
+	--kira-fab-color: rgb(85, 85, 85);
+	--kira-fab-bg: rgba(255, 255, 255, 0.501);
+	--kira-fab-bg-hover: rgba(255, 255, 255, 0.8);
+	--kira-fab-bg-solid: rgba(255, 255, 255, 1);
+	--kira-panel-bg: rgba(255, 255, 255, 0.92);
+
+	--kira-list-ring: #fff; // article li::before 的描边，需贴合面板底色
+	--kira-cover-placeholder: #eee;
+	--kira-checkbox-bg: #ffffff;
+	--kira-checkbox-border: #d9d9d9;
+}

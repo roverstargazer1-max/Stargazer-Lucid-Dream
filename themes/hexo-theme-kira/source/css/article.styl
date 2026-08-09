@@ -1,7 +1,7 @@
 @import 'constants.styl';
 
 article {
-	color: #444;
+	color: var(--kira-text-2);
 	font-family: microsoft yahei;
 
 	p {
@@ -98,7 +98,7 @@ article {
 	}
 
 	del {
-		color: #999;
+		color: var(--kira-text-4);
 		font-size: 0.9em;
 	}
 
@@ -139,7 +139,7 @@ article {
 	h4,
 	h5,
 	h6 {
-		color: #111;
+		color: var(--kira-text-1);
 		margin: $gutter 0;
 	}
 
@@ -169,7 +169,7 @@ article {
 			content: '';
 			width: 100%;
 			padding: 0px $gutter;
-			border-bottom: 1px solid #eee;
+			border-bottom: 1px solid var(--kira-border);
 			position: absolute;
 			bottom: -1px;
 			left: -($gutter);
@@ -210,14 +210,14 @@ article {
 	}
 
 	blockquote {
-		color: #666;
+		color: var(--kira-text-3);
 		margin: $gutter 0;
 		padding: 0.1em 2.2em;
 		background-color: $surfaceInset;
 		line-height: 28px;
 		position: relative;
 		border-radius: 10px;
-		border: 1px solid #eee;
+		border: 1px solid var(--kira-border);
 		font-family: sf pro sc, sf pro display, sf pro icons, aos icons, pingfang sc, helvetica neue,
 			helvetica, arial, sans-serif;
 
@@ -226,7 +226,7 @@ article {
 			top: 15px;
 			left: 10px;
 			position: absolute;
-			color: #888;
+			color: var(--kira-text-4);
 			font-size: 3em;
 		}
 
@@ -235,7 +235,7 @@ article {
 			bottom: -8px;
 			right: 10px;
 			position: absolute;
-			color: #888;
+			color: var(--kira-text-4);
 			font-size: 3em;
 		}
 	}
@@ -243,7 +243,7 @@ article {
 	hr {
 		display: block;
 		border: 0;
-		border-top: 1px dashed #ccc;
+		border-top: 1px dashed var(--kira-border-strong);
 		margin: $gutter 0;
 		padding: 0;
 	}
@@ -295,7 +295,7 @@ article {
 				margin-right: 12px;
 				margin-left: -26px;
 				border-radius: 100%;
-				border: 3px solid #fff;
+				border: 3px solid var(--kira-list-ring);
 				z-index: 3;
 				position: relative;
 			}
@@ -362,7 +362,7 @@ article {
 	}
 
 	& > table {
-		color: #5b6064;
+		color: var(--kira-text-3);
 		border-spacing: 0;
 		border-collapse: collapse;
 		max-width: 100%;
@@ -378,11 +378,11 @@ article {
 		}
 
 		&::-webkit-scrollbar-thumb {
-			background-color: #888;
+			background-color: var(--kira-text-4);
 		}
 
 		thead {
-			border-bottom: 1px solid #eee;
+			border-bottom: 1px solid var(--kira-border);
 			background-color: $surfaceInset;
 
 			tr {
@@ -391,13 +391,13 @@ article {
 		}
 
 		th {
-			border: 1px solid #eee;
+			border: 1px solid var(--kira-border);
 			padding: 13px 26px;
 			font-weight: 400;
 		}
 
 		td {
-			border: 1px solid #eee;
+			border: 1px solid var(--kira-border);
 			padding: 13px 26px;
 		}
 
@@ -432,20 +432,23 @@ article {
 			display: flex;
 			justify-content: center;
 			align-items: center;
-			color: #fff;
-			background-color: #ffffff;
-			border: 1px solid #d9d9d9;
+			// 未勾选时靠“对勾与底色同色”把它藏起来，所以必须跟着底色走，
+			// 否则暗色下会露出一个白对勾，看起来像已勾选
+			color: var(--kira-checkbox-bg);
+			background-color: var(--kira-checkbox-bg);
+			border: 1px solid var(--kira-checkbox-border);
 			border-radius: 0.25em;
 			cursor: pointer;
 		}
 
 		&:disabled::after {
-			cursor: not-allowed;	
+			cursor: not-allowed;
 		}
 
 		&:checked::after {
 			border-color: $color1;
 			background-color: $color1;
+			color: #fff;
 		}
 	}
 }
@@ -491,8 +494,8 @@ details {
 
 	.aplayer {
 		background: $surfaceCard;
-		-webkit-box-shadow: 0 0 0 1px #eee !important;
-		box-shadow: 0 0 0 1px #eee !important;
+		-webkit-box-shadow: 0 0 0 1px var(--kira-border) !important;
+		box-shadow: 0 0 0 1px var(--kira-border) !important;
 		border-radius: 10px !important;
 		margin: $gutter 0 !important;
 		height: 90px;

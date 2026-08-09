@@ -13,8 +13,9 @@
 		top: 0;
 		right: 0;
 
+		// 右侧栏变 fixed 后直接压在背景图上，半透明按钮会看不清
 		.kira-backtotop {
-			background-color: rgba(255, 255, 255, 1);
+			background-color: var(--kira-fab-bg-solid);
 		}
 	}
 }
@@ -57,7 +58,7 @@
 				}
 
 				&:hover {
-					background-color: rgba(0, 0, 0, 0.16);
+					background-color: var(--kira-hover);
 				}
 			}
 		}
