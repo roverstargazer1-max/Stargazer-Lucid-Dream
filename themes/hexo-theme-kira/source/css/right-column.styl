@@ -4,17 +4,22 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	// 按钮之间的统一间距。用 gap 而不是相邻兄弟选择器：
+	// .kira-backtotop 的选择器权重比 `> * + *` 高，margin 方案会被它压掉
+	gap: 12px;
 	position: sticky;
 	pointer-events: none;
 	top: 0;
 	z-index: 10;
 
+	// 整列只留 .kira-opacity 一个 margin-top: auto，
+	// 由它吸收全部剩余空间把按钮一起顶到底部。
+	// 这里再来一个 auto 会把剩余空间分成两份，导致按钮被拉开
 	.kira-backtotop {
 		bottom: 20px;
 		color: rgb(85, 85, 85);
 		background-color: rgba(255, 255, 255, 0.501);
 		border-radius: 50%;
-		margin-top: auto;
 		margin-bottom: 15px;
 		transition: 500ms;
 		pointer-events: all;

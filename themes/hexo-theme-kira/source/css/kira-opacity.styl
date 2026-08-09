@@ -1,0 +1,122 @@
+.kira-opacity {
+	position: relative;
+	margin-top: auto;
+	display: flex;
+	align-items: center;
+	pointer-events: all;
+
+	// 尺寸沿用 .mdui-fab（56px），与旁边的回到顶部按钮保持一致
+	.kira-opacity-toggle {
+		color: rgb(85, 85, 85);
+		background-color: rgba(255, 255, 255, 0.501);
+		border: none;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		cursor: pointer;
+		transition: 300ms;
+
+		&:hover {
+			color: $color1;
+			background-color: rgba(255, 255, 255, 0.8);
+		}
+	}
+
+	.kira-opacity-panel {
+		position: absolute;
+		right: 68px;
+		bottom: 0;
+		width: 190px;
+		padding: 14px 16px;
+		border-radius: $radius;
+		background-color: rgba(255, 255, 255, 0.92);
+		-webkit-backdrop-filter: $blurBg;
+		backdrop-filter: $blurBg;
+		box-shadow: 0 4px 18px rgba(0, 0, 0, 0.14);
+		font-size: 13px;
+		color: #555;
+		user-select: none;
+
+		&[hidden] {
+			display: none;
+		}
+	}
+
+	.kira-opacity-row {
+		display: flex;
+		flex-direction: column;
+
+		& + .kira-opacity-row {
+			margin-top: 12px;
+		}
+
+		label {
+			margin-bottom: 6px;
+			cursor: pointer;
+		}
+	}
+
+	input[type='range'] {
+		-webkit-appearance: none;
+		appearance: none;
+		width: 100%;
+		height: 4px;
+		margin: 4px 0;
+		border-radius: 2px;
+		background-color: rgba(0, 0, 0, 0.12);
+		cursor: pointer;
+
+		&::-webkit-slider-thumb {
+			-webkit-appearance: none;
+			appearance: none;
+			width: 14px;
+			height: 14px;
+			border: none;
+			border-radius: 50%;
+			background-color: $color1;
+			cursor: pointer;
+		}
+
+		&::-moz-range-thumb {
+			width: 14px;
+			height: 14px;
+			border: none;
+			border-radius: 50%;
+			background-color: $color1;
+			cursor: pointer;
+		}
+	}
+
+	.kira-opacity-reset {
+		width: 100%;
+		margin-top: 14px;
+		padding: 6px 0;
+		border: none;
+		border-radius: 8px;
+		background-color: rgba(0, 0, 0, 0.05);
+		color: #666;
+		font-size: 12px;
+		font-family: inherit;
+		cursor: pointer;
+		transition: 300ms;
+
+		&:hover {
+			background-color: $color1;
+			color: #fff;
+		}
+	}
+}
+
+// 按钮之间的间距改由 right-column.styl 的 .kira-right-column { gap } 统一负责，
+// 这样往列里插新按钮不会再打断相邻兄弟选择器
+
+// 窄屏下右侧栏变成 fixed 且贴着屏幕右缘，
+// 面板改为浮在按钮上方并向左展开，避免超出视口
+@media screen and (max-width: 1180px) {
+	.kira-opacity {
+		.kira-opacity-panel {
+			right: 12px;
+			bottom: 68px;
+		}
+	}
+}

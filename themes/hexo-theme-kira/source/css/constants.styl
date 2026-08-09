@@ -2,9 +2,12 @@ $gutter = 25px;
 $radius = 13px;
 
 // 半透明表面：让背景图透过内容区
-$surface = rgba(255, 255, 255, 0.72); // 主内容面板底色
+// 透明度由 --kira-surface-alpha 驱动，可在页面上实时调整
+// （默认值见 layout.styl 的 :root，调整逻辑见 js/kira-opacity.js）
+$surface = unquote('rgba(255, 255, 255, var(--kira-surface-alpha, 0.78))'); // 主内容面板底色
 $surfaceInset = rgba(0, 0, 0, 0.035); // 面板内的浅色块（引用、分页、页脚等）
-$surfaceCard = rgba(255, 255, 255, 0.55); // 面板内需要保持可读的白底控件
+// 面板内的白底控件跟随主面板，但略透一点
+$surfaceCard = unquote('rgba(255, 255, 255, calc(var(--kira-surface-alpha, 0.78) * 0.8))');
 // 注意：backdrop-filter 会让元素成为 fixed 子元素的包含块，
 // 只能用在没有 fixed 后代的元素上（正文区内有 .kira-image 灯箱）
 $blurBg = blur(12px);
