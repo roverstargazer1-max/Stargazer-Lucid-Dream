@@ -6,3 +6,6 @@ node_modules/
 public/
 .deploy*/
 _multiconfig.yml
+# Local-only performance optimization notes and domain context
+CONTEXT.md
+docs/optimization/
