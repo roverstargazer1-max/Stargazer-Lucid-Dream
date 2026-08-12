@@ -1,7 +1,11 @@
 <% var bgDay = theme.background.path;
    var bgNight = (theme.backgroundDark && theme.backgroundDark.path) || bgDay; %>
+<% var postIndex = 0; %>
 <div class="kira-posts">
     <% page.posts.each(function (page) { %>
+        <% var isPriorityCover = postIndex === 0 && Boolean(page.cover);
+           postIndex += 1;
+           var coverMobile = page.cover_mobile || ''; %>
         <div class="kira-post">
             <a href="<%- url_for(page.path) %>">
                 <% if (page.cover){ %>
@@ -10,10 +14,19 @@
                     style="padding-bottom: '<%= theme.background.height / theme.background.width * 100 %>%'"
                 >
                     <img
+                        <% if (isPriorityCover) { %>
+                        src="<%- page.cover %>"
+                        <% if (coverMobile) { %>srcset="<%- coverMobile %> 768w, <%- page.cover %> 1672w" sizes="100vw"<% } %>
+                        loading="eager"
+                        fetchpriority="high"
+                        decoding="async"
+                        <% } else { %>
                         data-src="<%- page.cover %>"
                         data-sizes="auto"
+                        <% if (coverMobile) { %>data-srcset="<%- coverMobile %> 768w, <%- page.cover %> 1672w"<% } %>
+                        <% } %>
                         alt="<%= page.title %>"
-                        class="lazyload kira-post-cover-image"
+                        class="<%= isPriorityCover ? 'kira-post-cover-image' : 'lazyload kira-post-cover-image' %>"
                     />
                     <h1><%= page.title %></h1>
                 </div>

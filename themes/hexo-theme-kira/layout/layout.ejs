@@ -6,8 +6,12 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<% var bgDay = theme.background.path;
-		   var bgNight = (theme.backgroundDark && theme.backgroundDark.path) || bgDay; %>
-		<!-- 昼夜模式：必须内联且早于样式表，外链脚本要多一次请求，会拖到样式已可绘制之后 -->
+		   var bgNight = (theme.backgroundDark && theme.backgroundDark.path) || bgDay;
+		   var bgDayMobile = (theme.background.mobilePath || bgDay);
+		   var bgNightMobile = (theme.backgroundDark && theme.backgroundDark.mobilePath) || bgDayMobile;
+		   var isHomepage = is_home();
+		   var needsHighlight = is_post(); %>
+		<!-- 昼夜模式和首屏背景预加载必须早于样式表，避免背景等 CSS 解析后才开始请求 -->
 		<script>
 			(function () {
 				var KEY = 'kira-theme';
@@ -23,7 +27,29 @@
 						: window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
 						? 'dark'
 						: 'light';
+				var background = {
+					day: <%- JSON.stringify(bgDay) %>,
+					night: <%- JSON.stringify(bgNight) %>,
+					dayMobile: <%- JSON.stringify(bgDayMobile) %>,
+					nightMobile: <%- JSON.stringify(bgNightMobile) %>
+				};
+				var isMobile = window.matchMedia && window.matchMedia('(max-width: 767px)').matches;
+				var backgroundUrl = mode === 'dark'
+					? (isMobile ? background.nightMobile : background.night)
+					: (isMobile ? background.dayMobile : background.day);
+
 				document.documentElement.dataset.theme = mode;
+				window.__kiraBackground = background;
+
+				<% if (isHomepage) { %>
+					var preload = document.createElement('link');
+					preload.rel = 'preload';
+					preload.as = 'image';
+					preload.fetchPriority = 'high';
+					preload.href = backgroundUrl;
+					preload.setAttribute('data-kira-background-preload', '');
+					document.head.appendChild(preload);
+				<% } %>
 			})();
 		</script>
 		<%- css("css/layout") %>
@@ -33,16 +59,17 @@
 		page.category; } else if (is_tag()){ title=__('count.tags') + '：' + page.tag; } %>
 		<title><% if (title){ %> <%= title %> - <% } %> <%= config.title %></title>
 		<!-- <link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css" /> -->
-		<!-- <script src="https://unpkg.com/mdui@1.0.2/dist/js/mdui.min.js"></script> -->
 		<%- css("lib/mdui/mdui.min") %>
-		<%- js("lib/mdui/mdui.min") %>
+		<script src="<%- url_for('/lib/mdui/mdui.min.js') %>" defer></script>
 		<!-- lazyload -->
-		<%- js("lib/lazysizes") %>
+		<script src="<%- url_for('/lib/lazysizes.js') %>" defer></script>
 		<!-- smooth-scrolling -->
-		<%- js("lib/smooth-scrolling") %>
+		<script src="<%- url_for('/lib/smooth-scrolling.js') %>" defer></script>
 		<!-- highlight -->
-		<%- css("lib/highlight/atom-one-dark.min") %>
-		<%- js("lib/highlight/highlight.min") %>
+		<% if (needsHighlight) { %>
+			<%- css("lib/highlight/atom-one-dark.min") %>
+			<script src="<%- url_for('/lib/highlight/highlight.min.js') %>" defer></script>
+		<% } %>
 		<!-- 预置 kiraicon -->
 		<%- css("lib/iconfont/iconfont") %>
 		<% if (theme.iconlib) { %>
@@ -53,22 +80,27 @@
 			href="<%= theme.favicon.href %>"
 			type="<%= theme.favicon.type %>"
 		/>
-		<%- css("deps/css/APlayer.min") %>
 		<% if (theme.customStyles) { %>
 			<% theme.customStyles.forEach(function(customCss){ %>
 				<%- css(customCss) %>
 			<% }) %>
 		<% } %>
-		<%- js(["deps/js/APlayer.min", "deps/js/Meting.min"]) %>
-		<!-- 昼夜切换与透明度调节：在 head 中同步执行，先落地 CSS 变量避免首屏闪烁 -->
-		<%- js(["js/kira-theme", "js/kira-opacity"]) %>
+		<!-- 昼夜切换与透明度调节不阻塞 HTML 解析；脚本仍按文档顺序执行 -->
+		<script src="<%- url_for('/js/kira-theme.js') %>" defer></script>
+		<script src="<%- url_for('/js/kira-opacity.js') %>" defer></script>
+		<script src="<%- url_for('/js/kira-deferred.js') %>" defer></script>
 	</head>
 
 	<body>
 		<div
 			class="kira-background"
-			style="--kira-bg-day: url('<%= bgDay %>'); --kira-bg-night: url('<%= bgNight %>')"
-		></div>
+			data-bg-day="<%= bgDay %>"
+			data-bg-night="<%= bgNight %>"
+			data-bg-day-mobile="<%= bgDayMobile %>"
+			data-bg-night-mobile="<%= bgNightMobile %>"
+		>
+			<img class="kira-background-image" alt="" aria-hidden="true" decoding="async" fetchpriority="high" />
+		</div>
 		<%- include("components/header") %>
 		<div class="kira-body">
 			<%- include("components/sidebar") %>

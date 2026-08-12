@@ -44,22 +44,38 @@ figure.highlight table tbody tr td {
 	}
 }
 
-// 两张图的地址由 layout.ejs 以内联自定义属性写在元素上，
-// 浏览器只会请求计算值真正用到的那一张，没被选中的 var() 不产生请求
+// 背景图由 kira-theme.js 按当前昼夜模式和视口尺寸加载。
+// 图片到达前先显示主题色占位，避免网络慢时首屏出现空白背景。
 .kira-background {
-	background-image: var(--kira-bg-day);
+	background: linear-gradient(135deg, rgba(219, 231, 244, 0.96), rgba(239, 244, 249, 0.96));
 	opacity: var(--kira-bg-opacity, 0.45);
-	background-size: cover;
 	height: 100vh;
 	width: 100%;
 	position: fixed;
 	top: 0;
 	left: 0;
 	z-index: -1;
+	overflow: hidden;
 }
 
 html[data-theme='dark'] .kira-background {
-	background-image: var(--kira-bg-night);
+	background: linear-gradient(135deg, rgba(21, 31, 47, 0.98), rgba(36, 42, 56, 0.98));
+}
+
+.kira-background-image {
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	opacity: 0;
+	transition: opacity 360ms ease-out;
+}
+
+.kira-background-image.is-loaded {
+	opacity: 1;
 }
 
 .kira-header {
