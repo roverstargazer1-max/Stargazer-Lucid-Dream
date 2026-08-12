@@ -26,7 +26,7 @@
                         <% if (coverMobile) { %>data-srcset="<%- coverMobile %> 768w, <%- page.cover %> 1672w"<% } %>
                         <% } %>
                         alt="<%= page.title %>"
-                        class="<%= isPriorityCover ? 'kira-post-cover-image' : 'lazyload kira-post-cover-image' %>"
+                        class="<%= isPriorityCover ? 'kira-post-cover-image is-priority-cover' : 'lazyload kira-post-cover-image' %>"
                     />
                     <h1><%= page.title %></h1>
                 </div>
