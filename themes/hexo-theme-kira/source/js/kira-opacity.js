@@ -1,6 +1,6 @@
 (function () {
 	const STORE_KEY = 'kira-appearance';
-	const DEFAULTS = { surface: 78, bg: 45 };
+	const DEFAULTS = { surface: 78, bg: 61 };
 	const VARS = {
 		surface: '--kira-surface-alpha',
 		bg: '--kira-bg-opacity',
