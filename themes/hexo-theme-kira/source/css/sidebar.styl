@@ -104,6 +104,122 @@
 		}
 	}
 
+	.kira-sidebar-appearance {
+		box-shadow: 0 0 1rem var(--kira-shadow);
+		background-color: $surfaceCard;
+		margin: 20px;
+		padding: 14px 16px;
+		border-radius: $radius;
+		white-space: normal;
+
+		&-header {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			margin-bottom: 12px;
+		}
+
+		&-title {
+			font-size: 13px;
+			font-weight: 500;
+			color: $color1;
+		}
+
+		.kira-sidebar-theme-toggle {
+			width: 32px;
+			height: 32px;
+			border: none;
+			border-radius: 50%;
+			background-color: var(--kira-hover);
+			color: var(--kira-text-1);
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			cursor: pointer;
+			transition: all 0.3s ease;
+
+			&:hover {
+				background-color: $color1;
+				color: #fff;
+			}
+		}
+
+		&-row {
+			display: flex;
+			flex-direction: column;
+			margin-bottom: 10px;
+		}
+
+		.kira-sidebar-label-wrap {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			margin-bottom: 4px;
+			font-size: 12px;
+			color: var(--kira-text-3);
+
+			label {
+				cursor: pointer;
+			}
+
+			.kira-opacity-val {
+				font-size: 11px;
+				color: $color1;
+				font-variant-numeric: tabular-nums;
+			}
+		}
+
+		input[type='range'] {
+			-webkit-appearance: none;
+			appearance: none;
+			width: 100%;
+			height: 4px;
+			margin: 4px 0;
+			border-radius: 2px;
+			background-color: var(--kira-hover);
+			cursor: pointer;
+
+			&::-webkit-slider-thumb {
+				-webkit-appearance: none;
+				appearance: none;
+				width: 14px;
+				height: 14px;
+				border: none;
+				border-radius: 50%;
+				background-color: $color1;
+				cursor: pointer;
+			}
+
+			&::-moz-range-thumb {
+				width: 14px;
+				height: 14px;
+				border: none;
+				border-radius: 50%;
+				background-color: $color1;
+				cursor: pointer;
+			}
+		}
+
+		.kira-sidebar-opacity-reset {
+			width: 100%;
+			margin-top: 6px;
+			padding: 5px 0;
+			border: none;
+			border-radius: 6px;
+			background-color: var(--kira-hover);
+			color: var(--kira-text-3);
+			font-size: 11px;
+			font-family: inherit;
+			cursor: pointer;
+			transition: 300ms;
+
+			&:hover {
+				background-color: $color1;
+				color: #fff;
+			}
+		}
+	}
+
 	.kira-social {
 		padding: 12px;
 		font-size: 0;

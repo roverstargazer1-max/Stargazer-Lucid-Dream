@@ -1,3 +1,5 @@
+@import 'constants.styl';
+
 .kira-right-column {
 	width: 80px;
 	height: 100vh;
@@ -44,15 +46,20 @@
 			color: $color1;
 			background-color: var(--kira-fab-bg-hover);
 		}
-
-		// 昼模式显示月亮（点了会变夜间），夜模式显示太阳
-		.kira-theme-icon-sun {
-			display: none;
-		}
 	}
 }
 
-html[data-theme='dark'] .kira-right-column .kira-theme-toggle {
+.kira-theme-toggle {
+	// 昼模式显示月亮（点了会变夜间），夜模式显示太阳
+	.kira-theme-icon-sun {
+		display: none;
+	}
+	.kira-theme-icon-moon {
+		display: block;
+	}
+}
+
+html[data-theme='dark'] .kira-theme-toggle {
 	.kira-theme-icon-moon {
 		display: none;
 	}

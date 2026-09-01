@@ -1,10 +1,15 @@
 <div class="kira-opacity" id="kira-opacity">
 	<div class="kira-opacity-panel" id="kira-opacity-panel" hidden>
 		<div class="kira-opacity-row">
-			<label for="kira-opacity-surface">正文透明度</label>
+			<div class="kira-opacity-label-wrap">
+				<label for="kira-opacity-surface">正文透明度</label>
+				<span class="kira-opacity-val" data-val-for="surface">78%</span>
+			</div>
 			<input
 				type="range"
+				class="kira-opacity-input"
 				id="kira-opacity-surface"
+				data-target="surface"
 				min="40"
 				max="100"
 				step="1"
@@ -12,10 +17,15 @@
 			/>
 		</div>
 		<div class="kira-opacity-row">
-			<label for="kira-opacity-bg">背景的透明度</label>
+			<div class="kira-opacity-label-wrap">
+				<label for="kira-opacity-bg">背景透明度</label>
+				<span class="kira-opacity-val" data-val-for="bg">61%</span>
+			</div>
 			<input
 				type="range"
+				class="kira-opacity-input"
 				id="kira-opacity-bg"
+				data-target="bg"
 				min="0"
 				max="100"
 				step="1"

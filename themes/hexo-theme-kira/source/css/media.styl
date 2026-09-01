@@ -1,3 +1,5 @@
+@import 'constants.styl';
+
 // 响应式布局
 @media (max-width: 1180px) {
 	.kira-sidebar {
@@ -34,24 +36,67 @@
 
 		.kira-header {
 			height: 60px;
-			padding: 10px;
+			padding: 10px 16px;
 			display: flex;
 			align-items: center;
 			justify-content: space-between;
 			position: relative;
 			z-index: 4;
 
-			a {
+			.kira-drawer-button {
 				width: 45px;
 				height: 45px;
 				text-align: center;
 				border-radius: 50%;
 				transition: all 0.5s ease;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				color: var(--kira-text-1);
 
 				i {
 					font-size: 25px;
 					line-height: 45px;
 				}
+
+				&:hover {
+					background-color: var(--kira-hover);
+				}
+			}
+
+			.kira-header-right {
+				display: flex;
+				align-items: center;
+				gap: 8px;
+			}
+
+			.kira-header-theme-toggle {
+				width: 40px;
+				height: 40px;
+				border: none;
+				border-radius: 50%;
+				background: transparent;
+				color: var(--kira-text-1);
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				cursor: pointer;
+				transition: all 0.3s ease;
+
+				&:hover {
+					background-color: var(--kira-hover);
+					color: $color1;
+				}
+			}
+
+			.kira-header-avatar {
+				width: 45px;
+				height: 45px;
+				text-align: center;
+				border-radius: 50%;
+				transition: all 0.5s ease;
+				display: block;
+
 				img {
 					width: 100%;
 					height: 100%;
@@ -97,6 +142,51 @@
 				margin-right: unset;
 				max-width: 100vw;
 				margin-top: 0;
+			}
+
+			.kira-right-column {
+				position: fixed;
+				top: auto;
+				bottom: 20px;
+				right: 16px;
+				width: auto;
+				height: auto;
+				z-index: 10;
+				gap: 0;
+
+				.kira-opacity,
+				.kira-theme-toggle {
+					display: none !important;
+				}
+
+				.kira-backtotop {
+					margin-bottom: 0;
+					bottom: auto;
+					width: 42px;
+					height: 42px;
+					border-radius: 50%;
+					box-shadow: 0 2px 12px rgba(0, 0, 0, 0.18);
+					background-color: var(--kira-fab-bg-solid);
+					display: flex;
+					align-items: center;
+					justify-content: center;
+
+					button {
+						width: 42px;
+						height: 42px;
+						min-width: 42px;
+						line-height: 42px;
+						box-shadow: none;
+						display: flex;
+						align-items: center;
+						justify-content: center;
+					}
+
+					i {
+						font-size: 18px;
+						line-height: 1;
+					}
+				}
 			}
 		}
 	}

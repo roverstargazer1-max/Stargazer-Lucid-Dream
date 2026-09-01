@@ -108,8 +108,10 @@
 
 	const apply = function (mode) {
 		document.documentElement.dataset.theme = mode;
-		const toggle = document.querySelector('#kira-theme-toggle');
-		if (toggle) toggle.setAttribute('aria-pressed', String(mode === DARK));
+		const toggles = document.querySelectorAll('.kira-theme-toggle');
+		toggles.forEach((toggle) => {
+			toggle.setAttribute('aria-pressed', String(mode === DARK));
+		});
 		applyCovers(mode);
 		loadBackground(mode);
 	};
@@ -137,13 +139,15 @@
 	window.addEventListener('DOMContentLoaded', () => {
 		apply(mode);
 
-		const toggle = document.querySelector('#kira-theme-toggle');
-		if (!toggle) return;
-
-		toggle.addEventListener('click', () => {
+		const handleToggle = () => {
 			mode = mode === DARK ? LIGHT : DARK;
 			save(mode);
 			apply(mode);
+		};
+
+		const toggles = document.querySelectorAll('.kira-theme-toggle');
+		toggles.forEach((toggle) => {
+			toggle.addEventListener('click', handleToggle);
 		});
 	});
 })();

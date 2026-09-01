@@ -47,58 +47,79 @@
 	apply(state);
 
 	window.addEventListener('DOMContentLoaded', () => {
-		const wrap = document.querySelector('#kira-opacity');
-		if (!wrap) return;
-
-		const panel = wrap.querySelector('#kira-opacity-panel');
-		const toggle = wrap.querySelector('#kira-opacity-toggle');
-		const reset = wrap.querySelector('#kira-opacity-reset');
-		const sliders = {
-			surface: wrap.querySelector('#kira-opacity-surface'),
-			bg: wrap.querySelector('#kira-opacity-bg'),
-		};
-
-		const syncSliders = function () {
-			Object.keys(sliders).forEach((key) => {
-				sliders[key].value = state[key];
+		const syncAllControls = function () {
+			['surface', 'bg'].forEach((key) => {
+				const val = state[key];
+				const inputs = document.querySelectorAll(
+					`input[data-target="${key}"], #kira-opacity-${key}, #kira-sidebar-opacity-${key}`
+				);
+				inputs.forEach((input) => {
+					if (input.value !== String(val)) {
+						input.value = val;
+					}
+				});
+				const valDisplays = document.querySelectorAll(`.kira-opacity-val[data-val-for="${key}"]`);
+				valDisplays.forEach((el) => {
+					el.textContent = `${val}%`;
+				});
 			});
 		};
 
-		const setOpen = function (open) {
-			panel.hidden = !open;
-			toggle.setAttribute('aria-expanded', String(open));
-		};
+		syncAllControls();
 
-		syncSliders();
+		// 监听所有透明度滑块
+		['surface', 'bg'].forEach((key) => {
+			const inputs = document.querySelectorAll(
+				`input[data-target="${key}"], #kira-opacity-${key}, #kira-sidebar-opacity-${key}`
+			);
+			inputs.forEach((input) => {
+				input.addEventListener('input', (ev) => {
+					state[key] = Number(ev.target.value);
+					apply(state);
+					save(state);
+					syncAllControls();
+				});
+			});
+		});
 
-		Object.keys(sliders).forEach((key) => {
-			sliders[key].addEventListener('input', (ev) => {
-				state[key] = Number(ev.target.value);
+		// 监听所有重置按钮
+		const resetButtons = document.querySelectorAll('.kira-opacity-reset');
+		resetButtons.forEach((btn) => {
+			btn.addEventListener('click', () => {
+				Object.assign(state, DEFAULTS);
 				apply(state);
 				save(state);
+				syncAllControls();
 			});
 		});
 
-		toggle.addEventListener('click', () => {
-			setOpen(panel.hidden);
-		});
+		// 桌面端右侧悬浮面板交互
+		const wrap = document.querySelector('#kira-opacity');
+		if (wrap) {
+			const panel = wrap.querySelector('#kira-opacity-panel');
+			const toggle = wrap.querySelector('#kira-opacity-toggle');
 
-		reset.addEventListener('click', () => {
-			Object.assign(state, DEFAULTS);
-			syncSliders();
-			apply(state);
-			save(state);
-		});
+			if (panel && toggle) {
+				const setOpen = function (open) {
+					panel.hidden = !open;
+					toggle.setAttribute('aria-expanded', String(open));
+				};
 
-		document.addEventListener('click', (ev) => {
-			if (!panel.hidden && !wrap.contains(ev.target)) setOpen(false);
-		});
+				toggle.addEventListener('click', () => {
+					setOpen(panel.hidden);
+				});
 
-		document.addEventListener('keydown', (ev) => {
-			if (ev.key === 'Escape' && !panel.hidden) {
-				setOpen(false);
-				toggle.focus();
+				document.addEventListener('click', (ev) => {
+					if (!panel.hidden && !wrap.contains(ev.target)) setOpen(false);
+				});
+
+				document.addEventListener('keydown', (ev) => {
+					if (ev.key === 'Escape' && !panel.hidden) {
+						setOpen(false);
+						toggle.focus();
+					}
+				});
 			}
-		});
+		}
 	});
 })();
