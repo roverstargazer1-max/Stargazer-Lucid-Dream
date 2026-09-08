@@ -330,7 +330,10 @@ function animate(now) {
     for(const key of Object.keys(camera))camera[key]=flight.from[key]+(flight.to[key]-flight.from[key])*ease;
     if(t===1){travel=null;flight.onDone?.();}
   }
-  drawBackground();paintRoof(ctx,width,height,camera);drawStars();
+  drawBackground();
+  const roofVisibility=paintRoof(ctx,width,height,camera);
+  $('journal-egg').hidden=roofVisibility<.35;
+  drawStars();
   for(let i=meteors.length-1;i>=0;i--){
     const m=meteors[i],age=(now-m.start)/1800;if(age>1){meteors.splice(i,1);continue;}
     ctx.strokeStyle=`rgba(187,213,239,${Math.sin(age*Math.PI)*.65})`;ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(m.x+age*width*.22,m.y+age*height*.16);ctx.lineTo(m.x+age*width*.22-55,m.y+age*height*.16-30);ctx.stroke();

@@ -70,14 +70,19 @@ export function paintSky(ctx,width,height,camera,settings,articlePoints){
 }
 
 export function paintRoof(ctx, width, height, camera) {
-  if (!roofPlate.complete || !roofPlate.naturalWidth) return;
+  if (!roofPlate.complete || !roofPlate.naturalWidth) return 0;
   const leaving = Math.max(0, Math.min(1, camera.z / 950));
-  const alpha = (1 - leaving) * Math.max(0, 1 - Math.abs(camera.yaw) * .85);
-  if (alpha < .005) return;
+  // A single photograph is a foreground frame, not rotatable world geometry.
+  // Keep its cut edges offscreen; dissolve it when looking away from the roof.
+  const angle = Math.acos(Math.max(-1, Math.min(1, Math.cos(camera.yaw) * Math.cos(camera.pitch))));
+  const turn = Math.max(0, Math.min(1, (angle - .12) / .73));
+  const alpha = (1 - leaving) * (1 - turn * turn * (3 - 2 * turn));
+  if (alpha < .005) return 0;
   const baseWidth = Math.max(width, height * .95);
   const scale = baseWidth / 1672 * (1 + leaving * .32);
-  const x = (width - baseWidth) * .12 - camera.yaw * width * .45 - leaving * width * .1;
-  const y = height - 941 * scale + leaving * height * .64 + camera.pitch * height * .2;
+  const x = (width - baseWidth) * .12 - leaving * width * .1;
+  const y = height - 941 * scale + leaving * height * .64;
   ctx.save(); ctx.globalAlpha = alpha; ctx.translate(x, y); ctx.scale(scale, scale);
   ctx.clip(roofPath); ctx.drawImage(roofPlate, 0, 0, 1672, 941); ctx.restore();
+  return alpha;
 }
