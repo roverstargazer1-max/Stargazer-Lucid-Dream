@@ -22,6 +22,16 @@ function random() { seed = (seed * 1664525 + 1013904223) >>> 0; return seed / 42
 const dust = Array.from({ length: 950 }, () => ({ x: (random() - .5) * 23000, y: (random() - .5) * 15000, z: 250 + random() * 16000, size: .15 + random() * .75, alpha: .08 + random() * .42, warm: random() > .78 }));
 const meteors = [];
 const targetElements = new Map();
+const findStarButton=document.createElement('button');
+findStarButton.id='find-star';findStarButton.textContent='回望最近的文章 ↗';findStarButton.hidden=true;
+findStarButton.onclick=()=>{
+  const closest=[...articles].sort((a,b)=>{
+    const p=position(a),q=position(b);
+    return Math.hypot(p.x-camera.x,p.y-camera.y,p.z-camera.z)-Math.hypot(q.x-camera.x,q.y-camera.y,q.z-camera.z);
+  })[0];
+  selectStar(closest.id);
+};
+document.querySelector('.world-footer').append(findStarButton);
 articles.forEach((article, i) => {
   const button = document.createElement('button');
   button.className = 'star-target'; button.dataset.id = article.id;
@@ -222,14 +232,14 @@ function moveForward(amount) {
   if (selected) phase='selected';
 }
 function drawBackground() {
-  paintSky(ctx, width, height, camera);
-  // A small real 3D foreground star field supplies translational parallax.
-  // The dense photographic stars remain at astronomical distance.
+  const articlePoints=articles.map(a=>project(position(a))).filter(p=>p&&p.depth<6500);
+  paintSky(ctx, width, height, camera, projectionSettings(), articlePoints);
+  // Nearby dust uses finite world positions, unlike the far celestial sphere.
   for (const star of dust) {
     const p=project(star);
     if(!p || p.x<0 || p.x>width || p.y<0 || p.y>height) continue;
-    const r=Math.min(1.1,star.size*Math.sqrt(p.scale)*1.6);
-    ctx.globalAlpha=star.alpha;
+    const r=Math.min(.65,star.size*Math.sqrt(p.scale));
+    ctx.globalAlpha=star.alpha*.6;
     ctx.fillStyle=star.warm?'#d8c3a6':'#d9e8fc';
     ctx.beginPath();ctx.arc(p.x,p.y,r,0,7);ctx.fill();
     if(travel && !reducedMotion && star.previous && p.depth<3200){
@@ -275,23 +285,41 @@ function drawStars() {
     if(!visiblePoint)return;
     visible.push(p);
     button.style.left=`${x}px`;button.style.top=`${y}px`;
-    button.classList.toggle('is-selected',active);button.classList.toggle('near',depth<800 || hovered===article.id || (!selected && article.id==='night'));
+    button.classList.toggle('is-selected',active);button.classList.toggle('near',depth<4200 || hovered===article.id);
     button.classList.toggle('label-left',x>width-190);
     button.setAttribute('aria-label',`${active&&phase==='settled'?'阅读文章':'选择文章'}：${article.title}`);
-    const radius=Math.max(1.4,Math.min(2.8,2.1*1300/depth));
-    const alpha=active?1:Math.max(.65,Math.min(1,2300/depth));
+    const radius=Math.max(2.2,Math.min(3.6,3*1500/depth));
+    const alpha=active?1:.95;
     ctx.globalAlpha=alpha;
-    const halo=ctx.createRadialGradient(x,y,0,x,y,active?26:15);halo.addColorStop(0,article.color+'70');halo.addColorStop(.15,article.color+'1a');halo.addColorStop(1,article.color+'00');
+    const halo=ctx.createRadialGradient(x,y,0,x,y,active?28:22);halo.addColorStop(0,article.color+'aa');halo.addColorStop(.15,article.color+'36');halo.addColorStop(.5,article.color+'0b');halo.addColorStop(1,article.color+'00');
     ctx.fillStyle=halo;ctx.fillRect(x-30,y-30,60,60);
     ctx.fillStyle=article.color;ctx.beginPath();ctx.arc(x,y,radius,0,7);ctx.fill();
     ctx.fillStyle='#fff6e8';ctx.beginPath();ctx.arc(x,y,radius*.4,0,7);ctx.fill();
-    const spike=active?15:hovered===article.id?12:7;
-    ctx.strokeStyle=article.color+(active?'aa':'65');ctx.lineWidth=.65;ctx.beginPath();ctx.moveTo(x-spike,y);ctx.lineTo(x+spike,y);ctx.moveTo(x,y-spike);ctx.lineTo(x,y+spike);ctx.stroke();
+    const spike=active?13:hovered===article.id?12:9;
+    ctx.strokeStyle=article.color+(active?'aa':'85');ctx.lineWidth=.7;ctx.beginPath();ctx.moveTo(x-spike,y);ctx.lineTo(x+spike,y);ctx.moveTo(x,y-spike);ctx.lineTo(x,y+spike);ctx.stroke();
     if(readIds.has(article.id)){ctx.strokeStyle='#baa582';ctx.lineWidth=.8;ctx.beginPath();ctx.arc(x,y,6,0,Math.PI*1.3);ctx.stroke();}
     ctx.globalAlpha=1;
   });
   // Hide points that are behind the camera too.
   for(const article of articles)if(!points.some(p=>p.article.id===article.id))targetElements.get(article.id).hidden=true;
+  placeLabels(points);
+}
+function placeLabels(points){
+  const occupied=[],fontSize=width<=760?10:12,labelHeight=width<=760?17:33;
+  for(const p of [...points].sort((a,b)=>(b.article.id===selected)-(a.article.id===selected)||a.depth-b.depth)){
+    const label=targetElements.get(p.article.id).querySelector('.star-label');
+    const w=Math.min(width<=760?150:250,p.article.title.length*fontSize+6);
+    const options=[
+      {x:p.x+15,y:p.y-6}, {x:p.x-w-15,y:p.y-6},
+      {x:Math.max(12,Math.min(width-w-12,p.x-w/2)),y:p.y+27},
+      {x:Math.max(12,Math.min(width-w-12,p.x-w/2)),y:p.y-labelHeight-27}
+    ];
+    const fits=r=>r.x>=10&&r.x+w<width-10&&r.y>80&&r.y+labelHeight<height-100;
+    const free=r=>!occupied.some(q=>r.x<q.x+q.w+6&&r.x+w+6>q.x&&r.y<q.y+q.h+5&&r.y+labelHeight+5>q.y);
+    const box=options.find(r=>fits(r)&&free(r))||options.find(fits)||options[0];
+    label.style.left=(box.x-p.x+22)+'px';label.style.right='auto';label.style.top=(box.y-p.y+22)+'px';label.style.textAlign='left';
+    occupied.push({...box,w,h:labelHeight});
+  }
 }
 function animate(now) {
   time=now;
@@ -307,7 +335,12 @@ function animate(now) {
     const m=meteors[i],age=(now-m.start)/1800;if(age>1){meteors.splice(i,1);continue;}
     ctx.strokeStyle=`rgba(187,213,239,${Math.sin(age*Math.PI)*.65})`;ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(m.x+age*width*.22,m.y+age*height*.16);ctx.lineTo(m.x+age*width*.22-55,m.y+age*height*.16-30);ctx.stroke();
   }
-  if(now-lastUI>180){updateInspector();document.body.classList.toggle('exploring',!!selected||camera.z>100||Math.abs(camera.yaw)>.15);lastUI=now;}
+  if(now-lastUI>180){
+    updateInspector();document.body.classList.toggle('exploring',!!selected||camera.z>100||Math.abs(camera.yaw)>.15);
+    const empty=visible.length===0&&phase!=='moving';
+    findStarButton.hidden=!empty;$('journey-label').hidden=empty;
+    lastUI=now;
+  }
   requestAnimationFrame(animate);
 }
 $('brand').onclick=e=>{e.preventDefault();home();};$('home').onclick=home;$('back').onclick=back;

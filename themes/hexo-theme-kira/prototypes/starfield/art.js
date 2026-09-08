@@ -1,30 +1,72 @@
 // Photographic plates retain texture; this traced silhouette separates the roof
 // from its generated sky without turning the architecture into flat polygons.
 export const roofContour = 'M0 438 L22 446 L49 463 L77 479 L106 490 L129 505 L161 516 L190 530 L223 541 L255 553 L290 559 L311 566 L320 575 L307 582 L309 590 L288 595 L287 691 L299 685 L304 677 L313 681 L318 674 L328 682 L339 675 L350 682 L360 680 L366 689 L374 693 L369 704 L377 712 L366 720 L354 713 L352 729 L363 730 L356 742 L354 752 L381 752 L412 746 L443 750 L447 757 L455 744 L470 741 L485 745 L485 754 L478 766 L540 769 L650 778 L780 789 L931 804 L1080 824 L1260 841 L1445 862 L1672 884 L1672 941 L0 941 Z';
-export const skyPlate = new Image();
 export const roofPlate = new Image();
-skyPlate.src = new URL('./assets/sky-reference-v2.png', import.meta.url).href;
 roofPlate.src = new URL('./assets/rooftop-v2.png', import.meta.url).href;
 const roofPath = new Path2D(roofContour);
 
-export function paintSky(ctx, width, height, camera) {
-  ctx.fillStyle = '#020509'; ctx.fillRect(0, 0, width, height);
-  if (!skyPlate.complete || !skyPlate.naturalWidth) return;
-  // Only the astronomical portion of the supplied reference: horizon/clouds are
-  // excluded at runtime. This plate is a distant sky dome, not a nearby wall.
-  const sourceH = 730, scale = Math.max(width / 1672, height / sourceH) * 1.13;
-  const dw = 1672 * scale, dh = sourceH * scale;
-  const marginX = (dw - width) / 2, marginY = (dh - height) / 2;
-  const offsetX = Math.max(-marginX, Math.min(marginX, Math.sin(camera.yaw) * width * .13 - camera.x * .006));
-  const offsetY = Math.max(-marginY, Math.min(marginY, Math.sin(camera.pitch) * height * .13 + camera.y * .005));
-  ctx.save();
-  ctx.globalAlpha = .9;
-  ctx.drawImage(skyPlate, 0, 0, 1672, sourceH, (width - dw) / 2 + offsetX, (height - dh) / 2 + offsetY, dw, dh);
-  ctx.restore();
-  // Keep most of the sky genuinely black; no uniform blue fog or sparkle grid.
-  const shade = ctx.createLinearGradient(0, 0, 0, height);
-  shade.addColorStop(0, '#0000000a'); shade.addColorStop(.65, '#01050a00'); shade.addColorStop(1, '#07132230');
-  ctx.fillStyle = shade; ctx.fillRect(0, 0, width, height);
+// Directions on a complete celestial sphere, not an image moving on a rectangle.
+let skySeed=8431;
+const rand=()=>{skySeed=(skySeed*1664525+1013904223)>>>0;return skySeed/4294967296;};
+const normal=()=>Math.sqrt(-2*Math.log(Math.max(.00001,rand())))*Math.cos(2*Math.PI*rand());
+function beltDirection(longitude,latitude){
+  const x=Math.sin(longitude)*Math.cos(latitude),y=Math.sin(latitude),z=Math.cos(longitude)*Math.cos(latitude);
+  const a=.62,b=.27;
+  const rx=x*Math.cos(a)-y*Math.sin(a),ry=x*Math.sin(a)+y*Math.cos(a);
+  return {x:rx*Math.cos(b)+z*Math.sin(b),y:ry,z:z*Math.cos(b)-rx*Math.sin(b)};
+}
+const distantStars=Array.from({length:8500},()=>{
+  const y=rand()*2-1,t=rand()*Math.PI*2,r=Math.sqrt(1-y*y);
+  return {x:r*Math.sin(t),y,z:r*Math.cos(t),size:.45+rand()*.65,alpha:.15+Math.pow(rand(),2)*.38};
+});
+const galacticStars=Array.from({length:7500},()=>{
+  const longitude=rand()*Math.PI*2,latitude=normal()*.065;
+  return {...beltDirection(longitude,latitude),size:.30+rand()*.45,alpha:.09+rand()*.15};
+});
+const clouds=Array.from({length:130},()=>{
+  const longitude=rand()*Math.PI*2,latitude=normal()*.075;
+  return {...beltDirection(longitude,latitude),radius:.024+rand()*.055,alpha:.07+rand()*.08};
+});
+const skyStars=[...distantStars,...galacticStars];
+const mistSprite=document.createElement('canvas');mistSprite.width=128;mistSprite.height=128;
+const mistContext=mistSprite.getContext('2d');
+const mistGradient=mistContext.createRadialGradient(64,64,0,64,64,64);
+mistGradient.addColorStop(0,'#52657c');mistGradient.addColorStop(.3,'#3c4f6550');mistGradient.addColorStop(1,'#293c5000');
+mistContext.fillStyle=mistGradient;mistContext.fillRect(0,0,128,128);
+
+export function paintSky(ctx,width,height,camera,settings,articlePoints){
+  ctx.fillStyle='#03070e';ctx.fillRect(0,0,width,height);
+  const atmosphere=ctx.createRadialGradient(width*.6,height*.68,0,width*.6,height*.68,Math.max(width,height)*.9);
+  atmosphere.addColorStop(0,'#09111b');atmosphere.addColorStop(.45,'#050b13');atmosphere.addColorStop(1,'#02050b');
+  ctx.fillStyle=atmosphere;ctx.fillRect(0,0,width,height);
+  const {cx,cy,focal}=settings;
+  const ca=Math.cos(camera.yaw),sa=Math.sin(camera.yaw),cp=Math.cos(camera.pitch),sp=Math.sin(camera.pitch);
+  const onSphere=point=>{
+    const rx=point.x*ca-point.z*sa,rz=point.x*sa+point.z*ca;
+    const ry=point.y*cp-rz*sp,z=point.y*sp+rz*cp;
+    return z>.01?{x:cx+rx*focal/z,y:cy-ry*focal/z,depth:z*100000}:null;
+  };
+  for(const cloud of clouds){
+    const p=onSphere(cloud);
+    if(!p||p.depth<18000||p.x < -200||p.x>width+200||p.y < -200||p.y>height+200)continue;
+    const radius=Math.min(height*.26,cloud.radius*focal*100000/p.depth);
+    ctx.globalAlpha=cloud.alpha;ctx.drawImage(mistSprite,p.x-radius,p.y-radius,radius*2,radius*2);
+  }
+  // Background stars never use the article stars' cross flares or bright cores.
+  ctx.fillStyle='#b8c5d5';
+  for(const star of skyStars){
+    const p=onSphere(star);
+    if(!p||p.x<0||p.x>width||p.y<0||p.y>height)continue;
+    let clearance=1;
+    for(const a of articlePoints){
+      const d2=(p.x-a.x)**2+(p.y-a.y)**2;
+      if(d2<6400)clearance=Math.min(clearance,.12+.88*Math.min(1,d2/6400));
+    }
+    ctx.globalAlpha=star.alpha*clearance;
+    const radius=star.size*.65;
+    ctx.beginPath();ctx.arc(p.x,p.y,radius,0,Math.PI*2);ctx.fill();
+  }
+  ctx.globalAlpha=1;
 }
 
 export function paintRoof(ctx, width, height, camera) {
