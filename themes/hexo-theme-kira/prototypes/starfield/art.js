@@ -7,6 +7,7 @@ const roofPath = new Path2D(roofContour);
 export const roofStyles = {anime:'二次元动画',minimal:'极简色块',paper:'纸雕绘本',pixel:'像素夜景',photo:'原写实版'};
 let roofStyle='anime';
 const roofImages=new Map();
+const roofFrames=new Map();
 export function setRoofStyle(style){
   roofStyle=roofStyles[style]?style:'anime';
   if(roofStyle!=='photo'&&!roofImages.has(roofStyle)){
@@ -81,8 +82,20 @@ export function paintSky(ctx,width,height,camera,settings,articlePoints){
 }
 
 export function paintRoof(ctx, width, height, camera) {
-  const plate=roofStyle==='photo'?roofPlate:roofImages.get(roofStyle);
+  let plate=roofStyle==='photo'?roofPlate:roofImages.get(roofStyle);
   if (!plate?.complete || !plate.naturalWidth) return 0;
+  // Blend the finite foreground into darkness instead of stretching a wall edge.
+  if(roofStyle!=='photo'){
+    if(!roofFrames.has(roofStyle)){
+      const frame=document.createElement('canvas');frame.width=plate.naturalWidth;frame.height=plate.naturalHeight;
+      const painter=frame.getContext('2d');painter.drawImage(plate,0,0);
+      painter.globalCompositeOperation='destination-in';
+      const fade=painter.createLinearGradient(frame.width*.64,0,frame.width,0);
+      fade.addColorStop(0,'#000');fade.addColorStop(1,'#0000');
+      painter.fillStyle=fade;painter.fillRect(0,0,frame.width,frame.height);roofFrames.set(roofStyle,frame);
+    }
+    plate=roofFrames.get(roofStyle);
+  }
   const leaving = Math.max(0, Math.min(1, camera.z / 950));
   // A single photograph is a foreground frame, not rotatable world geometry.
   // Keep its cut edges offscreen; dissolve it when looking away from the roof.
@@ -90,14 +103,15 @@ export function paintRoof(ctx, width, height, camera) {
   const turn = Math.max(0, Math.min(1, (angle - .12) / .73));
   const alpha = (1 - leaving) * (1 - turn * turn * (3 - 2 * turn));
   if (alpha < .005) return 0;
-  const sourceWidth=plate.naturalWidth,sourceHeight=plate.naturalHeight;
-  const baseWidth = Math.max(width, height * (roofStyle==='photo'?.95:1.12));
+  const sourceWidth=plate.naturalWidth||plate.width,sourceHeight=plate.naturalHeight||plate.height;
+  const baseWidth = roofStyle==='photo'?Math.max(width,height*.95):width<=760?height*.72:Math.min(width,height*.90);
   const scale = baseWidth / sourceWidth * (1 + leaving * .32);
-  const x = (width - baseWidth) * .12 - leaving * width * .1;
+  const x = Math.min(0,(width - baseWidth) * .12) - leaving * width * .1;
   const y = height - sourceHeight * scale + leaving * height * .64;
   ctx.save(); ctx.globalAlpha = alpha; ctx.translate(x, y); ctx.scale(scale, scale);
   if(roofStyle==='photo')ctx.clip(roofPath);
   ctx.imageSmoothingEnabled=roofStyle!=='pixel';
-  ctx.drawImage(plate, 0, 0, sourceWidth, sourceHeight); ctx.restore();
+  ctx.drawImage(plate, 0, 0, sourceWidth, sourceHeight);
+  ctx.restore();
   return alpha;
 }

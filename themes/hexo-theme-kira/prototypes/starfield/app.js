@@ -44,13 +44,13 @@ articles.forEach((article, i) => {
   $('star-targets').append(button); targetElements.set(article.id, button);
 });
 function position(article) {
-  if (mode === 'relation') return { x: article.position[0] * 2.9, y: article.position[1] * 2.55, z: article.position[2] * 1.75 };
+  if (mode === 'relation') return { x: article.position[0], y: article.position[1], z: article.position[2] };
   const i = articles.indexOf(article);
   return { x: Math.sin(i * .95) * 480, y: Math.cos(i * .85) * 230 - 80, z: 1260 + i * 1050 };
 }
 function projectionSettings() {
   const mobile = width <= 760;
-  return { cx: width * (mobile ? .56 : variant === 'A' ? .69 : variant === 'B' ? .66 : .5), cy: height * (mobile ? .53 : .48), focal: Math.min(width, height * 1.2) * .8 };
+  return { cx: width * (mobile ? .56 : variant === 'A' ? .69 : variant === 'B' ? .66 : .5), cy: height * (mobile ? .49 : .46), focal: Math.min(width, height * 1.2) * 1.05 };
 }
 function project(point) {
   const { cx, cy, focal } = projectionSettings();
@@ -74,7 +74,10 @@ function destination(article) {
   const dist = width <= 760 ? 620 : 780;
   const targetX = width * (width <= 760 ? .43 : variant === 'B' ? .64 : variant === 'C' ? .5 : .49);
   const targetY = height * (width <= 760 ? .30 : variant === 'C' ? .36 : .43);
-  return { x: p.x - (targetX - cx) * dist / focal, y: p.y + (targetY - cy) * dist / focal, z: p.z - dist, yaw: 0, pitch: 0 };
+  const rx=(targetX-cx)*dist/focal,ry=(cy-targetY)*dist/focal;
+  const ca=Math.cos(camera.yaw),sa=Math.sin(camera.yaw),cp=Math.cos(camera.pitch),sp=Math.sin(camera.pitch);
+  const rz=dist*cp-ry*sp;
+  return {x:p.x-rx*ca-rz*sa,y:p.y-ry*cp-dist*sp,z:p.z-rz*ca+rx*sa,yaw:camera.yaw,pitch:camera.pitch};
 }
 function moveTo(to, duration = 1050, onDone) {
   travel = { from: { ...camera }, to, start: performance.now(), duration: reducedMotion ? 220 : duration, onDone };
@@ -136,7 +139,7 @@ function updateUI() {
   updateInspector();
 }
 function updateInspector() {
-  $('state-output').textContent = `方案    ${variant} · ${names[variant]}\n模式    ${mode === 'relation' ? '关联' : '时间'}\n阶段    ${phase}\n选中    ${selected || '—'}\n镜头    ${[camera.x,camera.y,camera.z].map(Math.round).join(', ')}\n方向    ${camera.yaw.toFixed(2)}, ${camera.pitch.toFixed(2)}\n动画    ${reducedMotion ? '减少动态' : '完整推进'}\n视野    ${visible.length} 颗文章星\n已读    ${[...readIds].join(', ') || '—'}\n停靠点  ${history.length}\n数据    8 篇虚构文章 / 仅内存`;
+  $('state-output').textContent = `方案    ${variant} · ${names[variant]}\n模式    ${mode === 'relation' ? '关联' : '时间'}\n阶段    ${phase}\n选中    ${selected || '—'}\n镜头    ${[camera.x,camera.y,camera.z].map(Math.round).join(', ')}\n方向    ${camera.yaw.toFixed(2)}, ${camera.pitch.toFixed(2)}\n动画    ${reducedMotion ? '减少动态' : '完整推进'}\n视野    ${visible.length} 颗文章星\n已读    ${[...readIds].join(', ') || '—'}\n停靠点  ${history.length}\n数据    ${articles.length} 篇虚构文章 / 仅内存`;
 }
 function openReader() {
   if (!selected || phase !== 'settled') return;
@@ -226,7 +229,8 @@ world.addEventListener('wheel', e => {
 }, { passive: false });
 function moveForward(amount) {
   const oldZ = camera.z;
-  camera.z = Math.max(-100,Math.min(10000,camera.z + Math.cos(camera.yaw)*Math.cos(camera.pitch)*amount));
+  const farBoundary=Math.max(...articles.map(a=>position(a).z))+2000;
+  camera.z = Math.max(-100,Math.min(farBoundary,camera.z + Math.cos(camera.yaw)*Math.cos(camera.pitch)*amount));
   if (camera.z !== oldZ) { camera.x += Math.sin(camera.yaw)*Math.cos(camera.pitch)*amount; camera.y += Math.sin(camera.pitch)*amount; }
   if (selected) phase='selected';
 }
@@ -270,10 +274,10 @@ function drawConnections(points) {
 function drawStars() {
   const linked = new Set(selected && mode === 'relation' ? related(selected).map(r=>r.article.id) : []);
   const candidates=articles.map(article=>({article,...project(position(article))}))
-    .filter(p=>Number.isFinite(p.x) && (p.depth<4000 || p.article.id===selected || linked.has(p.article.id)))
+    .filter(p=>Number.isFinite(p.x) && (p.depth<6500 || p.article.id===selected || linked.has(p.article.id)))
     .sort((a,b)=>a.depth-b.depth);
-  // A maximum of six article targets, with distant space left unpopulated.
-  const points=candidates.filter(p=>p.x>20&&p.x<width-25&&p.y>95&&p.y<height-100).slice(0,6);
+  // Density comes from spatial layout, not an arbitrary cap hiding nearby stars.
+  const points=candidates.filter(p=>p.x>20&&p.x<width-25&&p.y>95&&p.y<height-100);
   drawConnections(points);
   visible=[];
   points.sort((a,b)=>b.depth-a.depth).forEach(p=>{
@@ -332,6 +336,9 @@ function animate(now) {
   drawBackground();
   const roofVisibility=paintRoof(ctx,width,height,camera);
   $('journal-egg').hidden=roofVisibility<.35;
+  const foregroundWidth=width<=760?height*.72:Math.min(width,height*.9);
+  $('journal-egg').style.left=roofSelect.value==='photo'?'':`${foregroundWidth*.22+Math.min(0,(width-foregroundWidth)*.12)}px`;
+  $('journal-egg').style.bottom=roofSelect.value==='photo'?'':`${foregroundWidth*.05}px`;
   drawStars();
   for(let i=meteors.length-1;i>=0;i--){
     const m=meteors[i],age=(now-m.start)/1800;if(age>1){meteors.splice(i,1);continue;}
