@@ -7,8 +7,8 @@ import path from 'node:path';
 if (process.env.NODE_ENV === 'production') throw new Error('This prototype is local-only.');
 const root = path.dirname(fileURLToPath(import.meta.url));
 const base = '/pages/starfield-prototype/';
-const files = new Set(['index.html', 'style.css', 'app.js', 'mock.js']);
-const types = { '.html': 'text/html; charset=utf-8', '.css': 'text/css; charset=utf-8', '.js': 'text/javascript; charset=utf-8' };
+const files = new Set(['index.html', 'style.css', 'app.js', 'mock.js', 'art.js', 'assets/sky-reference-v2.png', 'assets/rooftop-v2.png', 'assets/roof-silhouette-v2.svg']);
+const types = { '.html': 'text/html; charset=utf-8', '.css': 'text/css; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.png': 'image/png', '.svg': 'image/svg+xml' };
 http.createServer(async (req, res) => {
   const url = new URL(req.url, 'http://localhost');
   if (url.pathname === '/' || url.pathname === base.slice(0, -1)) {
@@ -20,4 +20,4 @@ http.createServer(async (req, res) => {
     const body = await readFile(path.join(root, file));
     res.writeHead(200, { 'Content-Type': types[path.extname(file)], 'Cache-Control': 'no-store' }); res.end(body);
   } catch { res.writeHead(500); res.end('Could not read prototype file.'); }
-}).listen(4173, '127.0.0.1', () => console.log(`Starfield prototype: http://127.0.0.1:4173${base}?variant=A`));
+}).listen(4173, '127.0.0.1', () => console.log(`Starfield prototype: http://127.0.0.1:4173${base}?variant=C`));
