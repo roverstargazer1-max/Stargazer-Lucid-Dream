@@ -1,0 +1,23 @@
+import http from 'node:http';
+import { readFile } from 'node:fs/promises';
+import { fileURLToPath } from 'node:url';
+import path from 'node:path';
+
+// Deliberately outside theme/source: this experiment is never part of Hexo output.
+if (process.env.NODE_ENV === 'production') throw new Error('This prototype is local-only.');
+const root = path.dirname(fileURLToPath(import.meta.url));
+const base = '/pages/starfield-prototype/';
+const files = new Set(['index.html', 'style.css', 'app.js', 'mock.js']);
+const types = { '.html': 'text/html; charset=utf-8', '.css': 'text/css; charset=utf-8', '.js': 'text/javascript; charset=utf-8' };
+http.createServer(async (req, res) => {
+  const url = new URL(req.url, 'http://localhost');
+  if (url.pathname === '/' || url.pathname === base.slice(0, -1)) {
+    res.writeHead(302, { Location: base + url.search }); res.end(); return;
+  }
+  const file = url.pathname.startsWith(base) ? url.pathname.slice(base.length) || 'index.html' : '';
+  if (!files.has(file)) { res.writeHead(404); res.end('Not found'); return; }
+  try {
+    const body = await readFile(path.join(root, file));
+    res.writeHead(200, { 'Content-Type': types[path.extname(file)], 'Cache-Control': 'no-store' }); res.end(body);
+  } catch { res.writeHead(500); res.end('Could not read prototype file.'); }
+}).listen(4173, '127.0.0.1', () => console.log(`Starfield prototype: http://127.0.0.1:4173${base}?variant=A`));

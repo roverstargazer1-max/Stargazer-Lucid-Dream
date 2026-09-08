@@ -7,6 +7,7 @@
     "clean": "hexo clean",
     "deploy": "hexo deploy",
     "server": "hexo server",
+    "prototype:stars": "node themes/hexo-theme-kira/prototypes/starfield/server.mjs",
     "netlify": "npm run clean && npm run build"
   },
   "hexo": {
