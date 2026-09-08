@@ -4,6 +4,17 @@ export const roofContour = 'M0 438 L22 446 L49 463 L77 479 L106 490 L129 505 L16
 export const roofPlate = new Image();
 roofPlate.src = new URL('./assets/rooftop-v2.png', import.meta.url).href;
 const roofPath = new Path2D(roofContour);
+export const roofStyles = {anime:'二次元动画',minimal:'极简色块',paper:'纸雕绘本',pixel:'像素夜景',photo:'原写实版'};
+let roofStyle='anime';
+const roofImages=new Map();
+export function setRoofStyle(style){
+  roofStyle=roofStyles[style]?style:'anime';
+  if(roofStyle!=='photo'&&!roofImages.has(roofStyle)){
+    const image=new Image();image.src=new URL(`./assets/roof-${roofStyle}-v4.png`,import.meta.url).href;
+    roofImages.set(roofStyle,image);
+  }
+}
+setRoofStyle('anime');
 
 // Directions on a complete celestial sphere, not an image moving on a rectangle.
 let skySeed=8431;
@@ -70,7 +81,8 @@ export function paintSky(ctx,width,height,camera,settings,articlePoints){
 }
 
 export function paintRoof(ctx, width, height, camera) {
-  if (!roofPlate.complete || !roofPlate.naturalWidth) return 0;
+  const plate=roofStyle==='photo'?roofPlate:roofImages.get(roofStyle);
+  if (!plate?.complete || !plate.naturalWidth) return 0;
   const leaving = Math.max(0, Math.min(1, camera.z / 950));
   // A single photograph is a foreground frame, not rotatable world geometry.
   // Keep its cut edges offscreen; dissolve it when looking away from the roof.
@@ -78,11 +90,14 @@ export function paintRoof(ctx, width, height, camera) {
   const turn = Math.max(0, Math.min(1, (angle - .12) / .73));
   const alpha = (1 - leaving) * (1 - turn * turn * (3 - 2 * turn));
   if (alpha < .005) return 0;
-  const baseWidth = Math.max(width, height * .95);
-  const scale = baseWidth / 1672 * (1 + leaving * .32);
+  const sourceWidth=plate.naturalWidth,sourceHeight=plate.naturalHeight;
+  const baseWidth = Math.max(width, height * (roofStyle==='photo'?.95:1.12));
+  const scale = baseWidth / sourceWidth * (1 + leaving * .32);
   const x = (width - baseWidth) * .12 - leaving * width * .1;
-  const y = height - 941 * scale + leaving * height * .64;
+  const y = height - sourceHeight * scale + leaving * height * .64;
   ctx.save(); ctx.globalAlpha = alpha; ctx.translate(x, y); ctx.scale(scale, scale);
-  ctx.clip(roofPath); ctx.drawImage(roofPlate, 0, 0, 1672, 941); ctx.restore();
+  if(roofStyle==='photo')ctx.clip(roofPath);
+  ctx.imageSmoothingEnabled=roofStyle!=='pixel';
+  ctx.drawImage(plate, 0, 0, sourceWidth, sourceHeight); ctx.restore();
   return alpha;
 }

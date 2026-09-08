@@ -12,7 +12,11 @@ node themes/hexo-theme-kira/prototypes/starfield/server.mjs
 
 也可使用 `npm run prototype:stars`。如果系统盘没有空间写 npm 日志，使用上面的直接启动命令。
 
-打开 <http://127.0.0.1:4173/pages/starfield-prototype/?variant=C>。V3 沿用作者偏好的 C，重做背景星与文章星的层次。
+打开 <http://127.0.0.1:4173/pages/starfield-prototype/?variant=C&roof=anime>。V4 沿用作者偏好的 C，增加仅屋顶的风格比较。
+
+底部“屋顶”下拉框比较二次元动画（`anime`）、极简色块（`minimal`）、纸雕绘本（`paper`）、像素夜景（`pixel`），以及原写实版（`photo`）。它独立于 A/B/C 的阅读布局，切换保持当前镜头、选中文章和已读状态；已离开屋顶时可用旁边的“回屋顶”查看。风格写入 `roof` URL 参数，默认二次元仅为展示起点，等待作者选择。
+
+四张新图仅生成房屋、矮墙与生活物件，使用真实透明通道合成，共用同一份程序星空；图片按需加载并在当前页缓存。“把未眠的心事……”及开场英文引句、观测栏装饰文案、天空旁白均已删除。素材和完整提示词见 [ROOF-STYLES.md](ROOF-STYLES.md)。
 
 ## 比较方案
 

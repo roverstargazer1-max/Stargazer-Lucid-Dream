@@ -81,3 +81,8 @@ body[data-variant=C] .intro h1 br{display:none}
 body[data-variant=C] .intro-line,body[data-variant=C] .intro .invitation{display:none}
 @media(max-width:760px){body[data-variant=C] .intro{top:16%;left:8%}body[data-variant=C] .intro h1{font-size:25px;line-height:1.8}body[data-variant=C] .intro h1 br{display:block}.star-target.near .star-label{font-size:10px}.star-target .star-index{display:none}}
 #find-star{pointer-events:auto;padding:0;font-size:10px;letter-spacing:1px;color:#c6bda8}
+/* Roof-only art comparison: one shared sky, independent of reading variants. */
+.prototype-tools{flex-wrap:wrap;justify-content:center;width:max-content;max-width:calc(100% - 90px)}
+.roof-switcher{display:flex;align-items:center;gap:12px;padding:9px 15px;background:#0a1119ee;border:1px solid #a5bad32b;border-radius:30px;font-size:11px;color:#b8c1cb}
+.roof-switcher label{color:#86909c}.roof-switcher select{font:inherit;color:#eadcc1;background:#101923;border:0;padding:4px;cursor:pointer}.roof-switcher button{font-size:10px;color:#aab6c6}
+@media(max-width:760px){.prototype-tools{width:280px;max-width:calc(100% - 60px);gap:7px;bottom:12px}.roof-switcher{width:100%;justify-content:center;padding:6px 10px;font-size:10px}.world-footer{bottom:112px}.state-inspector{left:calc(100% + 4px)}body[data-variant=C] .preview{bottom:142px}}

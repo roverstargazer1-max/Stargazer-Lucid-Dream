@@ -1,5 +1,5 @@
 import { articles, relations } from './mock.js';
-import { paintSky, paintRoof } from './art.js';
+import { paintSky, paintRoof, roofStyles, setRoofStyle } from './art.js';
 
 // Three structural variants of a new full-screen surface, on one local-only route.
 // Prototype question: can quiet space, real camera travel and reading form one flow?
@@ -122,7 +122,6 @@ function updateUI() {
   document.body.classList.toggle('exploring', !!selected || camera.z > 100 || Math.abs(camera.yaw) > .15);
   $('back').disabled = history.length === 0;
   $('relation-mode').setAttribute('aria-pressed', mode === 'relation'); $('time-mode').setAttribute('aria-pressed', mode === 'time');
-  $('rail-mode').textContent = mode === 'relation' ? '想法之间' : '从前，往后';
   $('preview').hidden = !article;
   if (article) {
     $('preview-number').textContent = `NO. ${String(articles.indexOf(article) + 1).padStart(2, '0')}`;
@@ -347,6 +346,18 @@ function animate(now) {
   requestAnimationFrame(animate);
 }
 $('brand').onclick=e=>{e.preventDefault();home();};$('home').onclick=home;$('back').onclick=back;
+const roofSelect=$('roof-style');
+for(const [key,label] of Object.entries(roofStyles)){
+  const option=document.createElement('option');option.value=key;option.textContent=label;roofSelect.append(option);
+}
+roofSelect.value=roofStyles[query.get('roof')]?query.get('roof'):'anime';
+function applyRoofStyle(){
+  setRoofStyle(roofSelect.value);
+  const url=new URL(location.href);url.searchParams.set('roof',roofSelect.value);window.history.replaceState(null,'',url);
+  announce(`屋顶风格：${roofStyles[roofSelect.value]}`);
+}
+roofSelect.onchange=applyRoofStyle;applyRoofStyle();
+$('roof-home').onclick=home;
 $('relation-mode').onclick=()=>switchMode('relation');$('time-mode').onclick=()=>switchMode('time');
 $('read-button').onclick=openReader;$('close-reader').onclick=closeReader;
 $('deselect').onclick=()=>{interrupt();selected=null;phase='idle';updateUI();};
@@ -359,7 +370,7 @@ function updateMotionButton(){motionButton.textContent=reducedMotion?'轻过渡'
 motionButton.onclick=()=>{reducedMotion=!reducedMotion;updateMotionButton();updateInspector();};
 document.querySelector('.mock-badge').replaceWith(motionButton);updateMotionButton();
 document.addEventListener('keydown',e=>{
-  if(reader.open||$('egg-dialog').open||e.target.closest('input,textarea,[contenteditable]'))return;
+  if(reader.open||$('egg-dialog').open||e.target.closest('input,textarea,select,[contenteditable]'))return;
   if(e.key==='ArrowLeft'||e.key==='ArrowRight'){e.preventDefault();cycleVariant(e.key==='ArrowRight'?1:-1);}
 });
 $('journal-egg').onclick=()=>{
