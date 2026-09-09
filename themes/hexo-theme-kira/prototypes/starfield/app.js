@@ -1,3 +1,4 @@
+import {buildPaths,degrees,growArticle,clipSegment,crosses} from './navigation.js';
 import { studies, setStudy, paintArticleLight, paintSpecimens } from './art-study.js';
 import { articles, relations } from './mock.js';
 import { paintSky, paintRoof, roofStyles, setRoofStyle } from './art.js';
@@ -34,6 +35,8 @@ function random() { seed = (seed * 1664525 + 1013904223) >>> 0; return seed / 42
 const dust = Array.from({ length: 950 }, () => ({ x: (random() - .5) * 23000, y: (random() - .5) * 15000, z: 250 + random() * 16000, size: .15 + random() * .75, alpha: .08 + random() * .42, warm: random() > .78 }));
 const meteors = [];
 const targetElements = new Map();
+const navigationEdges=buildPaths(articles);
+let navigationOn=query.get('paths')!=='0',drawnPaths=0,latestAdded=null;
 const findStarButton=document.createElement('button');
 findStarButton.id='find-star';findStarButton.textContent='回望最近的文章 ↗';findStarButton.hidden=true;
 findStarButton.onclick=()=>{
@@ -44,7 +47,7 @@ findStarButton.onclick=()=>{
   selectStar(closest.id);
 };
 document.querySelector('.world-footer').append(findStarButton);
-articles.forEach((article, i) => {
+function mountArticle(article, i) {
   const button = document.createElement('button');
   button.className = 'star-target'; button.dataset.id = article.id;
   button.setAttribute('aria-label', `选择文章：${article.title}`);
@@ -54,7 +57,8 @@ articles.forEach((article, i) => {
   button.addEventListener('mouseenter', () => hovered = article.id);
   button.addEventListener('mouseleave', () => hovered = null);
   $('star-targets').append(button); targetElements.set(article.id, button);
-});
+}
+articles.forEach(mountArticle);
 function position(article) {
   if (mode === 'relation') return { x: article.position[0], y: article.position[1], z: article.position[2] };
   const i = articles.indexOf(article);
@@ -138,6 +142,7 @@ function updateUI() {
   $('back').disabled = history.length === 0;
   $('relation-mode').setAttribute('aria-pressed', mode === 'relation'); $('time-mode').setAttribute('aria-pressed', mode === 'time');
   $('preview').hidden = !article;
+  $('path-legend').textContent=selected?(navigationOn?(mode==='time'?'实线：内容关联 · 虚线：时间顺序':'实线：内容关联 · 虚线：探索路径'):'实线：内容关联'):(navigationOn?(mode==='time'?'虚线：时间顺序':'虚线：探索路径'):'');
   if (article) {
     $('preview-number').textContent = `NO. ${String(articles.indexOf(article) + 1).padStart(2, '0')}`;
     $('preview-date').textContent = article.date; $('preview-title').textContent = article.title;
@@ -151,7 +156,7 @@ function updateUI() {
   updateInspector();
 }
 function updateInspector() {
-  $('state-output').textContent = `方案    ${variant} · ${names[variant]}\n模式    ${mode === 'relation' ? '关联' : '时间'}\n阶段    ${phase}\n选中    ${selected || '—'}\n镜头    ${[camera.x,camera.y,camera.z].map(Math.round).join(', ')}\n方向    ${camera.yaw.toFixed(2)}, ${camera.pitch.toFixed(2)}\n动画    ${reducedMotion ? '减少动态' : '完整推进'}\n星光    ${living?'微动':'静态'} · ${ambient.seconds.toFixed(1)}s\n微视差  ${ambient.x.toFixed(2)}, ${ambient.y.toFixed(2)} × 3px\n视野    ${visible.length} 颗文章星\n已读    ${[...readIds].join(', ') || '—'}\n停靠点  ${history.length}\n数据    ${articles.length} 篇虚构文章 / 仅内存`;
+  $('state-output').textContent = `方案    ${variant} · ${names[variant]}\n模式    ${mode === 'relation' ? '关联' : '时间'}\n阶段    ${phase}\n选中    ${selected || '—'}\n镜头    ${[camera.x,camera.y,camera.z].map(Math.round).join(', ')}\n方向    ${camera.yaw.toFixed(2)}, ${camera.pitch.toFixed(2)}\n动画    ${reducedMotion ? '减少动态' : '完整推进'}\n星光    ${living?'微动':'静态'} · ${ambient.seconds.toFixed(1)}s\n微视差  ${ambient.x.toFixed(2)}, ${ambient.y.toFixed(2)} × 3px\n视野    ${visible.length} 颗文章星\n已读    ${[...readIds].join(', ') || '—'}\n停靠点  ${history.length}\n路径    ${navigationEdges.length} 条 / 画面 ${drawnPaths} 条\n数据    ${articles.length} 篇虚构文章 / 仅内存`;
 }
 function openReader() {
   if (!selected || phase !== 'settled') return;
@@ -173,16 +178,16 @@ function checkRead() {
   if (!reader.open) return;
   const endRect = $('reader-content').getBoundingClientRect(), scrollRect = scroller.getBoundingClientRect();
   const reached = endRect.bottom <= scrollRect.bottom + 2;
-  if (reached && !readIds.has(selected)) { readIds.add(selected); revealReadingLinks(); announce('已到达正文末尾，关联理由已显露。'); }
+  if (reached && !readIds.has(selected)) { readIds.add(selected); revealReadingLinks(); announce(related(selected).length?'已到达正文末尾，关联理由已显露。':'已到达正文末尾。'); }
   else if (readIds.has(selected) && $('reading-relations').hidden) revealReadingLinks();
   const contentEnd = $('reader-content').offsetTop + $('reader-content').offsetHeight;
   const progress = Math.min(100, Math.round((scroller.scrollTop + scroller.clientHeight) / contentEnd * 100));
   $('reading-progress').textContent = `${readIds.has(selected) ? 100 : progress}%`;
-  $('reading-state').textContent = readIds.has(selected) ? '已抵达文末 · 关联理由已显露' : '沿着文字，慢慢往下';
+  $('reading-state').textContent = readIds.has(selected) ? (related(selected).length?'已抵达文末 · 关联理由已显露':'已抵达文末') : '沿着文字，慢慢往下';
   updateInspector();
 }
 function revealReadingLinks() {
-  $('reading-relations').hidden = false; $('reader-links').replaceChildren();
+  $('reading-relations').hidden = related(selected).length===0; $('reader-links').replaceChildren();
   related(selected).forEach(({ article, reason }) => {
     const button = document.createElement('button'); const title = document.createElement('strong'); const text = document.createElement('span');
     title.textContent = article.title; text.textContent = reason; button.append(title, text);
@@ -269,18 +274,56 @@ function drawBackground() {
   }
   ctx.globalAlpha=1;
 }
+function drawPaths(allPoints){
+  drawnPaths=0;const hints=[];$('edge-guide').hidden=true;
+  if(!navigationOn)return;
+  const box={left:32,right:width-32,top:150,bottom:height-130};
+  const lookup=new Map(allPoints.map(p=>[p.article.id,p]));
+  const edges=mode==='time'?articles.slice(1).flatMap((a,i)=>a.isolated||articles[i].isolated?[]:[[articles[i].id,a.id]]):navigationEdges;
+  const painted=[];
+  for(const [from,to] of edges){
+    const a=lookup.get(from),b=lookup.get(to);if(!a||!b||a.depth>8500||b.depth>8500)continue;
+    const line=clipSegment(a,b,box);if(!line)continue;
+    const length=Math.hypot(line.b.x-line.a.x,line.b.y-line.a.y);
+    if(length<12||length>Math.min(850,width*.72))continue;
+    if(painted.some(p=>crosses(line.a,line.b,p.a,p.b)))continue;
+    const far=Math.max(.25,1-Math.max(a.depth,b.depth)/11000);
+    const alpha=(selected? .065:.36)*far;
+    ctx.save();ctx.setLineDash([2.5,7]);ctx.lineWidth=.9;
+    const gradient=ctx.createLinearGradient(line.a.x,line.a.y,line.b.x,line.b.y);
+    gradient.addColorStop(0,`rgba(200,216,230,${line.lo>0?0:alpha})`);
+    gradient.addColorStop(.5,`rgba(200,216,230,${alpha})`);
+    gradient.addColorStop(1,`rgba(200,216,230,${line.hi<1?0:alpha})`);
+    ctx.strokeStyle=gradient;ctx.beginPath();ctx.moveTo(line.a.x,line.a.y);ctx.lineTo(line.b.x,line.b.y);ctx.stroke();ctx.restore();
+    painted.push(line);drawnPaths++;
+    if(line.hi<1&&line.lo===0)hints.push({p:line.b,target:b.article,score:length});
+    if(line.lo>0&&line.hi===1)hints.push({p:line.a,target:a.article,score:length});
+  }
+  // A nearby isolated star can have a direction hint without inventing a path.
+  const degree=degrees(articles,navigationEdges);
+  for(const p of allPoints){
+    if((mode==='relation'?degree.get(p.article.id)>0:!p.article.isolated)||p.depth>6500)continue;
+    const dx=p.x-width/2,dy=p.y-height/2;
+    if(p.x>box.left&&p.x<box.right&&p.y>box.top&&p.y<box.bottom)continue;
+    if(Math.abs(dx)>width*.9||Math.abs(dy)>height*.9)continue;
+    const line=clipSegment({x:width/2,y:height/2},p,box);
+    if(line)hints.push({p:line.b,target:p.article,score:Math.hypot(dx,dy),isolated:true});
+  }
+  const hint=hints.sort((a,b)=>a.score-b.score)[0];
+  if(hint&&phase!=='moving'){
+    const button=$('edge-guide');button.hidden=false;button.style.left=hint.p.x+'px';button.style.top=hint.p.y+'px';
+    button.textContent=hint.isolated?'·':'›';button.style.transform=`translate(-50%,-50%) rotate(${hint.isolated?0:Math.atan2(hint.p.y-height/2,hint.p.x-width/2)}rad)`;button.title=hint.isolated?'附近有一颗独立的文章星':'沿路径还有文章星';
+    button.setAttribute('aria-label',hint.isolated?'靠近附近的独立文章星':'沿路径寻找下一颗文章星');button.onclick=()=>selectStar(hint.target.id);
+  }
+}
 function drawConnections(points) {
   const lookup=new Map(points.map(p=>[p.article.id,p]));
-  if(mode==='time'){
-    ctx.strokeStyle='#a8bddc20';ctx.setLineDash([2,8]);ctx.lineWidth=.7;ctx.beginPath();
-    let first=true;articles.forEach(article=>{const p=lookup.get(article.id);if(p){first?ctx.moveTo(p.x,p.y):ctx.lineTo(p.x,p.y);first=false;}});ctx.stroke();ctx.setLineDash([]);return;
-  }
   if(!selected)return;
   const origin=lookup.get(selected);if(!origin)return;
   related(selected).forEach(({article})=>{
     const end=lookup.get(article.id);if(!end)return;
-    const grad=ctx.createLinearGradient(origin.x,origin.y,end.x,end.y);grad.addColorStop(0,'#a9c7e43e');grad.addColorStop(1,'#a9c7e40a');
-    ctx.strokeStyle=grad;ctx.lineWidth=.8;ctx.beginPath();ctx.moveTo(origin.x,origin.y);ctx.lineTo(end.x,end.y);ctx.stroke();
+    const grad=ctx.createLinearGradient(origin.x,origin.y,end.x,end.y);grad.addColorStop(0,'#d9e8f49a');grad.addColorStop(1,'#d9e8f435');
+    ctx.strokeStyle=grad;ctx.lineWidth=1.15;ctx.beginPath();ctx.moveTo(origin.x,origin.y);ctx.lineTo(end.x,end.y);ctx.stroke();
   });
 }
 function drawStars() {
@@ -289,6 +332,7 @@ function drawStars() {
     .filter(p=>Number.isFinite(p.x) && (p.depth<6500 || p.article.id===selected || linked.has(p.article.id)))
     .sort((a,b)=>a.depth-b.depth);
   // Density comes from spatial layout, not an arbitrary cap hiding nearby stars.
+  drawPaths(candidates);
   const points=candidates.filter(p=>p.x>20&&p.x<width-25&&p.y>95&&p.y<height-100);
   drawConnections(points);
   visible=[];
@@ -303,7 +347,7 @@ function drawStars() {
     button.classList.toggle('is-selected',active);button.classList.toggle('near',depth<4200 || hovered===article.id);
     button.classList.toggle('label-left',x>width-190);
     button.setAttribute('aria-label',`${active&&phase==='settled'?'阅读文章':'选择文章'}：${article.title}`);
-    paintArticleLight(ctx,x,y,article.id,{depth,active,hover:hovered===article.id,seconds:living?ambient.seconds:null});
+    paintArticleLight(ctx,x,y,article.id,{depth,active,hover:hovered===article.id,seconds:living?ambient.seconds:null,importance:article.importance});
   });
   // Hide points that are behind the camera too.
   for(const article of articles)if(!points.some(p=>p.article.id===article.id))targetElements.get(article.id).hidden=true;
@@ -452,3 +496,23 @@ function updateType(){
   const url=new URL(location.href);url.searchParams.set('type',typeChoice.value);window.history.replaceState(null,'',url);
 }
 typeChoice.onchange=updateType;updateType();
+
+function updatePaths(){
+  $('paths-toggle').textContent=navigationOn?'路径 · 开':'路径 · 关';$('paths-toggle').setAttribute('aria-pressed',String(navigationOn));
+  const url=new URL(location.href);url.searchParams.set('paths',navigationOn?'1':'0');window.history.replaceState(null,'',url);updateUI();
+}
+$('paths-toggle').onclick=()=>{navigationOn=!navigationOn;updatePaths();};updatePaths();
+$('grow-star').onclick=()=>{
+  const n=articles.length-15,id='new-note-'+n;
+  const result=growArticle(articles,navigationEdges,{id,importance:$('star-rank').value,isolated:$('star-isolated').checked});
+  if(!result){$('growth-status').textContent='附近较拥挤，这次未添加；已有位置保持不变。';return;}
+  const article={...result.article,title:'新写下的片段 '+n,date:'2026.12.09',tag:'新留下的星光',intro:'这是试加的一篇文章。沿着天空，慢慢发现它。',paragraphs:['这篇虚构文章用来检查天空生长后的密度。','它没有自动生成任何内容关联，导航线只帮助找到附近的文章。']};
+  articles.push(article);navigationEdges.push(...result.edges);mountArticle(article,articles.length-1);latestAdded=article.id;
+  $('find-new-star').disabled=false;$('growth-status').textContent=`已添加第 ${articles.length} 篇 · ${result.edges.length} 条导航线 · 旧星位置未改变`;
+  updateUI();
+};
+$('find-new-star').onclick=()=>{if(latestAdded)selectStar(latestAdded);};
+$('export-sky').onclick=()=>{
+  const blob=new Blob([JSON.stringify({version:1,articles:articles.map(({id,position,importance,isolated})=>({id,position,importance,isolated})),navigationEdges},null,2)],{type:'application/json'});
+  const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='starfield-layout.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
+};

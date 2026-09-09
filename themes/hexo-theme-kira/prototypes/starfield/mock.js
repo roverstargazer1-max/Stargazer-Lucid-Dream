@@ -78,3 +78,6 @@ relations.push(
   ['night','window','从自己的夜晚，望见另一个人的灯。'],
   ['morning','horizon','天亮之后，这张地图也还没有结束。']
 );
+
+// Author-owned visual emphasis, independent of view counts and graph degree.
+for(const a of articles){a.importance=['night','dream'].includes(a.id)?'treasured':['roof','radio','horizon'].includes(a.id)?'important':'ordinary';a.isolated=a.id==='window';}

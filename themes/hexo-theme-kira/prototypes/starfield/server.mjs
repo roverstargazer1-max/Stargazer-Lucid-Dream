@@ -9,7 +9,7 @@ const root = path.dirname(fileURLToPath(import.meta.url));
 const base = '/pages/starfield-prototype/';
 const files = new Set(['index.html', 'style.css', 'app.js', 'mock.js', 'art.js', 'assets/sky-reference-v2.png', 'assets/rooftop-v2.png', 'assets/roof-silhouette-v2.svg']);
 for(const style of ['anime','minimal','paper','pixel'])files.add(`assets/roof-${style}-v4.png`);
-files.add('art-study.js');
+files.add('art-study.js');files.add('navigation.js');
 files.add('assets/roof-stargazer-v9.png');
 const types = { '.html': 'text/html; charset=utf-8', '.css': 'text/css; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.png': 'image/png', '.svg': 'image/svg+xml' };
 http.createServer(async (req, res) => {

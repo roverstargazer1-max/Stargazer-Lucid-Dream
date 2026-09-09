@@ -27,16 +27,17 @@ export function scintillation(id,seconds){
   const pulse=Math.max(0,1-distance/1.8);
   return {brightness:1+.028*slow+.008*fine,halo:1+.04*lightNoise(seed+127,seconds/2.3),temperature:3*pulse*pulse*(3-2*pulse)*(unit(seed+cycle*433+91)>.5?1:-1)};
 }
-export function paintArticleLight(ctx,x,y,id,{depth=1800,active=false,hover=false,kind,zoom=1,seconds=null}={}){
+export function paintArticleLight(ctx,x,y,id,{depth=1800,active=false,hover=false,kind,zoom=1,seconds=null,importance='ordinary'}={}){
   const star=starIdentity(id,kind),palette=study();
   const light=seconds===null?{brightness:1,halo:1,temperature:0}:scintillation(id,seconds);
   const base=star.kind==='warm'?palette.warm:palette.cool;
   const color=[base[0]+light.temperature,base[1],base[2]-light.temperature].map(v=>Math.round(v));
   const proximity=Math.max(.78,Math.min(1.2,Math.sqrt(1800/depth)));
-  const r=star.size*proximity,energy=star.light*(active?1.18:hover?1.10:1)*light.brightness;
+  const rank={ordinary:1,important:1.25,treasured:1.55}[importance]||1;
+  const r=star.size*proximity*rank,energy=star.light*(active?1.18:hover?1.10:1)*light.brightness*(1+(rank-1)*.32);
   ctx.save();ctx.translate(x,y);ctx.scale(zoom,zoom);
   const point=(px,py,radius,power,spread)=>{
-    spread*=light.halo;
+    spread*=light.halo*rank;
     const glow=ctx.createRadialGradient(px,py,0,px,py,spread);
     glow.addColorStop(0,rgba(color,.38*power));glow.addColorStop(.12,rgba(color,.15*power));
     glow.addColorStop(.38,rgba(color,.035*power));glow.addColorStop(1,rgba(color,0));
