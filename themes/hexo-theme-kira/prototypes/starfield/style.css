@@ -163,3 +163,37 @@ body[data-art].show-prototype-tools .prototype-tools{bottom:130px}
  body[data-art].show-prototype-tools .prototype-tools{bottom:168px}
 }
 @media(prefers-reduced-motion:reduce){body[data-labels] .star-target .star-label{transition:none}}
+
+/* Round four: neutral type studies, independent of the sky palette. */
+body[data-type=white]{--type-main:#f0f1f2;--type-soft:#bec2c6;--type-muted:#91979d;--type-line:#bfc5cb35;--paper:#e0e2e3;--paper-ink:#34393e;--paper-muted:#686f75}
+body[data-type=mist]{--type-main:#d3d7db;--type-soft:#adb4bc;--type-muted:#8d959f;--type-line:#b5bec735;--paper:#d9dde0;--paper-ink:#39424b;--paper-muted:#697581}
+body[data-type=cool]{--type-main:#e1ebf4;--type-soft:#b6c6d4;--type-muted:#91a5b7;--type-line:#bdd2e435;--paper:#dce3e8;--paper-ink:#344453;--paper-muted:#677b8c}
+body[data-type]{--ink:var(--type-main);--muted:var(--type-muted);--line:var(--type-line)}
+body[data-type] .masthead #brand{color:var(--type-main)}
+body[data-type] .masthead #brand:hover{color:#fff}
+body[data-type] .navigation,body[data-type] .icon-control{color:var(--type-soft)}
+body[data-type] .mode-switch button{color:var(--type-muted)}
+body[data-type] .mode-switch button[aria-pressed=true]{color:var(--type-main)}
+body[data-type] .mode-switch button[aria-pressed=true]:after{background:var(--type-soft)}
+body[data-type] .star-label{color:var(--type-main)!important}
+body[data-type] .world-footer,body[data-type] #find-star{color:var(--type-soft)}
+body[data-type] .preview{background:linear-gradient(105deg,#101418f2,#101418d9);border-color:var(--type-line)}
+body[data-type] .preview h2,body[data-type] .preview-bottom button,body[data-type] .preview-bottom button span{color:var(--type-main)}
+body[data-type] .preview-body p,body[data-type] .preview-meta,body[data-type] .known-reasons{color:var(--type-soft)}
+body[data-type] .preview-body .eyebrow,body[data-type] .preview-bottom>span{color:var(--type-muted)}
+body[data-type] .preview-bottom{border-color:var(--type-line)}
+body[data-type] .art-study-bar>summary,body[data-type] .art-study-bar button,body[data-type] .roof-switcher,body[data-type] .variant-switcher{color:var(--type-soft)}
+body[data-type] .art-study-bar select,body[data-type] .roof-switcher select{color:var(--type-main)}
+body[data-type] .art-study-controls,body[data-type] .art-study-bar>summary{background:#0c1014ef;border-color:var(--type-line)}
+body[data-type] .art-study-bar>summary span,body[data-type] .state-inspector,body[data-type] .prototype-badge{color:var(--type-muted)}
+body[data-type] #egg-dialog h2,body[data-type] #specimen-dialog h2{color:var(--type-main)}
+body[data-type] #egg-dialog p,body[data-type] #specimen-dialog p,body[data-type] .egg-signature{color:var(--type-soft)}
+body[data-type][data-variant=C] #reader{background:var(--paper);color:var(--paper-ink);border-color:#aeb6bd}
+body[data-type][data-variant=C] .article h1,body[data-type][data-variant=C] .article p,body[data-type][data-variant=C] .reading-header button,body[data-type][data-variant=C] .reading-relations button{color:var(--paper-ink)}
+body[data-type][data-variant=C] .article-intro{color:var(--paper-muted)!important}
+body[data-type][data-variant=C] .article-meta,body[data-type][data-variant=C] .reading-header,body[data-type][data-variant=C] .reading-footer,body[data-type][data-variant=C] .reading-relations button span,body[data-type][data-variant=C] .reading-relations .eyebrow,body[data-type][data-variant=C] .article-end,body[data-type][data-variant=C] .reading-header button span,body[data-type][data-variant=C] .reading-relations button strong:after{color:var(--paper-muted)}
+body[data-type][data-variant=C] .article-rule{background:#98a1aa}
+body[data-type][data-variant=C] .reading-header,body[data-type][data-variant=C] .reading-footer,body[data-type][data-variant=C] .reading-relations{border-color:#4a57652b}
+body[data-type][data-variant=C] #reading-scroll{scrollbar-color:#9da6af transparent}
+body[data-type] button:focus-visible,body[data-type] a:focus-visible,body[data-type] summary:focus-visible{outline-color:var(--type-soft)}
+@media(max-width:760px){body[data-type] .art-study-bar:not([open]){left:auto;right:18px;transform:none}body[data-type] .world-footer{bottom:23px;left:18px;right:135px}}

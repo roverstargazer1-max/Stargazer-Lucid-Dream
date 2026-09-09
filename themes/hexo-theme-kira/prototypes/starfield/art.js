@@ -12,7 +12,7 @@ const roofFrames=new Map();
 export function setRoofStyle(style){
   roofStyle=roofStyles[style]?style:'anime';
   if(roofStyle!=='photo'&&!roofImages.has(roofStyle)){
-    const image=new Image();image.src=new URL(`./assets/roof-${roofStyle}-v4.png`,import.meta.url).href;
+    const image=new Image();image.src=new URL(roofStyle==='anime'?'./assets/roof-stargazer-v9.png':`./assets/roof-${roofStyle}-v4.png`,import.meta.url).href;
     roofImages.set(roofStyle,image);
   }
 }
@@ -100,7 +100,15 @@ export function paintRoof(ctx, width, height, camera) {
   if(roofStyle!=='photo'){
     if(!roofFrames.has(roofStyle)){
       const frame=document.createElement('canvas');frame.width=plate.naturalWidth;frame.height=plate.naturalHeight;
-      const painter=frame.getContext('2d');painter.drawImage(plate,0,0);
+      const painter=frame.getContext('2d');
+      if(roofStyle==='anime'){
+        // RGB illustration is composited through a traced silhouette; its
+        // generated checkerboard is never part of the procedural sky.
+        painter.save();painter.scale(frame.width/2048,frame.height/683);
+        const silhouette=new Path2D('M0 96 L431 2 L642 172 L627 203 L584 209 L584 399 L618 398 L622 404 L658 405 L655 391 L650 370 L644 348 L648 305 L656 286 L673 271 L676 263 L665 254 L660 242 L661 226 L670 214 L678 214 L677 209 L690 209 L697 208 L706 216 L712 227 L711 236 L716 244 L714 253 L702 262 L703 271 L719 278 L731 290 L743 289 L750 292 L752 302 L756 306 L753 315 L748 321 L749 334 L744 348 L733 356 L733 386 L730 405 L778 407 L783 404 L807 407 L809 414 L1164 425 L1168 421 L1194 423 L1198 430 L1817 455 L1820 451 L1835 452 L1836 458 L1938 460 L1947 456 L1970 458 L1975 463 L2018 463 L2048 478 L2048 683 L0 683 Z');painter.clip(silhouette);
+        painter.drawImage(plate,0,0,2048,683);
+        painter.globalCompositeOperation='destination-out';painter.lineWidth=2;painter.stroke(silhouette);painter.restore();
+      }else painter.drawImage(plate,0,0);
       painter.globalCompositeOperation='destination-in';
       const fade=painter.createLinearGradient(frame.width*.64,0,frame.width,0);
       fade.addColorStop(0,'#000');fade.addColorStop(1,'#0000');

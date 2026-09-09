@@ -2,7 +2,7 @@ import { readFileSync } from 'node:fs';
 const source=readFileSync('themes/hexo-theme-kira/prototypes/starfield/art.js','utf8');
 let failures=0;
 for(const style of ['photo','anime','minimal','paper','pixel']){
-const asset=readFileSync(`themes/hexo-theme-kira/prototypes/starfield/assets/${style==='photo'?'rooftop-v2':`roof-${style}-v4`}.png`);
+const asset=readFileSync(`themes/hexo-theme-kira/prototypes/starfield/assets/${style==='photo'?'rooftop-v2':style==='anime'?'roof-stargazer-v9':`roof-${style}-v4`}.png`);
 const plate={complete:true,naturalWidth:asset.readUInt32BE(16),naturalHeight:asset.readUInt32BE(20)};
 const paintRoof=new Function('roofPlate','roofPath','roofStyle','roofImages','roofFrames','study',source.slice(source.indexOf('export function paintRoof')).replace('export function','return function'))(plate,{},style,new Map([[style,plate]]),new Map([[style,plate]]),()=>({roof:'none'}));
 for(const [width,height] of [[1920,1301],[390,844]]){

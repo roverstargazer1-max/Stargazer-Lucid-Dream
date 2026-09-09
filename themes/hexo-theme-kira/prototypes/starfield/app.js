@@ -444,3 +444,11 @@ function updateLabels(){
   const url=new URL(location.href);url.searchParams.set('labels',allLabels?'all':'reveal');window.history.replaceState(null,'',url);
 }
 $('labels-toggle').onclick=()=>{allLabels=!allLabels;updateLabels();};updateLabels();
+
+const typeChoice=$('type-choice');
+typeChoice.value=['white','mist','cool'].includes(query.get('type'))?query.get('type'):'white';
+function updateType(){
+  document.body.dataset.type=typeChoice.value;
+  const url=new URL(location.href);url.searchParams.set('type',typeChoice.value);window.history.replaceState(null,'',url);
+}
+typeChoice.onchange=updateType;updateType();
