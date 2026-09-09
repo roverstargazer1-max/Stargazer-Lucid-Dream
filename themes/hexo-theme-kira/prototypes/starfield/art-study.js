@@ -1,4 +1,4 @@
-// Round one: static light and palette studies. No time input or twinkle yet.
+// Stable identity and restrained, non-looping light variation for the prototype.
 export const studies={
   ink:{name:'01 · 墨蓝冷夜',base:'#05070b',lift:'#111820',edge:'#030406',cloud:'#75818d',stars:'#ccd1d5',haze:'#655c49',roof:'saturate(0.42) brightness(0.78)',warm:[229,217,190],cool:[204,217,229]},
   umber:{name:'02 · 烟褐旧梦',base:'#090909',lift:'#201d1b',edge:'#040505',cloud:'#8d8379',stars:'#d5d0c5',haze:'#8b7152',roof:'sepia(0.28) saturate(0.36) brightness(0.76)',warm:[235,215,180],cool:[212,216,217]}
@@ -13,13 +13,30 @@ export function starIdentity(id,forced){
   return {kind,size:.86+value*.48,light:.72+((seed>>>10)%100)/360,angle:((seed>>>6)%100)*.063,spread:7+((seed>>>16)%7)};
 }
 const rgba=(c,a)=>`rgba(${c.join(',')},${a})`;
-export function paintArticleLight(ctx,x,y,id,{depth=1800,active=false,hover=false,kind,zoom=1}={}){
+const unit=(n)=>{n=Math.imul(n^(n>>>16),0x45d9f3b);n=Math.imul(n^(n>>>16),0x45d9f3b);return ((n^(n>>>16))>>>0)/4294967295;};
+export function lightNoise(seed,t){
+  const i=Math.floor(t),f=t-i,s=f*f*(3-2*f);
+  return (unit(seed+i*1999)*(1-s)+unit(seed+(i+1)*1999)*s)*2-1;
+}
+export function scintillation(id,seconds){
+  const seed=hash(id),pace=.65+unit(seed)*.9;
+  const slow=lightNoise(seed,seconds/pace),fine=lightNoise(seed+37,seconds/.23);
+  // Rare smooth temperature excursions; each 31–50 second window has its own timing.
+  const span=31+unit(seed+61)*19,cycle=Math.floor(seconds/span),local=seconds/span-cycle;
+  const center=.15+unit(seed+cycle*811)*.7,distance=Math.abs(local-center)*span;
+  const pulse=Math.max(0,1-distance/1.8);
+  return {brightness:1+.028*slow+.008*fine,halo:1+.04*lightNoise(seed+127,seconds/2.3),temperature:3*pulse*pulse*(3-2*pulse)*(unit(seed+cycle*433+91)>.5?1:-1)};
+}
+export function paintArticleLight(ctx,x,y,id,{depth=1800,active=false,hover=false,kind,zoom=1,seconds=null}={}){
   const star=starIdentity(id,kind),palette=study();
-  const color=star.kind==='warm'?palette.warm:palette.cool;
+  const light=seconds===null?{brightness:1,halo:1,temperature:0}:scintillation(id,seconds);
+  const base=star.kind==='warm'?palette.warm:palette.cool;
+  const color=[base[0]+light.temperature,base[1],base[2]-light.temperature].map(v=>Math.round(v));
   const proximity=Math.max(.78,Math.min(1.2,Math.sqrt(1800/depth)));
-  const r=star.size*proximity,energy=star.light*(active?1.18:hover?1.10:1);
+  const r=star.size*proximity,energy=star.light*(active?1.18:hover?1.10:1)*light.brightness;
   ctx.save();ctx.translate(x,y);ctx.scale(zoom,zoom);
   const point=(px,py,radius,power,spread)=>{
+    spread*=light.halo;
     const glow=ctx.createRadialGradient(px,py,0,px,py,spread);
     glow.addColorStop(0,rgba(color,.38*power));glow.addColorStop(.12,rgba(color,.15*power));
     glow.addColorStop(.38,rgba(color,.035*power));glow.addColorStop(1,rgba(color,0));

@@ -9,6 +9,17 @@ const canvas = $('sky'), ctx = canvas.getContext('2d');
 const world = $('world'), reader = $('reader'), scroller = $('reading-scroll');
 const names = { A: '屋顶入梦', B: '观测手记', C: '漂浮书页' };
 const query = new URLSearchParams(location.search);
+const ambientPreference=matchMedia('(prefers-reduced-motion: reduce)');
+let living=query.get('living')==='0'?false:query.get('living')==='1'?true:!ambientPreference.matches;
+const ambient={x:0,y:0,targetX:0,targetY:0,seconds:0};
+let lastFrame=0;
+function ambientBlocked(){return document.hidden||reader.open||$('specimen-dialog').open||$('egg-dialog').open;}
+world.addEventListener('pointermove',e=>{
+  if(e.pointerType!=='mouse'||e.buttons||!interactiveSurface(e.target))return;
+  ambient.targetX=Math.max(-1,Math.min(1,e.clientX/innerWidth*2-1));
+  ambient.targetY=Math.max(-1,Math.min(1,e.clientY/innerHeight*2-1));
+});
+world.addEventListener('pointerleave',()=>{ambient.targetX=0;ambient.targetY=0;});
 let variant = names[query.get('variant')] ? query.get('variant') : 'C';
 let width = innerWidth, height = innerHeight, dpr = Math.min(devicePixelRatio, 2);
 let camera = { x: 0, y: 0, z: 0, yaw: 0, pitch: 0 };
@@ -140,7 +151,7 @@ function updateUI() {
   updateInspector();
 }
 function updateInspector() {
-  $('state-output').textContent = `方案    ${variant} · ${names[variant]}\n模式    ${mode === 'relation' ? '关联' : '时间'}\n阶段    ${phase}\n选中    ${selected || '—'}\n镜头    ${[camera.x,camera.y,camera.z].map(Math.round).join(', ')}\n方向    ${camera.yaw.toFixed(2)}, ${camera.pitch.toFixed(2)}\n动画    ${reducedMotion ? '减少动态' : '完整推进'}\n视野    ${visible.length} 颗文章星\n已读    ${[...readIds].join(', ') || '—'}\n停靠点  ${history.length}\n数据    ${articles.length} 篇虚构文章 / 仅内存`;
+  $('state-output').textContent = `方案    ${variant} · ${names[variant]}\n模式    ${mode === 'relation' ? '关联' : '时间'}\n阶段    ${phase}\n选中    ${selected || '—'}\n镜头    ${[camera.x,camera.y,camera.z].map(Math.round).join(', ')}\n方向    ${camera.yaw.toFixed(2)}, ${camera.pitch.toFixed(2)}\n动画    ${reducedMotion ? '减少动态' : '完整推进'}\n星光    ${living?'微动':'静态'} · ${ambient.seconds.toFixed(1)}s\n微视差  ${ambient.x.toFixed(2)}, ${ambient.y.toFixed(2)} × 3px\n视野    ${visible.length} 颗文章星\n已读    ${[...readIds].join(', ') || '—'}\n停靠点  ${history.length}\n数据    ${articles.length} 篇虚构文章 / 仅内存`;
 }
 function openReader() {
   if (!selected || phase !== 'settled') return;
@@ -236,12 +247,12 @@ function moveForward(amount) {
   if (selected) phase='selected';
 }
 function drawBackground() {
-  const articlePoints=articles.map(a=>project(position(a))).filter(p=>p&&p.depth<6500);
-  paintSky(ctx, width, height, camera, projectionSettings(), articlePoints);
+  paintSky(ctx,width,height,camera,projectionSettings(),{x:ambient.x,y:ambient.y,seconds:living?ambient.seconds:null});
   // Nearby dust uses finite world positions, unlike the far celestial sphere.
   for (const star of dust) {
     const p=project(star);
     if(!p || p.x<0 || p.x>width || p.y<0 || p.y>height) continue;
+    p.x+=ambient.x*2;p.y+=ambient.y*2;
     const r=Math.min(.65,star.size*Math.sqrt(p.scale));
     ctx.globalAlpha=star.alpha*.6;
     ctx.fillStyle=star.warm?'#d8c3a6':'#d9e8fc';
@@ -274,7 +285,7 @@ function drawConnections(points) {
 }
 function drawStars() {
   const linked = new Set(selected && mode === 'relation' ? related(selected).map(r=>r.article.id) : []);
-  const candidates=articles.map(article=>({article,...project(position(article))}))
+  const candidates=articles.map(article=>{const p=project(position(article));return p?{article,...p,x:p.x+ambient.x*3,y:p.y+ambient.y*3}:{article};})
     .filter(p=>Number.isFinite(p.x) && (p.depth<6500 || p.article.id===selected || linked.has(p.article.id)))
     .sort((a,b)=>a.depth-b.depth);
   // Density comes from spatial layout, not an arbitrary cap hiding nearby stars.
@@ -292,7 +303,7 @@ function drawStars() {
     button.classList.toggle('is-selected',active);button.classList.toggle('near',depth<4200 || hovered===article.id);
     button.classList.toggle('label-left',x>width-190);
     button.setAttribute('aria-label',`${active&&phase==='settled'?'阅读文章':'选择文章'}：${article.title}`);
-    paintArticleLight(ctx,x,y,article.id,{depth,active,hover:hovered===article.id});
+    paintArticleLight(ctx,x,y,article.id,{depth,active,hover:hovered===article.id,seconds:living?ambient.seconds:null});
   });
   // Hide points that are behind the camera too.
   for(const article of articles)if(!points.some(p=>p.article.id===article.id))targetElements.get(article.id).hidden=true;
@@ -317,6 +328,16 @@ function placeLabels(points){
 }
 function animate(now) {
   time=now;
+  const dt=Math.min(.05,Math.max(0,(now-(lastFrame||now))/1000));lastFrame=now;
+  if(!ambientBlocked()){
+    if(living)ambient.seconds+=dt;
+    // Freeze target offsets during a gesture or hover so the hit region stays put.
+    if(!living||(!pointers.size&&!hovered&&!travel)){
+      const blend=1-Math.exp(-dt*5);
+      ambient.x+=((living?ambient.targetX:0)-ambient.x)*blend;
+      ambient.y+=((living?ambient.targetY:0)-ambient.y)*blend;
+    }
+  }
   if(travel){
     const flight=travel,t=Math.min(1,(now-flight.start)/Math.max(1,flight.duration));
     // Fast acceleration followed by a soft approach; position always interpolates.
@@ -403,3 +424,13 @@ $('close-specimens').onclick=()=>$('specimen-dialog').close();
 $('show-tools').onclick=()=>{const open=document.body.classList.toggle('show-prototype-tools');$('show-tools').setAttribute('aria-expanded',open);};
 
 window.addEventListener('resize',()=>{if($('specimen-dialog').open)paintSpecimens($('specimen-canvas'));});
+
+function updateLiving(){
+  $('living-toggle').textContent=living?'微动 · 开':'微动 · 关';
+  $('living-toggle').setAttribute('aria-pressed',String(living));
+  const url=new URL(location.href);url.searchParams.set('living',living?'1':'0');window.history.replaceState(null,'',url);
+  updateInspector();
+}
+$('living-toggle').onclick=()=>{living=!living;updateLiving();};
+ambientPreference.addEventListener('change',e=>{living=!e.matches;updateLiving();});
+updateLiving();
