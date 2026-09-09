@@ -10,7 +10,17 @@
     <canvas id="sky" aria-hidden="true"></canvas>
     <div class="grain" aria-hidden="true"></div>
     <div id="star-targets" aria-label="视野内的文章"></div>
-    <header class="masthead"><a id="brand" href="#" aria-label="观星者的清醒梦，回到屋顶"><span class="brand-mark">✧</span><span>观星者的清醒梦<small>STARGAZER · LUCID DREAM</small></span></a><span class="edition">私 人 天 空 &nbsp; / &nbsp; VOL. 01</span></header>
+    <header class="masthead"><a id="brand" href="#" aria-label="观星者的清醒梦，回到屋顶">
+      <svg class="wordmark" viewBox="0 0 460 160" aria-hidden="true" focusable="false">
+        <g fill="currentColor" font-family="Baskerville Old Face, Baskerville, Times New Roman, serif" font-weight="400">
+          <text x="10" y="63" font-size="68" letter-spacing="-2">Stargazer’s</text>
+          <text x="109" y="122" font-size="57" letter-spacing="-2" font-style="italic">Lucid Dream</text>
+        </g>
+        <g fill="none" stroke="currentColor" stroke-width="1.1" opacity=".8"><path d="M35 64 C12 106 61 122 132 137 S262 158 309 134"/><path d="M122 136 C90 126 77 134 89 145 C101 155 135 151 142 138"/></g>
+        <path d="M342 12 L344 24 L353 27 L344 30 L342 42 L340 30 L331 27 L340 24Z M169 132 L170.5 138 L176 140 L170.5 142 L169 148 L167.5 142 L162 140 L167.5 138Z" fill="currentColor"/>
+        <circle cx="358" cy="41" r="1.25" fill="currentColor"/>
+      </svg><span class="brand-chinese">观星者的清醒梦</span>
+    </a></header>
     <nav class="navigation" aria-label="探索控制">
       <div class="mode-switch"><button id="relation-mode" aria-pressed="true">关联</button><span>/</span><button id="time-mode" aria-pressed="false">时间</button></div>
       <button id="back" class="icon-control" title="返回上一个停靠点" aria-label="返回上一个停靠点" disabled>↶</button>
@@ -21,11 +31,11 @@
     <button id="signal-egg" class="signal-egg" aria-label="触碰远方信号" title="远方传来一点微光">⌁<span>远方信号</span></button>
     <footer class="world-footer"><span id="gesture-help">拖动巡视 · 滚轮前行 · 点星靠近</span><span id="journey-label">屋顶 · 夜的起点</span></footer>
   </main>
-  <dialog id="reader" aria-labelledby="reader-title"><div class="reading-frame"><header class="reading-header"><span>一颗星的内部</span><button id="close-reader">返回星空 <span>↗</span></button></header><div id="reading-scroll" tabindex="0"><article class="article"><div class="article-meta"><span id="reader-date"></span><span id="reader-tag"></span></div><h1 id="reader-title"></h1><p id="reader-intro" class="article-intro"></p><div class="article-rule"></div><div id="reader-content"></div><div class="article-end" id="article-end"><span>✧</span><p>文字在这里停下，星空还在继续。</p></div><section class="reading-relations" id="reading-relations"><span class="eyebrow">这些想法，原来相连</span><div id="reader-links"></div></section></article></div><footer class="reading-footer"><span id="reading-state">沿着文字，慢慢往下</span><span id="reading-progress">0%</span></footer></div></dialog>
+  <dialog id="reader" aria-labelledby="reader-title"><div class="reading-frame"><header class="reading-header"><span class="reading-site">观星者的清醒梦</span><button id="close-reader">返回星空 <span>↗</span></button></header><div id="reading-scroll" tabindex="0"><article class="article"><div class="article-meta"><span id="reader-date"></span><span id="reader-tag"></span></div><h1 id="reader-title"></h1><p id="reader-intro" class="article-intro"></p><div class="article-rule"></div><div id="reader-content"></div><div class="article-end" id="article-end"><span aria-hidden="true">·</span></div><section class="reading-relations" id="reading-relations"><span class="eyebrow">沿着这颗星，再走一段</span><div id="reader-links"></div></section></article></div><footer class="reading-footer"><span id="reading-state">沿着文字，慢慢往下</span><span id="reading-progress">0%</span></footer></div></dialog>
   <dialog id="egg-dialog"><button class="egg-close" id="close-egg" aria-label="关闭">×</button><span class="eyebrow">A NOTE FROM THE ROOFTOP</span><h2 id="egg-title"></h2><p id="egg-copy"></p><span class="egg-signature">来自这片天空的主人</span></dialog>
   <div id="announcement" class="sr-only" role="status"></div>
   <div class="prototype-tools" id="prototype-tools"><div class="roof-switcher"><label for="roof-style">屋顶</label><select id="roof-style" aria-label="屋顶风格"></select><button id="roof-home" title="回到屋顶比较风格">回屋顶 ↗</button></div><div class="variant-switcher" aria-label="原型方案切换"><span class="prototype-badge">原型</span><button id="prev-variant" aria-label="上一个方案">←</button><span id="variant-label">A · 屋顶入梦</span><button id="next-variant" aria-label="下一个方案">→</button><span class="mock-badge">MOCK</span></div><details class="state-inspector"><summary>状态</summary><pre id="state-output"></pre></details></div>
-  <div class="art-study-bar" aria-label="第二轮星光动态比较"><span class="study-round">美术 02</span><select id="art-choice" aria-label="美术配色"></select><button id="living-toggle" aria-pressed="true" title="切换星光微动与鼠标微视差">微动 · 开</button><button id="show-specimens">星体样本 ↗</button><button id="show-tools" aria-expanded="false">调试</button><span id="study-caption"></span></div>
+  <details class="art-study-bar" aria-label="第三轮字体与界面比较"><summary>画面试验 <span>03</span></summary><div class="art-study-controls"><select id="art-choice" aria-label="美术配色"></select><button id="living-toggle" aria-pressed="true" title="切换星光微动与鼠标微视差">微动 · 开</button><button id="labels-toggle" aria-pressed="false" title="对照常显标题与按需显露">标题 · 按需</button><button id="show-specimens">星体样本 ↗</button><button id="show-tools" aria-expanded="false">调试</button><span id="study-caption"></span></div></details>
   <dialog id="specimen-dialog" aria-labelledby="specimen-title"><header><div><h2 id="specimen-title">星光的个体差异</h2><p>静态外观比较 · 原始大小与 5 倍细节 · 此处保留静态对照</p></div><button id="close-specimens" aria-label="关闭星体样本">关闭 ×</button></header><canvas id="specimen-canvas" aria-label="四类星体：清冷针点、温暖柔光、微弱双星、明亮主星"></canvas><p class="specimen-note">放大图用于比较结构，页面中的星星保持细小。下方展示不同身份生成的稳定差异。</p></dialog>
   <script type="module" src="./app.js"></script>
 </body>

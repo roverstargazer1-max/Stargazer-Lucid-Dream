@@ -434,3 +434,13 @@ function updateLiving(){
 $('living-toggle').onclick=()=>{living=!living;updateLiving();};
 ambientPreference.addEventListener('change',e=>{living=!e.matches;updateLiving();});
 updateLiving();
+
+// Compare an uninterrupted sky against the earlier near-title treatment.
+let allLabels=query.get('labels')==='all';
+function updateLabels(){
+  document.body.dataset.labels=allLabels?'all':'reveal';
+  $('labels-toggle').textContent=allLabels?'标题 · 常显':'标题 · 按需';
+  $('labels-toggle').setAttribute('aria-pressed',String(allLabels));
+  const url=new URL(location.href);url.searchParams.set('labels',allLabels?'all':'reveal');window.history.replaceState(null,'',url);
+}
+$('labels-toggle').onclick=()=>{allLabels=!allLabels;updateLabels();};updateLabels();

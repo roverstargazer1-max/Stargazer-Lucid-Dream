@@ -12,7 +12,7 @@ node themes/hexo-theme-kira/prototypes/starfield/server.mjs
 
 也可使用 `npm run prototype:stars`。如果系统盘没有空间写 npm 日志，使用上面的直接启动命令。
 
-打开 <http://127.0.0.1:4173/pages/starfield-prototype/?variant=C&roof=anime&art=ink>。当前进入第二轮星光微动：底部“微动 · 开/关”比较不同步的轻微闪烁与分层鼠标视差，详细说明见 [ART-STUDY-02.md](ART-STUDY-02.md)。仍可切换“墨蓝冷夜 / 烟褐旧梦”，用“星体样本”查看静态原始大小和放大细节；配色说明见 [ART-STUDY-01.md](ART-STUDY-01.md)。原有布局、屋顶及状态工具通过“调试”展开。
+打开 <http://127.0.0.1:4173/pages/starfield-prototype/?variant=C&roof=anime&art=ink&labels=reveal>。当前进入第三轮字标与排版，文章标题实验默认按需显露，说明见 [ART-STUDY-03.md](ART-STUDY-03.md)。底部展开“画面试验 03”可对照常显标题，并继续切换配色、微动和静态星体样本。前两轮说明见 [ART-STUDY-01.md](ART-STUDY-01.md) 与 [ART-STUDY-02.md](ART-STUDY-02.md)。原有布局、屋顶及状态工具通过其中的“调试”展开。
 
 底部“屋顶”下拉框比较二次元动画（`anime`）、极简色块（`minimal`）、纸雕绘本（`paper`）、像素夜景（`pixel`），以及原写实版（`photo`）。它独立于 A/B/C 的阅读布局，切换保持当前镜头、选中文章和已读状态；已离开屋顶时可用旁边的“回屋顶”查看。风格写入 `roof` URL 参数，作者已选择二次元，其余风格保留为对照。
 
