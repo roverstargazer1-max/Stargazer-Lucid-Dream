@@ -4,7 +4,7 @@ let failures=0;
 for(const style of ['photo','anime','minimal','paper','pixel']){
 const asset=readFileSync(`themes/hexo-theme-kira/prototypes/starfield/assets/${style==='photo'?'rooftop-v2':`roof-${style}-v4`}.png`);
 const plate={complete:true,naturalWidth:asset.readUInt32BE(16),naturalHeight:asset.readUInt32BE(20)};
-const paintRoof=new Function('roofPlate','roofPath','roofStyle','roofImages','roofFrames',source.slice(source.indexOf('export function paintRoof')).replace('export function','return function'))(plate,{},style,new Map([[style,plate]]),new Map([[style,plate]]));
+const paintRoof=new Function('roofPlate','roofPath','roofStyle','roofImages','roofFrames','study',source.slice(source.indexOf('export function paintRoof')).replace('export function','return function'))(plate,{},style,new Map([[style,plate]]),new Map([[style,plate]]),()=>({roof:'none'}));
 for(const [width,height] of [[1920,1301],[390,844]]){
  for(const yaw of [-.4,0,.4]) for(const pitch of [-.25,0,.25]){
   let x=0,y=0,scale=1,drawn=false;

@@ -1,3 +1,4 @@
+import { study } from './art-study.js';
 // Photographic plates retain texture; this traced silhouette separates the roof
 // from its generated sky without turning the architecture into flat polygons.
 export const roofContour = 'M0 438 L22 446 L49 463 L77 479 L106 490 L129 505 L161 516 L190 530 L223 541 L255 553 L290 559 L311 566 L320 575 L307 582 L309 590 L288 595 L287 691 L299 685 L304 677 L313 681 L318 674 L328 682 L339 675 L350 682 L360 680 L366 689 L374 693 L369 704 L377 712 L366 720 L354 713 L352 729 L363 730 L356 742 L354 752 L381 752 L412 746 L443 750 L447 757 L455 744 L470 741 L485 745 L485 754 L478 766 L540 769 L650 778 L780 789 L931 804 L1080 824 L1260 841 L1445 862 L1672 884 L1672 941 L0 941 Z';
@@ -40,16 +41,22 @@ const clouds=Array.from({length:130},()=>{
   return {...beltDirection(longitude,latitude),radius:.024+rand()*.055,alpha:.07+rand()*.08};
 });
 const skyStars=[...distantStars,...galacticStars];
-const mistSprite=document.createElement('canvas');mistSprite.width=128;mistSprite.height=128;
-const mistContext=mistSprite.getContext('2d');
-const mistGradient=mistContext.createRadialGradient(64,64,0,64,64,64);
-mistGradient.addColorStop(0,'#52657c');mistGradient.addColorStop(.3,'#3c4f6550');mistGradient.addColorStop(1,'#293c5000');
-mistContext.fillStyle=mistGradient;mistContext.fillRect(0,0,128,128);
+const mistSprites=new Map();
+function mistFor(color){
+  if(!mistSprites.has(color)){
+    const sprite=document.createElement('canvas');sprite.width=128;sprite.height=128;
+    const painter=sprite.getContext('2d'),gradient=painter.createRadialGradient(64,64,0,64,64,64);
+    gradient.addColorStop(0,color);gradient.addColorStop(.3,color+'50');gradient.addColorStop(1,color+'00');
+    painter.fillStyle=gradient;painter.fillRect(0,0,128,128);mistSprites.set(color,sprite);
+  }
+  return mistSprites.get(color);
+}
 
 export function paintSky(ctx,width,height,camera,settings,articlePoints){
-  ctx.fillStyle='#03070e';ctx.fillRect(0,0,width,height);
+  const palette=study();
+  ctx.fillStyle=palette.base;ctx.fillRect(0,0,width,height);
   const atmosphere=ctx.createRadialGradient(width*.6,height*.68,0,width*.6,height*.68,Math.max(width,height)*.9);
-  atmosphere.addColorStop(0,'#09111b');atmosphere.addColorStop(.45,'#050b13');atmosphere.addColorStop(1,'#02050b');
+  atmosphere.addColorStop(0,palette.lift);atmosphere.addColorStop(.45,palette.base);atmosphere.addColorStop(1,palette.edge);
   ctx.fillStyle=atmosphere;ctx.fillRect(0,0,width,height);
   const {cx,cy,focal}=settings;
   const ca=Math.cos(camera.yaw),sa=Math.sin(camera.yaw),cp=Math.cos(camera.pitch),sp=Math.sin(camera.pitch);
@@ -62,19 +69,23 @@ export function paintSky(ctx,width,height,camera,settings,articlePoints){
     const p=onSphere(cloud);
     if(!p||p.depth<18000||p.x < -200||p.x>width+200||p.y < -200||p.y>height+200)continue;
     const radius=Math.min(height*.26,cloud.radius*focal*100000/p.depth);
-    ctx.globalAlpha=cloud.alpha;ctx.drawImage(mistSprite,p.x-radius,p.y-radius,radius*2,radius*2);
+    ctx.globalAlpha=cloud.alpha*.7;ctx.drawImage(mistFor(palette.cloud),p.x-radius,p.y-radius*.3,radius*2,radius*.6);
   }
+  // Static, localized low-sky haze. The deep sky keeps its large dark regions.
+  const haze=ctx.createRadialGradient(width*.19,height*1.06,0,width*.19,height*1.06,height*.58);
+  haze.addColorStop(0,palette.haze+'35');haze.addColorStop(.45,palette.haze+'0b');haze.addColorStop(1,palette.haze+'00');
+  ctx.globalAlpha=Math.max(0,1-Math.abs(camera.z)/2200)*Math.max(0,1-Math.abs(camera.pitch));
+  ctx.fillStyle=haze;ctx.fillRect(0,0,width,height);ctx.globalAlpha=1;
   // Background stars never use the article stars' cross flares or bright cores.
-  ctx.fillStyle='#b8c5d5';
+  ctx.fillStyle=palette.stars;
   for(const star of skyStars){
     const p=onSphere(star);
     if(!p||p.x<0||p.x>width||p.y<0||p.y>height)continue;
-    let clearance=1;
-    for(const a of articlePoints){
-      const d2=(p.x-a.x)**2+(p.y-a.y)**2;
-      if(d2<6400)clearance=Math.min(clearance,.12+.88*Math.min(1,d2/6400));
-    }
-    ctx.globalAlpha=star.alpha*clearance;
+    const longitude=Math.atan2(star.x,star.z);
+    const patch=.52+.48*Math.sin(longitude*3.7+Math.sin(star.y*9))**2;
+    const lane=star.y-.11*Math.sin(longitude*5+.8)-.05;
+    const extinction=1-.65*Math.exp(-lane*lane/.003);
+    ctx.globalAlpha=star.alpha*patch*extinction;
     const radius=star.size*.65;
     ctx.beginPath();ctx.arc(p.x,p.y,radius,0,Math.PI*2);ctx.fill();
   }
@@ -111,6 +122,7 @@ export function paintRoof(ctx, width, height, camera) {
   ctx.save(); ctx.globalAlpha = alpha; ctx.translate(x, y); ctx.scale(scale, scale);
   if(roofStyle==='photo')ctx.clip(roofPath);
   ctx.imageSmoothingEnabled=roofStyle!=='pixel';
+  ctx.filter=study().roof;
   ctx.drawImage(plate, 0, 0, sourceWidth, sourceHeight);
   ctx.restore();
   return alpha;

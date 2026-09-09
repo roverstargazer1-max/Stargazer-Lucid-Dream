@@ -1,3 +1,4 @@
+import { studies, setStudy, paintArticleLight, paintSpecimens } from './art-study.js';
 import { articles, relations } from './mock.js';
 import { paintSky, paintRoof, roofStyles, setRoofStyle } from './art.js';
 
@@ -291,17 +292,7 @@ function drawStars() {
     button.classList.toggle('is-selected',active);button.classList.toggle('near',depth<4200 || hovered===article.id);
     button.classList.toggle('label-left',x>width-190);
     button.setAttribute('aria-label',`${active&&phase==='settled'?'阅读文章':'选择文章'}：${article.title}`);
-    const radius=Math.max(2.2,Math.min(3.6,3*1500/depth));
-    const alpha=active?1:.95;
-    ctx.globalAlpha=alpha;
-    const halo=ctx.createRadialGradient(x,y,0,x,y,active?28:22);halo.addColorStop(0,article.color+'aa');halo.addColorStop(.15,article.color+'36');halo.addColorStop(.5,article.color+'0b');halo.addColorStop(1,article.color+'00');
-    ctx.fillStyle=halo;ctx.fillRect(x-30,y-30,60,60);
-    ctx.fillStyle=article.color;ctx.beginPath();ctx.arc(x,y,radius,0,7);ctx.fill();
-    ctx.fillStyle='#fff6e8';ctx.beginPath();ctx.arc(x,y,radius*.4,0,7);ctx.fill();
-    const spike=active?13:hovered===article.id?12:9;
-    ctx.strokeStyle=article.color+(active?'aa':'85');ctx.lineWidth=.7;ctx.beginPath();ctx.moveTo(x-spike,y);ctx.lineTo(x+spike,y);ctx.moveTo(x,y-spike);ctx.lineTo(x,y+spike);ctx.stroke();
-    if(readIds.has(article.id)){ctx.strokeStyle='#baa582';ctx.lineWidth=.8;ctx.beginPath();ctx.arc(x,y,6,0,Math.PI*1.3);ctx.stroke();}
-    ctx.globalAlpha=1;
+    paintArticleLight(ctx,x,y,article.id,{depth,active,hover:hovered===article.id});
   });
   // Hide points that are behind the camera too.
   for(const article of articles)if(!points.some(p=>p.article.id===article.id))targetElements.get(article.id).hidden=true;
@@ -377,7 +368,7 @@ function updateMotionButton(){motionButton.textContent=reducedMotion?'轻过渡'
 motionButton.onclick=()=>{reducedMotion=!reducedMotion;updateMotionButton();updateInspector();};
 document.querySelector('.mock-badge').replaceWith(motionButton);updateMotionButton();
 document.addEventListener('keydown',e=>{
-  if(reader.open||$('egg-dialog').open||e.target.closest('input,textarea,select,[contenteditable]'))return;
+  if(reader.open||$('specimen-dialog').open||$('egg-dialog').open||e.target.closest('input,textarea,select,[contenteditable]'))return;
   if(e.key==='ArrowLeft'||e.key==='ArrowRight'){e.preventDefault();cycleVariant(e.key==='ArrowRight'?1:-1);}
 });
 $('journal-egg').onclick=()=>{
@@ -392,3 +383,23 @@ $('signal-egg').onclick=()=>{
 $('close-egg').onclick=()=>$('egg-dialog').close();
 if(!['127.0.0.1','localhost','[::1]'].includes(location.hostname))$('prototype-tools').hidden=true;
 window.addEventListener('resize',resize);resize();setVariant(variant);requestAnimationFrame(animate);
+
+// Round-one art comparisons preserve camera, star positions and reading state.
+const artChoice=$('art-choice');
+for(const [key,value] of Object.entries(studies)){
+  const option=document.createElement('option');option.value=key;option.textContent=value.name;artChoice.append(option);
+}
+artChoice.value=studies[query.get('art')]?query.get('art'):'ink';
+function changeArt(){
+  setStudy(artChoice.value);document.body.dataset.art=artChoice.value;
+  const url=new URL(location.href);url.searchParams.set('art',artChoice.value);window.history.replaceState(null,'',url);
+  $('study-caption').textContent=artChoice.value==='ink'?'中性冷黑 / 灰蓝屋顶 / 克制暖光':'灰褐暗部 / 炭灰屋顶 / 旧纸暖光';
+  if($('specimen-dialog').open)paintSpecimens($('specimen-canvas'));
+  announce(studies[artChoice.value].name);
+}
+artChoice.onchange=changeArt;changeArt();
+$('show-specimens').onclick=()=>{$('specimen-dialog').showModal();paintSpecimens($('specimen-canvas'));};
+$('close-specimens').onclick=()=>$('specimen-dialog').close();
+$('show-tools').onclick=()=>{const open=document.body.classList.toggle('show-prototype-tools');$('show-tools').setAttribute('aria-expanded',open);};
+
+window.addEventListener('resize',()=>{if($('specimen-dialog').open)paintSpecimens($('specimen-canvas'));});
