@@ -1,6 +1,7 @@
 // Shared hemisphere geometry: +Y is zenith; azimuth 0 faces +Z (north).
 export const DOME_RADIUS=6000;
 export const HOME_ELEVATION=.43;
+export const MIN_SKY_ZOOM=.36;
 export const clamp=(n,lo,hi)=>Math.max(lo,Math.min(hi,n));
 export const wrapAngle=a=>Math.atan2(Math.sin(a),Math.cos(a));
 export function direction(azimuth,elevation,radius=1){

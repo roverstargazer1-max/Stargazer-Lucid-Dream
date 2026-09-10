@@ -1,11 +1,14 @@
 import {angles,clamp,direction,domeIntersection,viewRay} from './dome.js';
-export function createSkyMap(world,onLook){
+export function createSkyMap(world,{onLook,onOverview,onReset}){
   const panel=document.createElement('aside');panel.id='sky-map';panel.setAttribute('aria-label','星空方位图');
   panel.innerHTML='<canvas width="360" height="360" aria-label="星空方位图：天顶在中央，地平线在圆周；淡光区域表示当前视野，点击可转向"></canvas>';
   const toggle=document.createElement('button');toggle.id='sky-map-toggle';toggle.textContent='◎ 星图';toggle.setAttribute('aria-label','显示星空方位图');
-  world.append(panel,toggle);
+  const controls=document.createElement('div');controls.id='sky-map-controls';
+  const overview=document.createElement('button');overview.id='sky-overview';overview.textContent='仰望';overview.setAttribute('aria-label','仰望广角星空');overview.title='仰望广角星空';overview.onclick=onOverview;
+  const reset=document.createElement('button');reset.id='sky-reset';reset.textContent='回正';reset.setAttribute('aria-label','回到初始星空视角');reset.title='回到初始星空视角';reset.onclick=onReset;
+  controls.append(overview,reset,toggle);world.append(panel,controls);
   const canvas=panel.querySelector('canvas'),ctx=canvas.getContext('2d');
-  let lastActivity=-10000,lastPose='',lastData=null;
+  let lastActivity=-10000,lastPose='',lastData=null,wide=false;
   const reveal=()=>{lastActivity=performance.now();};toggle.onclick=reveal;
   panel.addEventListener('pointermove',reveal);panel.addEventListener('focusin',reveal);
   canvas.onclick=e=>{
@@ -18,8 +21,10 @@ export function createSkyMap(world,onLook){
     const pose=[camera.yaw,camera.pitch,camera.zoom,camera.x,camera.y,camera.z].map(v=>v.toFixed(4)).join(',');
     if(active&&pose!==lastPose)lastActivity=now;
     lastPose=pose;
-    const shown=active&&now-lastActivity<2800;
-    panel.classList.toggle('is-visible',shown);panel.inert=!shown;toggle.hidden=!active;
+    wide=camera.zoom<(wide?.64:.58);
+    document.body.dataset.skyView=wide?'wide':'normal';
+    const shown=active&&(wide||now-lastActivity<2800);
+    panel.classList.toggle('is-visible',shown);panel.inert=!shown;controls.hidden=!active;
     if(!shown)return;
     const key=pose+selected+[w,h,settings.cx,settings.cy,settings.focal].join(',')+articles.map(a=>[a.id,a.point.x.toFixed(0),a.point.y.toFixed(0),a.point.z.toFixed(0)].join(',')).join(';');
     if(key===lastData)return;lastData=key;

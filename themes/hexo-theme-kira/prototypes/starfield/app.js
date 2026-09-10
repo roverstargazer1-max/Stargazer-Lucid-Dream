@@ -3,7 +3,7 @@ import { studies, setStudy, paintArticleLight, paintSpecimens } from './art-stud
 import { articles, relations } from './mock.js';
 import { paintSky, paintRoof, roofStyles, setRoofStyle } from './art.js';
 import { painted, paintPaintedSky, paintCloudVeil, createRoom } from './painted.js';
-import {arrangeDome,domePosition,domeDestination,growDomeArticle,HOME_ELEVATION,clamp,direction,wrapAngle} from './dome.js';
+import {arrangeDome,domePosition,domeDestination,growDomeArticle,HOME_ELEVATION,MIN_SKY_ZOOM,clamp,direction,wrapAngle} from './dome.js';
 import {createSkyMap} from './sky-map.js';
 
 // Three structural variants of a new full-screen surface, on one local-only route.
@@ -255,7 +255,8 @@ world.addEventListener('pointermove', e => {
     const pts = [...pointers.values()], distance = Math.hypot(pts[0].x-pts[1].x,pts[0].y-pts[1].y);
     moveForward((distance-previousPinch)*4); previousPinch=distance;
   } else if (!multiTouch) {
-    const sensitivity=painted?1/Math.sqrt(camera.zoom):1;
+    // Wide views should turn more gently, instead of amplifying a disorienting swipe.
+    const sensitivity=painted?Math.sqrt(Math.min(camera.zoom,1/camera.zoom)):1;
     camera.yaw -= (e.clientX-old.x)*.003*sensitivity;
     camera.pitch = clamp(camera.pitch+(e.clientY-old.y)*.0025*sensitivity,painted?0:-1.05,painted?Math.PI/2:1.05);
     if (selected) phase = 'selected';
@@ -278,7 +279,7 @@ world.addEventListener('wheel', e => {
 }, { passive: false });
 function moveForward(amount) {
   if(painted){
-    camera.zoom=clamp(camera.zoom*Math.exp(amount*.0011),.72,2.8);
+    camera.zoom=clamp(camera.zoom*Math.exp(amount*.0011),MIN_SKY_ZOOM,2.8);
     const distance=clamp((camera.zoom-1)*1100,0,1200);
     Object.assign(camera,direction(camera.yaw,camera.pitch,distance));
     if(selected)phase='selected';return;
@@ -578,9 +579,14 @@ compare.textContent=painted?'对照 · 原来的夜空 ↗':'试试 · 厚涂窗
 const comparisonURL=new URL(location.href);comparisonURL.searchParams.set('scene',painted?'classic':'painted');
 compare.href=comparisonURL.href;document.querySelector('.art-study-controls').prepend(compare);
 if(painted){
-  skyMap=createSkyMap(world,(yaw,pitch)=>{
+  const lookAtSky=(yaw,pitch,zoom)=>{
     interrupt();pushStop();selected=null;
-    moveTo({x:0,y:0,z:0,yaw:camera.yaw+wrapAngle(yaw-camera.yaw),pitch,zoom:1},700,()=>{phase='idle';updateUI();});
+    moveTo({x:0,y:0,z:0,yaw:camera.yaw+wrapAngle(yaw-camera.yaw),pitch,zoom},700,()=>{phase='idle';updateUI();});
+  };
+  skyMap=createSkyMap(world,{
+    onLook:(yaw,pitch)=>lookAtSky(yaw,pitch,Math.min(1,camera.zoom)),
+    onOverview:()=>lookAtSky(camera.yaw,Math.PI/2,MIN_SKY_ZOOM),
+    onReset:()=>lookAtSky(0,HOME_ELEVATION,1)
   });
   $('home').title='回到窗边';$('home').setAttribute('aria-label','回到窗边');
   $('brand').setAttribute('aria-label','观星者的清醒梦，回到窗边');
