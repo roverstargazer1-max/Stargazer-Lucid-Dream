@@ -1,0 +1,128 @@
+// V11 visual experiment: the supplied room leads into a painted, navigable sky.
+export const painted = new URLSearchParams(location.search).get('scene') !== 'classic';
+const plate = new Image();
+if (painted) plate.src = new URL('./assets/painted-sky-v11.png', import.meta.url).href;
+let seed=812;
+const random=()=>{seed=(seed*1664525+1013904223)>>>0;return seed/4294967296;};
+const stars=Array.from({length:600},()=>{
+  const y=random()*2-1,a=random()*Math.PI*2,r=Math.sqrt(1-y*y);
+  return {x:Math.sin(a)*r,y,z:Math.cos(a)*r,r:.4+random()*.55,alpha:.2+random()*.4};
+});
+
+export function paintPaintedSky(ctx,w,h,camera,settings,ambient){
+  ctx.fillStyle='#042b68';ctx.fillRect(0,0,w,h);
+  const altitude=Math.max(-1,Math.min(1,camera.pitch));
+  if(plate.complete&&plate.naturalWidth){
+    const scale=Math.max(w/plate.naturalWidth,h/plate.naturalHeight)*(1+Math.min(.22,Math.abs(camera.z)/55000));
+    const pw=plate.naturalWidth*scale,ph=plate.naturalHeight*scale;
+    const offset=camera.yaw*settings.focal*.65+camera.x*.012;
+    const start=(w-pw)/2-offset;
+    const y=h-ph+altitude*h*.34+ambient.y*1.2;
+    // Mirror alternating panoramic tiles to keep continuous edges while turning.
+    const first=Math.floor(-start/pw)-1;
+    for(let i=first;i<first+4;i++){
+      ctx.save();ctx.translate(start+i*pw+(i%2?pw:0)+ambient.x,y);
+      if(i%2)ctx.scale(-1,1);
+      ctx.drawImage(plate,0,0,pw,ph);ctx.restore();
+    }
+    // At the poles, dissolve the finite painted plate into the same pigment.
+    if(y>0){
+      const blend=ctx.createLinearGradient(0,y-1,0,y+50);
+      blend.addColorStop(0,'#042b68');blend.addColorStop(1,'#042b6800');
+      ctx.fillStyle=blend;ctx.fillRect(0,y-1,w,51);
+    }
+    if(y+ph<h){
+      const blend=ctx.createLinearGradient(0,y+ph-60,0,y+ph+1);
+      blend.addColorStop(0,'#042b6800');blend.addColorStop(1,'#042b68');
+      ctx.fillStyle=blend;ctx.fillRect(0,y+ph-60,w,61);
+    }
+  }
+  const ca=Math.cos(camera.yaw),sa=Math.sin(camera.yaw),cp=Math.cos(camera.pitch),sp=Math.sin(camera.pitch);
+  const project=p=>{
+    const x=p.x*ca-p.z*sa,z0=p.x*sa+p.z*ca,y=p.y*cp-z0*sp,z=p.y*sp+z0*cp;
+    return z>.08?{x:settings.cx+x*settings.focal/z,y:settings.cy-y*settings.focal/z}:null;
+  };
+  for(const star of stars){
+    const p=project(star);if(!p||p.x<0||p.x>w||p.y<0||p.y>h)continue;
+    ctx.globalAlpha=star.alpha;ctx.fillStyle='#c5dbef';
+    ctx.fillRect(p.x+ambient.x,p.y+ambient.y,star.r,star.r);
+  }
+  ctx.globalAlpha=1;
+  const moon=project(w<=760?{x:.22,y:.55,z:1}:{x:.49,y:.16,z:1});
+  if(moon&&moon.x>-100&&moon.x<w+100&&moon.y>-100&&moon.y<h+100){
+    const r=Math.min(w,h)*.044;
+    ctx.save();ctx.translate(moon.x,moon.y);ctx.rotate(-.24);
+    ctx.shadowColor='#e8bc6550';ctx.shadowBlur=18;ctx.fillStyle='#e7b859';
+    const crescent=new Path2D('M19 -29 C-5 -43 -35 -24 -33 1 C-33 26 -9 41 14 28 L25 17 C4 31 -19 17 -20 -1 C-21 -21 -1 -33 19 -29Z');
+    ctx.scale(r/35,r/35);ctx.fill(crescent);ctx.shadowBlur=0;
+    ctx.strokeStyle='#f4d88c';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(12,-29);ctx.lineTo(-2,-30);ctx.lineTo(-19,-19);ctx.lineTo(-27,-2);ctx.lineTo(-22,17);ctx.lineTo(-9,28);ctx.stroke();
+    ctx.fillStyle='#f7d17e';ctx.beginPath();ctx.moveTo(-31,0);ctx.lineTo(-26,-9);ctx.lineTo(-23,9);ctx.lineTo(-17,21);ctx.lineTo(-25,17);ctx.closePath();ctx.fill();ctx.restore();
+  }
+  // A blue wash gently quiets the edges without turning the scene photographic.
+  const wash=ctx.createRadialGradient(w*.5,h*.42,h*.15,w*.5,h*.42,Math.max(w,h)*.75);
+  wash.addColorStop(0,'#061e4800');wash.addColorStop(1,'#03122b55');ctx.fillStyle=wash;ctx.fillRect(0,0,w,h);
+}
+
+export function paintPaintedStar(ctx,x,y,id,{depth=1800,active=false,hover=false,zoom=1,importance='ordinary',seconds=null}={}){
+  let identity=0;for(const ch of id)identity=(identity*31+ch.charCodeAt(0))>>>0;
+  const rank={ordinary:1,important:1.3,treasured:1.65}[importance]||1;
+  const size=(3.2+(identity%7)*.17)*rank*Math.max(.8,Math.min(1.35,Math.sqrt(1800/depth)));
+  const pulse=seconds===null?1:1+Math.sin(seconds*.9+identity)*.025;
+  ctx.save();ctx.translate(x,y);ctx.scale(zoom*pulse,zoom*pulse);
+  const warm=identity%3!==0;
+  const halo=ctx.createRadialGradient(0,0,1,0,0,size*5);
+  halo.addColorStop(0,warm?'#f1d58b38':'#cbe9ff32');halo.addColorStop(1,'#cce9ff00');
+  ctx.fillStyle=halo;ctx.fillRect(-size*5,-size*5,size*10,size*10);
+  ctx.rotate((identity%5-2)*.08);
+  ctx.fillStyle=warm?'#f3d38d':'#d0e5f6';ctx.beginPath();
+  for(let i=0;i<8;i++){
+    const a=i*Math.PI/4-Math.PI/2,r=i%2?size*.29:size*(i%4===0?1.2:.85);
+    const px=Math.cos(a)*r,py=Math.sin(a)*r;if(i===0)ctx.moveTo(px,py);else ctx.lineTo(px,py);
+  }
+  ctx.closePath();ctx.fill();ctx.fillStyle='#fff1c8';ctx.fillRect(-.8,-.8,1.6,1.6);
+  if(active||hover){
+    ctx.strokeStyle=active?'#edcf8899':'#d5e8ed77';ctx.lineWidth=.85;
+    ctx.beginPath();ctx.ellipse(0,0,size+10,size+9,-.2,.2,5.8);ctx.stroke();
+  }
+  ctx.restore();
+}
+
+export function createRoom({onEnter,onReturn,onJournal,onMotion}){
+  const room=document.getElementById('room'),stage=document.getElementById('room-stage');
+  const entry=document.getElementById('window-entry'),world=document.getElementById('world');
+  // This visual trial explicitly asks for a visible camera push; keep a light alternative.
+  let flight=null,short=new URLSearchParams(location.search).get('motion')==='soft';
+  const motion=document.getElementById('entry-motion');
+  function setMotion(){motion.setAttribute('aria-pressed',String(short));motion.textContent=short?'轻过渡 · 开':'轻过渡';onMotion(short);}
+  motion.onclick=()=>{short=!short;setMotion();};setMotion();
+  function show(){
+    if(flight){flight.cancel();flight=null;}
+    onReturn();room.hidden=false;room.inert=false;world.inert=true;
+    document.body.dataset.room='inside';entry.disabled=false;
+    stage.style.transform='';room.style.opacity='';entry.focus({preventScroll:true});
+  }
+  entry.onclick=async()=>{
+    if(flight)return;
+    entry.disabled=true;room.inert=true;document.body.dataset.room='entering';
+    const rect=stage.getBoundingClientRect();
+    // Fly through the clear left pane, above the chair and away from the mullion.
+    const px=rect.width*(innerWidth<=760?.55:.52),py=rect.height*.29;
+    stage.style.transformOrigin=`${px}px ${py}px`;
+    const dx=innerWidth/2-(rect.left+px),dy=innerHeight/2-(rect.top+py);
+    onEnter();
+    const duration=short?240:2200;
+    flight=stage.animate([
+      {transform:'translate(0,0) scale(1)',opacity:1,offset:0},
+      {transform:`translate(${dx*.2}px,${dy*.2}px) scale(1.32)`,opacity:1,offset:.24},
+      {transform:`translate(${dx*.82}px,${dy*.82}px) scale(3.25)`,opacity:1,offset:.62},
+      {transform:`translate(${dx}px,${dy}px) scale(5.8)`,opacity:0,offset:1}
+    ],{duration,easing:'cubic-bezier(.42,0,.18,1)',fill:'forwards'});
+    await flight.finished.catch(()=>{});
+    if(!flight)return;
+    flight.cancel();flight=null;room.hidden=true;world.inert=false;
+    document.body.dataset.room='outside';document.getElementById('home').focus({preventScroll:true});
+  };
+  document.getElementById('room-journal').onclick=onJournal;
+  show();
+  return {show,get active(){return !room.hidden;}};
+}

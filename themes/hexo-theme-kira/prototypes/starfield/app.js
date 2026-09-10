@@ -2,6 +2,7 @@ import {buildPaths,degrees,growArticle,clipSegment,crosses} from './navigation.j
 import { studies, setStudy, paintArticleLight, paintSpecimens } from './art-study.js';
 import { articles, relations } from './mock.js';
 import { paintSky, paintRoof, roofStyles, setRoofStyle } from './art.js';
+import { painted, paintPaintedSky, createRoom } from './painted.js';
 
 // Three structural variants of a new full-screen surface, on one local-only route.
 // Prototype question: can quiet space, real camera travel and reading form one flow?
@@ -10,6 +11,8 @@ const canvas = $('sky'), ctx = canvas.getContext('2d');
 const world = $('world'), reader = $('reader'), scroller = $('reading-scroll');
 const names = { A: '屋顶入梦', B: '观测手记', C: '漂浮书页' };
 const query = new URLSearchParams(location.search);
+document.body.dataset.scene=painted?'painted':'classic';
+let roomScene=null;
 const ambientPreference=matchMedia('(prefers-reduced-motion: reduce)');
 let living=query.get('living')==='0'?false:query.get('living')==='1'?true:!ambientPreference.matches;
 const ambient={x:0,y:0,targetX:0,targetY:0,seconds:0};
@@ -119,6 +122,7 @@ function interrupt() {
 }
 function home() {
   if (reader.open) closeReader();
+  if(painted){roomScene?.show();return;}
   pushStop(); selected = null;
   moveTo({ x: 0, y: 0, z: 0, yaw: 0, pitch: 0 }, 1300, () => { phase = 'idle'; updateUI(); });
 }
@@ -152,7 +156,7 @@ function updateUI() {
     $('known-reasons').replaceChildren();
     if (readIds.has(selected)) related(selected).forEach(r => { const div = document.createElement('div'); div.textContent = `↗ ${r.reason}`; $('known-reasons').append(div); });
   }
-  $('journey-label').textContent = article ? `${mode === 'relation' ? '关联' : '时间'} · ${article.title}` : camera.z > 100 ? '星空 · 自由巡视' : '屋顶 · 夜的起点';
+  $('journey-label').textContent = article ? `${mode === 'relation' ? '关联' : '时间'} · ${article.title}` : painted?'窗外 · 自由巡视':camera.z > 100 ? '星空 · 自由巡视' : '屋顶 · 夜的起点';
   updateInspector();
 }
 function updateInspector() {
@@ -208,7 +212,7 @@ function cycleVariant(step) { const keys = Object.keys(names); setVariant(keys[(
 
 // Tiny stars occupy little visual space, but their HTML hit areas are 44px.
 const pointers = new Map(); let gestureMoved = false, multiTouch = false, previousPinch = 0, press = null;
-function interactiveSurface(target) { return target === canvas || target.closest('.star-target'); }
+function interactiveSurface(target) { return !roomScene?.active && (target === canvas || target.closest('.star-target')); }
 world.addEventListener('pointerdown', e => {
   if (!interactiveSurface(e.target) || reader.open) return;
   pointers.set(e.pointerId, { x: e.clientX, y: e.clientY }); world.setPointerCapture(e.pointerId);
@@ -252,14 +256,14 @@ function moveForward(amount) {
   if (selected) phase='selected';
 }
 function drawBackground() {
-  paintSky(ctx,width,height,camera,projectionSettings(),{x:ambient.x,y:ambient.y,seconds:living?ambient.seconds:null});
+  (painted?paintPaintedSky:paintSky)(ctx,width,height,camera,projectionSettings(),{x:ambient.x,y:ambient.y,seconds:living?ambient.seconds:null});
   // Nearby dust uses finite world positions, unlike the far celestial sphere.
   for (const star of dust) {
     const p=project(star);
     if(!p || p.x<0 || p.x>width || p.y<0 || p.y>height) continue;
     p.x+=ambient.x*2;p.y+=ambient.y*2;
     const r=Math.min(.65,star.size*Math.sqrt(p.scale));
-    ctx.globalAlpha=star.alpha*.6;
+    ctx.globalAlpha=star.alpha*(painted ? .32 : .6);
     ctx.fillStyle=star.warm?'#d8c3a6':'#d9e8fc';
     ctx.beginPath();ctx.arc(p.x,p.y,r,0,7);ctx.fill();
     if(travel && !reducedMotion && star.previous && p.depth<3200){
@@ -390,7 +394,7 @@ function animate(now) {
     if(t===1){travel=null;flight.onDone?.();}
   }
   drawBackground();
-  const roofVisibility=paintRoof(ctx,width,height,camera);
+  const roofVisibility=painted?0:paintRoof(ctx,width,height,camera);
   $('journal-egg').hidden=roofVisibility<.35;
   const foregroundWidth=width<=760?height*.72:Math.min(width,height*.9);
   $('journal-egg').style.left=roofSelect.value==='photo'?'':`${foregroundWidth*.22+Math.min(0,(width-foregroundWidth)*.12)}px`;
@@ -433,6 +437,7 @@ function updateMotionButton(){motionButton.textContent=reducedMotion?'轻过渡'
 motionButton.onclick=()=>{reducedMotion=!reducedMotion;updateMotionButton();updateInspector();};
 document.querySelector('.mock-badge').replaceWith(motionButton);updateMotionButton();
 document.addEventListener('keydown',e=>{
+  if(roomScene?.active)return;
   if(reader.open||$('specimen-dialog').open||$('egg-dialog').open||e.target.closest('input,textarea,select,[contenteditable]'))return;
   if(e.key==='ArrowLeft'||e.key==='ArrowRight'){e.preventDefault();cycleVariant(e.key==='ArrowRight'?1:-1);}
 });
@@ -516,3 +521,32 @@ $('export-sky').onclick=()=>{
   const blob=new Blob([JSON.stringify({version:1,articles:articles.map(({id,position,importance,isolated})=>({id,position,importance,isolated})),navigationEdges},null,2)],{type:'application/json'});
   const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='starfield-layout.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
 };
+
+// Keep the complete interaction experiment, changing only its visual world/entry.
+const compare=document.createElement('a');compare.id='scene-compare';
+compare.textContent=painted?'对照 · 原来的夜空 ↗':'试试 · 厚涂窗边 ↗';
+const comparisonURL=new URL(location.href);comparisonURL.searchParams.set('scene',painted?'classic':'painted');
+compare.href=comparisonURL.href;document.querySelector('.art-study-controls').prepend(compare);
+if(painted){
+  $('home').title='回到窗边';$('home').setAttribute('aria-label','回到窗边');
+  $('brand').setAttribute('aria-label','观星者的清醒梦，回到窗边');
+  document.querySelector('.art-study-bar summary').innerHTML='画风试作 <span>11</span>';
+  $('study-caption').textContent='动画厚涂 · 窗边入梦';
+  roomScene=createRoom({
+    onEnter(){
+      camera={x:0,y:0,z:-260,yaw:0,pitch:0};
+      moveTo({x:0,y:0,z:0,yaw:0,pitch:0},2200,()=>{phase='idle';updateUI();});
+    },
+    onReturn(){
+      travel=null;selected=null;phase='idle';history=[];
+      camera={x:0,y:0,z:0,yaw:0,pitch:0};updateUI();
+    },
+    onJournal(){
+      $('egg-title').textContent='灯还亮着。';
+      $('egg-copy').textContent='这一页还没有写完。\n\n窗外的星星里，放着一些日常、念头和未眠时写下的文字。';
+      document.querySelector('#egg-dialog .eyebrow').textContent='桌上的手记';
+      $('egg-dialog').showModal();
+    },
+    onMotion(value){reducedMotion=value;updateMotionButton();}
+  });
+}

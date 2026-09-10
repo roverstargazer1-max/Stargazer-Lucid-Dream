@@ -1,0 +1,61 @@
+/* V11: one requested painted variation; ?scene=classic retains the earlier study. */
+body[data-scene=painted]{background:#042b68;--type-main:#edf1ec;--type-soft:#c9d8e5;--type-muted:#a4bdd3;--type-line:#bbd0e433;--paper:#e9e7de;--paper-ink:#34485e;--paper-muted:#687b8b}
+#room{position:fixed;inset:0;z-index:40;overflow:hidden;background:transparent}
+.room-stage{position:absolute;width:max(100vw,177.683vh);height:max(56.28vw,100vh);left:50%;top:50%;margin-left:min(-50vw,-88.8415vh);margin-top:min(-28.14vw,-50vh);will-change:transform,opacity}
+.room-image{width:100%;height:100%;display:block;object-fit:cover}
+#window-entry{position:absolute;left:31.3%;top:1%;width:68%;height:79%;padding:0;clip-path:polygon(0 0,100% 0,100% 100%,59% 100%,52% 78%,52% 55%,41% 53%,31% 76%,24% 100%,11% 100%,0 49%);cursor:zoom-in;border-radius:0}
+.window-cue{position:absolute;left:30%;top:31%;display:flex;flex-direction:column;align-items:center;gap:12px;color:#e1e5e9;font-family:"KaiTi","STKaiti",serif;white-space:nowrap;letter-spacing:3px;transform:translate(-50%,-50%);opacity:.64;transition:opacity .35s,transform .5s}
+.window-cue>span:first-child{font-size:31px;color:#f0d59a;line-height:1}
+.window-cue>span:last-child{font-size:13px;letter-spacing:2px}.window-cue i{font-style:normal;font-size:14px;margin-left:7px}
+#window-entry:hover .window-cue,#window-entry:focus-visible .window-cue{opacity:1;transform:translate(-50%,-50%) scale(1.05)}
+#window-entry:focus-visible{outline:none;background:linear-gradient(115deg,#82b4ff05,#9bcaff0a)}
+#room-journal{position:absolute;left:6%;top:88%;width:13%;height:7%;border-radius:50%;transform:rotate(-4deg)}
+#room-journal:hover,#room-journal:focus-visible{box-shadow:0 0 25px #ffd68e44;outline:1px solid #f7d88c66}
+.entry-motion{position:absolute;bottom:24px;right:30px;z-index:3;color:#c8d3df99;font-size:10px;letter-spacing:1px;padding:8px;background:#10274644;border-radius:2px}
+body[data-room=inside] #world,body[data-room=inside] .art-study-bar,body[data-room=inside] .prototype-tools{visibility:hidden}
+body[data-room=entering] #world>:not(#sky),body[data-room=entering] .art-study-bar,body[data-room=entering] .prototype-tools{visibility:hidden}
+body[data-room=entering] .window-cue,body[data-room=entering] .entry-motion{opacity:0}
+body[data-scene=painted] .grain{opacity:.013}
+body[data-scene=painted] .masthead{top:26px;left:3.8%;opacity:.87}
+body[data-scene=painted] .wordmark{width:228px}
+body[data-scene=painted] .navigation{background:#092c6133;border-bottom:1px solid #aec9e322;padding:9px 13px;top:30px;gap:19px}
+body[data-scene=painted] .mode-switch button{color:#91adc7}
+body[data-scene=painted] .mode-switch button[aria-pressed=true]{color:#edf1ec}
+body[data-scene=painted] .icon-control{color:#d5e0e7}
+body[data-scene=painted] .star-label{font-family:"KaiTi","STKaiti","Songti SC",serif;font-size:15px;letter-spacing:1.5px;text-shadow:0 2px 12px #00183c}
+body[data-scene=painted] .star-target:before,body[data-scene=painted] .star-target:after{display:none}
+body[data-scene=painted] .world-footer,body[data-scene=painted] .path-legend{color:#c1d5e5a6}
+body[data-scene=painted] .signal-egg{color:#e4cc98}
+body[data-scene=painted] .edge-guide{color:#d0deed}
+body[data-scene=painted][data-variant] .preview{background:linear-gradient(115deg,#09285dec,#14366be8);border:1px solid #a9c8df3b;border-top-color:#e3d3aa77;box-shadow:0 16px 50px #00132d40;backdrop-filter:blur(8px);border-radius:3px 7px 3px 6px;bottom:79px}
+body[data-scene=painted] .preview h2{font-family:"KaiTi","STKaiti","Songti SC",serif;font-weight:400}
+body[data-scene=painted] .preview-body p{color:#c5d6e7}
+body[data-scene=painted] #reader{background:#e9e7de;box-shadow:0 24px 100px #00112877;border:1px solid #d7d6cc;border-radius:5px 9px 4px 7px;color:#30435a}
+body[data-scene=painted] #reader::backdrop{background:#03265780;backdrop-filter:blur(5px)}
+body[data-scene=painted] .reading-frame{background:linear-gradient(110deg,#f0ece2,#e6e7e0)}
+body[data-scene=painted] #reader h1{color:#293e5b;font-family:"KaiTi","STKaiti","Songti SC",serif}
+body[data-scene=painted] #reader .article-intro{color:#6b7887}
+body[data-scene=painted] #reader-content{color:#34485e}
+body[data-scene=painted] #reader .reading-header,body[data-scene=painted] #reader .reading-footer{color:#62748b;border-color:#536c8530}
+body[data-scene=painted] #reader button{color:#365170}
+body[data-scene=painted] #egg-dialog{background:#e9e7de;color:#30435a;border-radius:5px 9px 4px 7px;border:1px solid #c7cfce}
+body[data-scene=painted] #egg-dialog h2,body[data-scene=painted] #egg-dialog p{color:#34485e}
+body[data-scene=painted] #egg-dialog .eyebrow,body[data-scene=painted] #egg-dialog .egg-signature{color:#718398}
+body[data-scene=painted] .art-study-bar{background:#08244ccb;border-color:#c3d7e332;color:#bdd0e2}
+body[data-scene=painted] .art-study-controls,body[data-scene=painted] .art-study-bar>summary{background:#08244ce8}
+body[data-scene=painted] .roof-switcher,body[data-scene=painted] #art-choice,body[data-scene=painted] #type-choice{display:none}
+body[data-scene=painted] #scene-compare{font-size:10px;color:#b7cbe0;text-decoration:none;padding:7px}
+@media(max-width:760px){
+  .room-stage{width:max(100vw,56.28vh);height:max(177.683vw,100vh);margin-left:min(-50vw,-28.14vh);margin-top:min(-88.8415vw,-50vh)}
+  #window-entry{left:20%;top:0;width:80%;height:59%;clip-path:none}
+  .window-cue{left:43%;top:44%;gap:10px}
+  #room-journal{left:3%;top:87%;width:24%;height:5%}
+  .window-cue>span:last-child{font-size:12px}
+  .entry-motion{right:16px;bottom:20px}
+  body[data-scene=painted] .masthead{left:20px;top:20px}
+  body[data-scene=painted] .wordmark{width:166px}
+  body[data-scene=painted] .navigation{right:14px;top:88px;gap:13px;padding:5px 8px}
+  body[data-scene=painted] .star-label{font-size:12px}
+  body[data-scene=painted][data-variant] .preview{bottom:90px;width:calc(100% - 36px)}
+  body[data-scene=painted] .world-footer{bottom:53px}
+}

@@ -1,4 +1,5 @@
 // Stable identity and restrained, non-looping light variation for the prototype.
+import { painted, paintPaintedStar } from './painted.js';
 export const studies={
   ink:{name:'01 · 墨蓝冷夜',base:'#05070b',lift:'#111820',edge:'#030406',cloud:'#75818d',stars:'#ccd1d5',haze:'#655c49',roof:'saturate(0.42) brightness(0.78)',warm:[229,217,190],cool:[204,217,229]},
   umber:{name:'02 · 烟褐旧梦',base:'#090909',lift:'#201d1b',edge:'#040505',cloud:'#8d8379',stars:'#d5d0c5',haze:'#8b7152',roof:'sepia(0.28) saturate(0.36) brightness(0.76)',warm:[235,215,180],cool:[212,216,217]}
@@ -28,6 +29,7 @@ export function scintillation(id,seconds){
   return {brightness:1+.028*slow+.008*fine,halo:1+.04*lightNoise(seed+127,seconds/2.3),temperature:3*pulse*pulse*(3-2*pulse)*(unit(seed+cycle*433+91)>.5?1:-1)};
 }
 export function paintArticleLight(ctx,x,y,id,{depth=1800,active=false,hover=false,kind,zoom=1,seconds=null,importance='ordinary'}={}){
+  if(painted){paintPaintedStar(ctx,x,y,id,{depth,active,hover,zoom,seconds,importance});return;}
   const star=starIdentity(id,kind),palette=study();
   const light=seconds===null?{brightness:1,halo:1,temperature:0}:scintillation(id,seconds);
   const base=star.kind==='warm'?palette.warm:palette.cool;

@@ -4,8 +4,17 @@
   <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#080f1c"><title>观星者的清醒梦 · 星空原型</title>
   <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./painted.css">
 </head>
 <body data-variant="A">
+  <section id="room" aria-label="深夜窗边，点击窗户进入星空" hidden>
+    <div class="room-stage" id="room-stage">
+      <picture><source media="(max-width:760px)" srcset="./assets/room-portrait-v11.png"><img class="room-image" src="./assets/room-reference-v11.png" alt="暖黄色台灯下，戴耳机的人写着手记，窗外是蓝色云朵与弯月。" fetchpriority="high"></picture>
+      <button id="window-entry" aria-label="穿过窗户，进入星空"><span class="window-cue"><span aria-hidden="true">✧</span><span>去窗外看看 <i>↗</i></span></span></button>
+      <button id="room-journal" aria-label="翻开桌上的手记" title="桌上的手记"></button>
+    </div>
+    <button id="entry-motion" class="entry-motion" aria-pressed="false">轻过渡</button>
+  </section>
   <main id="world" aria-label="可探索的文章星空">
     <canvas id="sky" aria-hidden="true"></canvas>
     <div class="grain" aria-hidden="true"></div>
