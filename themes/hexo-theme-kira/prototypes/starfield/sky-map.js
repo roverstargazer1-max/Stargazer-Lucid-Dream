@@ -1,7 +1,7 @@
 import {angles,clamp,direction,domeIntersection,viewRay} from './dome.js';
 export function createSkyMap(world,onLook){
   const panel=document.createElement('aside');panel.id='sky-map';panel.setAttribute('aria-label','星空方位图');
-  panel.innerHTML='<div class="sky-map-heading"><span id="sky-map-angle"></span></div><canvas width="360" height="360" aria-label="天顶在中央，地平线在圆周；淡光区域表示当前视野"></canvas><p>中央是天顶 · 点击星图转向</p>';
+  panel.innerHTML='<canvas width="360" height="360" aria-label="星空方位图：天顶在中央，地平线在圆周；淡光区域表示当前视野，点击可转向"></canvas>';
   const toggle=document.createElement('button');toggle.id='sky-map-toggle';toggle.textContent='◎ 星图';toggle.setAttribute('aria-label','显示星空方位图');
   world.append(panel,toggle);
   const canvas=panel.querySelector('canvas'),ctx=canvas.getContext('2d');
@@ -52,7 +52,5 @@ export function createSkyMap(world,onLook){
     glow.addColorStop(0,'#f3d59165');glow.addColorStop(1,'#f3d59100');ctx.fillStyle=glow;
     ctx.beginPath();ctx.arc(center.x,center.y,9,0,7);ctx.fill();
     ctx.strokeStyle='#f3d591b3';ctx.lineWidth=.7;ctx.beginPath();ctx.arc(center.x,center.y,3.2,0,7);ctx.stroke();
-    const degrees=(camera.yaw*180/Math.PI%360+360)%360,labels=['北','东北','东','东南','南','西南','西','西北'];
-    panel.querySelector('#sky-map-angle').textContent=`${labels[Math.round(degrees/45)%8]} · 仰角 ${Math.round(camera.pitch*180/Math.PI)}°`;
   }};
 }
