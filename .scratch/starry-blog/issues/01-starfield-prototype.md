@@ -52,3 +52,5 @@ Category: enhancement
 2026-09-10 · Codex V11：完成用户要求的单版动画厚涂试作：参考图窗边入口、穿窗推进、同风格蓝色云景与星芒、蓝灰纸面阅读；补充手机竖向构图。主来源分支仍为 codex/prototype-starfield，详见 themes/hexo-theme-kira/prototypes/starfield/ART-STUDY-06.md。保留 open 等待美术体验与真实触屏反馈；scene=classic 可对照旧版，不改变 R1–R6 状态。
 
 2026-09-10 · Codex V12：完成半球穹顶、球面文章布局、拖动短暂显露的方位星图与云层遮光。来源分支 codex/prototype-starfield；说明与验证见 themes/hexo-theme-kira/prototypes/starfield/DOME-STUDY-12.md。80 组投影／旋转检查、实际 WebGL 云遮光与接缝检查、手机天顶和阅读保焦检查通过。保留 open 等待作者审美与真实触屏反馈，R1–R6 未据此批准。
+
+2026-09-10 · Codex V12 控件微调：完成星图文字提亮加粗、右上圆角毛玻璃导航，以及快速移动隐线／停稳渐显。来源分支 codex/prototype-starfield；快慢拖动与恢复数值、桌面手机截图记入 DOME-STUDY-12.md。保留 open 等待体验反馈。

@@ -18,7 +18,7 @@ body[data-room=entering] .window-cue,body[data-room=entering] .entry-motion{opac
 body[data-scene=painted] .grain{opacity:.013}
 body[data-scene=painted] .masthead{top:26px;left:3.8%;opacity:.87}
 body[data-scene=painted] .wordmark{width:228px}
-body[data-scene=painted] .navigation{background:#092c6133;border-bottom:1px solid #aec9e322;padding:9px 13px;top:30px;gap:19px}
+body[data-scene=painted] .navigation{background:linear-gradient(125deg,#aecce117,#15396626);border:1px solid #c8deef24;border-radius:16px;backdrop-filter:blur(16px) saturate(125%);-webkit-backdrop-filter:blur(16px) saturate(125%);box-shadow:inset 0 1px 0 #e0eff912,0 5px 22px #00163112;padding:9px 13px;top:30px;gap:19px}
 body[data-scene=painted] .mode-switch button{color:#91adc7}
 body[data-scene=painted] .mode-switch button[aria-pressed=true]{color:#edf1ec}
 body[data-scene=painted] .icon-control{color:#d5e0e7}
@@ -47,17 +47,17 @@ body[data-scene=painted] .roof-switcher,body[data-scene=painted] #art-choice,bod
 body[data-scene=painted] #scene-compare{font-size:10px;color:#b7cbe0;text-decoration:none;padding:7px}
 #sky-map{position:absolute;right:28px;bottom:83px;width:200px;padding:13px 10px 9px;background:none;border:0;box-shadow:none;opacity:0;filter:blur(3px);pointer-events:none;transition:opacity 1.8s ease,filter 1.8s ease;z-index:8}
 #sky-map.is-visible{opacity:.88;filter:blur(0);pointer-events:auto;transition-duration:1.3s}
-.sky-map-heading{text-align:center;font-family:"KaiTi","STKaiti","Songti SC",serif;color:#b9cedda6;text-shadow:0 0 9px #8db8d633}
-#sky-map-angle{font-size:10px;letter-spacing:1px}
+.sky-map-heading{text-align:center;font-family:"KaiTi","STKaiti","Songti SC",serif;font-weight:600;color:#dce7eee8;text-shadow:0 1px 4px #05204480}
+#sky-map-angle{font-size:11px;letter-spacing:1px}
 #sky-map canvas{width:180px;height:180px;display:block;cursor:crosshair;touch-action:none}
-#sky-map p{font-size:9px;text-align:center;color:#b1c5d466;letter-spacing:.5px;margin:2px 0 0;transition:color .8s}
-#sky-map:hover p,#sky-map:focus-within p{color:#c7d8e1b3}
-#sky-map-toggle{position:absolute;right:29px;bottom:49px;font-size:11px;color:#bbcdda;letter-spacing:1px;padding:6px 9px;z-index:8}
+#sky-map p{font-size:10px;font-weight:500;text-align:center;color:#ccdde7c9;letter-spacing:.5px;margin:2px 0 0;text-shadow:0 1px 4px #05204480;transition:color .8s}
+#sky-map:hover p,#sky-map:focus-within p{color:#e0ebf0ed}
+#sky-map-toggle{position:absolute;right:29px;bottom:49px;font-size:11px;font-weight:600;color:#d5e2eb;letter-spacing:1px;padding:6px 9px;z-index:8}
 @media(max-width:760px){
   #sky-map{top:148px;bottom:auto;left:15px;right:auto;width:158px;padding:10px 7px 7px}
   #sky-map canvas{width:142px;height:142px}
   .sky-map-heading{font-size:9px;letter-spacing:0}
-  #sky-map-angle{font-size:8px}#sky-map p{font-size:8px}
+  #sky-map-angle{font-size:10px}#sky-map p{font-size:9px;letter-spacing:0}
   #sky-map-toggle{right:20px;top:128px;bottom:auto;font-size:10px}
 }
 @media(prefers-reduced-motion:reduce){#sky-map,#sky-map.is-visible{filter:none;transition:opacity .2s}}

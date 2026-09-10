@@ -28,7 +28,7 @@ export function createSkyMap(world,onLook){
     ctx.strokeStyle='#b4cbdc30';ctx.lineWidth=.6;ctx.setLineDash([1,5]);ctx.lineCap='round';
     for(const r of [70,46.67,23.33]){ctx.beginPath();ctx.arc(90,90,r,0,Math.PI*2);ctx.stroke();}
     ctx.setLineDash([]);
-    ctx.font='9px KaiTi, STKaiti, serif';ctx.fillStyle='#bed0dba0';ctx.textAlign='center';
+    ctx.font='600 11px KaiTi, STKaiti, serif';ctx.fillStyle='#dce7eee8';ctx.textAlign='center';
     for(const [s,x,y] of [['北',90,12],['南',90,176],['东',171,93],['西',9,93]])ctx.fillText(s,x,y);
     // The view footprint uses the exact inverse projection and sphere intersection.
     const boundary=[];

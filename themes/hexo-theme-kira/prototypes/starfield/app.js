@@ -44,6 +44,26 @@ const targetElements = new Map();
 if(painted)arrangeDome(articles);
 const navigationEdges=buildPaths(articles);
 let navigationOn=query.get('paths')!=='0',drawnPaths=0,latestAdded=null;
+const lineMotion={opacity:1,suppressed:false,lastMotion:0,previous:null};
+function updateLineMotion(now,dt){
+  const previous=lineMotion.previous;
+  lineMotion.previous={...camera,time:now};
+  if(!previous)return;
+  const elapsed=Math.max(.001,(now-previous.time)/1000);
+  // Measure camera movement, so touch, mouse, keys and camera travel agree.
+  const rotation=Math.hypot(wrapAngle(camera.yaw-previous.yaw),camera.pitch-previous.pitch)*(camera.zoom||1);
+  const translation=Math.hypot(camera.x-previous.x,camera.y-previous.y,camera.z-previous.z)/6000;
+  const zoom=Math.abs(Math.log((camera.zoom||1)/(previous.zoom||1)));
+  const speed=(rotation+translation+zoom)/elapsed;
+  if(speed>.55)lineMotion.suppressed=true;
+  if(speed>.08)lineMotion.lastMotion=now;
+  // Wait for a quiet interval before restoring lines; avoid flicker between events.
+  if(lineMotion.suppressed&&now-lineMotion.lastMotion>220)lineMotion.suppressed=false;
+  const target=lineMotion.suppressed?0:1;
+  const duration=target===0?.055:ambientPreference.matches?.12:.48;
+  lineMotion.opacity+=(target-lineMotion.opacity)*(1-Math.exp(-dt/duration));
+  if(Math.abs(lineMotion.opacity-target)<.005)lineMotion.opacity=target;
+}
 const findStarButton=document.createElement('button');
 findStarButton.id='find-star';findStarButton.textContent='回望最近的文章 ↗';findStarButton.hidden=true;
 findStarButton.onclick=()=>{
@@ -295,7 +315,7 @@ function drawBackground() {
 }
 function drawPaths(allPoints){
   drawnPaths=0;const hints=[];$('edge-guide').hidden=true;
-  if(!navigationOn)return;
+  if(!navigationOn||lineMotion.opacity<.01)return;
   const box={left:32,right:width-32,top:150,bottom:height-130};
   const lookup=new Map(allPoints.map(p=>[p.article.id,p]));
   const edges=mode==='time'?articles.slice(1).flatMap((a,i)=>a.isolated||articles[i].isolated?[]:[[articles[i].id,a.id]]):navigationEdges;
@@ -329,8 +349,9 @@ function drawPaths(allPoints){
     if(line)hints.push({p:line.b,target:p.article,score:Math.hypot(dx,dy),isolated:true});
   }
   const hint=hints.sort((a,b)=>a.score-b.score)[0];
-  if(hint&&phase!=='moving'){
+  if(hint&&phase!=='moving'&&lineMotion.opacity>.5){
     const button=$('edge-guide');button.hidden=false;button.style.left=hint.p.x+'px';button.style.top=hint.p.y+'px';
+    button.style.opacity=String(lineMotion.opacity);
     button.textContent=hint.isolated?'·':'›';button.style.transform=`translate(-50%,-50%) rotate(${hint.isolated?0:Math.atan2(hint.p.y-height/2,hint.p.x-width/2)}rad)`;button.title=hint.isolated?'附近有一颗独立的文章星':'沿路径还有文章星';
     button.setAttribute('aria-label',hint.isolated?'靠近附近的独立文章星':'沿路径寻找下一颗文章星');button.onclick=()=>selectStar(hint.target.id);
   }
@@ -351,9 +372,11 @@ function drawStars() {
     .filter(p=>Number.isFinite(p.x) && (painted || p.depth<6500 || p.article.id===selected || linked.has(p.article.id)))
     .sort((a,b)=>a.depth-b.depth);
   // Density comes from spatial layout, not an arbitrary cap hiding nearby stars.
+  ctx.save();ctx.globalAlpha*=lineMotion.opacity;
   drawPaths(candidates);
   const points=candidates.filter(p=>p.x>20&&p.x<width-25&&p.y>95&&p.y<height-100);
   drawConnections(points);
+  ctx.restore();
   visible=[];
   points.sort((a,b)=>b.depth-a.depth).forEach(p=>{
     const {article,x,y,depth}=p, active=selected===article.id;
@@ -408,6 +431,7 @@ function animate(now) {
     for(const key of Object.keys(camera))camera[key]=flight.from[key]+(flight.to[key]-flight.from[key])*ease;
     if(t===1){travel=null;flight.onDone?.();}
   }
+  updateLineMotion(now,dt);
   drawBackground();
   const roofVisibility=painted?0:paintRoof(ctx,width,height,camera);
   $('journal-egg').hidden=roofVisibility<.35;
