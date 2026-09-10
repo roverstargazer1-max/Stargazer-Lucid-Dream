@@ -1,3 +1,5 @@
+import { DOME_RADIUS, direction, projectDome } from './dome.js';
+import { paintDomeEnvironment } from './dome-renderer.js';
 // V11 visual experiment: the supplied room leads into a painted, navigable sky.
 export const painted = new URLSearchParams(location.search).get('scene') !== 'classic';
 const plate = new Image();
@@ -11,58 +13,30 @@ const stars=Array.from({length:600},()=>{
 
 export function paintPaintedSky(ctx,w,h,camera,settings,ambient){
   ctx.fillStyle='#042b68';ctx.fillRect(0,0,w,h);
-  const altitude=Math.max(-1,Math.min(1,camera.pitch));
-  if(plate.complete&&plate.naturalWidth){
-    const scale=Math.max(w/plate.naturalWidth,h/plate.naturalHeight)*(1+Math.min(.22,Math.abs(camera.z)/55000));
-    const pw=plate.naturalWidth*scale,ph=plate.naturalHeight*scale;
-    const offset=camera.yaw*settings.focal*.65+camera.x*.012;
-    const start=(w-pw)/2-offset;
-    const y=h-ph+altitude*h*.34+ambient.y*1.2;
-    // Mirror alternating panoramic tiles to keep continuous edges while turning.
-    const first=Math.floor(-start/pw)-1;
-    for(let i=first;i<first+4;i++){
-      ctx.save();ctx.translate(start+i*pw+(i%2?pw:0)+ambient.x,y);
-      if(i%2)ctx.scale(-1,1);
-      ctx.drawImage(plate,0,0,pw,ph);ctx.restore();
-    }
-    // At the poles, dissolve the finite painted plate into the same pigment.
-    if(y>0){
-      const blend=ctx.createLinearGradient(0,y-1,0,y+50);
-      blend.addColorStop(0,'#042b68');blend.addColorStop(1,'#042b6800');
-      ctx.fillStyle=blend;ctx.fillRect(0,y-1,w,51);
-    }
-    if(y+ph<h){
-      const blend=ctx.createLinearGradient(0,y+ph-60,0,y+ph+1);
-      blend.addColorStop(0,'#042b6800');blend.addColorStop(1,'#042b68');
-      ctx.fillStyle=blend;ctx.fillRect(0,y+ph-60,w,61);
-    }
-  }
-  const ca=Math.cos(camera.yaw),sa=Math.sin(camera.yaw),cp=Math.cos(camera.pitch),sp=Math.sin(camera.pitch);
-  const project=p=>{
-    const x=p.x*ca-p.z*sa,z0=p.x*sa+p.z*ca,y=p.y*cp-z0*sp,z=p.y*sp+z0*cp;
-    return z>.08?{x:settings.cx+x*settings.focal/z,y:settings.cy-y*settings.focal/z}:null;
-  };
+  const ready=paintDomeEnvironment(ctx,w,h,camera,settings,plate);
+  document.body.dataset.domeRenderer=ready?'webgl':'loading';
+  // Distant decoration shares the article hemisphere and camera, without a screen-space offset.
   for(const star of stars){
-    const p=project(star);if(!p||p.x<0||p.x>w||p.y<0||p.y>h)continue;
-    ctx.globalAlpha=star.alpha;ctx.fillStyle='#c5dbef';
-    ctx.fillRect(p.x+ambient.x,p.y+ambient.y,star.r,star.r);
+    if(star.y<0)continue;
+    const p=projectDome({x:star.x*DOME_RADIUS,y:star.y*DOME_RADIUS,z:star.z*DOME_RADIUS},camera,settings);
+    if(!p||p.x<0||p.x>w||p.y<0||p.y>h)continue;
+    ctx.globalAlpha=star.alpha*.65;ctx.fillStyle='#c5dbef';
+    ctx.fillRect(p.x,p.y,star.r,star.r);
   }
   ctx.globalAlpha=1;
-  const moon=project(w<=760?{x:.22,y:.55,z:1}:{x:.49,y:.16,z:1});
+  const moon=projectDome(direction(.45,.50,DOME_RADIUS),camera,settings);
   if(moon&&moon.x>-100&&moon.x<w+100&&moon.y>-100&&moon.y<h+100){
-    const r=Math.min(w,h)*.044;
+    const r=Math.min(w,h)*.037*(camera.zoom||1);
     ctx.save();ctx.translate(moon.x,moon.y);ctx.rotate(-.24);
-    ctx.shadowColor='#e8bc6550';ctx.shadowBlur=18;ctx.fillStyle='#e7b859';
+    ctx.shadowColor='#e8bc652a';ctx.shadowBlur=9;ctx.fillStyle='#e7b859';
     const crescent=new Path2D('M19 -29 C-5 -43 -35 -24 -33 1 C-33 26 -9 41 14 28 L25 17 C4 31 -19 17 -20 -1 C-21 -21 -1 -33 19 -29Z');
     ctx.scale(r/35,r/35);ctx.fill(crescent);ctx.shadowBlur=0;
-    ctx.strokeStyle='#f4d88c';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(12,-29);ctx.lineTo(-2,-30);ctx.lineTo(-19,-19);ctx.lineTo(-27,-2);ctx.lineTo(-22,17);ctx.lineTo(-9,28);ctx.stroke();
-    ctx.fillStyle='#f7d17e';ctx.beginPath();ctx.moveTo(-31,0);ctx.lineTo(-26,-9);ctx.lineTo(-23,9);ctx.lineTo(-17,21);ctx.lineTo(-25,17);ctx.closePath();ctx.fill();ctx.restore();
+    ctx.strokeStyle='#f4d88c';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(12,-29);ctx.lineTo(-2,-30);ctx.lineTo(-19,-19);ctx.lineTo(-27,-2);ctx.lineTo(-22,17);ctx.lineTo(-9,28);ctx.stroke();ctx.restore();
   }
-  // A blue wash gently quiets the edges without turning the scene photographic.
-  const wash=ctx.createRadialGradient(w*.5,h*.42,h*.15,w*.5,h*.42,Math.max(w,h)*.75);
-  wash.addColorStop(0,'#061e4800');wash.addColorStop(1,'#03122b55');ctx.fillStyle=wash;ctx.fillRect(0,0,w,h);
 }
-
+export function paintCloudVeil(ctx,w,h,camera,settings){
+  paintDomeEnvironment(ctx,w,h,camera,settings,plate,true);
+}
 export function paintPaintedStar(ctx,x,y,id,{depth=1800,active=false,hover=false,zoom=1,importance='ordinary',seconds=null}={}){
   let identity=0;for(const ch of id)identity=(identity*31+ch.charCodeAt(0))>>>0;
   const rank={ordinary:1,important:1.3,treasured:1.65}[importance]||1;
@@ -70,9 +44,9 @@ export function paintPaintedStar(ctx,x,y,id,{depth=1800,active=false,hover=false
   const pulse=seconds===null?1:1+Math.sin(seconds*.9+identity)*.025;
   ctx.save();ctx.translate(x,y);ctx.scale(zoom*pulse,zoom*pulse);
   const warm=identity%3!==0;
-  const halo=ctx.createRadialGradient(0,0,1,0,0,size*5);
-  halo.addColorStop(0,warm?'#f1d58b38':'#cbe9ff32');halo.addColorStop(1,'#cce9ff00');
-  ctx.fillStyle=halo;ctx.fillRect(-size*5,-size*5,size*10,size*10);
+  const halo=ctx.createRadialGradient(0,0,0,0,0,size*3.1);
+  halo.addColorStop(0,warm?'#f1d58b25':'#cbe9ff20');halo.addColorStop(.3,warm?'#f1d58b0b':'#cbe9ff09');halo.addColorStop(1,'#cce9ff00');
+  ctx.fillStyle=halo;ctx.fillRect(-size*3.1,-size*3.1,size*6.2,size*6.2);
   ctx.rotate((identity%5-2)*.08);
   ctx.fillStyle=warm?'#f3d38d':'#d0e5f6';ctx.beginPath();
   for(let i=0;i<8;i++){

@@ -2,7 +2,9 @@ import {buildPaths,degrees,growArticle,clipSegment,crosses} from './navigation.j
 import { studies, setStudy, paintArticleLight, paintSpecimens } from './art-study.js';
 import { articles, relations } from './mock.js';
 import { paintSky, paintRoof, roofStyles, setRoofStyle } from './art.js';
-import { painted, paintPaintedSky, createRoom } from './painted.js';
+import { painted, paintPaintedSky, paintCloudVeil, createRoom } from './painted.js';
+import {arrangeDome,domePosition,domeDestination,growDomeArticle,HOME_ELEVATION,clamp,direction,wrapAngle} from './dome.js';
+import {createSkyMap} from './sky-map.js';
 
 // Three structural variants of a new full-screen surface, on one local-only route.
 // Prototype question: can quiet space, real camera travel and reading form one flow?
@@ -13,6 +15,7 @@ const names = { A: '屋顶入梦', B: '观测手记', C: '漂浮书页' };
 const query = new URLSearchParams(location.search);
 document.body.dataset.scene=painted?'painted':'classic';
 let roomScene=null;
+let skyMap=null;
 const ambientPreference=matchMedia('(prefers-reduced-motion: reduce)');
 let living=query.get('living')==='0'?false:query.get('living')==='1'?true:!ambientPreference.matches;
 const ambient={x:0,y:0,targetX:0,targetY:0,seconds:0};
@@ -26,7 +29,7 @@ world.addEventListener('pointermove',e=>{
 world.addEventListener('pointerleave',()=>{ambient.targetX=0;ambient.targetY=0;});
 let variant = names[query.get('variant')] ? query.get('variant') : 'C';
 let width = innerWidth, height = innerHeight, dpr = Math.min(devicePixelRatio, 2);
-let camera = { x: 0, y: 0, z: 0, yaw: 0, pitch: 0 };
+let camera = { x: 0, y: 0, z: 0, yaw: 0, pitch: painted?HOME_ELEVATION:0, zoom:1 };
 let mode = 'relation', selected = null, phase = 'idle', travel = null;
 let history = [], readIds = new Set(), readingSnapshot = null, hovered = null;
 let visible = [], time = 0, lastUI = 0;
@@ -38,6 +41,7 @@ function random() { seed = (seed * 1664525 + 1013904223) >>> 0; return seed / 42
 const dust = Array.from({ length: 950 }, () => ({ x: (random() - .5) * 23000, y: (random() - .5) * 15000, z: 250 + random() * 16000, size: .15 + random() * .75, alpha: .08 + random() * .42, warm: random() > .78 }));
 const meteors = [];
 const targetElements = new Map();
+if(painted)arrangeDome(articles);
 const navigationEdges=buildPaths(articles);
 let navigationOn=query.get('paths')!=='0',drawnPaths=0,latestAdded=null;
 const findStarButton=document.createElement('button');
@@ -63,13 +67,14 @@ function mountArticle(article, i) {
 }
 articles.forEach(mountArticle);
 function position(article) {
+  if(painted)return domePosition(article,articles.indexOf(article),mode);
   if (mode === 'relation') return { x: article.position[0], y: article.position[1], z: article.position[2] };
   const i = articles.indexOf(article);
   return { x: Math.sin(i * .95) * 480, y: Math.cos(i * .85) * 230 - 80, z: 1260 + i * 1050 };
 }
 function projectionSettings() {
   const mobile = width <= 760;
-  return { cx: width * (mobile ? .56 : variant === 'A' ? .69 : variant === 'B' ? .66 : .5), cy: height * (mobile ? .49 : .46), focal: Math.min(width, height * 1.2) * 1.05 };
+  return { cx: width * (mobile ? .56 : variant === 'A' ? .69 : variant === 'B' ? .66 : .5), cy: height * (mobile ? .49 : .46), focal: Math.min(width, height * 1.2) * 1.05 * (painted?camera.zoom:1) };
 }
 function project(point) {
   const { cx, cy, focal } = projectionSettings();
@@ -83,12 +88,13 @@ function project(point) {
 function resize() {
   width = innerWidth; height = innerHeight; dpr = Math.min(devicePixelRatio, 2);
   canvas.width = width * dpr; canvas.height = height * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-  $('gesture-help').textContent = width <= 760 ? '单指巡视 · 双指前行 · 点星靠近' : '拖动巡视 · 滚轮前行 · 点星靠近';
+  $('gesture-help').textContent = painted?(width<=760?'单指转动穹顶 · 双指靠近':'拖动转动穹顶 · 滚轮靠近 · 方向键转向'):width <= 760 ? '单指巡视 · 双指前行 · 点星靠近' : '拖动巡视 · 滚轮前行 · 点星靠近';
   if (selected && phase === 'settled') camera = destination(articles.find(a => a.id === selected));
 }
 function snapshot() { return { camera: { ...camera }, selected, phase: phase === 'moving' ? 'selected' : phase }; }
 function pushStop() { if (phase === 'moving') return; history.push(snapshot()); if (history.length > 30) history.shift(); }
 function destination(article) {
+  if(painted)return domeDestination(position(article),camera);
   const p = position(article), { cx, cy, focal } = projectionSettings();
   const dist = width <= 760 ? 620 : 780;
   const targetX = width * (width <= 760 ? .43 : variant === 'B' ? .64 : variant === 'C' ? .5 : .49);
@@ -99,7 +105,7 @@ function destination(article) {
   return {x:p.x-rx*ca-rz*sa,y:p.y-ry*cp-dist*sp,z:p.z-rz*ca+rx*sa,yaw:camera.yaw,pitch:camera.pitch};
 }
 function moveTo(to, duration = 1050, onDone) {
-  travel = { from: { ...camera }, to, start: performance.now(), duration: reducedMotion ? 220 : duration, onDone };
+  travel = { from: { ...camera }, to:{...camera,...to}, start: performance.now(), duration: reducedMotion ? 220 : duration, onDone };
   phase = 'moving'; updateUI();
 }
 function selectStar(id, save = true) {
@@ -135,7 +141,7 @@ function switchMode(next) {
   if (mode === next) return;
   interrupt(); mode = next; history = [];
   if (selected) selectStar(selected, false);
-  else moveTo({ x: 0, y: 0, z: 0, yaw: 0, pitch: 0 }, 850, () => { phase = 'idle'; updateUI(); });
+  else moveTo({ x: 0, y: 0, z: 0, yaw: painted?camera.yaw+wrapAngle(-camera.yaw):0, pitch: painted?HOME_ELEVATION:0, zoom:1 }, 850, () => { phase = 'idle'; updateUI(); });
   updateUI();
 }
 function related(id) { return relations.filter(r => r[0] === id || r[1] === id).map(r => ({ article: articles.find(a => a.id === (r[0] === id ? r[1] : r[0])), reason: r[2] })); }
@@ -229,7 +235,9 @@ world.addEventListener('pointermove', e => {
     const pts = [...pointers.values()], distance = Math.hypot(pts[0].x-pts[1].x,pts[0].y-pts[1].y);
     moveForward((distance-previousPinch)*4); previousPinch=distance;
   } else if (!multiTouch) {
-    camera.yaw -= (e.clientX-old.x)*.003; camera.pitch = Math.max(-1.05,Math.min(1.05,camera.pitch+(e.clientY-old.y)*.0025));
+    const sensitivity=painted?1/Math.sqrt(camera.zoom):1;
+    camera.yaw -= (e.clientX-old.x)*.003*sensitivity;
+    camera.pitch = clamp(camera.pitch+(e.clientY-old.y)*.0025*sensitivity,painted?0:-1.05,painted?Math.PI/2:1.05);
     if (selected) phase = 'selected';
   }
 });
@@ -249,6 +257,12 @@ world.addEventListener('wheel', e => {
   e.preventDefault(); interrupt(); moveForward(-Math.max(-140,Math.min(140,e.deltaY)) * 1.35); updateUI();
 }, { passive: false });
 function moveForward(amount) {
+  if(painted){
+    camera.zoom=clamp(camera.zoom*Math.exp(amount*.0011),.72,2.8);
+    const distance=clamp((camera.zoom-1)*1100,0,1200);
+    Object.assign(camera,direction(camera.yaw,camera.pitch,distance));
+    if(selected)phase='selected';return;
+  }
   const oldZ = camera.z;
   const farBoundary=Math.max(...articles.map(a=>position(a).z))+2000;
   camera.z = Math.max(-100,Math.min(farBoundary,camera.z + Math.cos(camera.yaw)*Math.cos(camera.pitch)*amount));
@@ -257,6 +271,7 @@ function moveForward(amount) {
 }
 function drawBackground() {
   (painted?paintPaintedSky:paintSky)(ctx,width,height,camera,projectionSettings(),{x:ambient.x,y:ambient.y,seconds:living?ambient.seconds:null});
+  if(painted)return;
   // Nearby dust uses finite world positions, unlike the far celestial sphere.
   for (const star of dust) {
     const p=project(star);
@@ -332,8 +347,8 @@ function drawConnections(points) {
 }
 function drawStars() {
   const linked = new Set(selected && mode === 'relation' ? related(selected).map(r=>r.article.id) : []);
-  const candidates=articles.map(article=>{const p=project(position(article));return p?{article,...p,x:p.x+ambient.x*3,y:p.y+ambient.y*3}:{article};})
-    .filter(p=>Number.isFinite(p.x) && (p.depth<6500 || p.article.id===selected || linked.has(p.article.id)))
+  const candidates=articles.map(article=>{const p=project(position(article));return p?{article,...p,x:p.x+(painted?0:ambient.x*3),y:p.y+(painted?0:ambient.y*3)}:{article};})
+    .filter(p=>Number.isFinite(p.x) && (painted || p.depth<6500 || p.article.id===selected || linked.has(p.article.id)))
     .sort((a,b)=>a.depth-b.depth);
   // Density comes from spatial layout, not an arbitrary cap hiding nearby stars.
   drawPaths(candidates);
@@ -351,14 +366,14 @@ function drawStars() {
     button.classList.toggle('is-selected',active);button.classList.toggle('near',depth<4200 || hovered===article.id);
     button.classList.toggle('label-left',x>width-190);
     button.setAttribute('aria-label',`${active&&phase==='settled'?'阅读文章':'选择文章'}：${article.title}`);
-    paintArticleLight(ctx,x,y,article.id,{depth,active,hover:hovered===article.id,seconds:living?ambient.seconds:null,importance:article.importance});
+    paintArticleLight(ctx,x,y,article.id,{depth:painted?depth/3:depth,active,hover:hovered===article.id,seconds:living?ambient.seconds:null,importance:article.importance});
   });
   // Hide points that are behind the camera too.
   for(const article of articles)if(!points.some(p=>p.article.id===article.id))targetElements.get(article.id).hidden=true;
   placeLabels(points);
 }
 function placeLabels(points){
-  const occupied=[],fontSize=width<=760?10:12,labelHeight=width<=760?17:33;
+  const occupied=[],fontSize=painted?(width<=760?13:16.5):width<=760?10:12,labelHeight=width<=760?17:33;
   for(const p of [...points].sort((a,b)=>(b.article.id===selected)-(a.article.id===selected)||a.depth-b.depth)){
     const label=targetElements.get(p.article.id).querySelector('.star-label');
     const w=Math.min(width<=760?150:250,p.article.title.length*fontSize+6);
@@ -400,6 +415,10 @@ function animate(now) {
   $('journal-egg').style.left=roofSelect.value==='photo'?'':`${foregroundWidth*.22+Math.min(0,(width-foregroundWidth)*.12)}px`;
   $('journal-egg').style.bottom=roofSelect.value==='photo'?'':`${foregroundWidth*.05}px`;
   drawStars();
+  if(painted){
+    paintCloudVeil(ctx,width,height,camera,projectionSettings());
+    skyMap?.update(camera,projectionSettings(),articles.map(article=>({id:article.id,point:position(article)})),selected,!roomScene?.active&&!ambientBlocked(),width,height,now);
+  }
   for(let i=meteors.length-1;i>=0;i--){
     const m=meteors[i],age=(now-m.start)/1800;if(age>1){meteors.splice(i,1);continue;}
     ctx.strokeStyle=`rgba(187,213,239,${Math.sin(age*Math.PI)*.65})`;ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(m.x+age*width*.22,m.y+age*height*.16);ctx.lineTo(m.x+age*width*.22-55,m.y+age*height*.16-30);ctx.stroke();
@@ -439,6 +458,13 @@ document.querySelector('.mock-badge').replaceWith(motionButton);updateMotionButt
 document.addEventListener('keydown',e=>{
   if(roomScene?.active)return;
   if(reader.open||$('specimen-dialog').open||$('egg-dialog').open||e.target.closest('input,textarea,select,[contenteditable]'))return;
+  if(painted&&['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(e.key)){
+    e.preventDefault();interrupt();
+    if(e.key==='ArrowLeft')camera.yaw-=.12;if(e.key==='ArrowRight')camera.yaw+=.12;
+    if(e.key==='ArrowUp')camera.pitch=clamp(camera.pitch+.1,0,Math.PI/2);
+    if(e.key==='ArrowDown')camera.pitch=clamp(camera.pitch-.1,0,Math.PI/2);
+    if(selected)phase='selected';updateUI();return;
+  }
   if(e.key==='ArrowLeft'||e.key==='ArrowRight'){e.preventDefault();cycleVariant(e.key==='ArrowRight'?1:-1);}
 });
 $('journal-egg').onclick=()=>{
@@ -509,7 +535,7 @@ function updatePaths(){
 $('paths-toggle').onclick=()=>{navigationOn=!navigationOn;updatePaths();};updatePaths();
 $('grow-star').onclick=()=>{
   const n=articles.length-15,id='new-note-'+n;
-  const result=growArticle(articles,navigationEdges,{id,importance:$('star-rank').value,isolated:$('star-isolated').checked});
+  const result=(painted?growDomeArticle:growArticle)(articles,navigationEdges,{id,importance:$('star-rank').value,isolated:$('star-isolated').checked});
   if(!result){$('growth-status').textContent='附近较拥挤，这次未添加；已有位置保持不变。';return;}
   const article={...result.article,title:'新写下的片段 '+n,date:'2026.12.09',tag:'新留下的星光',intro:'这是试加的一篇文章。沿着天空，慢慢发现它。',paragraphs:['这篇虚构文章用来检查天空生长后的密度。','它没有自动生成任何内容关联，导航线只帮助找到附近的文章。']};
   articles.push(article);navigationEdges.push(...result.edges);mountArticle(article,articles.length-1);latestAdded=article.id;
@@ -528,18 +554,22 @@ compare.textContent=painted?'对照 · 原来的夜空 ↗':'试试 · 厚涂窗
 const comparisonURL=new URL(location.href);comparisonURL.searchParams.set('scene',painted?'classic':'painted');
 compare.href=comparisonURL.href;document.querySelector('.art-study-controls').prepend(compare);
 if(painted){
+  skyMap=createSkyMap(world,(yaw,pitch)=>{
+    interrupt();pushStop();selected=null;
+    moveTo({x:0,y:0,z:0,yaw:camera.yaw+wrapAngle(yaw-camera.yaw),pitch,zoom:1},700,()=>{phase='idle';updateUI();});
+  });
   $('home').title='回到窗边';$('home').setAttribute('aria-label','回到窗边');
   $('brand').setAttribute('aria-label','观星者的清醒梦，回到窗边');
-  document.querySelector('.art-study-bar summary').innerHTML='画风试作 <span>11</span>';
-  $('study-caption').textContent='动画厚涂 · 窗边入梦';
+  document.querySelector('.art-study-bar summary').innerHTML='穹顶试作 <span>12</span>';
+  $('study-caption').textContent='半球穹顶 · 方位星图 · 云层遮光';
   roomScene=createRoom({
     onEnter(){
-      camera={x:0,y:0,z:-260,yaw:0,pitch:0};
-      moveTo({x:0,y:0,z:0,yaw:0,pitch:0},2200,()=>{phase='idle';updateUI();});
+      camera={x:0,y:0,z:-260,yaw:0,pitch:HOME_ELEVATION,zoom:1};
+      moveTo({x:0,y:0,z:0,yaw:0,pitch:HOME_ELEVATION,zoom:1},2200,()=>{phase='idle';updateUI();});
     },
     onReturn(){
       travel=null;selected=null;phase='idle';history=[];
-      camera={x:0,y:0,z:0,yaw:0,pitch:0};updateUI();
+      camera={x:0,y:0,z:0,yaw:0,pitch:HOME_ELEVATION,zoom:1};updateUI();
     },
     onJournal(){
       $('egg-title').textContent='灯还亮着。';

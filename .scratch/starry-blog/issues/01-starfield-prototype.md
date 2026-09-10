@@ -50,3 +50,5 @@ Category: enhancement
 2026-09-10 · Codex V10：稀疏探索路径、三档星等、增量试加文章和孤立星配置已实现，导航图与内容关联分离。浏览器验证新星到达与阅读、孤立无边、时间保焦及窄屏面板；80 次插入的稳定性检查通过。说明见 EXPLORATION-PATHS.md；仍为 mock 原型，等待作者探索反馈。
 
 2026-09-10 · Codex V11：完成用户要求的单版动画厚涂试作：参考图窗边入口、穿窗推进、同风格蓝色云景与星芒、蓝灰纸面阅读；补充手机竖向构图。主来源分支仍为 codex/prototype-starfield，详见 themes/hexo-theme-kira/prototypes/starfield/ART-STUDY-06.md。保留 open 等待美术体验与真实触屏反馈；scene=classic 可对照旧版，不改变 R1–R6 状态。
+
+2026-09-10 · Codex V12：完成半球穹顶、球面文章布局、拖动短暂显露的方位星图与云层遮光。来源分支 codex/prototype-starfield；说明与验证见 themes/hexo-theme-kira/prototypes/starfield/DOME-STUDY-12.md。80 组投影／旋转检查、实际 WebGL 云遮光与接缝检查、手机天顶和阅读保焦检查通过。保留 open 等待作者审美与真实触屏反馈，R1–R6 未据此批准。
