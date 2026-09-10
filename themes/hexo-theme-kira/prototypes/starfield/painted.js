@@ -10,13 +10,20 @@ const stars=Array.from({length:600},()=>{
   const y=random()*2-1,a=random()*Math.PI*2,r=Math.sqrt(1-y*y);
   return {x:Math.sin(a)*r,y,z:Math.cos(a)*r,r:.4+random()*.55,alpha:.2+random()*.4};
 });
+// Sparse pinpricks along the painted band; these stay dimmer and smaller than articles.
+const galaxyStars=Array.from({length:2400},()=>{
+  const y=random(),a=random()*Math.PI*2,r=Math.sqrt(1-y*y),x=Math.sin(a)*r,z=Math.cos(a)*r;
+  const band=Math.max(0,1-Math.abs(x*.84-y*.20+z*.50)/.23);
+  return {x,y,z,r:.55+random()*.55,alpha:(.20+random()*.26)*band};
+}).filter(star=>star.y>.58&&star.alpha>.07);
+const skyStars=stars.concat(galaxyStars);
 
 export function paintPaintedSky(ctx,w,h,camera,settings,ambient){
   ctx.fillStyle='#042b68';ctx.fillRect(0,0,w,h);
   const ready=paintDomeEnvironment(ctx,w,h,camera,settings,plate);
   document.body.dataset.domeRenderer=ready?'webgl':'loading';
   // Distant decoration shares the article hemisphere and camera, without a screen-space offset.
-  for(const star of stars){
+  for(const star of skyStars){
     if(star.y<0)continue;
     const p=projectDome({x:star.x*DOME_RADIUS,y:star.y*DOME_RADIUS,z:star.z*DOME_RADIUS},camera,settings);
     if(!p||p.x<0||p.x>w||p.y<0||p.y>h)continue;

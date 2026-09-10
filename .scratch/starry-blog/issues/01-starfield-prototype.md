@@ -56,3 +56,5 @@ Category: enhancement
 2026-09-10 · Codex V12 控件微调：完成星图文字提亮加粗、右上圆角毛玻璃导航，以及快速移动隐线／停稳渐显。来源分支 codex/prototype-starfield；快慢拖动与恢复数值、桌面手机截图记入 DOME-STUDY-12.md。保留 open 等待体验反馈。
 
 2026-09-10 · Codex V12 视觉减法：依作者最新反馈移除星图方位／仰角读数与操作说明，右上导航改成透明无框文字图标，撤销毛玻璃效果。来源分支 codex/prototype-starfield；桌面／手机视口和星图点击已检查，详见 DOME-STUDY-12.md。保留 open 等待体验反馈。
+
+2026-09-10 · Codex V12 天顶试作：按作者要求加入隐约的厚涂蓝紫银河／星云和稀疏碎星，沿用球面投影。桌面、手机视口、首屏云景与 360° 天顶接缝检查通过。来源分支 codex/prototype-starfield；实现和截图见 DOME-STUDY-12.md。保持 open 等待审美与真机反馈，R1–R6 未据此批准。
