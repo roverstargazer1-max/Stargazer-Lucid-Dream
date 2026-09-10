@@ -1,6 +1,10 @@
 # 星空交互原型
 
-## 当前试作：V12 半球穹顶
+## 当前试作：V13 深蓝雾海与轻触云
+
+打开 <http://127.0.0.1:4173/pages/starfield-prototype/?variant=C&scene=painted&v=13&controls=quiet>。低空与天顶统一深蓝，地平线下补充远山、薄雾与三点暖灯。3 朵独立云可短点按，轻散后约 7 秒恢复；拖动和双指缩放仍控制天空。首屏左侧可找到第一朵，保留仰望、回正与广角方位图。实现与验证见 [ATMOSPHERE-STUDY-13.md](ATMOSPHERE-STUDY-13.md)。
+
+## V12 半球穹顶
 
 打开 <http://127.0.0.1:4173/pages/starfield-prototype/?variant=C&scene=painted&v=12>。文章、月亮、云层改用共同的半球投影，可水平转圈、抬头到 90° 天顶。拖动时显示方位星图，静止约 3 秒后淡出，也可点击星图转向。云层柔和遮住其后的星光和路径，减少叠图感。详见 [DOME-STUDY-12.md](DOME-STUDY-12.md)。
 

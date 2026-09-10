@@ -60,3 +60,5 @@ Category: enhancement
 2026-09-10 · Codex V12 天顶试作：按作者要求加入隐约的厚涂蓝紫银河／星云和稀疏碎星，沿用球面投影。桌面、手机视口、首屏云景与 360° 天顶接缝检查通过。来源分支 codex/prototype-starfield；实现和截图见 DOME-STUDY-12.md。保持 open 等待审美与真机反馈，R1–R6 未据此批准。
 
 2026-09-10 · Codex V12 广角仰望：缩放下限拓宽至 0.36，广角常显星图、降低拖动灵敏度，增加仰望／回正入口，地图定位保留广角。连续缩小、星图定位、点星返回与回正、桌面手机布局已检查，详见 DOME-STUDY-12.md。来源分支 codex/prototype-starfield；保留 open 等待舒适度和审美反馈，完整 180° 鱼眼总览不在本次实现内。
+
+2026-09-10 · Codex V13：作者批准配色、低空景观和互动云一起实施，已完成深蓝调色、雾海远山与三朵轻触云。来源分支 codex/prototype-starfield，详细证据见 themes/hexo-theme-kira/prototypes/starfield/ATMOSPHERE-STUDY-13.md；手势、阅读、遮光、减少动态与模拟触控检查通过。保留 open 等待实际体验反馈，R1–R6 状态不变。

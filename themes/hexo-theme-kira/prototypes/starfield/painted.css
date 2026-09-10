@@ -23,6 +23,9 @@ body[data-scene=painted] .navigation:hover,body[data-scene=painted] .navigation:
 body[data-scene=painted] .mode-switch button{color:#91adc7}
 body[data-scene=painted] .mode-switch button[aria-pressed=true]{color:#edf1ec}
 body[data-scene=painted] .icon-control{color:#d5e0e7}
+.cloud-target{position:absolute;width:44px;height:44px;transform:translate(-50%,-50%);pointer-events:none;border-radius:50%;z-index:2}
+.cloud-target:focus-visible{outline:1px dotted #b9d0df99;outline-offset:4px}
+#sky.over-cloud{cursor:pointer}
 body[data-scene=painted] .star-label{font-family:"KaiTi","STKaiti","Songti SC",serif;font-size:15px;letter-spacing:1.5px;text-shadow:0 2px 12px #00183c}
 body[data-scene=painted] .star-target:before,body[data-scene=painted] .star-target:after{display:none}
 body[data-scene=painted] .world-footer,body[data-scene=painted] .path-legend{color:#c1d5e5a6}

@@ -24,6 +24,7 @@ function createRenderer(image){
                      mix(pigmentHash(i+vec3(0,1,1)),pigmentHash(i+vec3(1,1,1)),f.x),f.y),f.z);
     }
     vec3 paintedGalaxy(vec3 sky,vec3 p,float elevation){
+      if(elevation<.48)return sky;
       // World-space brush patches wrap around the dome without a seam at the zenith.
       float broad=pigmentNoise(p*5.4+vec3(4.,9.,2.));
       float brush=pigmentNoise(p*vec3(23.,34.,19.)+vec3(12.,3.,7.))*.72
@@ -38,6 +39,38 @@ function createRenderer(image){
       sky=mix(sky,wash,band*highSky*strokes*broken*.48);
       float ribbon=(1.-smoothstep(.018,.105,abs(distance+.045)))*smoothstep(.40,.66,brush);
       return mix(sky,vec3(.19,.29,.45),ribbon*highSky*broken*.13);
+    }
+    float ridge(float a,float layer){
+      return sin(a*3.+layer)*.025+sin(a*7.-layer*2.)*.018
+             +abs(sin(a*11.+layer))*.018+sin(a*19.)*.006;
+    }
+    vec3 lowLandscape(vec3 p,float elevation,float longitude){
+      float texture=pigmentNoise(p*vec3(18.,75.,18.));
+      float brush=smoothstep(.30,.44,texture)*.45+smoothstep(.57,.67,texture)*.55;
+      vec3 mist=mix(vec3(.057,.115,.194),vec3(.073,.145,.232),smoothstep(-.65,.10,elevation));
+      float farEdge=ridge(longitude,1.)-.027;
+      float nearEdge=ridge(longitude,3.)*1.6-.19;
+      float far=1.-smoothstep(farEdge-.004,farEdge+.004,elevation);
+      float near=1.-smoothstep(nearEdge-.004,nearEdge+.004,elevation);
+      vec3 hills=mix(vec3(.042,.089,.155),vec3(.046,.099,.168),brush);
+      mist=mix(mist,hills,far*.82);
+      mist=mix(mist,mix(vec3(.034,.076,.135),vec3(.039,.085,.146),brush),near*.84);
+      // Horizontal veils break up the valley without a flat black lower hemisphere.
+      float veil=exp(-pow((elevation+.12+sin(longitude*4.)*.023)/.045,2.));
+      veil+=.65*exp(-pow((elevation+.36+sin(longitude*3.+1.)*.042)/.11,2.));
+      veil+=.34*exp(-pow((elevation+.68+sin(longitude*2.)*.04)/.16,2.));
+      mist=mix(mist,vec3(.096,.159,.228),veil*(.22+brush*.10));
+      mist=mix(mist,vec3(.060,.112,.176),(1.-smoothstep(-1.1,-.32,elevation))*.35);
+      // Three quiet windows below a distant ridge, always in the same direction.
+      for(int i=0;i<3;i++){
+        float a=.16+float(i)*.027;
+        float e=ridge(a,1.)-.073-float(i)*.003;
+        vec2 delta=vec2(atan(sin(longitude-a),cos(longitude-a)),(elevation-e)*1.5);
+        float glow=exp(-dot(delta,delta)/.000022)*.12;
+        float window=(1.-smoothstep(.0011,.0023,abs(delta.x)))*(1.-smoothstep(.0015,.003,abs(delta.y)));
+        mist=mix(mist,vec3(.66,.46,.25),window*.64+glow);
+      }
+      return mist;
     }
     void main(){
       vec2 pixel=vec2(gl_FragCoord.x,size.y-gl_FragCoord.y);
@@ -67,15 +100,20 @@ function createRenderer(image){
       float lum=dot(pigment,vec3(.25,.65,.10));
       float base=dot(top,vec3(.25,.65,.10));
       float cloud=smoothstep(.018,.085,lum-base)*smoothstep(.35,.82,v);
+      pigment=mix(pigment,mix(pigment*.82,vec3(.027,.081,.177),.12),1.-smoothstep(.4,.98,elevation));
       vec3 zenith=vec3(.014,.105,.27);
       // Collapse all longitudes to one pigment before the pole to avoid radial seams.
-      pigment=mix(pigment,zenith,smoothstep(.60,.94,elevation));
-      float horizon=smoothstep(-.16,.025,elevation);
-      pigment=mix(vec3(.016,.060,.125),pigment,horizon);
+      pigment=mix(pigment,zenith,smoothstep(.48,1.02,elevation));
+      // Stop sampling the bottom edge before it stretches below the horizon.
+      float horizon=smoothstep(.025,.15,elevation);
       if(overlay>.5){
         // Cloud pigment veils starlight and paths instead of bright flares sitting on top.
         gl_FragColor=vec4(pigment,cloud*.78*horizon);
-      }else{gl_FragColor=vec4(paintedGalaxy(pigment,p,elevation),1.);}
+      }else{
+        vec3 sky=paintedGalaxy(pigment,p,elevation);
+        if(elevation<.15)sky=mix(lowLandscape(p,elevation,longitude),sky,horizon);
+        gl_FragColor=vec4(sky,1.);
+      }
     }`;
   const shader=(type,source)=>{
     const s=gl.createShader(type);gl.shaderSource(s,source);gl.compileShader(s);
@@ -91,14 +129,22 @@ function createRenderer(image){
   gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.LINEAR);
   gl.texImage2D(gl.TEXTURE_2D,0,gl.RGB,gl.RGB,gl.UNSIGNED_BYTE,image);
   const uniform=Object.fromEntries(['size','center','focal','yaw','pitch','origin','overlay'].map(key=>[key,gl.getUniformLocation(program,key)]));
+  // Scenery is static in world space. Keep both passes while only a cloud animates.
+  const cache=[0,1].map(()=>({key:null,canvas:document.createElement('canvas')}));
   return {canvas,draw(w,h,camera,settings,overlay){
     const ratio=Math.min(devicePixelRatio||1,1.5);
     const rw=Math.round(w*ratio),rh=Math.round(h*ratio);
+    const entry=cache[overlay?1:0];
+    const key=[rw,rh,settings.cx,settings.cy,settings.focal,camera.x,camera.y,camera.z,camera.yaw,camera.pitch].join(',');
+    if(entry.key===key)return entry.canvas;
     if(canvas.width!==rw||canvas.height!==rh){canvas.width=rw;canvas.height=rh;gl.viewport(0,0,rw,rh);}
     gl.uniform2f(uniform.size,rw,rh);gl.uniform2f(uniform.center,settings.cx*ratio,settings.cy*ratio);
     gl.uniform1f(uniform.focal,settings.focal*ratio);gl.uniform1f(uniform.yaw,camera.yaw);gl.uniform1f(uniform.pitch,camera.pitch);
     gl.uniform3f(uniform.origin,camera.x,camera.y,camera.z);gl.uniform1f(uniform.overlay,overlay?1:0);
-    gl.drawArrays(gl.TRIANGLES,0,6);return canvas;
+    gl.drawArrays(gl.TRIANGLES,0,6);
+    if(entry.canvas.width!==rw||entry.canvas.height!==rh){entry.canvas.width=rw;entry.canvas.height=rh;}
+    const cached=entry.canvas.getContext('2d');cached.clearRect(0,0,rw,rh);cached.drawImage(canvas,0,0);
+    entry.key=key;return entry.canvas;
   }};
 }
 export function paintDomeEnvironment(ctx,w,h,camera,settings,image,overlay=false){

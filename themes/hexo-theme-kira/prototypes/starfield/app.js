@@ -5,12 +5,14 @@ import { paintSky, paintRoof, roofStyles, setRoofStyle } from './art.js';
 import { painted, paintPaintedSky, paintCloudVeil, createRoom } from './painted.js';
 import {arrangeDome,domePosition,domeDestination,growDomeArticle,HOME_ELEVATION,MIN_SKY_ZOOM,clamp,direction,wrapAngle} from './dome.js';
 import {createSkyMap} from './sky-map.js';
+import {createInteractiveClouds} from './interactive-clouds.js';
 
 // Three structural variants of a new full-screen surface, on one local-only route.
 // Prototype question: can quiet space, real camera travel and reading form one flow?
 const $ = id => document.getElementById(id);
 const canvas = $('sky'), ctx = canvas.getContext('2d');
 const world = $('world'), reader = $('reader'), scroller = $('reading-scroll');
+const interactiveClouds=painted?createInteractiveClouds(world):null;
 const names = { A: '屋顶入梦', B: '观测手记', C: '漂浮书页' };
 const query = new URLSearchParams(location.search);
 document.body.dataset.scene=painted?'painted':'classic';
@@ -20,13 +22,14 @@ const ambientPreference=matchMedia('(prefers-reduced-motion: reduce)');
 let living=query.get('living')==='0'?false:query.get('living')==='1'?true:!ambientPreference.matches;
 const ambient={x:0,y:0,targetX:0,targetY:0,seconds:0};
 let lastFrame=0;
+document.addEventListener('visibilitychange',()=>{lastFrame=0;});
 function ambientBlocked(){return document.hidden||reader.open||$('specimen-dialog').open||$('egg-dialog').open;}
 world.addEventListener('pointermove',e=>{
   if(e.pointerType!=='mouse'||e.buttons||!interactiveSurface(e.target))return;
   ambient.targetX=Math.max(-1,Math.min(1,e.clientX/innerWidth*2-1));
   ambient.targetY=Math.max(-1,Math.min(1,e.clientY/innerHeight*2-1));
 });
-world.addEventListener('pointerleave',()=>{ambient.targetX=0;ambient.targetY=0;});
+world.addEventListener('pointerleave',()=>{ambient.targetX=0;ambient.targetY=0;interactiveClouds?.clearHover();canvas.classList.remove('over-cloud');});
 let variant = names[query.get('variant')] ? query.get('variant') : 'C';
 let width = innerWidth, height = innerHeight, dpr = Math.min(devicePixelRatio, 2);
 let camera = { x: 0, y: 0, z: 0, yaw: 0, pitch: painted?HOME_ELEVATION:0, zoom:1 };
@@ -242,10 +245,11 @@ function interactiveSurface(target) { return !roomScene?.active && (target === c
 world.addEventListener('pointerdown', e => {
   if (!interactiveSurface(e.target) || reader.open) return;
   pointers.set(e.pointerId, { x: e.clientX, y: e.clientY }); world.setPointerCapture(e.pointerId);
-  if (pointers.size === 1) { press = { x: e.clientX, y: e.clientY }; gestureMoved = false; multiTouch = false; }
+  if (pointers.size === 1) { press = { x: e.clientX, y: e.clientY, start: performance.now() }; gestureMoved = false; multiTouch = false; }
   else { multiTouch = true; gestureMoved = true; const pts = [...pointers.values()]; previousPinch = Math.hypot(pts[0].x-pts[1].x,pts[0].y-pts[1].y); }
 });
 world.addEventListener('pointermove', e => {
+  if(interactiveClouds)canvas.classList.toggle('over-cloud',interactiveClouds.hover(e.clientX,e.clientY,!pointers.size&&!hovered&&!ambientBlocked()&&interactiveSurface(e.target)));
   if (!pointers.has(e.pointerId)) return;
   const old = pointers.get(e.pointerId); pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
   if (press && Math.hypot(e.clientX-press.x,e.clientY-press.y)>6) gestureMoved = true;
@@ -268,7 +272,7 @@ world.addEventListener('pointerup', e => {
   if (!gestureMoved && !multiTouch) {
     const hit = visible.filter(s=>Math.hypot(s.x-e.clientX,s.y-e.clientY)<25).sort((a,b)=>Math.hypot(a.x-e.clientX,a.y-e.clientY)-Math.hypot(b.x-e.clientX,b.y-e.clientY))[0];
     if (hit) activateStar(hit.article.id);
-    else { interrupt(); selected = null; phase = 'idle'; updateUI(); }
+    else if(!(press&&performance.now()-press.start<500&&interactiveClouds?.tap(e.clientX,e.clientY))){ interrupt(); selected = null; phase = 'idle'; updateUI(); }
   }
   if (!pointers.size) { press=null; updateUI(); }
 });
@@ -415,7 +419,7 @@ function placeLabels(points){
 }
 function animate(now) {
   time=now;
-  const dt=Math.min(.05,Math.max(0,(now-(lastFrame||now))/1000));lastFrame=now;
+  const elapsed=Math.max(0,(now-(lastFrame||now))/1000),dt=Math.min(.05,elapsed);lastFrame=now;
   if(!ambientBlocked()){
     if(living)ambient.seconds+=dt;
     // Freeze target offsets during a gesture or hover so the hit region stays put.
@@ -433,6 +437,7 @@ function animate(now) {
     if(t===1){travel=null;flight.onDone?.();}
   }
   updateLineMotion(now,dt);
+  interactiveClouds?.update(elapsed,!!roomScene?.active||ambientBlocked());
   drawBackground();
   const roofVisibility=painted?0:paintRoof(ctx,width,height,camera);
   $('journal-egg').hidden=roofVisibility<.35;
@@ -442,6 +447,7 @@ function animate(now) {
   drawStars();
   if(painted){
     paintCloudVeil(ctx,width,height,camera,projectionSettings());
+    interactiveClouds?.paint(ctx,width,height,camera,projectionSettings());
     skyMap?.update(camera,projectionSettings(),articles.map(article=>({id:article.id,point:position(article)})),selected,!roomScene?.active&&!ambientBlocked(),width,height,now);
   }
   for(let i=meteors.length-1;i>=0;i--){
@@ -590,8 +596,8 @@ if(painted){
   });
   $('home').title='回到窗边';$('home').setAttribute('aria-label','回到窗边');
   $('brand').setAttribute('aria-label','观星者的清醒梦，回到窗边');
-  document.querySelector('.art-study-bar summary').innerHTML='穹顶试作 <span>12</span>';
-  $('study-caption').textContent='半球穹顶 · 方位星图 · 云层遮光';
+  document.querySelector('.art-study-bar summary').innerHTML='穹顶试作 <span>13</span>';
+  $('study-caption').textContent='深蓝雾海 · 远山灯火 · 轻触云朵';
   roomScene=createRoom({
     onEnter(){
       camera={x:0,y:0,z:-260,yaw:0,pitch:HOME_ELEVATION,zoom:1};
