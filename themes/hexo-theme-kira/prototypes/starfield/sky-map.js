@@ -1,7 +1,7 @@
 import {angles,clamp,direction,domeIntersection,viewRay} from './dome.js';
 export function createSkyMap(world,onLook){
   const panel=document.createElement('aside');panel.id='sky-map';panel.setAttribute('aria-label','星空方位图');
-  panel.innerHTML='<div class="sky-map-heading"><span>星空方位</span><span id="sky-map-angle"></span></div><canvas width="360" height="360" aria-label="天顶在中央，地平线在圆周；亮框表示当前视野"></canvas><p>中央是天顶 · 点击星图转向</p>';
+  panel.innerHTML='<div class="sky-map-heading"><span id="sky-map-angle"></span></div><canvas width="360" height="360" aria-label="天顶在中央，地平线在圆周；淡光区域表示当前视野"></canvas><p>中央是天顶 · 点击星图转向</p>';
   const toggle=document.createElement('button');toggle.id='sky-map-toggle';toggle.textContent='◎ 星图';toggle.setAttribute('aria-label','显示星空方位图');
   world.append(panel,toggle);
   const canvas=panel.querySelector('canvas'),ctx=canvas.getContext('2d');
@@ -24,12 +24,12 @@ export function createSkyMap(world,onLook){
     const key=pose+selected+[w,h,settings.cx,settings.cy,settings.focal].join(',')+articles.map(a=>[a.id,a.point.x.toFixed(0),a.point.y.toFixed(0),a.point.z.toFixed(0)].join(',')).join(';');
     if(key===lastData)return;lastData=key;
     ctx.setTransform(2,0,0,2,0,0);ctx.clearRect(0,0,180,180);
-    ctx.strokeStyle='#9dbed135';ctx.lineWidth=.6;
-    for(const r of [70,46.67,23.33]){ctx.beginPath();ctx.arc(90,90,r,0,7);ctx.stroke();}
-    ctx.beginPath();ctx.moveTo(90,20);ctx.lineTo(90,160);ctx.moveTo(20,90);ctx.lineTo(160,90);ctx.stroke();
-    ctx.font='9px sans-serif';ctx.fillStyle='#a7bfce';ctx.textAlign='center';
+    // Broken, low-contrast latitude marks leave the sky visible between strokes.
+    ctx.strokeStyle='#b4cbdc30';ctx.lineWidth=.6;ctx.setLineDash([1,5]);ctx.lineCap='round';
+    for(const r of [70,46.67,23.33]){ctx.beginPath();ctx.arc(90,90,r,0,Math.PI*2);ctx.stroke();}
+    ctx.setLineDash([]);
+    ctx.font='9px KaiTi, STKaiti, serif';ctx.fillStyle='#bed0dba0';ctx.textAlign='center';
     for(const [s,x,y] of [['北',90,12],['南',90,176],['东',171,93],['西',9,93]])ctx.fillText(s,x,y);
-    ctx.fillStyle='#9bb9cf75';ctx.font='7px sans-serif';ctx.fillText('60°',109,91);ctx.fillText('30°',132,91);
     // The view footprint uses the exact inverse projection and sphere intersection.
     const boundary=[];
     for(let side=0;side<4;side++)for(let i=0;i<12;i++){
@@ -38,13 +38,20 @@ export function createSkyMap(world,onLook){
       boundary.push(point(domeIntersection(camera,viewRay(x,y,camera,settings))));
     }
     ctx.beginPath();boundary.forEach((p,i)=>i?ctx.lineTo(p.x,p.y):ctx.moveTo(p.x,p.y));ctx.closePath();
-    ctx.fillStyle='#89b5d92a';ctx.fill();ctx.strokeStyle='#b4d4e394';ctx.lineWidth=.85;ctx.stroke();
+    const wash=ctx.createRadialGradient(90,90,4,90,90,76);
+    wash.addColorStop(0,'#b4d0e21a');wash.addColorStop(1,'#b4d0e203');
+    ctx.fillStyle=wash;ctx.fill();ctx.strokeStyle='#bed7e34a';ctx.lineWidth=.7;
+    ctx.shadowColor='#b1cee1';ctx.shadowBlur=5;ctx.stroke();ctx.shadowBlur=0;
     for(const article of articles){
-      const p=point(article.point);ctx.fillStyle=article.id===selected?'#ffe1a0':'#c6d8df';
-      ctx.beginPath();ctx.arc(p.x,p.y,article.id===selected?2.5:1.35,0,7);ctx.fill();
+      const p=point(article.point),chosen=article.id===selected;
+      ctx.fillStyle=chosen?'#ffe1a0':'#d6e0dfba';ctx.shadowColor=chosen?'#edcc8c':'#b8d3e0';ctx.shadowBlur=chosen?8:4;
+      ctx.beginPath();ctx.arc(p.x,p.y,chosen?2:1.15,0,7);ctx.fill();ctx.shadowBlur=0;
     }
     const center=point(domeIntersection(camera,direction(camera.yaw,camera.pitch)));
-    ctx.strokeStyle='#f3d591';ctx.lineWidth=1;ctx.beginPath();ctx.arc(center.x,center.y,3.8,0,7);ctx.stroke();
+    const glow=ctx.createRadialGradient(center.x,center.y,0,center.x,center.y,9);
+    glow.addColorStop(0,'#f3d59165');glow.addColorStop(1,'#f3d59100');ctx.fillStyle=glow;
+    ctx.beginPath();ctx.arc(center.x,center.y,9,0,7);ctx.fill();
+    ctx.strokeStyle='#f3d591b3';ctx.lineWidth=.7;ctx.beginPath();ctx.arc(center.x,center.y,3.2,0,7);ctx.stroke();
     const degrees=(camera.yaw*180/Math.PI%360+360)%360,labels=['北','东北','东','东南','南','西南','西','西北'];
     panel.querySelector('#sky-map-angle').textContent=`${labels[Math.round(degrees/45)%8]} · 仰角 ${Math.round(camera.pitch*180/Math.PI)}°`;
   }};

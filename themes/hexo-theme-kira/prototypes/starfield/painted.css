@@ -45,12 +45,13 @@ body[data-scene=painted] .art-study-bar{background:#08244ccb;border-color:#c3d7e
 body[data-scene=painted] .art-study-controls,body[data-scene=painted] .art-study-bar>summary{background:#08244ce8}
 body[data-scene=painted] .roof-switcher,body[data-scene=painted] #art-choice,body[data-scene=painted] #type-choice{display:none}
 body[data-scene=painted] #scene-compare{font-size:10px;color:#b7cbe0;text-decoration:none;padding:7px}
-#sky-map{position:absolute;right:28px;bottom:83px;width:200px;padding:13px 10px 9px;background:#082147dd;border:1px solid #b6d1e131;border-radius:5px 8px 4px 6px;box-shadow:0 10px 35px #00152d30;backdrop-filter:blur(9px);opacity:0;transform:translateY(7px);pointer-events:none;transition:opacity .7s,transform .7s;z-index:8}
-#sky-map.is-visible{opacity:1;transform:translateY(0);pointer-events:auto}
-.sky-map-heading{display:flex;justify-content:space-between;align-items:center;font-size:10px;letter-spacing:1px;color:#d1dde4;padding:0 2px}
-#sky-map-angle{font-size:9px;letter-spacing:0;color:#adbecd}
+#sky-map{position:absolute;right:28px;bottom:83px;width:200px;padding:13px 10px 9px;background:none;border:0;box-shadow:none;opacity:0;filter:blur(3px);pointer-events:none;transition:opacity 1.8s ease,filter 1.8s ease;z-index:8}
+#sky-map.is-visible{opacity:.88;filter:blur(0);pointer-events:auto;transition-duration:1.3s}
+.sky-map-heading{text-align:center;font-family:"KaiTi","STKaiti","Songti SC",serif;color:#b9cedda6;text-shadow:0 0 9px #8db8d633}
+#sky-map-angle{font-size:10px;letter-spacing:1px}
 #sky-map canvas{width:180px;height:180px;display:block;cursor:crosshair;touch-action:none}
-#sky-map p{font-size:9px;text-align:center;color:#98afc1;margin:2px 0 0}
+#sky-map p{font-size:9px;text-align:center;color:#b1c5d466;letter-spacing:.5px;margin:2px 0 0;transition:color .8s}
+#sky-map:hover p,#sky-map:focus-within p{color:#c7d8e1b3}
 #sky-map-toggle{position:absolute;right:29px;bottom:49px;font-size:11px;color:#bbcdda;letter-spacing:1px;padding:6px 9px;z-index:8}
 @media(max-width:760px){
   #sky-map{top:148px;bottom:auto;left:15px;right:auto;width:158px;padding:10px 7px 7px}
@@ -59,6 +60,7 @@ body[data-scene=painted] #scene-compare{font-size:10px;color:#b7cbe0;text-decora
   #sky-map-angle{font-size:8px}#sky-map p{font-size:8px}
   #sky-map-toggle{right:20px;top:128px;bottom:auto;font-size:10px}
 }
+@media(prefers-reduced-motion:reduce){#sky-map,#sky-map.is-visible{filter:none;transition:opacity .2s}}
 @media(max-width:760px){
   .room-stage{width:max(100vw,56.28vh);height:max(177.683vw,100vh);margin-left:min(-50vw,-28.14vh);margin-top:min(-88.8415vw,-50vh)}
   #window-entry{left:20%;top:0;width:80%;height:59%;clip-path:none}
