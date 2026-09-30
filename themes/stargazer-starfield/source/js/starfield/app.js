@@ -32,7 +32,9 @@ async function start() {
   let starMotion = null;
   let articles = [];
   let articleById = new Map();
+  let relationsByArticle = new Map();
   let articleNodes = new Map();
+  const readArticleIds = new Set();
   let article = null;
   let selected = null;
   let phase = 'idle';
@@ -71,6 +73,15 @@ async function start() {
     return { ...item, position: { x: item.position[0], y: item.position[1], z: item.position[2] } };
   });
   articleById = new Map(articles.map((item) => [item.id, item]));
+  relationsByArticle = new Map(articles.map((item) => [item.id, []]));
+  for (const relation of Array.isArray(index.relations) ? index.relations : []) {
+    if (!Array.isArray(relation.articles) || relation.articles.length !== 2) continue;
+    const [left, right] = relation.articles;
+    if (left === right || !articleById.has(left) || !articleById.has(right)) continue;
+    const reason = typeof relation.reason === 'string' ? relation.reason.trim() : '';
+    relationsByArticle.get(left).push({ articleId: right, reason });
+    relationsByArticle.get(right).push({ articleId: left, reason });
+  }
   const startId = directId || index.featuredArticleId || body.dataset.starryFeaturedId;
   article = articleById.get(startId) || articles[0] || null;
 
@@ -225,6 +236,7 @@ async function start() {
   function updateUI() {
     const isSelected = Boolean(article && selected === article.id);
     preview.hidden = !isSelected || reader.open;
+    updateRelationCues(isSelected ? article.id : null);
     if (isSelected) {
       document.getElementById('preview-date').textContent = article.date;
       document.getElementById('preview-title').textContent = article.title;
@@ -240,6 +252,26 @@ async function start() {
     }
     homeButton.hidden = Boolean(roomScene?.active) || reader.open;
     document.getElementById('gesture-help').textContent = width <= 760 ? '单指转动穹顶 · 滚轮前行 · 点星靠近' : '拖动转动穹顶 · 滚轮前行 · 点星靠近';
+  }
+
+  function updateRelationCues(articleId) {
+    const section = document.getElementById('relation-cues');
+    const container = document.getElementById('relation-links');
+    if (!section || !container) return;
+    container.replaceChildren();
+    const relations = articleId ? relationsByArticle.get(articleId) || [] : [];
+    section.hidden = relations.length === 0;
+    for (const relation of relations) {
+      const targetArticle = articleById.get(relation.articleId);
+      if (!targetArticle) continue;
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'relation-link';
+      button.setAttribute('aria-label', `沿作者确认的关联探索文章：${targetArticle.title}`);
+      button.textContent = `↗ ${targetArticle.title}`;
+      button.addEventListener('click', () => activateStar(targetArticle.id));
+      container.append(button);
+    }
   }
 
   function announce(message) {
@@ -448,6 +480,12 @@ async function start() {
       visibleStars.set(item.id, point);
       target.style.left = `${point.x}px`;
       target.style.top = `${point.y}px`;
+    }
+    drawNavigationGuides();
+    for (const item of articles) {
+      const point = visibleStars.get(item.id);
+      if (!point) continue;
+      const target = starTargets.get(item.id);
       paintPaintedStar(ctx, point.x, point.y, item.id, {
         depth: point.depth,
         active: selected === item.id,
@@ -461,6 +499,48 @@ async function start() {
     paintCloudVeil(ctx, width, height, camera, projectionSettings());
     clouds?.update(now / 1000, Boolean(reader.open || arrival || roomScene?.active));
     clouds?.paint(ctx, width, height, camera, projectionSettings());
+  }
+
+  function drawNavigationGuides() {
+    const origin = visibleStars.get(selected);
+    const current = articleById.get(selected);
+    if (!origin || !current || roomScene?.active || arrival) return;
+    const neighbors = articles
+      .filter((item) => item.id !== current.id && visibleStars.has(item.id))
+      .sort((left, right) => distanceFrom(current, left) - distanceFrom(current, right))
+      .slice(0, 2);
+
+    ctx.save();
+    ctx.lineCap = 'round';
+    ctx.lineWidth = 0.8;
+    ctx.setLineDash([]);
+    ctx.strokeStyle = 'rgba(181, 198, 211, .12)';
+    for (const neighbor of neighbors) drawGuideLine(origin, visibleStars.get(neighbor.id));
+
+    ctx.lineWidth = 1.15;
+    ctx.setLineDash([2, 6]);
+    ctx.strokeStyle = 'rgba(226, 216, 191, .36)';
+    for (const relation of relationsByArticle.get(selected) || []) {
+      const target = visibleStars.get(relation.articleId);
+      if (target) drawGuideLine(origin, target);
+    }
+    ctx.restore();
+  }
+
+  function drawGuideLine(origin, target) {
+    if (!target) return;
+    ctx.beginPath();
+    ctx.moveTo(origin.x, origin.y);
+    ctx.lineTo(target.x, target.y);
+    ctx.stroke();
+  }
+
+  function distanceFrom(left, right) {
+    return Math.hypot(
+      left.position.x - right.position.x,
+      left.position.y - right.position.y,
+      left.position.z - right.position.z,
+    );
   }
 
   function animate(now) {
@@ -493,13 +573,52 @@ async function start() {
     if (!reader.open || phase !== 'reading') return;
     const content = reader.querySelector('#reader-content');
     if (!content) return;
+    const articleNode = content.closest('.article[data-starry-id]');
+    const articleId = articleNode?.dataset.starryId;
     const end = content.getBoundingClientRect();
     const viewport = scroller.getBoundingClientRect();
     const complete = end.bottom <= viewport.bottom + 2;
+    if (complete && articleId) readArticleIds.add(articleId);
+    const revealed = Boolean(articleId && readArticleIds.has(articleId));
+    const hasReasons = (relationsByArticle.get(articleId) || []).some((relation) => relation.reason);
+    renderReadingRelations(articleNode, revealed);
     const total = Math.max(1, content.offsetTop + content.offsetHeight);
     const percent = Math.min(100, Math.round((scroller.scrollTop + scroller.clientHeight) / total * 100));
     document.getElementById('reading-progress').textContent = `${complete ? 100 : percent}%`;
-    document.getElementById('reading-state').textContent = complete ? '已到文末' : '沿着文字，慢慢往下';
+    document.getElementById('reading-state').textContent = complete
+      ? (revealed && hasReasons ? '已到文末 · 关联理由已显露' : '已到文末')
+      : '沿着文字，慢慢往下';
+  }
+
+  function renderReadingRelations(articleNode, revealed) {
+    const section = articleNode?.querySelector('.reading-relations');
+    if (!section) return;
+    const articleId = articleNode.dataset.starryId;
+    const authored = (relationsByArticle.get(articleId) || []).filter((relation) => relation.reason);
+    section.hidden = !revealed || authored.length === 0;
+    if (section.hidden) return;
+    if (section.dataset.renderedArticleId === articleId) return;
+
+    const heading = document.createElement('h2');
+    heading.textContent = '为什么相连';
+    const list = document.createElement('ul');
+    for (const relation of authored) {
+      const targetArticle = articleById.get(relation.articleId);
+      if (!targetArticle) continue;
+      const item = document.createElement('li');
+      const title = document.createElement('strong');
+      title.textContent = targetArticle.title;
+      const reason = document.createElement('p');
+      reason.textContent = relation.reason;
+      const link = document.createElement('a');
+      link.className = 'reading-relation-link';
+      link.href = localArticleUrl(targetArticle).pathname;
+      link.textContent = `继续阅读《${targetArticle.title}》 ↗`;
+      item.append(title, reason, link);
+      list.append(item);
+    }
+    section.replaceChildren(heading, list);
+    section.dataset.renderedArticleId = articleId;
   }
 
   function wireControls() {

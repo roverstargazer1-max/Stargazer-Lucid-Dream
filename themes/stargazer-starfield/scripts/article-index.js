@@ -1,3 +1,5 @@
+const { normalizeAdoptedRelations } = require('../lib/relations');
+
 hexo.extend.generator.register('starry-article-index', function (locals) {
   if (hexo.config.theme !== 'stargazer-starfield') return [];
 
@@ -51,6 +53,11 @@ hexo.extend.generator.register('starry-article-index', function (locals) {
   });
 
   articles.sort((left, right) => left.timeOrder < right.timeOrder ? -1 : left.timeOrder > right.timeOrder ? 1 : 0);
+  const relations = normalizeAdoptedRelations(
+    (locals.data || hexo.locals.get('data') || {})['starry-relations'],
+    new Set(articles.map((article) => article.id)),
+    (message) => hexo.log.warn(message),
+  );
   const configuredFeatured = hexo.theme.config.featured_article_id;
   const featuredArticleId = articles.some((article) => article.id === configuredFeatured)
     ? configuredFeatured
@@ -58,7 +65,7 @@ hexo.extend.generator.register('starry-article-index', function (locals) {
 
   return {
     path: 'starry/index.json',
-    data: JSON.stringify({ version: 2, featuredArticleId, articles }),
+    data: JSON.stringify({ version: 2, featuredArticleId, articles, relations }),
   };
 });
 

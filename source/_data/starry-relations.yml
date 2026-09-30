@@ -1,0 +1,5 @@
+# Only reviewed entries under adopted are published in starry/index.json.
+# Keep suggestions and unconfirmed AI output under candidates; they are never published.
+version: 1
+adopted: []
+candidates: []

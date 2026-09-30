@@ -39,6 +39,11 @@ button:focus-visible, a:focus-visible { outline: 2px solid #c5a66d; outline-offs
 .preview-body .eyebrow { display: block; margin-top: 18px; color: #aebfd0; font-size: 11px; letter-spacing: 1.5px; }
 .preview h2 { margin: 9px 0 10px; color: #eff1ed; font: 26px/1.55 var(--serif); letter-spacing: 1.2px; font-weight: 400; }
 .preview p { max-width: 600px; margin: 0; color: #bdcad6; font: 14px/1.95 var(--serif); }
+.relation-cues { margin-top: 14px; }
+.relation-legend { margin: 0 0 7px !important; color: #9daebd !important; font: 10px/1.6 var(--sans) !important; letter-spacing: .3px; }
+.relation-links { display: flex; flex-wrap: wrap; gap: 4px 16px; }
+.relation-link { min-height: 36px; padding: 5px 0; color: #e8d9b9; font: 12px/1.6 var(--serif); text-align: left; text-decoration: underline; text-decoration-color: #e8d9b955; text-underline-offset: 3px; }
+.relation-link:focus-visible { outline: 1px solid #e8d9b9; outline-offset: 3px; }
 .preview-bottom { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-top: 15px; padding-top: 12px; border-top: 1px solid #bbd0e422; color: #c5d5e1; font-size: 12px; }
 .preview-bottom button { min-height: 44px; padding: 8px 0 8px 14px; color: #f1e4c7; font-size: 13px; letter-spacing: .6px; white-space: nowrap; }
 .preview-bottom button span { padding-left: 10px; color: #d4b987; }
@@ -105,6 +110,13 @@ body[data-room="entering"] .entry-motion, body[data-room="returning"] .entry-mot
 #reader-content pre, .article-content pre { max-width: 100%; overflow: auto; overscroll-behavior: contain; }
 #reader-content blockquote, .article-content blockquote { margin: 24px 0; padding: 3px 0 3px 18px; color: #52677a; border-left: 2px solid #a8b2b8; }
 .article-end { margin: 38px 0 26px; color: #9a947e; text-align: center; font: 28px var(--serif); }
+.reading-relations { margin: 32px 0 12px; padding-top: 20px; border-top: 1px solid #4a57652b; }
+.reading-relations h2 { margin: 0 0 14px; color: #697988; font: 12px/1.6 var(--sans); letter-spacing: 1.2px; }
+.reading-relations ul { margin: 0; padding-left: 1.2em; color: #47596a; }
+.reading-relations li { margin: 0 0 20px; padding-left: 4px; }
+.reading-relations strong { color: #34485e; font: 15px/1.7 var(--serif); }
+.reading-relations p { margin: 5px 0 8px; color: #52677a; font: 14px/1.9 var(--serif); }
+.reading-relation-link { color: #365b7b; font: 12px/1.7 var(--sans); text-decoration: underline; text-underline-offset: 3px; }
 .reading-footer { display: flex; flex: 0 0 auto; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 40px; color: var(--paper-muted); border-top: 1px solid #4a57652b; font-size: 11px; line-height: 1.7; }
 .reading-seal { position: absolute; z-index: 2; inset: 0; width: 100%; height: 100%; pointer-events: none; opacity: 0; }
 .reading-seal path { fill: none; stroke: #e8e1cf; stroke-width: 8; stroke-dasharray: 1; stroke-dashoffset: 0; }

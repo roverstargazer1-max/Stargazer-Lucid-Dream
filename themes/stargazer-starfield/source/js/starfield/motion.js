@@ -154,7 +154,7 @@ export function createStarMotion({ preview, reader, scroller, isSoft }) {
     ], soft || repeat ? 0 : .03, unfold / duration);
     // The action participates in the panel's reveal, without an additional late fade.
     // Its enabled state belongs to the camera clock, which may run longer than this.
-    timeline.add(preview.querySelector('.known-reasons'), [{ opacity: 0 }, { opacity: 1 }], soft || repeat ? 0 : .82, 1);
+    timeline.add(preview.querySelector('.relation-cues'), [{ opacity: 0 }, { opacity: 1 }], soft || repeat ? 0 : .82, 1);
     preview.setAttribute('aria-busy', 'true');
     approach = { timeline, clean, start, duration, unfold, reveal, repeat, articleId, token };
     setApproach(0);
