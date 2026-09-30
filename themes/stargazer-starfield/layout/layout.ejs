@@ -1,4 +1,11 @@
 <%
+  const audioConfig = config.aplayer || {};
+  const audioPath = (directory, filename) => `${String(directory || '').replace(/\/+$/, '')}/${filename}`;
+  const audioAssets = {
+    stylesheet: audioConfig.style_cdn || url_for(audioPath(audioConfig.style_dir || 'assets/css', 'APlayer.min.css')),
+    aplayer: audioConfig.cdn || audioConfig.externalLink || url_for(audioPath(audioConfig.script_dir || 'assets/js', 'APlayer.min.js')),
+    meting: audioConfig.meting_cdn || url_for(audioPath(audioConfig.script_dir || 'assets/js', 'Meting.min.js')),
+  };
   const isPost = page.layout === 'post' && page.title;
   const isStarryArticle = isPost && page.starry_id;
   const title = isPost ? page.title : config.title;
@@ -35,6 +42,9 @@
       data-sky-image="<%= url_for(theme.scene.painted_sky) %>"
       data-window-mask-desktop="<%= url_for(theme.scene.window_mask_desktop) %>"
       data-window-mask-mobile="<%= url_for(theme.scene.window_mask_mobile) %>"
+      data-starry-aplayer-style="<%= audioAssets.stylesheet %>"
+      data-starry-aplayer-script="<%= audioAssets.aplayer %>"
+      data-starry-meting-script="<%= audioAssets.meting %>"
       style="--window-mask-desktop:url('<%= url_for(theme.scene.window_mask_desktop) %>');--window-mask-mobile:url('<%= url_for(theme.scene.window_mask_mobile) %>')">
   <%- body %>
 </body>

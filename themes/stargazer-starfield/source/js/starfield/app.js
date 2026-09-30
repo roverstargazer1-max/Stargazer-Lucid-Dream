@@ -51,6 +51,7 @@ async function start() {
   let internalArticleHistory = false;
   let directCloseInProgress = false;
   let animationStarted = false;
+  let audioAssetsPromise = null;
   const pointers = new Map();
   let press = null;
   let gestureMoved = false;
@@ -306,6 +307,7 @@ async function start() {
       internalArticleHistory = true;
       history.pushState({ starryArticleId: targetArticle.id }, '', localArticleUrl(targetArticle).pathname);
       showReader(project(targetArticle.position));
+      void prepareEmbeddedPlayer(node);
     } catch (error) {
       fallback(error);
     }
@@ -314,6 +316,7 @@ async function start() {
   function openDirectArticle() {
     readerTrigger = document.getElementById('home');
     showReader(project(article.position));
+    void prepareEmbeddedPlayer(readerSlot.querySelector('.article'));
   }
 
   function showReader(origin) {
@@ -330,6 +333,7 @@ async function start() {
 
   function closeReaderFromDirect() {
     if (!reader.open || directCloseInProgress) return;
+    stopEmbeddedAudio();
     directCloseInProgress = true;
     phase = 'closing';
     starMotion.close(() => {
@@ -351,6 +355,7 @@ async function start() {
 
   function closeReaderAfterPop() {
     if (!reader.open) return;
+    stopEmbeddedAudio();
     phase = 'closing';
     starMotion.close(() => {
       reader.close();
@@ -387,6 +392,7 @@ async function start() {
       readerSlot.replaceChildren(node);
       internalArticleHistory = true;
       showReader(project(targetArticle.position));
+      void prepareEmbeddedPlayer(node);
     } catch (error) {
       fallback(error);
     }
@@ -637,6 +643,97 @@ async function start() {
     return document.importNode(node, true);
   }
 
+  async function prepareEmbeddedPlayer(node) {
+    if (!node?.querySelector('meting-js')) return;
+    if (audioAssetsPromise) return audioAssetsPromise;
+
+    const stylesheet = body.dataset.starryAplayerStyle;
+    const aplayerScript = body.dataset.starryAplayerScript;
+    const metingScript = body.dataset.starryMetingScript;
+    if (stylesheet && !document.querySelector('link[data-starry-aplayer-style]')) {
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = stylesheet;
+      link.dataset.starryAplayerStyle = '';
+      link.addEventListener('error', () => console.warn('APlayer stylesheet could not be loaded.'), { once: true });
+      document.head.appendChild(link);
+    }
+
+    audioAssetsPromise = (async () => {
+      if (!aplayerScript || !metingScript) throw new Error('Meting player assets are not configured.');
+      if (!window.APlayer) await loadAudioScript(aplayerScript);
+      if (typeof window.loadMeting !== 'function') await loadAudioScript(metingScript);
+      if (typeof window.loadMeting !== 'function') throw new Error('Meting did not register its loader.');
+      for (const player of node.querySelectorAll('meting-js')) {
+        const container = document.createElement('div');
+        container.className = 'aplayer';
+        for (const attribute of player.attributes) {
+          if (attribute.name !== 'autoplay' && attribute.name !== 'hidden') {
+            container.setAttribute(`data-${attribute.name}`, attribute.value);
+          }
+        }
+        container.setAttribute('data-autoplay', 'false');
+        player.replaceWith(container);
+      }
+      window.loadMeting();
+      for (const container of node.querySelectorAll('.article-media .aplayer')) {
+        const observer = new MutationObserver(() => {
+          if (!container.querySelector('.aplayer-body')) return;
+          container.hidden = false;
+          container.parentElement?.querySelector('.article-player-status')?.remove();
+          observer.disconnect();
+        });
+        observer.observe(container, { childList: true, subtree: true });
+        window.setTimeout(() => {
+          if (container.querySelector('.aplayer-body')) return observer.disconnect();
+          container.hidden = true;
+          if (!container.parentElement?.querySelector('.article-player-status')) {
+            const status = document.createElement('p');
+            status.className = 'article-player-status';
+            status.textContent = '音乐服务暂不可用，正文仍可继续阅读。';
+            container.before(status);
+          }
+        }, 8000);
+      }
+    })().catch((error) => {
+      audioAssetsPromise = null;
+      console.warn('Music player unavailable; article text remains readable.', error);
+      for (const player of node.querySelectorAll('meting-js')) {
+        player.hidden = true;
+        if (player.parentElement?.querySelector('.article-player-status')) continue;
+        const status = document.createElement('p');
+        status.className = 'article-player-status';
+        status.textContent = '播放器暂不可用，正文仍可继续阅读。';
+        player.before(status);
+      }
+    });
+    return audioAssetsPromise;
+  }
+
+  function loadAudioScript(src) {
+    const existing = [...document.scripts].find((script) => script.dataset.starryAudioSrc === src);
+    if (existing?.dataset.starryAudioStatus === 'loaded') return Promise.resolve();
+    if (existing?.dataset.starryAudioStatus === 'loading') return existing.starryAudioPromise;
+
+    const script = document.createElement('script');
+    script.src = src;
+    script.async = false;
+    script.dataset.starryAudioSrc = src;
+    script.dataset.starryAudioStatus = 'loading';
+    script.starryAudioPromise = new Promise((resolve, reject) => {
+      script.addEventListener('load', () => {
+        script.dataset.starryAudioStatus = 'loaded';
+        resolve();
+      }, { once: true });
+      script.addEventListener('error', () => {
+        script.remove();
+        reject(new Error(`Music player script failed to load: ${src}`));
+      }, { once: true });
+    });
+    document.head.appendChild(script);
+    return script.starryAudioPromise;
+  }
+
   function waitForImage(image) {
     if (!image) return Promise.reject(new Error('The room illustration is missing.'));
     if (image.complete && image.naturalWidth > 0) return Promise.resolve(image);
@@ -657,10 +754,24 @@ async function start() {
 
 function fallback(error) {
   if (error) console.error('Starfield enhancement stayed in the readable fallback.', error);
+  stopEmbeddedAudio();
   const direct = Boolean(document.body.dataset.starryArticleId);
   const articleNode = document.querySelector('#reader #static-article-fallback .article[data-starry-id], #reader .article[data-starry-id]');
   const staticArticle = document.getElementById('static-article-fallback');
   if (direct && articleNode && staticArticle) staticArticle.replaceChildren(articleNode);
   document.getElementById('reader')?.open && document.getElementById('reader').close();
   document.body.classList.remove('starry-ready');
+}
+
+function stopEmbeddedAudio() {
+  for (const player of window.aplayers || []) {
+    try { player.pause(); } catch {}
+  }
+  const reader = document.getElementById('reader');
+  for (const media of reader?.querySelectorAll('audio, video') || []) {
+    try { media.pause(); } catch {}
+  }
+  for (const button of reader?.querySelectorAll('.aplayer-button.aplayer-pause') || []) {
+    button.click();
+  }
 }

@@ -90,6 +90,9 @@ body[data-room="entering"] .entry-motion, body[data-room="returning"] .entry-mot
 .article-meta { display: flex; flex-wrap: wrap; gap: 8px 16px; color: var(--paper-muted); font-size: 12px; line-height: 1.7; letter-spacing: .5px; }
 .article h1 { margin: 20px 0; color: #293e5b; font: 400 clamp(28px, 3vw, 38px)/1.5 var(--serif); letter-spacing: .5px; text-wrap: balance; overflow-wrap: anywhere; }
 .article-intro { color: var(--paper-muted); font: 15px/2 var(--serif); }
+.article-media { max-width: 100%; margin: 22px 0 28px; overflow: hidden; }
+.article-media meting-js { display: block; width: 100%; }
+.article-player-status { color: var(--paper-muted); font-size: 13px; line-height: 1.8; }
 .article-rule { width: 32px; height: 1px; margin: 24px 0; background: #98a1aa; transform-origin: left; }
 #reader-content, .article-content { color: var(--paper-ink); }
 #reader-content p, .article-content p { margin: 0 0 24px; color: #34485e; font: 16px/2.05 var(--serif); overflow-wrap: anywhere; }
