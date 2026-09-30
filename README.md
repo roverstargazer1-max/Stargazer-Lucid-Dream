@@ -2,15 +2,19 @@
 
 这是一个基于 Hexo 8 的静态博客项目，当前主题为 `hexo-theme-kira`，站点配置在 `_config.yml`，主题配置在 `_config.hexo-theme-kira.yml`。
 
+## 星空博客改版设计
+
+[星空博客首版设计](docs/design/starry-blog.md)保留交互、视觉与历史决定。2026-09-30 用户完成主题化整体复核；后续实施、拆票和验收统一从 [主题化规格](.scratch/starry-blog/spec.md) 进入，状态为 `ready-for-agent`。新版尚未接入正式内容或发布。本地 [V20 星空原型](themes/hexo-theme-kira/prototypes/starfield/README.md) 的优化进度和证据见 [验收记录](.scratch/starry-blog/optimization-v20-acceptance.md)。
+
 ## 环境准备
 
-需要先安装 Node.js 和 npm，然后在项目根目录安装依赖：
+使用 `.nvmrc` 指定的 Node.js `22.19.0` 和 npm。站点根目录只保留活动的 `package-lock.json`，在项目根目录安装锁定依赖：
 
 ```bash
-npm install
+npm ci
 ```
 
-本项目同时存在 `package-lock.json` 和 `pnpm-lock.yaml`。日常协作建议固定一种包管理器；下面的命令以 `package.json` 中已有的 npm scripts 为准。
+旧版构建统一使用 Node `22.19.0`（见 `.nvmrc`）与 npm `package-lock.json`。此前的 `pnpm-lock.yaml` 使用不同的 Hexo 解析版本，原件保存在 `.scratch/starry-blog/baselines/pnpm-lock.yaml`；站点根目录仅保留活动的 npm 锁文件，避免 Netlify 自动选择 pnpm。
 
 ## 常用命令
 

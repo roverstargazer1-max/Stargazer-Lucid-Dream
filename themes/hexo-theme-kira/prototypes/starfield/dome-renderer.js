@@ -1,6 +1,8 @@
 // Ray/sphere intersection maps every pixel to the same world used by article stars.
 // No scene library: a small WebGL pass samples the existing painted environment.
 let renderer=null;
+let cloudTreatment=0;
+export function setCloudTreatment(value){cloudTreatment=Math.max(0,Math.min(.1,value));}
 function createRenderer(image){
   const canvas=document.createElement('canvas');
   const gl=canvas.getContext('webgl',{alpha:true,premultipliedAlpha:false,antialias:false,preserveDrawingBuffer:true});
@@ -9,7 +11,7 @@ function createRenderer(image){
   const fragment=`precision highp float;
     uniform sampler2D plate;
     uniform vec2 size,center;
-    uniform float focal,yaw,pitch,overlay;
+    uniform float focal,yaw,pitch,overlay,cloudTreatment;
     uniform vec3 origin;
     const float PI=3.14159265359;
     float pigmentHash(vec3 p){
@@ -101,6 +103,7 @@ function createRenderer(image){
       float base=dot(top,vec3(.25,.65,.10));
       float cloud=smoothstep(.018,.085,lum-base)*smoothstep(.35,.82,v);
       pigment=mix(pigment,mix(pigment*.82,vec3(.027,.081,.177),.12),1.-smoothstep(.4,.98,elevation));
+      pigment=mix(pigment,vec3(dot(pigment,vec3(.2126,.7152,.0722))),cloud*cloudTreatment);
       vec3 zenith=vec3(.014,.105,.27);
       // Collapse all longitudes to one pigment before the pole to avoid radial seams.
       pigment=mix(pigment,zenith,smoothstep(.48,1.02,elevation));
@@ -128,19 +131,20 @@ function createRenderer(image){
   gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);
   gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.LINEAR);
   gl.texImage2D(gl.TEXTURE_2D,0,gl.RGB,gl.RGB,gl.UNSIGNED_BYTE,image);
-  const uniform=Object.fromEntries(['size','center','focal','yaw','pitch','origin','overlay'].map(key=>[key,gl.getUniformLocation(program,key)]));
+  const uniform=Object.fromEntries(['size','center','focal','yaw','pitch','origin','overlay','cloudTreatment'].map(key=>[key,gl.getUniformLocation(program,key)]));
   // Scenery is static in world space. Keep both passes while only a cloud animates.
   const cache=[0,1].map(()=>({key:null,canvas:document.createElement('canvas')}));
   return {canvas,draw(w,h,camera,settings,overlay){
     const ratio=Math.min(devicePixelRatio||1,1.5);
     const rw=Math.round(w*ratio),rh=Math.round(h*ratio);
     const entry=cache[overlay?1:0];
-    const key=[rw,rh,settings.cx,settings.cy,settings.focal,camera.x,camera.y,camera.z,camera.yaw,camera.pitch].join(',');
+    const key=[rw,rh,settings.cx,settings.cy,settings.focal,camera.x,camera.y,camera.z,camera.yaw,camera.pitch,cloudTreatment].join(',');
     if(entry.key===key)return entry.canvas;
     if(canvas.width!==rw||canvas.height!==rh){canvas.width=rw;canvas.height=rh;gl.viewport(0,0,rw,rh);}
     gl.uniform2f(uniform.size,rw,rh);gl.uniform2f(uniform.center,settings.cx*ratio,settings.cy*ratio);
     gl.uniform1f(uniform.focal,settings.focal*ratio);gl.uniform1f(uniform.yaw,camera.yaw);gl.uniform1f(uniform.pitch,camera.pitch);
     gl.uniform3f(uniform.origin,camera.x,camera.y,camera.z);gl.uniform1f(uniform.overlay,overlay?1:0);
+    gl.uniform1f(uniform.cloudTreatment,cloudTreatment);
     gl.drawArrays(gl.TRIANGLES,0,6);
     if(entry.canvas.width!==rw||entry.canvas.height!==rh){entry.canvas.width=rw;entry.canvas.height=rh;}
     const cached=entry.canvas.getContext('2d');cached.clearRect(0,0,rw,rh);cached.drawImage(canvas,0,0);

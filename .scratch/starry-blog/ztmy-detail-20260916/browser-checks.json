@@ -1,0 +1,32 @@
+{
+  "dimensions": [
+    1672,
+    941
+  ],
+  "image": "http://127.0.0.1:4173/pages/starfield-prototype/assets/room-ztmy-detail-v20.png",
+  "mask": "ready",
+  "maskImage": "url(\"http://127.0.0.1:4173/pages/starfield-prototype/assets/room-window-mask-ztmy-v20.svg\")",
+  "overflow": false,
+  "room": "inside",
+  "viewport": [
+    1403,
+    789
+  ],
+  "entered": true,
+  "returned": {
+    "arrival": null,
+    "entryEnabled": true,
+    "focus": "window-entry",
+    "room": "inside"
+  },
+  "errors": [],
+  "restoredPreview": {
+    "image": "http://127.0.0.1:4173/pages/starfield-prototype/assets/room-ztmy-detail-v20.png",
+    "maskImage": "url(\"http://127.0.0.1:4173/pages/starfield-prototype/assets/room-window-mask-ztmy-v20.svg\")",
+    "room": "inside",
+    "viewport": [
+      1668,
+      1116
+    ]
+  }
+}

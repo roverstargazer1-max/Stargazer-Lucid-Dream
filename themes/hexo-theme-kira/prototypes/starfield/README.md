@@ -1,6 +1,72 @@
 # 星空交互原型
 
-## 当前试作：V13 深蓝雾海与轻触云
+## 当前试作：V20 操作与阅读优化
+
+2026-09-16 细节重绘试作后按作者要求恢复：桌面入口继续采用 [room-poster-detail-v20.png](assets/room-poster-detail-v20.png)，原窗口遮罩也已恢复。细节重绘图、提示词与检查记录保留在 [本次重绘记录](../../../../.scratch/starry-blog/ztmy-detail-20260916.md)，供后续对照。
+
+2026-09-15 插画更新：桌面窗边入口采用作者新提供的 [room-personal-v20.png](assets/room-personal-v20.png)，原样复制，包含新增海报、挂件和书本细节。构图与原图一致，沿用已校准的窗口遮罩与穿窗动画。手机暂沿用独立竖版，待作者选择是否同步重做。更新与检查见 [插画替换记录](../../../../.scratch/starry-blog/room-artwork-update-20260915.md)。
+
+同日海报细化：按作者提供的刺猬、双颈吉他与带环行星参考，用内置 image_gen 重绘墙面小海报。该次生成 [room-poster-detail-v20.png](assets/room-poster-detail-v20.png)，作为后续细化的基底保留。提示词、参考与检查见 [海报重绘记录](../../../../.scratch/starry-blog/poster-redraw-20260915.md)。
+
+打开 [V20 本地原型](http://127.0.0.1:4173/pages/starfield-prototype/?variant=C&scene=painted&v=20&controls=quiet&motion=full&living=1)。启动仍使用 `node themes/hexo-theme-kira/prototypes/starfield/server.mjs`，服务仅监听本机。`v` 是标记，原版对照使用独立的 4174 冻结副本。
+
+简介分为固定头部、单一滚动内容区和固定阅读动作；横屏使用右侧简介。常用控件采用 44px 热区，正文保留楷体标题、浅纸与蓝灰正文，调整了必要提示的字号、对比度和阅读间距。紧凑屏幕查看星图时暂时收起简介，原星位与选中项保留，Escape、再次点星图或提示结束后恢复。
+
+文章光核采用 RGB 通道约 +10% 的轻微增益，光晕、星等、个体差异和云层遮挡保留。停靠视野约放宽 6%，桌面目标星位于宽度约 40% 处，手机保持在简介上方。远云灰度处理和精简小字标已做对照，默认保留原版。
+
+首次穿窗约 2.5 秒、首次简介约 2.8 秒、反向归窗约 2.6 秒。当前访问内完整显露过的同篇简介改为约 0.7 秒；这与读到文末的标记分开。相机到位后即可使用阅读动作。切到时间模式会短暂显示对应年月。
+
+实施参数、逐项证据和环境限制见 [优化验收记录](../../../../.scratch/starry-blog/optimization-v20-acceptance.md)，工作范围见 [V19 优化计划](../../../../.scratch/starry-blog/optimization-plan-v19.md)。需要复查时使用 `node --test .scratch/starry-blog/experience.test.mjs`；在本地 URL 加 `review=1` 可打开内容、文字放大、美术对照和完整状态验收工具，加 `monitor=1` 可记录可见页面的帧回调间隔。它们都位于原型目录，不属于正式博客输出。
+
+冻结原版启动命令：`node .scratch/starry-blog/baseline-server.mjs`。该目录与清单保留了修改前的 46 个文件和素材。跨系统字体、真实触屏与原生页面缩放的验证范围以验收记录为准。
+
+本轮仍是本地 mock 原型；正式文章迁移、路由整合与部署不在这次优化范围。2026-09-30 用户已确认主题化整体方案及 R1–R6 范围调整后规则；后续实施以 [正式规格](../../../../.scratch/starry-blog/spec.md) 为入口。历史版本中的待复核文字描述当时状态，原型仍不代表正式博客已验收。
+
+## V19 穿窗入星
+
+打开 <http://127.0.0.1:4173/pages/starfield-prototype/?variant=C&scene=painted&v=19&controls=quiet&motion=full&living=1>。取消完整环视，保留穿窗侧移、倾斜和约 60° 的连续转向，整段入场从约 9.17 秒缩至 2.5 秒。星光在镜头减速时同步变亮、变清晰，落位即可探索。
+
+保持无框简介、0.8 秒文字显影和 2.6 秒反向归窗。根据后续反馈，简介展开后的白块停顿从 1.1 秒缩至 0.5 秒，整段简介动画从 3.4 秒缩至 2.8 秒。返回从当前实际相机开始，适配新的入场焦距。实现与验证见 [MOTION-STUDY-19.md](MOTION-STUDY-19.md)。仍为本地 mock 原型。
+
+窗边入口已去掉「去窗外看看」及箭头，试用间歇飘散的少量星尘作为视觉引导；悬停或键盘聚焦时，沿原画窗框显露微光。轻过渡模式使用静态微光，点击窗口仍直接开始穿窗。
+
+小屏方位图由固定 142 px 改为随屏幕短边缩放的 96–116 px，横屏高度较小时也使用紧凑尺寸；方位文字和星点同步补偿，保留点击转向。常规桌面仍为 180 px。
+
+以下版本记录描述历史设计；`v` 参数用于标识本次预览，共用当前实现。
+
+## V18 往返窗边
+
+打开 <http://127.0.0.1:4173/pages/starfield-prototype/?variant=C&scene=painted&v=18&controls=quiet&motion=full&living=1>。环视结束后的停稳与星光亮起从合计 4.1 秒缩至约 1.37 秒；简介白块后的显影从 1.6 秒缩至 0.8 秒，并去掉斜向封线。
+
+点击左上标志或回窗边按钮时，从当前星位平滑退回房间，前景反向穿窗，完整过渡约 2.6 秒。点星途中也可返回，轻过渡保持 220 ms。实现与验证见 [MOTION-STUDY-18.md](MOTION-STUDY-18.md)。仍是本地 mock 原型。
+
+## V17 穿窗入夜
+
+打开 <http://127.0.0.1:4173/pages/starfield-prototype/?variant=C&scene=painted&v=17&controls=quiet&motion=full&living=1>。窗外直接显示后续探索的同一片实时星空，原插画保留为房间前景；穿窗时加入侧移与倾斜，月亮、云和星点沿同一相机连续运动。
+
+穿窗 1.9 秒，点击即开始转向，环视一圈加快到 7.8 秒；保留停稳与星光亮起，整段约 11.9 秒。引言白块仍完整停顿 1.1 秒，之后的显影从约 2.4 秒缩至 1.6 秒，整段 4.2 秒。实现、范围与验证见 [MOTION-STUDY-17.md](MOTION-STUDY-17.md)。仍是本地 mock 原型。
+
+## V16 星幕显影
+
+打开 <http://127.0.0.1:4173/pages/starfield-prototype/?variant=C&scene=painted&v=16&controls=quiet&motion=full&living=1>。去掉简介的上下卷柄、硬边框与矩形底板，改为边缘渐隐的夜色承载文字；保持右侧抽入、上下展开、封线消退和逐行显影。白色遮块完整停留从 1.7 秒缩为 1.1 秒。
+
+穿窗与环视使用共同计时：穿窗开始 0.7 秒后就开始转向，环视一圈从 16 秒缩为 12 秒；房间完全淡出时视角已在转动。环视后的停稳、星光亮起保留，整段入场从约 22.2 秒缩为 16.8 秒。「开始探索」、Escape 和轻过渡仍可用。实现与验证见 [MOTION-STUDY-16.md](MOTION-STUDY-16.md)。仍是本地 mock 原型。
+
+## V15 环星书卷
+
+打开 <http://127.0.0.1:4173/pages/starfield-prototype/?variant=C&scene=painted&v=15&controls=quiet&motion=full&living=1>。穿过窗户后，以广角缓慢环视一整圈；远星保持小、暗且朦胧，镜头停稳之后星光再渐渐明亮。环视 16 秒、停顿 0.9 秒、亮起 3.2 秒；右下「开始探索」或 Escape 可跳过。
+
+首次点星时，简介从右侧抽出，像月光下的书卷上下展开。约 1.5 秒展开完毕，整段文字的白色遮块继续保持约 1.7 秒，然后用约 2.4 秒逐行显影；斜向封线同时退去。镜头先到位，简介按自己的节奏完成。手机保留从右侧进入，在下半屏展开，为星点留出位置。再次点星或点「进入阅读」沿用 V14 正文开合。
+
+`motion=soft` 或窗边「轻过渡」省略环视和遮块，使用短淡入。具体时序、实现与验证见 [MOTION-STUDY-15.md](MOTION-STUDY-15.md)。当前仍是本地 mock 原型。
+
+## V14 星光书页
+
+打开 <http://127.0.0.1:4173/pages/starfield-prototype/?variant=C&scene=painted&v=14&controls=quiet&motion=full>。点击窗户进入星空，首次点星先收束星光、推进镜头与显露引言；到位后再点同星，暖色书页从星点抽出、展开，斜向封线退去，雾色遮罩与文字一起变清晰。关闭时反向收回原星点。沿用深蓝厚涂天空、月亮、云层和原有阅读布局。
+
+点星约 1.46 秒，书页展开与显影约 1.46 秒，合上约 0.82 秒。`motion=soft` 或窗边的「轻过渡」可切换到短淡入淡出；没有显式参数时尊重系统减少动态设置。设计映射、实现与验证见 [MOTION-STUDY-14.md](MOTION-STUDY-14.md)。仍为本地 mock 原型，未接入正式文章或发布。
+
+## V13 深蓝雾海与轻触云
 
 打开 <http://127.0.0.1:4173/pages/starfield-prototype/?variant=C&scene=painted&v=13&controls=quiet>。低空与天顶统一深蓝，地平线下补充远山、薄雾与三点暖灯。3 朵独立云可短点按，轻散后约 7 秒恢复；拖动和双指缩放仍控制天空。首屏左侧可找到第一朵，保留仰望、回正与广角方位图。实现与验证见 [ATMOSPHERE-STUDY-13.md](ATMOSPHERE-STUDY-13.md)。
 

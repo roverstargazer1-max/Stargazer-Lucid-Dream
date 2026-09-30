@@ -1,0 +1,158 @@
+{
+  "environment": {
+    "cssZoom": "1",
+    "dpr": 2.5,
+    "rootFont": "16px",
+    "viewport": [
+      1257,
+      641
+    ],
+    "visibility": "visible"
+  },
+  "previewBefore": {
+    "close": {
+      "bottom": 142,
+      "h": 44,
+      "right": 1163.640625,
+      "w": 44,
+      "x": 1119.640625,
+      "y": 98
+    },
+    "closeHit": "deselect",
+    "overflow": false,
+    "preview": {
+      "bottom": 535.6666870117188,
+      "h": 453.6666870117187,
+      "right": 1191.640655517578,
+      "w": 402.2395935058594,
+      "x": 789.4010620117188,
+      "y": 82
+    },
+    "read": {
+      "bottom": 515.6666870117188,
+      "h": 44,
+      "right": 1163.640625,
+      "w": 112,
+      "x": 1051.640625,
+      "y": 471.6666870117187
+    },
+    "readContained": true,
+    "readHit": "read-button",
+    "reasons": 0,
+    "scrollHeight": 451,
+    "scrollTop": 0,
+    "star": [
+      480.796875,
+      237.1354217529297
+    ],
+    "viewport": [
+      1257,
+      617
+    ]
+  },
+  "previewAfter": {
+    "close": {
+      "bottom": 142,
+      "h": 44,
+      "right": 1163.640625,
+      "w": 44,
+      "x": 1119.640625,
+      "y": 98
+    },
+    "closeHit": "deselect",
+    "overflow": false,
+    "preview": {
+      "bottom": 535.6666870117188,
+      "h": 453.6666870117187,
+      "right": 1191.640655517578,
+      "w": 402.2395935058594,
+      "x": 789.4010620117188,
+      "y": 82
+    },
+    "read": {
+      "bottom": 515.6666870117188,
+      "h": 44,
+      "right": 1163.640625,
+      "w": 112,
+      "x": 1051.640625,
+      "y": 471.6666870117187
+    },
+    "readContained": true,
+    "readHit": "read-button",
+    "reasons": 0,
+    "scrollHeight": 451,
+    "scrollTop": 140.6666717529297,
+    "star": [
+      480.796875,
+      237.1354217529297
+    ],
+    "viewport": [
+      1257,
+      617
+    ]
+  },
+  "readerEnd": {
+    "bodyFont": "16px",
+    "overflow": false,
+    "relations": 3,
+    "state": "已到文末"
+  },
+  "afterReturn": {
+    "close": {
+      "bottom": 142,
+      "h": 44,
+      "right": 1163.640625,
+      "w": 44,
+      "x": 1119.640625,
+      "y": 98
+    },
+    "closeHit": "deselect",
+    "overflow": false,
+    "preview": {
+      "bottom": 535.6666870117188,
+      "h": 453.6666870117187,
+      "right": 1191.640655517578,
+      "w": 402.2395935058594,
+      "x": 789.4010620117188,
+      "y": 82
+    },
+    "read": {
+      "bottom": 515.6666870117188,
+      "h": 44,
+      "right": 1163.640625,
+      "w": 112,
+      "x": 1051.640625,
+      "y": 471.6666870117187
+    },
+    "readContained": true,
+    "readHit": "read-button",
+    "reasons": 3,
+    "scrollHeight": 934,
+    "scrollTop": 140.6666717529297,
+    "star": [
+      480.796875,
+      237.1354217529297
+    ],
+    "viewport": [
+      1257,
+      617
+    ]
+  },
+  "focusAfterReturn": "read-button",
+  "media": {
+    "bodyFont": "16px",
+    "dpr": 3,
+    "imageNatural": [
+      2172,
+      724
+    ],
+    "imageWidth": 616,
+    "linkWidth": 611.9010620117188,
+    "overflow": false,
+    "rootFont": "16px",
+    "viewport": [
+      1257,
+      617
+    ]
+  }
+}

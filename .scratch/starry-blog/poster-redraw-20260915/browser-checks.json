@@ -1,0 +1,22 @@
+{
+  "dimensions": [
+    1672,
+    941
+  ],
+  "image": "http://127.0.0.1:4173/pages/starfield-prototype/assets/room-poster-detail-v20.png",
+  "mask": "ready",
+  "overflow": false,
+  "viewport": [
+    1263,
+    789
+  ],
+  "entered": true,
+  "returned": {
+    "arrival": null,
+    "entryEnabled": true,
+    "focus": "window-entry",
+    "room": "inside"
+  },
+  "returnWaitNote": "The 7s browser wait timed out while diagnostics already matched the returned room; the subsequent DOM state was inspected separately.",
+  "errors": []
+}

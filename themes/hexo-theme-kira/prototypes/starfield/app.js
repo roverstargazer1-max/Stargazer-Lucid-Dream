@@ -6,12 +6,21 @@ import { painted, paintPaintedSky, paintCloudVeil, createRoom } from './painted.
 import {arrangeDome,domePosition,domeDestination,growDomeArticle,HOME_ELEVATION,MIN_SKY_ZOOM,clamp,direction,wrapAngle} from './dome.js';
 import {createSkyMap} from './sky-map.js';
 import {createInteractiveClouds} from './interactive-clouds.js';
+import {createStarMotion,approachFrame,smooth,ENTRANCE,entranceFrame,returnFrame} from './motion.js';
+import {dockTarget} from './experience.js';
 
 // Three structural variants of a new full-screen surface, on one local-only route.
 // Prototype question: can quiet space, real camera travel and reading form one flow?
 const $ = id => document.getElementById(id);
 const canvas = $('sky'), ctx = canvas.getContext('2d');
 const world = $('world'), reader = $('reader'), scroller = $('reading-scroll');
+const icon = path => `<svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="${path}"/></svg>`;
+const arrows={right:icon('M4 12h16m-6-6 6 6-6 6'),left:icon('M20 12H4m6-6-6 6 6 6'),close:icon('m6 6 12 12M18 6 6 18')};
+$('read-button').innerHTML=`进入阅读 ${arrows.right}`;
+$('close-reader').innerHTML=`${arrows.left} 返回星空`;
+$('deselect').innerHTML=arrows.close;$('close-egg').innerHTML=arrows.close;
+$('home').innerHTML=icon('m3 10 9-7 9 7v11H3V10Zm6 11v-8h6v8');
+$('back').innerHTML=icon('M4 4v7h7M4 11c2-7 15-7 16 2 1 6-5 9-10 7');
 const interactiveClouds=painted?createInteractiveClouds(world):null;
 const names = { A: '屋顶入梦', B: '观测手记', C: '漂浮书页' };
 const query = new URLSearchParams(location.search);
@@ -23,7 +32,7 @@ let living=query.get('living')==='0'?false:query.get('living')==='1'?true:!ambie
 const ambient={x:0,y:0,targetX:0,targetY:0,seconds:0};
 let lastFrame=0;
 document.addEventListener('visibilitychange',()=>{lastFrame=0;});
-function ambientBlocked(){return document.hidden||reader.open||$('specimen-dialog').open||$('egg-dialog').open;}
+function ambientBlocked(){return document.hidden||!!arrival||!!retreat||reader.open||$('specimen-dialog').open||$('egg-dialog').open;}
 world.addEventListener('pointermove',e=>{
   if(e.pointerType!=='mouse'||e.buttons||!interactiveSurface(e.target))return;
   ambient.targetX=Math.max(-1,Math.min(1,e.clientX/innerWidth*2-1));
@@ -34,11 +43,20 @@ let variant = names[query.get('variant')] ? query.get('variant') : 'C';
 let width = innerWidth, height = innerHeight, dpr = Math.min(devicePixelRatio, 2);
 let camera = { x: 0, y: 0, z: 0, yaw: 0, pitch: painted?HOME_ELEVATION:0, zoom:1 };
 let mode = 'relation', selected = null, phase = 'idle', travel = null;
+let arrival = null, retreat = null, skyClarity = 1;
 let history = [], readIds = new Set(), readingSnapshot = null, hovered = null;
+let readerTrigger=null, timeCueUntil=0, uiRects=[], labelFontSize=15, reviewMedia=false, uiMeasureFrame=0;
 let visible = [], time = 0, lastUI = 0;
 // The author explicitly requested visible camera travel for this experiment.
 // This local switch remains available; no system preferences are changed.
-let reducedMotion = false;
+let reducedMotion = query.get('motion') === 'full' ? false : query.get('motion') === 'soft' || ambientPreference.matches;
+const starMotion = createStarMotion({preview:$('preview'),reader,scroller,isSoft:()=>reducedMotion});
+const seal = document.createElementNS('http://www.w3.org/2000/svg','svg');
+seal.classList.add('reading-seal');seal.setAttribute('viewBox','0 0 1000 1000');seal.setAttribute('preserveAspectRatio','none');seal.setAttribute('aria-hidden','true');
+for(const d of ['M0 1000 L1000 0','M1000 0 L0 1000']){
+  const line=document.createElementNS(seal.namespaceURI,'path');line.setAttribute('d',d);line.setAttribute('pathLength','1');seal.append(line);
+}
+reader.append(seal);
 let seed = 27;
 function random() { seed = (seed * 1664525 + 1013904223) >>> 0; return seed / 4294967296; }
 const dust = Array.from({ length: 950 }, () => ({ x: (random() - .5) * 23000, y: (random() - .5) * 15000, z: 250 + random() * 16000, size: .15 + random() * .75, alpha: .08 + random() * .42, warm: random() > .78 }));
@@ -113,11 +131,21 @@ function resize() {
   canvas.width = width * dpr; canvas.height = height * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
   $('gesture-help').textContent = painted?(width<=760?'单指转动穹顶 · 双指靠近':'拖动转动穹顶 · 滚轮靠近 · 方向键转向'):width <= 760 ? '单指巡视 · 双指前行 · 点星靠近' : '拖动巡视 · 滚轮前行 · 点星靠近';
   if (selected && phase === 'settled') camera = destination(articles.find(a => a.id === selected));
+  if (selected && travel) travel.to = destination(articles.find(a => a.id === selected));
+  if (readingSnapshot?.selected) readingSnapshot.camera = destination(articles.find(a => a.id === readingSnapshot.selected));
+  if (document.body.dataset.room === 'inside') camera.zoom = width <= 760 ? .78 : 1;
+  starMotion.resize();
+  positionTimeCue();
+  measureUI();
 }
 function snapshot() { return { camera: { ...camera }, selected, phase: phase === 'moving' ? 'selected' : phase }; }
 function pushStop() { if (phase === 'moving') return; history.push(snapshot()); if (history.length > 30) history.shift(); }
 function destination(article) {
-  if(painted)return domeDestination(position(article),camera);
+  if(painted){
+    const settings=projectionSettings();settings.focal=settings.focal/camera.zoom*1.55;
+    const preview=$('preview').getBoundingClientRect();
+    return domeDestination(position(article),camera,settings,dockTarget(width,height,preview));
+  }
   const p = position(article), { cx, cy, focal } = projectionSettings();
   const dist = width <= 760 ? 620 : 780;
   const targetX = width * (width <= 760 ? .43 : variant === 'B' ? .64 : variant === 'C' ? .5 : .49);
@@ -127,15 +155,17 @@ function destination(article) {
   const rz=dist*cp-ry*sp;
   return {x:p.x-rx*ca-rz*sa,y:p.y-ry*cp-dist*sp,z:p.z-rz*ca+rx*sa,yaw:camera.yaw,pitch:camera.pitch};
 }
-function moveTo(to, duration = 1050, onDone) {
-  travel = { from: { ...camera }, to:{...camera,...to}, start: performance.now(), duration: reducedMotion ? 220 : duration, onDone };
+function moveTo(to, duration = 1500, onDone) {
+  hideTimeCue();
+  travel = { from: { ...camera }, to:{...camera,...to}, start: performance.now(), duration: reducedMotion ? 220 : duration, onDone:()=>{onDone?.();showTimeCue();} };
   phase = 'moving'; updateUI();
+  if(selected)starMotion.beginApproach(travel.start,selected);else starMotion.clearSelection();
 }
 function selectStar(id, save = true) {
   if (selected === id && phase === 'moving') return;
   if (save) pushStop();
-  selected = id;
-  moveTo(destination(articles.find(a => a.id === id)), 1050, () => {
+  starMotion.interrupt(); selected = id; updateUI();
+  moveTo(destination(articles.find(a => a.id === id)), 1500, () => {
     phase = 'settled'; updateUI(); announce('已靠近。再次点选这颗星，或选择进入阅读。');
   });
   announce('正在靠近文章星。');
@@ -147,11 +177,13 @@ function activateStar(id) {
   selectStar(id);
 }
 function interrupt() {
-  if (travel) { travel = null; phase = selected ? 'selected' : 'idle'; updateUI(); }
+  hideTimeCue();
+  // The scroll can still be developing after the camera has already settled.
+  if (travel || selected) { travel = null; starMotion.interrupt(); phase = selected ? 'selected' : 'idle'; updateUI(); }
 }
 function home() {
-  if (reader.open) closeReader();
-  if(painted){roomScene?.show();return;}
+  if (reader.open) {closeReader(home);return;}
+  if(painted){roomScene?.returnHome();return;}
   pushStop(); selected = null;
   moveTo({ x: 0, y: 0, z: 0, yaw: 0, pitch: 0 }, 1300, () => { phase = 'idle'; updateUI(); });
 }
@@ -169,46 +201,114 @@ function switchMode(next) {
 }
 function related(id) { return relations.filter(r => r[0] === id || r[1] === id).map(r => ({ article: articles.find(a => a.id === (r[0] === id ? r[1] : r[0])), reason: r[2] })); }
 function announce(message) { $('announcement').textContent = message; }
+function hideTimeCue(){timeCueUntil=0;$('time-cue').hidden=true;}
+function positionTimeCue(){
+  const cue=$('time-cue');cue.style.removeProperty('top');cue.style.removeProperty('left');
+  if(cue.hidden||width>760||height<=width)return;
+  const bottom=selected&&!$('preview').hidden?$('preview').getBoundingClientRect().top-8:height*.45;
+  cue.style.left='16px';cue.style.top=`${bottom-cue.getBoundingClientRect().height}px`;
+}
+function showTimeCue(){
+  if(mode!=='time'||reader.open||roomScene?.active)return;
+  const article=articles.find(a=>a.id===selected)||visible.slice().sort((a,b)=>Math.hypot(a.x-width/2,a.y-height/2)-Math.hypot(b.x-width/2,b.y-height/2))[0]?.article;
+  if(!article)return;
+  const [year,month]=article.date.split('.');
+  $('time-cue').textContent=`${year} 年 ${Number(month)} 月`;$('time-cue').hidden=false;timeCueUntil=performance.now()+3000;
+  positionTimeCue();
+}
+function measureUI(){
+  uiRects=[...document.querySelectorAll('.navigation,.masthead,#sky-map-controls,#sky-map,#preview,.signal-egg')].filter(e=>!e.hidden).map(e=>e.getBoundingClientRect()).filter(r=>r.width&&r.height);
+  const label=document.querySelector('.star-label');if(label)labelFontSize=parseFloat(getComputedStyle(label).fontSize);
+}
+function scheduleUIMeasure(){
+  cancelAnimationFrame(uiMeasureFrame);
+  // Map controls become visible in the scene RAF after a reader/room transition.
+  uiMeasureFrame=requestAnimationFrame(measureUI);
+}
+function setText(id, text) { if($(id).textContent!==text)$(id).textContent=text; }
 function updateUI() {
   const article = articles.find(a => a.id === selected);
+  world.setAttribute('aria-busy',String(phase==='moving'||!!arrival));
   document.body.classList.toggle('exploring', !!selected || camera.z > 100 || Math.abs(camera.yaw) > .15);
   $('back').disabled = history.length === 0;
   $('relation-mode').setAttribute('aria-pressed', mode === 'relation'); $('time-mode').setAttribute('aria-pressed', mode === 'time');
   $('preview').hidden = !article;
-  $('path-legend').textContent=selected?(navigationOn?(mode==='time'?'实线：内容关联 · 虚线：时间顺序':'实线：内容关联 · 虚线：探索路径'):'实线：内容关联'):(navigationOn?(mode==='time'?'虚线：时间顺序':'虚线：探索路径'):'');
+  if(!article)starMotion.clearSelection();
+  $('path-legend').textContent=mode==='time'?(navigationOn?'虚线：时间顺序':''):selected?(navigationOn?'实线：内容关联 · 虚线：探索路径':'实线：内容关联'):(navigationOn?'虚线：探索路径':'');
   if (article) {
-    $('preview-number').textContent = `NO. ${String(articles.indexOf(article) + 1).padStart(2, '0')}`;
-    $('preview-date').textContent = article.date; $('preview-title').textContent = article.title;
-    $('preview-tag').textContent = article.tag; $('preview-intro').textContent = article.intro;
-    $('approach-status').textContent = phase === 'moving' ? '正在靠近 · · ·' : phase === 'settled' ? '再点这颗星，展开文字' : '点选这颗星，重新靠近';
+    if($('preview').dataset.article!==article.id){$('preview-scroll').scrollTop=0;$('preview').dataset.article=article.id;}
+    // Pointer-up and mode changes also refresh status. Preserve the live ink covers.
+    setText('preview-number',`NO. ${String(articles.indexOf(article) + 1).padStart(2, '0')}`);
+    setText('preview-date',article.date);setText('preview-title',article.title);
+    setText('preview-tag',article.tag);setText('preview-intro',article.intro);
+    $('preview-intro').hidden=!article.intro;
+    $('approach-status').textContent = phase === 'moving' ? '正在靠近 · · ·' : phase === 'settled' ? '再点星，阅读' : '点星，重新靠近';
     $('read-button').disabled = phase !== 'settled';
     $('known-reasons').replaceChildren();
     if (readIds.has(selected)) related(selected).forEach(r => { const div = document.createElement('div'); div.textContent = `↗ ${r.reason}`; $('known-reasons').append(div); });
   }
   $('journey-label').textContent = article ? `${mode === 'relation' ? '关联' : '时间'} · ${article.title}` : painted?'窗外 · 自由巡视':camera.z > 100 ? '星空 · 自由巡视' : '屋顶 · 夜的起点';
-  updateInspector();
+  measureUI();scheduleUIMeasure();updateInspector();
 }
 function updateInspector() {
   $('state-output').textContent = `方案    ${variant} · ${names[variant]}\n模式    ${mode === 'relation' ? '关联' : '时间'}\n阶段    ${phase}\n选中    ${selected || '—'}\n镜头    ${[camera.x,camera.y,camera.z].map(Math.round).join(', ')}\n方向    ${camera.yaw.toFixed(2)}, ${camera.pitch.toFixed(2)}\n动画    ${reducedMotion ? '减少动态' : '完整推进'}\n星光    ${living?'微动':'静态'} · ${ambient.seconds.toFixed(1)}s\n微视差  ${ambient.x.toFixed(2)}, ${ambient.y.toFixed(2)} × 3px\n视野    ${visible.length} 颗文章星\n已读    ${[...readIds].join(', ') || '—'}\n停靠点  ${history.length}\n路径    ${navigationEdges.length} 条 / 画面 ${drawnPaths} 条\n数据    ${articles.length} 篇虚构文章 / 仅内存`;
 }
 function openReader() {
   if (!selected || phase !== 'settled') return;
-  readingSnapshot = snapshot();
+  readingSnapshot = snapshot();readerTrigger=document.activeElement;hideTimeCue();
   const article = articles.find(a => a.id === selected);
   $('reader-title').textContent = article.title; $('reader-date').textContent = article.date;
   $('reader-tag').textContent = article.tag; $('reader-intro').textContent = article.intro;
-  $('reader-content').replaceChildren(...article.paragraphs.map(text => { const p = document.createElement('p'); p.textContent = text; return p; }));
+  $('reader-intro').hidden=!article.intro;
+  $('reader-content').replaceChildren(...article.paragraphs.map(text => {
+    const p=document.createElement('p');
+    if(reviewMedia&&text.startsWith('https://example.com/')){const a=document.createElement('a');a.href=text;a.textContent=text;p.append(a);}else p.textContent=text;
+    return p;
+  }));
+  if(reviewMedia){const img=document.createElement('img');img.src='./assets/painted-sky-v11.png';img.width=2172;img.height=724;img.alt='用于检查正文排版的厚涂星空样本';$('reader-content').prepend(img);}
   $('reader-links').replaceChildren(); $('reading-relations').hidden = true;
-  reader.showModal(); phase = 'reading'; scroller.scrollTop = 0;
-  $('close-reader').focus(); updateInspector(); requestAnimationFrame(checkRead);
+  $('reading-state').textContent=readIds.has(selected)?'已到文末':'沿着文字，慢慢往下';
+  $('reading-progress').textContent=readIds.has(selected)?'100%':'0%';
+  reader.showModal(); phase = 'opening'; scroller.scrollTop = 0;
+  const point=project(position(article));
+  starMotion.open(point,()=>{phase='reading';updateInspector();checkRead();});
+  $('close-reader').focus(); updateInspector();
 }
-function closeReader() {
-  reader.close();
-  if (readingSnapshot) { camera = { ...readingSnapshot.camera }; selected = readingSnapshot.selected; phase = readingSnapshot.phase; }
-  readingSnapshot = null; updateUI(); targetElements.get(selected)?.focus({ preventScroll: true });
+function finishArrival() {
+  if(!arrival||roomScene?.active)return;
+  const end=entranceFrame(ENTRANCE.duration,width<=760?.78:1);
+  camera={x:end.x,y:end.y,z:end.z,yaw:end.yaw,pitch:end.pitch,zoom:end.zoom};
+  arrival=null;skyClarity=1;phase='idle';
+  delete document.body.dataset.arrival;
+  world.style.removeProperty('--entry-bank');world.style.removeProperty('--entry-scale');
+  world.style.setProperty('--sky-clarity','1');world.inert=false;
+  updateUI();$('home').focus({preventScroll:true});
+}
+function updateArrival(now) {
+  if(!arrival)return;
+  const frame=entranceFrame(now-arrival.start,width<=760?.78:1);
+  camera={x:frame.x,y:frame.y,z:frame.z,yaw:frame.yaw,pitch:frame.pitch,zoom:frame.zoom};
+  skyClarity=frame.clarity;
+  document.body.dataset.arrival=frame.stage;
+  world.style.setProperty('--sky-clarity',skyClarity.toFixed(3));
+  world.style.setProperty('--entry-bank',`${frame.bank}rad`);
+  world.style.setProperty('--entry-scale',String(1+Math.abs(frame.bank)*Math.max(width/height,height/width)*1.1));
+  if(frame.done)finishArrival();
+}
+function closeReader(afterClose) {
+  if(!reader.open||phase==='closing')return;
+  phase='closing';updateInspector();
+  starMotion.close(()=>{
+    reader.close();
+    if (readingSnapshot) { camera = { ...readingSnapshot.camera }; selected = readingSnapshot.selected; phase = readingSnapshot.phase; }
+    readingSnapshot = null; updateUI();
+    const trigger=readerTrigger?.isConnected&&!readerTrigger.hidden?readerTrigger:targetElements.get(selected);
+    trigger?.focus({preventScroll:true});readerTrigger=null;
+    if(typeof afterClose==='function')afterClose();
+  },selected?project(position(articles.find(a=>a.id===selected))):null);
 }
 function checkRead() {
-  if (!reader.open) return;
+  if (!reader.open || phase!=='reading') return;
   const endRect = $('reader-content').getBoundingClientRect(), scrollRect = scroller.getBoundingClientRect();
   const reached = endRect.bottom <= scrollRect.bottom + 2;
   if (reached && !readIds.has(selected)) { readIds.add(selected); revealReadingLinks(); announce(related(selected).length?'已到达正文末尾，关联理由已显露。':'已到达正文末尾。'); }
@@ -216,7 +316,7 @@ function checkRead() {
   const contentEnd = $('reader-content').offsetTop + $('reader-content').offsetHeight;
   const progress = Math.min(100, Math.round((scroller.scrollTop + scroller.clientHeight) / contentEnd * 100));
   $('reading-progress').textContent = `${readIds.has(selected) ? 100 : progress}%`;
-  $('reading-state').textContent = readIds.has(selected) ? (related(selected).length?'已抵达文末 · 关联理由已显露':'已抵达文末') : '沿着文字，慢慢往下';
+  $('reading-state').textContent = readIds.has(selected) ? '已到文末' : '沿着文字，慢慢往下';
   updateInspector();
 }
 function revealReadingLinks() {
@@ -224,7 +324,7 @@ function revealReadingLinks() {
   related(selected).forEach(({ article, reason }) => {
     const button = document.createElement('button'); const title = document.createElement('strong'); const text = document.createElement('span');
     title.textContent = article.title; text.textContent = reason; button.append(title, text);
-    button.onclick = () => { closeReader(); selectStar(article.id); };
+    button.onclick = () => closeReader(()=>selectStar(article.id));
     $('reader-links').append(button);
   });
 }
@@ -241,7 +341,7 @@ function cycleVariant(step) { const keys = Object.keys(names); setVariant(keys[(
 
 // Tiny stars occupy little visual space, but their HTML hit areas are 44px.
 const pointers = new Map(); let gestureMoved = false, multiTouch = false, previousPinch = 0, press = null;
-function interactiveSurface(target) { return !roomScene?.active && (target === canvas || target.closest('.star-target')); }
+function interactiveSurface(target) { return !arrival && !roomScene?.active && (target === canvas || target.closest('.star-target')); }
 world.addEventListener('pointerdown', e => {
   if (!interactiveSurface(e.target) || reader.open) return;
   pointers.set(e.pointerId, { x: e.clientX, y: e.clientY }); world.setPointerCapture(e.pointerId);
@@ -295,7 +395,7 @@ function moveForward(amount) {
   if (selected) phase='selected';
 }
 function drawBackground() {
-  (painted?paintPaintedSky:paintSky)(ctx,width,height,camera,projectionSettings(),{x:ambient.x,y:ambient.y,seconds:living?ambient.seconds:null});
+  (painted?paintPaintedSky:paintSky)(ctx,width,height,camera,projectionSettings(),{x:ambient.x,y:ambient.y,seconds:living?ambient.seconds:null,clarity:skyClarity});
   if(painted)return;
   // Nearby dust uses finite world positions, unlike the far celestial sphere.
   for (const star of dust) {
@@ -320,7 +420,7 @@ function drawBackground() {
 }
 function drawPaths(allPoints){
   drawnPaths=0;const hints=[];$('edge-guide').hidden=true;
-  if(!navigationOn||lineMotion.opacity<.01)return;
+  if(roomScene?.active||arrival||phase==='entering'||!navigationOn||lineMotion.opacity<.01)return;
   const box={left:32,right:width-32,top:150,bottom:height-130};
   const lookup=new Map(allPoints.map(p=>[p.article.id,p]));
   const edges=mode==='time'?articles.slice(1).flatMap((a,i)=>a.isolated||articles[i].isolated?[]:[[articles[i].id,a.id]]):navigationEdges;
@@ -355,15 +455,19 @@ function drawPaths(allPoints){
   }
   const hint=hints.sort((a,b)=>a.score-b.score)[0];
   if(hint&&phase!=='moving'&&lineMotion.opacity>.5){
-    const button=$('edge-guide');button.hidden=false;button.style.left=hint.p.x+'px';button.style.top=hint.p.y+'px';
-    button.style.opacity=String(lineMotion.opacity);
-    button.textContent=hint.isolated?'·':'›';button.style.transform=`translate(-50%,-50%) rotate(${hint.isolated?0:Math.atan2(hint.p.y-height/2,hint.p.x-width/2)}rad)`;button.title=hint.isolated?'附近有一颗独立的文章星':'沿路径还有文章星';
+    const candidates=[hint.p,...[102,height*.34,height*.5,height*.66,height-100].flatMap(y=>[{x:44,y},{x:width-44,y}])];
+    const point=candidates.find(p=>p.x>=24&&p.x<=width-24&&p.y>=24&&p.y<=height-24&&!uiRects.some(r=>p.x+24>r.left&&p.x-24<r.right&&p.y+24>r.top&&p.y-24<r.bottom)&&!allPoints.some(s=>Math.abs(s.x-p.x)<46&&Math.abs(s.y-p.y)<46));
+    if(!point)return;
+    const button=$('edge-guide');button.hidden=false;button.style.left=point.x+'px';button.style.top=point.y+'px';
+    button.style.opacity=String(lineMotion.opacity*.95);if(!button.firstElementChild)button.innerHTML=arrows.right;button.style.transform='translate(-50%,-50%)';
+    const target=project(position(hint.target));button.firstElementChild.style.rotate=`${Math.atan2(target.y-point.y,target.x-point.x)}rad`;
+    button.title=hint.isolated?'附近有一颗独立的文章星':'沿路径还有文章星';
     button.setAttribute('aria-label',hint.isolated?'靠近附近的独立文章星':'沿路径寻找下一颗文章星');button.onclick=()=>selectStar(hint.target.id);
   }
 }
 function drawConnections(points) {
   const lookup=new Map(points.map(p=>[p.article.id,p]));
-  if(!selected)return;
+  if(!selected||mode!=='relation')return;
   const origin=lookup.get(selected);if(!origin)return;
   related(selected).forEach(({article})=>{
     const end=lookup.get(article.id);if(!end)return;
@@ -394,17 +498,21 @@ function drawStars() {
     button.classList.toggle('is-selected',active);button.classList.toggle('near',depth<4200 || hovered===article.id);
     button.classList.toggle('label-left',x>width-190);
     button.setAttribute('aria-label',`${active&&phase==='settled'?'阅读文章':'选择文章'}：${article.title}`);
-    paintArticleLight(ctx,x,y,article.id,{depth:painted?depth/3:depth,active,hover:hovered===article.id,seconds:living?ambient.seconds:null,importance:article.importance});
+    ctx.save();
+    ctx.globalAlpha=.38+.62*skyClarity;
+    if(skyClarity<1)ctx.filter=`blur(${((1-skyClarity)*1.25).toFixed(2)}px)`;
+    paintArticleLight(ctx,x,y,article.id,{depth:painted?depth/3:depth,active:false,hover:hovered===article.id&&!active,seconds:living?ambient.seconds:null,importance:article.importance,zoom:.62+.38*skyClarity});
+    ctx.restore();
   });
   // Hide points that are behind the camera too.
   for(const article of articles)if(!points.some(p=>p.article.id===article.id))targetElements.get(article.id).hidden=true;
   placeLabels(points);
 }
 function placeLabels(points){
-  const occupied=[],fontSize=painted?(width<=760?13:16.5):width<=760?10:12,labelHeight=width<=760?17:33;
+  const occupied=uiRects.map(r=>({x:r.left,y:r.top,w:r.width,h:r.height})),fontSize=labelFontSize,labelHeight=fontSize*1.5;
   for(const p of [...points].sort((a,b)=>(b.article.id===selected)-(a.article.id===selected)||a.depth-b.depth)){
     const label=targetElements.get(p.article.id).querySelector('.star-label');
-    const w=Math.min(width<=760?150:250,p.article.title.length*fontSize+6);
+    const w=Math.min(width<=760?150:250,p.article.title.length*(fontSize+1)+6);
     const options=[
       {x:p.x+15,y:p.y-6}, {x:p.x-w-15,y:p.y-6},
       {x:Math.max(12,Math.min(width-w-12,p.x-w/2)),y:p.y+27},
@@ -412,13 +520,17 @@ function placeLabels(points){
     ];
     const fits=r=>r.x>=10&&r.x+w<width-10&&r.y>80&&r.y+labelHeight<height-100;
     const free=r=>!occupied.some(q=>r.x<q.x+q.w+6&&r.x+w+6>q.x&&r.y<q.y+q.h+5&&r.y+labelHeight+5>q.y);
-    const box=options.find(r=>fits(r)&&free(r))||options.find(fits)||options[0];
+    const box=options.find(r=>fits(r)&&free(r));
+    label.classList.toggle('label-crowded',!box);if(!box)continue;
+    label.style.maxWidth=w+'px';
     label.style.left=(box.x-p.x+22)+'px';label.style.right='auto';label.style.top=(box.y-p.y+22)+'px';label.style.textAlign='left';
     occupied.push({...box,w,h:labelHeight});
   }
 }
 function animate(now) {
   time=now;
+  if(timeCueUntil&&now>=timeCueUntil)hideTimeCue();
+  updateArrival(now);
   const elapsed=Math.max(0,(now-(lastFrame||now))/1000),dt=Math.min(.05,elapsed);lastFrame=now;
   if(!ambientBlocked()){
     if(living)ambient.seconds+=dt;
@@ -431,9 +543,14 @@ function animate(now) {
   }
   if(travel){
     const flight=travel,t=Math.min(1,(now-flight.start)/Math.max(1,flight.duration));
-    // Fast acceleration followed by a soft approach; position always interpolates.
-    const ease=1-Math.pow(1-t,3);
-    for(const key of Object.keys(camera))camera[key]=flight.from[key]+(flight.to[key]-flight.from[key])*ease;
+    // Turn toward the chosen star first; translation and the lens catch up gently.
+    // All channels have zero velocity at both ends, including a rapid retarget.
+    const frame=approachFrame(t);
+    for(const key of Object.keys(camera)){
+      const ease=reducedMotion?smooth(t):key==='yaw'||key==='pitch'?frame.aim:key==='zoom'?frame.lens:frame.distance;
+      camera[key]=flight.from[key]+(flight.to[key]-flight.from[key])*ease;
+    }
+    if(selected)starMotion.setApproach(t);
     if(t===1){travel=null;flight.onDone?.();}
   }
   updateLineMotion(now,dt);
@@ -448,8 +565,10 @@ function animate(now) {
   if(painted){
     paintCloudVeil(ctx,width,height,camera,projectionSettings());
     interactiveClouds?.paint(ctx,width,height,camera,projectionSettings());
-    skyMap?.update(camera,projectionSettings(),articles.map(article=>({id:article.id,point:position(article)})),selected,!roomScene?.active&&!ambientBlocked(),width,height,now);
+    skyMap?.update(camera,projectionSettings(),articles.map(article=>({id:article.id,point:position(article)})),selected,!arrival&&!roomScene?.active&&!ambientBlocked(),width,height,now);
   }
+  if(selected)starMotion.paintFocus(ctx,project(position(articles.find(a=>a.id===selected))));
+  starMotion.tick(now);
   for(let i=meteors.length-1;i>=0;i--){
     const m=meteors[i],age=(now-m.start)/1800;if(age>1){meteors.splice(i,1);continue;}
     ctx.strokeStyle=`rgba(187,213,239,${Math.sin(age*Math.PI)*.65})`;ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(m.x+age*width*.22,m.y+age*height*.16);ctx.lineTo(m.x+age*width*.22-55,m.y+age*height*.16-30);ctx.stroke();
@@ -477,18 +596,23 @@ roofSelect.onchange=applyRoofStyle;applyRoofStyle();
 $('roof-home').onclick=home;
 $('relation-mode').onclick=()=>switchMode('relation');$('time-mode').onclick=()=>switchMode('time');
 $('read-button').onclick=openReader;$('close-reader').onclick=closeReader;
-$('deselect').onclick=()=>{interrupt();selected=null;phase='idle';updateUI();};
+function deselect(){const trigger=targetElements.get(selected);interrupt();selected=null;phase='idle';updateUI();(trigger&&!trigger.hidden?trigger:$('home')).focus({preventScroll:true});}
+$('deselect').onclick=deselect;
 reader.addEventListener('cancel',e=>{e.preventDefault();closeReader();});
 scroller.addEventListener('scroll',checkRead,{passive:true});
 $('prev-variant').onclick=()=>cycleVariant(-1);$('next-variant').onclick=()=>cycleVariant(1);
 const motionButton = document.createElement('button');
 motionButton.id='motion-toggle'; motionButton.className='motion-toggle';
 function updateMotionButton(){motionButton.textContent=reducedMotion?'轻过渡':'镜头推进';motionButton.setAttribute('aria-label',reducedMotion?'开启镜头推进动画':'减少镜头动画');}
-motionButton.onclick=()=>{reducedMotion=!reducedMotion;updateMotionButton();updateInspector();};
+motionButton.onclick=()=>{reducedMotion=!reducedMotion;roomScene?.setSoft(reducedMotion);updateMotionButton();updateInspector();};
 document.querySelector('.mock-badge').replaceWith(motionButton);updateMotionButton();
 document.addEventListener('keydown',e=>{
+  if(arrival){if(e.key==='Escape'){e.preventDefault();finishArrival();}return;}
   if(roomScene?.active)return;
+  if(e.key==='Escape'&&skyMap?.dismiss()){e.preventDefault();return;}
   if(reader.open||$('specimen-dialog').open||$('egg-dialog').open||e.target.closest('input,textarea,select,[contenteditable]'))return;
+  if(e.key==='Escape'&&selected){e.preventDefault();deselect();return;}
+  if(e.target.closest('#preview-scroll,.art-study-bar'))return;
   if(painted&&['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(e.key)){
     e.preventDefault();interrupt();
     if(e.key==='ArrowLeft')camera.yaw-=.12;if(e.key==='ArrowRight')camera.yaw+=.12;
@@ -596,16 +720,53 @@ if(painted){
   });
   $('home').title='回到窗边';$('home').setAttribute('aria-label','回到窗边');
   $('brand').setAttribute('aria-label','观星者的清醒梦，回到窗边');
-  document.querySelector('.art-study-bar summary').innerHTML='穹顶试作 <span>13</span>';
-  $('study-caption').textContent='深蓝雾海 · 远山灯火 · 轻触云朵';
+  document.querySelector('.art-study-bar summary').innerHTML='穿窗入星 <span>20</span>';
+  $('study-caption').textContent='顺势转向 · 星光渐清 · 缓缓归窗';
   roomScene=createRoom({
-    onEnter(){
-      camera={x:0,y:0,z:-260,yaw:0,pitch:HOME_ELEVATION,zoom:1};
-      moveTo({x:0,y:0,z:0,yaw:0,pitch:HOME_ELEVATION,zoom:1},2200,()=>{phase='idle';updateUI();});
+    onEnter(start){
+      const frame=entranceFrame(0,width<=760?.78:1);
+      camera={x:frame.x,y:frame.y,z:frame.z,yaw:frame.yaw,pitch:frame.pitch,zoom:frame.zoom};
+      skyClarity=reducedMotion?1:0;
+      document.body.dataset.arrival='passage';
+      world.style.setProperty('--sky-clarity',String(skyClarity));
+      // The window already exposes this camera; never swap sky canvases or reset its clock.
+      if(!reducedMotion){arrival={start};updateArrival(start);}
+      phase='entering';updateUI();
     },
-    onReturn(){
-      travel=null;selected=null;phase='idle';history=[];
-      camera={x:0,y:0,z:0,yaw:0,pitch:HOME_ELEVATION,zoom:1};updateUI();
+    onProgress(progress){
+      if(reducedMotion){
+        const start=entranceFrame(0,width<=760?.78:1),t=smooth(progress);
+        camera={x:start.x*(1-t),y:start.y*(1-t),z:start.z*(1-t),yaw:0,pitch:start.pitch,zoom:start.zoom+(.72-start.zoom)*t};
+      }
+    },
+    onEntered(){
+      if(reducedMotion){
+        delete document.body.dataset.arrival;phase='idle';updateUI();$('home').focus({preventScroll:true});return;
+      }
+      phase='arriving';world.inert=true;
+      updateArrival(performance.now());updateUI();
+    },
+    onReturnStart(){
+      hideTimeCue();
+      retreat={camera:{...camera},clarity:skyClarity};
+      travel=null;arrival=null;selected=null;phase='returning';history=[];starMotion.clearSelection();
+      document.body.dataset.arrival='returning';updateUI();
+    },
+    onReturnProgress(progress){
+      const frame=returnFrame(progress,retreat.camera,width<=760?.78:1);
+      camera={x:frame.x,y:frame.y,z:frame.z,yaw:frame.yaw,pitch:frame.pitch,zoom:frame.zoom};
+      skyClarity=retreat.clarity*(1-smooth(progress))+(reducedMotion?1:0)*smooth(progress);
+      world.style.setProperty('--sky-clarity',skyClarity.toFixed(3));
+      world.style.setProperty('--entry-bank',`${reducedMotion?0:frame.bank}rad`);
+      world.style.setProperty('--entry-scale',String(reducedMotion?1:1+Math.abs(frame.bank)*Math.max(width/height,height/width)*1.1));
+    },
+    onReturned(){
+      retreat=null;
+      travel=null;arrival=null;skyClarity=reducedMotion?1:0;selected=null;phase='idle';history=[];starMotion.clearSelection();
+      delete document.body.dataset.arrival;world.style.removeProperty('--sky-clarity');
+      world.style.removeProperty('--entry-bank');world.style.removeProperty('--entry-scale');
+      const frame=entranceFrame(0,width<=760?.78:1);
+      camera={x:frame.x,y:frame.y,z:frame.z,yaw:frame.yaw,pitch:frame.pitch,zoom:frame.zoom};updateUI();
     },
     onJournal(){
       $('egg-title').textContent='灯还亮着。';
@@ -613,6 +774,16 @@ if(painted){
       document.querySelector('#egg-dialog .eyebrow').textContent='桌上的手记';
       $('egg-dialog').showModal();
     },
-    onMotion(value){reducedMotion=value;updateMotionButton();}
+    onMotion(value){reducedMotion=value;if(document.body.dataset.room==='inside')skyClarity=value?1:0;updateMotionButton();}
   });
 }
+
+if(query.get('review')==='1'&&['127.0.0.1','localhost','[::1]'].includes(location.hostname)){
+  import('./review-tools.js').then(({installReviewTools})=>installReviewTools({
+    articles,relations,select:selectStar,renderMedia:value=>reviewMedia=value,
+    audit:{activate:activateStar,interrupt,selected:()=>selected,full(){reducedMotion=false;roomScene?.setSoft(false);}},
+    refresh(){for(const article of articles)targetElements.get(article.id).querySelector('.star-label').textContent=article.title;updateUI();},
+    look(yaw,pitch,zoom){interrupt();selected=null;moveTo({x:0,y:0,z:0,yaw:camera.yaw+wrapAngle(yaw-camera.yaw),pitch,zoom},700,()=>{phase='idle';updateUI();});}
+  }));
+}
+if(query.get('monitor')==='1'&&['127.0.0.1','localhost','[::1]'].includes(location.hostname))import('./frame-monitor.js');

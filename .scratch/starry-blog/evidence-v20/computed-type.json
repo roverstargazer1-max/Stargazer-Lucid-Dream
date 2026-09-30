@@ -1,0 +1,44 @@
+[
+  {
+    "color": "rgb(196, 212, 225)",
+    "font": "12px",
+    "id": "preview-date",
+    "opacity": 1
+  },
+  {
+    "color": "rgb(237, 241, 236)",
+    "font": "28px",
+    "id": "preview-title",
+    "opacity": 1
+  },
+  {
+    "color": "rgb(224, 232, 236)",
+    "font": "14px",
+    "id": "preview-intro",
+    "opacity": 1
+  },
+  {
+    "color": "rgb(196, 212, 225)",
+    "font": "11px",
+    "id": "approach-status",
+    "opacity": 1
+  },
+  {
+    "color": "rgb(237, 241, 236)",
+    "font": "13px",
+    "id": "read-button",
+    "opacity": 1
+  },
+  {
+    "color": "rgb(217, 227, 235)",
+    "font": "11px",
+    "id": "path-legend",
+    "opacity": 1
+  },
+  {
+    "color": "rgb(237, 241, 236)",
+    "font": "13px",
+    "id": "relation-mode",
+    "opacity": 1
+  }
+]

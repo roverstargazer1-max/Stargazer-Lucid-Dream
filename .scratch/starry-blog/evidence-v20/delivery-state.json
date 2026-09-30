@@ -1,0 +1,15 @@
+{
+  "bodyFont": "16px",
+  "dpr": 1.7100000381469729,
+  "monitorLoaded": false,
+  "previewTitle": "一封没有寄出的信",
+  "qaLoaded": false,
+  "readEnabled": true,
+  "url": "http://127.0.0.1:4173/pages/starfield-prototype/?variant=C&scene=painted&v=20&controls=quiet&motion=full&living=1&roof=anime&art=ink&labels=reveal&type=white&paths=1",
+  "veils": 0,
+  "viewport": [
+    362,
+    616
+  ],
+  "consoleErrors": []
+}

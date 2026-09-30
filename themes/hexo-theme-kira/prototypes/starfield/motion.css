@@ -1,0 +1,96 @@
+/* V20: one scrolling content region between stable metadata and actions. */
+body[data-scene][data-variant] .preview {
+  --preview-reveal: 1;
+  top: 50%; right: 5.2%; bottom: auto; left: auto;
+  transform: translateY(-50%); transform-origin: right center;
+  display: grid; grid-template-rows: auto minmax(0, 1fr) auto;
+  width: clamp(350px, 32vw, 438px); padding: 16px 28px 20px;
+  max-height: calc(100dvh - 164px); overflow: hidden; isolation: isolate; z-index: 6;
+  border: 0; border-radius: 0;
+  background: none; box-shadow: none;
+  backdrop-filter: none;
+  animation: none;
+}
+body[data-scene][data-variant] .preview::before {
+  content: ''; display: block; position: absolute; inset: 0; z-index: -1;
+  border: 0; pointer-events: none;
+  background: radial-gradient(ellipse at 50% 48%, #061831eb 0%, #061831c9 48%, #06183100 78%);
+  filter: blur(10px);
+}
+body[data-scene][data-variant] .preview::after { display: none; }
+body[data-scene][data-variant] .preview-scroll {
+  min-height: 0; overflow-y: auto; overflow-x: hidden; overscroll-behavior: contain;
+  touch-action: pan-y; scrollbar-width: thin; scrollbar-color: #9ab6c788 transparent;
+  padding: 8px 4px 4px 0; scroll-padding: 8px;
+}
+body[data-scene][data-variant] .preview-body { display: block; }
+body[data-scene][data-variant] .preview-body > div { min-width: 0; }
+body[data-scene][data-variant] .preview h2 { font-size: 1.75rem; line-height: 1.6; margin: 8px 0 16px; letter-spacing: .5px; text-wrap: balance; overflow-wrap: anywhere; }
+body[data-scene][data-variant] .preview-body p { max-width: none; margin: 0; font-size: .875rem; line-height: 2; color: #e0e8ec; overflow-wrap: anywhere; }
+body[data-scene][data-variant] .preview-meta { min-height: 44px; font-size: .75rem; letter-spacing: 1px; color: #c4d4e1; }
+body[data-scene][data-variant] .preview-body .eyebrow { color: #c4d4e1; font-size: .6875rem; line-height: 1.6; letter-spacing: 1.5px; margin-top: 0; }
+body[data-scene][data-variant] .known-reasons { max-height: none; overflow: visible; margin: 18px 0 4px; font-size: .8125rem; line-height: 1.9; color: #d9dccf; overflow-wrap: anywhere; }
+body[data-scene][data-variant] .preview-bottom { display: grid; grid-template-columns: minmax(0, 1fr) max-content; align-items: center; gap: 8px; margin-top: 10px; border-color: #b8cde22b; padding: 8px 0 0; }
+body[data-scene][data-variant] .preview-bottom > span { color: #c4d4e1; font-size: .6875rem; line-height: 1.7; }
+body[data-scene] #read-button { display: inline-flex; justify-content: center; align-items: center; gap: 8px; min-height: 44px; min-width: 112px; padding: 8px 0; font-size: .8125rem; letter-spacing: .5px; }
+body[data-scene] #read-button:disabled { opacity: .48; }
+body[data-scene] #read-button > span { margin: 0; }
+.ink-target { position: relative; }
+.ink-copy { display: inline; }
+.ink-veil {
+  position: absolute; pointer-events: none; display: block; z-index: 1;
+  background: linear-gradient(90deg, #43617a, #91a1ac);
+  transform-origin: right center; border-radius: 1px;
+}
+#preview .ink-veil-white {
+  background: repeating-linear-gradient(90deg, #fafbf8 0 14px, #eeF3f1 14px 16px, #ffffff 16px 30px);
+  box-shadow: 0 0 1px #ffffffb3; border-radius: 0;
+}
+body[data-scene] #reader[open] { animation: none; }
+body[data-scene=painted] #reader {
+  border-radius: 2px; border-color: #dfdfd3; box-shadow: 0 24px 100px #00112855;
+}
+body[data-scene] #reader::backdrop {
+  background: rgb(4 20 41 / var(--reading-veil, .48));
+  backdrop-filter: blur(var(--reading-blur, 2px));
+}
+.reading-seal { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 3; opacity: 0; }
+.reading-seal path { fill: none; stroke: #809498; stroke-width: 1; vector-effect: non-scaling-stroke; stroke-dasharray: 1; }
+.reading-seal path + path { stroke: #b6a886; }
+#reader .ink-veil { background: linear-gradient(100deg, #bac5c6, #879ca9); opacity: .8; }
+#reader[data-motion] { will-change: transform, opacity; }
+#reading-scroll { scrollbar-gutter: stable; }
+#reader[data-motion] #reading-scroll { overflow: hidden; }
+body[data-focus=approaching] .star-target.is-selected .star-label,
+body:has(#preview[aria-busy=true]) .star-target.is-selected .star-label,
+body[data-reading=opening] .star-target.is-selected .star-label,
+body[data-reading=closing] .star-target.is-selected .star-label { opacity: 0; }
+body[data-reading=opening] .preview,
+body[data-reading=open] .preview,
+body[data-reading=closing] .preview { visibility: hidden; }
+body[data-room=outside] .masthead,
+body[data-room=outside] .navigation { animation: sky-arrival .9s ease both; }
+body[data-room=outside] .navigation { animation-delay: .1s; }
+body[data-arrival] #world > :not(#sky):not(#star-targets),
+body[data-arrival] .art-study-bar, body[data-arrival] .prototype-tools { visibility: hidden; }
+body[data-arrival] #world .star-label { opacity: 0 !important; }
+body[data-arrival] .masthead, body[data-arrival] .navigation { animation: none; }
+@keyframes sky-arrival { from { opacity: 0; translate: 0 5px; } }
+@media (max-width:760px) {
+  body[data-scene][data-variant] .preview { --footer-space: max(72px, calc(2.3375rem + 24px), env(safe-area-inset-bottom)); width: calc(100% - 32px); padding: 8px 20px 12px; top: auto; right: 16px; left: auto; transform: none; bottom: var(--footer-space); max-height: min(44dvh, calc(100dvh - var(--footer-space) - 240px)); }
+  body[data-scene][data-variant] .preview h2 { font-size: 1.5rem; line-height: 1.55; margin: 8px 0 12px; }
+  body[data-scene][data-variant] .preview-body p { line-height: 1.95; }
+  body[data-scene][data-variant] .known-reasons { font-size: .75rem; }
+  body[data-scene][data-variant] #reader { border: 0; border-radius: 0; height: 100dvh; }
+}
+@media (max-width:360px) {
+  body[data-scene][data-variant] .preview h2 { font-size: 1.375rem; letter-spacing: 0; }
+}
+@media (max-height:500px) and (orientation:landscape) {
+  body[data-scene][data-variant] .preview { top: 62px; bottom: 16px; right: 16px; left: auto; width: 47%; max-height: none; transform: none; padding: 4px 16px 8px; }
+  body[data-scene][data-variant] .preview h2 { font-size: 1.375rem; line-height: 1.5; letter-spacing: 0; }
+  body[data-scene][data-variant] .preview-bottom { margin-top: 8px; padding-top: 6px; }
+}
+@media (prefers-reduced-motion:reduce) {
+  body[data-room=outside] .masthead, body[data-room=outside] .navigation { animation: none; }
+}

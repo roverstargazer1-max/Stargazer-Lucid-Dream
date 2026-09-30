@@ -42,9 +42,17 @@ export function domePosition(article,index,mode){
   // A continuous dated spiral climbs from the horizon toward the zenith.
   return direction(index*.52-.3,.24+1.23*(1-Math.exp(-index/16)),DOME_RADIUS);
 }
-export function domeDestination(point,camera){
+export function domeDestination(point,camera,settings,target){
   const a=angles(point),origin=direction(a.azimuth,a.elevation,900);
-  return {...origin,yaw:camera.yaw+wrapAngle(a.azimuth-camera.yaw),pitch:clamp(a.elevation-.075,0,Math.PI/2),zoom:1.65};
+  const next={...origin,yaw:camera.yaw+wrapAngle(a.azimuth-camera.yaw),pitch:clamp(a.elevation-.075,0,Math.PI/2),zoom:1.55};
+  if(!settings||!target)return next;
+  // Translate the observer in the camera plane; article world coordinates never move.
+  // This remains exact near the zenith where yaw alone cannot produce a lateral frame.
+  const p=projectDome(point,next,settings);
+  const right=(p.x-target.x)*p.depth/settings.focal,up=(target.y-p.y)*p.depth/settings.focal;
+  const ca=Math.cos(next.yaw),sa=Math.sin(next.yaw),cp=Math.cos(next.pitch),sp=Math.sin(next.pitch);
+  next.x+=right*ca-up*sp*sa;next.y+=up*cp;next.z-=right*sa+up*sp*ca;
+  return next;
 }
 export function growDomeArticle(articles,edges,{id,importance='ordinary',isolated=false}){
   let seed=0;for(const ch of id)seed=(seed*31+ch.charCodeAt(0))>>>0;

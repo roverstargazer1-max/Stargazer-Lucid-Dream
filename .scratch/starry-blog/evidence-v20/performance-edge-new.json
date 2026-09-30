@@ -1,0 +1,14 @@
+{
+  "url": "http://127.0.0.1:4173/pages/starfield-prototype/?variant=C&scene=painted&v=20&controls=quiet&motion=full&living=1&monitor=1&roof=anime&art=ink&labels=reveal&type=white&paths=1",
+  "viewport": [
+    1257,
+    617
+  ],
+  "dpr": 3,
+  "visibleThroughout": true,
+  "elapsed": 5084,
+  "frames": 150,
+  "p50": 16.7,
+  "p95": 50,
+  "over50ms": 7
+}

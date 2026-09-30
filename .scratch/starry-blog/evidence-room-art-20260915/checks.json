@@ -1,0 +1,56 @@
+{
+  "desktop": {
+    "image": "http://127.0.0.1:4173/pages/starfield-prototype/assets/room-personal-v20.png",
+    "mask": "url(\"http://127.0.0.1:4173/pages/starfield-prototype/assets/room-window-mask-v17.svg\")",
+    "overflow": false,
+    "ready": "ready",
+    "viewport": [
+      1263,
+      789
+    ]
+  },
+  "journalOpened": true,
+  "entered": {
+    "arrival": null,
+    "room": "outside",
+    "roomHidden": true,
+    "worldInert": false
+  },
+  "returned": {
+    "entryEnabled": true,
+    "focus": "window-entry",
+    "image": "http://127.0.0.1:4173/pages/starfield-prototype/assets/room-personal-v20.png",
+    "room": "inside",
+    "stageTransform": ""
+  },
+  "mobile": {
+    "entryRect": {
+      "bottom": 436.8055419921875,
+      "height": 436.8055419921875,
+      "left": 46.05263137817383,
+      "right": 379.3859443664551,
+      "top": 0,
+      "width": 333.33331298828125,
+      "x": 46.05263137817383,
+      "y": 0
+    },
+    "image": "http://127.0.0.1:4173/pages/starfield-prototype/assets/room-portrait-v11.png",
+    "journalRect": {
+      "bottom": 684.5556755065918,
+      "height": 43.90119552612305,
+      "left": -25.949947357177734,
+      "right": 76.38853073120117,
+      "top": 640.6544799804688,
+      "width": 102.3384780883789,
+      "x": -25.949947357177734,
+      "y": 640.6544799804688
+    },
+    "mask": "url(\"http://127.0.0.1:4173/pages/starfield-prototype/assets/room-window-portrait-mask-v17.svg\")",
+    "overflow": false,
+    "viewport": [
+      342,
+      740
+    ]
+  },
+  "errors": []
+}

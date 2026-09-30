@@ -1,0 +1,40 @@
+Use case: precise-object-edit
+Asset type: final high-resolution homepage illustration, not a product photograph.
+
+INPUT ROLES in supplied order:
+1. EDIT TARGET: the existing 1672x941 blue-night room illustration. Keep this scene, composition, person, camera and established painted style.
+2. HEADPHONE DESIGN REFERENCE: the blue-gray ZTMY / ZUTOMAYO collaboration headphones. Use their identifiable construction and markings, adapted to the headphones ALREADY WORN by the person.
+3. CAT CHARACTER REFERENCE: the pink-and-white plush keychain. Its face, forehead blaze, eyes, SEPARATE EYEBROWS, paws and striped long tail are important.
+4. CAT DRAWING REFERENCE: the same cat in a stylized animation. Use its recognizable silhouette and facial expression, not the screenshot's pixel grid or scanlines.
+
+PRIMARY REQUEST:
+Re-render the complete existing room illustration noticeably cleaner and sharper at true 4K, 3840x2160 landscape, preserving the existing approximately 16:9 composition. Actually redraw coherent details; do not simply blur, smooth or sharpen the old raster. Retain the current matte, restrained anime gouache / opaque painted look, broad deliberate color planes, quiet dark areas and warm desk-lamp versus deep blue night palette.
+
+PRIORITY 1 — CAT CHARM:
+Replace/redraw only the small cat charm hanging from the lamp on the FAR LEFT with a faithful painted rendition of references 3 and 4. Keep the same chain attachment and approximate physical scale/location. It is a suspended character/plush charm, not a living animal.
+Pink outer face/body, white central forehead-to-nose blaze, white muzzle/chest/paws, pink-red rounded eyes with dark outlines and small white upper highlights, fine whiskers, triangular pink ears and a long pink ring-striped tail gently extending to the right.
+EYEBROWS ARE CRITICAL: clearly draw an independent thin gently arched dark eyebrow ABOVE EACH eye, matching the reference's slightly quizzical expression. Each eyebrow must be visibly SEPARATE from the upper eye outline, with a small gap; the two levels of brow and eyelid must remain distinct. Do not substitute eyelashes, erase the brows, fuse them into the eyes, turn them into thick angry V-shaped brows, or give the face generic doll makeup. Inspect this detail carefully. Maintain the cat character's own proportions and expression.
+Make the chain, charm silhouette, small paws and striped tail readable with tidy painted edges and a few purposeful shadow shapes. No fuzzy blobs or photorealistic fur.
+
+PRIORITY 2 — HEADPHONES:
+Faithfully redraw the existing worn headphones using reference 2: padded dark headband and ear cushion, distinct blue-gray adjustment blocks, translucent navy adjustment section, restrained pale silver curved yoke, dark blue outer earcup. Fit the person's CURRENT head pose, size and perspective. Keep the person's face, hairstyle and expression.
+Markings must be intentional and legible at 100% of the 4K image: the small oval adjustment-band logo reads exactly "ZTMY"; the circular three-tuning-fork emblem sits on the visible earcup; the small word below reads exactly "ZUTOMAYO". Spell Z-U-T-O-M-A-Y-O correctly. Use the reference for emblem geometry, not a random starburst. Avoid meaningless tiny pseudo-text and do not paste the reference photo into the drawing. Render metal and plastic as matte painted planes with just a narrow controlled highlight, no chrome or wet gloss.
+
+PRIORITY 3 — TEXT AND ZTMY DETAILS:
+Preserve the placement, tilt, scale and handwriting character of all existing notes and book spines while making their strokes coherent and clean.
+The left paper says exactly:
+"ずっと真夜中で
+いいのに。"
+The right note retains exactly these three lines:
+"Time
+slips
+by."
+Visible themed book/merch lettering reads "ZUTOMAYO" or the existing "ZTMY", with correctly formed letters and clean spacing. Keep the wall poster's recently redrawn hedgehog, turquoise double-neck guitar, purple ringed planet and music bubble intact and clearly readable.
+The existing small props should feel like the same ZTMY fan's room. Refine the present motifs; do not add random brands, extra toys, giant logos, captions, arbitrary new text, or reference-image watermarks.
+
+GLOBAL STYLE / CLARITY:
+Clarify actual edge structure, small lettering, hands holding the pen, book edges, clock marks, lamp mechanism and cushion seams with well-placed paint shapes. Preserve painterly cloud masses and subtle brush texture, not uniform outlines on everything.
+Keep the subject's original flat-painted face, original warm lighting strength, large unbroken dark regions, simple shadows and deep blue color atmosphere. No airbrushed doll skin, beauty retouch, shiny anime-render finish, oily painterly smearing, plastic 3D materials, HDR glow, bloom, excessive rim lighting, oversaturation, sharpening halos or crunchy all-over microtexture.
+
+GEOMETRY INVARIANTS:
+Keep the original framing and all main silhouettes, particularly the window mullions, window openings, chair outline, person/hair outline crossing the window, and foreground desk. These align with an existing website window-aperture mask. No zoom, crop, camera movement or rearrangement of the room. Return one complete clean 4K image only, no comparison collage or annotation. Text and the cat's eyebrows must not be sacrificed to soft rendering.

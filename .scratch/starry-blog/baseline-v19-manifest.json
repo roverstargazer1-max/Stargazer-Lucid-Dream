@@ -1,0 +1,236 @@
+{
+  "created": "2026-09-14T01:45:13.2501568+08:00",
+  "source": "F:\\blog\\Stargazer-Lucid-Dream\\themes\\hexo-theme-kira\\prototypes\\starfield",
+  "files": [
+    {
+      "path": "app.js",
+      "bytes": 45530,
+      "sha256": "9603D7826AAC300DFC308EAC463F2DD06AACF16706BAA0667B74BBF808FB9F7C"
+    },
+    {
+      "path": "ART-DIRECTION.md",
+      "bytes": 7665,
+      "sha256": "CE7E2CAB918E9E6962D7F7A5A938E6DBBD2916BE222F4BD918B601A148ABC795"
+    },
+    {
+      "path": "ART-STUDY-01.md",
+      "bytes": 2372,
+      "sha256": "17BBD18E2D19377DDE3579BEEF0CFF955A950C633BF8FDDCC8F8E5554A02CEB5"
+    },
+    {
+      "path": "ART-STUDY-02.md",
+      "bytes": 2275,
+      "sha256": "B5F2F3A0E5FF62065E2CA9D6D6B8463CD750CD663BF49FD952F12B92D265CE15"
+    },
+    {
+      "path": "ART-STUDY-03.md",
+      "bytes": 2979,
+      "sha256": "C8C53C9D21CC708E9E5508CF44B6852630D09BA7DE88C69AEAD13C172AC6F918"
+    },
+    {
+      "path": "ART-STUDY-04.md",
+      "bytes": 4467,
+      "sha256": "B101950B35501025FAC3E08DBF50925B0B226B97EECB7EE624D8AFA8BB678AC6"
+    },
+    {
+      "path": "ART-STUDY-06.md",
+      "bytes": 3370,
+      "sha256": "FF92A321FA41DDC9FFB086397C40B45319E236F22D55FA44FBF4425838A3D5C6"
+    },
+    {
+      "path": "art-study.js",
+      "bytes": 5824,
+      "sha256": "FB61E303554A6429808C315F429BDEE4246DDD8DA272E91532F874BF9D82B913"
+    },
+    {
+      "path": "art.js",
+      "bytes": 9008,
+      "sha256": "B0E34AAD8323F4BA366C36DCD561273C7F32B5438C08B32965E72FC9094B9B46"
+    },
+    {
+      "path": "ATMOSPHERE-STUDY-13.md",
+      "bytes": 4256,
+      "sha256": "B5A94277DE6C30EE66752A1E62C1F6EDF5C438509B76EB5117E8AA750EF8F9B7"
+    },
+    {
+      "path": "dome-renderer.js",
+      "bytes": 9643,
+      "sha256": "CAB2B1D9AE93700E702E92EE6125DE59ECDED17573F4003BFEA70D251746318C"
+    },
+    {
+      "path": "DOME-STUDY-12.md",
+      "bytes": 9914,
+      "sha256": "FBD7718937DA76358C06F3C163CEDF0045F5EF5A225261DD85B601D1F2815E9B"
+    },
+    {
+      "path": "dome.js",
+      "bytes": 3613,
+      "sha256": "D09FA16C6E05E7B705B5301329930ACD57606644CBC265364161D8B9AC7342D5"
+    },
+    {
+      "path": "EXPLORATION-PATHS.md",
+      "bytes": 3864,
+      "sha256": "5A50BE631A8429BF52806CA7A503F17E100C2DC6DF768A38232080BD31E9197E"
+    },
+    {
+      "path": "index.html",
+      "bytes": 9958,
+      "sha256": "CB4BEC4783FBE365E55CFF1DF15914979FDA2294B49EEC36068A6EF38437EB29"
+    },
+    {
+      "path": "interactive-clouds.js",
+      "bytes": 5596,
+      "sha256": "C0854CC3396A3979E2FBD94B5B6F23F1167F158B3A14F994E0ECCC9A8E0D1DFC"
+    },
+    {
+      "path": "mock.js",
+      "bytes": 9928,
+      "sha256": "38FD5D601DDFF601880EC6DD3CDEA6CB8AAE42B9861EF02B4FE6A2B2689DD371"
+    },
+    {
+      "path": "MOTION-STUDY-14.md",
+      "bytes": 5229,
+      "sha256": "13BCACA348B767BE54ED5242BC9555D9825DC831A91FCA0A22F63059DAB0964E"
+    },
+    {
+      "path": "MOTION-STUDY-15.md",
+      "bytes": 4963,
+      "sha256": "8C1575E59F5659E5BDF2D670F79832F49FC01F587EEBF1628B51EED6A5678732"
+    },
+    {
+      "path": "MOTION-STUDY-16.md",
+      "bytes": 2348,
+      "sha256": "760FB41246415A51B302458AE5D3C918991515FFB4695CAD483E003ADD5BB1BF"
+    },
+    {
+      "path": "MOTION-STUDY-17.md",
+      "bytes": 3224,
+      "sha256": "4CED0106215956CDD991E5060A45DF6CD5D352E6AED63499B159CEB922723B58"
+    },
+    {
+      "path": "MOTION-STUDY-18.md",
+      "bytes": 2445,
+      "sha256": "0EDCEA80CB3C562739E006926056A2D9293DA5F524F13A39C6035C250F139A1C"
+    },
+    {
+      "path": "MOTION-STUDY-19.md",
+      "bytes": 4941,
+      "sha256": "EF80F9853DDADCB5624AE9BFC46719FBB5C28AA1AFFEA66F7E0E796734C5AE63"
+    },
+    {
+      "path": "motion.css",
+      "bytes": 4984,
+      "sha256": "D0FCCD489009B657F36A0AA2519441AD9FE60B2220FFF7262B4574D4C4AFBB37"
+    },
+    {
+      "path": "motion.js",
+      "bytes": 14139,
+      "sha256": "4238E5F56BBF37256B355685C3C9B398DA90A08E1B1987A3D305083FF4D89246"
+    },
+    {
+      "path": "navigation.js",
+      "bytes": 3577,
+      "sha256": "BCFCABBDA17D9FF73BC370C59396E5A3363CC8B976E666C4D0D9FE773663E2C6"
+    },
+    {
+      "path": "painted.css",
+      "bytes": 9436,
+      "sha256": "9AF5386092D9360D41FE310112FDAFE67924F57E5B166B3CA227C7349DD69417"
+    },
+    {
+      "path": "painted.js",
+      "bytes": 9108,
+      "sha256": "599D5335F17A0C1DE09288F8355F658F28BACF3D9D974FC5FBC5E8D7CDBC1DE3"
+    },
+    {
+      "path": "README.md",
+      "bytes": 12818,
+      "sha256": "0723CD94D75F5675E274204DB00C437D5252729ECC3A19304B1C780DE3485252"
+    },
+    {
+      "path": "ROOF-STYLES.md",
+      "bytes": 2838,
+      "sha256": "0F01032B5B6D421AE18CF483E0B33AE7C7ED2A202666E43238FAF035A6AACF8A"
+    },
+    {
+      "path": "server.mjs",
+      "bytes": 2228,
+      "sha256": "00E45F8C4CB048D5DA0FF79C70AE4BFBAA1DDF3CB131629DD0981164AA0C6431"
+    },
+    {
+      "path": "sky-map.js",
+      "bytes": 5049,
+      "sha256": "21BEDC45EBCEAED22EC4CCDD3EDDEF2D36D310BBEEC14FB8331E4CB45DAE5457"
+    },
+    {
+      "path": "style.css",
+      "bytes": 37930,
+      "sha256": "C4E373E57A1C2831C3EA9DD27081FDFDD66ACCC3DB48DF847F7DD495121B1396"
+    },
+    {
+      "path": "assets/painted-sky-v11.png",
+      "bytes": 1330878,
+      "sha256": "0BC0C5EAC254152BAFAFC5A2E3D2A2F0F209059D12D31031AB71085A97C32599"
+    },
+    {
+      "path": "assets/roof-anime-v4.png",
+      "bytes": 1361296,
+      "sha256": "76C47A7C03E2CF05A7146548691390B81A74A6B6A4A687DC7C7ED0C4708EE3F5"
+    },
+    {
+      "path": "assets/roof-minimal-v4.png",
+      "bytes": 617604,
+      "sha256": "BC75ED00C5A35A318BCD0D2DD3A39E41AF4C7325550A112410A7308E9A0E637F"
+    },
+    {
+      "path": "assets/roof-paper-v4.png",
+      "bytes": 1481895,
+      "sha256": "17FB2F1370189324D750B1093D73C92B34EDB79D646867962370EAB3934A6848"
+    },
+    {
+      "path": "assets/roof-pixel-v4.png",
+      "bytes": 1353117,
+      "sha256": "A5A7A3CE1B1B355768265BBC048462483F2B6900609C01F1D175AB5459952281"
+    },
+    {
+      "path": "assets/roof-silhouette-v2.svg",
+      "bytes": 662,
+      "sha256": "FBF523DDAB5CE75B6AA38CB56BDC81FD52CAE4C392452FC63195EAD490DD2EB2"
+    },
+    {
+      "path": "assets/roof-stargazer-v9.png",
+      "bytes": 2017520,
+      "sha256": "902705CC0805A8F3F025A340DBBBCE99C5EE097B85B7E66B0D02A4841AB8A602"
+    },
+    {
+      "path": "assets/rooftop-v2.png",
+      "bytes": 2088084,
+      "sha256": "FCA5B76146439B0B4CCF2C949DB53902F647FF101AB12C92A36BD20AB046B818"
+    },
+    {
+      "path": "assets/room-portrait-v11.png",
+      "bytes": 1326151,
+      "sha256": "BF8F98C84A050DE63E3CE448187A13AA03D3DCEDC8AFE0F177740A205B280F78"
+    },
+    {
+      "path": "assets/room-reference-v11.png",
+      "bytes": 1280596,
+      "sha256": "010592C6B0DEF47C9627A7BBE0CF5038B632A527A3DBDFED82EBC356F53FB520"
+    },
+    {
+      "path": "assets/room-window-mask-v17.svg",
+      "bytes": 1297,
+      "sha256": "406B8F2CF2E844E7FC11BD4C37A87AEDABAD2CE0E2499C6536E42DBC694E56BD"
+    },
+    {
+      "path": "assets/room-window-portrait-mask-v17.svg",
+      "bytes": 1089,
+      "sha256": "69477340FAABFEE77F952FCD103B2F6BE32B68AE3CBBCEAE7A22F9085605D1B3"
+    },
+    {
+      "path": "assets/sky-reference-v2.png",
+      "bytes": 1929618,
+      "sha256": "51A4E675327CB88CB115B4C952F2F29ED2DAF6EC49CEDFA808630C8A81AD107C"
+    }
+  ]
+}

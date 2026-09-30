@@ -1,0 +1,1320 @@
+{
+  "capturedAt": "2026-09-30",
+  "branch": "codex/prototype-starfield",
+  "head": "d6d6a1c2c04593cc07bba69e7ad66e0308d8018c",
+  "remotes": [
+    "origin\thttps://github.com/roverstargazer1-max/Stargazer-Lucid-Dream.git (fetch)",
+    "origin\thttps://github.com/roverstargazer1-max/Stargazer-Lucid-Dream.git (push)"
+  ],
+  "statusFile": ".scratch/starry-blog/baseline-worktree-status-20260930.txt",
+  "entries": [
+    {
+      "state": " M",
+      "path": "README.md",
+      "bytes": 4939,
+      "sha256": "aab2ddf8b17ef3ffc27d2e0785ea136d19c9dbe733737f52a806e0eb72c13a3e"
+    },
+    {
+      "state": " M",
+      "path": "themes/hexo-theme-kira/prototypes/starfield/README.md",
+      "bytes": 16345,
+      "sha256": "a101b6c7a82e8ae95b1b2fd300e7543e67750bd45c2eb9c3f6b3fbcc225e63c2"
+    },
+    {
+      "state": " M",
+      "path": "themes/hexo-theme-kira/prototypes/starfield/app.js",
+      "bytes": 50729,
+      "sha256": "cbbaefd37a38c848c10ad6bdb4b2ceb62848abded8908eca9b8041e727d827bc"
+    },
+    {
+      "state": " M",
+      "path": "themes/hexo-theme-kira/prototypes/starfield/dome-renderer.js",
+      "bytes": 9950,
+      "sha256": "a7d82149414592b31a386f24e6f804196192b55181c099ea5fcaf9e0863b62d1"
+    },
+    {
+      "state": " M",
+      "path": "themes/hexo-theme-kira/prototypes/starfield/dome.js",
+      "bytes": 4168,
+      "sha256": "b884201d123efaefaf7a0ddc8ff896d489c1dbf72021e026cf4599670b8f110a"
+    },
+    {
+      "state": " M",
+      "path": "themes/hexo-theme-kira/prototypes/starfield/index.html",
+      "bytes": 10216,
+      "sha256": "3d527f75000a35ea5b73be78fd9a353f1948485bcd1a40b959680a2252ed54bd"
+    },
+    {
+      "state": " M",
+      "path": "themes/hexo-theme-kira/prototypes/starfield/painted.css",
+      "bytes": 15446,
+      "sha256": "e49b2ded96bc3187c6d7839abac433f1fcab73d4c93ed2df279b92347706dd4b"
+    },
+    {
+      "state": " M",
+      "path": "themes/hexo-theme-kira/prototypes/starfield/painted.js",
+      "bytes": 9408,
+      "sha256": "3b7e2bcd50858ba861c35967b978a423546629fef61c6e047551421535e0cb09"
+    },
+    {
+      "state": " M",
+      "path": "themes/hexo-theme-kira/prototypes/starfield/server.mjs",
+      "bytes": 2408,
+      "sha256": "9b1b2748e42a50602b46694102e1c6de3b8c17f2904f05d544a09ec0cd172212"
+    },
+    {
+      "state": " M",
+      "path": "themes/hexo-theme-kira/prototypes/starfield/sky-map.js",
+      "bytes": 6195,
+      "sha256": "87e65f98b768b75201fb6def3f75cff59712174216e27f59c57cad0e6dd7a494"
+    },
+    {
+      "state": " M",
+      "path": "themes/hexo-theme-kira/prototypes/starfield/style.css",
+      "bytes": 38003,
+      "sha256": "3188bba3839190c6fb14eefc265b7ece510d951850764b32c32798cab1e672e6"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/baseline-server.mjs",
+      "bytes": 1815,
+      "sha256": "b3c13159137f142753abe90fc679a19174e0248aa3e7f115334a646f62e4facb"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/baseline-v19-20260914/ART-DIRECTION.md",
+      "bytes": 7665,
+      "sha256": "ce7e2cab918e9e6962d7f7a5a938e6dbbd2916be222f4bd918b601a148abc795"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/baseline-v19-20260914/ART-STUDY-01.md",
+      "bytes": 2372,
+      "sha256": "17bbd18e2d19377dde3579beef0cff955a950c633bf8fddcc8f8e5554a02ceb5"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/baseline-v19-20260914/ART-STUDY-02.md",
+      "bytes": 2275,
+      "sha256": "b5f2f3a0e5ff62065e2ca9d6d6b8463cd750cd663bf49fd952f12b92d265ce15"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/baseline-v19-20260914/ART-STUDY-03.md",
+      "bytes": 2979,
+      "sha256": "c8c53c9d21cc708e9e5508cf44b6852630d09ba7de88c69aead13c172ac6f918"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/baseline-v19-20260914/ART-STUDY-04.md",
+      "bytes": 4467,
+      "sha256": "b101950b35501025fac3e08dbf50925b0b226b97eecb7ee624d8afa8bb678ac6"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/baseline-v19-20260914/ART-STUDY-06.md",
+      "bytes": 3370,
+      "sha256": "ff92a321fa41ddc9ffb086397c40b45319e236f22d55fa44fbf4425838a3d5c6"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/baseline-v19-20260914/ATMOSPHERE-STUDY-13.md",
+      "bytes": 4256,
+      "sha256": "b5a94277de6c30ee66752a1e62c1f6edf5c438509b76eb5117e8aa750ef8f9b7"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/baseline-v19-20260914/DOME-STUDY-12.md",
+      "bytes": 9914,
+      "sha256": "fbd7718937da76358c06f3c163cedf0045f5ef5a225261dd85b601d1f2815e9b"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/baseline-v19-20260914/EXPLORATION-PATHS.md",
+      "bytes": 3864,
+      "sha256": "5a50be631a8429bf52806ca7a503f17e100c2dc6df768a38232080bd31e9197e"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/baseline-v19-20260914/MOTION-STUDY-14.md",
+      "bytes": 5229,
+      "sha256": "13bcaca348b767be54ed5242bc9555d9825dc831a91fca0a22f63059dab0964e"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/baseline-v19-20260914/MOTION-STUDY-15.md",
+      "bytes": 4963,
+      "sha256": "8c1575e59f5659e5bdf2d670f79832f49fc01f587eebf1628b51eed6a5678732"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/baseline-v19-20260914/MOTION-STUDY-16.md",
+      "bytes": 2348,
+      "sha256": "760fb41246415a51b302458ae5d3c918991515ffb4695cad483e003add5bb1bf"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/baseline-v19-20260914/MOTION-STUDY-17.md",
+      "bytes": 3224,
+      "sha256": "4ced0106215956cdd991e5060a45df6cd5d352e6aed63499b159ceb922723b58"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/baseline-v19-20260914/MOTION-STUDY-18.md",
+      "bytes": 2445,
+      "sha256": "0edcea80cb3c562739e006926056a2d9293da5f524f13a39c6035c250f139a1c"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/baseline-v19-20260914/MOTION-STUDY-19.md",
+      "bytes": 4941,
+      "sha256": "ef80f9853ddadcb5624ae9bfc46719fbb5c28aa1affea66f7e0e796734c5ae63"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/baseline-v19-20260914/README.md",
+      "bytes": 12818,
+      "sha256": "0723cd94d75f5675e274204db00c437d5252729ecc3a19304b1c780de3485252"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/baseline-v19-20260914/ROOF-STYLES.md",
+      "bytes": 2838,
+      "sha256": "0f01032b5b6d421ae18cf483e0b33ae7c7ed2a202666e43238faf035a6aacf8a"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/baseline-v19-20260914/app.js",
+      "bytes": 45530,
+      "sha256": "9603d7826aac300dfc308eac463f2dd06aacf16706baa0667b74bbf808fb9f7c"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/baseline-v19-20260914/art-study.js",
+      "bytes": 5824,
+      "sha256": "fb61e303554a6429808c315f429bdee4246ddd8da272e91532f874bf9d82b913"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/baseline-v19-20260914/art.js",
+      "bytes": 9008,
+      "sha256": "b0e34aad8323f4ba366c36dcd561273c7f32b5438c08b32965e72fc9094b9b46"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/baseline-v19-20260914/assets/painted-sky-v11.png",
+      "bytes": 1330878,
+      "sha256": "0bc0c5eac254152bafafc5a2e3d2a2f0f209059d12d31031ab71085a97c32599"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/baseline-v19-20260914/assets/roof-anime-v4.png",
+      "bytes": 1361296,
+      "sha256": "76c47a7c03e2cf05a7146548691390b81a74a6b6a4a687dc7c7ed0c4708ee3f5"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/baseline-v19-20260914/assets/roof-minimal-v4.png",
+      "bytes": 617604,
+      "sha256": "bc75ed00c5a35a318bcd0d2dd3a39e41af4c7325550a112410a7308e9a0e637f"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/baseline-v19-20260914/assets/roof-paper-v4.png",
+      "bytes": 1481895,
+      "sha256": "17fb2f1370189324d750b1093d73c92b34edb79d646867962370eab3934a6848"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/baseline-v19-20260914/assets/roof-pixel-v4.png",
+      "bytes": 1353117,
+      "sha256": "a5a7a3ce1b1b355768265bbc048462483f2b6900609c01f1d175ab5459952281"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/baseline-v19-20260914/assets/roof-silhouette-v2.svg",
+      "bytes": 662,
+      "sha256": "fbf523ddab5ce75b6aa38cb56bdc81fd52cae4c392452fc63195ead490dd2eb2"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/baseline-v19-20260914/assets/roof-stargazer-v9.png",
+      "bytes": 2017520,
+      "sha256": "902705cc0805a8f3f025a340dbbbce99c5ee097b85b7e66b0d02a4841ab8a602"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/baseline-v19-20260914/assets/rooftop-v2.png",
+      "bytes": 2088084,
+      "sha256": "fca5b76146439b0b4ccf2c949db53902f647ff101ab12c92a36bd20ab046b818"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/baseline-v19-20260914/assets/room-portrait-v11.png",
+      "bytes": 1326151,
+      "sha256": "bf8f98c84a050de63e3ce448187a13aa03d3dcedc8afe0f177740a205b280f78"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/baseline-v19-20260914/assets/room-reference-v11.png",
+      "bytes": 1280596,
+      "sha256": "010592c6b0def47c9627a7bbe0cf5038b632a527a3dbdfed82ebc356f53fb520"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/baseline-v19-20260914/assets/room-window-mask-v17.svg",
+      "bytes": 1297,
+      "sha256": "406b8f2cf2e844e7fc11bd4c37a87aedabad2ce0e2499c6536e42dbc694e56bd"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/baseline-v19-20260914/assets/room-window-portrait-mask-v17.svg",
+      "bytes": 1089,
+      "sha256": "69477340faabfee77f952fcd103b2f6be32b68ae3cbbceae7a22f9085605d1b3"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/baseline-v19-20260914/assets/sky-reference-v2.png",
+      "bytes": 1929618,
+      "sha256": "51a4e675327cb88cb115b4c952f2f29ed2daf6ec49cedfa808630c8a81ad107c"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/baseline-v19-20260914/dome-renderer.js",
+      "bytes": 9643,
+      "sha256": "cab2b1d9ae93700e702e92ee6125de59ecded17573f4003bfea70d251746318c"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/baseline-v19-20260914/dome.js",
+      "bytes": 3613,
+      "sha256": "d09fa16c6e05e7b705b5301329930acd57606644cbc265364161d8b9ac7342d5"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/baseline-v19-20260914/index.html",
+      "bytes": 9958,
+      "sha256": "cb4bec4783fbe365e55cff1df15914979fda2294b49eec36068a6ef38437eb29"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/baseline-v19-20260914/interactive-clouds.js",
+      "bytes": 5596,
+      "sha256": "c0854cc3396a3979e2fbd94b5b6f23f1167f158b3a14f994e0eccc9a8e0d1dfc"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/baseline-v19-20260914/mock.js",
+      "bytes": 9928,
+      "sha256": "38fd5d601ddff601880ec6dd3cdea6cb8aae42b9861ef02b4fe6a2b2689dd371"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/baseline-v19-20260914/motion.css",
+      "bytes": 4984,
+      "sha256": "d0fccd489009b657f36a0aa2519441ad9fe60b2220fff7262b4574d4c4afbb37"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/baseline-v19-20260914/motion.js",
+      "bytes": 14139,
+      "sha256": "4238e5f56bbf37256b355685c3c9b398da90a08e1b1987a3d305083ff4d89246"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/baseline-v19-20260914/navigation.js",
+      "bytes": 3577,
+      "sha256": "bcfcabbda17d9ff73bc370c59396e5a3363cc8b976e666c4d0d9fe773663e2c6"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/baseline-v19-20260914/painted.css",
+      "bytes": 9436,
+      "sha256": "9af5386092d9360d41fe310112fdafe67924f57e5b166b3ca227c7349dd69417"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/baseline-v19-20260914/painted.js",
+      "bytes": 9108,
+      "sha256": "599d5335f17a0c1de09288f8355f658f28bacf3d9d974fc5fbc5e8d7cdbc1de3"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/baseline-v19-20260914/server.mjs",
+      "bytes": 2228,
+      "sha256": "00e45f8c4cb048d5da0ff79c70ae4bfbaa1ddf3cb131629dd0981164aa0c6431"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/baseline-v19-20260914/sky-map.js",
+      "bytes": 5049,
+      "sha256": "21bedc45ebceaed22ec4ccdd3eddef2d36d310bbeec14fb8331e4cb45dae5457"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/baseline-v19-20260914/style.css",
+      "bytes": 37930,
+      "sha256": "c4e373e57a1c2831c3ea9dd27081fdfdd66accc3db48df847f7dd495121b1396"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/baseline-v19-manifest.json",
+      "bytes": 7447,
+      "sha256": "b5a7f3a9512cfc50fca4122bceb1e8c45ca0fa9a9604bdbbb8aa360a53e14dab"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/baseline-worktree-status-20260930.txt",
+      "bytes": 4050,
+      "sha256": "fa4fee2c21e1831fac43c885cfcbe2dced751a3b400245e4ee1c64f6b4087ac7"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/contrast-samples.py",
+      "bytes": 2280,
+      "sha256": "e063deb74a64e89a806ba01f7eccd7a4e341582f50869e86656fb1006c10369a"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/evidence-room-art-20260915/checks.json",
+      "bytes": 1523,
+      "sha256": "74e5572a8575c9edd012597fbd23e88fc530ea4f71c3689030ff6e71603d36de"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/evidence-room-art-20260915/desktop.png",
+      "bytes": 47075,
+      "sha256": "50741f243bdac0d8a1237a7b707fa3ee29214c64805abd80245b5f3b7ae4ea3c"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/evidence-room-art-20260915/mobile-retained.png",
+      "bytes": 16022,
+      "sha256": "3a8e669d07287cf9045f78ff87106397b05273f8ddd2a9d80bf623c83c2ac9bf"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/evidence-room-art-20260915/source-checks.json",
+      "bytes": 259,
+      "sha256": "cf7661df47e3957cb93326e23f801999e181527de863fb534c0d6a2a5f7c435a"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/evidence-v20/baseline-clipping.json",
+      "bytes": 675,
+      "sha256": "92c16e49a21dbc8dea86b0687dbb39ad8a8aa95a7f44c022e3bd23ef3a3aee0d"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/evidence-v20/baseline-clipping.png",
+      "bytes": 16688,
+      "sha256": "a4b74a4a15464a7fe2e9a12db610eb5a1ab5e2855bb4c6e866d4aa802378d1e8"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/evidence-v20/baseline-room.png",
+      "bytes": 2530,
+      "sha256": "2c2813240e81d6913b6ebb67f11523e98719af21b3846bd2ce2d55238fe39ee2"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/evidence-v20/baseline-sky.png",
+      "bytes": 10934,
+      "sha256": "73097f3cd35f1537cb6c31a51322f72737021aca33d304fae8ac9df6cca875c5"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/evidence-v20/cloud-cloud-gray8.png",
+      "bytes": 26991,
+      "sha256": "a80efd085ccc2671ca63dbfe07ae4aa7054fafeaa5e2d65c33de39b35405c1a6"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/evidence-v20/cloud-cloud-original.png",
+      "bytes": 27078,
+      "sha256": "d02ffd287fef8120987a2afddd05d3f6e677801419d747a2a2f0ff9a6bc5bac8"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/evidence-v20/cloud-dark-gray8.png",
+      "bytes": 19887,
+      "sha256": "33537fe542faf32f18af44a62de6cc8942844670a3691a009fa1dcdda7ad905e"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/evidence-v20/cloud-dark-original.png",
+      "bytes": 19497,
+      "sha256": "90bb9540c772b0d038a6db8565c11da412873b407d00aa6423c4d160ebdedb98"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/evidence-v20/cloud-horizon-gray8.png",
+      "bytes": 25471,
+      "sha256": "128f433985c2ef83dde61c744e293500449e487b949fb6a57314ae6b2c05a3b1"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/evidence-v20/cloud-horizon-original.png",
+      "bytes": 25714,
+      "sha256": "6fa4b34eaa9983af69c3f3605284ad5d06e9d164444b899b6607408fe804aa64"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/evidence-v20/cloud-zenith-gray8.png",
+      "bytes": 20569,
+      "sha256": "02892d86ea9ef4e7d21d935b53a848bf257acf668c322a986728d9cb7b559e52"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/evidence-v20/cloud-zenith-original.png",
+      "bytes": 20158,
+      "sha256": "d9cd69b93be0d5fa2295bd0fdcc2ccb6ae5b8bca1fa13a74d6716bbdc13456d8"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/evidence-v20/computed-type.json",
+      "bytes": 755,
+      "sha256": "711f6dc813306695cd228435c2a7ca745e7f4fe485b6820b6e2dc20588229e53"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/evidence-v20/content-isolation.json",
+      "bytes": 4193,
+      "sha256": "9f9e08d6f056f9ed79138b8c6808ebcf008030856372d4f0bd9c726f13d94003"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/evidence-v20/contrast-samples.json",
+      "bytes": 4360,
+      "sha256": "2c52eb1642aef8f85a8995727bb9a3323aea76a3c0b02f7a1d1316a7e2754301"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/evidence-v20/core-answer-1.1.png",
+      "bytes": 29566,
+      "sha256": "e9987b55a1dd6c1f26f2521b307cc2c891f379b8b3f670d68bbfc61447f6b040"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/evidence-v20/core-answer-1.png",
+      "bytes": 29571,
+      "sha256": "f2fda7ca479f9708d94295dc9b206520ce1f95927244520dedd7faa4763d7008"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/evidence-v20/core-comparison.json",
+      "bytes": 2778,
+      "sha256": "91a2167c892338c1da5f2627ce5caa7ea8fd9fa647ee87912246ae67d3e97932"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/evidence-v20/core-night-1.1.png",
+      "bytes": 26163,
+      "sha256": "07f1af467e3a2c244dc9258ad4f6833c1a6369301d4ade5f190bbbd31f5a8703"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/evidence-v20/core-night-1.png",
+      "bytes": 26165,
+      "sha256": "497593372b619d18df6ada4c0f0e890c712b44f20389c6020fdde7664f6b1ed3"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/evidence-v20/core-roof-1.1.png",
+      "bytes": 35122,
+      "sha256": "581cf6e7020ccc22dc15442c6be675e77ea8ec21f99e54d93b6283b92b3d50e9"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/evidence-v20/core-roof-1.png",
+      "bytes": 35112,
+      "sha256": "cd0941e267e38b4ff3bc9a84194d0ab691f35fb205bc2f5201b27ac884a1e046"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/evidence-v20/delivery-state.json",
+      "bytes": 422,
+      "sha256": "4f83ad2c65f9859ed5c4cbb734f51427e7e2673496c7d0f6fd0f64b99068156d"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/evidence-v20/final-preview.png",
+      "bytes": 22743,
+      "sha256": "c4968277a40591d249b4016ea49f5c27b4ff0e9f0c6981dbd7bc8e65bab454fb"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/evidence-v20/keyboard-focus.json",
+      "bytes": 127,
+      "sha256": "24182aee5b2febc5515e3f449b07d72fd0ac0079a5777654fa759cb884074671"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/evidence-v20/layout-matrix-final.json",
+      "bytes": 33317,
+      "sha256": "55ffb1fe55c074022d71e96a5319c2190fcc001c6c862d2688735e22ccda1aea"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/evidence-v20/layout-matrix.json",
+      "bytes": 43870,
+      "sha256": "326826267defac73613a59759796191ce224c2a01e2492a6aace0931437354b6"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/evidence-v20/long-content.json",
+      "bytes": 1766,
+      "sha256": "753ea19e2b564bfbf909adad26fd71535276d3c7f32f819a6923a4000b178387"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/evidence-v20/media-reader.json",
+      "bytes": 295,
+      "sha256": "9fc66428189ebf2ac647307bc18c1d81955d3018e84f77b086d884f30b89e3c6"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/evidence-v20/motion-audit-final.json",
+      "bytes": 1299,
+      "sha256": "189a9e299b1a1030edcf2bd8a7f513ffb4a167dcd1a01446d3c34959ce098cb5"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/evidence-v20/motion-audit-visible.json",
+      "bytes": 1299,
+      "sha256": "63d61ac562610ea66bae00100391ee48789600eccf8d6ba12fb14d9e11f1f3ef"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/evidence-v20/motion-audit.json",
+      "bytes": 1300,
+      "sha256": "1e7a3e986389686020b0562da9c67deadc35e53131bc3370774b5e10531bcc36"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/evidence-v20/native-200-preview.png",
+      "bytes": 55202,
+      "sha256": "e4333475850bc6a4a3f584af77c3902661dcc29b6771bc079a5085f4c5f844a7"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/evidence-v20/native-200-reader.png",
+      "bytes": 37342,
+      "sha256": "bf554b0fa1ed2403c23eb64d70104f5ce55d8bcfe54505ef489b9afabaca3097"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/evidence-v20/native-200-zoom.json",
+      "bytes": 3033,
+      "sha256": "2cb4573d49d6db7a1dfbad3313e5a7cf7dbb003e5cca7f296e64a73f5f8d7a66"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/evidence-v20/native-zoom-attempt.json",
+      "bytes": 191,
+      "sha256": "06be32f43d8c1ecc3eb116722a747502fca7636c7fe72daea0d23fdf851f0b66"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/evidence-v20/overview-final.png",
+      "bytes": 31587,
+      "sha256": "abad36f857da74cc28b41e614a11e5e58529be3a0033f5f00845419817b12ff5"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/evidence-v20/overview-reset.json",
+      "bytes": 4972,
+      "sha256": "08636d5928d3206c6ec92698132251edd72a836a04e897b8e2254e989098c69b"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/evidence-v20/performance-baseline.json",
+      "bytes": 371,
+      "sha256": "837ffa07e367ad79dceab1516d095fec677b8a2a2034091b4d81a0630c2323a7"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/evidence-v20/performance-edge-baseline.json",
+      "bytes": 354,
+      "sha256": "42d416176773fda30d93dd852f30882457ddf0b65f640ae62c087a2ddfb01279"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/evidence-v20/performance-edge-new.json",
+      "bytes": 351,
+      "sha256": "caaaff0bb8cb00da7eb25783a4901fa5d09e8b5b2d6c0e1fa632055c251dda37"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/evidence-v20/performance-new.json",
+      "bytes": 380,
+      "sha256": "54030d909ca4488d11782c40cb38a1e21bc01a9b6c2cf05f55d7c038a68fe509"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/evidence-v20/pointer-interrupt-resize.json",
+      "bytes": 3966,
+      "sha256": "0f3824c845afd7a6b9f926823e11e7547f43b252dd8640b98e3185bc63e4344c"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/evidence-v20/reader-keyboard-end.json",
+      "bytes": 179,
+      "sha256": "66590519742d99d033e1342901cb14d4e31d714626fbd0ad23d9ff484b8b913c"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/evidence-v20/reader-resize.json",
+      "bytes": 3126,
+      "sha256": "37ef0f99eb93696863ef5e242d6dce8b60337e5588785a868a5a5d7cadca7739"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/evidence-v20/room-journal.json",
+      "bytes": 466,
+      "sha256": "cbb6a4a4f111fa90615e7cdd95a5970961de0425241cb018d7bb248967df663b"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/evidence-v20/short-and-map.json",
+      "bytes": 282,
+      "sha256": "f4c24e0ef3236a012817a82726688562912671f957f73420e5d0a67087b78867"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/evidence-v20/text-200-1123x631.png",
+      "bytes": 39483,
+      "sha256": "bdfad96924fec0ffb0578066cc9567827b213a43d7ce2e9b986921e8dfec1bd9"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/evidence-v20/text-200-320x568.png",
+      "bytes": 23118,
+      "sha256": "80ea3135a12d19667a23afeeec7e5ed6ebbf56fe8ab67273047da091e84fa1ab"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/evidence-v20/text-200-342x740.png",
+      "bytes": 30770,
+      "sha256": "4710b026696d5c76967575373ea446eed79956817af5de7f4f4823619431ddee"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/evidence-v20/text-200-compact-map.png",
+      "bytes": 15987,
+      "sha256": "aa8277f702c6b3b56557d4aa388e1f0b914f62b7df7f756bbf71a3141b4e363a"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/evidence-v20/text-200-preview.png",
+      "bytes": 31700,
+      "sha256": "24ed1a38c74c98726dcfbe518f0471a548e90a70b798acd91a284addeca61d49"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/evidence-v20/text-200-reader.png",
+      "bytes": 20508,
+      "sha256": "8ab01d6aeb5f34eefcfd2c3fd2a2fdc7c866898ac7723dc6bdd71d883836b971"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/evidence-v20/text-zoom.json",
+      "bytes": 14469,
+      "sha256": "b5f85a3709d7813798a72c5dd5b50609b5e077d05cf7cc8d7aa1a2b8ebd0ac65"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/evidence-v20/time-cue-layout.json",
+      "bytes": 2320,
+      "sha256": "a670123d2a06450b305eb03e42aa92a4e58d34354673b0f8b24f97ee67b334a3"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/evidence-v20/two-pointer-clicks.json",
+      "bytes": 305,
+      "sha256": "f99f955eebdfd22615968cc1f9648987ff9172183b937c20898341199c8b24af"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/evidence-v20/v20-1123x631.png",
+      "bytes": 26766,
+      "sha256": "c64375d72880190f8a58b73ec6df3c55016dd01799fbcd4fef01cb25fcf4aa85"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/evidence-v20/v20-1440x900.png",
+      "bytes": 31713,
+      "sha256": "f021ed292f9d210d5c51c47ca4ddc03d6b84c46d6086d55f494321e4dd627c7d"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/evidence-v20/v20-320x568.png",
+      "bytes": 6104,
+      "sha256": "2b056b2629a55e1bec226829e8529988415ff6d16ebf3a1e44a4d2b8761fc550"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/evidence-v20/v20-342x740.png",
+      "bytes": 7381,
+      "sha256": "d2817fef10b6e28c3647f759f4927cf26db1fb5180fbbab32ffd62e46884577d"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/evidence-v20/v20-390x844.png",
+      "bytes": 38835,
+      "sha256": "0359ccd8448bc0c9632fbbca4f63fe8d89dbf5afe6b0fd71c27102040ba6041a"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/evidence-v20/v20-430x931.png",
+      "bytes": 46382,
+      "sha256": "c6664fb1137d212ccc7df54180dd8677ab756d9a74d092b0c720518d0b531a4f"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/evidence-v20/v20-430x932.png",
+      "bytes": 47403,
+      "sha256": "7c8f7bc3b920d8c5f18c9071c1227f14aa103634d3e4d5f2e2936046b86d811b"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/evidence-v20/v20-430x933.png",
+      "bytes": 43614,
+      "sha256": "f9bbe4cae39ae7cec9adaea4f04500db82fbaf8bb07fdecbf77dfea6a33a354d"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/evidence-v20/v20-568x320.png",
+      "bytes": 21246,
+      "sha256": "d8535801cf3e9e38bfc701758d216928b16ba7059d094289135dd78efe16ca82"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/evidence-v20/v20-844x390.png",
+      "bytes": 21405,
+      "sha256": "b26e5ad544af8e4f340037614bbd4cf647ccaf34160b61ff231960b91ee02250"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/evidence-v20/v20-compact-long-end.png",
+      "bytes": 20535,
+      "sha256": "3cdb03f38561a25f253742e33dec8e1a84323ebeafd1972a8c6e32eacb528f79"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/evidence-v20/v20-compact-preview.png",
+      "bytes": 20242,
+      "sha256": "6e70882f604c4106e4e785546d9a1c2b55eab7b8c1fc127ac031875fd736a132"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/evidence-v20/v20-compact-reader.png",
+      "bytes": 19405,
+      "sha256": "b3a2a608d62dc67d63e7cebb54969635246a43f50cc5a88cd8b1cbc136eeb14b"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/evidence-v20/v20-long-reasons.png",
+      "bytes": 19726,
+      "sha256": "36a36d86a3fd31a6f35754a2ee580b49662400d7f8f9dc627e54355eb3561c7d"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/evidence-v20/validation-command-results.json",
+      "bytes": 3208,
+      "sha256": "99c9c114c96d79e5243315c8105563a7c7fc3c1a5167ae623577258852a66580"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/evidence-v20/wordmark-mobile-full.png",
+      "bytes": 18752,
+      "sha256": "058df734d643708d117df03de16d38449f89c362ea88dee4984063d99fe1aa25"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/evidence-v20/wordmark-mobile-simple.png",
+      "bytes": 18828,
+      "sha256": "ea214e3d7ab56d9d4d507cc1183865e43900cd4b61043a596dbef237d3902bb1"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/execution-handoff.md",
+      "bytes": 7863,
+      "sha256": "aafa29ba1c36db03a2cdae47521897accff605e312d8686859e1342b05bfdcff"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/experience.test.mjs",
+      "bytes": 2132,
+      "sha256": "71de7b5947ad1e39164ceb58d8382b3db82eee4e574d6eb9b2c55e231433b974"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/issues/02-legacy-recovery-baseline.md",
+      "bytes": 2311,
+      "sha256": "eb9ddb808446077bfa1a2639877eae546d2bfedd7c6f0d429185f8a664778bf2"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/issues/03-first-real-article.md",
+      "bytes": 2627,
+      "sha256": "fe405a4b7d5d8e7571ffd8b4f16490df0b11a792f659a6819101012c70c52f69"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/issues/04-stable-article-publication.md",
+      "bytes": 2675,
+      "sha256": "b450121fe9f99ea5eb0df58aca913734a7280cb198388baa704593c2ca871421"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/issues/05-real-content-media-compatibility.md",
+      "bytes": 2464,
+      "sha256": "3b58d5ee3e893a685b7812e3fd54c682c695c48d606113646d9f6db094f95632"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/issues/06-bidirectional-relations.md",
+      "bytes": 2287,
+      "sha256": "482a055732f14967f2b505859cf4da8cd08253617a6b3224c9010970cbcb78d8"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/issues/07-modes-history-interruption.md",
+      "bytes": 2848,
+      "sha256": "f76d2eae535fa2b92713c8358ee0a94fb03939f973c50bf6685bb04dfb83418a"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/issues/08-archives-and-legacy-collections.md",
+      "bytes": 2236,
+      "sha256": "15a066acb95286ffbb9c58111092f84f64e447f94c6a9b448b35f944aabb702c"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/issues/09-friends-and-legacy-about.md",
+      "bytes": 2329,
+      "sha256": "e44761826e9f5aca690e3d0d0d36f0529ee48fe58c7e838e6c02bbb49b0279ef"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/issues/10-content-and-appearance-config.md",
+      "bytes": 2412,
+      "sha256": "518f13117b9032a54c2b3e5bef2af58edd23e1667cecf0bb8dae0ca8ef6af666"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/issues/11-desktop-scene-calibration.md",
+      "bytes": 2241,
+      "sha256": "12a5618c30bda581fed71e93c648762914b84d9d693c8dd974ca11c7449869c8"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/issues/12-mobile-scene-calibration.md",
+      "bytes": 2263,
+      "sha256": "4fddd8c3cd513956a5ee7bd62eb079a503d44c11006d672d8bc627ee1c91bec3"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/issues/13-mobile-and-accessible-reading.md",
+      "bytes": 2505,
+      "sha256": "4b72f45f8c915e23b5e71fcfd0250da2b4b36cbc357fa264d56cd67b75764ce2"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/issues/14-performance-graceful-degradation.md",
+      "bytes": 2190,
+      "sha256": "b641ed41f3b4968eccb1bfd7c1ac499604e9d70184dc490cdca89d7487d4f9e2"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/issues/15-netlify-release-and-rollback.md",
+      "bytes": 2680,
+      "sha256": "ad030db04f15d77b08dbe2b812b5a1dfefa692ecc9fb21ce929da5d220803a53"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/issues/16-generic-template-export.md",
+      "bytes": 2421,
+      "sha256": "c547f317ad0005b6f864afe92ed637df71923d8cc766e981dc022f321b53f980"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/issues/17-public-template-publication.md",
+      "bytes": 2404,
+      "sha256": "5496d55273c56c76a06b5056d4f58c89d7b26ffe30fe1e2e573db323fddd2ff2"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/optimization-plan-v19.md",
+      "bytes": 22349,
+      "sha256": "4f2b0142314291546b5410b4d91269967541a96491a49535a5e4e16897e3fd6d"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/optimization-v20-acceptance.md",
+      "bytes": 22048,
+      "sha256": "ce90b17ca44f3cd8c0bad9fb4074e03132869d8c1c32101d11153cad4bf3676e"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/poster-redraw-20260915.md",
+      "bytes": 3546,
+      "sha256": "69d333072ae31723d11ed91e7a61976b3585feef07b778b2870cd7855a4086ce"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/poster-redraw-20260915/browser-checks.json",
+      "bytes": 528,
+      "sha256": "47ef7deaba39d2a53fccc3a64a9a5cc67b7ba17b73a12455c2094504ceccb799"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/poster-redraw-20260915/desktop.png",
+      "bytes": 48423,
+      "sha256": "734d278577b876e866d5a184b522085fbe6d714298f7a3cb16940b6c16200a69"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/poster-redraw-20260915/reference-hedgehog.png",
+      "bytes": 3201812,
+      "sha256": "dad8ef501ed0f0bf136bbbbf31d52cbf3fbddb5b78f725ed3030f8972bf36c78"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/poster-redraw-20260915/reference-location.png",
+      "bytes": 785058,
+      "sha256": "4d6c4eec5cce5cca4724a99e5f455fe599f2901c2f9688eeaf338c396681e95c"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/rhine-reference-boot-motion.jpg",
+      "bytes": 94151,
+      "sha256": "1d534b1e1f192f915378d569afd30df9f818e043c5d967eb75c689cdc7106902"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/rhine-reference-browse.jpg",
+      "bytes": 197777,
+      "sha256": "59d5c372f09c6373a3737740e95f4e0341d41b8c74b3e2451359576620a679a6"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/rhine-reference-decryption.jpg",
+      "bytes": 152439,
+      "sha256": "c8ae923a9825b1d60887f2de40a2f74e133b32475c5e1a10473ded2687afcd52"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/rhine-video-timeline-v14.jpg",
+      "bytes": 126093,
+      "sha256": "4dfc09b0a7ff29b89c447846cb13be022861daa9afdbd12f880846f6e07b2800"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/room-artwork-update-20260915.md",
+      "bytes": 1776,
+      "sha256": "127614ed3a5b97122b0851a1f221a9d9c02d46476f754ca0e0f117b5ca5a71eb"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/spec.md",
+      "bytes": 32426,
+      "sha256": "d386e928f8abd11575c3c537a6c1806b96be7004d70d4cfcf87ce9691ddcf086"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/theme-discovery.md",
+      "bytes": 12079,
+      "sha256": "fea5221b262253f1e11470e077f22ae3c10fa44919f8b09687e00f1cf2885e94"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/theme-implementation-plan.md",
+      "bytes": 14526,
+      "sha256": "201583345a413816440aab7592f7f8b40f5a798fb4e5da9f8e4b169cee83f8eb"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/ticket-drafts/02-legacy-recovery-baseline.md",
+      "bytes": 2135,
+      "sha256": "080ad00c04e78299abf316df7d48fb3f4bf01a17a625602dd1f64facb6ae6597"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/ticket-drafts/03-first-real-article.md",
+      "bytes": 2451,
+      "sha256": "e8a7a30f0f4cd66bf535634c8dfc2c024609fc248880cfc363acf770c2d2cec5"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/ticket-drafts/04-stable-article-publication.md",
+      "bytes": 2499,
+      "sha256": "bb71e437cfeb6740fc33fb9188561165fe1240b69be39c29a544f2b83f55e3ce"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/ticket-drafts/05-real-content-media-compatibility.md",
+      "bytes": 2288,
+      "sha256": "3c726cfe30eed30b37c16331c56b2fe9bf96b4b9a3f37138ba7cea4e328af111"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/ticket-drafts/06-bidirectional-relations.md",
+      "bytes": 2111,
+      "sha256": "5547fb343347f8485aa7b1f9b8463855bd8e81caa38f56629f483d828743cbba"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/ticket-drafts/07-modes-history-interruption.md",
+      "bytes": 2672,
+      "sha256": "88c8c87cbe6c8431baa41a4f5c3303dd2ef3d20a785607c22fb6714dec7dd032"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/ticket-drafts/08-archives-and-legacy-collections.md",
+      "bytes": 2060,
+      "sha256": "ce5811fd96673eff9a152445133fc283bfe5c6e4f68366e90651881defbc1f43"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/ticket-drafts/09-friends-and-legacy-about.md",
+      "bytes": 2153,
+      "sha256": "7ce91eeaed9cedf51412ad029e07ae6c72a56bdf5d66cfb11ea51b402938a715"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/ticket-drafts/10-content-and-appearance-config.md",
+      "bytes": 2236,
+      "sha256": "da0053a1c350ad62848107f9726c17bb5f045affb3897338319035f3839d51ec"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/ticket-drafts/11-desktop-scene-calibration.md",
+      "bytes": 2065,
+      "sha256": "e614ee2ba3df387c28fba276efa538deff76cd019e54f450e54f5a213c5321bb"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/ticket-drafts/12-mobile-scene-calibration.md",
+      "bytes": 2087,
+      "sha256": "c85af4e24b30479e8e253f7bd1bae17bc0d951ad2b63301a5be1a7b2f50b67ff"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/ticket-drafts/13-mobile-and-accessible-reading.md",
+      "bytes": 2329,
+      "sha256": "fc06665327ba4e7b68b2c6a7882ed03d9b0ef47319442e5cc642d05c57f7d983"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/ticket-drafts/14-performance-graceful-degradation.md",
+      "bytes": 2014,
+      "sha256": "adb7f2153ee75ebc97e3e7c8dd6f23e08b8c990fb9750f3e9d69859786708bbc"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/ticket-drafts/15-netlify-release-and-rollback.md",
+      "bytes": 2504,
+      "sha256": "bc642dae1b2d21e341130f976751f9ec927d94d5d052ff7c2d1bf6704aa92a64"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/ticket-drafts/16-generic-template-export.md",
+      "bytes": 2245,
+      "sha256": "6a4c1da30a3b67d7c72c8f70dc38fc110ef09fc4ed93111a6e5b97e1f09cad3a"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/ticket-drafts/17-public-template-publication.md",
+      "bytes": 2228,
+      "sha256": "25748f1b8c1835e25138a7facc006fe20e2fc9cedf2aa2f85b2c1c839e4e08af"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/ticket-plan.md",
+      "bytes": 9329,
+      "sha256": "c44b49a34367a934f9f5ac5e693a4b943ad084fef346c02bc33956c9beb1def4"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/v20-verification-manifest.json",
+      "bytes": 23109,
+      "sha256": "5c68e34fdf4ef5286f6be1ccb20eeae91eacae52f7f7f5afa6f7b1683ffb8b7e"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/ztmy-detail-20260916.md",
+      "bytes": 3310,
+      "sha256": "57805b6b251fba7216b53dbb5021be8cf1c15776ec1f0ac1d544627220c81fa4"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/ztmy-detail-20260916/browser-checks.json",
+      "bytes": 809,
+      "sha256": "babea90b7c886588506716bb42ace69420c5506831a06b2e780d56bbe4023993"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/ztmy-detail-20260916/desktop.png",
+      "bytes": 65531,
+      "sha256": "29faa3255f38d2ebceb21f6e890d20e1573fc980685a61e12a55d7169f3f6765"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/ztmy-detail-20260916/prompt-01.txt",
+      "bytes": 5357,
+      "sha256": "e89e077a0e20bfb4f3f7ab9d45733a4442f861545b9508b31488b18c4b5f2c22"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/ztmy-detail-20260916/reference-cat-drawing.png",
+      "bytes": 289513,
+      "sha256": "8f1bb982f19629bc755c107ddee69c5eb9f0f0625fc7eaa913c31c41d3daf451"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/ztmy-detail-20260916/reference-cat-plush.png",
+      "bytes": 39059,
+      "sha256": "5d993bb06127a786de8ee8f34f44cae5ba051f5eec7829dfe82b48737ac22f0c"
+    },
+    {
+      "state": "??",
+      "path": ".scratch/starry-blog/ztmy-detail-20260916/reference-headphones.png",
+      "bytes": 52374,
+      "sha256": "794170678f3a28c1ccf736c84bfd37fe7ad22fa243e13cf19999c5e38f188a30"
+    },
+    {
+      "state": "??",
+      "path": "AGENTS.md",
+      "bytes": 2547,
+      "sha256": "d7cbf8225c8fe833b1c2835b761c96e115691af9e58eda7c5720a453a6a3f508"
+    },
+    {
+      "state": "??",
+      "path": "docs/agents/domain.md",
+      "bytes": 1437,
+      "sha256": "ac56bd9e78ecf42fa3676886ee2c82de93494ce36d0d34acd1327d5441ef93df"
+    },
+    {
+      "state": "??",
+      "path": "docs/agents/issue-tracker.md",
+      "bytes": 3278,
+      "sha256": "ecf7eaec699ecc7a3e22b7e5337b94627af6b0f8cec06d48df1af72f954f40f6"
+    },
+    {
+      "state": "??",
+      "path": "docs/agents/triage-labels.md",
+      "bytes": 769,
+      "sha256": "9007dec468564fa8c80f60b4ae0bbb3fc86eae37bad07b8c136f0a23b4e99e57"
+    },
+    {
+      "state": "??",
+      "path": "docs/design/starry-blog.md",
+      "bytes": 31716,
+      "sha256": "c36fff071fcc58d70f33f5cb3089e24d2690becf68db20f559ff795734a817ab"
+    },
+    {
+      "state": "??",
+      "path": "themes/hexo-theme-kira/prototypes/starfield/MOTION-STUDY-14.md",
+      "bytes": 5229,
+      "sha256": "13bcaca348b767be54ed5242bc9555d9825dc831a91fca0a22f63059dab0964e"
+    },
+    {
+      "state": "??",
+      "path": "themes/hexo-theme-kira/prototypes/starfield/MOTION-STUDY-15.md",
+      "bytes": 4963,
+      "sha256": "8c1575e59f5659e5bdf2d670f79832f49fc01f587eebf1628b51eed6a5678732"
+    },
+    {
+      "state": "??",
+      "path": "themes/hexo-theme-kira/prototypes/starfield/MOTION-STUDY-16.md",
+      "bytes": 2348,
+      "sha256": "760fb41246415a51b302458ae5d3c918991515ffb4695cad483e003add5bb1bf"
+    },
+    {
+      "state": "??",
+      "path": "themes/hexo-theme-kira/prototypes/starfield/MOTION-STUDY-17.md",
+      "bytes": 3224,
+      "sha256": "4ced0106215956cdd991e5060a45df6cd5d352e6aed63499b159ceb922723b58"
+    },
+    {
+      "state": "??",
+      "path": "themes/hexo-theme-kira/prototypes/starfield/MOTION-STUDY-18.md",
+      "bytes": 2445,
+      "sha256": "0edcea80cb3c562739e006926056a2d9293da5f524f13a39c6035c250f139a1c"
+    },
+    {
+      "state": "??",
+      "path": "themes/hexo-theme-kira/prototypes/starfield/MOTION-STUDY-19.md",
+      "bytes": 4941,
+      "sha256": "ef80f9853ddadcb5624ae9bfc46719fbb5c28aa1affea66f7e0e796734c5ae63"
+    },
+    {
+      "state": "??",
+      "path": "themes/hexo-theme-kira/prototypes/starfield/assets/room-personal-v20.png",
+      "bytes": 1371072,
+      "sha256": "883156b240c4c053d7a96cc12ecb67b355a638aab5a070d0131ae4b2e3d992e2"
+    },
+    {
+      "state": "??",
+      "path": "themes/hexo-theme-kira/prototypes/starfield/assets/room-poster-detail-v20.png",
+      "bytes": 1347037,
+      "sha256": "f38fb2b96bde98ccea44f55d6ab1cf89a2c5b80cce3b6d0c11be8873a32d9d54"
+    },
+    {
+      "state": "??",
+      "path": "themes/hexo-theme-kira/prototypes/starfield/assets/room-window-mask-v17.svg",
+      "bytes": 1297,
+      "sha256": "406b8f2cf2e844e7fc11bd4c37a87aedabad2ce0e2499c6536e42dbc694e56bd"
+    },
+    {
+      "state": "??",
+      "path": "themes/hexo-theme-kira/prototypes/starfield/assets/room-window-mask-ztmy-v20.svg",
+      "bytes": 1545,
+      "sha256": "e6d399037fef3bcef79d46feb93aef596df1732ad2a6997854e06b66b1f7e7f0"
+    },
+    {
+      "state": "??",
+      "path": "themes/hexo-theme-kira/prototypes/starfield/assets/room-window-portrait-mask-v17.svg",
+      "bytes": 1089,
+      "sha256": "69477340faabfee77f952fcd103b2f6be32b68ae3cbbceae7a22f9085605d1b3"
+    },
+    {
+      "state": "??",
+      "path": "themes/hexo-theme-kira/prototypes/starfield/assets/room-ztmy-detail-v20.png",
+      "bytes": 1508947,
+      "sha256": "6a371bdd8c1301797ce05975fbc830f083ef2766720b430c58465c8ed92e9027"
+    },
+    {
+      "state": "??",
+      "path": "themes/hexo-theme-kira/prototypes/starfield/experience.js",
+      "bytes": 818,
+      "sha256": "62307233722158aab993ceab1014a6f225a30b7e80ea0c1446c03768a6a81de6"
+    },
+    {
+      "state": "??",
+      "path": "themes/hexo-theme-kira/prototypes/starfield/frame-monitor.js",
+      "bytes": 1586,
+      "sha256": "76fa8c48ce394947f1dfdbf0e1b8032524f03aa0ae81c1d60bfa794ecb3a982e"
+    },
+    {
+      "state": "??",
+      "path": "themes/hexo-theme-kira/prototypes/starfield/motion.css",
+      "bytes": 6388,
+      "sha256": "31cd75fefd838920ed91f53c4aac855d0eb77ff3909cddb63d7eb7a22d1c03ae"
+    },
+    {
+      "state": "??",
+      "path": "themes/hexo-theme-kira/prototypes/starfield/motion.js",
+      "bytes": 14790,
+      "sha256": "7f1da06e5f83a4ed5f35fe061187434f88f60e35800ab62569d88d8ae7d6ce2a"
+    },
+    {
+      "state": "??",
+      "path": "themes/hexo-theme-kira/prototypes/starfield/review-tools.js",
+      "bytes": 9170,
+      "sha256": "e0fac525cbf1ebc5dcb3b4d0583d71bc7d3cc451d8a55e93d14e3bed9defcd15"
+    }
+  ]
+}

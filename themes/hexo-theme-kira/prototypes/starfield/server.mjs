@@ -13,8 +13,13 @@ files.add('art-study.js');files.add('navigation.js');
 files.add('assets/roof-stargazer-v9.png');
 files.add('painted.js');files.add('painted.css');
 files.add('assets/room-reference-v11.png');files.add('assets/painted-sky-v11.png');
+files.add('assets/room-personal-v20.png');
+files.add('assets/room-poster-detail-v20.png');
 files.add('assets/room-portrait-v11.png');
+files.add('assets/room-window-mask-v17.svg');files.add('assets/room-window-portrait-mask-v17.svg');
 for(const file of ['dome.js','dome-renderer.js','sky-map.js','interactive-clouds.js'])files.add(file);
+for(const file of ['motion.js','motion.css'])files.add(file);
+for(const file of ['experience.js','review-tools.js','frame-monitor.js'])files.add(file);
 const types = { '.html': 'text/html; charset=utf-8', '.css': 'text/css; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.png': 'image/png', '.svg': 'image/svg+xml' };
 http.createServer(async (req, res) => {
   const url = new URL(req.url, 'http://localhost');
