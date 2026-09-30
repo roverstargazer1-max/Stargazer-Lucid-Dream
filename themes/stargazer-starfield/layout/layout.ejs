@@ -1,6 +1,6 @@
 <%
   const isPost = page.layout === 'post' && page.title;
-  const isFeatured = isPost && page.starry_id === theme.featured_article_id;
+  const isStarryArticle = isPost && page.starry_id;
   const title = isPost ? page.title : config.title;
   const description = isPost ? String(page.starry_excerpt || config.description || '') : String(config.description || '');
   const canonical = isPost ? page.permalink : new URL(url_for('/'), config.url).href;
@@ -27,8 +27,8 @@
   <% if (description) { %><meta name="twitter:description" content="<%= description %>"><% } %>
   <link rel="stylesheet" href="<%= url_for('css/starry/site.css') %>">
 </head>
-<body class="<%= isFeatured ? 'has-starry-experience article-page' : '' %>"
-      data-starry-article-id="<%= isFeatured ? page.starry_id : '' %>"
+<body class="<%= isStarryArticle ? 'has-starry-experience article-page' : '' %>"
+      data-starry-article-id="<%= isStarryArticle ? page.starry_id : '' %>"
       data-starry-featured-id="<%= theme.featured_article_id %>"
       data-starry-index="<%= url_for('starry/index.json') %>"
       data-starry-root="<%= url_for('/') %>"

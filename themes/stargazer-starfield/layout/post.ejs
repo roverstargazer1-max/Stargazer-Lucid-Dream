@@ -1,8 +1,7 @@
 <%
   const articlePath = url_for(page.path);
-  const isFeatured = page.starry_id === theme.featured_article_id;
 %>
-<% if (isFeatured) { %>
+<% if (page.starry_id) { %>
   <%- partial('partial/stage', { articlePath, articleTitle: page.title }) %>
   <main id="static-article-fallback" class="static-article-fallback">
     <article class="article" data-starry-id="<%= page.starry_id %>">

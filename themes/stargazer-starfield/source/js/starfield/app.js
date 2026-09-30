@@ -30,8 +30,10 @@ async function start() {
   let roomScene = null;
   let clouds = null;
   let starMotion = null;
+  let articles = [];
+  let articleById = new Map();
+  let articleNodes = new Map();
   let article = null;
-  let articleNode = fallbackArticle;
   let selected = null;
   let phase = 'idle';
   let travel = null;
@@ -41,8 +43,9 @@ async function start() {
   let height = innerHeight;
   let dpr = Math.min(devicePixelRatio || 1, 2);
   let camera = { x: 0, y: 0, z: 0, yaw: 0, pitch: HOME_ELEVATION, zoom: 1 };
-  let starTarget = null;
-  let visibleStar = null;
+  let starTargets = new Map();
+  let visibleStars = new Map();
+  let articleLoads = new Map();
   let readingSnapshot = null;
   let readerTrigger = null;
   let internalArticleHistory = false;
@@ -59,19 +62,22 @@ async function start() {
   const response = await fetch(indexUrl, { credentials: 'same-origin', cache: 'no-cache' });
   if (!response.ok) throw new Error(`Starfield index request failed: ${response.status}`);
   const index = await response.json();
-  if (index.version !== 1 || !Array.isArray(index.articles)) throw new Error('The starfield index has an unsupported format.');
-  article = index.articles.find((item) => item.id === (directId || body.dataset.starryFeaturedId));
-  if (!article || !article.title || !article.excerpt || !Array.isArray(article.position) || article.position.length !== 3) {
-    throw new Error('The featured article is not ready for the starfield.');
-  }
-  article.position = { x: article.position[0], y: article.position[1], z: article.position[2] };
+  if (index.version !== 2 || !Array.isArray(index.articles)) throw new Error('The starfield index has an unsupported format.');
+  articles = index.articles.map((item) => {
+    if (!item.id || !item.title || !Array.isArray(item.position) || item.position.length !== 3 || !item.position.every(Number.isFinite)) {
+      throw new Error(`Article "${item.id || '(missing ID)'}" is not ready for the starfield.`);
+    }
+    return { ...item, position: { x: item.position[0], y: item.position[1], z: item.position[2] } };
+  });
+  articleById = new Map(articles.map((item) => [item.id, item]));
+  const startId = directId || index.featuredArticleId || body.dataset.starryFeaturedId;
+  article = articleById.get(startId) || articles[0] || null;
 
   if (isDirectEntry) {
-    if (!articleNode || articleNode.dataset.starryId !== article.id) throw new Error('The static article does not match its starfield identity.');
-    const heading = articleNode.querySelector('#reader-title');
+    if (!article || !fallbackArticle || fallbackArticle.dataset.starryId !== article.id) throw new Error('The static article does not match its starfield identity.');
+    const heading = fallbackArticle.querySelector('#reader-title');
     if (!heading || heading.textContent.trim() !== article.title) throw new Error('The static article title does not match its index entry.');
-  } else {
-    articleNode = await loadArticleNode(article);
+    articleNodes.set(article.id, fallbackArticle);
   }
 
   resize();
@@ -84,7 +90,7 @@ async function start() {
     selected = article.id;
     phase = 'settled';
     camera = focusCamera(article);
-    readerSlot.replaceChildren(articleNode);
+    readerSlot.replaceChildren(fallbackArticle);
   }
 
   roomScene = createRoom({
@@ -162,8 +168,8 @@ async function start() {
     canvas.width = Math.round(width * dpr);
     canvas.height = Math.round(height * dpr);
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    if (travel && selected) travel.to = destination(article);
-    if (selected && phase === 'settled' && !reader.open && !isDirectEntry) camera = focusCamera(article);
+    if (travel && selected && article) travel.to = destination(article);
+    if (selected && phase === 'settled' && !reader.open && !isDirectEntry && article) camera = focusCamera(article);
   }
 
   function projectionSettings() {
@@ -199,32 +205,37 @@ async function start() {
   }
 
   function mountStar() {
-    starTarget = document.createElement('button');
-    starTarget.className = 'star-target';
-    starTarget.type = 'button';
-    starTarget.hidden = true;
-    starTarget.setAttribute('aria-label', `选择文章：${article.title}`);
-    const label = document.createElement('span');
-    label.className = 'star-label';
-    label.textContent = article.title;
-    starTarget.append(label);
-    starTarget.addEventListener('click', () => activateStar(article.id));
-    targetLayer.append(starTarget);
+    for (const item of articles) {
+      const target = document.createElement('button');
+      target.className = 'star-target';
+      target.type = 'button';
+      target.hidden = true;
+      target.setAttribute('aria-label', `选择文章：${item.title}`);
+      const label = document.createElement('span');
+      label.className = 'star-label';
+      label.textContent = item.title;
+      target.append(label);
+      target.addEventListener('click', () => activateStar(item.id));
+      targetLayer.append(target);
+      starTargets.set(item.id, target);
+    }
   }
 
   function updateUI() {
-    const isSelected = selected === article.id;
+    const isSelected = Boolean(article && selected === article.id);
     preview.hidden = !isSelected || reader.open;
     if (isSelected) {
       document.getElementById('preview-date').textContent = article.date;
       document.getElementById('preview-title').textContent = article.title;
-      document.getElementById('preview-intro').textContent = article.excerpt;
-      status.textContent = phase === 'moving' || phase === 'arriving' ? '正在靠近 · · ·' : phase === 'settled' ? '再点星，阅读' : '点星，重新靠近';
+      document.getElementById('preview-intro').textContent = article.excerpt || '';
+      status.textContent = phase === 'moving' || phase === 'arriving' ? '正在靠近 · · ·' : phase === 'loading' ? '正在准备正文 · · ·' : phase === 'settled' ? '再点星，阅读' : '点星，重新靠近';
     }
     readButton.disabled = !isSelected || phase !== 'settled' || reader.open;
-    if (starTarget) {
-      starTarget.classList.toggle('is-selected', isSelected);
-      starTarget.setAttribute('aria-label', `${isSelected && phase === 'settled' ? '阅读文章' : '选择文章'}：${article.title}`);
+    for (const [id, target] of starTargets) {
+      const item = articleById.get(id);
+      const active = selected === id;
+      target.classList.toggle('is-selected', active);
+      target.setAttribute('aria-label', `${active && phase === 'settled' ? '阅读文章' : '选择文章'}：${item.title}`);
     }
     homeButton.hidden = Boolean(roomScene?.active) || reader.open;
     document.getElementById('gesture-help').textContent = width <= 760 ? '单指转动穹顶 · 滚轮前行 · 点星靠近' : '拖动转动穹顶 · 滚轮前行 · 点星靠近';
@@ -235,11 +246,14 @@ async function start() {
   }
 
   function activateStar(id) {
-    if (reader.open || travel || arrival || roomScene?.active) return;
+    if (reader.open || travel || arrival || phase === 'loading' || roomScene?.active) return;
+    const targetArticle = articleById.get(id);
+    if (!targetArticle) return;
     if (selected === id && phase === 'settled') {
-      openReaderFromStar();
+      void openReaderFromStar();
       return;
     }
+    article = targetArticle;
     beginApproach(id);
   }
 
@@ -254,6 +268,18 @@ async function start() {
     travel = { from: { ...camera }, to, start, duration };
     starMotion.beginApproach(start, id);
     announce('正在靠近文章星。到位后再次点选这颗星即可阅读。');
+    if (!articleNodes.has(id) && !articleLoads.has(id)) {
+      const load = loadArticleNode(article).then((node) => {
+        articleNodes.set(id, node);
+        articleLoads.delete(id);
+        return node;
+      }).catch((error) => {
+        articleLoads.delete(id);
+        fallback(error);
+        return null;
+      });
+      articleLoads.set(id, load);
+    }
   }
 
   function interrupt() {
@@ -264,13 +290,25 @@ async function start() {
     updateUI();
   }
 
-  function openReaderFromStar() {
-    readingSnapshot = { camera: { ...camera }, selected, phase };
-    readerTrigger = document.activeElement;
-    readerSlot.replaceChildren(articleNode);
-    internalArticleHistory = true;
-    history.pushState({ starryArticleId: article.id }, '', localArticleUrl(article).pathname);
-    showReader(project(article.position));
+  async function openReaderFromStar() {
+    if (!article || selected !== article.id || phase !== 'settled' || reader.open) return;
+    const targetArticle = article;
+    phase = 'loading';
+    updateUI();
+    try {
+      const node = articleNodes.get(targetArticle.id) || await articleLoads.get(targetArticle.id) || await loadArticleNode(targetArticle);
+      if (!node) return;
+      articleNodes.set(targetArticle.id, node);
+      if (selected !== targetArticle.id || reader.open) return;
+      readingSnapshot = { camera: { ...camera }, selected, phase: 'settled' };
+      readerTrigger = starTargets.get(targetArticle.id) || document.activeElement;
+      readerSlot.replaceChildren(node);
+      internalArticleHistory = true;
+      history.pushState({ starryArticleId: targetArticle.id }, '', localArticleUrl(targetArticle).pathname);
+      showReader(project(targetArticle.position));
+    } catch (error) {
+      fallback(error);
+    }
   }
 
   function openDirectArticle() {
@@ -302,7 +340,7 @@ async function start() {
       phase = 'settled';
       selected = article.id;
       updateUI();
-      starTarget?.focus({ preventScroll: true });
+      starTargets.get(article.id)?.focus({ preventScroll: true });
     }, project(article.position));
   }
 
@@ -320,6 +358,7 @@ async function start() {
       if (readingSnapshot) {
         camera = { ...readingSnapshot.camera };
         selected = readingSnapshot.selected;
+        article = articleById.get(selected) || article;
         phase = readingSnapshot.phase;
       } else {
         phase = 'settled';
@@ -327,20 +366,30 @@ async function start() {
       }
       readingSnapshot = null;
       updateUI();
-      const target = readerTrigger?.isConnected ? readerTrigger : starTarget;
+      const target = readerTrigger?.isConnected ? readerTrigger : starTargets.get(selected);
       target?.focus({ preventScroll: true });
       readerTrigger = null;
     }, project(article.position));
   }
 
-  function openReaderFromHistory() {
+  async function openReaderFromHistory(id) {
     if (reader.open) return;
-    selected = article.id;
-    phase = 'settled';
-    if (!readingSnapshot) readingSnapshot = { camera: { ...camera }, selected, phase };
-    readerSlot.replaceChildren(articleNode);
-    internalArticleHistory = true;
-    showReader(project(article.position));
+    const targetArticle = articleById.get(id);
+    if (!targetArticle) return fallback(new Error(`Article "${id}" is missing from the current starfield index.`));
+    article = targetArticle;
+    selected = id;
+    phase = 'loading';
+    updateUI();
+    try {
+      const node = articleNodes.get(id) || await loadArticleNode(targetArticle);
+      articleNodes.set(id, node);
+      if (!readingSnapshot) readingSnapshot = { camera: { ...camera }, selected: id, phase: 'settled' };
+      readerSlot.replaceChildren(node);
+      internalArticleHistory = true;
+      showReader(project(targetArticle.position));
+    } catch (error) {
+      fallback(error);
+    }
   }
 
   function enterHome() {
@@ -383,21 +432,25 @@ async function start() {
     const seconds = reducedMotion ? null : now / 1000;
     paintPaintedSky(ctx, width, height, camera, projectionSettings(), { x: ambient.x, y: ambient.y, seconds, clarity: 1 });
     if (animationStarted && body.dataset.domeRenderer !== 'webgl') throw new Error('The starfield renderer stopped being available.');
-    const projected = project(article.position);
-    visibleStar = projected && Number.isFinite(projected.x) && Number.isFinite(projected.y) ? projected : null;
-    starTarget.hidden = !visibleStar || roomScene?.active || Boolean(arrival);
-    if (visibleStar) {
-      starTarget.style.left = `${visibleStar.x}px`;
-      starTarget.style.top = `${visibleStar.y}px`;
-      paintPaintedStar(ctx, visibleStar.x, visibleStar.y, article.id, {
-        depth: visibleStar.depth,
-        active: selected === article.id,
-        hover: starTarget.matches(':hover'),
-        zoom: Math.max(.62, Math.min(1.4, visibleStar.scale)),
-        importance: article.importance,
+    visibleStars.clear();
+    for (const item of articles) {
+      const projected = project(item.position);
+      const point = projected && Number.isFinite(projected.x) && Number.isFinite(projected.y) ? projected : null;
+      const target = starTargets.get(item.id);
+      target.hidden = !point || roomScene?.active || Boolean(arrival);
+      if (!point) continue;
+      visibleStars.set(item.id, point);
+      target.style.left = `${point.x}px`;
+      target.style.top = `${point.y}px`;
+      paintPaintedStar(ctx, point.x, point.y, item.id, {
+        depth: point.depth,
+        active: selected === item.id,
+        hover: target.matches(':hover'),
+        zoom: Math.max(.62, Math.min(1.4, point.scale)),
+        importance: item.importance,
         seconds,
       });
-      if (selected) starMotion.paintFocus(ctx, visibleStar);
+      if (selected === item.id) starMotion.paintFocus(ctx, point);
     }
     paintCloudVeil(ctx, width, height, camera, projectionSettings());
     clouds?.update(now / 1000, Boolean(reader.open || arrival || roomScene?.active));
@@ -457,7 +510,7 @@ async function start() {
       if (event.target === reader && isDirectEntry && !internalArticleHistory) closeReaderFromDirect();
       else if (event.target === reader && internalArticleHistory) closeReaderThroughHistory();
     });
-    readButton.addEventListener('click', openReaderFromStar);
+    readButton.addEventListener('click', () => { void openReaderFromStar(); });
     homeButton.addEventListener('click', enterHome);
     scroller.addEventListener('scroll', updateProgress, { passive: true });
     window.addEventListener('resize', () => {
@@ -467,7 +520,7 @@ async function start() {
     });
     window.addEventListener('popstate', (event) => {
       if (reader.open && !event.state?.starryArticleId) closeReaderAfterPop();
-      else if (!reader.open && event.state?.starryArticleId) openReaderFromHistory();
+      else if (!reader.open && event.state?.starryArticleId) void openReaderFromHistory(event.state.starryArticleId);
     });
 
     world.addEventListener('pointermove', (event) => {
@@ -513,8 +566,8 @@ async function start() {
       if (!pointers.has(event.pointerId)) return;
       pointers.delete(event.pointerId);
       if (!gestureMoved && !multiTouch && !roomScene?.active) {
-        const hit = visibleStar && Math.hypot(visibleStar.x - event.clientX, visibleStar.y - event.clientY) < 26;
-        if (hit) activateStar(article.id);
+        const hit = [...visibleStars.entries()].find(([, point]) => Math.hypot(point.x - event.clientX, point.y - event.clientY) < 26);
+        if (hit) activateStar(hit[0]);
         else if (!(press && performance.now() - press.start < 500 && clouds?.tap(event.clientX, event.clientY))) {
           interrupt();
           selected = null;

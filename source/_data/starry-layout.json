@@ -1,9 +1,95 @@
 {
-  "version": 1,
+  "version": 2,
   "articles": {
+    "article-06f39f48-b200-4aae-b9ec-5a80fc197746": {
+      "position": [
+        1761,
+        3208,
+        -3907
+      ],
+      "originalPermalink": "2025/11/17/随笔1/",
+      "importance": "ordinary"
+    },
+    "article-1535f51d-66f8-4b3d-a081-3f3d0d2935e3": {
+      "position": [
+        -3256,
+        4485,
+        -3156
+      ],
+      "originalPermalink": "2025/11/12/言论·生活·小品/",
+      "importance": "ordinary"
+    },
+    "article-7d5cd5c7-b5d0-4c87-9d55-eaacac5dfd41": {
+      "position": [
+        -1718,
+        4842,
+        -4725
+      ],
+      "originalPermalink": "2026/07/17/做一个有有趣灵魂的人/",
+      "importance": "ordinary"
+    },
+    "article-8f30a1f6-c913-45df-9ab0-58c2c40b01d2": {
+      "position": [
+        5215,
+        3896,
+        -2282
+      ],
+      "originalPermalink": "2025/10/21/活在真实天空下，做半个君子/",
+      "importance": "ordinary"
+    },
+    "article-c60fddd9-e731-45b7-8165-4b2ea0a8cfac": {
+      "position": [
+        -3951,
+        3779,
+        3974
+      ],
+      "originalPermalink": "2026/05/15/随笔2/",
+      "importance": "ordinary"
+    },
+    "article-cf4327c8-d0cb-4333-8a05-a30ac01d134b": {
+      "position": [
+        -707,
+        1296,
+        5553
+      ],
+      "originalPermalink": "2026/05/14/慢/",
+      "importance": "ordinary"
+    },
+    "article-d57b013a-d893-4c21-9fb6-336e5cd90a0e": {
+      "position": [
+        2296,
+        3554,
+        4828
+      ],
+      "originalPermalink": "2026/07/05/随笔3/",
+      "importance": "ordinary"
+    },
+    "article-e7deaed7-d9a6-4256-aeca-28276beedebc": {
+      "position": [
+        -4653,
+        2470,
+        4218
+      ],
+      "originalPermalink": "2025/10/22/咏史有感/",
+      "importance": "ordinary"
+    },
+    "article-fc75fabe-73f2-437a-958f-6c7baf226fbb": {
+      "position": [
+        -3814,
+        4465,
+        64
+      ],
+      "originalPermalink": "2026/06/15/AI时代，我们究竟需要什么？/",
+      "importance": "ordinary"
+    },
     "dream-begins": {
-      "position": [4700, 3180, 2290],
-      "importance": "important"
+      "position": [
+        4700,
+        3180,
+        2290
+      ],
+      "importance": "important",
+      "originalPermalink": "2025/10/20/梦开始的地方[置顶]/"
     }
   }
 }

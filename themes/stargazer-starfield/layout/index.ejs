@@ -1,15 +1,21 @@
 <%
-  let featured = null;
+  const posts = [];
   site.posts.each((post) => {
-    if (post.starry_id === theme.featured_article_id) featured = post;
+    posts.push(post);
   });
-  if (!featured) throw new Error(`Featured article "${theme.featured_article_id}" is not a published Hexo post.`);
-  const articlePath = url_for(featured.path);
+  posts.sort((left, right) => left.date.valueOf() - right.date.valueOf() || String(left.starry_id).localeCompare(String(right.starry_id)));
+  const featured = posts.find((post) => post.starry_id === theme.featured_article_id) || posts[0] || null;
+  const articlePath = featured ? url_for(featured.path) : '';
 %>
-<%- partial('partial/stage', { articlePath, articleTitle: featured.title }) %>
+<%- partial('partial/stage', { articlePath, articleTitle: featured?.title || '' }) %>
 <main id="home-fallback" class="home-fallback">
   <p class="fallback-kicker">观星者的清醒梦</p>
-  <h1>窗外有一篇真实的故事</h1>
-  <p>星空暂时没有启动。你仍可以沿着原地址直接阅读这篇文章。</p>
-  <a href="<%= articlePath %>">阅读《<%= featured.title %>》 <span aria-hidden="true">↗</span></a>
+  <% if (featured) { %>
+    <h1>窗外有真实的故事</h1>
+    <p>星空暂时没有启动。你仍可以沿着原地址直接阅读文章。</p>
+    <a href="<%= articlePath %>">阅读《<%= featured.title %>》 <span aria-hidden="true">↗</span></a>
+  <% } else { %>
+    <h1>星空正在等待第一篇文章</h1>
+    <p>添加文章并运行本地准备步骤后，星空就会有新的光亮。</p>
+  <% } %>
 </main>
