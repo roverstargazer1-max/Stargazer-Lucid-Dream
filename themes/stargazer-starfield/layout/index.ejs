@@ -1,0 +1,15 @@
+<%
+  let featured = null;
+  site.posts.each((post) => {
+    if (post.starry_id === theme.featured_article_id) featured = post;
+  });
+  if (!featured) throw new Error(`Featured article "${theme.featured_article_id}" is not a published Hexo post.`);
+  const articlePath = url_for(featured.path);
+%>
+<%- partial('partial/stage', { articlePath, articleTitle: featured.title }) %>
+<main id="home-fallback" class="home-fallback">
+  <p class="fallback-kicker">观星者的清醒梦</p>
+  <h1>窗外有一篇真实的故事</h1>
+  <p>星空暂时没有启动。你仍可以沿着原地址直接阅读这篇文章。</p>
+  <a href="<%= articlePath %>">阅读《<%= featured.title %>》 <span aria-hidden="true">↗</span></a>
+</main>

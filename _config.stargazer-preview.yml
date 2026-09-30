@@ -1,0 +1,3 @@
+# Isolated preview for the formal theme. The default Netlify build remains on Kira.
+theme: stargazer-starfield
+public_dir: .preview/stargazer

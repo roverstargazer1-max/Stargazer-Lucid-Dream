@@ -1,0 +1,41 @@
+<%
+  const isPost = page.layout === 'post' && page.title;
+  const isFeatured = isPost && page.starry_id === theme.featured_article_id;
+  const title = isPost ? page.title : config.title;
+  const description = isPost ? String(page.starry_excerpt || config.description || '') : String(config.description || '');
+  const canonical = isPost ? page.permalink : new URL(url_for('/'), config.url).href;
+  const image = isPost && page.cover
+    ? (String(page.cover).startsWith('http') ? page.cover : new URL(url_for(page.cover), config.url).href)
+    : '';
+%>
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="dark light">
+  <title><%= title %> · <%= config.title %></title>
+  <% if (description) { %><meta name="description" content="<%= description %>"><% } %>
+  <% if (canonical) { %><link rel="canonical" href="<%= canonical %>"><% } %>
+  <meta property="og:type" content="<%= isPost ? 'article' : 'website' %>">
+  <meta property="og:title" content="<%= title %>">
+  <% if (description) { %><meta property="og:description" content="<%= description %>"><% } %>
+  <% if (canonical) { %><meta property="og:url" content="<%= canonical %>"><% } %>
+  <% if (image) { %><meta property="og:image" content="<%= image %>"><% } %>
+  <meta name="twitter:card" content="<%= image ? 'summary_large_image' : 'summary' %>">
+  <meta name="twitter:title" content="<%= title %>">
+  <% if (description) { %><meta name="twitter:description" content="<%= description %>"><% } %>
+  <link rel="stylesheet" href="<%= url_for('css/starry/site.css') %>">
+</head>
+<body class="<%= isFeatured ? 'has-starry-experience article-page' : '' %>"
+      data-starry-article-id="<%= isFeatured ? page.starry_id : '' %>"
+      data-starry-featured-id="<%= theme.featured_article_id %>"
+      data-starry-index="<%= url_for('starry/index.json') %>"
+      data-starry-root="<%= url_for('/') %>"
+      data-sky-image="<%= url_for(theme.scene.painted_sky) %>"
+      data-window-mask-desktop="<%= url_for(theme.scene.window_mask_desktop) %>"
+      data-window-mask-mobile="<%= url_for(theme.scene.window_mask_mobile) %>"
+      style="--window-mask-desktop:url('<%= url_for(theme.scene.window_mask_desktop) %>');--window-mask-mobile:url('<%= url_for(theme.scene.window_mask_mobile) %>')">
+  <%- body %>
+</body>
+</html>

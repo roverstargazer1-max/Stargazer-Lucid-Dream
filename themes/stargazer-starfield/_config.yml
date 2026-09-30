@@ -1,0 +1,7 @@
+featured_article_id: dream-begins
+scene:
+  painted_sky: image/starfield/painted-sky-v11.png
+  room_desktop: image/starfield/room-personal-v20.png
+  room_mobile: image/starfield/room-portrait-v11.png
+  window_mask_desktop: image/starfield/room-window-mask-v17.svg
+  window_mask_mobile: image/starfield/room-window-portrait-mask-v17.svg
