@@ -1,6 +1,6 @@
 import { createInteractiveClouds } from './interactive-clouds.js';
 import { createRoom, paintCloudVeil, paintPaintedSky, paintPaintedStar, preparePaintedScene } from './painted.js';
-import { HOME_ELEVATION, clamp, domeDestination, direction, projectDome } from './dome.js';
+import { HOME_ELEVATION, clamp, domeDestination, direction, domePosition, projectDome } from './dome.js';
 import { createStarMotion, ENTRANCE, entranceFrame, returnFrame, smooth } from './motion.js';
 import { dockTarget } from './experience.js';
 
@@ -19,6 +19,10 @@ async function start() {
   const preview = document.getElementById('preview');
   const status = document.getElementById('approach-status');
   const readButton = document.getElementById('read-button');
+  const controls = document.getElementById('exploration-controls');
+  const relationModeButton = document.getElementById('relation-mode');
+  const timeModeButton = document.getElementById('time-mode');
+  const backDockButton = document.getElementById('back-dock');
   const homeButton = document.getElementById('home');
   const targetLayer = document.getElementById('star-targets');
   const directId = body.dataset.starryArticleId;
@@ -33,10 +37,12 @@ async function start() {
   let articles = [];
   let articleById = new Map();
   let relationsByArticle = new Map();
+  let timePositionById = new Map();
   let articleNodes = new Map();
   const readArticleIds = new Set();
   let article = null;
   let selected = null;
+  let mode = 'relation';
   let phase = 'idle';
   let travel = null;
   let arrival = null;
@@ -49,8 +55,11 @@ async function start() {
   let visibleStars = new Map();
   let articleLoads = new Map();
   let readingSnapshot = null;
+  const dockHistoryByMode = new Map();
+  const dockCursorByMode = new Map();
   let readerTrigger = null;
   let internalArticleHistory = false;
+  let historyNavigationVersion = 0;
   let directCloseInProgress = false;
   let animationStarted = false;
   let audioAssetsPromise = null;
@@ -70,9 +79,17 @@ async function start() {
     if (!item.id || !item.title || !Array.isArray(item.position) || item.position.length !== 3 || !item.position.every(Number.isFinite)) {
       throw new Error(`Article "${item.id || '(missing ID)'}" is not ready for the starfield.`);
     }
-    return { ...item, position: { x: item.position[0], y: item.position[1], z: item.position[2] } };
+    return { ...item, savedPosition: item.position.slice(), position: { x: item.position[0], y: item.position[1], z: item.position[2] } };
   });
   articleById = new Map(articles.map((item) => [item.id, item]));
+  const timeOrderedArticles = [...articles].sort((left, right) => {
+    const leftOrder = String(left.timeOrder || `${left.date}|${left.id}`);
+    const rightOrder = String(right.timeOrder || `${right.date}|${right.id}`);
+    return leftOrder < rightOrder ? -1 : leftOrder > rightOrder ? 1 : 0;
+  });
+  timeOrderedArticles.forEach((item, index) => {
+    timePositionById.set(item.id, domePosition({ position: item.savedPosition }, index, 'time'));
+  });
   relationsByArticle = new Map(articles.map((item) => [item.id, []]));
   for (const relation of Array.isArray(index.relations) ? index.relations : []) {
     if (!Array.isArray(relation.articles) || relation.articles.length !== 2) continue;
@@ -84,6 +101,9 @@ async function start() {
   }
   const startId = directId || index.featuredArticleId || body.dataset.starryFeaturedId;
   article = articleById.get(startId) || articles[0] || null;
+  seedDockHistory('relation', camera, null);
+  seedDockHistory('time', camera, null);
+  if (!isDirectEntry) history.replaceState({ starryView: 'sky', mode }, '', location.href);
 
   if (isDirectEntry) {
     if (!article || !fallbackArticle || fallbackArticle.dataset.starryId !== article.id) throw new Error('The static article does not match its starfield identity.');
@@ -101,7 +121,9 @@ async function start() {
   if (isDirectEntry) {
     selected = article.id;
     phase = 'settled';
-    camera = focusCamera(article);
+    updateUI();
+    camera = destination(article);
+    seedDockHistory(mode, camera, selected);
     readerSlot.replaceChildren(fallbackArticle);
   }
 
@@ -154,6 +176,9 @@ async function start() {
       delete body.dataset.arrival;
       body.style.removeProperty('--entry-bank');
       body.style.removeProperty('--entry-scale');
+      seedDockHistory('relation', camera, null);
+      seedDockHistory('time', camera, null);
+      replaceViewState(mode);
       updateUI();
     },
     onJournal() {},
@@ -180,8 +205,15 @@ async function start() {
     canvas.width = Math.round(width * dpr);
     canvas.height = Math.round(height * dpr);
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    if (travel && selected && article) travel.to = destination(article);
-    if (selected && phase === 'settled' && !reader.open && !isDirectEntry && article) camera = focusCamera(article);
+    if (travel?.kind === 'return') return;
+    if (travel?.kind === 'mode-start') {
+      const targetArticle = articleById.get(travel.targetArticleId);
+      if (targetArticle) travel.to = focusCamera(targetArticle, travel.layout);
+    } else if (travel?.targetArticleId) {
+      const targetArticle = articleById.get(travel.targetArticleId);
+      if (targetArticle) travel.to = destination(targetArticle, travel.layout);
+    }
+    if (selected && phase === 'settled' && !reader.open && article) camera = destination(article);
   }
 
   function projectionSettings() {
@@ -196,24 +228,72 @@ async function start() {
     return projectDome(point, camera, projectionSettings());
   }
 
-  function focusCamera(targetArticle) {
+  function positionOf(targetArticle, layout = mode) {
+    return layout === 'time' ? timePositionById.get(targetArticle.id) : targetArticle.position;
+  }
+
+  function defaultArticleForMode(layout) {
+    return layout === 'time'
+      ? (timeOrderedArticles[0] || articles[0] || null)
+      : (articleById.get(index.featuredArticleId) || articles[0] || null);
+  }
+
+  function focusCamera(targetArticle, layout = mode) {
     const settings = projectionSettings();
     const baseFocal = settings.focal / (camera.zoom || 1);
-    return domeDestination(targetArticle.position, camera, {
+    return domeDestination(positionOf(targetArticle, layout), camera, {
       cx: settings.cx,
       cy: settings.cy,
       focal: baseFocal * 1.55,
     }, { x: width * .40, y: height * .42 });
   }
 
-  function destination(targetArticle) {
+  function destination(targetArticle, layout = mode) {
     const settings = projectionSettings();
     const baseFocal = settings.focal / (camera.zoom || 1);
-    return domeDestination(targetArticle.position, camera, {
+    return domeDestination(positionOf(targetArticle, layout), camera, {
       cx: settings.cx,
       cy: settings.cy,
       focal: baseFocal * 1.55,
     }, dockTarget(width, height, preview.getBoundingClientRect()));
+  }
+
+  function seedDockHistory(layout, cameraState, selectedArticleId) {
+    dockHistoryByMode.set(layout, [{ camera: { ...cameraState }, selected: selectedArticleId || null }]);
+    dockCursorByMode.set(layout, 0);
+  }
+
+  function appendDockStop(layout, cameraState, selectedArticleId) {
+    const stops = dockHistoryByMode.get(layout) || [];
+    const cursor = dockCursorByMode.get(layout) ?? (stops.length - 1);
+    stops.splice(cursor + 1);
+    const previous = stops[stops.length - 1];
+    const distance = previous ? Math.hypot(
+      previous.camera.x - cameraState.x,
+      previous.camera.y - cameraState.y,
+      previous.camera.z - cameraState.z,
+      previous.camera.yaw - cameraState.yaw,
+      previous.camera.pitch - cameraState.pitch,
+    ) : Infinity;
+    if (previous && previous.selected === (selectedArticleId || null) && distance < 1) {
+      previous.camera = { ...cameraState };
+    } else {
+      stops.push({ camera: { ...cameraState }, selected: selectedArticleId || null });
+    }
+    dockHistoryByMode.set(layout, stops);
+    dockCursorByMode.set(layout, stops.length - 1);
+  }
+
+  function canReturnToDock() {
+    const stops = dockHistoryByMode.get(mode) || [];
+    return !reader.open && !travel && !arrival && !roomScene?.active && (dockCursorByMode.get(mode) || 0) > 0;
+  }
+
+  function replaceViewState(layout = mode) {
+    const state = reader.open
+      ? { starryView: 'reader', starryArticleId: article?.id, mode: layout }
+      : { starryView: 'sky', mode: layout };
+    history.replaceState(state, '', location.href);
   }
 
   function mountStar() {
@@ -236,12 +316,27 @@ async function start() {
   function updateUI() {
     const isSelected = Boolean(article && selected === article.id);
     preview.hidden = !isSelected || reader.open;
+    controls.hidden = Boolean(roomScene?.active) || reader.open;
+    relationModeButton.setAttribute('aria-pressed', String(mode === 'relation'));
+    timeModeButton.setAttribute('aria-pressed', String(mode === 'time'));
+    relationModeButton.disabled = Boolean(arrival || phase === 'loading');
+    timeModeButton.disabled = Boolean(arrival || phase === 'loading');
+    backDockButton.disabled = !canReturnToDock();
     updateRelationCues(isSelected ? article.id : null);
     if (isSelected) {
       document.getElementById('preview-date').textContent = article.date;
       document.getElementById('preview-title').textContent = article.title;
       document.getElementById('preview-intro').textContent = article.excerpt || '';
+      const modeNote = document.getElementById('mode-note');
+      modeNote.hidden = false;
+      modeNote.textContent = mode === 'time'
+        ? '按发表时间排列 · 时间相邻不代表作者关联'
+        : '按作者确认的关系探索';
+      updateKnownReasons(article.id);
       status.textContent = phase === 'moving' || phase === 'arriving' ? '正在靠近 · · ·' : phase === 'loading' ? '正在准备正文 · · ·' : phase === 'settled' ? '再点星，阅读' : '点星，重新靠近';
+    } else {
+      document.getElementById('mode-note').hidden = true;
+      updateKnownReasons(null);
     }
     readButton.disabled = !isSelected || phase !== 'settled' || reader.open;
     for (const [id, target] of starTargets) {
@@ -261,6 +356,9 @@ async function start() {
     container.replaceChildren();
     const relations = articleId ? relationsByArticle.get(articleId) || [] : [];
     section.hidden = relations.length === 0;
+    section.querySelector('.relation-legend').textContent = mode === 'time'
+      ? '作者确认的关系与日期顺序分开显示'
+      : '细实线：邻近探索 · 虚线：作者确认关联';
     for (const relation of relations) {
       const targetArticle = articleById.get(relation.articleId);
       if (!targetArticle) continue;
@@ -274,31 +372,54 @@ async function start() {
     }
   }
 
+  function updateKnownReasons(articleId) {
+    const section = document.getElementById('known-reasons');
+    section.replaceChildren();
+    const authored = articleId && readArticleIds.has(articleId)
+      ? (relationsByArticle.get(articleId) || []).filter((relation) => relation.reason)
+      : [];
+    section.hidden = authored.length === 0;
+    if (section.hidden) return;
+    const heading = document.createElement('h3');
+    heading.textContent = '已读 · 作者为什么相连';
+    section.append(heading);
+    for (const relation of authored) {
+      const target = articleById.get(relation.articleId);
+      if (!target) continue;
+      const reason = document.createElement('p');
+      reason.textContent = `${target.title}：${relation.reason}`;
+      section.append(reason);
+    }
+  }
+
   function announce(message) {
     document.getElementById('announcement').textContent = message;
   }
 
   function activateStar(id) {
-    if (reader.open || travel || arrival || phase === 'loading' || roomScene?.active) return;
+    if (reader.open || arrival || roomScene?.active) return;
     const targetArticle = articleById.get(id);
     if (!targetArticle) return;
+    if (travel?.targetArticleId === id) return;
     if (selected === id && phase === 'settled') {
       void openReaderFromStar();
       return;
     }
+    const previousContext = { article, selected, phase, camera: { ...camera } };
     article = targetArticle;
-    beginApproach(id);
+    beginApproach(id, 'selection', previousContext);
   }
 
-  function beginApproach(id) {
+  function beginApproach(id, kind = 'selection', previousContext = null) {
     selected = id;
     phase = 'moving';
     starMotion.interrupt();
     updateUI();
     const start = performance.now();
+    const approachLayout = mode;
     const to = destination(article);
     const duration = reducedMotion ? 220 : 2800;
-    travel = { from: { ...camera }, to, start, duration };
+    travel = { from: { ...camera }, to, start, duration, kind, targetArticleId: id, layout: approachLayout };
     starMotion.beginApproach(start, id);
     announce('正在靠近文章星。到位后再次点选这颗星即可阅读。');
     if (!articleNodes.has(id) && !articleLoads.has(id)) {
@@ -308,7 +429,25 @@ async function start() {
         return node;
       }).catch((error) => {
         articleLoads.delete(id);
-        fallback(error);
+        if (selected === id && mode === approachLayout && !reader.open) {
+          travel = null;
+          starMotion.clearSelection();
+          if (previousContext) {
+            article = previousContext.article;
+            selected = previousContext.selected;
+            camera = previousContext.camera;
+            phase = previousContext.selected
+              ? (previousContext.phase === 'settled' ? 'settled' : 'selected')
+              : 'idle';
+          } else {
+            phase = 'selected';
+          }
+          updateUI();
+          announce(previousContext?.selected
+            ? '这篇文章暂时无法加载；已恢复到此前可读文章，地址没有改变。'
+            : '这篇文章暂时无法加载；地址没有改变，可以继续浏览星空。');
+        }
+        console.warn(`Article "${id}" could not be prepared.`, error);
         return null;
       });
       articleLoads.set(id, load);
@@ -333,26 +472,29 @@ async function start() {
       if (!node) return;
       articleNodes.set(targetArticle.id, node);
       if (selected !== targetArticle.id || reader.open) return;
-      readingSnapshot = { camera: { ...camera }, selected, phase: 'settled' };
+      readingSnapshot = { camera: { ...camera }, selected, articleId: article?.id, phase: 'settled', mode };
       readerTrigger = starTargets.get(targetArticle.id) || document.activeElement;
       readerSlot.replaceChildren(node);
       internalArticleHistory = true;
-      history.pushState({ starryArticleId: targetArticle.id }, '', localArticleUrl(targetArticle).pathname);
-      showReader(project(targetArticle.position));
+      history.pushState({ starryView: 'reader', starryArticleId: targetArticle.id, mode }, '', localArticleUrl(targetArticle).pathname);
+      showReader(project(positionOf(targetArticle)));
       void prepareEmbeddedPlayer(node);
     } catch (error) {
-      fallback(error);
+      phase = 'settled';
+      updateUI();
+      announce('这篇文章暂时无法加载；仍停留在当前文章与地址。');
+      console.warn(`Article "${targetArticle.id}" could not be opened.`, error);
     }
   }
 
   function openDirectArticle() {
     readerTrigger = document.getElementById('home');
-    showReader(project(article.position));
+    showReader(project(positionOf(article)));
     void prepareEmbeddedPlayer(readerSlot.querySelector('.article'));
   }
 
   function showReader(origin) {
-    reader.showModal();
+    if (!reader.open) reader.showModal();
     scroller.scrollTop = 0;
     phase = 'reading';
     starMotion.open(origin, () => {
@@ -372,12 +514,12 @@ async function start() {
       reader.close();
       directCloseInProgress = false;
       internalArticleHistory = false;
-      history.replaceState({ starryView: 'sky' }, '', body.dataset.starryRoot);
+      history.replaceState({ starryView: 'sky', mode }, '', body.dataset.starryRoot);
       phase = 'settled';
       selected = article.id;
       updateUI();
       starTargets.get(article.id)?.focus({ preventScroll: true });
-    }, project(article.position));
+    }, project(positionOf(article)));
   }
 
   function closeReaderThroughHistory() {
@@ -387,6 +529,7 @@ async function start() {
 
   function closeReaderAfterPop() {
     if (!reader.open) return;
+    historyNavigationVersion += 1;
     stopEmbeddedAudio();
     phase = 'closing';
     starMotion.close(() => {
@@ -395,7 +538,8 @@ async function start() {
       if (readingSnapshot) {
         camera = { ...readingSnapshot.camera };
         selected = readingSnapshot.selected;
-        article = articleById.get(selected) || article;
+        article = articleById.get(readingSnapshot.articleId || selected) || article;
+        mode = readingSnapshot.mode || mode;
         phase = readingSnapshot.phase;
       } else {
         phase = 'settled';
@@ -406,28 +550,99 @@ async function start() {
       const target = readerTrigger?.isConnected ? readerTrigger : starTargets.get(selected);
       target?.focus({ preventScroll: true });
       readerTrigger = null;
-    }, project(article.position));
+    }, project(positionOf(article)));
   }
 
   async function openReaderFromHistory(id) {
-    if (reader.open) return;
+    const requestVersion = ++historyNavigationVersion;
     const targetArticle = articleById.get(id);
-    if (!targetArticle) return fallback(new Error(`Article "${id}" is missing from the current starfield index.`));
-    article = targetArticle;
-    selected = id;
-    phase = 'loading';
-    updateUI();
+    if (!targetArticle) {
+      restoreAddressForDisplayedContent();
+      announce('历史文章不在当前星空索引中，已保留当前阅读内容。');
+      return;
+    }
+    if (reader.open && article?.id === id) return;
+    const wasOpen = reader.open;
     try {
-      const node = articleNodes.get(id) || await loadArticleNode(targetArticle);
+      const node = articleNodes.get(id) || await articleLoads.get(id) || await loadArticleNode(targetArticle);
+      if (requestVersion !== historyNavigationVersion || history.state?.starryArticleId !== id) return;
       articleNodes.set(id, node);
-      if (!readingSnapshot) readingSnapshot = { camera: { ...camera }, selected: id, phase: 'settled' };
+      if (!readingSnapshot && !wasOpen) readingSnapshot = { camera: { ...camera }, selected, articleId: article?.id, phase: 'settled', mode };
+      article = targetArticle;
+      selected = id;
+      phase = 'reading';
       readerSlot.replaceChildren(node);
       internalArticleHistory = true;
-      showReader(project(targetArticle.position));
+      showReader(project(positionOf(targetArticle)));
       void prepareEmbeddedPlayer(node);
     } catch (error) {
-      fallback(error);
+      if (requestVersion !== historyNavigationVersion || history.state?.starryArticleId !== id) return;
+      restoreAddressForDisplayedContent();
+      announce('这篇文章暂时无法加载；仍保留当前可读内容与对应地址。');
+      console.warn(`History article "${id}" could not be opened.`, error);
     }
+  }
+
+  function restoreAddressForDisplayedContent() {
+    const displayingArticle = reader.open && article;
+    const state = displayingArticle
+      ? { starryView: 'reader', starryArticleId: displayingArticle.id, mode }
+      : { starryView: 'sky', mode };
+    const url = displayingArticle ? localArticleUrl(displayingArticle).pathname : body.dataset.starryRoot;
+    history.replaceState(state, '', url);
+    internalArticleHistory = Boolean(displayingArticle);
+  }
+
+  function switchMode(nextMode) {
+    if (nextMode === mode || reader.open || arrival || roomScene?.active) return;
+    const hasSelection = Boolean(selected && articleById.has(selected));
+    const selectedArticle = hasSelection ? articleById.get(selected) : null;
+    const defaultArticle = defaultArticleForMode(nextMode);
+    if (!defaultArticle) return;
+    interrupt();
+    mode = nextMode;
+    replaceViewState(mode);
+    updateUI();
+
+    const baseline = focusCamera(defaultArticle, mode);
+    seedDockHistory(mode, baseline, null);
+    const targetArticle = selectedArticle || defaultArticle;
+    if (selectedArticle) {
+      article = selectedArticle;
+      beginApproach(selectedArticle.id, 'mode-switch');
+      return;
+    }
+    selected = null;
+    phase = 'moving';
+    starMotion.clearSelection();
+    travel = {
+      from: { ...camera }, to: baseline, start: performance.now(),
+      duration: reducedMotion ? 220 : 1800, kind: 'mode-start',
+      targetArticleId: targetArticle.id, layout: mode,
+    };
+    updateUI();
+    announce(nextMode === 'time' ? '已切换到时间模式，正在前往时间起点。' : '已切换到关联模式，正在前往关联起点。');
+  }
+
+  function returnToPreviousDock() {
+    if (!canReturnToDock()) return;
+    const cursor = dockCursorByMode.get(mode) || 0;
+    const previousIndex = cursor - 1;
+    const stop = dockHistoryByMode.get(mode)?.[previousIndex];
+    if (!stop) return;
+    interrupt();
+    selected = stop.selected;
+    article = articleById.get(stop.selected) || defaultArticleForMode(mode);
+    phase = selected ? 'moving' : 'idle';
+    starMotion.interrupt();
+    if (selected && article) updateUI();
+    travel = {
+      from: { ...camera }, to: { ...stop.camera }, start: performance.now(),
+      duration: reducedMotion ? 220 : 1800, kind: 'return', layout: mode,
+      targetArticleId: selected, returnIndex: previousIndex,
+    };
+    updateUI();
+    announce('正在返回上一个自动停靠点。');
   }
 
   function enterHome() {
@@ -438,6 +653,7 @@ async function start() {
   function finishArrival() {
     const end = entranceFrame(ENTRANCE.duration, width <= 760 ? .78 : 1);
     camera = { x: end.x, y: end.y, z: end.z, yaw: end.yaw, pitch: end.pitch, zoom: end.zoom };
+    seedDockHistory(mode, camera, null);
     arrival = null;
     phase = 'idle';
     delete body.dataset.arrival;
@@ -472,7 +688,7 @@ async function start() {
     if (animationStarted && body.dataset.domeRenderer !== 'webgl') throw new Error('The starfield renderer stopped being available.');
     visibleStars.clear();
     for (const item of articles) {
-      const projected = project(item.position);
+      const projected = project(positionOf(item));
       const point = projected && Number.isFinite(projected.x) && Number.isFinite(projected.y) ? projected : null;
       const target = starTargets.get(item.id);
       target.hidden = !point || roomScene?.active || Boolean(arrival);
@@ -517,12 +733,14 @@ async function start() {
     ctx.strokeStyle = 'rgba(181, 198, 211, .12)';
     for (const neighbor of neighbors) drawGuideLine(origin, visibleStars.get(neighbor.id));
 
-    ctx.lineWidth = 1.15;
-    ctx.setLineDash([2, 6]);
-    ctx.strokeStyle = 'rgba(226, 216, 191, .36)';
-    for (const relation of relationsByArticle.get(selected) || []) {
-      const target = visibleStars.get(relation.articleId);
-      if (target) drawGuideLine(origin, target);
+    if (mode === 'relation') {
+      ctx.lineWidth = 1.15;
+      ctx.setLineDash([2, 6]);
+      ctx.strokeStyle = 'rgba(226, 216, 191, .36)';
+      for (const relation of relationsByArticle.get(selected) || []) {
+        const target = visibleStars.get(relation.articleId);
+        if (target) drawGuideLine(origin, target);
+      }
     }
     ctx.restore();
   }
@@ -536,24 +754,38 @@ async function start() {
   }
 
   function distanceFrom(left, right) {
+    const leftPosition = positionOf(left);
+    const rightPosition = positionOf(right);
     return Math.hypot(
-      left.position.x - right.position.x,
-      left.position.y - right.position.y,
-      left.position.z - right.position.z,
+      leftPosition.x - rightPosition.x,
+      leftPosition.y - rightPosition.y,
+      leftPosition.z - rightPosition.z,
     );
   }
 
   function animate(now) {
     try {
       if (travel) {
-        const t = Math.min(1, (now - travel.start) / travel.duration);
-        camera = interpolate(travel.from, travel.to, smooth(t));
-        starMotion.setApproach(t);
+        const currentTravel = travel;
+        const t = Math.min(1, (now - currentTravel.start) / currentTravel.duration);
+        camera = interpolate(currentTravel.from, currentTravel.to, smooth(t));
+        if (currentTravel.kind === 'selection' || currentTravel.kind === 'mode-switch') starMotion.setApproach(t);
         if (t >= 1) {
           travel = null;
-          phase = 'settled';
+          if (currentTravel.kind === 'return') {
+            dockCursorByMode.set(currentTravel.layout, currentTravel.returnIndex);
+            phase = selected ? 'settled' : 'idle';
+          } else if (currentTravel.kind === 'mode-start') {
+            seedDockHistory(currentTravel.layout, camera, null);
+            phase = 'idle';
+          } else {
+            phase = 'settled';
+            appendDockStop(currentTravel.layout, camera, selected);
+          }
           updateUI();
-          announce('已经靠近。再次点选这颗星，或使用阅读按钮打开正文。');
+          if (currentTravel.kind === 'selection' || currentTravel.kind === 'mode-switch' || currentTravel.kind === 'return') {
+            announce(currentTravel.kind === 'return' ? '已返回上一个停靠点。' : '已经靠近。再次点选这颗星，或使用阅读按钮打开正文。');
+          }
         }
       }
       updateArrival(now);
@@ -636,6 +868,9 @@ async function start() {
       else if (event.target === reader && internalArticleHistory) closeReaderThroughHistory();
     });
     readButton.addEventListener('click', () => { void openReaderFromStar(); });
+    relationModeButton.addEventListener('click', () => switchMode('relation'));
+    timeModeButton.addEventListener('click', () => switchMode('time'));
+    backDockButton.addEventListener('click', returnToPreviousDock);
     homeButton.addEventListener('click', enterHome);
     scroller.addEventListener('scroll', updateProgress, { passive: true });
     window.addEventListener('resize', () => {
@@ -644,8 +879,13 @@ async function start() {
       if (reader.open) updateProgress();
     });
     window.addEventListener('popstate', (event) => {
-      if (reader.open && !event.state?.starryArticleId) closeReaderAfterPop();
-      else if (!reader.open && event.state?.starryArticleId) void openReaderFromHistory(event.state.starryArticleId);
+      if (event.state?.mode === 'relation' || event.state?.mode === 'time') mode = event.state.mode;
+      if (reader.open && event.state?.starryView === 'reader' && event.state.starryArticleId) {
+        void openReaderFromHistory(event.state.starryArticleId);
+      } else if (reader.open) closeReaderAfterPop();
+      else if (event.state?.starryView === 'reader' && event.state.starryArticleId) {
+        void openReaderFromHistory(event.state.starryArticleId);
+      }
     });
 
     world.addEventListener('pointermove', (event) => {
@@ -657,9 +897,12 @@ async function start() {
       if (!pointers.has(event.pointerId)) return;
       const previous = pointers.get(event.pointerId);
       pointers.set(event.pointerId, { x: event.clientX, y: event.clientY });
-      if (press && Math.hypot(event.clientX - press.x, event.clientY - press.y) > 6) gestureMoved = true;
+      if (!gestureMoved && press && Math.hypot(event.clientX - press.x, event.clientY - press.y) > 6) {
+        gestureMoved = true;
+        interrupt();
+      }
       if (!gestureMoved) return;
-      interrupt();
+      if (pointers.size >= 2) interrupt();
       if (pointers.size >= 2) {
         const points = [...pointers.values()];
         const distance = Math.hypot(points[0].x - points[1].x, points[0].y - points[1].y);

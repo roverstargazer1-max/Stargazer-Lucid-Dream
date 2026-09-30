@@ -47,7 +47,16 @@ button:focus-visible, a:focus-visible { outline: 2px solid #c5a66d; outline-offs
 .preview-bottom { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-top: 15px; padding-top: 12px; border-top: 1px solid #bbd0e422; color: #c5d5e1; font-size: 12px; }
 .preview-bottom button { min-height: 44px; padding: 8px 0 8px 14px; color: #f1e4c7; font-size: 13px; letter-spacing: .6px; white-space: nowrap; }
 .preview-bottom button span { padding-left: 10px; color: #d4b987; }
-#home { position: absolute; z-index: 5; top: 24px; right: 28px; width: 46px; height: 46px; border-radius: 50%; color: #e5edf4; font-size: 24px; background: #06183175; }
+#exploration-controls { position: absolute; z-index: 5; top: 20px; right: 28px; display: flex; align-items: center; gap: 10px; }
+.mode-switch { display: flex; align-items: center; gap: 8px; color: #bdcddb; font-size: 12px; letter-spacing: .8px; }
+.mode-switch button { min-width: 40px; min-height: 44px; padding: 8px 2px; color: #bdcddb; opacity: .72; }
+.mode-switch button[aria-pressed="true"] { color: #f1e4c7; opacity: 1; text-decoration: underline; text-decoration-color: #d4b987; text-underline-offset: 6px; }
+.exploration-controls .icon-control { position: relative; width: 44px; height: 44px; border-radius: 50%; color: #e5edf4; font-size: 22px; background: #06183175; }
+.exploration-controls .icon-control:disabled { opacity: .38; }
+.mode-note { margin-top: 8px !important; color: #9daebd !important; font: 10px/1.6 var(--sans) !important; letter-spacing: .35px; }
+.known-reasons { max-height: 92px; margin-top: 10px; padding-top: 10px; overflow: auto; border-top: 1px solid #bbd0b422; }
+.known-reasons h3 { margin: 0 0 5px; color: #d6c7a6; font: 10px/1.6 var(--sans); letter-spacing: .8px; }
+.known-reasons p { margin: 0 0 5px; color: #c4cfda; font: 12px/1.7 var(--serif); }
 #gesture-help { position: absolute; z-index: 3; right: 30px; bottom: 24px; margin: 0; color: #d2dee8; font-size: 12px; letter-spacing: .6px; text-shadow: 0 1px 6px #061831; pointer-events: none; }
 
 #room { position: fixed; z-index: 40; inset: 0; display: none; overflow: clip; background: transparent; }
@@ -146,7 +155,10 @@ body[data-room="entering"] .entry-motion, body[data-room="returning"] .entry-mot
   .window-invitation { display: none; }
   #room-journal { left: 7%; top: 84%; width: 30%; height: 8%; }
   .entry-motion { right: 16px; bottom: 16px; }
-  #home { top: max(12px, env(safe-area-inset-top)); right: 14px; }
+  #exploration-controls { top: max(12px, env(safe-area-inset-top)); right: 14px; gap: 6px; }
+  .mode-switch { gap: 4px; }
+  .mode-switch button { min-width: 36px; font-size: 11px; }
+  .exploration-controls .icon-control { width: 42px; height: 42px; }
   #preview { left: 12px; right: 12px; bottom: max(12px, env(safe-area-inset-bottom)); width: auto; padding: 16px 17px 10px; transform: none; }
   .preview-meta { font-size: 11px; }
   .preview-body .eyebrow { margin-top: 12px; font-size: 10px; }

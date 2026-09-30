@@ -8,17 +8,27 @@
       <span class="eyebrow">靠近一颗星，听它慢慢开口</span>
       <h2 id="preview-title"></h2>
       <p id="preview-intro"></p>
+      <p id="mode-note" class="mode-note" hidden></p>
       <section id="relation-cues" class="relation-cues" aria-label="文章探索关系" hidden>
         <p class="relation-legend">细实线：邻近探索 · 虚线：作者确认关联</p>
         <div id="relation-links" class="relation-links"></div>
       </section>
+      <section id="known-reasons" class="known-reasons" aria-label="已读文章的作者关联理由" hidden></section>
     </div>
     <div class="preview-bottom">
       <span id="approach-status" aria-live="polite">再点星，阅读</span>
       <button id="read-button" type="button" disabled>进入阅读 <span aria-hidden="true">↗</span></button>
     </div>
   </section>
-  <button id="home" class="icon-control" type="button" aria-label="回到窗边" title="回到窗边" hidden>⌂</button>
+  <nav id="exploration-controls" class="exploration-controls" aria-label="星空探索控制">
+    <div class="mode-switch" role="group" aria-label="星空模式">
+      <button id="relation-mode" type="button" aria-pressed="true">关联</button>
+      <span aria-hidden="true">/</span>
+      <button id="time-mode" type="button" aria-pressed="false">时间</button>
+    </div>
+    <button id="back-dock" class="icon-control" type="button" aria-label="返回上个停靠点" title="返回上个停靠点" disabled>↶</button>
+    <button id="home" class="icon-control" type="button" aria-label="回到窗边" title="回到窗边" hidden>⌂</button>
+  </nav>
   <p id="gesture-help">拖动巡视 · 滚轮前行 · 点星靠近</p>
 </main>
 
