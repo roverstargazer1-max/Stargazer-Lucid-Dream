@@ -3,8 +3,9 @@ import { readFile, stat } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../../.preview/stargazer');
-const port = Number(process.env.STARFIELD_PREVIEW_PORT || 4175);
+const legacy = process.argv.includes('--legacy');
+const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), legacy ? '../../../.preview/legacy' : '../../../.preview/stargazer');
+const port = Number(process.env.STARFIELD_PREVIEW_PORT || (legacy ? 4176 : 4175));
 const types = new Map([
   ['.css', 'text/css; charset=utf-8'],
   ['.html', 'text/html; charset=utf-8'],
@@ -13,6 +14,8 @@ const types = new Map([
   ['.png', 'image/png'],
   ['.svg', 'image/svg+xml'],
   ['.webp', 'image/webp'],
+  ['.jpg', 'image/jpeg'],
+  ['.jpeg', 'image/jpeg'],
   ['.woff2', 'font/woff2'],
 ]);
 
@@ -41,5 +44,5 @@ http.createServer(async (request, response) => {
     response.end('Not found');
   }
 }).listen(port, '127.0.0.1', () => {
-  console.log(`Starfield preview: http://127.0.0.1:${port}/`);
+  console.log(`${legacy ? 'Legacy Kira' : 'Starfield'} preview: http://127.0.0.1:${port}/`);
 });

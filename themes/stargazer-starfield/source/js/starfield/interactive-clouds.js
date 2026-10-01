@@ -37,7 +37,6 @@ function makeCloud(seed){
 }
 
 export function createInteractiveClouds(world,isSoft=()=>matchMedia('(prefers-reduced-motion: reduce)').matches){
-  const preference=matchMedia('(prefers-reduced-motion: reduce)');
   const clouds=[[-.38,.28,.36,.15],[1.94,.37,.40,.16],[4.18,.42,.44,.18]].map(([azimuth,elevation,width,height],i)=>{
     const button=document.createElement('button');button.className='cloud-target';button.hidden=true;
     button.setAttribute('aria-label',`轻触第 ${i+1} 朵云`);world.append(button);

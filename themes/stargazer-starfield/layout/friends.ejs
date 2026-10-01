@@ -1,0 +1,15 @@
+<main class="static-article-fallback generic-post">
+  <article class="article">
+    <h1><%= page.title || '友链' %></h1>
+    <%- starry_content(page) %>
+    <ul class="legacy-friends">
+      <% for (const friend of starry_legacy_friends()) { %>
+      <li><a href="<%= friend.link %>" target="_blank" rel="noopener noreferrer">
+        <% if (friend.avatar) { %><img src="<%= friend.avatar.startsWith('http') ? friend.avatar : url_for(friend.avatar) %>" alt="" loading="lazy"><% } %>
+        <strong><%= friend.name %></strong><span><%= friend.desc || '' %></span>
+      </a></li>
+      <% } %>
+    </ul>
+    <p><a href="<%= url_for('/') %>">回到窗边</a></p>
+  </article>
+</main>

@@ -13,7 +13,7 @@
   <% if (featured) { %>
     <h1>窗外有真实的故事</h1>
     <p>星空暂时没有启动。你仍可以沿着原地址直接阅读文章。</p>
-    <a href="<%= articlePath %>">阅读《<%= featured.title %>》 <span aria-hidden="true">↗</span></a>
+    <ul><% for (const post of posts) { %><li><a href="<%= url_for(post.path) %>"><%= post.title %></a></li><% } %></ul>
   <% } else { %>
     <h1>星空正在等待第一篇文章</h1>
     <p>添加文章并运行本地准备步骤后，星空就会有新的光亮。</p>

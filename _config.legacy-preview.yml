@@ -1,0 +1,3 @@
+# Always retain a separately previewable original blog.
+theme: hexo-theme-kira
+public_dir: .preview/legacy

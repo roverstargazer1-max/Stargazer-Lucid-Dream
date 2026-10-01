@@ -12,6 +12,10 @@
     "preview:starfield": "node prepare-starfield.cjs && npm run generate:starfield",
     "generate:starfield": "hexo clean --config _config.yml,_config.stargazer-preview.yml && hexo --config _config.yml,_config.stargazer-preview.yml generate",
     "start:starfield": "npm run preview:starfield && npm run serve:starfield",
+    "build:starfield": "hexo clean --config _config.yml,_config.stargazer.yml && hexo generate --config _config.yml,_config.stargazer.yml",
+    "preview:legacy": "hexo clean --config _config.yml,_config.legacy-preview.yml && hexo generate --config _config.yml,_config.legacy-preview.yml",
+    "serve:legacy": "node themes/stargazer-starfield/tools/preview-server.mjs --legacy",
+    "test": "npm run preview:starfield && node --test tests/*.test.*",
     "serve:starfield": "node themes/stargazer-starfield/tools/preview-server.mjs",
     "netlify": "npm run clean && npm run build"
   },

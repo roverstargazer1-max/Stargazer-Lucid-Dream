@@ -68,5 +68,6 @@
       data-starry-meting-script="<%= audioAssets.meting %>"
       style="--window-mask-desktop:url('<%= url_for(theme.scene.window_mask_desktop) %>');--window-mask-mobile:url('<%= url_for(theme.scene.window_mask_mobile) %>')">
   <%- body %>
+  <script type="module" src="<%= url_for('js/starfield/static-page.js') %>"></script>
 </body>
 </html>

@@ -25,7 +25,9 @@ The current `_config.yml` selects `hexo-theme-kira`; `_config.hexo-theme-kira.ym
 - Legacy Hexo output: `public/`; the Netlify configuration publishes this directory.
 - Current V20 mock prototype: `node themes/hexo-theme-kira/prototypes/starfield/server.mjs`, served locally at `http://127.0.0.1:4173/pages/starfield-prototype/`. The server reads only prototype files and refuses `NODE_ENV=production`.
 - Frozen V19 prototype evidence: `node .scratch/starry-blog/baseline-server.mjs`, served at port `4174`.
-- Formal theme work: `themes/stargazer-starfield/`; its isolated preview output is reserved under `.preview/` and is ignored by Git. No formal theme preview exists yet; later work must not use or replace `public/` for that preview.
+- Formal theme: `npm run start:starfield` prepares real articles and serves `.preview/stargazer/` at port 4175. This preview never replaces `public/`.
+- Preserved Kira preview: `npm run preview:legacy`, then `npm run serve:legacy`; output `.preview/legacy/`, port 4176. The two static previews can remain open together; run Hexo generation commands sequentially.
+- The new production command `npm run build:starfield` uses the same `public/` publish directory. Default production remains Kira until explicitly switched; see [the personal publishing guide](starfield-blog.md).
 
 ## Netlify facts and limits
 

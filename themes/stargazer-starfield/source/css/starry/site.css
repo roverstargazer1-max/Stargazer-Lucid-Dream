@@ -131,6 +131,11 @@ body[data-room="entering"] .entry-motion, body[data-room="returning"] .entry-mot
 .article-player-status { color: var(--paper-muted); font-size: 13px; line-height: 1.8; }
 .article-rule { width: 32px; height: 1px; margin: 24px 0; background: #98a1aa; transform-origin: left; }
 #reader-content, .article-content { color: var(--paper-ink); }
+.article-content { contain: paint; }
+.legacy-friends { list-style: none; padding: 0; display: grid; gap: 16px; }
+.legacy-friends a { display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 4px 16px; align-items: center; text-decoration: none; }
+.legacy-friends img { width: 64px; height: 64px; object-fit: cover; border-radius: 50%; grid-row: span 2; }
+.legacy-friends span { font-size: 14px; }
 #reader-content p, .article-content p { margin: 0 0 24px; color: #34485e; font: 16px/2.05 var(--serif); overflow-wrap: anywhere; }
 #reader-content h2, .article-content h2 { margin: 34px 0 17px; color: #2d425b; font: 400 24px/1.7 var(--serif); }
 #reader-content h3, .article-content h3 { margin: 28px 0 14px; color: #34485e; font: 400 20px/1.7 var(--serif); }
