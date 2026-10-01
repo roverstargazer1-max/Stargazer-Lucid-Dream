@@ -30,7 +30,7 @@ star:
   isolated: false
 ```
 
-`rank` 可选 ordinary（普通，默认）、important（重要）、treasured（珍藏）。`isolated: true` 不自动生成空间探索路径，文章仍可发现、阅读；作者显式写的关联照常保留。
+`rank` 可选 ordinary（普通，默认）、important（重要）、treasured（珍藏）。`isolated: true` 不自动生成空间探索路径或时间连线，文章仍可发现、阅读；作者显式写的关联照常保留。
 
 标题可以改；文件名改了则同步改其他文章中的 related 引用。文件名应唯一。自关联、找不到目标或无效理由会在生成时提示源文件，合法文章仍能生成。不给理由也有文末文章入口；没有 related 的文章照常发布。标签或距离不会被当作内容关系。
 

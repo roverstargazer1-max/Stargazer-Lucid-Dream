@@ -62,8 +62,8 @@ body[data-room=returning] .entry-motion{opacity:0}
 body[data-scene=painted] .grain{opacity:.013}
 body[data-scene=painted] .masthead{top:26px;left:3.8%;opacity:.87}
 body[data-scene=painted] .wordmark{width:228px}
-body[data-scene=painted] .navigation{background:none;border:0;border-radius:0;backdrop-filter:none;box-shadow:none;opacity:1;padding:0;top:24px;gap:8px;z-index:10;isolation:isolate}
-body[data-scene=painted] .navigation:before,body[data-scene=painted] #sky-map-controls:before{content:'';position:absolute;inset:-12px;z-index:-1;pointer-events:none;background:radial-gradient(ellipse,#061831d9 20%,#06183100 74%);filter:blur(8px)}
+body[data-scene=painted] #exploration-controls{background:none;border:0;border-radius:0;backdrop-filter:none;box-shadow:none;opacity:1;padding:0;top:24px;gap:8px;z-index:10;isolation:isolate}
+body[data-scene=painted] #exploration-controls:before,body[data-scene=painted] #sky-map-controls:before{content:'';position:absolute;inset:-12px;z-index:-1;pointer-events:none;background:radial-gradient(ellipse,#061831d9 20%,#06183100 74%);filter:blur(8px)}
 body[data-scene=painted] .mode-switch{gap:8px;font-size:.8125rem;letter-spacing:.5px}
 body[data-scene=painted] .mode-switch>span{display:none}
 body[data-scene=painted] .mode-switch button{color:#c4d4e1;min-width:44px;min-height:44px;padding:8px 6px}
@@ -93,21 +93,21 @@ body[data-scene=painted] .reading-frame{background:linear-gradient(110deg,#f0ece
 body[data-scene=painted] #reader h1{color:#293e5b;font-family:"KaiTi","STKaiti","Songti SC",serif}
 body[data-scene=painted] #reader .article-intro{color:var(--paper-muted)!important}
 body[data-scene=painted] #reader-content{color:#34485e}
-body[data-scene=painted][data-variant] .reading-header{margin:0 40px;padding:10px 0;font-size:.8125rem;letter-spacing:1px;border-color:#536c8530;color:var(--paper-muted);gap:12px}
-body[data-scene=painted][data-variant] .reading-header button{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:8px 0;font-size:.8125rem;white-space:nowrap}
-body[data-scene=painted][data-variant] .reading-header button span{padding:0}
-body[data-scene=painted][data-variant] #reading-scroll{min-height:0;touch-action:pan-y;outline-offset:-3px}
-body[data-scene=painted][data-variant] .article{max-width:680px;padding:44px 32px 32px}
-body[data-scene=painted][data-variant] .article-meta{font-size:.75rem;line-height:1.7;flex-wrap:wrap;gap:8px 16px}
-body[data-scene=painted][data-variant] .article h1{font-size:2.125rem;line-height:1.5;letter-spacing:.5px;text-wrap:balance;overflow-wrap:anywhere;margin:20px 0}
-body[data-scene=painted][data-variant] .article p{font-size:1rem;line-height:2.05;margin-bottom:24px;overflow-wrap:anywhere}
-body[data-scene=painted][data-variant] .article-intro{font-size:.875rem!important;line-height:2!important}
-body[data-scene=painted][data-variant] .article-rule{margin:24px 0}
-body[data-scene=painted][data-variant] .reading-footer{font-size:.6875rem;line-height:1.7;padding:10px 40px;color:var(--paper-muted);gap:12px}
-body[data-scene=painted][data-variant] .reading-relations button{min-height:44px}
-body[data-scene=painted][data-variant] .reading-relations button strong{font-size:1rem;overflow-wrap:anywhere}
-body[data-scene=painted][data-variant] .reading-relations button span{font-size:.8125rem;overflow-wrap:anywhere}
-body[data-scene=painted][data-variant] .reading-relations .eyebrow{font-size:.75rem}
+body[data-scene=painted] .reading-header{margin:0 40px;padding:10px 0;font-size:.8125rem;letter-spacing:1px;border-color:#536c8530;color:var(--paper-muted);gap:12px}
+body[data-scene=painted] .reading-header button{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:8px 0;font-size:.8125rem;white-space:nowrap}
+body[data-scene=painted] .reading-header button span{padding:0}
+body[data-scene=painted] #reading-scroll{min-height:0;touch-action:pan-y;outline-offset:-3px}
+body[data-scene=painted] .article{max-width:680px;padding:44px 32px 32px}
+body[data-scene=painted] .article-meta{font-size:.75rem;line-height:1.7;flex-wrap:wrap;gap:8px 16px}
+body[data-scene=painted] .article h1{font-size:2.125rem;line-height:1.5;letter-spacing:.5px;text-wrap:balance;overflow-wrap:anywhere;margin:20px 0}
+body[data-scene=painted] .article p{font-size:1rem;line-height:2.05;margin-bottom:24px;overflow-wrap:anywhere}
+body[data-scene=painted] .article-intro{font-size:.875rem!important;line-height:2!important}
+body[data-scene=painted] .article-rule{margin:24px 0}
+body[data-scene=painted] .reading-footer{font-size:.6875rem;line-height:1.7;padding:10px 40px;color:var(--paper-muted);gap:12px}
+body[data-scene=painted] .reading-relations button{min-height:44px}
+body[data-scene=painted] .reading-relations button strong{font-size:1rem;overflow-wrap:anywhere}
+body[data-scene=painted] .reading-relations button span{font-size:.8125rem;overflow-wrap:anywhere}
+body[data-scene=painted] .reading-relations .eyebrow{font-size:.75rem}
 #reader-content img{display:block;max-width:100%;height:auto;margin:24px auto}
 #reader-content a{color:#365b7b;text-decoration:underline;text-underline-offset:3px;overflow-wrap:anywhere}
 #reader-content pre{max-width:100%;overflow:auto;overscroll-behavior:contain}
@@ -119,8 +119,6 @@ body[data-scene=painted] .signal-egg span{font-size:.6875rem}
 body[data-scene=painted] #egg-dialog .eyebrow,body[data-scene=painted] #egg-dialog .egg-signature{color:#4f6375;font-size:.6875rem}
 body[data-scene=painted] #egg-dialog .egg-close{color:#34485e;right:12px;top:8px}
 body[data-scene=painted] #egg-dialog p{font-size:.875rem;line-height:2}
-body[data-scene=painted] .roof-switcher,body[data-scene=painted] #art-choice,body[data-scene=painted] #type-choice{display:none}
-body[data-scene=painted] #scene-compare{font-size:10px;color:#b7cbe0;text-decoration:none;padding:7px}
 #sky-map{--sky-map-size:180px;position:absolute;left:24px;bottom:108px;width:calc(var(--sky-map-size) + 20px);padding:13px 10px 9px;background:none;border:0;box-shadow:none;opacity:0;filter:blur(3px);pointer-events:none;transition:opacity 1.8s ease,filter 1.8s ease;z-index:8}
 #sky-map.is-visible{opacity:.88;filter:blur(0);pointer-events:auto;transition-duration:1.3s}
 #sky-map canvas{width:var(--sky-map-size);height:var(--sky-map-size);display:block;cursor:crosshair;touch-action:none}
@@ -134,11 +132,11 @@ body[data-scene=painted] #scene-compare{font-size:10px;color:#b7cbe0;text-decora
 @media(max-width:760px){
   #sky-map{top:calc(128px + max(0px, 3.5rem - 56px));bottom:auto;left:16px;right:auto}
   #sky-map-controls{left:auto;right:16px;top:128px;bottom:auto}
-  body[data-scene=painted][data-variant] .reading-header{margin:0 24px;padding:8px 0;font-size:.75rem}
-  body[data-scene=painted][data-variant] .article{padding:32px 24px 24px}
-  body[data-scene=painted][data-variant] .article h1{font-size:1.75rem}
-  body[data-scene=painted][data-variant] .article p{line-height:2;letter-spacing:0}
-  body[data-scene=painted][data-variant] .reading-footer{padding:10px 24px max(10px,env(safe-area-inset-bottom))}
+  body[data-scene=painted] .reading-header{margin:0 24px;padding:8px 0;font-size:.75rem}
+  body[data-scene=painted] .article{padding:32px 24px 24px}
+  body[data-scene=painted] .article h1{font-size:1.75rem}
+  body[data-scene=painted] .article p{line-height:2;letter-spacing:0}
+  body[data-scene=painted] .reading-footer{padding:10px 24px max(10px,env(safe-area-inset-bottom))}
 }
 @media(prefers-reduced-motion:reduce){#sky-map,#sky-map.is-visible{filter:none;transition:opacity .2s}}
 @media(max-width:760px){
@@ -151,7 +149,7 @@ body[data-scene=painted] #scene-compare{font-size:10px;color:#b7cbe0;text-decora
   .entry-motion{right:16px;bottom:20px}
   body[data-scene=painted] .masthead{left:20px;top:20px}
   body[data-scene=painted] .wordmark{width:166px}
-  body[data-scene=painted] .navigation{right:16px;left:16px;justify-content:flex-end;top:76px}
+  body[data-scene=painted] #exploration-controls{right:16px;left:16px;justify-content:flex-end;top:76px}
   body[data-scene=painted] .star-label{font-size:.875rem;letter-spacing:.5px}
   body[data-scene=painted] .signal-egg{left:auto;right:16px;top:184px}
   body[data-scene=painted] .world-footer{bottom:16px;left:16px;right:140px}
@@ -163,10 +161,10 @@ body[data-map-peek=true] .preview{visibility:hidden}
 @keyframes time-cue{0%,100%{opacity:0}12%,80%{opacity:1}}
 @media(max-width:760px){.time-cue{top:180px;left:16px;right:auto;transform:none;font-size:.75rem}}
 @media(max-width:760px) and (orientation:portrait){body:has(#sky-map.is-visible) .time-cue{visibility:hidden}}
-@media(max-width:360px){body[data-scene=painted][data-variant] .reading-site{font-size:.6875rem;letter-spacing:0}body[data-scene=painted][data-variant] .article h1{font-size:1.625rem}}
+@media(max-width:360px){body[data-scene=painted] .reading-site{font-size:.6875rem;letter-spacing:0}body[data-scene=painted] .article h1{font-size:1.625rem}}
 @media(max-height:500px) and (orientation:landscape){
   body[data-scene=painted] .masthead{top:10px;left:16px}body[data-scene=painted] .wordmark{width:132px}
-  body[data-scene=painted] .navigation{top:8px;left:auto;right:16px}
+  body[data-scene=painted] #exploration-controls{top:8px;left:auto;right:16px}
   #sky-map{top:auto;bottom:64px;left:12px;--sky-map-size:96px}
   #sky-map-controls{top:auto;right:auto;left:12px;bottom:8px}
   body[data-scene=painted] .world-footer{display:none}

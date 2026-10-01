@@ -10,7 +10,7 @@ const windowMasks = painted ? [document.body.dataset.windowMaskDesktop, document
   const mask=new Image();mask.src=src;return mask;
 }) : [];
 function waitForImage(image){
-  if(image.complete&&image.naturalWidth)return Promise.resolve(image);
+  if(image.complete)return image.naturalWidth?Promise.resolve(image):Promise.reject(new Error(`Could not load scene image: ${image.src}`));
   return new Promise((resolve,reject)=>{
     image.addEventListener('load',()=>resolve(image),{once:true});
     image.addEventListener('error',()=>reject(new Error(`Could not load scene image: ${image.src}`)),{once:true});

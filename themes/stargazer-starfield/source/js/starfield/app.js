@@ -5,7 +5,7 @@ import { HOME_ELEVATION, MIN_SKY_ZOOM, clamp, domeDestination, direction, domePo
 import { createStarMotion, ENTRANCE, entranceFrame, returnFrame, smooth } from './motion.js';
 import { dockTarget } from './experience.js';
 import { createSkyMap } from './sky-map.js';
-import { buildPaths, clipSegment, crosses } from './navigation.js';
+import { buildPaths, buildTimePaths, clipSegment, crosses } from './navigation.js';
 import { createRenderBudget } from './render-budget.js';
 import { setRenderQuality } from './dome-renderer.js';
 
@@ -38,10 +38,8 @@ async function start() {
   const collectionPath = body.dataset.starryCollectionPath || location.pathname;
   const staticCollection = document.getElementById('static-collection-fallback');
   const collectionFirstId = staticCollection?.querySelector('[data-starry-article-id]')?.dataset.starryArticleId || '';
-  const calendarDialog = document.getElementById('calendar-dialog');
   const collectionDialog = document.getElementById('collection-panel');
   const collectionSlot = document.getElementById('collection-content-slot');
-  const calendarPeriods = document.getElementById('calendar-periods');
   const fallbackArticle = document.querySelector('#static-article-fallback .article[data-starry-id]');
   const previewMemory = { camera: null, selected: null, phase: 'idle' };
   const motionPreference = matchMedia('(prefers-reduced-motion: reduce)');
@@ -78,7 +76,6 @@ async function start() {
   let directCloseInProgress = false;
   let collectionOpen = isDirectCollection;
   let collectionTrigger = null;
-  let pendingCalendarArticleId = null;
   let animationStarted = false;
   let skyMap = null;
   let navigationEdges = [];
@@ -117,7 +114,6 @@ async function start() {
   timeOrderedArticles.forEach((item, index) => {
     timePositionById.set(item.id, domePosition({ position: item.savedPosition }, index, 'time'));
   });
-  renderCalendarPeriods(Array.isArray(index.archivePeriods) ? index.archivePeriods : buildArchivePeriods(timeOrderedArticles));
   relationsByArticle = new Map(articles.map((item) => [item.id, []]));
   for (const relation of Array.isArray(index.relations) ? index.relations : []) {
     if (!Array.isArray(relation.articles) || relation.articles.length !== 2) continue;
@@ -352,63 +348,6 @@ async function start() {
         ? { starryView: 'collection', mode: layout, collectionPath }
         : { starryView: 'sky', mode: layout };
     history.replaceState(state, '', location.href);
-  }
-
-  function buildArchivePeriods(orderedArticles) {
-    const periods = new Map();
-    for (const item of orderedArticles) {
-      const key = String(item.date || '').slice(0, 7);
-      if (!/^\d{4}-\d{2}$/.test(key)) continue;
-      const period = periods.get(key) || {
-        key,
-        year: key.slice(0, 4),
-        month: key.slice(5, 7),
-        firstArticleId: item.id,
-        count: 0,
-      };
-      period.count += 1;
-      periods.set(key, period);
-    }
-    return [...periods.values()];
-  }
-
-  function renderCalendarPeriods(periods) {
-    calendarPeriods.replaceChildren();
-    for (const period of periods) {
-      const firstArticle = articleById.get(period.firstArticleId);
-      if (!firstArticle) continue;
-      const button = document.createElement('button');
-      button.type = 'button';
-      button.className = 'calendar-period';
-      button.dataset.articleId = firstArticle.id;
-      button.setAttribute('aria-label', `前往 ${period.year} 年 ${Number(period.month)} 月，${period.count} 篇文章`);
-      const label = document.createElement('span');
-      label.textContent = `${period.year} 年 ${Number(period.month)} 月`;
-      const count = document.createElement('small');
-      count.textContent = `${period.count} 篇`;
-      button.append(label, count);
-      button.addEventListener('click', () => chooseArchivePeriod(firstArticle.id));
-      calendarPeriods.append(button);
-    }
-    if (!calendarPeriods.childElementCount) {
-      const empty = document.createElement('p');
-      empty.className = 'calendar-empty';
-      empty.textContent = '星历盘还没有文章月份。';
-      calendarPeriods.append(empty);
-    }
-  }
-
-  function openCalendar() {
-    if (!roomScene?.active || calendarDialog.open) return;
-    calendarDialog.showModal();
-    document.getElementById('close-calendar').focus({ preventScroll: true });
-  }
-
-  function chooseArchivePeriod(articleId) {
-    if (!articleById.has(articleId)) return;
-    pendingCalendarArticleId = articleId;
-    calendarDialog.close();
-    roomScene?.enter();
   }
 
   function openCollectionPanel() {
@@ -869,18 +808,6 @@ async function start() {
     body.style.removeProperty('--entry-scale');
     updateUI();
     homeButton.focus({ preventScroll: true });
-    if (pendingCalendarArticleId) {
-      const target = articleById.get(pendingCalendarArticleId);
-      pendingCalendarArticleId = null;
-      if (target) {
-        mode = 'time';
-        article = target;
-        selected = null;
-        replaceViewState(mode);
-        seedDockHistory(mode, camera, null);
-        beginApproach(target.id, 'calendar');
-      }
-    }
   }
 
   function updateArrival(now) {
@@ -926,8 +853,8 @@ async function start() {
       const target = starTargets.get(item.id);
       paintPaintedStar(ctx, point.x, point.y, item.id, {
         depth: point.depth / 3,
-        active: selected === item.id,
-        hover: target.matches(':hover'),
+        active: false,
+        hover: selected !== item.id && target.matches(':hover'),
         zoom: .62 + .38 * clarity,
         importance: item.importance,
         seconds,
@@ -944,7 +871,7 @@ async function start() {
     guide.hidden = true;
     if (roomScene?.active || arrival || reader.open || collectionOpen) return;
     const box = { left: 28, right: width - 28, top: 100, bottom: height - 85 };
-    const edges = mode === 'time' ? timeOrderedArticles.slice(1).map((item, i) => [timeOrderedArticles[i].id, item.id]) : navigationEdges;
+    const edges = mode === 'time' ? buildTimePaths(timeOrderedArticles) : navigationEdges;
     const painted = [];
     const hints = [];
     ctx.save();
@@ -1119,6 +1046,7 @@ async function start() {
       reason.textContent = relation.reason;
       const link = document.createElement('a');
       link.className = 'reading-relation-link';
+      link.dataset.starryArticleId = targetArticle.id;
       link.href = localArticleUrl(targetArticle).pathname;
       link.textContent = `继续阅读《${targetArticle.title}》 ↗`;
       item.append(title);
@@ -1158,14 +1086,6 @@ async function start() {
     timeModeButton.addEventListener('click', () => switchMode('time'));
     backDockButton.addEventListener('click', returnToPreviousDock);
     homeButton.addEventListener('click', enterHome);
-    document.getElementById('star-calendar')?.addEventListener('click', openCalendar);
-    document.getElementById('close-calendar').addEventListener('click', () => {
-      calendarDialog.close();
-      document.getElementById('star-calendar')?.focus({ preventScroll: true });
-    });
-    calendarDialog.addEventListener('cancel', () => {
-      document.getElementById('star-calendar')?.focus({ preventScroll: true });
-    });
     document.getElementById('close-collection').addEventListener('click', closeCollectionPanel);
     collectionDialog.addEventListener('cancel', (event) => {
       event.preventDefault();
@@ -1178,6 +1098,19 @@ async function start() {
       void openReaderFromCollection(link.dataset.starryArticleId, link);
     });
     scroller.addEventListener('scroll', updateProgress, { passive: true });
+    scroller.addEventListener('click', event => {
+      const link = event.target.closest('.reading-relation-link[data-starry-article-id]');
+      const target = link && articleById.get(link.dataset.starryArticleId);
+      if (!reader.open || !target || event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+      event.preventDefault();
+      stopEmbeddedAudio(); phase = 'closing';
+      starMotion.close(() => {
+        reader.close(); collectionOpen = false; collectionDialog.close();
+        readingSnapshot = null; internalArticleHistory = false;
+        history.replaceState({ starryView: 'sky', mode }, '', body.dataset.starryRoot);
+        phase = 'settled'; updateUI(); activateStar(target.id);
+      }, project(positionOf(article)));
+    });
     window.addEventListener('resize', () => {
       resize();
       starMotion.resize();
@@ -1271,7 +1204,15 @@ async function start() {
     }, { passive: false });
     document.addEventListener('keydown', (event) => {
       if (event.key === 'Escape' && skyMap?.dismiss()) { event.preventDefault(); return; }
-      if (reader.open || event.target.closest('button, a, input, textarea, select, [contenteditable]')) return;
+      if (reader.open || egg.open || roomScene?.active || collectionOpen || event.target.closest('input, textarea, select, [contenteditable]')) return;
+      if (['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(event.key)) {
+        event.preventDefault(); interrupt();
+        camera.yaw += event.key === 'ArrowLeft' ? -.09 : event.key === 'ArrowRight' ? .09 : 0;
+        camera.pitch = clamp(camera.pitch + (event.key === 'ArrowUp' ? .065 : event.key === 'ArrowDown' ? -.065 : 0), 0, Math.PI / 2);
+        if (selected) phase = 'selected';
+        updateUI();
+        return;
+      }
       if (event.key === 'Escape' && selected) {
         selected = null;
         phase = 'idle';
@@ -1314,7 +1255,7 @@ async function start() {
 
   function waitForImage(image) {
     if (!image) return Promise.reject(new Error('The room illustration is missing.'));
-    if (image.complete && image.naturalWidth > 0) return Promise.resolve(image);
+    if (image.complete) return image.naturalWidth > 0 ? Promise.resolve(image) : Promise.reject(new Error(`Could not load room image: ${image.currentSrc || image.src}`));
     return new Promise((resolve, reject) => {
       image.addEventListener('load', () => resolve(image), { once: true });
       image.addEventListener('error', () => reject(new Error(`Could not load room image: ${image.currentSrc || image.src}`)), { once: true });
@@ -1333,7 +1274,7 @@ async function start() {
 function fallback(error) {
   if (error) console.error('Starfield enhancement stayed in the readable fallback.', error);
   stopEmbeddedAudio();
-  const articleNode = document.querySelector('#reader #static-article-fallback .article[data-starry-id], #reader .article[data-starry-id]');
+  const articleNode = document.querySelector('#reader .article[data-starry-id], #static-article-fallback .article[data-starry-id]');
   let staticArticle = document.getElementById('static-article-fallback');
   if (articleNode) {
     if (!staticArticle) {

@@ -18,8 +18,8 @@ hexo.extend.helper.register('starry_content', function (page) {
   $('[src], [href]').each((_, element) => {
     for (const attribute of ['src', 'href']) {
       const value = $(element).attr(attribute);
-      if (!value || !/^(?:\.\.?\/)*image\//.test(value)) continue;
-      const relative = value.replace(/^(?:\.\.?\/)+/, '');
+      if (!value || !/^\/?(?:\.\.?\/)*image\//.test(value)) continue;
+      const relative = value.replace(/^\/?(?:\.\.?\/)*image\//, 'image/');
       if (fs.existsSync(path.join(hexo.source_dir, relative.split(/[?#]/)[0]))) $(element).attr(attribute, this.url_for(relative));
     }
   });

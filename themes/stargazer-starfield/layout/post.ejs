@@ -16,7 +16,7 @@
       <section class="reading-relations" aria-label="作者确认的文章关联" <%= relatedArticles.length ? '' : 'hidden' %>>
         <% if (relatedArticles.length) { %><h2>相连的文章</h2><ul>
         <% for (const related of relatedArticles) { %><li>
-          <a class="reading-relation-link" href="<%= url_for(related.post.path) %>"><%= related.post.title %></a>
+          <a class="reading-relation-link" data-starry-article-id="<%= related.post.starry_id %>" href="<%= url_for(related.post.path) %>"><%= related.post.title %></a>
           <% if (related.reason) { %><p><%= related.reason %></p><% } %>
         </li><% } %></ul><% } %>
       </section>

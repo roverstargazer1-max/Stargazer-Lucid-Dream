@@ -2,6 +2,10 @@
 const hash=text=>{let n=2166136261;for(const c of text)n=Math.imul(n^c.charCodeAt(0),16777619);return n>>>0;};
 const distance=(a,b)=>Math.hypot(...a.position.map((v,i)=>v-b.position[i]));
 export const maxLinkDistance=3400;
+export function buildTimePaths(orderedArticles){
+  const connected=orderedArticles.filter(article=>!article.isolated);
+  return connected.slice(1).map((article,index)=>[connected[index].id,article.id]);
+}
 export function degrees(articles,edges){
   const result=new Map(articles.map(a=>[a.id,0]));
   for(const [a,b] of edges){result.set(a,result.get(a)+1);result.set(b,result.get(b)+1);}return result;
