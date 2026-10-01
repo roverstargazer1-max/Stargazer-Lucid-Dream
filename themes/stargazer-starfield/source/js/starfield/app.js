@@ -1205,7 +1205,7 @@ async function start() {
       if (roomScene?.active || reader.open || event.target.closest('#preview, #sky-map, dialog')) return;
       event.preventDefault();
       interrupt();
-      moveForward(Math.max(-600, Math.min(600, event.deltaY * .8)));
+      moveForward(Math.max(-600, Math.min(600, -event.deltaY * .8)));
     }, { passive: false });
     document.addEventListener('keydown', (event) => {
       if (event.key === 'Escape' && skyMap?.dismiss()) { event.preventDefault(); return; }
