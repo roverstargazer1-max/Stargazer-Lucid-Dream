@@ -8,8 +8,10 @@
     "deploy": "hexo deploy",
     "server": "hexo server",
     "prototype:stars": "node themes/hexo-theme-kira/prototypes/starfield/server.mjs",
-    "prepare:starfield": "node prepare-starfield.cjs && npm run preview:starfield",
-    "preview:starfield": "hexo clean --config _config.yml,_config.stargazer-preview.yml && hexo --config _config.yml,_config.stargazer-preview.yml generate",
+    "prepare:starfield": "npm run preview:starfield",
+    "preview:starfield": "node prepare-starfield.cjs && npm run generate:starfield",
+    "generate:starfield": "hexo clean --config _config.yml,_config.stargazer-preview.yml && hexo --config _config.yml,_config.stargazer-preview.yml generate",
+    "start:starfield": "npm run preview:starfield && npm run serve:starfield",
     "serve:starfield": "node themes/stargazer-starfield/tools/preview-server.mjs",
     "netlify": "npm run clean && npm run build"
   },

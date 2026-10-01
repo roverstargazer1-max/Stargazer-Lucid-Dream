@@ -1,4 +1,5 @@
-const { normalizeAdoptedRelations } = require('../lib/relations');
+const { normalizeArticleRelations } = require('../lib/relations');
+const { normalizeStar } = require('../lib/star');
 
 hexo.extend.generator.register('starry-article-index', function (locals) {
   if (hexo.config.theme !== 'stargazer-starfield') return [];
@@ -47,7 +48,7 @@ hexo.extend.generator.register('starry-article-index', function (locals) {
       path,
       url: String(post.permalink),
       position: saved.position,
-      importance: saved.importance || 'ordinary',
+      ...normalizeStar(post, message => hexo.log.warn(message)),
       constellation: typeof post.starry_constellation === 'string' ? post.starry_constellation.trim() : '',
     });
   });
@@ -60,9 +61,8 @@ hexo.extend.generator.register('starry-article-index', function (locals) {
     period.count += 1;
     archivePeriods.set(key, period);
   }
-  const relations = normalizeAdoptedRelations(
-    (locals.data || hexo.locals.get('data') || {})['starry-relations'],
-    new Set(articles.map((article) => article.id)),
+  const relations = normalizeArticleRelations(
+    locals.posts.toArray(),
     (message) => hexo.log.warn(message),
   );
   const configuredFeatured = hexo.theme.config.featured_article_id;

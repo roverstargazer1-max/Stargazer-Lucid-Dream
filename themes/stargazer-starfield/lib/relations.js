@@ -1,57 +1,43 @@
 'use strict';
 
-function normalizeAdoptedRelations(configuration, publishedArticleIds, warn = () => {}) {
-  if (configuration == null) return [];
-  if (!configuration || typeof configuration !== 'object' || Array.isArray(configuration)) {
-    warn('source/_data/starry-relations.yml must contain a mapping; ignoring its optional relations.');
-    return [];
+const path = require('node:path');
+
+// Author-facing filenames resolve to saved identities; changing a title is harmless.
+function normalizeArticleRelations(posts, warn = () => {}) {
+  const published = posts.filter(post => post.published !== false);
+  const filenames = new Map();
+  for (const post of published) {
+    const filename = path.posix.basename(String(post.source).replace(/\\/g, '/'), '.md');
+    if (filenames.has(filename)) throw new Error(`Ambiguous article filename "${filename}"; use unique filenames in source/_posts.`);
+    filenames.set(filename, post);
   }
-  if (configuration.version !== 1) {
-    warn(`source/_data/starry-relations.yml has unsupported version "${configuration.version}"; ignoring its optional relations.`);
-    return [];
+  const pairs = new Map();
+  for (const post of published) {
+    if (post.related == null) continue;
+    const entries = Array.isArray(post.related) ? post.related : [post.related];
+    entries.forEach((entry, index) => {
+      const location = `${post.source} related[${index}]`;
+      const filename = typeof entry === 'string' ? entry : entry?.post;
+      const reason = typeof entry === 'object' && entry !== null ? entry.reason : undefined;
+      if (typeof filename !== 'string' || !filename.trim() || (reason != null && typeof reason !== 'string')) {
+        warn(`${location}: expected a filename without .md and an optional text reason; skipping.`);
+        return;
+      }
+      const target = filenames.get(filename.trim());
+      if (!target || target === post) {
+        warn(`${location}: missing, unpublished or self-referencing article "${filename}"; skipping.`);
+        return;
+      }
+      const articles = [String(post.starry_id), String(target.starry_id)].sort();
+      const key = articles.join('\0');
+      const text = (reason || '').trim();
+      const existing = pairs.get(key);
+      if (!existing) pairs.set(key, { articles, reason: text });
+      else if (!existing.reason) existing.reason = text;
+      else if (text && existing.reason !== text) warn(`${location}: conflicting reciprocal reasons; keeping the first reason.`);
+    });
   }
-
-  const adopted = configuration.adopted == null ? [] : configuration.adopted;
-  if (!Array.isArray(adopted)) {
-    warn('source/_data/starry-relations.yml: adopted must be a list; ignoring its optional relations.');
-    return [];
-  }
-
-  const seen = new Set();
-  const relations = [];
-  adopted.forEach((entry, index) => {
-    const location = `source/_data/starry-relations.yml adopted[${index}]`;
-    const ids = entry?.articles;
-    if (!Array.isArray(ids) || ids.length !== 2 || ids.some((id) => typeof id !== 'string' || !id.trim())) {
-      warn(`${location} must reference exactly two article IDs; skipping it.`);
-      return;
-    }
-
-    const articles = ids.map((id) => id.trim()).sort();
-    if (articles[0] === articles[1]) {
-      warn(`${location} references the same article twice; skipping it.`);
-      return;
-    }
-    const missing = articles.find((id) => !publishedArticleIds.has(id));
-    if (missing) {
-      warn(`${location} references unpublished or missing article "${missing}"; skipping it.`);
-      return;
-    }
-    if (entry.reason != null && typeof entry.reason !== 'string') {
-      warn(`${location}.reason must be plain text; skipping it.`);
-      return;
-    }
-
-    const key = articles.join('\0');
-    if (seen.has(key)) {
-      warn(`${location} duplicates an adopted relationship; skipping it.`);
-      return;
-    }
-    seen.add(key);
-    relations.push({ articles, reason: String(entry.reason || '').trim() });
-  });
-
-  return relations;
+  return [...pairs.values()].sort((a, b) => a.articles.join('\0').localeCompare(b.articles.join('\0')));
 }
 
-module.exports = { normalizeAdoptedRelations };
+module.exports = { normalizeArticleRelations };

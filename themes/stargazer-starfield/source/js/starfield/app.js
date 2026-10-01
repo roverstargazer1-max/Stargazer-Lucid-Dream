@@ -1013,13 +1013,13 @@ async function start() {
     const section = articleNode?.querySelector('.reading-relations');
     if (!section) return;
     const articleId = articleNode.dataset.starryId;
-    const authored = (relationsByArticle.get(articleId) || []).filter((relation) => relation.reason);
+    const authored = relationsByArticle.get(articleId) || [];
     section.hidden = !revealed || authored.length === 0;
     if (section.hidden) return;
     if (section.dataset.renderedArticleId === articleId) return;
 
     const heading = document.createElement('h2');
-    heading.textContent = '为什么相连';
+    heading.textContent = '相连的文章';
     const list = document.createElement('ul');
     for (const relation of authored) {
       const targetArticle = articleById.get(relation.articleId);
@@ -1033,7 +1033,9 @@ async function start() {
       link.className = 'reading-relation-link';
       link.href = localArticleUrl(targetArticle).pathname;
       link.textContent = `继续阅读《${targetArticle.title}》 ↗`;
-      item.append(title, reason, link);
+      item.append(title);
+      if (relation.reason) item.append(reason);
+      item.append(link);
       list.append(item);
     }
     section.replaceChildren(heading, list);
