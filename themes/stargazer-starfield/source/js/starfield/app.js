@@ -27,6 +27,16 @@ async function start() {
   const targetLayer = document.getElementById('star-targets');
   const directId = body.dataset.starryArticleId;
   const isDirectEntry = Boolean(directId);
+  const collectionKind = body.dataset.starryCollectionKind || '';
+  const isDirectCollection = Boolean(collectionKind);
+  const collectionMode = collectionKind === 'archive' ? 'time' : 'relation';
+  const collectionPath = body.dataset.starryCollectionPath || location.pathname;
+  const staticCollection = document.getElementById('static-collection-fallback');
+  const collectionFirstId = staticCollection?.querySelector('[data-starry-article-id]')?.dataset.starryArticleId || '';
+  const calendarDialog = document.getElementById('calendar-dialog');
+  const collectionDialog = document.getElementById('collection-panel');
+  const collectionSlot = document.getElementById('collection-content-slot');
+  const calendarPeriods = document.getElementById('calendar-periods');
   const fallbackArticle = document.querySelector('#static-article-fallback .article[data-starry-id]');
   const previewMemory = { camera: null, selected: null, phase: 'idle' };
   const motionPreference = matchMedia('(prefers-reduced-motion: reduce)');
@@ -42,7 +52,7 @@ async function start() {
   const readArticleIds = new Set();
   let article = null;
   let selected = null;
-  let mode = 'relation';
+  let mode = isDirectCollection ? collectionMode : 'relation';
   let phase = 'idle';
   let travel = null;
   let arrival = null;
@@ -61,6 +71,9 @@ async function start() {
   let internalArticleHistory = false;
   let historyNavigationVersion = 0;
   let directCloseInProgress = false;
+  let collectionOpen = isDirectCollection;
+  let collectionTrigger = null;
+  let pendingCalendarArticleId = null;
   let animationStarted = false;
   let audioAssetsPromise = null;
   const pointers = new Map();
@@ -90,6 +103,7 @@ async function start() {
   timeOrderedArticles.forEach((item, index) => {
     timePositionById.set(item.id, domePosition({ position: item.savedPosition }, index, 'time'));
   });
+  renderCalendarPeriods(Array.isArray(index.archivePeriods) ? index.archivePeriods : buildArchivePeriods(timeOrderedArticles));
   relationsByArticle = new Map(articles.map((item) => [item.id, []]));
   for (const relation of Array.isArray(index.relations) ? index.relations : []) {
     if (!Array.isArray(relation.articles) || relation.articles.length !== 2) continue;
@@ -103,7 +117,11 @@ async function start() {
   article = articleById.get(startId) || articles[0] || null;
   seedDockHistory('relation', camera, null);
   seedDockHistory('time', camera, null);
-  if (!isDirectEntry) history.replaceState({ starryView: 'sky', mode }, '', location.href);
+  if (!isDirectEntry) {
+    history.replaceState(isDirectCollection
+      ? { starryView: 'collection', mode, collectionPath }
+      : { starryView: 'sky', mode }, '', location.href);
+  }
 
   if (isDirectEntry) {
     if (!article || !fallbackArticle || fallbackArticle.dataset.starryId !== article.id) throw new Error('The static article does not match its starfield identity.');
@@ -128,7 +146,7 @@ async function start() {
   }
 
   roomScene = createRoom({
-    startOutside: isDirectEntry,
+    startOutside: isDirectEntry || isDirectCollection,
     onEnter(startTime) {
       const first = entranceFrame(0, width <= 760 ? .78 : 1);
       camera = { ...first };
@@ -188,6 +206,14 @@ async function start() {
     },
   });
 
+  if (isDirectCollection && collectionFirstId && articleById.has(collectionFirstId)) {
+    article = articleById.get(collectionFirstId);
+    selected = article.id;
+    phase = 'settled';
+    camera = destination(article, mode);
+    seedDockHistory(mode, camera, selected);
+  }
+
   mountStar();
   wireControls();
   updateUI();
@@ -195,6 +221,7 @@ async function start() {
 
   body.classList.add('starry-ready');
   if (isDirectEntry) openDirectArticle();
+  else if (isDirectCollection) openCollectionPanel();
   animationStarted = true;
   requestAnimationFrame(animate);
 
@@ -292,8 +319,90 @@ async function start() {
   function replaceViewState(layout = mode) {
     const state = reader.open
       ? { starryView: 'reader', starryArticleId: article?.id, mode: layout }
-      : { starryView: 'sky', mode: layout };
+      : collectionOpen
+        ? { starryView: 'collection', mode: layout, collectionPath }
+        : { starryView: 'sky', mode: layout };
     history.replaceState(state, '', location.href);
+  }
+
+  function buildArchivePeriods(orderedArticles) {
+    const periods = new Map();
+    for (const item of orderedArticles) {
+      const key = String(item.date || '').slice(0, 7);
+      if (!/^\d{4}-\d{2}$/.test(key)) continue;
+      const period = periods.get(key) || {
+        key,
+        year: key.slice(0, 4),
+        month: key.slice(5, 7),
+        firstArticleId: item.id,
+        count: 0,
+      };
+      period.count += 1;
+      periods.set(key, period);
+    }
+    return [...periods.values()];
+  }
+
+  function renderCalendarPeriods(periods) {
+    calendarPeriods.replaceChildren();
+    for (const period of periods) {
+      const firstArticle = articleById.get(period.firstArticleId);
+      if (!firstArticle) continue;
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'calendar-period';
+      button.dataset.articleId = firstArticle.id;
+      button.setAttribute('aria-label', `前往 ${period.year} 年 ${Number(period.month)} 月，${period.count} 篇文章`);
+      const label = document.createElement('span');
+      label.textContent = `${period.year} 年 ${Number(period.month)} 月`;
+      const count = document.createElement('small');
+      count.textContent = `${period.count} 篇`;
+      button.append(label, count);
+      button.addEventListener('click', () => chooseArchivePeriod(firstArticle.id));
+      calendarPeriods.append(button);
+    }
+    if (!calendarPeriods.childElementCount) {
+      const empty = document.createElement('p');
+      empty.className = 'calendar-empty';
+      empty.textContent = '星历盘还没有文章月份。';
+      calendarPeriods.append(empty);
+    }
+  }
+
+  function openCalendar() {
+    if (!roomScene?.active || calendarDialog.open) return;
+    calendarDialog.showModal();
+    document.getElementById('close-calendar').focus({ preventScroll: true });
+  }
+
+  function chooseArchivePeriod(articleId) {
+    if (!articleById.has(articleId)) return;
+    pendingCalendarArticleId = articleId;
+    calendarDialog.close();
+    roomScene?.enter();
+  }
+
+  function openCollectionPanel() {
+    if (!staticCollection || !collectionDialog || collectionDialog.open) return;
+    if (!collectionSlot.firstElementChild) {
+      const articleContent = staticCollection.querySelector('.article');
+      if (articleContent) collectionSlot.replaceChildren(articleContent.cloneNode(true));
+    }
+    const title = collectionSlot.querySelector('#collection-title')?.textContent?.trim();
+    if (title) document.getElementById('collection-panel-title').textContent = title;
+    collectionOpen = true;
+    collectionDialog.showModal();
+    document.getElementById('close-collection').focus({ preventScroll: true });
+    updateUI();
+  }
+
+  function closeCollectionPanel() {
+    if (!collectionDialog.open) return;
+    collectionOpen = false;
+    collectionDialog.close();
+    history.pushState({ starryView: 'sky', mode }, '', body.dataset.starryRoot);
+    updateUI();
+    homeButton.focus({ preventScroll: true });
   }
 
   function mountStar() {
@@ -316,7 +425,7 @@ async function start() {
   function updateUI() {
     const isSelected = Boolean(article && selected === article.id);
     preview.hidden = !isSelected || reader.open;
-    controls.hidden = Boolean(roomScene?.active) || reader.open;
+    controls.hidden = Boolean(roomScene?.active) || reader.open || collectionOpen;
     relationModeButton.setAttribute('aria-pressed', String(mode === 'relation'));
     timeModeButton.setAttribute('aria-pressed', String(mode === 'time'));
     relationModeButton.disabled = Boolean(arrival || phase === 'loading');
@@ -345,7 +454,7 @@ async function start() {
       target.classList.toggle('is-selected', active);
       target.setAttribute('aria-label', `${active && phase === 'settled' ? '阅读文章' : '选择文章'}：${item.title}`);
     }
-    homeButton.hidden = Boolean(roomScene?.active) || reader.open;
+    homeButton.hidden = Boolean(roomScene?.active) || reader.open || collectionOpen;
     document.getElementById('gesture-help').textContent = width <= 760 ? '单指转动穹顶 · 滚轮前行 · 点星靠近' : '拖动转动穹顶 · 滚轮前行 · 点星靠近';
   }
 
@@ -487,6 +596,43 @@ async function start() {
     }
   }
 
+  async function openReaderFromCollection(id, trigger) {
+    if (!collectionOpen || reader.open) return;
+    const targetArticle = articleById.get(id);
+    if (!targetArticle) return;
+    try {
+      const node = articleNodes.get(id) || await articleLoads.get(id) || await loadArticleNode(targetArticle);
+      if (!collectionOpen || reader.open || !node) return;
+      articleNodes.set(id, node);
+      readingSnapshot = {
+        camera: { ...camera },
+        selected,
+        articleId: article?.id,
+        phase: selected ? 'settled' : 'idle',
+        mode,
+        collectionOpen: true,
+      };
+      collectionTrigger = trigger;
+      readerTrigger = trigger;
+      collectionOpen = false;
+      collectionDialog.close();
+      mode = collectionMode;
+      article = targetArticle;
+      selected = id;
+      phase = 'settled';
+      camera = destination(targetArticle, mode);
+      seedDockHistory(mode, camera, selected);
+      readerSlot.replaceChildren(node);
+      internalArticleHistory = true;
+      history.pushState({ starryView: 'reader', starryArticleId: id, mode }, '', localArticleUrl(targetArticle).pathname);
+      showReader(project(positionOf(targetArticle)));
+      void prepareEmbeddedPlayer(node);
+    } catch (error) {
+      announce('这篇文章暂时无法加载；仍停留在当前清单与地址。');
+      console.warn(`Collection article "${id}" could not be opened.`, error);
+    }
+  }
+
   function openDirectArticle() {
     readerTrigger = document.getElementById('home');
     showReader(project(positionOf(article)));
@@ -531,6 +677,7 @@ async function start() {
     if (!reader.open) return;
     historyNavigationVersion += 1;
     stopEmbeddedAudio();
+    const returnToCollection = Boolean(readingSnapshot?.collectionOpen);
     phase = 'closing';
     starMotion.close(() => {
       reader.close();
@@ -546,8 +693,14 @@ async function start() {
         selected = article.id;
       }
       readingSnapshot = null;
+      if (returnToCollection) {
+        collectionOpen = true;
+        collectionDialog.showModal();
+      }
       updateUI();
-      const target = readerTrigger?.isConnected ? readerTrigger : starTargets.get(selected);
+      const target = returnToCollection && collectionTrigger?.isConnected
+        ? collectionTrigger
+        : readerTrigger?.isConnected ? readerTrigger : starTargets.get(selected);
       target?.focus({ preventScroll: true });
       readerTrigger = null;
     }, project(positionOf(article)));
@@ -563,11 +716,28 @@ async function start() {
     }
     if (reader.open && article?.id === id) return;
     const wasOpen = reader.open;
+    const openingFromCollection = !wasOpen && collectionOpen && collectionDialog.open;
+    const activeCollectionTrigger = openingFromCollection
+      ? document.activeElement.closest?.('a[data-starry-article-id]')
+      : null;
     try {
       const node = articleNodes.get(id) || await articleLoads.get(id) || await loadArticleNode(targetArticle);
       if (requestVersion !== historyNavigationVersion || history.state?.starryArticleId !== id) return;
       articleNodes.set(id, node);
-      if (!readingSnapshot && !wasOpen) readingSnapshot = { camera: { ...camera }, selected, articleId: article?.id, phase: 'settled', mode };
+      if (!readingSnapshot && !wasOpen) readingSnapshot = {
+        camera: { ...camera },
+        selected,
+        articleId: article?.id,
+        phase: selected ? 'settled' : 'idle',
+        mode,
+        collectionOpen: openingFromCollection,
+      };
+      if (openingFromCollection) {
+        collectionTrigger = activeCollectionTrigger || collectionTrigger;
+        readerTrigger = collectionTrigger;
+        collectionOpen = false;
+        collectionDialog.close();
+      }
       article = targetArticle;
       selected = id;
       phase = 'reading';
@@ -585,10 +755,15 @@ async function start() {
 
   function restoreAddressForDisplayedContent() {
     const displayingArticle = reader.open && article;
+    const displayingCollection = !displayingArticle && collectionOpen;
     const state = displayingArticle
       ? { starryView: 'reader', starryArticleId: displayingArticle.id, mode }
-      : { starryView: 'sky', mode };
-    const url = displayingArticle ? localArticleUrl(displayingArticle).pathname : body.dataset.starryRoot;
+      : displayingCollection
+        ? { starryView: 'collection', mode, collectionPath }
+        : { starryView: 'sky', mode };
+    const url = displayingArticle
+      ? localArticleUrl(displayingArticle).pathname
+      : displayingCollection ? collectionPath : body.dataset.starryRoot;
     history.replaceState(state, '', url);
     internalArticleHistory = Boolean(displayingArticle);
   }
@@ -661,6 +836,18 @@ async function start() {
     body.style.removeProperty('--entry-scale');
     updateUI();
     homeButton.focus({ preventScroll: true });
+    if (pendingCalendarArticleId) {
+      const target = articleById.get(pendingCalendarArticleId);
+      pendingCalendarArticleId = null;
+      if (target) {
+        mode = 'time';
+        article = target;
+        selected = null;
+        replaceViewState(mode);
+        seedDockHistory(mode, camera, null);
+        beginApproach(target.id, 'calendar');
+      }
+    }
   }
 
   function updateArrival(now) {
@@ -872,6 +1059,25 @@ async function start() {
     timeModeButton.addEventListener('click', () => switchMode('time'));
     backDockButton.addEventListener('click', returnToPreviousDock);
     homeButton.addEventListener('click', enterHome);
+    document.getElementById('star-calendar').addEventListener('click', openCalendar);
+    document.getElementById('close-calendar').addEventListener('click', () => {
+      calendarDialog.close();
+      document.getElementById('star-calendar').focus({ preventScroll: true });
+    });
+    calendarDialog.addEventListener('cancel', () => {
+      document.getElementById('star-calendar').focus({ preventScroll: true });
+    });
+    document.getElementById('close-collection').addEventListener('click', closeCollectionPanel);
+    collectionDialog.addEventListener('cancel', (event) => {
+      event.preventDefault();
+      closeCollectionPanel();
+    });
+    collectionSlot.addEventListener('click', (event) => {
+      const link = event.target.closest('a[data-starry-article-id]');
+      if (!link || !articleById.has(link.dataset.starryArticleId)) return;
+      event.preventDefault();
+      void openReaderFromCollection(link.dataset.starryArticleId, link);
+    });
     scroller.addEventListener('scroll', updateProgress, { passive: true });
     window.addEventListener('resize', () => {
       resize();
@@ -885,6 +1091,8 @@ async function start() {
       } else if (reader.open) closeReaderAfterPop();
       else if (event.state?.starryView === 'reader' && event.state.starryArticleId) {
         void openReaderFromHistory(event.state.starryArticleId);
+      } else if (event.state?.starryView === 'collection') {
+        openCollectionPanel();
       }
     });
 
@@ -989,8 +1197,12 @@ async function start() {
 
   function localArticleUrl(item) {
     const root = new URL(body.dataset.starryRoot, location.origin);
+    const rootPath = root.pathname.endsWith('/') ? root.pathname : `${root.pathname}/`;
     const originalPath = new URL(item.url, location.origin).pathname;
-    return new URL(originalPath, root);
+    const siteRelativePath = originalPath.startsWith(rootPath)
+      ? originalPath.slice(rootPath.length)
+      : originalPath.replace(/^\/+/, '');
+    return new URL(siteRelativePath, root);
   }
 
   async function loadArticleNode(item) {

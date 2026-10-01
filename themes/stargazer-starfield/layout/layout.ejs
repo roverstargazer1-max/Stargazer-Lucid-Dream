@@ -8,9 +8,25 @@
   };
   const isPost = page.layout === 'post' && page.title;
   const isStarryArticle = isPost && page.starry_id;
-  const title = isPost ? page.title : config.title;
-  const description = isPost ? String(page.starry_excerpt || config.description || '') : String(config.description || '');
-  const canonical = isPost ? page.permalink : new URL(url_for('/'), config.url).href;
+  const collectionKind = page.archive || page.layout === 'archives' ? 'archive' : page.tag ? 'tag' : page.category ? 'category' : '';
+  const isStarryCollection = Boolean(collectionKind);
+  const collectionRoute = isStarryCollection
+    ? String(page.current_url || page.path || '').replace(/\/index\.html$/, '/')
+    : '';
+  const collectionUrl = collectionRoute.startsWith('/') ? collectionRoute : `/${collectionRoute}`;
+  let collectionTitle = '文章归档';
+  if (page.tag) collectionTitle = `标签 · ${page.tag}`;
+  else if (page.category) collectionTitle = `分类 · ${page.category}`;
+  else if (page.year) collectionTitle = page.month
+    ? `${page.year} 年 ${String(page.month).padStart(2, '0')} 月`
+    : `${page.year} 年`;
+  const title = isPost ? page.title : isStarryCollection ? collectionTitle : config.title;
+  const description = isPost
+    ? String(page.starry_excerpt || config.description || '')
+    : isStarryCollection ? `${collectionTitle} · 文章清单` : String(config.description || '');
+  const canonical = isPost
+    ? page.permalink
+    : isStarryCollection ? new URL(url_for(collectionUrl), config.url).href : new URL(url_for('/'), config.url).href;
   const image = isPost && page.cover
     ? (String(page.cover).startsWith('http') ? page.cover : new URL(url_for(page.cover), config.url).href)
     : '';
@@ -34,8 +50,10 @@
   <% if (description) { %><meta name="twitter:description" content="<%= description %>"><% } %>
   <link rel="stylesheet" href="<%= url_for('css/starry/site.css') %>">
 </head>
-<body class="<%= isStarryArticle ? 'has-starry-experience article-page' : '' %>"
+<body class="<%= isStarryArticle || isStarryCollection ? 'has-starry-experience' : '' %><%= isStarryArticle ? ' article-page' : '' %>"
       data-starry-article-id="<%= isStarryArticle ? page.starry_id : '' %>"
+      data-starry-collection-kind="<%= collectionKind %>"
+      data-starry-collection-path="<%= isStarryCollection ? url_for(collectionUrl) : '' %>"
       data-starry-featured-id="<%= theme.featured_article_id %>"
       data-starry-index="<%= url_for('starry/index.json') %>"
       data-starry-root="<%= url_for('/') %>"

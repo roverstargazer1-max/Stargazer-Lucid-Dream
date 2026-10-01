@@ -1,11 +1,16 @@
-<main class="static-article-fallback generic-post">
-  <article class="article">
-    <h1><%= page.category || page.tag || (page.year ? `${page.year}${page.month ? ` 年 ${page.month} 月` : ' 年'}` : '文章归档') %></h1>
-    <div class="article-rule" aria-hidden="true"></div>
-    <ol class="archive-list">
-      <% page.posts.each((post) => { %>
-        <li><time><%= date(post.date, 'YYYY-MM-DD') %></time><a href="<%= url_for(post.path) %>"><%= post.title %></a></li>
-      <% }) %>
-    </ol>
-  </article>
-</main>
+<%
+  let collectionKind = 'archive';
+  let collectionTitle = '文章归档';
+  if (page.tag) {
+    collectionKind = 'tag';
+    collectionTitle = `标签 · ${page.tag}`;
+  } else if (page.category) {
+    collectionKind = 'category';
+    collectionTitle = `分类 · ${page.category}`;
+  } else if (page.year) {
+    collectionTitle = page.month
+      ? `${page.year} 年 ${String(page.month).padStart(2, '0')} 月`
+      : `${page.year} 年`;
+  }
+%>
+<%- partial('partial/collection-list', { collectionKind, collectionTitle, posts: page.posts, pagination: page }) %>

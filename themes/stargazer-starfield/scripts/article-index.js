@@ -53,6 +53,13 @@ hexo.extend.generator.register('starry-article-index', function (locals) {
   });
 
   articles.sort((left, right) => left.timeOrder < right.timeOrder ? -1 : left.timeOrder > right.timeOrder ? 1 : 0);
+  const archivePeriods = new Map();
+  for (const article of articles) {
+    const key = article.date.slice(0, 7);
+    const period = archivePeriods.get(key) || { key, year: key.slice(0, 4), month: key.slice(5, 7), firstArticleId: article.id, count: 0 };
+    period.count += 1;
+    archivePeriods.set(key, period);
+  }
   const relations = normalizeAdoptedRelations(
     (locals.data || hexo.locals.get('data') || {})['starry-relations'],
     new Set(articles.map((article) => article.id)),
@@ -65,7 +72,7 @@ hexo.extend.generator.register('starry-article-index', function (locals) {
 
   return {
     path: 'starry/index.json',
-    data: JSON.stringify({ version: 2, featuredArticleId, articles, relations }),
+    data: JSON.stringify({ version: 2, featuredArticleId, articles, archivePeriods: [...archivePeriods.values()], relations }),
   };
 });
 

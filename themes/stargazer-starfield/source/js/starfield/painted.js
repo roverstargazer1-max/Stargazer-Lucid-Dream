@@ -125,8 +125,9 @@ export function createRoom({onEnter,onProgress,onEntered,onReturnStart,onReturnP
     ]);
     return timeline;
   }
-  entry.onclick=()=>{
+  function enterSky(){
     if(flight)return;
+    if(room.hidden)return;
     entry.disabled=true;room.inert=true;document.body.dataset.room='entering';
     const duration=short?220:ENTRANCE.passage;
     const current={timeline:passageTimeline(),raf:0,start:performance.now(),direction:1,progress:0};flight=current;
@@ -140,8 +141,10 @@ export function createRoom({onEnter,onProgress,onEntered,onReturnStart,onReturnP
       document.body.dataset.room='outside';onEntered();
     };
     advance(current.start);
-  };
-  document.getElementById('room-journal').onclick=onJournal;
+  }
+  entry.onclick=enterSky;
+  const journal=document.getElementById('room-journal');
+  if(journal)journal.onclick=onJournal;
   function returnHome(){
     if(flight||!room.hidden)return;
     room.hidden=false;room.inert=true;world.inert=true;entry.disabled=true;
@@ -166,5 +169,5 @@ export function createRoom({onEnter,onProgress,onEntered,onReturnStart,onReturnP
   if(startOutside){
     room.hidden=true;room.inert=true;world.inert=false;document.body.dataset.room='outside';
   }else show(false);
-  return {returnHome,setSoft(value){short=value;setMotion();},get active(){return !room.hidden;}};
+  return {enter:enterSky,returnHome,setSoft(value){short=value;setMotion();},get active(){return !room.hidden;}};
 }

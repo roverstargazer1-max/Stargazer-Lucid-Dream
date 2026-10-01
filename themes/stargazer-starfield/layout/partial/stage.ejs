@@ -39,6 +39,7 @@
       <img class="room-image" src="<%= url_for(theme.scene.room_desktop) %>" alt="夜色里的窗边，窗外是深蓝天空">
     </picture>
     <button id="window-entry" type="button" aria-label="穿过窗户，进入星空"></button>
+    <button id="star-calendar" type="button" aria-label="查看有文章的星历月份" title="星历盘"></button>
     <svg class="window-invitation" viewBox="0 0 1672 941" preserveAspectRatio="none" aria-hidden="true">
       <path class="window-edge" d="M530 229 L760 157 L1044 178 L1129 415 L1078 589 L922 588 L864 480 L721 486 L660 601 L583 591 Z" fill="none" stroke="#d7e8f3"/>
       <g class="window-dust" fill="#e7d7b3"><circle cx="766" cy="276" r="2"/><circle cx="865" cy="232" r="1.5"/><circle cx="985" cy="320" r="1.4"/><circle cx="700" cy="380" r="1.3"/><circle cx="1038" cy="462" r="1.6"/></g>
@@ -54,6 +55,25 @@
     <div id="reading-scroll" tabindex="0"><div id="reading-content-slot"></div></div>
     <footer class="reading-footer"><span id="reading-state">沿着文字，慢慢往下</span><span id="reading-progress">0%</span></footer>
     <svg class="reading-seal" viewBox="0 0 1000 1000" preserveAspectRatio="none" aria-hidden="true"><path d="M0 1000 L1000 0" pathLength="1"/><path d="M1000 0 L0 1000" pathLength="1"/></svg>
+  </div>
+</dialog>
+<dialog id="calendar-dialog" aria-labelledby="calendar-title">
+  <div class="calendar-frame">
+    <header class="calendar-header">
+      <div><span class="calendar-kicker">屋顶上的星历盘</span><h2 id="calendar-title">从发表的年月出发</h2></div>
+      <button id="close-calendar" type="button" aria-label="关闭星历盘">关闭</button>
+    </header>
+    <p class="calendar-note">只显示有文章的月份。选择一个月份，沿时间星空靠近那段时期。</p>
+    <div id="calendar-periods" class="calendar-periods"></div>
+  </div>
+</dialog>
+<dialog id="collection-panel" aria-labelledby="collection-panel-title">
+  <div class="collection-frame">
+    <header class="collection-header">
+      <div><span class="calendar-kicker">星空里的旧入口</span><h2 id="collection-panel-title">文章清单</h2></div>
+      <button id="close-collection" type="button">回到星空</button>
+    </header>
+    <div id="collection-scroll" tabindex="0"><div id="collection-content-slot"></div></div>
   </div>
 </dialog>
 <div id="announcement" class="sr-only" role="status" aria-live="polite"></div>
