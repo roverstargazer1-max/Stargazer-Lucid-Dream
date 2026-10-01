@@ -159,6 +159,7 @@ export function createStarMotion({ preview, reader, scroller, isSoft }) {
     approach = { timeline, clean, start, duration, unfold, reveal, repeat, articleId, token };
     setApproach(0);
     tick(start);
+    return duration;
   }
   function setApproach(progress) {
     focusProgress = unit(progress);

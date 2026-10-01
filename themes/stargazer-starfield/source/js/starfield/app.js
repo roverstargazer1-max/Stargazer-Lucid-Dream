@@ -1,8 +1,12 @@
 import { createInteractiveClouds } from './interactive-clouds.js';
 import { createRoom, paintCloudVeil, paintPaintedSky, paintPaintedStar, preparePaintedScene } from './painted.js';
-import { HOME_ELEVATION, clamp, domeDestination, direction, domePosition, projectDome } from './dome.js';
+import { HOME_ELEVATION, MIN_SKY_ZOOM, clamp, domeDestination, direction, domePosition, projectDome } from './dome.js';
 import { createStarMotion, ENTRANCE, entranceFrame, returnFrame, smooth } from './motion.js';
 import { dockTarget } from './experience.js';
+import { createSkyMap } from './sky-map.js';
+import { buildPaths, clipSegment, crosses } from './navigation.js';
+import { createRenderBudget } from './render-budget.js';
+import { setRenderQuality } from './dome-renderer.js';
 
 const body = document.body;
 const world = document.getElementById('world');
@@ -76,6 +80,15 @@ async function start() {
   let pendingCalendarArticleId = null;
   let animationStarted = false;
   let audioAssetsPromise = null;
+  let skyMap = null;
+  let navigationEdges = [];
+  let timeCueUntil = 0;
+  let lineOpacity = 1;
+  let lastCamera = null;
+  let lastFrame = 0;
+  const meteors = [];
+  const egg = document.getElementById('egg-dialog');
+  const renderBudget = createRenderBudget(navigator);
   const pointers = new Map();
   let press = null;
   let gestureMoved = false;
@@ -95,6 +108,7 @@ async function start() {
     return { ...item, savedPosition: item.position.slice(), position: { x: item.position[0], y: item.position[1], z: item.position[2] } };
   });
   articleById = new Map(articles.map((item) => [item.id, item]));
+  navigationEdges = buildPaths(articles.map(item => ({ ...item, position: item.savedPosition })));
   const timeOrderedArticles = [...articles].sort((left, right) => {
     const leftOrder = String(left.timeOrder || `${left.date}|${left.id}`);
     const rightOrder = String(right.timeOrder || `${right.date}|${right.id}`);
@@ -133,7 +147,7 @@ async function start() {
   resize();
   await preparePaintedScene();
   await waitForImage(document.querySelector('.room-image'));
-  clouds = createInteractiveClouds(world);
+  clouds = createInteractiveClouds(world, () => reducedMotion || !renderBudget.current.ambientMotion);
   starMotion = createStarMotion({ preview, reader, scroller, isSoft: () => reducedMotion });
 
   if (isDirectEntry) {
@@ -199,11 +213,19 @@ async function start() {
       replaceViewState(mode);
       updateUI();
     },
-    onJournal() {},
+    onJournal() {
+      openNote('灯还亮着。', '这一页还没有写完。\n\n窗外的星星里，放着一些日常、念头和未眠时写下的文字。');
+    },
     onMotion(value) {
       reducedMotion = value;
       if (body.dataset.room === 'inside') body.style.setProperty('--sky-clarity', value ? '1' : '0');
     },
+  });
+
+  skyMap = createSkyMap(world, {
+    onLook: (yaw, pitch) => lookAtSky(yaw, pitch, Math.min(1, camera.zoom)),
+    onOverview: () => lookAtSky(camera.yaw, Math.PI / 2, MIN_SKY_ZOOM),
+    onReset: () => lookAtSky(0, HOME_ELEVATION, 1),
   });
 
   if (isDirectCollection && collectionFirstId && articleById.has(collectionFirstId)) {
@@ -228,10 +250,7 @@ async function start() {
   function resize() {
     width = innerWidth;
     height = innerHeight;
-    dpr = Math.min(devicePixelRatio || 1, 2);
-    canvas.width = Math.round(width * dpr);
-    canvas.height = Math.round(height * dpr);
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    applyRenderQuality();
     if (travel?.kind === 'return') return;
     if (travel?.kind === 'mode-start') {
       const targetArticle = articleById.get(travel.targetArticleId);
@@ -241,6 +260,16 @@ async function start() {
       if (targetArticle) travel.to = destination(targetArticle, travel.layout);
     }
     if (selected && phase === 'settled' && !reader.open && article) camera = destination(article);
+  }
+
+  function applyRenderQuality() {
+    const quality = renderBudget.current;
+    body.dataset.renderQuality = quality.tier;
+    setRenderQuality(quality.environmentRatioCap);
+    dpr = Math.min(devicePixelRatio || 1, quality.pixelRatioCap);
+    canvas.width = Math.round(width * dpr);
+    canvas.height = Math.round(height * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
   }
 
   function projectionSettings() {
@@ -434,10 +463,12 @@ async function start() {
     updateRelationCues(isSelected ? article.id : null);
     if (isSelected) {
       document.getElementById('preview-date').textContent = article.date;
+      document.getElementById('preview-number').textContent = String(articles.indexOf(article) + 1).padStart(2, '0');
+      document.getElementById('preview-tag').textContent = article.constellation || '一段未眠的文字';
       document.getElementById('preview-title').textContent = article.title;
       document.getElementById('preview-intro').textContent = article.excerpt || '';
       const modeNote = document.getElementById('mode-note');
-      modeNote.hidden = false;
+      modeNote.hidden = true;
       modeNote.textContent = mode === 'time'
         ? '按发表时间排列 · 时间相邻不代表作者关联'
         : '按作者确认的关系探索';
@@ -455,7 +486,8 @@ async function start() {
       target.setAttribute('aria-label', `${active && phase === 'settled' ? '阅读文章' : '选择文章'}：${item.title}`);
     }
     homeButton.hidden = Boolean(roomScene?.active) || reader.open || collectionOpen;
-    document.getElementById('gesture-help').textContent = width <= 760 ? '单指转动穹顶 · 滚轮前行 · 点星靠近' : '拖动转动穹顶 · 滚轮前行 · 点星靠近';
+    document.getElementById('gesture-help').textContent = width <= 760 ? '单指巡视 · 双指前行 · 点星靠近' : '拖动巡视 · 滚轮前行 · 点星靠近';
+    document.getElementById('journal-egg').hidden = true;
   }
 
   function updateRelationCues(articleId) {
@@ -467,7 +499,7 @@ async function start() {
     section.hidden = relations.length === 0;
     section.querySelector('.relation-legend').textContent = mode === 'time'
       ? '作者确认的关系与日期顺序分开显示'
-      : '细实线：邻近探索 · 虚线：作者确认关联';
+      : '虚线：探索路径 · 实线：文章关联';
     for (const relation of relations) {
       const targetArticle = articleById.get(relation.articleId);
       if (!targetArticle) continue;
@@ -527,9 +559,8 @@ async function start() {
     const start = performance.now();
     const approachLayout = mode;
     const to = destination(article);
-    const duration = reducedMotion ? 220 : 2800;
+    const duration = starMotion.beginApproach(start, id);
     travel = { from: { ...camera }, to, start, duration, kind, targetArticleId: id, layout: approachLayout };
-    starMotion.beginApproach(start, id);
     announce('正在靠近文章星。到位后再次点选这颗星即可阅读。');
     if (!articleNodes.has(id) && !articleLoads.has(id)) {
       const load = loadArticleNode(article).then((node) => {
@@ -776,6 +807,8 @@ async function start() {
     if (!defaultArticle) return;
     interrupt();
     mode = nextMode;
+    if (mode === 'time') showTimeCue(selectedArticle || defaultArticle);
+    else document.getElementById('time-cue').hidden = true;
     replaceViewState(mode);
     updateUI();
 
@@ -870,15 +903,17 @@ async function start() {
 
   function drawScene(now) {
     ctx.clearRect(0, 0, width, height);
-    const seconds = reducedMotion ? null : now / 1000;
-    paintPaintedSky(ctx, width, height, camera, projectionSettings(), { x: ambient.x, y: ambient.y, seconds, clarity: 1 });
+    const seconds = reducedMotion || !renderBudget.current.ambientMotion ? null : ambient.seconds;
+    const clarity = arrival ? entranceFrame(now - arrival.start).clarity : 1;
+    body.style.setProperty('--sky-clarity', String(clarity));
+    paintPaintedSky(ctx, width, height, camera, projectionSettings(), { x: ambient.x, y: ambient.y, seconds, clarity, backgroundStride: renderBudget.current.backgroundStride });
     if (animationStarted && body.dataset.domeRenderer !== 'webgl') throw new Error('The starfield renderer stopped being available.');
     visibleStars.clear();
     for (const item of articles) {
       const projected = project(positionOf(item));
       const point = projected && Number.isFinite(projected.x) && Number.isFinite(projected.y) ? projected : null;
       const target = starTargets.get(item.id);
-      target.hidden = !point || roomScene?.active || Boolean(arrival);
+      target.hidden = !point || point.x < 24 || point.x > width - 24 || point.y < 92 || point.y > height - 80 || roomScene?.active || Boolean(arrival);
       if (!point) continue;
       visibleStars.set(item.id, point);
       target.style.left = `${point.x}px`;
@@ -890,68 +925,105 @@ async function start() {
       if (!point) continue;
       const target = starTargets.get(item.id);
       paintPaintedStar(ctx, point.x, point.y, item.id, {
-        depth: point.depth,
+        depth: point.depth / 3,
         active: selected === item.id,
         hover: target.matches(':hover'),
-        zoom: Math.max(.62, Math.min(1.4, point.scale)),
+        zoom: .62 + .38 * clarity,
         importance: item.importance,
         seconds,
       });
       if (selected === item.id) starMotion.paintFocus(ctx, point);
     }
     paintCloudVeil(ctx, width, height, camera, projectionSettings());
-    clouds?.update(now / 1000, Boolean(reader.open || arrival || roomScene?.active));
+    clouds?.update(Math.min(.05, (now - lastFrame) / 1000 || 0), Boolean(reader.open || arrival || roomScene?.active || egg.open));
     clouds?.paint(ctx, width, height, camera, projectionSettings());
   }
 
   function drawNavigationGuides() {
-    const origin = visibleStars.get(selected);
-    const current = articleById.get(selected);
-    if (!origin || !current || roomScene?.active || arrival) return;
-    const neighbors = articles
-      .filter((item) => item.id !== current.id && visibleStars.has(item.id))
-      .sort((left, right) => distanceFrom(current, left) - distanceFrom(current, right))
-      .slice(0, 2);
-
+    const guide = document.getElementById('edge-guide');
+    guide.hidden = true;
+    if (roomScene?.active || arrival || reader.open || collectionOpen) return;
+    const box = { left: 28, right: width - 28, top: 100, bottom: height - 85 };
+    const edges = mode === 'time' ? timeOrderedArticles.slice(1).map((item, i) => [timeOrderedArticles[i].id, item.id]) : navigationEdges;
+    const painted = [];
+    const hints = [];
     ctx.save();
-    ctx.lineCap = 'round';
-    ctx.lineWidth = 0.8;
-    ctx.setLineDash([]);
-    ctx.strokeStyle = 'rgba(181, 198, 211, .12)';
-    for (const neighbor of neighbors) drawGuideLine(origin, visibleStars.get(neighbor.id));
-
-    if (mode === 'relation') {
-      ctx.lineWidth = 1.15;
-      ctx.setLineDash([2, 6]);
-      ctx.strokeStyle = 'rgba(226, 216, 191, .36)';
-      for (const relation of relationsByArticle.get(selected) || []) {
+    ctx.globalAlpha = lineOpacity;
+    ctx.setLineDash([2.5, 7]);
+    ctx.lineWidth = .9;
+    for (const [left, right] of edges) {
+      const a = visibleStars.get(left), b = visibleStars.get(right);
+      if (!a || !b) continue;
+      const line = clipSegment(a, b, box);
+      if (!line || Math.hypot(line.a.x - line.b.x, line.a.y - line.b.y) < 24) continue;
+      if (painted.some(other => crosses(line.a, line.b, other.a, other.b))) continue;
+      ctx.strokeStyle = selected ? '#c8d8e611' : '#c8d8e65c';
+      drawGuideLine(line.a, line.b);
+      painted.push(line);
+      if (line.hi < 1 && line.lo === 0) hints.push({ point: line.b, id: right });
+      if (line.lo > 0 && line.hi === 1) hints.push({ point: line.a, id: left });
+    }
+    if (selected && mode === 'relation') {
+      ctx.setLineDash([]); ctx.lineWidth = 1.15; ctx.strokeStyle = '#d9e8f479';
+      const origin = visibleStars.get(selected);
+      if (origin) for (const relation of relationsByArticle.get(selected) || []) {
         const target = visibleStars.get(relation.articleId);
         if (target) drawGuideLine(origin, target);
       }
     }
     ctx.restore();
+    const visible = [...starTargets.values()].some(target => !target.hidden);
+    const hint = hints[0];
+    if (phase === 'moving' || lineOpacity < .5) return;
+    if (hint && !selected) {
+      const obstacles = [...world.querySelectorAll('nav,header,#sky-map-controls,#sky-map,#preview,.signal-egg')].filter(el => !el.hidden).map(el => el.getBoundingClientRect());
+      if (!obstacles.some(rect => hint.point.x + 24 > rect.left && hint.point.x - 24 < rect.right && hint.point.y + 24 > rect.top && hint.point.y - 24 < rect.bottom)) {
+        guide.style.left = hint.point.x + 'px'; guide.style.top = hint.point.y + 'px';
+        guide.style.transform = 'translate(-50%,-50%)'; guide.textContent = '›';
+        guide.onclick = () => activateStar(hint.id); guide.hidden = false;
+      }
+    } else if (!visible && articles.length) {
+      const target = articles.reduce((nearest, item) => {
+        const point = positionOf(item), ray = direction(camera.yaw, camera.pitch);
+        const score = (point.x * ray.x + point.y * ray.y + point.z * ray.z) / Math.hypot(point.x, point.y, point.z);
+        return !nearest || score > nearest.score ? { item, score } : nearest;
+      }, null).item;
+      guide.style.left = '50%'; guide.style.top = 'calc(100% - 110px)';
+      guide.style.transform = 'translate(-50%,-50%)'; guide.textContent = '✧';
+      guide.onclick = () => activateStar(target.id); guide.hidden = false;
+    }
+    document.getElementById('path-legend').textContent = selected && mode === 'relation' && (relationsByArticle.get(selected) || []).length ? '实线：文章关联' : '虚线：探索路径';
   }
 
   function drawGuideLine(origin, target) {
-    if (!target) return;
-    ctx.beginPath();
-    ctx.moveTo(origin.x, origin.y);
-    ctx.lineTo(target.x, target.y);
-    ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(origin.x, origin.y); ctx.lineTo(target.x, target.y); ctx.stroke();
   }
 
-  function distanceFrom(left, right) {
-    const leftPosition = positionOf(left);
-    const rightPosition = positionOf(right);
-    return Math.hypot(
-      leftPosition.x - rightPosition.x,
-      leftPosition.y - rightPosition.y,
-      leftPosition.z - rightPosition.z,
-    );
+  function lookAtSky(yaw, pitch, zoom) {
+    if (roomScene?.active || reader.open || arrival) return;
+    appendDockStop(mode, camera, selected);
+    interrupt(); selected = null; phase = 'moving'; starMotion.clearSelection();
+    travel = { from: { ...camera }, to: { x: 0, y: 0, z: 0, yaw: camera.yaw + Math.atan2(Math.sin(yaw - camera.yaw), Math.cos(yaw - camera.yaw)), pitch, zoom }, start: performance.now(), duration: reducedMotion ? 220 : 700, kind: 'look', layout: mode };
+    updateUI();
+  }
+
+  function openNote(title, copy) {
+    document.getElementById('egg-title').textContent = title;
+    document.getElementById('egg-copy').textContent = copy;
+    egg.showModal();
+  }
+
+  function showTimeCue(item) {
+    const cue = document.getElementById('time-cue');
+    const [year, month] = item.date.split('-');
+    cue.textContent = year + ' 年 ' + Number(month) + ' 月';
+    cue.hidden = false; cue.style.animation = 'none'; void cue.offsetWidth; cue.style.animation = '';
+    timeCueUntil = performance.now() + 3000;
   }
 
   function animate(now) {
     try {
+      const renderStart = performance.now();
       if (travel) {
         const currentTravel = travel;
         const t = Math.min(1, (now - currentTravel.start) / currentTravel.duration);
@@ -962,7 +1034,7 @@ async function start() {
           if (currentTravel.kind === 'return') {
             dockCursorByMode.set(currentTravel.layout, currentTravel.returnIndex);
             phase = selected ? 'settled' : 'idle';
-          } else if (currentTravel.kind === 'mode-start') {
+          } else if (currentTravel.kind === 'mode-start' || currentTravel.kind === 'look') {
             seedDockHistory(currentTravel.layout, camera, null);
             phase = 'idle';
           } else {
@@ -976,12 +1048,28 @@ async function start() {
         }
       }
       updateArrival(now);
-      ambient.seconds = now / 1000;
+      const delta = lastFrame ? Math.min(50, now - lastFrame) : 16;
+      const moving = lastCamera && (Math.abs(camera.yaw - lastCamera.yaw) + Math.abs(camera.pitch - lastCamera.pitch) + Math.abs(camera.zoom - lastCamera.zoom) > .01);
+      lineOpacity += ((moving || travel || pointers.size ? 0 : 1) - lineOpacity) * Math.min(1, delta / (moving ? 100 : 380));
+      lastCamera = { ...camera };
+      if (!reader.open && !egg.open && !roomScene?.active && !reducedMotion) ambient.seconds += delta / 1000;
       ambient.x += (ambient.targetX - ambient.x) * .035;
       ambient.y += (ambient.targetY - ambient.y) * .035;
       drawScene(now);
+      skyMap.update(camera, projectionSettings(), articles.map(item => ({ id: item.id, point: positionOf(item) })), selected, !reader.open && !egg.open && !arrival && !roomScene?.active && !collectionOpen, width, height, now);
+      for (let i = meteors.length - 1; i >= 0; i--) {
+        const meteor = meteors[i], age = (now - meteor.start) / 1800;
+        if (age > 1) { meteors.splice(i, 1); continue; }
+        ctx.strokeStyle = `rgba(187,213,239,${Math.sin(age * Math.PI) * .65})`;
+        ctx.lineWidth = 1; ctx.beginPath();
+        ctx.moveTo(meteor.x + age * width * .22, meteor.y + age * height * .16);
+        ctx.lineTo(meteor.x + age * width * .22 - 55, meteor.y + age * height * .16 - 30); ctx.stroke();
+      }
+      if (timeCueUntil && now > timeCueUntil) document.getElementById('time-cue').hidden = true;
       starMotion.tick(now);
       updateProgress();
+      if (!reader.open && !egg.open && !document.hidden && renderBudget.sample(performance.now() - renderStart)) applyRenderQuality();
+      lastFrame = now;
       requestAnimationFrame(animate);
     } catch (error) {
       fallback(error);
@@ -1043,6 +1131,15 @@ async function start() {
   }
 
   function wireControls() {
+    document.getElementById('brand').addEventListener('click', event => { event.preventDefault(); enterHome(); });
+    document.getElementById('close-egg').addEventListener('click', () => egg.close());
+    document.getElementById('signal-egg').addEventListener('click', () => {
+      meteors.push({ x: width * .58, y: height * .17, start: performance.now() });
+      announce('远方划过一点微光。');
+    });
+    document.getElementById('deselect').addEventListener('click', () => {
+      interrupt(); selected = null; phase = 'idle'; starMotion.clearSelection(); updateUI();
+    });
     document.getElementById('close-reader').addEventListener('click', () => {
       if (isDirectEntry && !internalArticleHistory) closeReaderFromDirect();
       else closeReaderThroughHistory();
@@ -1061,13 +1158,13 @@ async function start() {
     timeModeButton.addEventListener('click', () => switchMode('time'));
     backDockButton.addEventListener('click', returnToPreviousDock);
     homeButton.addEventListener('click', enterHome);
-    document.getElementById('star-calendar').addEventListener('click', openCalendar);
+    document.getElementById('star-calendar')?.addEventListener('click', openCalendar);
     document.getElementById('close-calendar').addEventListener('click', () => {
       calendarDialog.close();
-      document.getElementById('star-calendar').focus({ preventScroll: true });
+      document.getElementById('star-calendar')?.focus({ preventScroll: true });
     });
     calendarDialog.addEventListener('cancel', () => {
-      document.getElementById('star-calendar').focus({ preventScroll: true });
+      document.getElementById('star-calendar')?.focus({ preventScroll: true });
     });
     document.getElementById('close-collection').addEventListener('click', closeCollectionPanel);
     collectionDialog.addEventListener('cancel', (event) => {
@@ -1167,12 +1264,13 @@ async function start() {
       clouds?.clearHover();
     });
     world.addEventListener('wheel', (event) => {
-      if (roomScene?.active || reader.open) return;
+      if (roomScene?.active || reader.open || event.target.closest('#preview, #sky-map, dialog')) return;
       event.preventDefault();
       interrupt();
       moveForward(Math.max(-600, Math.min(600, event.deltaY * .8)));
     }, { passive: false });
     document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && skyMap?.dismiss()) { event.preventDefault(); return; }
       if (reader.open || event.target.closest('button, a, input, textarea, select, [contenteditable]')) return;
       if (event.key === 'Escape' && selected) {
         selected = null;
@@ -1184,17 +1282,12 @@ async function start() {
   }
 
   function moveForward(amount) {
-    const old = { x: camera.x, y: camera.y, z: camera.z };
-    camera.x += Math.sin(camera.yaw) * Math.cos(camera.pitch) * amount;
-    camera.y += Math.sin(camera.pitch) * amount;
-    camera.z += Math.cos(camera.yaw) * Math.cos(camera.pitch) * amount;
-    camera.x = clamp(camera.x, -9000, 9000);
-    camera.y = clamp(camera.y, -6000, 6000);
-    camera.z = clamp(camera.z, -1000, 9000);
-    if (camera.x !== old.x || camera.y !== old.y || camera.z !== old.z) {
-      if (selected) phase = 'selected';
-      updateUI();
-    }
+    camera.zoom = clamp(camera.zoom * Math.exp(amount * .0011), MIN_SKY_ZOOM, 2.8);
+    const distance = clamp((camera.zoom - 1) * 1100, 0, 1200);
+    const ray = direction(camera.yaw, camera.pitch, distance);
+    camera.x = ray.x; camera.y = ray.y; camera.z = ray.z;
+    if (selected) phase = 'selected';
+    updateUI();
   }
 
   function localArticleUrl(item) {

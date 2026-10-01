@@ -2,6 +2,8 @@
 // No scene library: a small WebGL pass samples the existing painted environment.
 let renderer=null;
 let cloudTreatment=0;
+let pixelRatioCap=1.5;
+export function setRenderQuality(value){pixelRatioCap=value;}
 export function setCloudTreatment(value){cloudTreatment=Math.max(0,Math.min(.1,value));}
 function createRenderer(image){
   const canvas=document.createElement('canvas');
@@ -135,7 +137,8 @@ function createRenderer(image){
   // Scenery is static in world space. Keep both passes while only a cloud animates.
   const cache=[0,1].map(()=>({key:null,canvas:document.createElement('canvas')}));
   return {canvas,draw(w,h,camera,settings,overlay){
-    const ratio=Math.min(devicePixelRatio||1,1.5);
+    if(gl.isContextLost())throw new Error('The WebGL context was lost.');
+    const ratio=Math.min(devicePixelRatio||1,pixelRatioCap);
     const rw=Math.round(w*ratio),rh=Math.round(h*ratio);
     const entry=cache[overlay?1:0];
     const key=[rw,rh,settings.cx,settings.cy,settings.focal,camera.x,camera.y,camera.z,camera.yaw,camera.pitch,cloudTreatment].join(',');

@@ -36,7 +36,7 @@ function makeCloud(seed){
   return {canvas,glow,alpha:pixels.data};
 }
 
-export function createInteractiveClouds(world){
+export function createInteractiveClouds(world,isSoft=()=>matchMedia('(prefers-reduced-motion: reduce)').matches){
   const preference=matchMedia('(prefers-reduced-motion: reduce)');
   const clouds=[[-.38,.28,.36,.15],[1.94,.37,.40,.16],[4.18,.42,.44,.18]].map(([azimuth,elevation,width,height],i)=>{
     const button=document.createElement('button');button.className='cloud-target';button.hidden=true;
@@ -65,7 +65,7 @@ export function createInteractiveClouds(world){
       blocked=isBlocked;
       if(blocked){hovered=null;return;}
       for(const cloud of clouds){
-        if(cloud.age!==null){cloud.age+=dt;if(cloud.age>=(preference.matches?.85:7))cloud.age=null;}
+        if(cloud.age!==null){cloud.age+=dt;if(cloud.age>=(isSoft()?.85:7))cloud.age=null;}
         const target=hovered===cloud.id||cloud.button.matches(':focus-visible')?1:0;
         cloud.hover+=(target-cloud.hover)*(1-Math.exp(-dt*6));
       }
@@ -75,8 +75,8 @@ export function createInteractiveClouds(world){
       const visibleButtons=new Set();
       for(const cloud of clouds){
         const age=cloud.age||0;
-        const strength=cloud.age===null?0:preference.matches?Math.sin(Math.PI*Math.min(1,age/.85)):age<1.2?Math.sin(age/1.2*Math.PI/2):((7-age)/5.8)**2;
-        const shift=preference.matches?0:strength;
+        const strength=cloud.age===null?0:isSoft()?Math.sin(Math.PI*Math.min(1,age/.85)):age<1.2?Math.sin(age/1.2*Math.PI/2):((7-age)/5.8)**2;
+        const shift=isSoft()?0:strength;
         const az=cloud.azimuth+shift*.043,el=cloud.elevation+shift*.012;
         const cw=cloud.width*(1+shift*.13),ch=cloud.height*(1+shift*.08);
         const project=(a,e)=>projectDome(direction(a,e,5300),camera,settings);
@@ -87,7 +87,7 @@ export function createInteractiveClouds(world){
         if(Math.abs(a*d-b*c)<.0001||Math.hypot(a,b)*512>w*2)continue;
         const corners=[[0,0],[512,0],[0,224],[512,224]].map(([x,y])=>({x:a*x+c*y+tx,y:b*x+d*y+ty}));
         if(corners.every(p=>p.x<0)||corners.every(p=>p.x>w)||corners.every(p=>p.y<0)||corners.every(p=>p.y>h))continue;
-        const opacity=1-strength*(preference.matches?.25:.65);
+        const opacity=1-strength*(isSoft()?.25:.65);
         frames.push({a,b,c,d,tx,ty,cloud,opacity});
         ctx.save();ctx.transform(a,b,c,d,tx,ty);ctx.globalAlpha=opacity;
         ctx.drawImage(cloud.sprite.canvas,0,0);

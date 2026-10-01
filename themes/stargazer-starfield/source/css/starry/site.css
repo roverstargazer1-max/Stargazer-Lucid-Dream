@@ -215,3 +215,13 @@ body[data-room="entering"] .entry-motion, body[data-room="returning"] .entry-mot
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
 }
+
+/* The final note has one content scroller; never clamp away real excerpts. */
+body[data-scene] #preview-intro { display: block; -webkit-line-clamp: unset; overflow: visible; }
+body[data-scene] #preview .known-reasons { overflow: visible; max-height: none; }
+#deselect { margin-left: auto; min-width: 44px; min-height: 44px; font-size: 20px; }
+body[data-scene] #gesture-help { bottom: 38px; font-size: .6875rem; }
+body[data-scene] .path-legend { left: auto; right: 30px; bottom: 16px; }
+body[data-scene] #preview .preview-meta { flex-wrap: nowrap; }
+body[data-render-quality=low] .window-dust > * { animation: none !important; opacity: .25; }
+@media (max-width:760px) { body[data-scene] #gesture-help { bottom: 38px; right: 16px; left: 16px; text-align: right; } body[data-scene] .path-legend { right: 16px; left: 16px; text-align: right; } }

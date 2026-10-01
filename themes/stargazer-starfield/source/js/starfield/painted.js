@@ -1,8 +1,8 @@
 import { DOME_RADIUS, direction, projectDome } from './dome.js';
 import { paintDomeEnvironment } from './dome-renderer.js';
 import { createTimeline, unit, ENTRANCE } from './motion.js';
-// V11 visual experiment: the supplied room leads into a painted, navigable sky.
-export const painted = new URLSearchParams(location.search).get('scene') !== 'classic';
+// The final room leads into one painted, navigable sky.
+export const painted = true;
 const plate = new Image();
 if (painted) plate.src = document.body.dataset.skyImage;
 // Load both aperture masks before revealing the live sky, including across a resize.
@@ -40,7 +40,8 @@ export function paintPaintedSky(ctx,w,h,camera,settings,ambient){
   document.body.dataset.domeRenderer=ready?'webgl':'loading';
   document.body.dataset.liveWindow=ready&&windowMasks.every(mask=>mask.complete&&mask.naturalWidth>0)?'ready':'loading';
   // Distant decoration shares the article hemisphere and camera, without a screen-space offset.
-  for(const star of skyStars){
+  for(let index=0;index<skyStars.length;index+=ambient.backgroundStride||1){
+    const star=skyStars[index];
     if(star.y<0)continue;
     const p=projectDome({x:star.x*DOME_RADIUS,y:star.y*DOME_RADIUS,z:star.z*DOME_RADIUS},camera,settings);
     if(!p||p.x<0||p.x>w||p.y<0||p.y>h)continue;
