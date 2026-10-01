@@ -2,7 +2,7 @@
 
 日期：2026-10-01。
 
-状态：需求访谈已完成，关键决策全部确认，现已进入实施。当前进展和验证证据见 [implementation-progress.md](implementation-progress.md)。远程 push 和发布未获本轮授权，实际托管验证保留为发布前事项。
+状态：本地主题实施、静态构建与代码复核已完成。当前进展和验证证据见 [implementation-progress.md](implementation-progress.md)。按本轮要求未 push；实际托管部署和真实触屏验收保留为发布前事项，默认生产主题仍为 Kira。
 
 需求与访谈的唯一入口：[theme-planning.md](theme-planning.md)。本计划以本次答复为准；其他分支的旧计划和规格仅用于评估可复用成果。
 

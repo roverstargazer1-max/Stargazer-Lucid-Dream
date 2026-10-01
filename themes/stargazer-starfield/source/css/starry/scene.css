@@ -5,6 +5,8 @@
 .signal-egg{position:absolute;font-size:24px;animation:signal 6s ease-in-out infinite;z-index:4}
 .signal-egg span{font-size:11px;position:absolute;white-space:nowrap;right:100%;opacity:0;transition:opacity .3s}
 .signal-egg:hover span,.signal-egg:focus-visible span{opacity:1}
+.motion-toggle{min-height:44px;padding:0 8px;font-size:11px;white-space:nowrap}
+body[data-render-quality=low] .signal-egg{animation:none}
 @keyframes signal{50%{opacity:.55}}
 #egg-dialog{padding:45px;max-width:420px;width:calc(100% - 40px);box-shadow:0 20px 100px #0008}
 #egg-dialog::backdrop{background:#04142b66;backdrop-filter:blur(2px)}

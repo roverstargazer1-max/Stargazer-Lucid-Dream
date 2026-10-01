@@ -214,6 +214,10 @@ async function start() {
     },
     onMotion(value) {
       reducedMotion = value;
+      const motionButton = document.getElementById('motion-toggle');
+      motionButton.textContent = value ? '轻过渡' : '镜头推进';
+      motionButton.setAttribute('aria-pressed', String(value));
+      motionButton.setAttribute('aria-label', value ? '开启镜头推进动画' : '减少镜头动画');
       if (body.dataset.room === 'inside') body.style.setProperty('--sky-clarity', value ? '1' : '0');
     },
   });
@@ -1059,6 +1063,7 @@ async function start() {
   }
 
   function wireControls() {
+    document.getElementById('motion-toggle').addEventListener('click', () => roomScene.setSoft(!reducedMotion));
     document.getElementById('brand').addEventListener('click', event => { event.preventDefault(); enterHome(); });
     document.getElementById('close-egg').addEventListener('click', () => egg.close());
     document.getElementById('signal-egg').addEventListener('click', () => {
@@ -1204,7 +1209,7 @@ async function start() {
     }, { passive: false });
     document.addEventListener('keydown', (event) => {
       if (event.key === 'Escape' && skyMap?.dismiss()) { event.preventDefault(); return; }
-      if (reader.open || egg.open || roomScene?.active || collectionOpen || event.target.closest('input, textarea, select, [contenteditable]')) return;
+      if (reader.open || egg.open || roomScene?.active || collectionOpen || event.target.closest('input, textarea, select, [contenteditable], #preview-scroll')) return;
       if (['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(event.key)) {
         event.preventDefault(); interrupt();
         camera.yaw += event.key === 'ArrowLeft' ? -.09 : event.key === 'ArrowRight' ? .09 : 0;
