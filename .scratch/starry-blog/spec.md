@@ -1,5 +1,7 @@
 # 星空博客主题化与公开模板规格
 
+> 2026-10-01：当前实施以 [个人博客正式化计划](theme-production-plan.md) 和 [本次访谈](theme-planning.md) 为准。本文保留历史规格；公开模板、AI 候选、场景校准工具和额外规模验证不属于当前任务。作者关系改为文章 Front-matter 按文件名引用，理由选填，自动双向。
+
 Status: ready-for-agent
 State: open
 Category: enhancement
