@@ -1,4 +1,4 @@
-// One clock for the camera, the page and its ink. No animation-library dependency.
+// One clock for the camera, the reading window and the mist reveal. No animation-library dependency.
 import { createPreviewMemory } from './experience.js';
 export const unit = value => Math.max(0, Math.min(1, value));
 export function smooth(value) {
@@ -7,7 +7,7 @@ export function smooth(value) {
 }
 export const cue = (progress, start, end) => smooth((progress - start) / (end - start));
 export const ENTRANCE = { passage: 1900, duration: 2500, turn: Math.PI / 3, clarify: 950, clear: 2300, retreat: 2600 };
-export const PREVIEW = { duration: 2800, unfold: 1500, reveal: 2000, clear: 2734 };
+export const PREVIEW = { duration: 1100, clear: 950 };
 
 // The window and open sky share this camera, even before the entry button is pressed.
 // A short turn carries the passage into its landing; stars clear during deceleration.
@@ -74,66 +74,26 @@ export function createTimeline() {
   };
 }
 
-// Measure real line boxes. The text stays intact, selectable and accessible;
-// only decorative, aria-hidden strips pass over it, including wrapped CJK lines.
-function revealInk(elements, timeline, start, end, soft, white = false) {
-  const covers = [], copies = [];
-  elements.forEach((element, order) => {
-    const delay = Math.min(order, 8) * (white ? .012 : .018);
-    element.classList.add('ink-target');
-    let ink = element;
-    if (white && !soft) {
-      // Blur the real ink independently: the white blocks stay solid during the hold.
-      ink = document.createElement('span'); ink.className = 'ink-copy';
-      ink.append(...element.childNodes); element.append(ink); copies.push(ink);
-    }
-    timeline.add(ink, [
-      { opacity: soft ? 0 : 1, filter: soft ? 'none' : 'blur(3px)', translate: soft ? 'none' : '0 4px' },
-      { opacity: 1, filter: soft ? 'none' : 'blur(0px)', translate: soft ? 'none' : '0 0' },
-    ], start + delay, Math.min(1, end + delay));
-    if (soft) return;
-    const bounds = element.getBoundingClientRect();
-    if (!bounds.width || !bounds.height) return;
-    const lines = [];
-    const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT);
-    while (walker.nextNode()) {
-      if (!walker.currentNode.textContent.trim()) continue;
-      const range = document.createRange();
-      range.selectNodeContents(walker.currentNode);
-      for (const rect of range.getClientRects()) {
-        if (rect.width < 1) continue;
-        const previous = lines.find(line => Math.abs(line.top - rect.top) < 3);
-        if (previous) previous.right = Math.max(previous.right, rect.right);
-        else lines.push({ left: rect.left, top: rect.top, right: rect.right, height: rect.height });
-      }
-    }
-    for (const [index, line] of lines.entries()) {
-      const strip = document.createElement('span');
-      strip.className = white ? 'ink-veil ink-veil-white' : 'ink-veil'; strip.setAttribute('aria-hidden', 'true');
-      strip.style.cssText = `left:${line.left - bounds.left}px;top:${line.top - bounds.top}px;width:${line.right - line.left}px;height:${line.height}px`;
-      element.append(strip); covers.push(strip);
-      timeline.add(strip, [
-        { transform: 'scaleX(1)', opacity: 1 },
-        { transform: 'scaleX(.68)', opacity: .78, offset: .28 },
-        { transform: 'scaleX(0)', opacity: 0 },
-      ], start + delay + Math.min(index, 3) * .014, Math.min(1, end + delay));
-    }
-  });
-  return () => {
-    covers.forEach(cover => cover.remove());
-    copies.forEach(copy => copy.replaceWith(...copy.childNodes));
-    elements.forEach(element => element.classList.remove('ink-target'));
-  };
-}
-
 export function createStarMotion({ preview, reader, scroller, isSoft }) {
   let approach = null, page = null, focusProgress = 1, previewRect = null;
   const memory = createPreviewMemory();
   const body = document.body;
+  // ::backdrop does not reliably inherit custom properties from its dialog.
+  // Update its own rule so the sky follows the same clock, including interruption.
+  const backdropSheet = document.createElement('style');
+  backdropSheet.textContent = '#reader::backdrop {}';
+  document.head.append(backdropSheet);
+  const backdrop = backdropSheet.sheet.cssRules[0].style;
+  let backdropFocus = 0;
+  function setBackdrop(progress, soft) {
+    backdropFocus = progress;
+    backdrop.background = `rgb(4 17 42 / ${(.15 * progress).toFixed(3)})`;
+    backdrop.backdropFilter = `blur(${soft ? 0 : (2.4 * progress).toFixed(2)}px)`;
+  }
+  setBackdrop(0, isSoft());
   function clearApproach() {
-    approach?.timeline.cancel(); approach?.clean(); approach = null;
+    approach?.timeline.cancel(); approach = null;
     memory.cancel();
-    preview.style.removeProperty('--preview-reveal');
     preview.removeAttribute('aria-busy'); delete preview.dataset.reveal;
   }
   function beginApproach(start = performance.now(), articleId, resumed = null) {
@@ -143,20 +103,20 @@ export function createStarMotion({ preview, reader, scroller, isSoft }) {
     const timeline = createTimeline(), soft = isSoft();
     const repeat = resumed?.repeat ?? token.repeat;
     const duration = soft ? 220 : repeat ? 700 : PREVIEW.duration;
-    const unfold = soft ? duration : repeat ? 420 : PREVIEW.unfold;
-    const reveal = soft ? 0 : repeat ? 100 : PREVIEW.reveal;
     preview.dataset.presentation = soft ? 'soft' : repeat ? 'repeat' : 'first';
     previewRect = preview.getBoundingClientRect();
-    const clean = revealInk([...preview.querySelectorAll('#preview-number, #preview-date, #preview-tag, #preview-title, #preview-intro')], timeline, reveal / duration, soft || repeat ? .85 : PREVIEW.clear / duration, soft || repeat, true);
-    timeline.add(preview, soft || repeat ? [{ opacity: 0 }, { opacity: 1 }] : [
-      { opacity: 0, translate: `${Math.round(previewRect.width*.65+innerWidth-previewRect.right)}px 0`, rotate: 'y -12deg', clipPath: 'inset(49% 0 49% 0)' },
-      { opacity: 1, translate: '0 0', rotate: 'y 0deg', clipPath: 'inset(0% 0 0% 0)' },
-    ], soft || repeat ? 0 : .03, unfold / duration);
-    // The action participates in the panel's reveal, without an additional late fade.
-    // Its enabled state belongs to the camera clock, which may run longer than this.
-    timeline.add(preview.querySelector('.relation-cues'), [{ opacity: 0 }, { opacity: 1 }], soft || repeat ? 0 : .82, 1);
+    // Real text emerges through a slight loss of focus; no masks or copied text.
+    timeline.add(preview, [{ opacity: 0 }, { opacity: 1 }], 0, soft ? 1 : .75);
+    for (const [order, element] of [...preview.querySelectorAll('#preview-number, #preview-date, #preview-title')].entries()) {
+      const delay = soft ? 0 : .08 + order * .035;
+      timeline.add(element, [
+        { opacity: 0, filter: soft ? 'none' : `blur(${repeat ? 1 : 3}px)` },
+        { opacity: 1, filter: 'blur(0px)' },
+      ], delay, soft ? 1 : repeat ? .85 : PREVIEW.clear / duration);
+    }
+    timeline.add(preview.querySelector('.preview-bottom'), [{ opacity: 0 }, { opacity: 1 }], soft ? 0 : .3, 1);
     preview.setAttribute('aria-busy', 'true');
-    approach = { timeline, clean, start, duration, unfold, reveal, repeat, articleId, token };
+    approach = { timeline, start, duration, repeat, articleId, token };
     setApproach(0);
     tick(start);
     return duration;
@@ -174,69 +134,49 @@ export function createStarMotion({ preview, reader, scroller, isSoft }) {
   function finishPage() {
     if (!page) return;
     const current = page; page = null;
-    current.timeline.cancel(); current.clean();
-    reader.style.removeProperty('transform-origin');
-    reader.style.removeProperty('--reading-veil'); reader.style.removeProperty('--reading-blur');
+    current.timeline.cancel();
+    setBackdrop(current.toFocus, current.soft);
+    scroller.inert = false;
     delete reader.dataset.motion;
     body.dataset.reading = current.direction > 0 ? 'open' : 'closed';
     current.done?.();
   }
-  function openPage(origin, done) {
+  function startPage(direction, done) {
+    const soft = isSoft(), opening = direction > 0;
+    const fromFocus = backdropFocus;
+    // Closing midway or reopening during a close starts from the displayed pose.
+    const pose = page || !opening ? getComputedStyle(reader) : null;
+    const from = pose ? { opacity: pose.opacity, filter: soft ? 'none' : pose.filter }
+      : { opacity: 0, filter: soft ? 'none' : 'blur(2px)' };
+    page?.timeline.cancel();
+    const timeline = createTimeline();
+    timeline.add(reader, [from, { opacity: opening ? 1 : 0, filter: soft ? 'none' : opening ? 'blur(0px)' : 'blur(1.5px)' }]);
+    reader.dataset.motion = opening ? 'opening' : 'closing';
+    body.dataset.reading = reader.dataset.motion;
+    scroller.inert = true;
+    page = { timeline, direction, fromFocus, toFocus: opening ? 1 : 0, soft,
+      start: performance.now(), duration: soft ? (opening ? 160 : 120) : (opening ? 440 : 240), done };
+    tick(page.start);
+  }
+  function openPage(_origin, done) {
     clearApproach();
-    const timeline = createTimeline(), soft = isSoft();
-    const rect = reader.getBoundingClientRect();
-    const point = origin || { x: innerWidth / 2, y: innerHeight * .38 };
-    reader.style.transformOrigin = `${point.x - rect.left}px ${point.y - rect.top}px`;
-    reader.dataset.motion = 'opening'; body.dataset.reading = 'opening';
-    scroller.inert = true;
-    const targets = [...reader.querySelectorAll('.article-meta, #reader-title, #reader-intro, #reader-content > p')];
-    // Offscreen paragraphs are already clear when the reader scrolls to them.
-    const visible = targets.filter(element => element.getBoundingClientRect().top < innerHeight);
-    const cleanInk = revealInk(visible, timeline, soft ? 0 : .52, .84, soft);
-    timeline.add(reader.querySelector('.reading-header'), [{ opacity: 0 }, { opacity: 1 }], soft ? 0 : .62, .94);
-    timeline.add(reader.querySelector('.reading-footer'), [{ opacity: 0 }, { opacity: 1 }], soft ? 0 : .74, 1);
-    timeline.add(reader.querySelector('.article-rule'), [{ opacity: 0, scale: '.05 1' }, { opacity: 1, scale: '1 1' }], soft ? 0 : .60, 1);
-    const seal = reader.querySelector('.reading-seal');
-    timeline.add(seal, [{ opacity: soft ? 0 : .7 }, { opacity: 0 }], .39, .73);
-    for (const line of seal.querySelectorAll('path')) timeline.add(line, [{ strokeDashoffset: 0 }, { strokeDashoffset: 1 }], .32, .70);
-    timeline.add(reader, soft ? [{ opacity: 0 }, { opacity: 1 }] : [
-      { opacity: 0, transform: 'perspective(1600px) rotate(-18deg) scale(.012,.018)', offset: 0 },
-      { opacity: .92, transform: 'perspective(1600px) rotate(-12deg) scale(.035,.52)', offset: .24 },
-      { opacity: 1, transform: 'perspective(1600px) rotate(-1.2deg) scale(.94,.98)', offset: .68 },
-      { opacity: 1, transform: 'perspective(1600px) rotate(0deg) scale(1)', offset: 1 },
-    ], 0, .76);
-    page = { timeline, clean: () => { cleanInk(); scroller.inert = false; }, progress: 0, from: 0, direction: 1, start: performance.now(), duration: soft ? 180 : 1460, done };
-    tick(page.start);
+    startPage(1, done);
   }
-  function closePage(done, origin) {
+  function closePage(done) {
     if (page?.direction === -1) return;
-    if (!page) {
-      // Rebuild at the same star anchor and immediately seek to the open pose.
-      lastOrigin = origin || lastOrigin;
-      openPage(lastOrigin, null);
-      page.progress = 1;
-    }
-    page.from = page.progress; page.direction = -1; page.start = performance.now();
-    page.duration = isSoft() ? 160 : Math.max(200, 820 * page.from); page.done = done;
-    reader.dataset.motion = 'closing'; body.dataset.reading = 'closing';
-    scroller.inert = true;
-    tick(page.start);
+    startPage(-1, done);
   }
-  let lastOrigin = null;
   function tick(now) {
     if (approach) {
       const elapsed = Math.max(0, now - approach.start), t = unit(elapsed / approach.duration);
       approach.timeline.seek(t);
-      preview.style.setProperty('--preview-reveal', cue(t, .03, approach.unfold / approach.duration));
-      preview.dataset.reveal = elapsed < approach.unfold ? 'unfolding' : elapsed < approach.reveal ? 'holding' : 'revealing';
+      preview.dataset.reveal = 'focusing';
       if (t === 1) { memory.complete(approach.token); clearApproach(); }
     }
     if (!page) return;
     const t = unit((now - page.start) / page.duration);
-    page.progress = page.direction > 0 ? t : page.from * (1 - t);
-    page.timeline.seek(page.progress);
-    reader.style.setProperty('--reading-veil', (.48 * cue(page.progress, .1, .76)).toFixed(3));
-    reader.style.setProperty('--reading-blur', `${isSoft() ? 0 : (2 * cue(page.progress, .2, .8)).toFixed(2)}px`);
+    page.timeline.seek(t);
+    setBackdrop(page.fromFocus + (page.toFocus - page.fromFocus) * smooth(t), page.soft);
     if (t === 1) finishPage();
   }
   function paintFocus(ctx, point) {
@@ -272,7 +212,7 @@ export function createStarMotion({ preview, reader, scroller, isSoft }) {
   }
   return {
     beginApproach, setApproach, clearSelection, interrupt, tick, paintFocus,
-    open(origin, done) { lastOrigin = origin; openPage(origin, done); }, close: closePage,
+    open: openPage, close: closePage,
     resize() {
       if (approach) {
         const current = approach, focus = focusProgress;

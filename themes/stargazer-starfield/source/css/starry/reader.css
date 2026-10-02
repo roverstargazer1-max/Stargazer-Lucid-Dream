@@ -50,7 +50,6 @@ body[data-scene] #close-reader:focus-visible { outline: 1px dashed #101d34; outl
 #reader .article { max-width: 738px; padding: 36px 30px 46px; }
 #reader .article-meta { color: #9eafc8; }
 #reader h1 { color: #e1e8f6; font: 500 2.375rem/1.5 var(--sans); margin: 14px 0 32px; letter-spacing: 0; }
-#reader :is(.article-intro, .article-rule, .article-end, .reading-seal) { display: none; }
 #reader-content { color: var(--paper-ink); }
 #reader-content p { color: var(--paper-ink); font: 1.0625rem/2.05 var(--sans); margin: 0 0 24px; }
 #reader-content :is(ul, ol) { color: var(--paper-ink); font: 1.0625rem/2.05 var(--sans); }

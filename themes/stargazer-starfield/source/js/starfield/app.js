@@ -409,9 +409,7 @@ async function start() {
     if (isSelected) {
       document.getElementById('preview-date').textContent = article.date;
       document.getElementById('preview-number').textContent = String(articles.indexOf(article) + 1).padStart(2, '0');
-      document.getElementById('preview-tag').textContent = article.constellation || '一段未眠的文字';
       document.getElementById('preview-title').textContent = article.title;
-      document.getElementById('preview-intro').textContent = article.excerpt || '';
       const modeNote = document.getElementById('mode-note');
       modeNote.hidden = true;
       modeNote.textContent = mode === 'time'

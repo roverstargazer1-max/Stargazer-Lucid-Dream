@@ -37,7 +37,6 @@ button:focus-visible, a:focus-visible { outline: 2px solid #a8c5e6; outline-offs
 #preview { position: absolute; z-index: 4; left: 50%; bottom: 82px; width: min(760px, calc(100% - 64px)); padding: 22px 27px 14px; transform: translateX(-50%); color: #edf1ec; background: linear-gradient(105deg, #101a2bf2, #101a2bd9); border: 1px solid #bbd0e433; border-radius: 3px; box-shadow: 0 18px 60px #0005; backdrop-filter: blur(12px); }
 .preview-meta { display: flex; gap: 16px; align-items: center; color: #bdcddb; font-size: 12px; letter-spacing: 1px; }
 .preview-meta time { color: #adc1d5; }
-.preview-body .eyebrow { display: block; margin-top: 18px; color: #aebfd0; font-size: 11px; letter-spacing: 1.5px; }
 .preview h2 { margin: 9px 0 10px; color: #eff1ed; font: 26px/1.55 var(--serif); letter-spacing: 1.2px; font-weight: 400; }
 .preview p { max-width: 600px; margin: 0; color: #bdcad6; font: 14px/1.95 var(--serif); }
 .relation-cues { margin-top: 14px; }
@@ -165,7 +164,6 @@ body[data-room="entering"] .entry-motion, body[data-room="returning"] .entry-mot
   .exploration-controls .icon-control { width: 42px; height: 42px; }
   #preview { left: 12px; right: 12px; bottom: max(12px, env(safe-area-inset-bottom)); width: auto; padding: 16px 17px 10px; transform: none; }
   .preview-meta { font-size: 11px; }
-  .preview-body .eyebrow { margin-top: 12px; font-size: 10px; }
   .preview h2 { margin: 7px 0; font-size: 21px; }
   .preview p { display: -webkit-box; overflow: hidden; -webkit-box-orient: vertical; -webkit-line-clamp: 2; font-size: 13px; line-height: 1.7; }
   .preview-bottom { margin-top: 10px; padding-top: 8px; }
@@ -192,8 +190,7 @@ body[data-room="entering"] .entry-motion, body[data-room="returning"] .entry-mot
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
 }
 
-/* The final note has one content scroller; never clamp away real excerpts. */
-body[data-scene] #preview-intro { display: block; -webkit-line-clamp: unset; overflow: visible; }
+/* Keep optional author reasons reachable in the title panel. */
 body[data-scene] #preview .known-reasons { overflow: visible; max-height: none; }
 #deselect { margin-left: auto; min-width: 44px; min-height: 44px; font-size: 20px; }
 body[data-scene] #gesture-help { bottom: 38px; font-size: .6875rem; }

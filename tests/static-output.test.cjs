@@ -49,5 +49,8 @@ test('legacy collections retain scope, friends retain source data, music keeps i
   assert.ok(mine('script[src$="static-page.js"]').length);
   const home = load(fs.readFileSync(path.join(root, 'index.html'), 'utf8'));
   assert.equal(home('#home-fallback a').length, posts.length);
-  assert.equal(home('.prototype-tools, .art-study-bar, #grow-star, #export-sky').length, 0);
+  assert.equal(home('.prototype-tools, .art-study-bar, .motion-study-bar, #grow-star, #export-sky').length, 0);
+  assert.equal(home('#preview-intro, #preview-tag, .reading-seal').length, 0);
+  assert.equal(home('#close-reader').attr('aria-label'), '关闭文章，返回星空');
+  assert.ok(fs.existsSync(path.join(root, 'images/reader-grain.svg')));
 });
