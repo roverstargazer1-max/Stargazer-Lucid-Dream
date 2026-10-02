@@ -8,6 +8,7 @@ import { createSkyMap } from './sky-map.js';
 import { buildPaths, buildTimePaths, clipSegment, crosses } from './navigation.js';
 import { createRenderBudget } from './render-budget.js';
 import { setRenderQuality } from './dome-renderer.js';
+import { isStarReachable, starLabelPlacement } from './star-targets.js';
 
 const body = document.body;
 const world = document.getElementById('world');
@@ -66,6 +67,7 @@ async function start() {
   let camera = { x: 0, y: 0, z: 0, yaw: 0, pitch: HOME_ELEVATION, zoom: 1 };
   let starTargets = new Map();
   let visibleStars = new Map();
+  const projectedStars = new Map();
   let articleLoads = new Map();
   let readingSnapshot = null;
   const dockHistoryByMode = new Map();
@@ -840,15 +842,27 @@ async function start() {
     paintPaintedSky(ctx, width, height, camera, projectionSettings(), { x: ambient.x, y: ambient.y, seconds, clarity, backgroundStride: renderBudget.current.backgroundStride });
     if (animationStarted && body.dataset.domeRenderer !== 'webgl') throw new Error('The starfield renderer stopped being available.');
     visibleStars.clear();
+    projectedStars.clear();
+    const obstacles = [...world.querySelectorAll('.masthead a, #exploration-controls:not([hidden]), #sky-map-controls:not([hidden]), #sky-map.is-visible, #preview:not([hidden]), #signal-egg:not([hidden])')]
+      .map(element => element.getBoundingClientRect()).filter(rect => rect.width && rect.height);
     for (const item of articles) {
       const projected = project(positionOf(item));
       const point = projected && Number.isFinite(projected.x) && Number.isFinite(projected.y) ? projected : null;
       const target = starTargets.get(item.id);
-      target.hidden = !point || point.x < 24 || point.x > width - 24 || point.y < 92 || point.y > height - 80 || roomScene?.active || Boolean(arrival);
+      target.hidden = !isStarReachable(point, width, height, obstacles) || roomScene?.active || Boolean(arrival);
       if (!point) continue;
-      visibleStars.set(item.id, point);
+      projectedStars.set(item.id, point);
+      if (!target.hidden) visibleStars.set(item.id, point);
       target.style.left = `${point.x}px`;
       target.style.top = `${point.y}px`;
+      if (!target.hidden) {
+        const label = target.firstElementChild;
+        const placement = starLabelPlacement(point, width, obstacles);
+        const onLeft = placement.side === 'left';
+        label.style.left = onLeft ? 'auto' : '35px';
+        label.style.right = onLeft ? '35px' : 'auto';
+        label.style.maxWidth = `${placement.maxWidth}px`;
+      }
     }
     drawNavigationGuides();
     for (const item of articles) {
@@ -883,7 +897,7 @@ async function start() {
     ctx.setLineDash([2.5, 7]);
     ctx.lineWidth = .9;
     for (const [left, right] of edges) {
-      const a = visibleStars.get(left), b = visibleStars.get(right);
+      const a = projectedStars.get(left), b = projectedStars.get(right);
       if (!a || !b) continue;
       const line = clipSegment(a, b, box);
       if (!line || Math.hypot(line.a.x - line.b.x, line.a.y - line.b.y) < 24) continue;
@@ -898,7 +912,7 @@ async function start() {
       ctx.setLineDash([]); ctx.lineWidth = 1.15; ctx.strokeStyle = '#d9e8f479';
       const origin = visibleStars.get(selected);
       if (origin) for (const relation of relationsByArticle.get(selected) || []) {
-        const target = visibleStars.get(relation.articleId);
+        const target = projectedStars.get(relation.articleId);
         if (target) drawGuideLine(origin, target);
       }
     }

@@ -31,6 +31,7 @@ button:focus-visible, a:focus-visible { outline: 2px solid #c5a66d; outline-offs
 .star-target:focus-visible { outline: 1px solid #e4d2b6; outline-offset: 0; }
 .star-label { position: absolute; left: 35px; top: 15px; color: #d6e3ee; font: 15px var(--serif); letter-spacing: 1.2px; white-space: nowrap; text-shadow: 0 2px 12px #00183c; opacity: 0; transform: translateX(-3px); transition: opacity .3s, transform .3s; pointer-events: none; }
 .star-target:hover .star-label, .star-target:focus-visible .star-label, .star-target.is-selected .star-label { opacity: 1; transform: translateX(0); }
+.star-target:hover .star-label, .star-target:focus-visible .star-label, .star-target.is-selected .star-label { pointer-events: auto; }
 .star-target.is-selected .star-label { color: #f2d998; }
 
 #preview { position: absolute; z-index: 4; left: 50%; bottom: 82px; width: min(760px, calc(100% - 64px)); padding: 22px 27px 14px; transform: translateX(-50%); color: #edf1ec; background: linear-gradient(105deg, #101a2bf2, #101a2bd9); border: 1px solid #bbd0e433; border-radius: 3px; box-shadow: 0 18px 60px #0005; backdrop-filter: blur(12px); }
