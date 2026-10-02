@@ -65,11 +65,13 @@ body[data-scene=painted] .grain{opacity:.013}
 body[data-scene=painted] .masthead{top:26px;left:3.8%;opacity:.87}
 body[data-scene=painted] .wordmark{width:228px}
 body[data-scene=painted] #exploration-controls{background:none;border:0;border-radius:0;backdrop-filter:none;box-shadow:none;opacity:1;padding:0;top:24px;gap:8px;z-index:10;isolation:isolate}
-body[data-scene=painted] #exploration-controls:before,body[data-scene=painted] #sky-map-controls:before{content:'';position:absolute;inset:-12px;z-index:-1;pointer-events:none;background:radial-gradient(ellipse,#061831d9 20%,#06183100 74%);filter:blur(8px)}
-body[data-scene=painted] .mode-switch{gap:8px;font-size:.8125rem;letter-spacing:.5px}
+body[data-scene=painted] :is(#exploration-controls,#sky-map-controls){text-shadow:0 1px 2px #123565}
+body[data-scene=painted] .mode-switch{gap:8px;font-size:.8125rem;letter-spacing:.5px;border-bottom:1px solid #b7d8ef44}
 body[data-scene=painted] .mode-switch>span{display:none}
 body[data-scene=painted] .mode-switch button{color:#c4d4e1;min-width:44px;min-height:44px;padding:8px 6px}
-body[data-scene=painted] .mode-switch button[aria-pressed=true]{color:#edf1ec}
+body[data-scene=painted] .mode-switch button[aria-pressed=true]{color:#edf1ec;text-decoration-color:#b7d8ef}
+body[data-scene=painted] .icon-control{background:none;box-shadow:none;border-bottom:1px solid #b7d8ef44;border-radius:0}
+body[data-scene=painted] .motion-toggle{color:#c3d6e8}
 body[data-scene=painted] .icon-control,body[data-scene=painted] .preview-meta button,body[data-scene=painted] .egg-close{display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;color:#d9e3eb;min-width:44px;width:44px;min-height:44px;padding:0;line-height:1}
 .ui-icon{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;pointer-events:none;vertical-align:middle}
 .star-label.label-crowded{opacity:0!important}
@@ -108,6 +110,7 @@ body[data-scene=painted] #egg-dialog p{font-size:.875rem;line-height:2}
 #sky-map-controls{position:absolute;left:28px;bottom:48px;display:flex;align-items:center;gap:8px;z-index:8;isolation:isolate}
 #sky-map-controls button{font-size:.8125rem;font-weight:500;color:#d9e3eb;letter-spacing:.5px;padding:8px 6px;min-width:44px;min-height:44px;transition:color .4s}
 #sky-map-controls button:hover,#sky-map-controls button:focus-visible{color:#eff4f6}
+#sky-map-controls button+button{border-left:1px solid #b7d8ef33}
 #sky-map-controls #sky-map-toggle{font-weight:600}
 @media(max-width:760px),(max-height:500px){
   #sky-map{--sky-map-size:clamp(96px,28vmin,116px);width:calc(var(--sky-map-size) + 12px);padding:6px}

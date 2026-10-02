@@ -408,7 +408,6 @@ async function start() {
     updateRelationCues(isSelected ? article.id : null);
     if (isSelected) {
       document.getElementById('preview-date').textContent = article.date;
-      document.getElementById('preview-number').textContent = String(articles.indexOf(article) + 1).padStart(2, '0');
       document.getElementById('preview-title').textContent = article.title;
       const modeNote = document.getElementById('mode-note');
       modeNote.hidden = true;

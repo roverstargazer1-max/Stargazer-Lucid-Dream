@@ -107,7 +107,7 @@ export function createStarMotion({ preview, reader, scroller, isSoft }) {
     previewRect = preview.getBoundingClientRect();
     // Real text emerges through a slight loss of focus; no masks or copied text.
     timeline.add(preview, [{ opacity: 0 }, { opacity: 1 }], 0, soft ? 1 : .75);
-    for (const [order, element] of [...preview.querySelectorAll('#preview-number, #preview-date, #preview-title')].entries()) {
+    for (const [order, element] of [...preview.querySelectorAll('#preview-date, #preview-title')].entries()) {
       const delay = soft ? 0 : .08 + order * .035;
       timeline.add(element, [
         { opacity: 0, filter: soft ? 'none' : `blur(${repeat ? 1 : 3}px)` },

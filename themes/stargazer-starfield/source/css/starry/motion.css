@@ -1,22 +1,26 @@
-/* Compact title and navigation, with a quiet mist reveal. */
+/* Observation note with the accepted quiet text reveal. */
 body[data-scene=painted] #preview {
-  top: 50%; right: 5.2%; bottom: auto; left: auto;
+  top: 50%; right: clamp(16px, 2.2vw, 40px); bottom: auto; left: auto;
   transform: translateY(-50%); transform-origin: right center;
   display: grid; grid-template-rows: auto minmax(0, 1fr) auto;
-  width: clamp(350px, 32vw, 438px); padding: 16px 28px 20px;
+  width: clamp(290px, 28vw, 350px); padding: 8px 4px 12px 22px;
   max-height: calc(100dvh - 164px); overflow: hidden; isolation: isolate; z-index: 6;
   border: 0; border-radius: 0;
   background: none; box-shadow: none;
   backdrop-filter: none;
+  text-shadow: 0 1px 2px #123565;
   animation: none;
 }
 body[data-scene=painted] #preview::before {
-  content: ''; display: block; position: absolute; inset: 0; z-index: -1;
-  border: 0; pointer-events: none;
-  background: radial-gradient(ellipse at 42% 38%, #244d7526, transparent 65%), radial-gradient(ellipse at 50% 48%, #061831eb 0%, #061831c9 48%, #06183100 78%);
-  filter: blur(10px);
+  content: ''; position: absolute; left: 2px; top: 18px;
+  width: 7px; height: 7px; border: 1px solid #b7d8ef;
+  rotate: 45deg; pointer-events: none;
 }
-body[data-scene=painted] #preview::after { display: none; }
+body[data-scene=painted] #preview::after {
+  content: ''; position: absolute; left: 5px; top: 21px; bottom: 26px;
+  width: 1px; background: linear-gradient(#b7d8ef99, #b7d8ef55 65%, transparent);
+  pointer-events: none;
+}
 body[data-scene=painted] .preview-scroll {
   min-height: 0; overflow-y: auto; overflow-x: hidden; overscroll-behavior: contain;
   touch-action: pan-y; scrollbar-width: thin; scrollbar-color: #9ab6c788 transparent;
@@ -24,16 +28,16 @@ body[data-scene=painted] .preview-scroll {
 }
 body[data-scene=painted] .preview-body { display: block; }
 body[data-scene=painted] .preview-body > div { min-width: 0; }
-body[data-scene=painted] #preview h2 { color: #e2edf7; font-size: 1.75rem; font-weight: 500; line-height: 1.6; margin: 8px 0 16px; letter-spacing: 0; text-wrap: balance; overflow-wrap: anywhere; }
+body[data-scene=painted] #preview h2 { color: #e2edf7; font-size: 1.25rem; font-weight: 500; line-height: 1.55; margin: 8px 0 10px; letter-spacing: 0; text-wrap: balance; overflow-wrap: anywhere; }
 body[data-scene=painted] .preview-body p { max-width: none; margin: 0; font-size: .875rem; line-height: 2; color: #e0e8ec; overflow-wrap: anywhere; }
-body[data-scene=painted] .preview-meta { min-height: 44px; font-size: .75rem; letter-spacing: 1px; color: #91abc5; }
-body[data-scene=painted] .known-reasons { max-height: none; overflow: visible; margin: 18px 0 4px; font-size: .8125rem; line-height: 1.9; color: #d9dccf; overflow-wrap: anywhere; }
-body[data-scene=painted] .preview-bottom { display: grid; grid-template-columns: minmax(0, 1fr) max-content; align-items: center; gap: 8px; margin-top: 10px; border-color: #b8cde22b; padding: 8px 0 0; }
-body[data-scene=painted] .preview-bottom > span { color: #90a8c0; font-size: .6875rem; line-height: 1.7; }
-body[data-scene] #read-button { display: inline-flex; justify-content: center; align-items: center; gap: 8px; min-height: 44px; min-width: 112px; padding: 8px 0; font-size: .8125rem; letter-spacing: .5px; }
+body[data-scene=painted] .preview-meta { min-height: 44px; font-size: .6875rem; letter-spacing: .5px; color: #aec6dd; }
+body[data-scene=painted] .known-reasons { max-height: none; overflow: visible; margin: 18px 0 4px; border-color: #c4ddf22e; font-size: .8125rem; line-height: 1.9; color: #d9dccf; overflow-wrap: anywhere; }
+body[data-scene=painted] .preview-bottom { display: flex; flex-direction: column; align-items: flex-start; gap: 0; margin: 0; border: 0; padding: 0; }
+body[data-scene=painted] .preview-bottom > span { color: #aac4dd; font-size: .65625rem; line-height: 1.7; }
+body[data-scene] #read-button { display: inline-flex; justify-content: flex-start; align-items: center; gap: 8px; min-height: 44px; min-width: 112px; padding: 8px 0; font-size: .75rem; letter-spacing: .25px; }
 body[data-scene] #read-button:disabled { opacity: .48; }
 body[data-scene] #read-button > span { margin: 0; }
-#preview[aria-busy=true] :is(#preview-number, #preview-date, #preview-title) { will-change: opacity, filter; }
+#preview[aria-busy=true] :is(#preview-date, #preview-title) { will-change: opacity, filter; }
 body[data-focus=approaching] .star-target.is-selected .star-label,
 body:has(#preview[aria-busy=true]) .star-target.is-selected .star-label,
 body[data-reading=opening] .star-target.is-selected .star-label,
@@ -49,18 +53,14 @@ body[data-arrival] #world .star-label { opacity: 0 !important; }
 body[data-arrival] .masthead, body[data-arrival] .navigation { animation: none; }
 @keyframes sky-arrival { from { opacity: 0; translate: 0 5px; } }
 @media (max-width:760px) {
-  body[data-scene=painted] #preview { --footer-space: max(72px, calc(2.3375rem + 24px), env(safe-area-inset-bottom)); width: calc(100% - 32px); padding: 8px 20px 12px; top: auto; right: 16px; left: auto; transform: none; bottom: var(--footer-space); max-height: min(44dvh, calc(100dvh - var(--footer-space) - 240px)); }
-  body[data-scene=painted] #preview h2 { font-size: 1.5rem; line-height: 1.55; margin: 8px 0 12px; }
+  body[data-scene=painted] #preview { --footer-space: max(72px, calc(2.3375rem + 24px), env(safe-area-inset-bottom)); width: min(290px, calc(100% - 28px)); top: auto; right: 12px; left: auto; transform: none; bottom: var(--footer-space); max-height: min(44dvh, calc(100dvh - var(--footer-space) - 240px)); }
+  body[data-scene=painted] #preview h2 { font-size: 1.125rem; }
   body[data-scene=painted] .preview-body p { line-height: 1.95; }
   body[data-scene=painted] .known-reasons { font-size: .75rem; }
 }
-@media (max-width:360px) {
-  body[data-scene=painted] #preview h2 { font-size: 1.375rem; letter-spacing: 0; }
-}
 @media (max-height:500px) and (orientation:landscape) {
-  body[data-scene=painted] #preview { top: 62px; bottom: 16px; right: 16px; left: auto; width: 47%; max-height: none; transform: none; padding: 4px 16px 8px; }
-  body[data-scene=painted] #preview h2 { font-size: 1.375rem; line-height: 1.5; letter-spacing: 0; }
-  body[data-scene=painted] .preview-bottom { margin-top: 8px; padding-top: 6px; }
+  body[data-scene=painted] #preview { top: 62px; bottom: 16px; left: auto; max-height: none; transform: none; }
+  body[data-scene=painted] #preview h2 { line-height: 1.5; }
 }
 @media (prefers-reduced-motion:reduce) {
   body[data-room=outside] .masthead, body[data-room=outside] .navigation { animation: none; }

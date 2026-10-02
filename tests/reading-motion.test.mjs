@@ -27,8 +27,8 @@ function fixture(t, soft = false) {
     };
   }
   const preview = element(), reader = element(), scroller = { inert: false };
-  const title = element(), date = element(), number = element(), action = element();
-  preview.querySelectorAll = () => [number, date, title];
+  const title = element(), date = element(), action = element();
+  preview.querySelectorAll = () => [date, title];
   preview.querySelector = () => action;
   globalThis.getComputedStyle = target => {
     const effect = target.effects.findLast(effect => !effect.cancelled);
