@@ -1,6 +1,6 @@
 # 星空博客的写作、预览与发布
 
-当前个人主题：`themes/stargazer-starfield`，体验基准 V20。文章、图片、旧 Kira 主题和配置继续保留。实施分支是 `codex/starfield-personal`；本次只做本地提交，不 push，也不发布线上。
+当前个人主题：`themes/stargazer-starfield`，场景基准 V20；阅读与点星入口采用 2026-10-02 确认的冷色复古窗口、视线聚焦与轻雾显字。文章、图片、旧 Kira 主题和配置继续保留。实施分支是 `codex/starfield-personal`；本次只做本地提交，不 push，也不发布线上。
 
 ## 日常写作
 
@@ -12,7 +12,7 @@ npm run start:starfield
 
 它先自动准备身份、原链接、引言和新星位置，再生成新版预览并启动服务。打开 `http://127.0.0.1:4175/`。如果服务已经运行，执行 `npm run preview:starfield` 更新页面，然后刷新浏览器即可。
 
-自动生成的 `starry_id`、`starry_original_permalink`、`permalink`、`starry_excerpt_generated` 不要手动改。改文章标题不会改身份、旧链接或星位。若想自写引言，填写 `starry_excerpt`，并删除 `starry_excerpt_generated` 或设为 false。没写时会从正文自动提取。
+自动生成的 `starry_id`、`starry_original_permalink`、`permalink`、`starry_excerpt_generated` 不要手动改。改文章标题不会改身份、旧链接或星位。`starry_excerpt` 继续用于文章描述元信息；点星后只显示日期、标题及阅读／关联入口，不再展示长摘要。若想自写描述，填写 `starry_excerpt`，并删除 `starry_excerpt_generated` 或设为 false。没写时会从正文自动提取。
 
 准备结果保存在文章 Front-matter 和 `source/_data/starry-layout.json`，应与正文、图片一起提交。新文章只寻找空位，已经保存的关联模式位置不会重排。删除文章后的坐标保留，恢复同一篇文章时仍能找回原位置。时间模式根据真实日期排列。
 

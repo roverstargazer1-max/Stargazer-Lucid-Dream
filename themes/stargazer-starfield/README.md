@@ -1,25 +1,16 @@
-# Stargazer Starfield theme
+# Stargazer Starfield 个人主题
 
-This is the formal Hexo theme, separate from the legacy Kira theme and its mock prototype at `themes/hexo-theme-kira/prototypes/starfield/`.
+独立 Hexo 主题，采用 V20 窗边与穹顶场景，以及已确认的冷色复古阅读窗口、B「视线聚焦」开合和点星后轻雾显字。使用全部真实文章；不包含调试面板、模拟文章、布局导出或试稿方案切换。旧 Kira 主题及配置保留，默认生产构建仍选择 Kira。
 
-The default site and Netlify build remain on Kira. After adding or changing a post, run `npm run prepare:starfield` to save stable article IDs, original permalinks, plain-text excerpts, and star positions, then generate the isolated preview. The command never changes an existing ID or saved position. You can rebuild from committed data with `npm run preview:starfield`, then serve it with `npm run serve:starfield` at `http://127.0.0.1:4175/`. The formal theme writes only to the ignored `.preview/stargazer/` directory; production continues to publish `public/`.
+写完 Markdown，执行 `npm run start:starfield`，自动保存身份、原链接、描述和新星位置，并启动 <http://127.0.0.1:4175/>。服务已运行时执行 `npm run preview:starfield` 后刷新页面。预览位于 `.preview/stargazer/`；`npm run build:starfield` 生成用于托管的 `public/`。
 
-Set `starry_excerpt` in Front-matter to write a manual introduction. Generated introductions are tagged with `starry_excerpt_generated: true` and refresh from the article body on the next preparation run. To replace one with a manual introduction, edit `starry_excerpt` and remove that generated marker.
-
-The prepared index contains every published Hexo post. IDs and first permalinks are stored with each post; versioned positions live in `source/_data/starry-layout.json`. General-purpose scene configuration and release readiness are handled by later tickets.
-
-## Article relationships
-
-Edit `source/_data/starry-relations.yml` to maintain semantic relationships separately from the stars' spatial proximity. Each adopted entry names exactly two stable `starry_id` values, so the relationship works from either article and never depends on filenames or list order. The IDs below are placeholders; replace them with IDs from article front matter:
+文章关系填写在 Front-matter 的 `related` 中，引用文件名而非标题，不含 `.md`。每对文章只配置一次，自动双向；理由选填，未写理由仍保留文末跳转入口。修改文件名时同步修改引用；修改标题不影响引用、旧链接或星位。
 
 ```yaml
-version: 1
-adopted:
-  - articles: [dream-begins, article-your-other-post-id]
-    reason: "An optional author-written reason."
-candidates:
-  - articles: [dream-begins, article-another-post-id]
-    reason: "An unreviewed suggestion."
+related:
+  - 另一篇文章的文件名
+  - post: 第三篇文章的文件名
+    reason: 两篇文章的关联理由
 ```
 
-Only `adopted` is included in the generated visitor index. Candidate suggestions are ignored by the publisher until an author deliberately moves one to `adopted`; they never block publishing. `reason` is optional plain text. Missing or unpublished IDs are skipped with a build warning that names the source file and entry. Adding a relationship does not alter saved star positions. A star's nearby route remains a spatial way to explore; only adopted relationships get the separately styled semantic guide, and a reason appears in reading after the current article is fully visible or reaches its end.
+`starry_excerpt` 用于描述元信息，点星后不展示长摘要。已有自动身份与星位由准备流程维护，不需要作者填写编号。更完整的写作、可选配置、静态地址与旧版切回步骤见 [使用指南](../../docs/operations/starfield-blog.md)；本次视觉决定及验证见 [落地记录](../../.scratch/starry-blog/reader-rollout-20261002.md)。
