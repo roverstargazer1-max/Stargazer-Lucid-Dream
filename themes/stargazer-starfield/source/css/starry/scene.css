@@ -74,12 +74,12 @@ body[data-scene=painted] .icon-control,body[data-scene=painted] .preview-meta bu
 .ui-icon{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;pointer-events:none;vertical-align:middle}
 .star-label.label-crowded{opacity:0!important}
 .star-label{overflow:hidden;text-overflow:ellipsis}
-body[data-scene=painted] :is(button,a,summary,[tabindex]):focus-visible{outline:1.5px solid #ecdfbb;outline-offset:2px}
-body[data-scene=painted] :is(#reader,#egg-dialog) :focus-visible{outline-color:#405976}
+body[data-scene=painted] :is(button,a,summary,[tabindex]):focus-visible{outline:1.5px solid #a8c5e6;outline-offset:2px}
+body[data-scene=painted] #egg-dialog :focus-visible{outline-color:#405976}
 .cloud-target{position:absolute;width:44px;height:44px;transform:translate(-50%,-50%);pointer-events:none;border-radius:50%;z-index:2}
 .cloud-target:focus-visible{outline:1px dotted #b9d0df99;outline-offset:4px}
 #sky.over-cloud{cursor:pointer}
-body[data-scene=painted] .star-label{font-family:"KaiTi","STKaiti","Songti SC",serif;font-size:.9375rem;letter-spacing:1.5px;text-shadow:0 2px 12px #00183c}
+body[data-scene=painted] .star-label{font-family:var(--sans);font-size:.875rem;letter-spacing:.3px;text-shadow:0 2px 12px #00183c}
 body[data-scene=painted] .star-target:before,body[data-scene=painted] .star-target:after{display:none}
 body[data-scene=painted] .world-footer,body[data-scene=painted] .path-legend{color:#d9e3eb;font-size:.6875rem;line-height:1.7;opacity:1;text-shadow:0 1px 3px #061831,0 0 8px #061831,0 0 12px #061831;letter-spacing:.5px}
 body[data-scene=painted] .world-footer{bottom:16px}
@@ -88,32 +88,13 @@ body[data-scene=painted] .path-legend{bottom:16px}
 body[data-scene=painted] #find-star{min-height:44px;font-size:.8125rem;padding:6px 0}
 body[data-scene=painted] .signal-egg{color:#e4cc98;left:50%;right:auto;top:110px;width:44px;height:44px;padding:0}
 body[data-scene=painted] .edge-guide{color:#e1e8ee;width:44px;height:44px;opacity:.95;text-shadow:0 0 8px #061831;background:radial-gradient(ellipse,#06183199,transparent 70%)}
-body[data-scene=painted] .preview h2{font-family:"KaiTi","STKaiti","Songti SC",serif;font-weight:400}
-body[data-scene=painted] #reader{background:#e9e7de;box-shadow:0 24px 100px #00112877;border:1px solid #d7d6cc;border-radius:5px 9px 4px 7px;color:#30435a}
-body[data-scene=painted] #reader::backdrop{background:#03265780;backdrop-filter:blur(5px)}
-body[data-scene=painted] .reading-frame{background:linear-gradient(110deg,#f0ece2,#e6e7e0)}
-body[data-scene=painted] #reader h1{color:#293e5b;font-family:"KaiTi","STKaiti","Songti SC",serif}
-body[data-scene=painted] #reader .article-intro{color:var(--paper-muted)!important}
-body[data-scene=painted] #reader-content{color:#34485e}
-body[data-scene=painted] .reading-header{margin:0 40px;padding:10px 0;font-size:.8125rem;letter-spacing:1px;border-color:#536c8530;color:var(--paper-muted);gap:12px}
-body[data-scene=painted] .reading-header button{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:8px 0;font-size:.8125rem;white-space:nowrap}
-body[data-scene=painted] .reading-header button span{padding:0}
-body[data-scene=painted] #reading-scroll{min-height:0;touch-action:pan-y;outline-offset:-3px}
+body[data-scene=painted] .preview h2{font-family:var(--sans);font-weight:400}
 body[data-scene=painted] .article{max-width:680px;padding:44px 32px 32px}
 body[data-scene=painted] .article-meta{font-size:.75rem;line-height:1.7;flex-wrap:wrap;gap:8px 16px}
 body[data-scene=painted] .article h1{font-size:2.125rem;line-height:1.5;letter-spacing:.5px;text-wrap:balance;overflow-wrap:anywhere;margin:20px 0}
 body[data-scene=painted] .article p{font-size:1rem;line-height:2.05;margin-bottom:24px;overflow-wrap:anywhere}
 body[data-scene=painted] .article-intro{font-size:.875rem!important;line-height:2!important}
 body[data-scene=painted] .article-rule{margin:24px 0}
-body[data-scene=painted] .reading-footer{font-size:.6875rem;line-height:1.7;padding:10px 40px;color:var(--paper-muted);gap:12px}
-body[data-scene=painted] .reading-relations button{min-height:44px}
-body[data-scene=painted] .reading-relations button strong{font-size:1rem;overflow-wrap:anywhere}
-body[data-scene=painted] .reading-relations button span{font-size:.8125rem;overflow-wrap:anywhere}
-body[data-scene=painted] .reading-relations .eyebrow{font-size:.75rem}
-#reader-content img{display:block;max-width:100%;height:auto;margin:24px auto}
-#reader-content a{color:#365b7b;text-decoration:underline;text-underline-offset:3px;overflow-wrap:anywhere}
-#reader-content pre{max-width:100%;overflow:auto;overscroll-behavior:contain}
-body[data-scene=painted] #reader button{color:#365170}
 body[data-scene=painted] #egg-dialog{background:#e9e7de;color:#30435a;border-radius:5px 9px 4px 7px;border:1px solid #c7cfce;max-height:calc(100dvh - 32px);padding:52px 28px 28px;overscroll-behavior:contain}
 body[data-scene=painted] #egg-dialog h2,body[data-scene=painted] #egg-dialog p{color:#34485e}
 body[data-scene=painted] #egg-dialog h2{font-size:1.5625rem}
@@ -134,11 +115,9 @@ body[data-scene=painted] #egg-dialog p{font-size:.875rem;line-height:2}
 @media(max-width:760px){
   #sky-map{top:calc(128px + max(0px, 3.5rem - 56px));bottom:auto;left:16px;right:auto}
   #sky-map-controls{left:auto;right:16px;top:128px;bottom:auto}
-  body[data-scene=painted] .reading-header{margin:0 24px;padding:8px 0;font-size:.75rem}
   body[data-scene=painted] .article{padding:32px 24px 24px}
   body[data-scene=painted] .article h1{font-size:1.75rem}
   body[data-scene=painted] .article p{line-height:2;letter-spacing:0}
-  body[data-scene=painted] .reading-footer{padding:10px 24px max(10px,env(safe-area-inset-bottom))}
 }
 @media(prefers-reduced-motion:reduce){#sky-map,#sky-map.is-visible{filter:none;transition:opacity .2s}}
 @media(max-width:760px){
@@ -163,7 +142,6 @@ body[data-map-peek=true] .preview{visibility:hidden}
 @keyframes time-cue{0%,100%{opacity:0}12%,80%{opacity:1}}
 @media(max-width:760px){.time-cue{top:180px;left:16px;right:auto;transform:none;font-size:.75rem}}
 @media(max-width:760px) and (orientation:portrait){body:has(#sky-map.is-visible) .time-cue{visibility:hidden}}
-@media(max-width:360px){body[data-scene=painted] .reading-site{font-size:.6875rem;letter-spacing:0}body[data-scene=painted] .article h1{font-size:1.625rem}}
 @media(max-height:500px) and (orientation:landscape){
   body[data-scene=painted] .masthead{top:10px;left:16px}body[data-scene=painted] .wordmark{width:132px}
   body[data-scene=painted] #exploration-controls{top:8px;left:auto;right:16px}

@@ -88,7 +88,15 @@
 
 <dialog id="reader" aria-labelledby="reader-title">
   <div class="reading-frame">
-    <header class="reading-header"><span class="reading-site">观星者的清醒梦</span><button id="close-reader" type="button">返回星空 <span aria-hidden="true">↗</span></button></header>
+    <header class="reading-header">
+      <span class="reading-site">
+        <svg class="window-icon" viewBox="0 0 16 16" aria-hidden="true" shape-rendering="crispEdges"><path fill="currentColor" d="M7 0h2v5h2v2h5v2h-5v2H9v5H7v-5H5V9H0V7h5V5h2z"/><path fill="#7373a1" d="M7 7h2v2H7z"/></svg>
+        <span id="reading-window-title" class="window-title">观星者的清醒梦</span>
+      </span>
+      <button id="close-reader" type="button" aria-label="关闭文章，返回星空" title="关闭文章，返回星空">
+        <svg class="window-close-icon" viewBox="0 0 16 16" aria-hidden="true" shape-rendering="crispEdges"><path fill="currentColor" d="M2 2h3v1h1v1h1v1h2V4h1V3h1V2h3v2h-1v1h-1v1h-1v1h-1v2h1v1h1v1h1v1h1v2h-3v-1h-1v-1H9v-1H7v1H6v1H5v1H2v-2h1v-1h1v-1h1V9h1V7H5V6H4V5H3V4H2z"/></svg>
+      </button>
+    </header>
     <div id="reading-scroll" tabindex="0"><div id="reading-content-slot"></div></div>
     <footer class="reading-footer"><span id="reading-state">沿着文字，慢慢往下</span><span id="reading-progress">0%</span></footer>
     <svg class="reading-seal" viewBox="0 0 1000 1000" preserveAspectRatio="none" aria-hidden="true"><path d="M0 1000 L1000 0" pathLength="1"/><path d="M1000 0 L0 1000" pathLength="1"/></svg>

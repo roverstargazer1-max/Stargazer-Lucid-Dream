@@ -616,6 +616,7 @@ async function start() {
   }
 
   function showReader(origin) {
+    document.getElementById('reading-window-title').textContent = `${article.title} · 观星者的清醒梦`;
     if (!reader.open) reader.showModal();
     scroller.scrollTop = 0;
     phase = 'reading';

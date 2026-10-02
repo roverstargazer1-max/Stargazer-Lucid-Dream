@@ -46,21 +46,6 @@ body[data-scene] #read-button > span { margin: 0; }
   background: repeating-linear-gradient(90deg, #fafbf8 0 14px, #eeF3f1 14px 16px, #ffffff 16px 30px);
   box-shadow: 0 0 1px #ffffffb3; border-radius: 0;
 }
-body[data-scene] #reader[open] { animation: none; }
-body[data-scene=painted] #reader {
-  border-radius: 2px; border-color: #dfdfd3; box-shadow: 0 24px 100px #00112855;
-}
-body[data-scene] #reader::backdrop {
-  background: rgb(4 20 41 / var(--reading-veil, .48));
-  backdrop-filter: blur(var(--reading-blur, 2px));
-}
-.reading-seal { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 3; opacity: 0; }
-.reading-seal path { fill: none; stroke: #809498; stroke-width: 1; vector-effect: non-scaling-stroke; stroke-dasharray: 1; }
-.reading-seal path + path { stroke: #b6a886; }
-#reader .ink-veil { background: linear-gradient(100deg, #bac5c6, #879ca9); opacity: .8; }
-#reader[data-motion] { will-change: transform, opacity; }
-#reading-scroll { scrollbar-gutter: stable; }
-#reader[data-motion] #reading-scroll { overflow: hidden; }
 body[data-focus=approaching] .star-target.is-selected .star-label,
 body:has(#preview[aria-busy=true]) .star-target.is-selected .star-label,
 body[data-reading=opening] .star-target.is-selected .star-label,
@@ -80,7 +65,6 @@ body[data-arrival] .masthead, body[data-arrival] .navigation { animation: none; 
   body[data-scene=painted] #preview h2 { font-size: 1.5rem; line-height: 1.55; margin: 8px 0 12px; }
   body[data-scene=painted] .preview-body p { line-height: 1.95; }
   body[data-scene=painted] .known-reasons { font-size: .75rem; }
-  body[data-scene=painted] #reader { border: 0; border-radius: 0; height: 100dvh; }
 }
 @media (max-width:360px) {
   body[data-scene=painted] #preview h2 { font-size: 1.375rem; letter-spacing: 0; }
