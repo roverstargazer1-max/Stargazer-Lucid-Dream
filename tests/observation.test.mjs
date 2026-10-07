@@ -29,9 +29,14 @@ test('the generated observation artwork and glyphs are byte-identical to the sup
     ['waves.png', '波浪纹理.png'], ['read.png', 'READ.png'], ['close.png', '退出按钮.png'],
     ['polyhedron.png', '右下角跳动几何块.png'], ['starlink.png', 'STARLINK.png'], ['observation-id.png', 'OBS&ID.png'],
   ]) assert.deepEqual(fs.readFileSync(path.join(output, name)), fs.readFileSync(path.join(artwork, source)), name);
+  const crops = JSON.parse(fs.readFileSync(path.join(artwork, 'supplement-crops/crops.json')));
+  for (const name of Object.keys(crops.rectangles)) {
+    assert.deepEqual(fs.readFileSync(path.join(output, name)),
+      fs.readFileSync(path.join(artwork, 'supplement-crops', name)), name);
+  }
   for (const character of '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ') {
     const folder = /\d/.test(character) ? '数字' : '大写字母';
-    assert.deepEqual(fs.readFileSync(path.join(output, `glyphs/${character}.svg`)),
-      fs.readFileSync(path.join('assets/zmd科技小字-修订版7-透明字形/矢量SVG', folder, `${character}.svg`)), character);
+    assert.deepEqual(fs.readFileSync(path.join(output, `glyphs/${character}.png`)),
+      fs.readFileSync(path.join('assets/zmd科技小字-修订版7-透明字形/透明PNG', folder, `${character}.png`)), character);
   }
 });

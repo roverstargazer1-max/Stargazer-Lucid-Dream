@@ -20,7 +20,7 @@ export function renderGlyphs(element, value, assetRoot) {
   const glyphs = [...value].map(character => {
     if (/^[A-Z0-9]$/.test(character)) {
       const glyph = document.createElement('img');
-      glyph.src = `${assetRoot}glyphs/${character}.svg`;
+      glyph.src = `${assetRoot}glyphs/${character}.png`;
       glyph.alt = '';
       glyph.draggable = false;
       return glyph;
