@@ -13,7 +13,7 @@ body[data-scene=painted] #preview.observation-panel::before,
 body[data-scene=painted] #preview.observation-panel::after { content: none; }
 .observation-artboard { position: relative; width: 100%; aspect-ratio: 2 / 1; }
 .observation-artboard > img { position: absolute; display: block; pointer-events: none; }
-.observation-waves { left: -4%; top: 65%; width: 108%; height: auto; opacity: .4; }
+.observation-waves { left: -4%; top: 57%; width: 108%; height: auto; opacity: .4; }
 .observation-silhouette { left: -3.5%; top: 7%; width: 23%; height: 70%; object-fit: contain; }
 .asset-glyphs { display: inline-flex; align-items: center; gap: .3em; line-height: 1; white-space: nowrap; }
 .asset-glyphs img { display: block; width: auto; height: 1em; pointer-events: none; }
