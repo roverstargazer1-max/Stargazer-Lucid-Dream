@@ -17,7 +17,7 @@ hexo.extend.generator.register('starry-observation-assets', function () {
     ['close.png', '退出按钮.png'],
     ['polyhedron.png', '右下角跳动几何块.png'],
   ].map(([name, source]) => [name, path.join(artwork, source)]);
-  for (const name of ['year-pointer', 'diamond', 'dial-ticks', 'dial-bracket', 'date-boxes', 'call-label', 'hour-label', 'read-rule']) {
+  for (const name of ['year-pointer', 'diamond', 'dial-ticks', 'dial-bracket', 'date-boxes', 'call-label', 'call-word', 'call-underline', 'hour-label', 'read-rule']) {
     files.push([`${name}.png`, path.join(artwork, 'supplement-crops', `${name}.png`)]);
   }
   for (const character of '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ') {
