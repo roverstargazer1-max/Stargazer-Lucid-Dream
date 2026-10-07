@@ -1,0 +1,53 @@
+{
+  "source": "../补充图形.png",
+  "rectangles": {
+    "year-pointer.png": [
+      108,
+      350,
+      227,
+      393
+    ],
+    "diamond.png": [
+      233,
+      324,
+      255,
+      347
+    ],
+    "dial-ticks.png": [
+      255,
+      372,
+      318,
+      434
+    ],
+    "dial-bracket.png": [
+      198,
+      413,
+      217,
+      494
+    ],
+    "date-boxes.png": [
+      354,
+      337,
+      516,
+      430
+    ],
+    "call-label.png": [
+      731,
+      232,
+      795,
+      269
+    ],
+    "hour-label.png": [
+      731,
+      284,
+      764,
+      310
+    ],
+    "read-rule.png": [
+      559,
+      470,
+      777,
+      512
+    ]
+  }
+}
