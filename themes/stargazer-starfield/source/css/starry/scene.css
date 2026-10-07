@@ -18,7 +18,7 @@ body[data-render-quality=low] .signal-egg{animation:none}
 .edge-guide{position:absolute;transform:translate(-50%,-50%);font-size:23px;z-index:4}
 .edge-guide:hover,.edge-guide:focus-visible{color:#e5eff6}
 /* Final painted scene from the accepted V20 prototype. */
-body[data-scene=painted]{background:#042b68;--type-main:#edf1ec;--type-soft:#d9e3eb;--type-muted:#c4d4e1;--type-line:#bbd0e433;--paper:#e9e7de;--paper-ink:#34485e;--paper-muted:#4f6375}
+body[data-scene=painted]{background:#042b68;--type-main:#edf1ec;--type-soft:#d9e3eb;--type-muted:#c4d4e1;--type-line:#bbd0e433;--paper:#e4eaf5;--paper-ink:#34485e;--paper-muted:#4f6375}
 #room{position:fixed;inset:0;z-index:40;overflow:clip;background:transparent}
 .room-stage{position:absolute;width:max(100vw,177.683vh);height:max(56.28vw,100vh);left:50%;top:50%;margin-left:min(-50vw,-88.8415vh);margin-top:min(-28.14vw,-50vh);will-change:transform,opacity}
 .room-image{width:100%;height:100%;display:block;object-fit:cover}
@@ -65,31 +65,31 @@ body[data-scene=painted] .grain{opacity:.013}
 body[data-scene=painted] .masthead{top:26px;left:3.8%;opacity:.87}
 body[data-scene=painted] .wordmark{width:228px}
 body[data-scene=painted] #exploration-controls{background:none;border:0;border-radius:0;backdrop-filter:none;box-shadow:none;opacity:1;padding:0;top:24px;gap:8px;z-index:10;isolation:isolate}
-body[data-scene=painted] :is(#exploration-controls,#sky-map-controls){text-shadow:0 1px 2px #123565}
-body[data-scene=painted] .mode-switch{gap:8px;font-size:.8125rem;letter-spacing:.5px;border-bottom:1px solid #b7d8ef44}
+body[data-scene=painted] :is(#exploration-controls,#sky-map-controls){text-shadow:0 1px 2px #081b57}
+body[data-scene=painted] .mode-switch{gap:8px;font-size:.8125rem;letter-spacing:.5px;border-bottom:1px solid #72dbff44}
 body[data-scene=painted] .mode-switch>span{display:none}
 body[data-scene=painted] .mode-switch button{color:#c4d4e1;min-width:44px;min-height:44px;padding:8px 6px}
-body[data-scene=painted] .mode-switch button[aria-pressed=true]{color:#edf1ec;text-decoration-color:#b7d8ef}
-body[data-scene=painted] .icon-control{background:none;box-shadow:none;border-bottom:1px solid #b7d8ef44;border-radius:0}
+body[data-scene=painted] .mode-switch button[aria-pressed=true]{color:#edf1ec;text-decoration-color:#72dbff}
+body[data-scene=painted] .icon-control{background:none;box-shadow:none;border-bottom:1px solid #72dbff44;border-radius:0}
 body[data-scene=painted] .motion-toggle{color:#c3d6e8}
 body[data-scene=painted] .icon-control,body[data-scene=painted] .preview-meta button,body[data-scene=painted] .egg-close{display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;color:#d9e3eb;min-width:44px;width:44px;min-height:44px;padding:0;line-height:1}
 .ui-icon{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;pointer-events:none;vertical-align:middle}
 .star-label.label-crowded{opacity:0!important}
 .star-label{overflow:hidden;text-overflow:ellipsis}
-body[data-scene=painted] :is(button,a,summary,[tabindex]):focus-visible{outline:1.5px solid #a8c5e6;outline-offset:2px}
+body[data-scene=painted] :is(button,a,summary,[tabindex]):focus-visible{outline:1.5px solid #72dbff;outline-offset:2px}
 body[data-scene=painted] #egg-dialog :focus-visible{outline-color:#405976}
 .cloud-target{position:absolute;width:44px;height:44px;transform:translate(-50%,-50%);pointer-events:none;border-radius:50%;z-index:2}
 .cloud-target:focus-visible{outline:1px dotted #b9d0df99;outline-offset:4px}
 #sky.over-cloud{cursor:pointer}
 body[data-scene=painted] .star-label{font-family:var(--sans);font-size:.875rem;letter-spacing:.3px;text-shadow:0 2px 12px #00183c}
 body[data-scene=painted] .star-target:before,body[data-scene=painted] .star-target:after{display:none}
-body[data-scene=painted] .world-footer,body[data-scene=painted] .path-legend{color:#d9e3eb;font-size:.6875rem;line-height:1.7;opacity:1;text-shadow:0 1px 3px #061831,0 0 8px #061831,0 0 12px #061831;letter-spacing:.5px}
+body[data-scene=painted] .world-footer,body[data-scene=painted] .path-legend{color:#d9e3eb;font-size:.6875rem;line-height:1.7;opacity:1;text-shadow:0 1px 3px #060d30,0 0 8px #060d30,0 0 12px #060d30;letter-spacing:.5px}
 body[data-scene=painted] .world-footer{bottom:16px}
 body[data-scene=painted]:has(#preview:not([hidden])) #gesture-help{display:none}
 body[data-scene=painted] .path-legend{bottom:16px}
 body[data-scene=painted] #find-star{min-height:44px;font-size:.8125rem;padding:6px 0}
-body[data-scene=painted] .signal-egg{color:#e4cc98;left:50%;right:auto;top:110px;width:44px;height:44px;padding:0}
-body[data-scene=painted] .edge-guide{color:#e1e8ee;width:44px;height:44px;opacity:.95;text-shadow:0 0 8px #061831;background:radial-gradient(ellipse,#06183199,transparent 70%)}
+body[data-scene=painted] .signal-egg{color:#8de5ff;left:50%;right:auto;top:110px;width:44px;height:44px;padding:0}
+body[data-scene=painted] .edge-guide{color:#e1e8ee;width:44px;height:44px;opacity:.95;text-shadow:0 0 8px #060d30;background:radial-gradient(ellipse,#060d3099,transparent 70%)}
 body[data-scene=painted] .preview h2{font-family:var(--sans);font-weight:400}
 body[data-scene=painted] .article{max-width:680px;padding:44px 32px 32px}
 body[data-scene=painted] .article-meta{font-size:.75rem;line-height:1.7;flex-wrap:wrap;gap:8px 16px}
@@ -97,7 +97,7 @@ body[data-scene=painted] .article h1{font-size:2.125rem;line-height:1.5;letter-s
 body[data-scene=painted] .article p{font-size:1rem;line-height:2.05;margin-bottom:24px;overflow-wrap:anywhere}
 body[data-scene=painted] .article-intro{font-size:.875rem!important;line-height:2!important}
 body[data-scene=painted] .article-rule{margin:24px 0}
-body[data-scene=painted] #egg-dialog{background:#e9e7de;color:#30435a;border-radius:5px 9px 4px 7px;border:1px solid #c7cfce;max-height:calc(100dvh - 32px);padding:52px 28px 28px;overscroll-behavior:contain}
+body[data-scene=painted] #egg-dialog{background:#e4eaf5;color:#30435a;border-radius:5px 9px 4px 7px;border:1px solid #bccbe4;max-height:calc(100dvh - 32px);padding:52px 28px 28px;overscroll-behavior:contain}
 body[data-scene=painted] #egg-dialog h2,body[data-scene=painted] #egg-dialog p{color:#34485e}
 body[data-scene=painted] #egg-dialog h2{font-size:1.5625rem}
 body[data-scene=painted] .signal-egg span{font-size:.6875rem}
@@ -110,7 +110,7 @@ body[data-scene=painted] #egg-dialog p{font-size:.875rem;line-height:2}
 #sky-map-controls{position:absolute;left:28px;bottom:48px;display:flex;align-items:center;gap:8px;z-index:8;isolation:isolate}
 #sky-map-controls button{font-size:.8125rem;font-weight:500;color:#d9e3eb;letter-spacing:.5px;padding:8px 6px;min-width:44px;min-height:44px;transition:color .4s}
 #sky-map-controls button:hover,#sky-map-controls button:focus-visible{color:#eff4f6}
-#sky-map-controls button+button{border-left:1px solid #b7d8ef33}
+#sky-map-controls button+button{border-left:1px solid #72dbff33}
 #sky-map-controls #sky-map-toggle{font-weight:600}
 @media(max-width:760px),(max-height:500px){
   #sky-map{--sky-map-size:clamp(96px,28vmin,116px);width:calc(var(--sky-map-size) + 12px);padding:6px}
@@ -140,7 +140,7 @@ body[data-scene=painted] #egg-dialog p{font-size:.875rem;line-height:2}
   body[data-scene=painted] .path-legend{bottom:16px;left:16px;right:16px;font-size:.6875rem}
   body[data-scene=painted]:not(:has(#preview:not([hidden]))) .path-legend{bottom:46px}
 }
-.time-cue{position:absolute;left:40%;top:92px;transform:translateX(-50%);pointer-events:none;color:#e6e6d6;font-size:.8125rem;letter-spacing:2px;text-shadow:0 1px 5px #061831,0 0 10px #061831;animation:time-cue 3s ease both}
+.time-cue{position:absolute;left:40%;top:92px;transform:translateX(-50%);pointer-events:none;color:#d9ecff;font-size:.8125rem;letter-spacing:2px;text-shadow:0 1px 5px #060d30,0 0 10px #060d30;animation:time-cue 3s ease both}
 body[data-map-peek=true] .preview{visibility:hidden}
 @keyframes time-cue{0%,100%{opacity:0}12%,80%{opacity:1}}
 @media(max-width:760px){.time-cue{top:180px;left:16px;right:auto;transform:none;font-size:.75rem}}

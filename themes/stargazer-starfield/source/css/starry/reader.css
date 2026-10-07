@@ -6,17 +6,17 @@
   position: fixed; z-index: 60; inset: 0;
   width: min(940px, calc(100% - 100px)); height: min(900px, calc(100dvh - 76px));
   max-width: none; max-height: none; margin: auto; padding: 4px; overflow: hidden;
-  color: var(--paper-ink); background: #5d6e8b;
-  border: 1px solid; border-color: #9eacc6 #101c31 #101c31 #9eacc6; border-radius: 0;
-  box-shadow: inset 1px 1px #8091af, inset -1px -1px #2e3d59, 0 18px 55px #020b2459;
+  color: var(--paper-ink); background: #485e91;
+  border: 1px solid; border-color: #9db8e5 #0b1234 #0b1234 #9db8e5; border-radius: 0;
+  box-shadow: inset 1px 1px #7e9fd1, inset -1px -1px #233568, 0 18px 55px #020b2459;
 }
-#reader::backdrop { background: rgb(4 17 42 / .15); backdrop-filter: blur(2.4px); }
-#reader .reading-frame { position: relative; display: flex; width: 100%; height: 100%; flex-direction: column; overflow: hidden; background: #5d6e8b; }
+#reader::backdrop { background: rgb(6 13 48 / .15); backdrop-filter: blur(2.4px); }
+#reader .reading-frame { position: relative; display: flex; width: 100%; height: 100%; flex-direction: column; overflow: hidden; background: #485e91; }
 #reader .reading-header {
   display: flex; flex: 0 0 auto; align-items: center; justify-content: space-between;
   min-height: 48px; padding: 0 2px 0 12px; gap: 12px;
   border: 1px solid; border-color: #8190af #1e2b45 #1e2b45 #8190af;
-  background: linear-gradient(90deg, #3d3b66, #2c4063 70%, #283c5c); color: #eef2ff;
+  background: linear-gradient(90deg, #243d9c, #183279 70%, #152765); color: #eef2ff;
 }
 #reader .reading-site { display: flex; align-items: center; min-width: 0; gap: 9px; font: 600 .8125rem/1.4 var(--sans); }
 #reader .window-title { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
@@ -37,8 +37,8 @@ body[data-scene] #close-reader:focus-visible { outline: 1px dashed #101d34; outl
   min-height: 0; flex: 1 1 auto; margin: 7px 3px 0; overflow: auto;
   overscroll-behavior: contain; touch-action: pan-y; outline-offset: -3px;
   border: 2px solid; border-color: #1c2c45 #879bb9 #879bb9 #1c2c45;
-  background-color: #17243b;
-  background-image: url('../../images/reader-grain.svg'), radial-gradient(ellipse at 12% 0%, #6b60982e, transparent 62%), radial-gradient(ellipse at 100% 55%, #3c679126, transparent 68%), linear-gradient(145deg, #1d2a45, #18263d 52%, #151f34);
+  background-color: #111c42;
+  background-image: url('../../images/reader-grain.svg'), radial-gradient(ellipse at 12% 0%, #345bc82e, transparent 62%), radial-gradient(ellipse at 100% 55%, #258ec726, transparent 68%), linear-gradient(145deg, #182651, #132149 52%, #101a3b);
   background-size: 128px 128px, 100% 100%, 100% 100%, 100% 100%;
   background-repeat: repeat, no-repeat, no-repeat, no-repeat;
   scrollbar-gutter: stable; scrollbar-width: auto; scrollbar-color: auto;
@@ -55,18 +55,18 @@ body[data-scene] #close-reader:focus-visible { outline: 1px dashed #101d34; outl
 #reader-content :is(ul, ol) { color: var(--paper-ink); font: 1.0625rem/2.05 var(--sans); }
 #reader-content h2 { color: #e1e8f6; font: 500 1.3125rem/1.65 var(--sans); }
 #reader-content h3 { color: #e1e8f6; font: 500 1.125rem/1.65 var(--sans); }
-#reader-content blockquote { background: none; margin: 28px 0; border-left: 2px solid #8599bd; padding-left: 18px; }
+#reader-content blockquote { background: none; margin: 28px 0; border-left: 2px solid #759fdb; padding-left: 18px; }
 #reader-content blockquote p { color: #b7c8e3; font-size: 1rem; line-height: 2; }
-#reader a { color: #aacbeb; text-decoration-color: #aacbeb66; }
-#reader .reading-relations { border-color: #aacbeb2b; }
-#reader .reading-relations h2 { color: #91abc5; }
+#reader a { color: #87ddff; text-decoration-color: #87ddff66; }
+#reader .reading-relations { border-color: #87ddff2b; }
+#reader .reading-relations h2 { color: #91c7e8; }
 #reader .reading-relations ul { color: #b7c8e3; }
 #reader .reading-relations p { color: #b7c8e3; font-family: var(--sans); }
 #reader .reading-footer {
   display: flex; flex: 0 0 auto; align-items: center; justify-content: space-between;
   gap: 12px; margin: 4px 3px 0; padding: 3px 9px; min-height: 24px;
   border: 0; border-top: 1px solid #293b54;
-  background: linear-gradient(#3b4c65, #34445d); box-shadow: inset 0 -1px #526580;
+  background: linear-gradient(#2e4479, #293c6d); box-shadow: inset 0 -1px #4e71a8;
   color: #b8c7da; font: .6875rem/1.4 var(--sans);
 }
 #reading-state { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }

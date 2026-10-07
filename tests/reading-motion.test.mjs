@@ -57,7 +57,7 @@ test('focus opening and closing finish once, restore scrolling and clear every t
   assert.deepEqual(calls, ['open', 'closed']);
   assert.equal(f.body.dataset.reading, 'closed');
   assert.equal(f.scroller.inert, false);
-  assert.equal(f.backdrop.background, 'rgb(4 17 42 / 0.000)');
+  assert.equal(f.backdrop.background, 'rgb(6 13 48 / 0.000)');
 });
 
 test('closing midway then reopening preserves the displayed pose and discards stale callbacks', t => {

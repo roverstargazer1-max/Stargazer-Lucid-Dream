@@ -64,13 +64,13 @@ export function createSkyMap(world,{onLook,onOverview,onReset}){
     ctx.shadowColor='#b1cee1';ctx.shadowBlur=5;ctx.stroke();ctx.shadowBlur=0;
     for(const article of articles){
       const p=point(article.point),chosen=article.id===selected;
-      ctx.fillStyle=chosen?'#ffe1a0':'#d6e0dfba';ctx.shadowColor=chosen?'#edcc8c':'#b8d3e0';ctx.shadowBlur=chosen?8:4;
+      ctx.fillStyle=chosen?'#bcefff':'#d6e0dfba';ctx.shadowColor=chosen?'#5bd9ff':'#b8d3e0';ctx.shadowBlur=chosen?8:4;
       ctx.beginPath();ctx.arc(p.x,p.y,(chosen?2:1.15)*symbolScale,0,7);ctx.fill();ctx.shadowBlur=0;
     }
     const center=point(domeIntersection(camera,direction(camera.yaw,camera.pitch)));
     const glow=ctx.createRadialGradient(center.x,center.y,0,center.x,center.y,9);
-    glow.addColorStop(0,'#f3d59165');glow.addColorStop(1,'#f3d59100');ctx.fillStyle=glow;
+    glow.addColorStop(0,'#5bd9ff65');glow.addColorStop(1,'#5bd9ff00');ctx.fillStyle=glow;
     ctx.beginPath();ctx.arc(center.x,center.y,9,0,7);ctx.fill();
-    ctx.strokeStyle='#f3d591b3';ctx.lineWidth=.7;ctx.beginPath();ctx.arc(center.x,center.y,3.2,0,7);ctx.stroke();
+    ctx.strokeStyle='#5bd9ffb3';ctx.lineWidth=.7;ctx.beginPath();ctx.arc(center.x,center.y,3.2,0,7);ctx.stroke();
   }};
 }

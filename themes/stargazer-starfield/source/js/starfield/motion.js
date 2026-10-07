@@ -87,7 +87,7 @@ export function createStarMotion({ preview, reader, scroller, isSoft }) {
   let backdropFocus = 0;
   function setBackdrop(progress, soft) {
     backdropFocus = progress;
-    backdrop.background = `rgb(4 17 42 / ${(.15 * progress).toFixed(3)})`;
+    backdrop.background = `rgb(6 13 48 / ${(.15 * progress).toFixed(3)})`;
     backdrop.backdropFilter = `blur(${soft ? 0 : (2.4 * progress).toFixed(2)}px)`;
   }
   setBackdrop(0, isSoft());
@@ -184,7 +184,7 @@ export function createStarMotion({ preview, reader, scroller, isSoft }) {
     const t = focusProgress, gather = approachFrame(t).gather;
     const arrival = cue(t, .60, 1), radius = 32 - 17 * gather + arrival * 3;
     ctx.save(); ctx.translate(point.x, point.y); ctx.rotate(-Math.PI / 4 + gather * .22);
-    ctx.strokeStyle = `rgba(228,215,179,${(.65 - arrival * .46).toFixed(3)})`; ctx.lineWidth = .75;
+    ctx.strokeStyle = `rgba(114,219,255,${(.65 - arrival * .46).toFixed(3)})`; ctx.lineWidth = .75;
     for (const angle of [0, Math.PI]) {
       ctx.beginPath(); ctx.arc(0, 0, radius, angle + .20, angle + Math.PI * .68); ctx.stroke();
     }
@@ -196,7 +196,7 @@ export function createStarMotion({ preview, reader, scroller, isSoft }) {
     if (!beside && tip.y < point.y + 34) return;
     ctx.save();
     const gradient = ctx.createLinearGradient(point.x, point.y, tip.x, tip.y);
-    gradient.addColorStop(0, `rgba(228,215,179,${(.32 - arrival * .17) * extent})`);
+    gradient.addColorStop(0, `rgba(114,219,255,${(.32 - arrival * .17) * extent})`);
     gradient.addColorStop(1, 'rgba(196,217,234,.04)');
     ctx.strokeStyle = gradient; ctx.lineWidth = .65;
     ctx.beginPath();

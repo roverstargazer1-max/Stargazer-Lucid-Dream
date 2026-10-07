@@ -24,15 +24,15 @@ function makeCloud(seed){
     const layer=smooth(.27,.40,coarse)*.45+smooth(.54,.64,coarse)*.55;
     const light=Math.min(1,Math.max(0,(.8-v)*.44+layer*.24));
     const i=(y*512+x)*4;
-    pixels.data[i]=12+light*19;
-    pixels.data[i+1]=32+light*35;
-    pixels.data[i+2]=79+light*53;
+    pixels.data[i]=(12+light*19)*.86;
+    pixels.data[i+1]=(32+light*35)*.60;
+    pixels.data[i+2]=(79+light*53)*1.30;
     pixels.data[i+3]=alpha*255;
   }
   ctx.putImageData(pixels,0,0);
   const glow=document.createElement('canvas');glow.width=512;glow.height=224;
   const glowCtx=glow.getContext('2d');glowCtx.drawImage(canvas,0,0);
-  glowCtx.globalCompositeOperation='source-atop';glowCtx.fillStyle='#83a8d230';glowCtx.fillRect(0,0,512,224);
+  glowCtx.globalCompositeOperation='source-atop';glowCtx.fillStyle='#5bd9ff30';glowCtx.fillRect(0,0,512,224);
   return {canvas,glow,alpha:pixels.data};
 }
 

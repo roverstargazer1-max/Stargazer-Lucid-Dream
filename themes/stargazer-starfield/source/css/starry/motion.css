@@ -8,22 +8,22 @@ body[data-scene=painted] #preview {
   border: 0; border-radius: 0;
   background: none; box-shadow: none;
   backdrop-filter: none;
-  text-shadow: 0 1px 2px #123565;
+  text-shadow: 0 1px 2px #081b57;
   animation: none;
 }
 body[data-scene=painted] #preview::before {
   content: ''; position: absolute; left: 2px; top: 18px;
-  width: 7px; height: 7px; border: 1px solid #b7d8ef;
+  width: 7px; height: 7px; border: 1px solid #72dbff;
   rotate: 45deg; pointer-events: none;
 }
 body[data-scene=painted] #preview::after {
   content: ''; position: absolute; left: 5px; top: 21px; bottom: 26px;
-  width: 1px; background: linear-gradient(#b7d8ef99, #b7d8ef55 65%, transparent);
+  width: 1px; background: linear-gradient(#72dbff99, #72dbff55 65%, transparent);
   pointer-events: none;
 }
 body[data-scene=painted] .preview-scroll {
   min-height: 0; overflow-y: auto; overflow-x: hidden; overscroll-behavior: contain;
-  touch-action: pan-y; scrollbar-width: thin; scrollbar-color: #9ab6c788 transparent;
+  touch-action: pan-y; scrollbar-width: thin; scrollbar-color: #72bfe888 transparent;
   padding: 8px 4px 4px 0; scroll-padding: 8px;
 }
 body[data-scene=painted] .preview-body { display: block; }
@@ -31,7 +31,7 @@ body[data-scene=painted] .preview-body > div { min-width: 0; }
 body[data-scene=painted] #preview h2 { color: #e2edf7; font-size: 1.25rem; font-weight: 500; line-height: 1.55; margin: 8px 0 10px; letter-spacing: 0; text-wrap: balance; overflow-wrap: anywhere; }
 body[data-scene=painted] .preview-body p { max-width: none; margin: 0; font-size: .875rem; line-height: 2; color: #e0e8ec; overflow-wrap: anywhere; }
 body[data-scene=painted] .preview-meta { min-height: 44px; font-size: .6875rem; letter-spacing: .5px; color: #aec6dd; }
-body[data-scene=painted] .known-reasons { max-height: none; overflow: visible; margin: 18px 0 4px; border-color: #c4ddf22e; font-size: .8125rem; line-height: 1.9; color: #d9dccf; overflow-wrap: anywhere; }
+body[data-scene=painted] .known-reasons { max-height: none; overflow: visible; margin: 18px 0 4px; border-color: #c4ddf22e; font-size: .8125rem; line-height: 1.9; color: #d9e6fa; overflow-wrap: anywhere; }
 body[data-scene=painted] .preview-bottom { display: flex; flex-direction: column; align-items: flex-start; gap: 0; margin: 0; border: 0; padding: 0; }
 body[data-scene=painted] .preview-bottom > span { color: #aac4dd; font-size: .65625rem; line-height: 1.7; }
 body[data-scene] #read-button { display: inline-flex; justify-content: flex-start; align-items: center; gap: 8px; min-height: 44px; min-width: 112px; padding: 8px 0; font-size: .75rem; letter-spacing: .25px; }

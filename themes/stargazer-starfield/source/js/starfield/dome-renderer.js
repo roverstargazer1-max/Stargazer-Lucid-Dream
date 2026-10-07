@@ -16,6 +16,10 @@ function createRenderer(image){
     uniform float focal,yaw,pitch,overlay,cloudTreatment;
     uniform vec3 origin;
     const float PI=3.14159265359;
+    // Cobalt/navy grading keeps the original brushwork and lighting intact.
+    vec3 referencePalette(vec3 color){
+      return color*vec3(.86,.60,1.30);
+    }
     float pigmentHash(vec3 p){
       p=fract(p*.3183099+vec3(.17,.31,.53));p*=17.;
       return fract(p.x*p.y*p.z*(p.x+p.y+p.z));
@@ -113,11 +117,11 @@ function createRenderer(image){
       float horizon=smoothstep(.025,.15,elevation);
       if(overlay>.5){
         // Cloud pigment veils starlight and paths instead of bright flares sitting on top.
-        gl_FragColor=vec4(pigment,cloud*.78*horizon);
+        gl_FragColor=vec4(referencePalette(pigment),cloud*.78*horizon);
       }else{
         vec3 sky=paintedGalaxy(pigment,p,elevation);
         if(elevation<.15)sky=mix(lowLandscape(p,elevation,longitude),sky,horizon);
-        gl_FragColor=vec4(sky,1.);
+        gl_FragColor=vec4(referencePalette(sky),1.);
       }
     }`;
   const shader=(type,source)=>{
