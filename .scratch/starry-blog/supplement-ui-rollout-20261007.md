@@ -47,3 +47,13 @@
 验证：22 项测试通过，预览和正式主题均生成 144 个文件。桌面和手机图片完整、无横向溢出，年份数字及 YE 位于框内；READ 颜色为 `rgb(255, 255, 255)`、不透明度为 `1`、鼠标为 `pointer`，原图折线内的检测点命中 READ 按钮，点击正常打开对应正文。完整动效模式实际推进时，READ 仍保持不透明度 `1` 和手型，临时禁用状态继续阻止移动中的重复打开。
 
 截图：[面板细节](evidence/observation-spacing-20261007/panel-detail.png)、[桌面](evidence/observation-spacing-20261007/desktop.png)、[手机](evidence/observation-spacing-20261007/mobile.png)。
+
+## 几何图形中心轴
+
+作者进一步明确右下图形是立体物，应绕其中心轴旋转。以原 PNG 的上下尖点作为固定轴端点，根据原图控制点确定环绕该轴的面片。将原 PNG 直接作为面片纹理投影，不新增或重画 SVG 棱线。完整动效模式每 13 秒绕轴一圈，既有 4.8 秒整体轻跳保留。
+
+动画沿用现有星空绘制循环，每秒最多更新 30 次，画布按设备比例适配并限制分辨率；窗边、阅读层、页面隐藏和轻过渡模式不运行旋转。轻过渡及画布不可用时保留原 PNG 静图。
+
+验证：25 项测试通过，新增检查初始控制点与原图一致、绕轴一圈时上下尖点固定、四分之一圈仍保持体积与整圈回位。预览和正式主题构建通过，各生成 145 个文件。桌面与手机完整动效模式均启用纹理画布，图形没有 CSS 平面旋转，窄屏画布完整处于视口内；切换轻过渡后隐藏画布、显示原 PNG，并停止整体轻跳。控制台无运行错误。
+
+截图：[完整动效画面](evidence/polyhedron-axis-20261007/desktop-full-motion.png)、[转动帧 A](evidence/polyhedron-axis-20261007/frame-a.png)、[转动帧 B](evidence/polyhedron-axis-20261007/frame-b.png)、[手机动效](evidence/polyhedron-axis-20261007/mobile-full-motion.png)、[手机轻过渡](evidence/polyhedron-axis-20261007/mobile-soft-motion.png)。
