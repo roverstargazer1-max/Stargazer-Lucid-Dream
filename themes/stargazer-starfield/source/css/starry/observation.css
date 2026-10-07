@@ -1,0 +1,92 @@
+/* Artwork coordinates follow the supplied observation panel, on a 720 × 360 board. */
+body[data-scene=painted] #preview.observation-panel {
+  container-type: inline-size;
+  display: block;
+  width: clamp(470px, 34vw, 760px);
+  top: 60%; right: 3.8%; bottom: auto; left: auto;
+  transform: translateY(-50%);
+  max-height: none; padding: 0; overflow: visible;
+  border: 0; background: none; box-shadow: none; backdrop-filter: none;
+  text-shadow: none;
+}
+body[data-scene=painted] #preview.observation-panel::before,
+body[data-scene=painted] #preview.observation-panel::after { content: none; }
+.observation-artboard { position: relative; width: 100%; aspect-ratio: 2 / 1; }
+.observation-artboard > img { position: absolute; display: block; pointer-events: none; }
+.observation-waves { left: -4%; top: 65%; width: 108%; height: auto; opacity: .17; }
+.observation-silhouette { left: -3.5%; top: 7%; width: 23%; height: 70%; object-fit: contain; }
+.asset-glyphs { display: inline-flex; align-items: center; gap: .3em; line-height: 1; white-space: nowrap; }
+.asset-glyphs img { display: block; width: auto; height: 1em; pointer-events: none; }
+.glyph-dot { display: block; flex: 0 0 .15em; width: .15em; height: .15em; align-self: flex-end; margin-bottom: .045em; background: #fff; }
+.glyph-dash { display: block; width: .45em; height: .1em; background: #fff; }
+.glyph-space { width: .35em; }
+.year-scale { position: absolute; left: 23.5%; top: 22%; width: 14%; height: 62%; display: grid; grid-template-rows: repeat(5, 1fr); }
+.year-row { position: relative; display: flex; align-items: center; padding-left: 8%; font-size: 2.15cqw; }
+.year-number { gap: .06em; z-index: 1; }
+.year-row:not(.is-current) { opacity: .86; }
+.year-unit { position: absolute; left: 43%; top: 50%; transform: translateY(-50%); gap: .02em; font-size: 3.7cqw; }
+.year-arrow { position: absolute; left: 0; top: 50%; width: 83%; height: 4cqw; transform: translateY(-50%); background: #e8f5ff; clip-path: polygon(0 50%, 10% 17%, 51% 17%, 51% 0, 100% 0, 100% 100%, 51% 100%, 51% 83%, 10% 83%); }
+.year-arrow::after { content: ''; position: absolute; inset: 1.4px; background: var(--night); clip-path: polygon(0 50%, 10% 17%, 51% 17%, 51% 0, 100% 0, 100% 100%, 51% 100%, 51% 83%, 10% 83%); }
+.observation-axis { position: absolute; left: 38.5%; top: 6%; width: 1px; height: 65%; background: linear-gradient(#93d4ea88, #93d4ea55 65%, transparent); }
+.observation-axis::before, .observation-axis::after { content: ''; position: absolute; left: -3px; width: 7px; height: 7px; border: 1px solid #a1cfe2; transform: rotate(45deg); }
+.observation-axis::before { top: 0; }
+.observation-axis::after { bottom: 28%; left: -18px; border-color: #e6f5ff; }
+.observation-ticks { position: absolute; left: 32%; top: 62%; width: 10%; height: 13%; }
+.observation-ticks::before { content: ''; position: absolute; left: 0; top: 18%; height: 95%; width: 1cqw; border: solid #e0f1ff; border-width: 2px 0 2px 2px; }
+.observation-ticks i { position: absolute; width: 1.5cqw; height: 2px; background: #deefff; }
+.observation-ticks i:nth-child(1) { right: 0; top: 0; transform: rotate(5deg); }
+.observation-ticks i:nth-child(2) { right: 9%; top: 28%; transform: rotate(28deg); }
+.observation-ticks i:nth-child(3) { right: 26%; top: 52%; transform: rotate(50deg); }
+.observation-ticks i:nth-child(4) { right: 46%; top: 69%; transform: rotate(73deg); }
+.observation-ticks i:nth-child(5) { right: 68%; top: 74%; transform: rotate(90deg); }
+.observation-waveform { left: 41%; top: 14%; width: 43%; height: auto; opacity: .7; }
+.observation-call { position: absolute; right: 5%; top: 21%; width: 11%; display: flex; flex-direction: column; align-items: center; gap: .35cqw; }
+.observation-call > img { width: 100%; height: auto; }
+.observation-call .asset-glyphs { font-size: 1.65cqw; gap: .04em; }
+.observation-call i { width: 1.7cqw; height: 2px; background: #eff6ff; margin-top: .6cqw; }
+.observation-labels { position: absolute; left: 48%; right: 5%; top: 37%; display: flex; justify-content: space-between; font-size: 1.75cqw; }
+.observation-labels .asset-glyphs { gap: .06em; }
+.observation-slashes { position: absolute; left: 47.5%; top: 46%; width: 17%; height: 22%; display: flex; gap: 1.2cqw; }
+.observation-slashes i { position: relative; display: block; flex: 1; border: 2px solid #eef6ff; overflow: hidden; }
+.observation-slashes i::after { content: ''; position: absolute; top: 0; left: 100%; width: 180%; height: 2px; transform: rotate(130deg); transform-origin: left center; background: #eef6ff; }
+body[data-scene=painted] #preview .observation-date { position: absolute; left: 71.5%; top: 56%; font-size: 5.15cqw; gap: .08em; color: #fff; }
+.observation-id { left: 47.5%; top: 78%; width: 3%; height: auto; }
+body[data-scene=painted] #preview #deselect { position: absolute; right: 0; top: 0; display: grid; place-items: center; width: 44px; height: 44px; min-width: 44px; min-height: 44px; padding: 10px; margin: -12px -12px 0 0; }
+#deselect img { display: block; width: 17px; height: auto; }
+body[data-scene=painted] .observation-panel .preview-bottom { position: absolute; left: 70.5%; right: 6%; top: 80%; display: block; margin: 0; padding: 0; border: 0; }
+body[data-scene=painted] .observation-panel #read-button { position: relative; display: flex; justify-content: flex-end; width: 100%; min-width: 44px; min-height: 44px; padding: 10px 0 0; color: #f4f8ff; }
+#read-button > img { display: block; width: 74%; height: auto; transition: filter .25s, transform .25s; }
+#read-button:hover > img, #read-button:focus-visible > img { filter: drop-shadow(0 0 5px #72dbffaa); transform: translate(2px, -1px); }
+body[data-scene=painted] #read-button .read-rule { position: absolute; inset: 0 0 auto; height: 9px; border: solid #ecf6ff; border-width: 2px 2px 0 0; padding: 0; }
+.read-rule::before { content: ''; position: absolute; width: 8px; height: 8px; left: 47%; top: -6px; border: solid #ecf6ff; border-width: 2px 0 0 2px; transform: rotate(45deg); }
+/* Only the label beside each article star carries its visible title in the sky. */
+body[data-scene=painted] .star-target .star-label { color: #fff; opacity: 1; transform: none; text-shadow: 0 1px 6px #031a87; }
+body[data-scene=painted] .star-target.is-read .star-label { color: #929bbb; }
+body[data-scene=painted][data-focus=approaching] .star-target.is-selected .star-label,
+body[data-scene=painted]:has(#preview[aria-busy=true]) .star-target.is-selected .star-label { opacity: 1; }
+.sky-polyhedron { position: absolute; z-index: 4; right: 3%; bottom: 1.5%; width: clamp(48px, 3.5vw, 78px); aspect-ratio: 1; pointer-events: none; opacity: .65; }
+.sky-polyhedron img { position: absolute; left: -10%; top: -25%; width: 125%; height: auto; transform-origin: 48.5% 55.9%; }
+body[data-scene] #gesture-help, body[data-scene] .path-legend { right: calc(3% + 90px); }
+body[data-motion=full] .sky-polyhedron { animation: polyhedron-hop 4.8s ease-in-out infinite !important; }
+body[data-motion=full] .sky-polyhedron img { animation: polyhedron-spin 13s linear infinite !important; }
+body[data-motion=soft] .sky-polyhedron, body[data-motion=soft] .sky-polyhedron img { animation: none !important; }
+@keyframes polyhedron-hop { 0%, 38%, 100% { translate: 0 0; } 48% { translate: 0 -9px; } 59% { translate: 0 1px; } 67% { translate: 0 -3px; } 75% { translate: 0 0; } }
+@keyframes polyhedron-spin { to { rotate: 360deg; } }
+@media (max-width: 760px) {
+  body[data-scene=painted] #preview.observation-panel { width: calc(100% - 28px); max-width: 430px; top: auto; right: 14px; bottom: max(106px, calc(env(safe-area-inset-bottom) + 92px)); transform: none; max-height: none; }
+  .observation-silhouette { opacity: .92; }
+  .year-row { font-size: max(11px, 2.15cqw); }
+  .year-unit { font-size: max(16px, 3.7cqw); }
+  .year-arrow { height: max(20px, 4cqw); width: 103%; }
+  .year-unit { left: 48%; }
+  .observation-labels { font-size: max(9px, 1.75cqw); }
+  .observation-call .asset-glyphs { font-size: max(8px, 1.65cqw); }
+  .observation-axis { left: 40%; }
+  .observation-slashes i { border-width: 1.5px; }
+  .sky-polyhedron { bottom: max(18px, env(safe-area-inset-bottom)); right: 18px; width: 44px; }
+  body[data-scene] #gesture-help, body[data-scene] .path-legend { left: 16px; right: 78px; }
+}
+@media (max-height: 500px) and (orientation: landscape) {
+  body[data-scene=painted] #preview.observation-panel { width: min(51vw, 470px); top: 56%; bottom: auto; right: 20px; transform: translateY(-50%); }
+  .sky-polyhedron { bottom: 8px; right: 16px; width: 36px; }
+}

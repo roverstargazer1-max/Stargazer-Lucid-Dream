@@ -9,6 +9,7 @@ import { buildPaths, buildTimePaths, clipSegment, crosses } from './navigation.j
 import { createRenderBudget } from './render-budget.js';
 import { setRenderQuality } from './dome-renderer.js';
 import { isStarReachable, starLabelPlacement } from './star-targets.js';
+import { createObservationPanel } from './observation.js';
 
 const body = document.body;
 const world = document.getElementById('world');
@@ -23,6 +24,7 @@ async function start() {
   const scroller = document.getElementById('reading-scroll');
   const readerSlot = document.getElementById('reading-content-slot');
   const preview = document.getElementById('preview');
+  const observationPanel = createObservationPanel(preview);
   const status = document.getElementById('approach-status');
   const readButton = document.getElementById('read-button');
   const controls = document.getElementById('exploration-controls');
@@ -405,74 +407,23 @@ async function start() {
     relationModeButton.disabled = Boolean(arrival || phase === 'loading');
     timeModeButton.disabled = Boolean(arrival || phase === 'loading');
     backDockButton.disabled = !canReturnToDock();
-    updateRelationCues(isSelected ? article.id : null);
     if (isSelected) {
-      document.getElementById('preview-date').textContent = article.date;
+      observationPanel.update(article);
       document.getElementById('preview-title').textContent = article.title;
-      const modeNote = document.getElementById('mode-note');
-      modeNote.hidden = true;
-      modeNote.textContent = mode === 'time'
-        ? '按发表时间排列 · 时间相邻不代表作者关联'
-        : '按作者确认的关系探索';
-      updateKnownReasons(article.id);
+      readButton.setAttribute('aria-label', `进入阅读：${article.title}`);
       status.textContent = phase === 'moving' || phase === 'arriving' ? '正在靠近 · · ·' : phase === 'loading' ? '正在准备正文 · · ·' : phase === 'settled' ? '再点星，阅读' : '点星，重新靠近';
-    } else {
-      document.getElementById('mode-note').hidden = true;
-      updateKnownReasons(null);
     }
     readButton.disabled = !isSelected || phase !== 'settled' || reader.open;
     for (const [id, target] of starTargets) {
       const item = articleById.get(id);
       const active = selected === id;
       target.classList.toggle('is-selected', active);
+      target.classList.toggle('is-read', readArticleIds.has(id));
       target.setAttribute('aria-label', `${active && phase === 'settled' ? '阅读文章' : '选择文章'}：${item.title}`);
     }
     homeButton.hidden = Boolean(roomScene?.active) || reader.open || collectionOpen;
     document.getElementById('gesture-help').textContent = width <= 760 ? '单指巡视 · 双指前行 · 点星靠近' : '拖动巡视 · 滚轮前行 · 点星靠近';
     document.getElementById('journal-egg').hidden = true;
-  }
-
-  function updateRelationCues(articleId) {
-    const section = document.getElementById('relation-cues');
-    const container = document.getElementById('relation-links');
-    if (!section || !container) return;
-    container.replaceChildren();
-    const relations = articleId ? relationsByArticle.get(articleId) || [] : [];
-    section.hidden = relations.length === 0;
-    section.querySelector('.relation-legend').textContent = mode === 'time'
-      ? '作者确认的关系与日期顺序分开显示'
-      : '虚线：探索路径 · 实线：文章关联';
-    for (const relation of relations) {
-      const targetArticle = articleById.get(relation.articleId);
-      if (!targetArticle) continue;
-      const button = document.createElement('button');
-      button.type = 'button';
-      button.className = 'relation-link';
-      button.setAttribute('aria-label', `沿作者确认的关联探索文章：${targetArticle.title}`);
-      button.textContent = `↗ ${targetArticle.title}`;
-      button.addEventListener('click', () => activateStar(targetArticle.id));
-      container.append(button);
-    }
-  }
-
-  function updateKnownReasons(articleId) {
-    const section = document.getElementById('known-reasons');
-    section.replaceChildren();
-    const authored = articleId && readArticleIds.has(articleId)
-      ? (relationsByArticle.get(articleId) || []).filter((relation) => relation.reason)
-      : [];
-    section.hidden = authored.length === 0;
-    if (section.hidden) return;
-    const heading = document.createElement('h3');
-    heading.textContent = '已读 · 作者为什么相连';
-    section.append(heading);
-    for (const relation of authored) {
-      const target = articleById.get(relation.articleId);
-      if (!target) continue;
-      const reason = document.createElement('p');
-      reason.textContent = `${target.title}：${relation.reason}`;
-      section.append(reason);
-    }
   }
 
   function announce(message) {
@@ -1221,7 +1172,7 @@ async function start() {
     }, { passive: false });
     document.addEventListener('keydown', (event) => {
       if (event.key === 'Escape' && skyMap?.dismiss()) { event.preventDefault(); return; }
-      if (reader.open || egg.open || roomScene?.active || collectionOpen || event.target.closest('input, textarea, select, [contenteditable], #preview-scroll')) return;
+      if (reader.open || egg.open || roomScene?.active || collectionOpen || event.target.closest('input, textarea, select, [contenteditable], #preview')) return;
       if (['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(event.key)) {
         event.preventDefault(); interrupt();
         camera.yaw += event.key === 'ArrowLeft' ? -.09 : event.key === 'ArrowRight' ? .09 : 0;

@@ -19,5 +19,5 @@ export function dockTarget(width, height, preview) {
     x: width * .67,
     y: Math.max(206, Math.min(height * .35, preview.top - 44)),
   };
-  return { x: Math.min(width * .40, preview.left - 60), y: height * .42 };
+  return { x: Math.min(width * .35, preview.left - 60), y: height * .55 };
 }
