@@ -1,48 +1,51 @@
-// Control points taken from the author's 1254 × 1254 PNG. The two tips define
-// the axis; the remaining points form its equatorial plane. Faces carry the
-// original bitmap, including its lines, rather than drawing replacement edges.
-export const POLYHEDRON_UV = [[650, 259], [707, 1036], [260, 438], [1030, 529], [816, 667], [390, 816]];
+// The author's axis reference, fitted into the original 1254 × 1254 artboard.
+// Both tips share a vertical axis. The four other vertices lie on one 3D plane.
+export const POLYHEDRON_REFERENCE = [[678, 259], [678, 1036], [271, 420], [1036, 549], [816, 688], [378, 805]];
 const SOURCE_SIZE = 1254;
-const PITCH = 37 * Math.PI / 180;
-const center = POLYHEDRON_UV[0].map((value, index) => (value + POLYHEDRON_UV[1][index]) / 2);
-const axisLength = Math.hypot(...POLYHEDRON_UV[1].map((value, index) => value - POLYHEDRON_UV[0][index]));
-const axis = POLYHEDRON_UV[1].map((value, index) => (value - POLYHEDRON_UV[0][index]) / axisLength);
-const across = [axis[1], -axis[0]];
-const scale = axisLength / 2;
-const vertices = POLYHEDRON_UV.map(([u, v], index) => {
-  if (index < 2) return [0, (index ? 1 : -1) / Math.cos(PITCH), 0];
-  const du = u - center[0], dv = v - center[1];
-  return [(du * across[0] + dv * across[1]) / scale, 0,
-    -(du * axis[0] + dv * axis[1]) / (scale * Math.sin(PITCH))];
+const PITCH = Math.PI / 4, CAMERA_DISTANCE = 6, SCALE = 480;
+const ORIGIN = [678, 595];
+const vertices = POLYHEDRON_REFERENCE.map(([u, v], index) => {
+  const x = (u - ORIGIN[0]) / SCALE, y = (v - ORIGIN[1]) / SCALE;
+  if (index < 2) return [0, y / (Math.cos(PITCH) - y * Math.sin(PITCH) / CAMERA_DISTANCE), 0];
+  // Invert the perspective projection onto the equatorial plane, rather than
+  // treating the bitmap's crossings as independent surfaces to be stretched.
+  const z = -y / (Math.sin(PITCH) + y * Math.cos(PITCH) / CAMERA_DISTANCE);
+  return [x * (1 + z * Math.cos(PITCH) / CAMERA_DISTANCE), 0, z];
 });
 const faces = [2, 3, 4, 5].flatMap((point, index, ring) => {
   const next = ring[(index + 1) % ring.length];
-  return [[0, next, point], [1, point, next]];
+  return [[0, point, next], [1, next, point]];
 });
+const edges = [2, 3, 4, 5].flatMap((point, index, ring) =>
+  [[0, point], [1, point], [point, ring[(index + 1) % ring.length]]]);
 
 export function projectPolyhedron(angle) {
   const cos = Math.cos(angle), sin = Math.sin(angle);
   return vertices.map(([x, y, z]) => {
     const rx = x * cos + z * sin, rz = z * cos - x * sin;
     const ry = y * Math.cos(PITCH) - rz * Math.sin(PITCH);
+    const depth = y * Math.sin(PITCH) + rz * Math.cos(PITCH);
+    const perspective = CAMERA_DISTANCE / (CAMERA_DISTANCE + depth);
     return {
-      x: center[0] + scale * (across[0] * rx + axis[0] * ry),
-      y: center[1] + scale * (across[1] * rx + axis[1] * ry),
+      x: ORIGIN[0] + SCALE * rx * perspective,
+      y: ORIGIN[1] + SCALE * ry * perspective,
+      depth,
     };
   });
 }
 
-function textureTransform(source, target) {
-  const [a, b, c] = source;
-  const determinant = (b[0] - a[0]) * (c[1] - a[1]) - (c[0] - a[0]) * (b[1] - a[1]);
-  const coefficients = key => {
-    const ab = target[1][key] - target[0][key], ac = target[2][key] - target[0][key];
-    const x = (ab * (c[1] - a[1]) - ac * (b[1] - a[1])) / determinant;
-    const y = (ac * (b[0] - a[0]) - ab * (c[0] - a[0])) / determinant;
-    return [x, y, target[0][key] - x * a[0] - y * a[1]];
-  };
-  const [a1, c1, e1] = coefficients('x'), [b1, d1, f1] = coefficients('y');
-  return [a1, b1, c1, d1, e1, f1];
+function edgeTexture(image) {
+  // A clean section of the original upper-left edge, without any crossings.
+  // Every projected edge uses these bitmap pixels; no substitute strokes/SVG.
+  const a = [610, 277], b = [305, 417];
+  const strip = document.createElement('canvas');
+  strip.width = Math.ceil(Math.hypot(b[0] - a[0], b[1] - a[1])); strip.height = 12;
+  const context = strip.getContext('2d');
+  context.translate(0, strip.height / 2);
+  context.rotate(-Math.atan2(b[1] - a[1], b[0] - a[0]));
+  context.translate(-a[0], -a[1]);
+  context.drawImage(image, 0, 0);
+  return strip;
 }
 
 export function createPolyhedron(element) {
@@ -50,36 +53,40 @@ export function createPolyhedron(element) {
   const context = canvas?.getContext('2d');
   if (!image || !context) return { render() {} };
   let previousTime = null, rotationTime = 0, lastPaint = -Infinity;
+  let texture = null, wasEnabled = null;
   return {
     render(now, enabled) {
-      if (!enabled || !image.complete || !image.naturalWidth) {
+      if (!image.complete || !image.naturalWidth) {
         image.hidden = false; canvas.hidden = true;
         previousTime = null; rotationTime = 0; lastPaint = -Infinity;
         return;
       }
-      if (previousTime !== null) rotationTime += Math.min(100, now - previousTime);
-      previousTime = now;
-      if (now - lastPaint < 1000 / 30) return;
-      lastPaint = now;
+      if (enabled) {
+        if (previousTime !== null) rotationTime += Math.min(100, now - previousTime);
+        previousTime = now;
+      } else { previousTime = null; rotationTime = 0; }
       canvas.hidden = false; image.hidden = true;
       const side = Math.max(1, Math.round(canvas.clientWidth * Math.min(devicePixelRatio || 1, 2)));
+      if (enabled === wasEnabled && canvas.width === side && (!enabled || now - lastPaint < 1000 / 30)) return;
+      wasEnabled = enabled; lastPaint = now;
+      texture ||= edgeTexture(image);
       if (canvas.width !== side) canvas.width = canvas.height = side;
       context.setTransform(1, 0, 0, 1, 0, 0);
       context.clearRect(0, 0, side, side);
       context.scale(side / SOURCE_SIZE, side / SOURCE_SIZE);
       const projected = projectPolyhedron(rotationTime / 13000 * Math.PI * 2);
-      for (const face of faces) {
-        const points = face.map(index => projected[index]);
-        const [a, b, c] = points;
-        // Only the outward-facing surfaces contribute a texture, avoiding
-        // duplicate translucent strokes where front and back faces overlap.
-        if ((b.x - a.x) * (c.y - a.y) - (c.x - a.x) * (b.y - a.y) <= .001) continue;
+      const frontFaces = faces.filter(face => {
+        const [a, b, c] = face.map(index => projected[index]);
+        return (b.x - a.x) * (c.y - a.y) - (c.x - a.x) * (b.y - a.y) > 0;
+      });
+      const depthOf = edge => (projected[edge[0]].depth + projected[edge[1]].depth) / 2;
+      for (const edge of [...edges].sort((a, b) => depthOf(b) - depthOf(a))) {
+        const [a, b] = edge.map(index => projected[index]);
+        const front = frontFaces.some(face => edge.every(index => face.includes(index)));
         context.save();
-        context.beginPath(); context.moveTo(a.x, a.y);
-        context.lineTo(b.x, b.y); context.lineTo(c.x, c.y); context.closePath();
-        context.clip();
-        context.transform(...textureTransform(face.map(index => POLYHEDRON_UV[index]), points));
-        context.drawImage(image, 0, 0);
+        context.globalAlpha = front ? 1 : .38;
+        context.translate(a.x, a.y); context.rotate(Math.atan2(b.y - a.y, b.x - a.x));
+        context.drawImage(texture, 0, -texture.height / 2, Math.hypot(b.x - a.x, b.y - a.y), texture.height);
         context.restore();
       }
     },
