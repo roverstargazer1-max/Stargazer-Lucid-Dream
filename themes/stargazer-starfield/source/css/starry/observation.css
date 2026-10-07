@@ -60,13 +60,12 @@ body[data-scene=painted] .star-target.is-read .star-label { color: #929bbb; }
 body[data-scene=painted][data-focus=approaching] .star-target.is-selected .star-label,
 body[data-scene=painted]:has(#preview[aria-busy=true]) .star-target.is-selected .star-label { opacity: 1; }
 .sky-polyhedron { position: absolute; z-index: 4; right: 3%; bottom: 1.5%; width: clamp(48px, 3.5vw, 78px); aspect-ratio: 1; pointer-events: none; opacity: .65; }
-.sky-polyhedron img { position: absolute; left: -10%; top: -25%; width: 125%; height: auto; transform-origin: 48.5% 55.9%; }
+.sky-polyhedron img, .sky-polyhedron canvas { position: absolute; left: -10%; top: -25%; width: 125%; height: auto; }
+.sky-polyhedron canvas { height: 125%; }
 body[data-scene] #gesture-help, body[data-scene] .path-legend { right: calc(3% + 90px); }
 body[data-motion=full] .sky-polyhedron { animation: polyhedron-hop 4.8s ease-in-out infinite !important; }
-body[data-motion=full] .sky-polyhedron img { animation: polyhedron-spin 13s linear infinite !important; }
-body[data-motion=soft] .sky-polyhedron, body[data-motion=soft] .sky-polyhedron img { animation: none !important; }
+body[data-motion=soft] .sky-polyhedron { animation: none !important; }
 @keyframes polyhedron-hop { 0%, 38%, 100% { translate: 0 0; } 48% { translate: 0 -9px; } 59% { translate: 0 1px; } 67% { translate: 0 -3px; } 75% { translate: 0 0; } }
-@keyframes polyhedron-spin { to { rotate: 360deg; } }
 @media (max-width: 760px) {
   body[data-scene=painted] #preview.observation-panel { width: calc(100% - 28px); max-width: 430px; top: auto; right: 14px; bottom: max(106px, calc(env(safe-area-inset-bottom) + 92px)); transform: none; max-height: none; }
   .observation-silhouette { opacity: .92; }

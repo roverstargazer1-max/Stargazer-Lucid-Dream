@@ -10,6 +10,7 @@ import { createRenderBudget } from './render-budget.js';
 import { setRenderQuality } from './dome-renderer.js';
 import { isStarReachable, starLabelPlacement } from './star-targets.js';
 import { createObservationPanel } from './observation.js';
+import { createPolyhedron } from './polyhedron.js';
 
 const body = document.body;
 const world = document.getElementById('world');
@@ -25,6 +26,7 @@ async function start() {
   const readerSlot = document.getElementById('reading-content-slot');
   const preview = document.getElementById('preview');
   const observationPanel = createObservationPanel(preview);
+  const polyhedron = createPolyhedron(document.querySelector('.sky-polyhedron'));
   const status = document.getElementById('approach-status');
   const readButton = document.getElementById('read-button');
   const controls = document.getElementById('exploration-controls');
@@ -950,6 +952,7 @@ async function start() {
       ambient.x += (ambient.targetX - ambient.x) * .035;
       ambient.y += (ambient.targetY - ambient.y) * .035;
       drawScene(now);
+      polyhedron.render(now, !reducedMotion && !document.hidden && !roomScene?.active && !reader.open);
       skyMap.update(camera, projectionSettings(), articles.map(item => ({ id: item.id, point: positionOf(item) })), selected, !reader.open && !egg.open && !arrival && !roomScene?.active && !collectionOpen, width, height, now);
       for (let i = meteors.length - 1; i >= 0; i--) {
         const meteor = meteors[i], age = (now - meteor.start) / 1800;
