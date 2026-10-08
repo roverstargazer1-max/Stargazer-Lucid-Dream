@@ -57,8 +57,12 @@
       <span aria-hidden="true">/</span>
       <button id="time-mode" type="button" aria-pressed="false">时间</button>
     </div>
-    <button id="back-dock" class="icon-control" type="button" aria-label="返回上个停靠点" title="返回上个停靠点" disabled>↶</button>
-    <button id="home" class="icon-control" type="button" aria-label="回到窗边" title="回到窗边" hidden>⌂</button>
+    <button id="back-dock" class="icon-control" type="button" aria-label="返回上个停靠点" title="返回上个停靠点" disabled>
+      <svg class="ui-icon" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 4v7h7M4 11c2-7 15-7 16 2 1 6-5 9-10 7"/></svg>
+    </button>
+    <button id="home" class="icon-control" type="button" aria-label="回到窗边" title="回到窗边" hidden>
+      <svg class="ui-icon" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m3 10 9-7 9 7v11H3V10Zm6 11v-8h6v8"/></svg>
+    </button>
     <button id="motion-toggle" class="motion-toggle" type="button" aria-pressed="false" aria-label="减少镜头动画">镜头推进</button>
   </nav>
   <span id="time-cue" class="time-cue" role="status" hidden></span>
