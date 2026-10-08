@@ -4,7 +4,6 @@ import { createRoom, paintCloudVeil, paintPaintedSky, paintPaintedStar, prepareP
 import { HOME_ELEVATION, MIN_SKY_ZOOM, clamp, domeDestination, direction, domePosition, projectDome } from './dome.js';
 import { createStarMotion, ENTRANCE, entranceFrame, returnFrame, smooth } from './motion.js';
 import { dockTarget } from './experience.js';
-import { createSkyMap } from './sky-map.js';
 import { buildPaths, buildTimePaths, clipSegment, crosses } from './navigation.js';
 import { createRenderBudget } from './render-budget.js';
 import { setRenderQuality } from './dome-renderer.js';
@@ -83,7 +82,6 @@ async function start() {
   let collectionOpen = isDirectCollection;
   let collectionTrigger = null;
   let animationStarted = false;
-  let skyMap = null;
   let navigationEdges = [];
   let timeCueUntil = 0;
   let lineOpacity = 1;
@@ -228,12 +226,6 @@ async function start() {
       motionButton.setAttribute('aria-label', value ? '开启镜头推进动画' : '减少镜头动画');
       if (body.dataset.room === 'inside') body.style.setProperty('--sky-clarity', value ? '1' : '0');
     },
-  });
-
-  skyMap = createSkyMap(world, {
-    onLook: (yaw, pitch) => lookAtSky(yaw, pitch, Math.min(1, camera.zoom)),
-    onOverview: () => lookAtSky(camera.yaw, Math.PI / 2, MIN_SKY_ZOOM),
-    onReset: () => lookAtSky(0, HOME_ELEVATION, 1),
   });
 
   if (isDirectCollection && collectionFirstId && articleById.has(collectionFirstId)) {
@@ -797,7 +789,7 @@ async function start() {
     if (animationStarted && body.dataset.domeRenderer !== 'webgl') throw new Error('The starfield renderer stopped being available.');
     visibleStars.clear();
     projectedStars.clear();
-    const obstacles = [...world.querySelectorAll('.masthead a, #exploration-controls:not([hidden]), #sky-map-controls:not([hidden]), #sky-map.is-visible, #preview:not([hidden]), #signal-egg:not([hidden])')]
+    const obstacles = [...world.querySelectorAll('.masthead a, #exploration-controls:not([hidden]), #preview:not([hidden]), #signal-egg:not([hidden])')]
       .map(element => element.getBoundingClientRect()).filter(rect => rect.width && rect.height);
     for (const item of articles) {
       const projected = project(positionOf(item));
@@ -876,7 +868,7 @@ async function start() {
     const hint = hints[0];
     if (phase === 'moving' || lineOpacity < .5) return;
     if (hint && !selected) {
-      const obstacles = [...world.querySelectorAll('nav,header,#sky-map-controls,#sky-map,#preview,.signal-egg')].filter(el => !el.hidden).map(el => el.getBoundingClientRect());
+      const obstacles = [...world.querySelectorAll('nav,header,#preview,.signal-egg')].filter(el => !el.hidden).map(el => el.getBoundingClientRect());
       if (!obstacles.some(rect => hint.point.x + 24 > rect.left && hint.point.x - 24 < rect.right && hint.point.y + 24 > rect.top && hint.point.y - 24 < rect.bottom)) {
         guide.style.left = hint.point.x + 'px'; guide.style.top = hint.point.y + 'px';
         guide.style.transform = 'translate(-50%,-50%)'; guide.textContent = '›';
@@ -897,14 +889,6 @@ async function start() {
 
   function drawGuideLine(origin, target) {
     ctx.beginPath(); ctx.moveTo(origin.x, origin.y); ctx.lineTo(target.x, target.y); ctx.stroke();
-  }
-
-  function lookAtSky(yaw, pitch, zoom) {
-    if (roomScene?.active || reader.open || arrival) return;
-    appendDockStop(mode, camera, selected);
-    interrupt(); selected = null; phase = 'moving'; starMotion.clearSelection();
-    travel = { from: { ...camera }, to: { x: 0, y: 0, z: 0, yaw: camera.yaw + Math.atan2(Math.sin(yaw - camera.yaw), Math.cos(yaw - camera.yaw)), pitch, zoom }, start: performance.now(), duration: reducedMotion ? 220 : 700, kind: 'look', layout: mode };
-    updateUI();
   }
 
   function openNote(title, copy) {
@@ -964,7 +948,6 @@ async function start() {
       polyhedron.render(now, !reducedMotion && !document.hidden && !roomScene?.active && !reader.open);
       observationPanel.render(now, !preview.hidden && !reducedMotion && renderBudget.current.ambientMotion &&
         !document.hidden && !roomScene?.active && !reader.open && !egg.open && !collectionOpen && !arrival);
-      skyMap.update(camera, projectionSettings(), articles.map(item => ({ id: item.id, point: positionOf(item) })), selected, !reader.open && !egg.open && !arrival && !roomScene?.active && !collectionOpen, width, height, now);
       for (let i = meteors.length - 1; i >= 0; i--) {
         const meteor = meteors[i], age = (now - meteor.start) / 1800;
         if (age > 1) { meteors.splice(i, 1); continue; }
@@ -1184,13 +1167,12 @@ async function start() {
       clouds?.clearHover();
     });
     world.addEventListener('wheel', (event) => {
-      if (roomScene?.active || reader.open || event.target.closest('#preview, #sky-map, dialog')) return;
+      if (roomScene?.active || reader.open || event.target.closest('#preview, dialog')) return;
       event.preventDefault();
       interrupt();
       moveForward(Math.max(-600, Math.min(600, -event.deltaY * .8)));
     }, { passive: false });
     document.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape' && skyMap?.dismiss()) { event.preventDefault(); return; }
       if (reader.open || egg.open || roomScene?.active || collectionOpen || event.target.closest('input, textarea, select, [contenteditable], #preview')) return;
       if (['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(event.key)) {
         event.preventDefault(); interrupt();
