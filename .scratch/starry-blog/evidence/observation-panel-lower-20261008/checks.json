@@ -1,0 +1,642 @@
+[
+  {
+    "device": "desktop",
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "downwardCssPixels": 36,
+    "allMovedTogether": true,
+    "inViewport": true,
+    "readOpened": true,
+    "errors": [],
+    "before": {
+      "#preview": {
+        "x": 895.6875,
+        "y": 417.6015625,
+        "width": 489.59375,
+        "height": 244.796875,
+        "bottom": 662.3984375,
+        "right": 1385.28125
+      },
+      ".observation-silhouette": {
+        "x": 878.5625,
+        "y": 434.7265625,
+        "width": 112.59375,
+        "height": 171.34375,
+        "bottom": 606.0703125,
+        "right": 991.15625
+      },
+      ".observation-waveform": {
+        "x": 1096.40625,
+        "y": 451.8671875,
+        "width": 210.515625,
+        "height": 46.28125,
+        "bottom": 498.1484375,
+        "right": 1306.921875
+      },
+      ".year-scale": {
+        "x": 1010.734375,
+        "y": 471.4453125,
+        "width": 68.53125,
+        "height": 151.765625,
+        "bottom": 623.2109375,
+        "right": 1079.265625
+      },
+      "#preview-date": {
+        "x": 1245.734375,
+        "y": 554.6796875,
+        "width": 97.765625,
+        "height": 25.203125,
+        "bottom": 579.8828125,
+        "right": 1343.5
+      },
+      "#read-button": {
+        "x": 1240.84375,
+        "y": 604.4296875,
+        "width": 115.0625,
+        "height": 53,
+        "bottom": 657.4296875,
+        "right": 1355.90625
+      },
+      "#deselect": {
+        "x": 1353.28125,
+        "y": 405.6015625,
+        "width": 44,
+        "height": 44,
+        "bottom": 449.6015625,
+        "right": 1397.28125
+      }
+    },
+    "after": {
+      "#preview": {
+        "x": 895.6875,
+        "y": 453.6015625,
+        "width": 489.59375,
+        "height": 244.796875,
+        "bottom": 698.3984375,
+        "right": 1385.28125
+      },
+      ".observation-silhouette": {
+        "x": 878.5625,
+        "y": 470.7265625,
+        "width": 112.59375,
+        "height": 171.34375,
+        "bottom": 642.0703125,
+        "right": 991.15625
+      },
+      ".observation-waveform": {
+        "x": 1096.40625,
+        "y": 487.8671875,
+        "width": 210.515625,
+        "height": 46.28125,
+        "bottom": 534.1484375,
+        "right": 1306.921875
+      },
+      ".year-scale": {
+        "x": 1010.734375,
+        "y": 507.4453125,
+        "width": 68.53125,
+        "height": 151.765625,
+        "bottom": 659.2109375,
+        "right": 1079.265625
+      },
+      "#preview-date": {
+        "x": 1245.734375,
+        "y": 590.6796875,
+        "width": 97.765625,
+        "height": 25.203125,
+        "bottom": 615.8828125,
+        "right": 1343.5
+      },
+      "#read-button": {
+        "x": 1240.84375,
+        "y": 640.4296875,
+        "width": 115.0625,
+        "height": 53,
+        "bottom": 693.4296875,
+        "right": 1355.90625
+      },
+      "#deselect": {
+        "x": 1353.28125,
+        "y": 441.6015625,
+        "width": 44,
+        "height": 44,
+        "bottom": 485.6015625,
+        "right": 1397.28125
+      }
+    }
+  },
+  {
+    "device": "laptop",
+    "viewport": {
+      "width": 1365,
+      "height": 768
+    },
+    "downwardCssPixels": 30.71875,
+    "allMovedTogether": true,
+    "inViewport": true,
+    "readOpened": true,
+    "errors": [],
+    "before": {
+      "#preview": {
+        "x": 843.140625,
+        "y": 343.296875,
+        "width": 470,
+        "height": 235,
+        "bottom": 578.296875,
+        "right": 1313.140625
+      },
+      ".observation-silhouette": {
+        "x": 826.703125,
+        "y": 359.734375,
+        "width": 108.09375,
+        "height": 164.5,
+        "bottom": 524.234375,
+        "right": 934.796875
+      },
+      ".observation-waveform": {
+        "x": 1035.828125,
+        "y": 376.1875,
+        "width": 202.09375,
+        "height": 44.421875,
+        "bottom": 420.609375,
+        "right": 1237.921875
+      },
+      ".year-scale": {
+        "x": 953.578125,
+        "y": 394.984375,
+        "width": 65.796875,
+        "height": 145.6875,
+        "bottom": 540.671875,
+        "right": 1019.375
+      },
+      "#preview-date": {
+        "x": 1179.1875,
+        "y": 474.890625,
+        "width": 93.828125,
+        "height": 24.203125,
+        "bottom": 499.09375,
+        "right": 1273.015625
+      },
+      "#read-button": {
+        "x": 1174.484375,
+        "y": 522.296875,
+        "width": 110.46875,
+        "height": 53,
+        "bottom": 575.296875,
+        "right": 1284.953125
+      },
+      "#deselect": {
+        "x": 1281.140625,
+        "y": 331.296875,
+        "width": 44,
+        "height": 44,
+        "bottom": 375.296875,
+        "right": 1325.140625
+      }
+    },
+    "after": {
+      "#preview": {
+        "x": 843.140625,
+        "y": 374.015625,
+        "width": 470,
+        "height": 235,
+        "bottom": 609.015625,
+        "right": 1313.140625
+      },
+      ".observation-silhouette": {
+        "x": 826.703125,
+        "y": 390.453125,
+        "width": 108.09375,
+        "height": 164.5,
+        "bottom": 554.953125,
+        "right": 934.796875
+      },
+      ".observation-waveform": {
+        "x": 1035.828125,
+        "y": 406.90625,
+        "width": 202.09375,
+        "height": 44.421875,
+        "bottom": 451.328125,
+        "right": 1237.921875
+      },
+      ".year-scale": {
+        "x": 953.578125,
+        "y": 425.703125,
+        "width": 65.796875,
+        "height": 145.6875,
+        "bottom": 571.390625,
+        "right": 1019.375
+      },
+      "#preview-date": {
+        "x": 1179.1875,
+        "y": 505.609375,
+        "width": 93.828125,
+        "height": 24.203125,
+        "bottom": 529.8125,
+        "right": 1273.015625
+      },
+      "#read-button": {
+        "x": 1174.484375,
+        "y": 553.015625,
+        "width": 110.46875,
+        "height": 53,
+        "bottom": 606.015625,
+        "right": 1284.953125
+      },
+      "#deselect": {
+        "x": 1281.140625,
+        "y": 362.015625,
+        "width": 44,
+        "height": 44,
+        "bottom": 406.015625,
+        "right": 1325.140625
+      }
+    }
+  },
+  {
+    "device": "mobile",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "downwardCssPixels": 24,
+    "allMovedTogether": true,
+    "inViewport": true,
+    "readOpened": true,
+    "errors": [],
+    "before": {
+      "#preview": {
+        "x": 14,
+        "y": 557,
+        "width": 362,
+        "height": 181,
+        "bottom": 738,
+        "right": 376
+      },
+      ".observation-silhouette": {
+        "x": 1.34375,
+        "y": 569.65625,
+        "width": 83.25,
+        "height": 126.6875,
+        "bottom": 696.34375,
+        "right": 84.59375
+      },
+      ".observation-waveform": {
+        "x": 162.40625,
+        "y": 582.328125,
+        "width": 155.65625,
+        "height": 34.21875,
+        "bottom": 616.546875,
+        "right": 318.0625
+      },
+      ".year-scale": {
+        "x": 99.0625,
+        "y": 596.8125,
+        "width": 50.671875,
+        "height": 112.21875,
+        "bottom": 709.03125,
+        "right": 149.734375
+      },
+      "#preview-date": {
+        "x": 272.828125,
+        "y": 658.359375,
+        "width": 72.28125,
+        "height": 18.640625,
+        "bottom": 677,
+        "right": 345.109375
+      },
+      "#read-button": {
+        "x": 269.203125,
+        "y": 692.796875,
+        "width": 85.078125,
+        "height": 53,
+        "bottom": 745.796875,
+        "right": 354.28125
+      },
+      "#deselect": {
+        "x": 344,
+        "y": 545,
+        "width": 44,
+        "height": 44,
+        "bottom": 589,
+        "right": 388
+      }
+    },
+    "after": {
+      "#preview": {
+        "x": 14,
+        "y": 581,
+        "width": 362,
+        "height": 181,
+        "bottom": 762,
+        "right": 376
+      },
+      ".observation-silhouette": {
+        "x": 1.34375,
+        "y": 593.65625,
+        "width": 83.25,
+        "height": 126.6875,
+        "bottom": 720.34375,
+        "right": 84.59375
+      },
+      ".observation-waveform": {
+        "x": 162.40625,
+        "y": 606.328125,
+        "width": 155.65625,
+        "height": 34.21875,
+        "bottom": 640.546875,
+        "right": 318.0625
+      },
+      ".year-scale": {
+        "x": 99.0625,
+        "y": 620.8125,
+        "width": 50.671875,
+        "height": 112.21875,
+        "bottom": 733.03125,
+        "right": 149.734375
+      },
+      "#preview-date": {
+        "x": 272.828125,
+        "y": 682.359375,
+        "width": 72.28125,
+        "height": 18.640625,
+        "bottom": 701,
+        "right": 345.109375
+      },
+      "#read-button": {
+        "x": 269.203125,
+        "y": 716.796875,
+        "width": 85.078125,
+        "height": 53,
+        "bottom": 769.796875,
+        "right": 354.28125
+      },
+      "#deselect": {
+        "x": 344,
+        "y": 569,
+        "width": 44,
+        "height": 44,
+        "bottom": 613,
+        "right": 388
+      }
+    }
+  },
+  {
+    "device": "small-mobile",
+    "viewport": {
+      "width": 360,
+      "height": 640
+    },
+    "downwardCssPixels": 24,
+    "allMovedTogether": true,
+    "inViewport": true,
+    "readOpened": true,
+    "errors": [],
+    "before": {
+      "#preview": {
+        "x": 14,
+        "y": 368,
+        "width": 332,
+        "height": 166,
+        "bottom": 534,
+        "right": 346
+      },
+      ".observation-silhouette": {
+        "x": 2.390625,
+        "y": 379.609375,
+        "width": 76.359375,
+        "height": 116.1875,
+        "bottom": 495.796875,
+        "right": 78.75
+      },
+      ".observation-waveform": {
+        "x": 150.109375,
+        "y": 391.234375,
+        "width": 142.75,
+        "height": 31.375,
+        "bottom": 422.609375,
+        "right": 292.859375
+      },
+      ".year-scale": {
+        "x": 92.015625,
+        "y": 404.515625,
+        "width": 46.46875,
+        "height": 102.90625,
+        "bottom": 507.421875,
+        "right": 138.484375
+      },
+      "#preview-date": {
+        "x": 251.375,
+        "y": 460.953125,
+        "width": 66.265625,
+        "height": 17.09375,
+        "bottom": 478.046875,
+        "right": 317.640625
+      },
+      "#read-button": {
+        "x": 248.046875,
+        "y": 491.796875,
+        "width": 78.046875,
+        "height": 53,
+        "bottom": 544.796875,
+        "right": 326.09375
+      },
+      "#deselect": {
+        "x": 314,
+        "y": 356,
+        "width": 44,
+        "height": 44,
+        "bottom": 400,
+        "right": 358
+      }
+    },
+    "after": {
+      "#preview": {
+        "x": 14,
+        "y": 392,
+        "width": 332,
+        "height": 166,
+        "bottom": 558,
+        "right": 346
+      },
+      ".observation-silhouette": {
+        "x": 2.390625,
+        "y": 403.609375,
+        "width": 76.359375,
+        "height": 116.1875,
+        "bottom": 519.796875,
+        "right": 78.75
+      },
+      ".observation-waveform": {
+        "x": 150.109375,
+        "y": 415.234375,
+        "width": 142.75,
+        "height": 31.375,
+        "bottom": 446.609375,
+        "right": 292.859375
+      },
+      ".year-scale": {
+        "x": 92.015625,
+        "y": 428.515625,
+        "width": 46.46875,
+        "height": 102.90625,
+        "bottom": 531.421875,
+        "right": 138.484375
+      },
+      "#preview-date": {
+        "x": 251.375,
+        "y": 484.953125,
+        "width": 66.265625,
+        "height": 17.09375,
+        "bottom": 502.046875,
+        "right": 317.640625
+      },
+      "#read-button": {
+        "x": 248.046875,
+        "y": 515.796875,
+        "width": 78.046875,
+        "height": 53,
+        "bottom": 568.796875,
+        "right": 326.09375
+      },
+      "#deselect": {
+        "x": 314,
+        "y": 380,
+        "width": 44,
+        "height": 44,
+        "bottom": 424,
+        "right": 358
+      }
+    }
+  },
+  {
+    "device": "landscape",
+    "viewport": {
+      "width": 844,
+      "height": 390
+    },
+    "downwardCssPixels": 15.609375,
+    "allMovedTogether": true,
+    "inViewport": true,
+    "readOpened": true,
+    "errors": [],
+    "before": {
+      "#preview": {
+        "x": 393.5625,
+        "y": 110.78125,
+        "width": 430.4375,
+        "height": 215.21875,
+        "bottom": 326,
+        "right": 824
+      },
+      ".observation-silhouette": {
+        "x": 378.5,
+        "y": 125.84375,
+        "width": 99,
+        "height": 150.640625,
+        "bottom": 276.484375,
+        "right": 477.5
+      },
+      ".observation-waveform": {
+        "x": 570.03125,
+        "y": 140.90625,
+        "width": 185.078125,
+        "height": 40.6875,
+        "bottom": 181.59375,
+        "right": 755.109375
+      },
+      ".year-scale": {
+        "x": 494.703125,
+        "y": 158.125,
+        "width": 60.25,
+        "height": 133.421875,
+        "bottom": 291.546875,
+        "right": 554.953125
+      },
+      "#preview-date": {
+        "x": 701.3125,
+        "y": 231.296875,
+        "width": 85.9375,
+        "height": 22.15625,
+        "bottom": 253.453125,
+        "right": 787.25
+      },
+      "#read-button": {
+        "x": 697.015625,
+        "y": 273.953125,
+        "width": 101.171875,
+        "height": 53,
+        "bottom": 326.953125,
+        "right": 798.1875
+      },
+      "#deselect": {
+        "x": 792,
+        "y": 98.78125,
+        "width": 44,
+        "height": 44,
+        "bottom": 142.78125,
+        "right": 836
+      }
+    },
+    "after": {
+      "#preview": {
+        "x": 393.5625,
+        "y": 126.390625,
+        "width": 430.4375,
+        "height": 215.21875,
+        "bottom": 341.609375,
+        "right": 824
+      },
+      ".observation-silhouette": {
+        "x": 378.5,
+        "y": 141.453125,
+        "width": 99,
+        "height": 150.640625,
+        "bottom": 292.09375,
+        "right": 477.5
+      },
+      ".observation-waveform": {
+        "x": 570.03125,
+        "y": 156.515625,
+        "width": 185.078125,
+        "height": 40.6875,
+        "bottom": 197.203125,
+        "right": 755.109375
+      },
+      ".year-scale": {
+        "x": 494.703125,
+        "y": 173.734375,
+        "width": 60.25,
+        "height": 133.421875,
+        "bottom": 307.15625,
+        "right": 554.953125
+      },
+      "#preview-date": {
+        "x": 701.3125,
+        "y": 246.90625,
+        "width": 85.9375,
+        "height": 22.15625,
+        "bottom": 269.0625,
+        "right": 787.25
+      },
+      "#read-button": {
+        "x": 697.015625,
+        "y": 289.5625,
+        "width": 101.171875,
+        "height": 53,
+        "bottom": 342.5625,
+        "right": 798.1875
+      },
+      "#deselect": {
+        "x": 792,
+        "y": 114.390625,
+        "width": 44,
+        "height": 44,
+        "bottom": 158.390625,
+        "right": 836
+      }
+    }
+  }
+]

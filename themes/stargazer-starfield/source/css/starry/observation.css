@@ -3,7 +3,7 @@ body[data-scene=painted] #preview.observation-panel {
   container-type: inline-size;
   display: block;
   width: clamp(470px, 34vw, 760px);
-  top: 60%; right: 3.8%; bottom: auto; left: auto;
+  top: 64%; right: 3.8%; bottom: auto; left: auto;
   transform: translateY(-50%);
   max-height: none; padding: 0; overflow: visible;
   border: 0; background: none; box-shadow: none; backdrop-filter: none;
@@ -78,7 +78,7 @@ body[data-motion=full] .sky-polyhedron { animation: polyhedron-hop 4.8s ease-in-
 body[data-motion=soft] .sky-polyhedron { animation: none !important; }
 @keyframes polyhedron-hop { 0%, 38%, 100% { translate: 0 0; } 48% { translate: 0 -9px; } 59% { translate: 0 1px; } 67% { translate: 0 -3px; } 75% { translate: 0 0; } }
 @media (max-width: 760px) {
-  body[data-scene=painted] #preview.observation-panel { width: calc(100% - 28px); max-width: 430px; top: auto; right: 14px; bottom: max(106px, calc(env(safe-area-inset-bottom) + 92px)); transform: none; max-height: none; }
+  body[data-scene=painted] #preview.observation-panel { width: calc(100% - 28px); max-width: 430px; top: auto; right: 14px; bottom: max(82px, calc(env(safe-area-inset-bottom) + 68px)); transform: none; max-height: none; }
   .observation-silhouette { opacity: .92; }
   .year-row { font-size: max(11px, 2.15cqw); }
   .year-row.is-current .year-number { font-size: max(9px, 1.9cqw); }
@@ -91,6 +91,6 @@ body[data-motion=soft] .sky-polyhedron { animation: none !important; }
   body[data-scene] #gesture-help, body[data-scene] .path-legend { left: 16px; right: 78px; }
 }
 @media (max-height: 500px) and (orientation: landscape) {
-  body[data-scene=painted] #preview.observation-panel { width: min(51vw, 470px); top: 56%; bottom: auto; right: 20px; transform: translateY(-50%); }
+  body[data-scene=painted] #preview.observation-panel { width: min(51vw, 470px); top: 60%; bottom: auto; right: 20px; transform: translateY(-50%); }
   .sky-polyhedron { bottom: 8px; right: 16px; width: 36px; }
 }
