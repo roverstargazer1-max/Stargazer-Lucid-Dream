@@ -18,7 +18,11 @@
     <h2 id="preview-title" class="sr-only"></h2>
     <div class="observation-artboard">
       <img class="observation-waves" src="<%= url_for('images/observation/waves.png') %>" alt="" aria-hidden="true" draggable="false">
-      <img class="observation-silhouette" src="<%= url_for('images/observation/silhouette.png') %>" alt="" aria-hidden="true" draggable="false">
+      <div class="observation-silhouette" aria-hidden="true">
+        <img class="silhouette-still" src="<%= url_for('images/observation/silhouette.png') %>" alt="" draggable="false">
+        <img class="silhouette-frames" src="<%= url_for('images/observation/silhouette-walk-frames.png') %>" alt="" draggable="false" decoding="async" hidden>
+        <canvas hidden></canvas>
+      </div>
       <div class="year-scale" role="group" aria-label="文章发布年份">
         <% for (let offset = -2; offset <= 2; offset++) { %>
         <div class="year-row<%= offset === 0 ? ' is-current' : '' %>">

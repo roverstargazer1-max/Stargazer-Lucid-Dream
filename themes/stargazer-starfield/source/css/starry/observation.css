@@ -22,7 +22,8 @@ body[data-scene=painted] #preview.observation-panel::after { content: none; }
 .observation-artboard { position: relative; width: 100%; aspect-ratio: 2 / 1; }
 .observation-artboard > img { position: absolute; display: block; pointer-events: none; }
 .observation-waves { left: -4%; top: 43%; width: 108%; height: auto; opacity: .6; }
-.observation-silhouette { left: -3.5%; top: 7%; width: 23%; height: 70%; object-fit: contain; }
+.observation-silhouette { position: absolute; left: -3.5%; top: 7%; width: 23%; height: 70%; pointer-events: none; }
+.observation-silhouette > img, .observation-silhouette > canvas { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: contain; }
 .asset-glyphs { display: inline-flex; align-items: center; gap: .3em; line-height: 1; white-space: nowrap; }
 .asset-glyphs img { display: block; width: auto; height: 1em; pointer-events: none; }
 .glyph-dot { display: block; flex: 0 0 .15em; width: .15em; height: .15em; align-self: flex-end; margin-bottom: .045em; background: #fff; }

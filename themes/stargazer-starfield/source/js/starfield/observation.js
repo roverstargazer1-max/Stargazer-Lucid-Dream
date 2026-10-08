@@ -1,4 +1,5 @@
 import { createCallWaveform } from './call-waveform.js';
+import { createSilhouetteWalker } from './silhouette-walker.js';
 
 // Calendar dates are already formatted in the blog's timezone by the index generator.
 // Do not parse them as UTC instants: that can shift the displayed day for visitors.
@@ -36,6 +37,7 @@ export function renderGlyphs(element, value, assetRoot) {
 
 export function createObservationPanel(preview) {
   const waveform = createCallWaveform(preview.querySelector('.observation-waveform'));
+  const walker = createSilhouetteWalker(preview.querySelector('.observation-silhouette'));
   const assetRoot = preview.dataset.assetRoot;
   for (const element of preview.querySelectorAll('[data-glyph-text]')) {
     renderGlyphs(element, element.dataset.glyphText, assetRoot);
@@ -44,7 +46,7 @@ export function createObservationPanel(preview) {
   const dateElement = preview.querySelector('#preview-date');
   let currentDate = null;
   return {
-    render(now, enabled) { waveform.render(now, enabled); },
+    render(now, enabled) { waveform.render(now, enabled); walker.render(now, enabled); },
     update(article) {
       if (article.date === currentDate) return;
       const date = observationDate(article.date);
