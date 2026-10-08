@@ -8,7 +8,6 @@ hexo.extend.generator.register('starry-observation-assets', function () {
   const glyphs = path.join(assets, 'zmd科技小字-修订版7-透明字形', '透明PNG');
   const artwork = path.join(assets, '详情弹窗', '详细工程文件');
   const files = [
-    ['silhouette.png', '人物剪影.png'],
     ['waveform.png', '声音频率.png'],
     ['waves.png', '波浪纹理.png'],
     ['read.png', 'READ.png'],

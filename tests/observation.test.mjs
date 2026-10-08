@@ -21,14 +21,16 @@ test('calendar boundaries and leap days keep the supplied local publication date
   assert.deepEqual(observationDate('2100-01-01').years.map(row => row.label), ['98', '99', '00', '01', '02']);
 });
 
-test('the generated observation artwork and glyphs are byte-identical to the supplied assets', () => {
+test('the generated PNG artwork and glyphs retain the supplied bytes, and the prepared silhouette is published', () => {
   const output = '.preview/stargazer/images/observation';
   const artwork = 'assets/详情弹窗/详细工程文件';
   for (const [name, source] of [
-    ['silhouette.png', '人物剪影.png'], ['waveform.png', '声音频率.png'],
+    ['waveform.png', '声音频率.png'],
     ['waves.png', '波浪纹理.png'], ['read.png', 'READ.png'], ['close.png', '退出按钮.png'],
     ['polyhedron.png', '右下角跳动几何块.png'], ['starlink.png', 'STARLINK.png'], ['observation-id.png', 'OBS&ID.png'],
   ]) assert.deepEqual(fs.readFileSync(path.join(output, name)), fs.readFileSync(path.join(artwork, source)), name);
+  assert.deepEqual(fs.readFileSync(path.join(output, 'silhouette.png')),
+    fs.readFileSync('themes/stargazer-starfield/source/images/observation/silhouette.png'));
   const crops = JSON.parse(fs.readFileSync(path.join(artwork, 'supplement-crops/crops.json')));
   for (const name of Object.keys(crops.rectangles)) {
     assert.deepEqual(fs.readFileSync(path.join(output, name)),

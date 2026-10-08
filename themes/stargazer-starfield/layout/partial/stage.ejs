@@ -1,3 +1,4 @@
+<link rel="preload" as="image" href="<%= url_for(theme.scene.painted_sky) %>" fetchpriority="high">
 <main id="world" aria-label="星空探索">
   <canvas id="sky" aria-hidden="true"></canvas>
   <div class="grain" aria-hidden="true"></div>
@@ -77,7 +78,7 @@
   <div id="room-stage" class="room-stage">
     <picture>
       <source media="(max-width: 760px)" srcset="<%= url_for(theme.scene.room_mobile) %>">
-      <img class="room-image" src="<%= url_for(theme.scene.room_desktop) %>" alt="夜色里的窗边，窗外是深蓝天空">
+      <img class="room-image" src="<%= url_for(theme.scene.room_desktop) %>" alt="夜色里的窗边，窗外是深蓝天空" fetchpriority="high">
     </picture>
     <button id="window-entry" type="button" aria-label="穿过窗户，进入星空"></button>
       <svg class="window-invitation window-invitation-wide" viewBox="0 0 1672 941" aria-hidden="true" focusable="false">
