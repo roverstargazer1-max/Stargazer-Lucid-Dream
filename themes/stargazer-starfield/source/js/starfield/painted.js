@@ -37,8 +37,10 @@ const skyStars=stars.concat(galaxyStars);
 export function paintPaintedSky(ctx,w,h,camera,settings,ambient){
   ctx.fillStyle='#031a87';ctx.fillRect(0,0,w,h);
   const ready=paintDomeEnvironment(ctx,w,h,camera,settings,plate);
-  document.body.dataset.domeRenderer=ready?'webgl':'loading';
-  document.body.dataset.liveWindow=ready&&windowMasks.every(mask=>mask.complete&&mask.naturalWidth>0)?'ready':'loading';
+  const rendererState=ready?'webgl':'loading';
+  const windowState=ready&&windowMasks.every(mask=>mask.complete&&mask.naturalWidth>0)?'ready':'loading';
+  if(document.body.dataset.domeRenderer!==rendererState)document.body.dataset.domeRenderer=rendererState;
+  if(document.body.dataset.liveWindow!==windowState)document.body.dataset.liveWindow=windowState;
   // Distant decoration shares the article hemisphere and camera, without a screen-space offset.
   for(let index=0;index<skyStars.length;index+=ambient.backgroundStride||1){
     const star=skyStars[index];

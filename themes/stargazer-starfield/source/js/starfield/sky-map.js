@@ -23,7 +23,8 @@ export function createSkyMap(world,{onLook,onOverview,onReset}){
     if(active&&pose!==lastPose)lastActivity=now;
     lastPose=pose;
     wide=camera.zoom<(wide?.64:.58);
-    document.body.dataset.skyView=wide?'wide':'normal';
+    const skyView=wide?'wide':'normal';
+    if(document.body.dataset.skyView!==skyView)document.body.dataset.skyView=skyView;
     if(now>=manualUntil||!active)manualUntil=0;
     const compactNote=!!selected&&w<=760&&h>w&&h<=680;
     const periodHint=w<=760&&h>w&&!document.getElementById('time-cue').hidden;
@@ -37,7 +38,9 @@ export function createSkyMap(world,{onLook,onOverview,onReset}){
     if(toggle.getAttribute('aria-expanded')!==String(shown))toggle.setAttribute('aria-expanded',String(shown));
     const label=manualUntil?'收起星空方位图':'显示星空方位图';
     if(toggle.getAttribute('aria-label')!==label)toggle.setAttribute('aria-label',label);
-    panel.classList.toggle('is-visible',shown);panel.inert=!shown;controls.hidden=!active;
+    if(panel.classList.contains('is-visible')!==shown)panel.classList.toggle('is-visible',shown);
+    if(panel.inert===shown)panel.inert=!shown;
+    if(controls.hidden===active)controls.hidden=!active;
     if(!shown)return;
     const key=pose+selected+[w,h,settings.cx,settings.cy,settings.focal].join(',')+articles.map(a=>[a.id,a.point.x.toFixed(0),a.point.y.toFixed(0),a.point.z.toFixed(0)].join(',')).join(';');
     if(key===lastData)return;lastData=key;

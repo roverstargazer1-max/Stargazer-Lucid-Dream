@@ -95,7 +95,10 @@ export function createInteractiveClouds(world,isSoft=()=>matchMedia('(prefers-re
         if(!blocked&&center.x>=22&&center.x<=w-22&&center.y>=100&&center.y<=h-65)visibleButtons.add(cloud.id);
         cloud.button.style.left=center.x+'px';cloud.button.style.top=center.y+'px';
       }
-      for(const cloud of clouds)cloud.button.hidden=!visibleButtons.has(cloud.id);
+      for(const cloud of clouds){
+        const hidden=!visibleButtons.has(cloud.id);
+        if(cloud.button.hidden!==hidden)cloud.button.hidden=hidden;
+      }
     }
   };
 }

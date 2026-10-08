@@ -89,6 +89,7 @@ async function start() {
   let lineOpacity = 1;
   let lastCamera = null;
   let lastFrame = 0;
+  let restingFrameDrawn = false;
   const meteors = [];
   const egg = document.getElementById('egg-dialog');
   const renderBudget = createRenderBudget(navigator);
@@ -219,6 +220,7 @@ async function start() {
       openNote('灯还亮着。', '这一页还没有写完。\n\n窗外的星星里，放着一些日常、念头和未眠时写下的文字。');
     },
     onMotion(value) {
+      restingFrameDrawn = false;
       reducedMotion = value;
       const motionButton = document.getElementById('motion-toggle');
       motionButton.textContent = value ? '轻过渡' : '镜头推进';
@@ -254,6 +256,7 @@ async function start() {
   requestAnimationFrame(animate);
 
   function resize() {
+    restingFrameDrawn = false;
     width = innerWidth;
     height = innerHeight;
     applyRenderQuality();
@@ -789,7 +792,7 @@ async function start() {
     ctx.clearRect(0, 0, width, height);
     const seconds = reducedMotion || !renderBudget.current.ambientMotion ? null : ambient.seconds;
     const clarity = arrival ? entranceFrame(now - arrival.start).clarity : 1;
-    body.style.setProperty('--sky-clarity', String(clarity));
+    if (body.style.getPropertyValue('--sky-clarity') !== String(clarity)) body.style.setProperty('--sky-clarity', String(clarity));
     paintPaintedSky(ctx, width, height, camera, projectionSettings(), { x: ambient.x, y: ambient.y, seconds, clarity, backgroundStride: renderBudget.current.backgroundStride });
     if (animationStarted && body.dataset.domeRenderer !== 'webgl') throw new Error('The starfield renderer stopped being available.');
     visibleStars.clear();
@@ -800,7 +803,8 @@ async function start() {
       const projected = project(positionOf(item));
       const point = projected && Number.isFinite(projected.x) && Number.isFinite(projected.y) ? projected : null;
       const target = starTargets.get(item.id);
-      target.hidden = !isStarReachable(point, width, height, obstacles) || roomScene?.active || Boolean(arrival);
+      const hidden = Boolean(!isStarReachable(point, width, height, obstacles) || roomScene?.active || arrival);
+      if (target.hidden !== hidden) target.hidden = hidden;
       if (!point) continue;
       projectedStars.set(item.id, point);
       if (!target.hidden) visibleStars.set(item.id, point);
@@ -888,7 +892,7 @@ async function start() {
       guide.style.transform = 'translate(-50%,-50%)'; guide.textContent = '✧';
       guide.onclick = () => activateStar(target.id); guide.hidden = false;
     }
-    document.getElementById('path-legend').textContent = selected && mode === 'relation' && (relationsByArticle.get(selected) || []).length ? '实线：文章关联' : '虚线：探索路径';
+    setText(document.getElementById('path-legend'), selected && mode === 'relation' && (relationsByArticle.get(selected) || []).length ? '实线：文章关联' : '虚线：探索路径');
   }
 
   function drawGuideLine(origin, target) {
@@ -951,7 +955,12 @@ async function start() {
       if (!reader.open && !egg.open && !roomScene?.active && !reducedMotion) ambient.seconds += delta / 1000;
       ambient.x += (ambient.targetX - ambient.x) * .035;
       ambient.y += (ambient.targetY - ambient.y) * .035;
-      drawScene(now);
+      // Sky/cloud motion already pauses at the window and while reading. Keep
+      // that frame until a resize, transition or meteor changes it. CSS micro-motion continues.
+      const staticScene = !travel && !arrival && !meteors.length &&
+        ((reader.open && body.dataset.reading === 'open') || (roomScene?.active && body.dataset.room === 'inside'));
+      if (!staticScene || !restingFrameDrawn) drawScene(now);
+      restingFrameDrawn = Boolean(staticScene);
       polyhedron.render(now, !reducedMotion && !document.hidden && !roomScene?.active && !reader.open);
       skyMap.update(camera, projectionSettings(), articles.map(item => ({ id: item.id, point: positionOf(item) })), selected, !reader.open && !egg.open && !arrival && !roomScene?.active && !collectionOpen, width, height, now);
       for (let i = meteors.length - 1; i >= 0; i--) {
@@ -964,7 +973,6 @@ async function start() {
       }
       if (timeCueUntil && now > timeCueUntil) document.getElementById('time-cue').hidden = true;
       starMotion.tick(now);
-      updateProgress();
       if (!reader.open && !egg.open && !document.hidden && renderBudget.sample(performance.now() - renderStart)) applyRenderQuality();
       lastFrame = now;
       requestAnimationFrame(animate);
@@ -988,10 +996,10 @@ async function start() {
     renderReadingRelations(articleNode, revealed);
     const total = Math.max(1, content.offsetTop + content.offsetHeight);
     const percent = Math.min(100, Math.round((scroller.scrollTop + scroller.clientHeight) / total * 100));
-    document.getElementById('reading-progress').textContent = `${complete ? 100 : percent}%`;
-    document.getElementById('reading-state').textContent = complete
+    setText(document.getElementById('reading-progress'), `${complete ? 100 : percent}%`);
+    setText(document.getElementById('reading-state'), complete
       ? (revealed && hasReasons ? '已到文末 · 关联理由已显露' : '已到文末')
-      : '沿着文字，慢慢往下';
+      : '沿着文字，慢慢往下');
   }
 
   function renderReadingRelations(articleNode, revealed) {
@@ -999,7 +1007,8 @@ async function start() {
     if (!section) return;
     const articleId = articleNode.dataset.starryId;
     const authored = relationsByArticle.get(articleId) || [];
-    section.hidden = !revealed || authored.length === 0;
+    const hidden = !revealed || authored.length === 0;
+    if (section.hidden !== hidden) section.hidden = hidden;
     if (section.hidden) return;
     if (section.dataset.renderedArticleId === articleId) return;
 
@@ -1029,6 +1038,7 @@ async function start() {
   }
 
   function wireControls() {
+    document.addEventListener('visibilitychange', () => { restingFrameDrawn = false; });
     document.getElementById('motion-toggle').addEventListener('click', () => roomScene.setSoft(!reducedMotion));
     document.getElementById('brand').addEventListener('click', event => { event.preventDefault(); enterHome(); });
     document.getElementById('close-egg').addEventListener('click', () => egg.close());
@@ -1069,6 +1079,10 @@ async function start() {
       void openReaderFromCollection(link.dataset.starryArticleId, link);
     });
     scroller.addEventListener('scroll', updateProgress, { passive: true });
+    // Images, fonts and player expansion can change the end position without a scroll.
+    const readingResize = new ResizeObserver(updateProgress);
+    readingResize.observe(readerSlot);
+    readingResize.observe(scroller);
     scroller.addEventListener('click', event => {
       const link = event.target.closest('.reading-relation-link[data-starry-article-id]');
       const target = link && articleById.get(link.dataset.starryArticleId);
@@ -1240,6 +1254,10 @@ async function start() {
       yaw: value(from.yaw, to.yaw), pitch: value(from.pitch, to.pitch), zoom: value(from.zoom, to.zoom),
     };
   }
+}
+
+function setText(element, value) {
+  if (element.textContent !== value) element.textContent = value;
 }
 
 function fallback(error) {

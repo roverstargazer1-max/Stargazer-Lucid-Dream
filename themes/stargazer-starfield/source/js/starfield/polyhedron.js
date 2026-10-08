@@ -57,7 +57,8 @@ export function createPolyhedron(element) {
   return {
     render(now, enabled) {
       if (!image.complete || !image.naturalWidth) {
-        image.hidden = false; canvas.hidden = true;
+        if (image.hidden) image.hidden = false;
+        if (!canvas.hidden) canvas.hidden = true;
         previousTime = null; rotationTime = 0; lastPaint = -Infinity;
         return;
       }
@@ -65,7 +66,8 @@ export function createPolyhedron(element) {
         if (previousTime !== null) rotationTime += Math.min(100, now - previousTime);
         previousTime = now;
       } else { previousTime = null; rotationTime = 0; }
-      canvas.hidden = false; image.hidden = true;
+      if (canvas.hidden) canvas.hidden = false;
+      if (!image.hidden) image.hidden = true;
       const side = Math.max(1, Math.round(canvas.clientWidth * Math.min(devicePixelRatio || 1, 2)));
       if (enabled === wasEnabled && canvas.width === side && (!enabled || now - lastPaint < 1000 / 30)) return;
       wasEnabled = enabled; lastPaint = now;
