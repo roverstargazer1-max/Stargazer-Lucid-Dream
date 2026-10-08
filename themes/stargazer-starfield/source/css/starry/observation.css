@@ -11,9 +11,17 @@ body[data-scene=painted] #preview.observation-panel {
 }
 body[data-scene=painted] #preview.observation-panel::before,
 body[data-scene=painted] #preview.observation-panel::after { content: none; }
+.observation-panel, .observation-panel *, .sky-polyhedron, .sky-polyhedron * {
+  -webkit-user-select: none;
+  user-select: none;
+}
+.observation-panel img, .sky-polyhedron img {
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
+}
 .observation-artboard { position: relative; width: 100%; aspect-ratio: 2 / 1; }
 .observation-artboard > img { position: absolute; display: block; pointer-events: none; }
-.observation-waves { left: -4%; top: 43%; width: 108%; height: auto; opacity: .4; }
+.observation-waves { left: -4%; top: 43%; width: 108%; height: auto; opacity: .6; }
 .observation-silhouette { left: -3.5%; top: 7%; width: 23%; height: 70%; object-fit: contain; }
 .asset-glyphs { display: inline-flex; align-items: center; gap: .3em; line-height: 1; white-space: nowrap; }
 .asset-glyphs img { display: block; width: auto; height: 1em; pointer-events: none; }
