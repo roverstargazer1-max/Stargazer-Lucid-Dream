@@ -56,6 +56,7 @@
 </head>
 <body class="<%= isStarryArticle || isStarryCollection ? 'has-starry-experience' : '' %><%= isStarryArticle ? ' article-page' : '' %>"
       data-scene="painted"
+      data-default-motion="<%= theme.scene.motion === 'soft' ? 'soft' : 'full' %>"
       data-starry-article-id="<%= isStarryArticle ? page.starry_id : '' %>"
       data-starry-collection-kind="<%= collectionKind %>"
       data-starry-collection-path="<%= isStarryCollection ? url_for(collectionUrl) : '' %>"

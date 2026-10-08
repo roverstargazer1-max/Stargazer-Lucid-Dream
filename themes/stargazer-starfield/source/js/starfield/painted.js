@@ -97,15 +97,14 @@ export function paintPaintedStar(ctx,x,y,id,{depth=1800,active=false,hover=false
 export function createRoom({onEnter,onProgress,onEntered,onReturnStart,onReturnProgress,onReturned,onJournal,onMotion,startOutside=false}){
   const room=document.getElementById('room'),stage=document.getElementById('room-stage');
   const entry=document.getElementById('window-entry'),world=document.getElementById('world');
-  const preference=matchMedia('(prefers-reduced-motion: reduce)');
   const choice=new URLSearchParams(location.search).get('motion');
-  let flight=null,short=choice==='full'?false:choice==='soft'||preference.matches;
-  const motion=document.getElementById('entry-motion');
+  const mode=choice==='full'||choice==='soft'?choice:document.body.dataset.defaultMotion;
+  let flight=null,short=mode==='soft';
   function setMotion(){
-    motion.setAttribute('aria-pressed',String(short));motion.textContent=short?'轻过渡 · 开':'轻过渡';onMotion(short);
     document.body.dataset.motion=short?'soft':'full';
+    onMotion(short);
   }
-  motion.onclick=()=>{short=!short;setMotion();};setMotion();
+  setMotion();
   function show(restoreFocus=true){
     if(flight){cancelAnimationFrame(flight.raf);flight.timeline.cancel();flight=null;}
     onReturned();room.hidden=false;room.inert=false;world.inert=true;

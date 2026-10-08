@@ -19,6 +19,8 @@ npm run start:starfield
 
 ## 内容与配置
 
+默认动效采用镜头推进，窗边和星空界面均不显示方式切换按钮。轻过渡逻辑保留；以后只需把本主题 `_config.yml` 中的 `scene.motion` 从 `full` 改为 `soft`，重新生成预览即可切换。`?motion=soft`／`?motion=full` 保留为开发检查入口。
+
 文章、页面和图片共享根目录的 `source/`。主题场景与首页重点文章设置在本目录 `_config.yml`；预览和生产输出选择在根目录 `_config.stargazer-preview.yml`、`_config.stargazer.yml`。友链继续读取 `_config.hexo-theme-kira.yml`。
 
 文章关系填写在 Front-matter 的 `related` 中，引用文件名而非标题，不含 `.md`。每对文章只配置一次，自动双向；理由选填，未写理由仍保留文末跳转入口。修改文件名时同步修改引用；修改标题不影响引用、旧链接或星位。

@@ -1,5 +1,6 @@
 featured_article_id: dream-begins
 scene:
+  motion: full # full：镜头推进；soft：轻过渡
   painted_sky: image/starfield/painted-sky-v11.webp
   room_desktop: image/starfield/room-poster-detail-v20.webp
   room_mobile: image/starfield/room-portrait-v11.webp

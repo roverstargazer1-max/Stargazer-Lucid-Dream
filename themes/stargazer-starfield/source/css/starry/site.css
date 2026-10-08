@@ -86,9 +86,7 @@ body[data-room="inside"] .window-invitation { opacity: 1; transition-duration: .
 @media (prefers-reduced-motion: reduce) { .window-dust > * { animation: none; opacity: .2; transform: none; } }
 #room-journal { position: absolute; left: 6%; top: 88%; width: 13%; height: 7%; border-radius: 50%; }
 #room-journal:hover, #room-journal:focus-visible { box-shadow: 0 0 25px #5bd9ff44; outline: 1px solid #8de5ff66; }
-.entry-motion { position: absolute; right: 28px; bottom: 22px; z-index: 3; min-height: 44px; padding: 8px 12px; color: #d9e3eb; background: #102746b3; border-radius: 2px; font-size: 12px; letter-spacing: 1px; }
 body[data-room="inside"] #world, body[data-room="entering"] #world > :not(#sky), body[data-room="returning"] #world > :not(#sky) { visibility: hidden; }
-body[data-room="entering"] .entry-motion, body[data-room="returning"] .entry-motion { opacity: 0; }
 
 #collection-panel { position: fixed; inset: 0; max-width: none; max-height: none; padding: 0; overflow: hidden; color: var(--paper-ink); background: var(--paper); border: 1px solid #bccbe4; box-shadow: 0 24px 100px #00112877; }
 #collection-panel { width: min(760px, calc(100% - 48px)); height: min(820px, calc(100% - 48px)); border-radius: 5px 9px 4px 7px; }
@@ -157,7 +155,6 @@ body[data-room="entering"] .entry-motion, body[data-room="returning"] .entry-mot
   #window-entry { left: 10%; top: 7%; width: 81%; height: 67%; clip-path: polygon(9% 0, 92% 0, 100% 85%, 75% 94%, 69% 74%, 53% 69%, 44% 79%, 39% 97%, 18% 93%, 0 78%); }
   .window-invitation { display: none; }
   #room-journal { left: 7%; top: 84%; width: 30%; height: 8%; }
-  .entry-motion { right: 16px; bottom: 16px; }
   #exploration-controls { top: max(12px, env(safe-area-inset-top)); right: 14px; gap: 6px; }
   .mode-switch { gap: 4px; }
   .mode-switch button { min-width: 36px; font-size: 11px; }

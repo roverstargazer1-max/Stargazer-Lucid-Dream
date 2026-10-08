@@ -46,8 +46,7 @@ async function start() {
   const collectionSlot = document.getElementById('collection-content-slot');
   const fallbackArticle = document.querySelector('#static-article-fallback .article[data-starry-id]');
   const previewMemory = { camera: null, selected: null, phase: 'idle' };
-  const motionPreference = matchMedia('(prefers-reduced-motion: reduce)');
-  let reducedMotion = motionPreference.matches;
+  let reducedMotion = body.dataset.defaultMotion === 'soft';
   let roomScene = null;
   let clouds = null;
   let starMotion = null;
@@ -220,10 +219,6 @@ async function start() {
     onMotion(value) {
       restingFrameDrawn = false;
       reducedMotion = value;
-      const motionButton = document.getElementById('motion-toggle');
-      motionButton.textContent = value ? '轻过渡' : '镜头推进';
-      motionButton.setAttribute('aria-pressed', String(value));
-      motionButton.setAttribute('aria-label', value ? '开启镜头推进动画' : '减少镜头动画');
       if (body.dataset.room === 'inside') body.style.setProperty('--sky-clarity', value ? '1' : '0');
     },
   });
@@ -1024,7 +1019,6 @@ async function start() {
 
   function wireControls() {
     document.addEventListener('visibilitychange', () => { restingFrameDrawn = false; });
-    document.getElementById('motion-toggle').addEventListener('click', () => roomScene.setSoft(!reducedMotion));
     document.getElementById('brand').addEventListener('click', event => { event.preventDefault(); enterHome(); });
     document.getElementById('close-egg').addEventListener('click', () => egg.close());
     document.getElementById('signal-egg').addEventListener('click', () => {
