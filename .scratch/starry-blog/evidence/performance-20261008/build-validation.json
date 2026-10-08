@@ -1,0 +1,8 @@
+{
+  "node": "22.19.0",
+  "npm": "10.9.3",
+  "tests": 26,
+  "passes": 26,
+  "failures": 0,
+  "generatedFiles": 145
+}

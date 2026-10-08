@@ -1,0 +1,4015 @@
+{
+  "label": "optimized",
+  "browser": "149.0.7827.55",
+  "headless": true,
+  "repetitions": 3,
+  "results": [
+    {
+      "device": "desktop",
+      "repeat": 0,
+      "initialBytes": 3059771,
+      "samples": [
+        {
+          "name": "room",
+          "callbacks": 241,
+          "intervalP95Ms": 17.59999999999991,
+          "intervalsOver34Ms": 0,
+          "progressMutations": 0,
+          "mainThreadBusyPercent": 7.511742010483075,
+          "scriptMsPerSecond": 11.302129622255649,
+          "layoutMsPerSecond": 2.924302810731356,
+          "styleMsPerSecond": 13.890500745418137,
+          "jsHeapMiB": 2.9214859008789062,
+          "domNodes": 577,
+          "room": "inside",
+          "quality": "full",
+          "renderer": "webgl",
+          "heap": 4577943,
+          "canvases": [
+            {
+              "id": "sky",
+              "width": 2880,
+              "height": 1800
+            },
+            {
+              "id": "",
+              "width": 126,
+              "height": 126
+            },
+            {
+              "id": "",
+              "width": 360,
+              "height": 360
+            }
+          ]
+        },
+        {
+          "name": "sky",
+          "callbacks": 241,
+          "intervalP95Ms": 17.600000000000364,
+          "intervalsOver34Ms": 0,
+          "progressMutations": 0,
+          "mainThreadBusyPercent": 9.889050155121193,
+          "scriptMsPerSecond": 54.34514529651905,
+          "layoutMsPerSecond": 0,
+          "styleMsPerSecond": 10.59449446022172,
+          "jsHeapMiB": 4.380584716796875,
+          "domNodes": 566,
+          "room": "outside",
+          "quality": "full",
+          "renderer": "webgl",
+          "heap": 6110335,
+          "canvases": [
+            {
+              "id": "sky",
+              "width": 2880,
+              "height": 1800
+            },
+            {
+              "id": "",
+              "width": 126,
+              "height": 126
+            },
+            {
+              "id": "",
+              "width": 360,
+              "height": 360
+            }
+          ]
+        },
+        {
+          "name": "selected",
+          "callbacks": 241,
+          "intervalP95Ms": 17.599999999998545,
+          "intervalsOver34Ms": 0,
+          "progressMutations": 0,
+          "mainThreadBusyPercent": 10.160263917223787,
+          "scriptMsPerSecond": 50.11013160989753,
+          "layoutMsPerSecond": 0,
+          "styleMsPerSecond": 11.075452611045385,
+          "jsHeapMiB": 4.532508850097656,
+          "domNodes": 1177,
+          "room": "outside",
+          "quality": "full",
+          "renderer": "webgl",
+          "heap": 6267962,
+          "canvases": [
+            {
+              "id": "sky",
+              "width": 2880,
+              "height": 1800
+            },
+            {
+              "id": "",
+              "width": 126,
+              "height": 126
+            },
+            {
+              "id": "",
+              "width": 360,
+              "height": 360
+            }
+          ]
+        },
+        {
+          "name": "reader",
+          "callbacks": 241,
+          "intervalP95Ms": 17.600000000002183,
+          "intervalsOver34Ms": 0,
+          "progressMutations": 1,
+          "mainThreadBusyPercent": 4.528870022518101,
+          "scriptMsPerSecond": 11.043263835948759,
+          "layoutMsPerSecond": 2.8376022435607915,
+          "styleMsPerSecond": 8.113916940689645,
+          "jsHeapMiB": 5.137397766113281,
+          "domNodes": 1544,
+          "room": "outside",
+          "quality": "full",
+          "renderer": "webgl",
+          "heap": 6967477,
+          "canvases": [
+            {
+              "id": "sky",
+              "width": 2880,
+              "height": 1800
+            },
+            {
+              "id": "",
+              "width": 126,
+              "height": 126
+            },
+            {
+              "id": "",
+              "width": 360,
+              "height": 360
+            }
+          ]
+        }
+      ],
+      "loading": {
+        "paints": [
+          {
+            "name": "first-paint",
+            "start": 116,
+            "duration": 0
+          },
+          {
+            "name": "first-contentful-paint",
+            "start": 116,
+            "duration": 0
+          }
+        ],
+        "lcp": [
+          {
+            "name": "",
+            "start": 368,
+            "duration": 0,
+            "size": 663
+          }
+        ],
+        "longTasks": [],
+        "resources": [
+          {
+            "path": "/css/starry/site.css",
+            "type": "link",
+            "bytes": 18425,
+            "decoded": 18425,
+            "duration": 2.4000000059604645
+          },
+          {
+            "path": "/css/starry/scene.css",
+            "type": "link",
+            "bytes": 13357,
+            "decoded": 13357,
+            "duration": 2.300000011920929
+          },
+          {
+            "path": "/css/starry/motion.css",
+            "type": "link",
+            "bytes": 4527,
+            "decoded": 4527,
+            "duration": 2.2999999821186066
+          },
+          {
+            "path": "/css/starry/reader.css",
+            "type": "link",
+            "bytes": 7150,
+            "decoded": 7150,
+            "duration": 2.5
+          },
+          {
+            "path": "/css/starry/observation.css",
+            "type": "link",
+            "bytes": 7416,
+            "decoded": 7416,
+            "duration": 2.5
+          },
+          {
+            "path": "/image/starfield/painted-sky-v11.webp",
+            "type": "link",
+            "bytes": 1090084,
+            "decoded": 1090084,
+            "duration": 3.199999988079071
+          },
+          {
+            "path": "/images/observation/silhouette.png",
+            "type": "img",
+            "bytes": 248138,
+            "decoded": 248138,
+            "duration": 4.9000000059604645
+          },
+          {
+            "path": "/images/observation/waves.png",
+            "type": "img",
+            "bytes": 57383,
+            "decoded": 57383,
+            "duration": 5.0999999940395355
+          },
+          {
+            "path": "/images/observation/year-pointer.png",
+            "type": "img",
+            "bytes": 10710,
+            "decoded": 10710,
+            "duration": 5.0999999940395355
+          },
+          {
+            "path": "/images/observation/dial-bracket.png",
+            "type": "img",
+            "bytes": 5454,
+            "decoded": 5454,
+            "duration": 5.699999988079071
+          },
+          {
+            "path": "/images/observation/diamond.png",
+            "type": "img",
+            "bytes": 4341,
+            "decoded": 4341,
+            "duration": 5.5999999940395355
+          },
+          {
+            "path": "/images/observation/dial-ticks.png",
+            "type": "img",
+            "bytes": 7310,
+            "decoded": 7310,
+            "duration": 5.9000000059604645
+          },
+          {
+            "path": "/images/observation/waveform.png",
+            "type": "img",
+            "bytes": 52269,
+            "decoded": 52269,
+            "duration": 6.199999988079071
+          },
+          {
+            "path": "/images/observation/starlink.png",
+            "type": "img",
+            "bytes": 4106,
+            "decoded": 4106,
+            "duration": 6.0999999940395355
+          },
+          {
+            "path": "/images/observation/call-word.png",
+            "type": "img",
+            "bytes": 5893,
+            "decoded": 5893,
+            "duration": 6.4000000059604645
+          },
+          {
+            "path": "/images/observation/call-underline.png",
+            "type": "img",
+            "bytes": 4047,
+            "decoded": 4047,
+            "duration": 6.9000000059604645
+          },
+          {
+            "path": "/images/observation/date-boxes.png",
+            "type": "img",
+            "bytes": 22759,
+            "decoded": 22759,
+            "duration": 6.9000000059604645
+          },
+          {
+            "path": "/images/observation/hour-label.png",
+            "type": "img",
+            "bytes": 4432,
+            "decoded": 4432,
+            "duration": 7.300000011920929
+          },
+          {
+            "path": "/images/observation/observation-id.png",
+            "type": "img",
+            "bytes": 3200,
+            "decoded": 3200,
+            "duration": 7.200000017881393
+          },
+          {
+            "path": "/images/observation/close.png",
+            "type": "img",
+            "bytes": 4386,
+            "decoded": 4386,
+            "duration": 7.9000000059604645
+          },
+          {
+            "path": "/images/observation/read-rule.png",
+            "type": "img",
+            "bytes": 11171,
+            "decoded": 11171,
+            "duration": 7.9000000059604645
+          },
+          {
+            "path": "/image/starfield/room-poster-detail-v20.webp",
+            "type": "img",
+            "bytes": 1052364,
+            "decoded": 1052364,
+            "duration": 3.899999976158142
+          },
+          {
+            "path": "/js/starfield/app.js",
+            "type": "script",
+            "bytes": 59335,
+            "decoded": 59335,
+            "duration": 3.199999988079071
+          },
+          {
+            "path": "/images/observation/read.png",
+            "type": "img",
+            "bytes": 4455,
+            "decoded": 4455,
+            "duration": 8.199999988079071
+          },
+          {
+            "path": "/images/observation/polyhedron.png",
+            "type": "img",
+            "bytes": 220772,
+            "decoded": 220772,
+            "duration": 8.699999988079071
+          },
+          {
+            "path": "/js/starfield/static-page.js",
+            "type": "script",
+            "bytes": 234,
+            "decoded": 234,
+            "duration": 3.2999999821186066
+          },
+          {
+            "path": "/js/starfield/audio.js",
+            "type": "script",
+            "bytes": 3088,
+            "decoded": 3088,
+            "duration": 2.5
+          },
+          {
+            "path": "/js/starfield/interactive-clouds.js",
+            "type": "script",
+            "bytes": 5653,
+            "decoded": 5653,
+            "duration": 2.5999999940395355
+          },
+          {
+            "path": "/js/starfield/painted.js",
+            "type": "script",
+            "bytes": 10229,
+            "decoded": 10229,
+            "duration": 2.800000011920929
+          },
+          {
+            "path": "/js/starfield/motion.js",
+            "type": "script",
+            "bytes": 10230,
+            "decoded": 10230,
+            "duration": 2.9000000059604645
+          },
+          {
+            "path": "/js/starfield/experience.js",
+            "type": "script",
+            "bytes": 818,
+            "decoded": 818,
+            "duration": 3.0999999940395355
+          },
+          {
+            "path": "/js/starfield/dome.js",
+            "type": "script",
+            "bytes": 4168,
+            "decoded": 4168,
+            "duration": 2.800000011920929
+          },
+          {
+            "path": "/js/starfield/sky-map.js",
+            "type": "script",
+            "bytes": 6322,
+            "decoded": 6322,
+            "duration": 3.5
+          },
+          {
+            "path": "/js/starfield/navigation.js",
+            "type": "script",
+            "bytes": 2470,
+            "decoded": 2470,
+            "duration": 3.7000000178813934
+          },
+          {
+            "path": "/js/starfield/render-budget.js",
+            "type": "script",
+            "bytes": 1150,
+            "decoded": 1150,
+            "duration": 3.800000011920929
+          },
+          {
+            "path": "/js/starfield/star-targets.js",
+            "type": "script",
+            "bytes": 1124,
+            "decoded": 1124,
+            "duration": 4.700000017881393
+          },
+          {
+            "path": "/js/starfield/observation.js",
+            "type": "script",
+            "bytes": 2398,
+            "decoded": 2398,
+            "duration": 4.800000011920929
+          },
+          {
+            "path": "/js/starfield/dome-renderer.js",
+            "type": "script",
+            "bytes": 10316,
+            "decoded": 10316,
+            "duration": 5
+          },
+          {
+            "path": "/js/starfield/polyhedron.js",
+            "type": "script",
+            "bytes": 4642,
+            "decoded": 4642,
+            "duration": 4.899999976158142
+          },
+          {
+            "path": "/starry/index.json",
+            "type": "fetch",
+            "bytes": 9782,
+            "decoded": 9782,
+            "duration": 2.199999988079071
+          },
+          {
+            "path": "/image/starfield/room-window-mask-v17.svg",
+            "type": "img",
+            "bytes": 1297,
+            "decoded": 1297,
+            "duration": 2
+          },
+          {
+            "path": "/image/starfield/room-window-portrait-mask-v17.svg",
+            "type": "img",
+            "bytes": 1089,
+            "decoded": 1089,
+            "duration": 1.9000000059604645
+          },
+          {
+            "path": "/images/observation/glyphs/Y.png",
+            "type": "img",
+            "bytes": 13310,
+            "decoded": 13310,
+            "duration": 1.899999976158142
+          },
+          {
+            "path": "/images/observation/glyphs/E.png",
+            "type": "img",
+            "bytes": 2770,
+            "decoded": 2770,
+            "duration": 3
+          },
+          {
+            "path": "/images/observation/glyphs/M.png",
+            "type": "img",
+            "bytes": 11475,
+            "decoded": 11475,
+            "duration": 3.199999988079071
+          },
+          {
+            "path": "/images/observation/glyphs/D.png",
+            "type": "img",
+            "bytes": 6630,
+            "decoded": 6630,
+            "duration": 3.899999976158142
+          },
+          {
+            "path": "/images/observation/glyphs/O.png",
+            "type": "img",
+            "bytes": 8776,
+            "decoded": 8776,
+            "duration": 4
+          },
+          {
+            "path": "/images/observation/glyphs/A.png",
+            "type": "img",
+            "bytes": 17010,
+            "decoded": 17010,
+            "duration": 3.9000000059604645
+          },
+          {
+            "path": "/image/starfield/room-window-mask-v17.svg",
+            "type": "css",
+            "bytes": 1297,
+            "decoded": 1297,
+            "duration": 2.4000000059604645
+          },
+          {
+            "path": "/favicon.ico",
+            "type": "other",
+            "bytes": 9,
+            "decoded": 9,
+            "duration": 1.2999999821186066
+          },
+          {
+            "path": "/2025/10/20/%E6%A2%A6%E5%BC%80%E5%A7%8B%E7%9A%84%E5%9C%B0%E6%96%B9%5B%E7%BD%AE%E9%A1%B6%5D/",
+            "type": "fetch",
+            "bytes": 17961,
+            "decoded": 17961,
+            "duration": 2.800000011920929
+          },
+          {
+            "path": "/images/observation/glyphs/3.png",
+            "type": "img",
+            "bytes": 16098,
+            "decoded": 16098,
+            "duration": 2.7000000178813934
+          },
+          {
+            "path": "/images/observation/glyphs/2.png",
+            "type": "img",
+            "bytes": 11344,
+            "decoded": 11344,
+            "duration": 2.7000000178813934
+          },
+          {
+            "path": "/images/observation/glyphs/4.png",
+            "type": "img",
+            "bytes": 8939,
+            "decoded": 8939,
+            "duration": 2.7000000178813934
+          },
+          {
+            "path": "/images/observation/glyphs/5.png",
+            "type": "img",
+            "bytes": 10800,
+            "decoded": 10800,
+            "duration": 2.9000000059604645
+          },
+          {
+            "path": "/images/observation/glyphs/6.png",
+            "type": "img",
+            "bytes": 8017,
+            "decoded": 8017,
+            "duration": 2.9000000059604645
+          },
+          {
+            "path": "/images/observation/glyphs/7.png",
+            "type": "img",
+            "bytes": 12221,
+            "decoded": 12221,
+            "duration": 4
+          },
+          {
+            "path": "/images/observation/glyphs/1.png",
+            "type": "img",
+            "bytes": 6587,
+            "decoded": 6587,
+            "duration": 4.100000023841858
+          },
+          {
+            "path": "/images/observation/glyphs/0.png",
+            "type": "img",
+            "bytes": 7565,
+            "decoded": 7565,
+            "duration": 4.299999982118607
+          },
+          {
+            "path": "/images/reader-grain.svg",
+            "type": "css",
+            "bytes": 392,
+            "decoded": 392,
+            "duration": 2.0999999940395355
+          },
+          {
+            "path": "/assets/css/APlayer.min.css",
+            "type": "link",
+            "bytes": 12528,
+            "decoded": 12528,
+            "duration": 1.9000000059604645
+          },
+          {
+            "path": "/assets/js/APlayer.min.js",
+            "type": "script",
+            "bytes": 59325,
+            "decoded": 59325,
+            "duration": 1.699999988079071
+          },
+          {
+            "path": "/assets/js/Meting.min.js",
+            "type": "script",
+            "bytes": 1795,
+            "decoded": 1795,
+            "duration": 1.7999999821186066
+          },
+          {
+            "path": "/meting/api",
+            "type": "xmlhttprequest",
+            "bytes": 0,
+            "decoded": 0,
+            "duration": 3581.2999999821186
+          },
+          {
+            "path": "/meting/api",
+            "type": "xmlhttprequest",
+            "bytes": 0,
+            "decoded": 0,
+            "duration": 386.19999998807907
+          },
+          {
+            "path": "/meting/api",
+            "type": "audio",
+            "bytes": 0,
+            "decoded": 0,
+            "duration": 1896.5
+          }
+        ],
+        "navigation": [
+          {
+            "domContentLoadedMs": 88.90000000596046,
+            "loadMs": 305.2000000178814
+          }
+        ]
+      },
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "repeat": 1,
+      "initialBytes": 3059762,
+      "samples": [
+        {
+          "name": "room",
+          "callbacks": 241,
+          "intervalP95Ms": 17.59999999999991,
+          "intervalsOver34Ms": 0,
+          "progressMutations": 0,
+          "mainThreadBusyPercent": 7.020153600974126,
+          "scriptMsPerSecond": 10.961869400809558,
+          "layoutMsPerSecond": 2.7392857658046808,
+          "styleMsPerSecond": 13.086233770585437,
+          "jsHeapMiB": 2.9139556884765625,
+          "domNodes": 577,
+          "room": "inside",
+          "quality": "full",
+          "renderer": "webgl",
+          "heap": 4570047,
+          "canvases": [
+            {
+              "id": "sky",
+              "width": 2880,
+              "height": 1800
+            },
+            {
+              "id": "",
+              "width": 126,
+              "height": 126
+            },
+            {
+              "id": "",
+              "width": 360,
+              "height": 360
+            }
+          ]
+        },
+        {
+          "name": "sky",
+          "callbacks": 241,
+          "intervalP95Ms": 17.600000000000364,
+          "intervalsOver34Ms": 0,
+          "progressMutations": 0,
+          "mainThreadBusyPercent": 9.638903637616753,
+          "scriptMsPerSecond": 51.37476339385691,
+          "layoutMsPerSecond": 0,
+          "styleMsPerSecond": 10.066457756475003,
+          "jsHeapMiB": 4.2959747314453125,
+          "domNodes": 564,
+          "room": "outside",
+          "quality": "full",
+          "renderer": "webgl",
+          "heap": 6019566,
+          "canvases": [
+            {
+              "id": "sky",
+              "width": 2880,
+              "height": 1800
+            },
+            {
+              "id": "",
+              "width": 126,
+              "height": 126
+            },
+            {
+              "id": "",
+              "width": 360,
+              "height": 360
+            }
+          ]
+        },
+        {
+          "name": "selected",
+          "callbacks": 241,
+          "intervalP95Ms": 17.600000000002183,
+          "intervalsOver34Ms": 0,
+          "progressMutations": 0,
+          "mainThreadBusyPercent": 11.050349277418682,
+          "scriptMsPerSecond": 54.21712269205295,
+          "layoutMsPerSecond": 0,
+          "styleMsPerSecond": 11.933498979481799,
+          "jsHeapMiB": 5.034233093261719,
+          "domNodes": 1220,
+          "room": "outside",
+          "quality": "full",
+          "renderer": "webgl",
+          "heap": 6809691,
+          "canvases": [
+            {
+              "id": "sky",
+              "width": 2880,
+              "height": 1800
+            },
+            {
+              "id": "",
+              "width": 126,
+              "height": 126
+            },
+            {
+              "id": "",
+              "width": 360,
+              "height": 360
+            }
+          ]
+        },
+        {
+          "name": "reader",
+          "callbacks": 241,
+          "intervalP95Ms": 17.5,
+          "intervalsOver34Ms": 0,
+          "progressMutations": 1,
+          "mainThreadBusyPercent": 4.930441888330966,
+          "scriptMsPerSecond": 11.563342867651942,
+          "layoutMsPerSecond": 2.83792917709293,
+          "styleMsPerSecond": 9.160851299136807,
+          "jsHeapMiB": 4.2219390869140625,
+          "domNodes": 1442,
+          "room": "outside",
+          "quality": "full",
+          "renderer": "webgl",
+          "heap": 6006006,
+          "canvases": [
+            {
+              "id": "sky",
+              "width": 2880,
+              "height": 1800
+            },
+            {
+              "id": "",
+              "width": 126,
+              "height": 126
+            },
+            {
+              "id": "",
+              "width": 360,
+              "height": 360
+            }
+          ]
+        }
+      ],
+      "loading": {
+        "paints": [
+          {
+            "name": "first-paint",
+            "start": 120,
+            "duration": 0
+          },
+          {
+            "name": "first-contentful-paint",
+            "start": 120,
+            "duration": 0
+          }
+        ],
+        "lcp": [
+          {
+            "name": "",
+            "start": 368,
+            "duration": 0,
+            "size": 663
+          }
+        ],
+        "longTasks": [],
+        "resources": [
+          {
+            "path": "/css/starry/site.css",
+            "type": "link",
+            "bytes": 18425,
+            "decoded": 18425,
+            "duration": 2.300000011920929
+          },
+          {
+            "path": "/css/starry/scene.css",
+            "type": "link",
+            "bytes": 13357,
+            "decoded": 13357,
+            "duration": 2.4000000059604645
+          },
+          {
+            "path": "/css/starry/motion.css",
+            "type": "link",
+            "bytes": 4527,
+            "decoded": 4527,
+            "duration": 2.4000000059604645
+          },
+          {
+            "path": "/css/starry/reader.css",
+            "type": "link",
+            "bytes": 7150,
+            "decoded": 7150,
+            "duration": 2.5999999940395355
+          },
+          {
+            "path": "/css/starry/observation.css",
+            "type": "link",
+            "bytes": 7416,
+            "decoded": 7416,
+            "duration": 2.9000000059604645
+          },
+          {
+            "path": "/image/starfield/painted-sky-v11.webp",
+            "type": "link",
+            "bytes": 1090084,
+            "decoded": 1090084,
+            "duration": 5.100000023841858
+          },
+          {
+            "path": "/images/observation/waves.png",
+            "type": "img",
+            "bytes": 57383,
+            "decoded": 57383,
+            "duration": 7.800000011920929
+          },
+          {
+            "path": "/images/observation/silhouette.png",
+            "type": "img",
+            "bytes": 248138,
+            "decoded": 248138,
+            "duration": 8.099999994039536
+          },
+          {
+            "path": "/images/observation/diamond.png",
+            "type": "img",
+            "bytes": 4341,
+            "decoded": 4341,
+            "duration": 8.899999976158142
+          },
+          {
+            "path": "/images/observation/year-pointer.png",
+            "type": "img",
+            "bytes": 10710,
+            "decoded": 10710,
+            "duration": 9
+          },
+          {
+            "path": "/images/observation/dial-ticks.png",
+            "type": "img",
+            "bytes": 7310,
+            "decoded": 7310,
+            "duration": 9.599999994039536
+          },
+          {
+            "path": "/images/observation/dial-bracket.png",
+            "type": "img",
+            "bytes": 5454,
+            "decoded": 5454,
+            "duration": 9.699999988079071
+          },
+          {
+            "path": "/images/observation/waveform.png",
+            "type": "img",
+            "bytes": 52269,
+            "decoded": 52269,
+            "duration": 9.699999988079071
+          },
+          {
+            "path": "/images/observation/starlink.png",
+            "type": "img",
+            "bytes": 4106,
+            "decoded": 4106,
+            "duration": 10
+          },
+          {
+            "path": "/images/observation/call-word.png",
+            "type": "img",
+            "bytes": 5893,
+            "decoded": 5893,
+            "duration": 10.299999982118607
+          },
+          {
+            "path": "/images/observation/call-underline.png",
+            "type": "img",
+            "bytes": 4047,
+            "decoded": 4047,
+            "duration": 10.300000011920929
+          },
+          {
+            "path": "/images/observation/date-boxes.png",
+            "type": "img",
+            "bytes": 22759,
+            "decoded": 22759,
+            "duration": 10.599999994039536
+          },
+          {
+            "path": "/images/observation/observation-id.png",
+            "type": "img",
+            "bytes": 3200,
+            "decoded": 3200,
+            "duration": 10.800000011920929
+          },
+          {
+            "path": "/images/observation/close.png",
+            "type": "img",
+            "bytes": 4386,
+            "decoded": 4386,
+            "duration": 10.900000005960464
+          },
+          {
+            "path": "/images/observation/hour-label.png",
+            "type": "img",
+            "bytes": 4432,
+            "decoded": 4432,
+            "duration": 10.900000005960464
+          },
+          {
+            "path": "/images/observation/read-rule.png",
+            "type": "img",
+            "bytes": 11171,
+            "decoded": 11171,
+            "duration": 11.5
+          },
+          {
+            "path": "/images/observation/read.png",
+            "type": "img",
+            "bytes": 4455,
+            "decoded": 4455,
+            "duration": 11.400000005960464
+          },
+          {
+            "path": "/images/observation/polyhedron.png",
+            "type": "img",
+            "bytes": 220772,
+            "decoded": 220772,
+            "duration": 11.800000011920929
+          },
+          {
+            "path": "/image/starfield/room-poster-detail-v20.webp",
+            "type": "img",
+            "bytes": 1052364,
+            "decoded": 1052364,
+            "duration": 6.700000017881393
+          },
+          {
+            "path": "/js/starfield/static-page.js",
+            "type": "script",
+            "bytes": 234,
+            "decoded": 234,
+            "duration": 5.4000000059604645
+          },
+          {
+            "path": "/js/starfield/app.js",
+            "type": "script",
+            "bytes": 59335,
+            "decoded": 59335,
+            "duration": 4.100000023841858
+          },
+          {
+            "path": "/js/starfield/audio.js",
+            "type": "script",
+            "bytes": 3088,
+            "decoded": 3088,
+            "duration": 3
+          },
+          {
+            "path": "/js/starfield/dome.js",
+            "type": "script",
+            "bytes": 4168,
+            "decoded": 4168,
+            "duration": 3.0999999940395355
+          },
+          {
+            "path": "/js/starfield/interactive-clouds.js",
+            "type": "script",
+            "bytes": 5653,
+            "decoded": 5653,
+            "duration": 2.9000000059604645
+          },
+          {
+            "path": "/js/starfield/motion.js",
+            "type": "script",
+            "bytes": 10230,
+            "decoded": 10230,
+            "duration": 3.5
+          },
+          {
+            "path": "/js/starfield/painted.js",
+            "type": "script",
+            "bytes": 10229,
+            "decoded": 10229,
+            "duration": 3.5
+          },
+          {
+            "path": "/js/starfield/experience.js",
+            "type": "script",
+            "bytes": 818,
+            "decoded": 818,
+            "duration": 3.300000011920929
+          },
+          {
+            "path": "/js/starfield/navigation.js",
+            "type": "script",
+            "bytes": 2470,
+            "decoded": 2470,
+            "duration": 6.200000017881393
+          },
+          {
+            "path": "/js/starfield/render-budget.js",
+            "type": "script",
+            "bytes": 1150,
+            "decoded": 1150,
+            "duration": 6.300000011920929
+          },
+          {
+            "path": "/js/starfield/sky-map.js",
+            "type": "script",
+            "bytes": 6322,
+            "decoded": 6322,
+            "duration": 6.600000023841858
+          },
+          {
+            "path": "/js/starfield/dome-renderer.js",
+            "type": "script",
+            "bytes": 10316,
+            "decoded": 10316,
+            "duration": 6.600000023841858
+          },
+          {
+            "path": "/js/starfield/observation.js",
+            "type": "script",
+            "bytes": 2398,
+            "decoded": 2398,
+            "duration": 6.199999988079071
+          },
+          {
+            "path": "/js/starfield/star-targets.js",
+            "type": "script",
+            "bytes": 1124,
+            "decoded": 1124,
+            "duration": 6.399999976158142
+          },
+          {
+            "path": "/js/starfield/polyhedron.js",
+            "type": "script",
+            "bytes": 4642,
+            "decoded": 4642,
+            "duration": 7.299999982118607
+          },
+          {
+            "path": "/image/starfield/room-window-portrait-mask-v17.svg",
+            "type": "img",
+            "bytes": 1089,
+            "decoded": 1089,
+            "duration": 1.5999999940395355
+          },
+          {
+            "path": "/image/starfield/room-window-mask-v17.svg",
+            "type": "img",
+            "bytes": 1297,
+            "decoded": 1297,
+            "duration": 1.699999988079071
+          },
+          {
+            "path": "/images/observation/glyphs/E.png",
+            "type": "img",
+            "bytes": 2770,
+            "decoded": 2770,
+            "duration": 1.7999999821186066
+          },
+          {
+            "path": "/images/observation/glyphs/Y.png",
+            "type": "img",
+            "bytes": 13310,
+            "decoded": 13310,
+            "duration": 2.5
+          },
+          {
+            "path": "/starry/index.json",
+            "type": "fetch",
+            "bytes": 9782,
+            "decoded": 9782,
+            "duration": 1.899999976158142
+          },
+          {
+            "path": "/images/observation/glyphs/M.png",
+            "type": "img",
+            "bytes": 11475,
+            "decoded": 11475,
+            "duration": 1.7999999821186066
+          },
+          {
+            "path": "/images/observation/glyphs/D.png",
+            "type": "img",
+            "bytes": 6630,
+            "decoded": 6630,
+            "duration": 2.300000011920929
+          },
+          {
+            "path": "/images/observation/glyphs/O.png",
+            "type": "img",
+            "bytes": 8776,
+            "decoded": 8776,
+            "duration": 2.5
+          },
+          {
+            "path": "/images/observation/glyphs/A.png",
+            "type": "img",
+            "bytes": 17010,
+            "decoded": 17010,
+            "duration": 2.5999999940395355
+          },
+          {
+            "path": "/image/starfield/room-window-mask-v17.svg",
+            "type": "css",
+            "bytes": 1297,
+            "decoded": 1297,
+            "duration": 1.5
+          },
+          {
+            "path": "/2025/10/20/%E6%A2%A6%E5%BC%80%E5%A7%8B%E7%9A%84%E5%9C%B0%E6%96%B9%5B%E7%BD%AE%E9%A1%B6%5D/",
+            "type": "fetch",
+            "bytes": 17961,
+            "decoded": 17961,
+            "duration": 4.799999982118607
+          },
+          {
+            "path": "/images/observation/glyphs/2.png",
+            "type": "img",
+            "bytes": 11344,
+            "decoded": 11344,
+            "duration": 4.9000000059604645
+          },
+          {
+            "path": "/images/observation/glyphs/3.png",
+            "type": "img",
+            "bytes": 16098,
+            "decoded": 16098,
+            "duration": 4.9000000059604645
+          },
+          {
+            "path": "/images/observation/glyphs/4.png",
+            "type": "img",
+            "bytes": 8939,
+            "decoded": 8939,
+            "duration": 4.9000000059604645
+          },
+          {
+            "path": "/images/observation/glyphs/5.png",
+            "type": "img",
+            "bytes": 10800,
+            "decoded": 10800,
+            "duration": 4.800000011920929
+          },
+          {
+            "path": "/images/observation/glyphs/6.png",
+            "type": "img",
+            "bytes": 8017,
+            "decoded": 8017,
+            "duration": 5.200000017881393
+          },
+          {
+            "path": "/images/observation/glyphs/1.png",
+            "type": "img",
+            "bytes": 6587,
+            "decoded": 6587,
+            "duration": 6.4000000059604645
+          },
+          {
+            "path": "/images/observation/glyphs/7.png",
+            "type": "img",
+            "bytes": 12221,
+            "decoded": 12221,
+            "duration": 6.5
+          },
+          {
+            "path": "/images/observation/glyphs/0.png",
+            "type": "img",
+            "bytes": 7565,
+            "decoded": 7565,
+            "duration": 6.199999988079071
+          },
+          {
+            "path": "/images/reader-grain.svg",
+            "type": "css",
+            "bytes": 392,
+            "decoded": 392,
+            "duration": 2.300000011920929
+          },
+          {
+            "path": "/assets/css/APlayer.min.css",
+            "type": "link",
+            "bytes": 12528,
+            "decoded": 12528,
+            "duration": 2.300000011920929
+          },
+          {
+            "path": "/assets/js/APlayer.min.js",
+            "type": "script",
+            "bytes": 59325,
+            "decoded": 59325,
+            "duration": 2.0999999940395355
+          },
+          {
+            "path": "/assets/js/Meting.min.js",
+            "type": "script",
+            "bytes": 1795,
+            "decoded": 1795,
+            "duration": 1.600000023841858
+          },
+          {
+            "path": "/meting/api",
+            "type": "xmlhttprequest",
+            "bytes": 0,
+            "decoded": 0,
+            "duration": 2130.600000023842
+          },
+          {
+            "path": "/meting/api",
+            "type": "xmlhttprequest",
+            "bytes": 0,
+            "decoded": 0,
+            "duration": 697.3000000119209
+          },
+          {
+            "path": "/meting/api",
+            "type": "audio",
+            "bytes": 0,
+            "decoded": 0,
+            "duration": 1788.699999988079
+          }
+        ],
+        "navigation": [
+          {
+            "domContentLoadedMs": 102.19999998807907,
+            "loadMs": 105.2999999821186
+          }
+        ]
+      },
+      "errors": []
+    },
+    {
+      "device": "desktop",
+      "repeat": 2,
+      "initialBytes": 3059762,
+      "samples": [
+        {
+          "name": "room",
+          "callbacks": 242,
+          "intervalP95Ms": 17.599999999999454,
+          "intervalsOver34Ms": 0,
+          "progressMutations": 0,
+          "mainThreadBusyPercent": 7.20203381031049,
+          "scriptMsPerSecond": 10.987131037446032,
+          "layoutMsPerSecond": 2.726765920351088,
+          "styleMsPerSecond": 13.687290724578304,
+          "jsHeapMiB": 2.9288597106933594,
+          "domNodes": 577,
+          "room": "inside",
+          "quality": "full",
+          "renderer": "webgl",
+          "heap": 4585675,
+          "canvases": [
+            {
+              "id": "sky",
+              "width": 2880,
+              "height": 1800
+            },
+            {
+              "id": "",
+              "width": 126,
+              "height": 126
+            },
+            {
+              "id": "",
+              "width": 360,
+              "height": 360
+            }
+          ]
+        },
+        {
+          "name": "sky",
+          "callbacks": 241,
+          "intervalP95Ms": 17.600000000000364,
+          "intervalsOver34Ms": 0,
+          "progressMutations": 0,
+          "mainThreadBusyPercent": 9.922355232086343,
+          "scriptMsPerSecond": 52.29993949913596,
+          "layoutMsPerSecond": 0,
+          "styleMsPerSecond": 10.444046972917107,
+          "jsHeapMiB": 4.224468231201172,
+          "domNodes": 564,
+          "room": "outside",
+          "quality": "full",
+          "renderer": "webgl",
+          "heap": 5944707,
+          "canvases": [
+            {
+              "id": "sky",
+              "width": 2880,
+              "height": 1800
+            },
+            {
+              "id": "",
+              "width": 126,
+              "height": 126
+            },
+            {
+              "id": "",
+              "width": 360,
+              "height": 360
+            }
+          ]
+        },
+        {
+          "name": "selected",
+          "callbacks": 241,
+          "intervalP95Ms": 17.600000000002183,
+          "intervalsOver34Ms": 0,
+          "progressMutations": 0,
+          "mainThreadBusyPercent": 10.97349141682899,
+          "scriptMsPerSecond": 53.78240002302812,
+          "layoutMsPerSecond": 0,
+          "styleMsPerSecond": 12.415923340054873,
+          "jsHeapMiB": 4.570301055908203,
+          "domNodes": 1220,
+          "room": "outside",
+          "quality": "full",
+          "renderer": "webgl",
+          "heap": 6323344,
+          "canvases": [
+            {
+              "id": "sky",
+              "width": 2880,
+              "height": 1800
+            },
+            {
+              "id": "",
+              "width": 126,
+              "height": 126
+            },
+            {
+              "id": "",
+              "width": 360,
+              "height": 360
+            }
+          ]
+        },
+        {
+          "name": "reader",
+          "callbacks": 241,
+          "intervalP95Ms": 17.5,
+          "intervalsOver34Ms": 0,
+          "progressMutations": 0,
+          "mainThreadBusyPercent": 4.480320093960711,
+          "scriptMsPerSecond": 10.646906305837662,
+          "layoutMsPerSecond": 0,
+          "styleMsPerSecond": 9.559273617635002,
+          "jsHeapMiB": 4.107021331787109,
+          "domNodes": 1115,
+          "room": "outside",
+          "quality": "full",
+          "renderer": "webgl",
+          "heap": 5881892,
+          "canvases": [
+            {
+              "id": "sky",
+              "width": 2880,
+              "height": 1800
+            },
+            {
+              "id": "",
+              "width": 126,
+              "height": 126
+            },
+            {
+              "id": "",
+              "width": 360,
+              "height": 360
+            }
+          ]
+        }
+      ],
+      "loading": {
+        "paints": [
+          {
+            "name": "first-paint",
+            "start": 140,
+            "duration": 0
+          },
+          {
+            "name": "first-contentful-paint",
+            "start": 140,
+            "duration": 0
+          }
+        ],
+        "lcp": [
+          {
+            "name": "",
+            "start": 356,
+            "duration": 0,
+            "size": 663
+          }
+        ],
+        "longTasks": [
+          {
+            "name": "self",
+            "start": 5896.5,
+            "duration": 51
+          }
+        ],
+        "resources": [
+          {
+            "path": "/css/starry/site.css",
+            "type": "link",
+            "bytes": 18425,
+            "decoded": 18425,
+            "duration": 2.5999999940395355
+          },
+          {
+            "path": "/css/starry/scene.css",
+            "type": "link",
+            "bytes": 13357,
+            "decoded": 13357,
+            "duration": 2.5999999940395355
+          },
+          {
+            "path": "/css/starry/motion.css",
+            "type": "link",
+            "bytes": 4527,
+            "decoded": 4527,
+            "duration": 3
+          },
+          {
+            "path": "/css/starry/reader.css",
+            "type": "link",
+            "bytes": 7150,
+            "decoded": 7150,
+            "duration": 3
+          },
+          {
+            "path": "/css/starry/observation.css",
+            "type": "link",
+            "bytes": 7416,
+            "decoded": 7416,
+            "duration": 2.800000011920929
+          },
+          {
+            "path": "/image/starfield/painted-sky-v11.webp",
+            "type": "link",
+            "bytes": 1090084,
+            "decoded": 1090084,
+            "duration": 3.5
+          },
+          {
+            "path": "/images/observation/waves.png",
+            "type": "img",
+            "bytes": 57383,
+            "decoded": 57383,
+            "duration": 9.200000017881393
+          },
+          {
+            "path": "/images/observation/silhouette.png",
+            "type": "img",
+            "bytes": 248138,
+            "decoded": 248138,
+            "duration": 9.400000005960464
+          },
+          {
+            "path": "/images/observation/dial-ticks.png",
+            "type": "img",
+            "bytes": 7310,
+            "decoded": 7310,
+            "duration": 11.900000005960464
+          },
+          {
+            "path": "/images/observation/year-pointer.png",
+            "type": "img",
+            "bytes": 10710,
+            "decoded": 10710,
+            "duration": 12
+          },
+          {
+            "path": "/images/observation/dial-bracket.png",
+            "type": "img",
+            "bytes": 5454,
+            "decoded": 5454,
+            "duration": 12.100000023841858
+          },
+          {
+            "path": "/images/observation/diamond.png",
+            "type": "img",
+            "bytes": 4341,
+            "decoded": 4341,
+            "duration": 12.100000023841858
+          },
+          {
+            "path": "/images/observation/waveform.png",
+            "type": "img",
+            "bytes": 52269,
+            "decoded": 52269,
+            "duration": 12.400000005960464
+          },
+          {
+            "path": "/images/observation/starlink.png",
+            "type": "img",
+            "bytes": 4106,
+            "decoded": 4106,
+            "duration": 12.800000011920929
+          },
+          {
+            "path": "/images/observation/call-word.png",
+            "type": "img",
+            "bytes": 5893,
+            "decoded": 5893,
+            "duration": 14.600000023841858
+          },
+          {
+            "path": "/images/observation/hour-label.png",
+            "type": "img",
+            "bytes": 4432,
+            "decoded": 4432,
+            "duration": 14.299999982118607
+          },
+          {
+            "path": "/images/observation/call-underline.png",
+            "type": "img",
+            "bytes": 4047,
+            "decoded": 4047,
+            "duration": 14.5
+          },
+          {
+            "path": "/images/observation/date-boxes.png",
+            "type": "img",
+            "bytes": 22759,
+            "decoded": 22759,
+            "duration": 14.599999994039536
+          },
+          {
+            "path": "/images/observation/observation-id.png",
+            "type": "img",
+            "bytes": 3200,
+            "decoded": 3200,
+            "duration": 14.899999976158142
+          },
+          {
+            "path": "/images/observation/close.png",
+            "type": "img",
+            "bytes": 4386,
+            "decoded": 4386,
+            "duration": 14.900000005960464
+          },
+          {
+            "path": "/images/observation/read.png",
+            "type": "img",
+            "bytes": 4455,
+            "decoded": 4455,
+            "duration": 15.299999982118607
+          },
+          {
+            "path": "/images/observation/read-rule.png",
+            "type": "img",
+            "bytes": 11171,
+            "decoded": 11171,
+            "duration": 15.5
+          },
+          {
+            "path": "/images/observation/polyhedron.png",
+            "type": "img",
+            "bytes": 220772,
+            "decoded": 220772,
+            "duration": 15.5
+          },
+          {
+            "path": "/image/starfield/room-poster-detail-v20.webp",
+            "type": "img",
+            "bytes": 1052364,
+            "decoded": 1052364,
+            "duration": 6.9000000059604645
+          },
+          {
+            "path": "/js/starfield/app.js",
+            "type": "script",
+            "bytes": 59335,
+            "decoded": 59335,
+            "duration": 3.800000011920929
+          },
+          {
+            "path": "/js/starfield/static-page.js",
+            "type": "script",
+            "bytes": 234,
+            "decoded": 234,
+            "duration": 7.700000017881393
+          },
+          {
+            "path": "/js/starfield/audio.js",
+            "type": "script",
+            "bytes": 3088,
+            "decoded": 3088,
+            "duration": 3.5999999940395355
+          },
+          {
+            "path": "/js/starfield/dome.js",
+            "type": "script",
+            "bytes": 4168,
+            "decoded": 4168,
+            "duration": 4.199999988079071
+          },
+          {
+            "path": "/js/starfield/interactive-clouds.js",
+            "type": "script",
+            "bytes": 5653,
+            "decoded": 5653,
+            "duration": 3.5999999940395355
+          },
+          {
+            "path": "/js/starfield/painted.js",
+            "type": "script",
+            "bytes": 10229,
+            "decoded": 10229,
+            "duration": 3.800000011920929
+          },
+          {
+            "path": "/js/starfield/motion.js",
+            "type": "script",
+            "bytes": 10230,
+            "decoded": 10230,
+            "duration": 4.5
+          },
+          {
+            "path": "/js/starfield/experience.js",
+            "type": "script",
+            "bytes": 818,
+            "decoded": 818,
+            "duration": 4.5
+          },
+          {
+            "path": "/js/starfield/render-budget.js",
+            "type": "script",
+            "bytes": 1150,
+            "decoded": 1150,
+            "duration": 5
+          },
+          {
+            "path": "/js/starfield/navigation.js",
+            "type": "script",
+            "bytes": 2470,
+            "decoded": 2470,
+            "duration": 4.800000011920929
+          },
+          {
+            "path": "/js/starfield/sky-map.js",
+            "type": "script",
+            "bytes": 6322,
+            "decoded": 6322,
+            "duration": 4.800000011920929
+          },
+          {
+            "path": "/js/starfield/dome-renderer.js",
+            "type": "script",
+            "bytes": 10316,
+            "decoded": 10316,
+            "duration": 4.9000000059604645
+          },
+          {
+            "path": "/js/starfield/star-targets.js",
+            "type": "script",
+            "bytes": 1124,
+            "decoded": 1124,
+            "duration": 4.899999976158142
+          },
+          {
+            "path": "/js/starfield/observation.js",
+            "type": "script",
+            "bytes": 2398,
+            "decoded": 2398,
+            "duration": 5.0999999940395355
+          },
+          {
+            "path": "/js/starfield/polyhedron.js",
+            "type": "script",
+            "bytes": 4642,
+            "decoded": 4642,
+            "duration": 5.299999982118607
+          },
+          {
+            "path": "/starry/index.json",
+            "type": "fetch",
+            "bytes": 9782,
+            "decoded": 9782,
+            "duration": 2.4000000059604645
+          },
+          {
+            "path": "/image/starfield/room-window-mask-v17.svg",
+            "type": "img",
+            "bytes": 1297,
+            "decoded": 1297,
+            "duration": 2
+          },
+          {
+            "path": "/image/starfield/room-window-portrait-mask-v17.svg",
+            "type": "img",
+            "bytes": 1089,
+            "decoded": 1089,
+            "duration": 1.699999988079071
+          },
+          {
+            "path": "/images/observation/glyphs/Y.png",
+            "type": "img",
+            "bytes": 13310,
+            "decoded": 13310,
+            "duration": 1.9000000059604645
+          },
+          {
+            "path": "/images/observation/glyphs/E.png",
+            "type": "img",
+            "bytes": 2770,
+            "decoded": 2770,
+            "duration": 2.0999999940395355
+          },
+          {
+            "path": "/images/observation/glyphs/M.png",
+            "type": "img",
+            "bytes": 11475,
+            "decoded": 11475,
+            "duration": 2.199999988079071
+          },
+          {
+            "path": "/images/observation/glyphs/O.png",
+            "type": "img",
+            "bytes": 8776,
+            "decoded": 8776,
+            "duration": 2.7999999821186066
+          },
+          {
+            "path": "/images/observation/glyphs/D.png",
+            "type": "img",
+            "bytes": 6630,
+            "decoded": 6630,
+            "duration": 2.9000000059604645
+          },
+          {
+            "path": "/images/observation/glyphs/A.png",
+            "type": "img",
+            "bytes": 17010,
+            "decoded": 17010,
+            "duration": 3
+          },
+          {
+            "path": "/image/starfield/room-window-mask-v17.svg",
+            "type": "css",
+            "bytes": 1297,
+            "decoded": 1297,
+            "duration": 1.4000000059604645
+          },
+          {
+            "path": "/images/observation/glyphs/2.png",
+            "type": "img",
+            "bytes": 11344,
+            "decoded": 11344,
+            "duration": 5.5
+          },
+          {
+            "path": "/2025/10/20/%E6%A2%A6%E5%BC%80%E5%A7%8B%E7%9A%84%E5%9C%B0%E6%96%B9%5B%E7%BD%AE%E9%A1%B6%5D/",
+            "type": "fetch",
+            "bytes": 17961,
+            "decoded": 17961,
+            "duration": 3.2999999821186066
+          },
+          {
+            "path": "/images/observation/glyphs/3.png",
+            "type": "img",
+            "bytes": 16098,
+            "decoded": 16098,
+            "duration": 5.5999999940395355
+          },
+          {
+            "path": "/images/observation/glyphs/4.png",
+            "type": "img",
+            "bytes": 8939,
+            "decoded": 8939,
+            "duration": 6.300000011920929
+          },
+          {
+            "path": "/images/observation/glyphs/5.png",
+            "type": "img",
+            "bytes": 10800,
+            "decoded": 10800,
+            "duration": 6.800000011920929
+          },
+          {
+            "path": "/images/observation/glyphs/6.png",
+            "type": "img",
+            "bytes": 8017,
+            "decoded": 8017,
+            "duration": 6.800000011920929
+          },
+          {
+            "path": "/images/observation/glyphs/7.png",
+            "type": "img",
+            "bytes": 12221,
+            "decoded": 12221,
+            "duration": 6.899999976158142
+          },
+          {
+            "path": "/images/observation/glyphs/1.png",
+            "type": "img",
+            "bytes": 6587,
+            "decoded": 6587,
+            "duration": 7
+          },
+          {
+            "path": "/images/observation/glyphs/0.png",
+            "type": "img",
+            "bytes": 7565,
+            "decoded": 7565,
+            "duration": 7.0999999940395355
+          },
+          {
+            "path": "/images/reader-grain.svg",
+            "type": "css",
+            "bytes": 392,
+            "decoded": 392,
+            "duration": 2.2999999821186066
+          },
+          {
+            "path": "/assets/css/APlayer.min.css",
+            "type": "link",
+            "bytes": 12528,
+            "decoded": 12528,
+            "duration": 2.2999999821186066
+          },
+          {
+            "path": "/assets/js/APlayer.min.js",
+            "type": "script",
+            "bytes": 59325,
+            "decoded": 59325,
+            "duration": 2.300000011920929
+          },
+          {
+            "path": "/assets/js/Meting.min.js",
+            "type": "script",
+            "bytes": 1795,
+            "decoded": 1795,
+            "duration": 1.399999976158142
+          }
+        ],
+        "navigation": [
+          {
+            "domContentLoadedMs": 92.39999997615814,
+            "loadMs": 299.7999999821186
+          }
+        ]
+      },
+      "errors": []
+    },
+    {
+      "device": "mobile",
+      "repeat": 0,
+      "initialBytes": 2966650,
+      "samples": [
+        {
+          "name": "room",
+          "callbacks": 241,
+          "intervalP95Ms": 17.399999999999636,
+          "intervalsOver34Ms": 0,
+          "progressMutations": 0,
+          "mainThreadBusyPercent": 7.693778760522963,
+          "scriptMsPerSecond": 12.049791828506637,
+          "layoutMsPerSecond": 2.869828084221012,
+          "styleMsPerSecond": 14.16238371280434,
+          "jsHeapMiB": 3.0351829528808594,
+          "domNodes": 555,
+          "room": "inside",
+          "quality": "full",
+          "renderer": "webgl",
+          "heap": 4696422,
+          "canvases": [
+            {
+              "id": "sky",
+              "width": 780,
+              "height": 1688
+            },
+            {
+              "id": "",
+              "width": 110,
+              "height": 110
+            },
+            {
+              "id": "",
+              "width": 360,
+              "height": 360
+            }
+          ]
+        },
+        {
+          "name": "sky",
+          "callbacks": 241,
+          "intervalP95Ms": 17.5,
+          "intervalsOver34Ms": 0,
+          "progressMutations": 0,
+          "mainThreadBusyPercent": 10.317267578797168,
+          "scriptMsPerSecond": 55.01675918632116,
+          "layoutMsPerSecond": 0,
+          "styleMsPerSecond": 10.863021515528756,
+          "jsHeapMiB": 4.128326416015625,
+          "domNodes": 558,
+          "room": "outside",
+          "quality": "full",
+          "renderer": "webgl",
+          "heap": 5842536,
+          "canvases": [
+            {
+              "id": "sky",
+              "width": 780,
+              "height": 1688
+            },
+            {
+              "id": "",
+              "width": 110,
+              "height": 110
+            },
+            {
+              "id": "",
+              "width": 360,
+              "height": 360
+            }
+          ]
+        },
+        {
+          "name": "selected",
+          "callbacks": 241,
+          "intervalP95Ms": 17.400000000001455,
+          "intervalsOver34Ms": 0,
+          "progressMutations": 0,
+          "mainThreadBusyPercent": 10.147542509719125,
+          "scriptMsPerSecond": 48.36972944245154,
+          "layoutMsPerSecond": 0,
+          "styleMsPerSecond": 11.263320916184878,
+          "jsHeapMiB": 3.067638397216797,
+          "domNodes": 1216,
+          "room": "outside",
+          "quality": "full",
+          "renderer": "webgl",
+          "heap": 4730363,
+          "canvases": [
+            {
+              "id": "sky",
+              "width": 780,
+              "height": 1688
+            },
+            {
+              "id": "",
+              "width": 110,
+              "height": 110
+            },
+            {
+              "id": "",
+              "width": 360,
+              "height": 360
+            }
+          ]
+        },
+        {
+          "name": "reader",
+          "callbacks": 241,
+          "intervalP95Ms": 17.400000000001455,
+          "intervalsOver34Ms": 0,
+          "progressMutations": 0,
+          "mainThreadBusyPercent": 4.0888311251488,
+          "scriptMsPerSecond": 9.69664594032955,
+          "layoutMsPerSecond": 0,
+          "styleMsPerSecond": 8.279577754435769,
+          "jsHeapMiB": 3.599681854248047,
+          "domNodes": 1126,
+          "room": "outside",
+          "quality": "full",
+          "renderer": "webgl",
+          "heap": 5349581,
+          "canvases": [
+            {
+              "id": "sky",
+              "width": 780,
+              "height": 1688
+            },
+            {
+              "id": "",
+              "width": 110,
+              "height": 110
+            },
+            {
+              "id": "",
+              "width": 360,
+              "height": 360
+            }
+          ]
+        }
+      ],
+      "loading": {
+        "paints": [
+          {
+            "name": "first-paint",
+            "start": 124,
+            "duration": 0
+          },
+          {
+            "name": "first-contentful-paint",
+            "start": 124,
+            "duration": 0
+          }
+        ],
+        "lcp": [
+          {
+            "name": "",
+            "start": 356,
+            "duration": 0,
+            "size": 663
+          }
+        ],
+        "longTasks": [],
+        "resources": [
+          {
+            "path": "/css/starry/site.css",
+            "type": "link",
+            "bytes": 18425,
+            "decoded": 18425,
+            "duration": 4
+          },
+          {
+            "path": "/css/starry/motion.css",
+            "type": "link",
+            "bytes": 4527,
+            "decoded": 4527,
+            "duration": 3.7999999821186066
+          },
+          {
+            "path": "/css/starry/scene.css",
+            "type": "link",
+            "bytes": 13357,
+            "decoded": 13357,
+            "duration": 3.7999999821186066
+          },
+          {
+            "path": "/css/starry/observation.css",
+            "type": "link",
+            "bytes": 7416,
+            "decoded": 7416,
+            "duration": 4.0999999940395355
+          },
+          {
+            "path": "/css/starry/reader.css",
+            "type": "link",
+            "bytes": 7150,
+            "decoded": 7150,
+            "duration": 4.0999999940395355
+          },
+          {
+            "path": "/images/observation/waves.png",
+            "type": "img",
+            "bytes": 57383,
+            "decoded": 57383,
+            "duration": 8.800000011920929
+          },
+          {
+            "path": "/image/starfield/painted-sky-v11.webp",
+            "type": "link",
+            "bytes": 1090084,
+            "decoded": 1090084,
+            "duration": 6.5
+          },
+          {
+            "path": "/images/observation/silhouette.png",
+            "type": "img",
+            "bytes": 248138,
+            "decoded": 248138,
+            "duration": 8.5
+          },
+          {
+            "path": "/images/observation/diamond.png",
+            "type": "img",
+            "bytes": 4341,
+            "decoded": 4341,
+            "duration": 8
+          },
+          {
+            "path": "/images/observation/dial-ticks.png",
+            "type": "img",
+            "bytes": 7310,
+            "decoded": 7310,
+            "duration": 8.100000023841858
+          },
+          {
+            "path": "/images/observation/year-pointer.png",
+            "type": "img",
+            "bytes": 10710,
+            "decoded": 10710,
+            "duration": 8.600000023841858
+          },
+          {
+            "path": "/images/observation/dial-bracket.png",
+            "type": "img",
+            "bytes": 5454,
+            "decoded": 5454,
+            "duration": 8.700000017881393
+          },
+          {
+            "path": "/images/observation/starlink.png",
+            "type": "img",
+            "bytes": 4106,
+            "decoded": 4106,
+            "duration": 9.300000011920929
+          },
+          {
+            "path": "/images/observation/call-word.png",
+            "type": "img",
+            "bytes": 5893,
+            "decoded": 5893,
+            "duration": 9.300000011920929
+          },
+          {
+            "path": "/images/observation/waveform.png",
+            "type": "img",
+            "bytes": 52269,
+            "decoded": 52269,
+            "duration": 9.700000017881393
+          },
+          {
+            "path": "/images/observation/hour-label.png",
+            "type": "img",
+            "bytes": 4432,
+            "decoded": 4432,
+            "duration": 9.599999994039536
+          },
+          {
+            "path": "/images/observation/call-underline.png",
+            "type": "img",
+            "bytes": 4047,
+            "decoded": 4047,
+            "duration": 9.599999994039536
+          },
+          {
+            "path": "/images/observation/date-boxes.png",
+            "type": "img",
+            "bytes": 22759,
+            "decoded": 22759,
+            "duration": 9.799999982118607
+          },
+          {
+            "path": "/images/observation/close.png",
+            "type": "img",
+            "bytes": 4386,
+            "decoded": 4386,
+            "duration": 9.900000005960464
+          },
+          {
+            "path": "/images/observation/observation-id.png",
+            "type": "img",
+            "bytes": 3200,
+            "decoded": 3200,
+            "duration": 10
+          },
+          {
+            "path": "/image/starfield/room-portrait-v11.webp",
+            "type": "img",
+            "bytes": 959460,
+            "decoded": 959460,
+            "duration": 6.9000000059604645
+          },
+          {
+            "path": "/images/observation/read.png",
+            "type": "img",
+            "bytes": 4455,
+            "decoded": 4455,
+            "duration": 10.199999988079071
+          },
+          {
+            "path": "/images/observation/read-rule.png",
+            "type": "img",
+            "bytes": 11171,
+            "decoded": 11171,
+            "duration": 10.199999988079071
+          },
+          {
+            "path": "/images/observation/polyhedron.png",
+            "type": "img",
+            "bytes": 220772,
+            "decoded": 220772,
+            "duration": 10.400000005960464
+          },
+          {
+            "path": "/js/starfield/static-page.js",
+            "type": "script",
+            "bytes": 234,
+            "decoded": 234,
+            "duration": 4.9000000059604645
+          },
+          {
+            "path": "/js/starfield/app.js",
+            "type": "script",
+            "bytes": 59335,
+            "decoded": 59335,
+            "duration": 5.199999988079071
+          },
+          {
+            "path": "/js/starfield/interactive-clouds.js",
+            "type": "script",
+            "bytes": 5653,
+            "decoded": 5653,
+            "duration": 2.5
+          },
+          {
+            "path": "/js/starfield/painted.js",
+            "type": "script",
+            "bytes": 10229,
+            "decoded": 10229,
+            "duration": 2.7000000178813934
+          },
+          {
+            "path": "/js/starfield/audio.js",
+            "type": "script",
+            "bytes": 3088,
+            "decoded": 3088,
+            "duration": 3.2000000178813934
+          },
+          {
+            "path": "/js/starfield/dome.js",
+            "type": "script",
+            "bytes": 4168,
+            "decoded": 4168,
+            "duration": 2.5999999940395355
+          },
+          {
+            "path": "/js/starfield/motion.js",
+            "type": "script",
+            "bytes": 10230,
+            "decoded": 10230,
+            "duration": 3.199999988079071
+          },
+          {
+            "path": "/js/starfield/experience.js",
+            "type": "script",
+            "bytes": 818,
+            "decoded": 818,
+            "duration": 3.0999999940395355
+          },
+          {
+            "path": "/js/starfield/sky-map.js",
+            "type": "script",
+            "bytes": 6322,
+            "decoded": 6322,
+            "duration": 5.799999982118607
+          },
+          {
+            "path": "/js/starfield/navigation.js",
+            "type": "script",
+            "bytes": 2470,
+            "decoded": 2470,
+            "duration": 6
+          },
+          {
+            "path": "/js/starfield/render-budget.js",
+            "type": "script",
+            "bytes": 1150,
+            "decoded": 1150,
+            "duration": 5.5999999940395355
+          },
+          {
+            "path": "/js/starfield/star-targets.js",
+            "type": "script",
+            "bytes": 1124,
+            "decoded": 1124,
+            "duration": 5.9000000059604645
+          },
+          {
+            "path": "/js/starfield/dome-renderer.js",
+            "type": "script",
+            "bytes": 10316,
+            "decoded": 10316,
+            "duration": 6.199999988079071
+          },
+          {
+            "path": "/js/starfield/observation.js",
+            "type": "script",
+            "bytes": 2398,
+            "decoded": 2398,
+            "duration": 6.0999999940395355
+          },
+          {
+            "path": "/js/starfield/polyhedron.js",
+            "type": "script",
+            "bytes": 4642,
+            "decoded": 4642,
+            "duration": 6.4000000059604645
+          },
+          {
+            "path": "/starry/index.json",
+            "type": "fetch",
+            "bytes": 9782,
+            "decoded": 9782,
+            "duration": 3.5999999940395355
+          },
+          {
+            "path": "/image/starfield/room-window-mask-v17.svg",
+            "type": "img",
+            "bytes": 1297,
+            "decoded": 1297,
+            "duration": 3.0999999940395355
+          },
+          {
+            "path": "/images/observation/glyphs/E.png",
+            "type": "img",
+            "bytes": 2770,
+            "decoded": 2770,
+            "duration": 3.0999999940395355
+          },
+          {
+            "path": "/image/starfield/room-window-portrait-mask-v17.svg",
+            "type": "img",
+            "bytes": 1089,
+            "decoded": 1089,
+            "duration": 3.4000000059604645
+          },
+          {
+            "path": "/images/observation/glyphs/M.png",
+            "type": "img",
+            "bytes": 11475,
+            "decoded": 11475,
+            "duration": 3.5
+          },
+          {
+            "path": "/images/observation/glyphs/Y.png",
+            "type": "img",
+            "bytes": 13310,
+            "decoded": 13310,
+            "duration": 3.5999999940395355
+          },
+          {
+            "path": "/images/observation/glyphs/D.png",
+            "type": "img",
+            "bytes": 6630,
+            "decoded": 6630,
+            "duration": 4.0999999940395355
+          },
+          {
+            "path": "/images/observation/glyphs/O.png",
+            "type": "img",
+            "bytes": 8776,
+            "decoded": 8776,
+            "duration": 4.199999988079071
+          },
+          {
+            "path": "/images/observation/glyphs/A.png",
+            "type": "img",
+            "bytes": 17010,
+            "decoded": 17010,
+            "duration": 4.300000011920929
+          },
+          {
+            "path": "/image/starfield/room-window-portrait-mask-v17.svg",
+            "type": "css",
+            "bytes": 1089,
+            "decoded": 1089,
+            "duration": 1.2999999821186066
+          },
+          {
+            "path": "/images/observation/glyphs/3.png",
+            "type": "img",
+            "bytes": 16098,
+            "decoded": 16098,
+            "duration": 2.9000000059604645
+          },
+          {
+            "path": "/images/observation/glyphs/2.png",
+            "type": "img",
+            "bytes": 11344,
+            "decoded": 11344,
+            "duration": 3.199999988079071
+          },
+          {
+            "path": "/2025/10/20/%E6%A2%A6%E5%BC%80%E5%A7%8B%E7%9A%84%E5%9C%B0%E6%96%B9%5B%E7%BD%AE%E9%A1%B6%5D/",
+            "type": "fetch",
+            "bytes": 17961,
+            "decoded": 17961,
+            "duration": 2.9000000059604645
+          },
+          {
+            "path": "/images/observation/glyphs/4.png",
+            "type": "img",
+            "bytes": 8939,
+            "decoded": 8939,
+            "duration": 3.0999999940395355
+          },
+          {
+            "path": "/images/observation/glyphs/5.png",
+            "type": "img",
+            "bytes": 10800,
+            "decoded": 10800,
+            "duration": 3
+          },
+          {
+            "path": "/images/observation/glyphs/6.png",
+            "type": "img",
+            "bytes": 8017,
+            "decoded": 8017,
+            "duration": 3.100000023841858
+          },
+          {
+            "path": "/images/observation/glyphs/7.png",
+            "type": "img",
+            "bytes": 12221,
+            "decoded": 12221,
+            "duration": 3.5
+          },
+          {
+            "path": "/images/observation/glyphs/0.png",
+            "type": "img",
+            "bytes": 7565,
+            "decoded": 7565,
+            "duration": 3.5
+          },
+          {
+            "path": "/images/observation/glyphs/1.png",
+            "type": "img",
+            "bytes": 6587,
+            "decoded": 6587,
+            "duration": 3.9000000059604645
+          },
+          {
+            "path": "/images/reader-grain.svg",
+            "type": "css",
+            "bytes": 392,
+            "decoded": 392,
+            "duration": 1.899999976158142
+          },
+          {
+            "path": "/assets/css/APlayer.min.css",
+            "type": "link",
+            "bytes": 12528,
+            "decoded": 12528,
+            "duration": 1.699999988079071
+          },
+          {
+            "path": "/assets/js/APlayer.min.js",
+            "type": "script",
+            "bytes": 59325,
+            "decoded": 59325,
+            "duration": 1.5999999940395355
+          },
+          {
+            "path": "/assets/js/Meting.min.js",
+            "type": "script",
+            "bytes": 1795,
+            "decoded": 1795,
+            "duration": 2.0999999940395355
+          }
+        ],
+        "navigation": [
+          {
+            "domContentLoadedMs": 100.2999999821186,
+            "loadMs": 104.7999999821186
+          }
+        ]
+      },
+      "errors": []
+    },
+    {
+      "device": "mobile",
+      "repeat": 1,
+      "initialBytes": 2966650,
+      "samples": [
+        {
+          "name": "room",
+          "callbacks": 241,
+          "intervalP95Ms": 17.5,
+          "intervalsOver34Ms": 0,
+          "progressMutations": 0,
+          "mainThreadBusyPercent": 8.059718168255323,
+          "scriptMsPerSecond": 12.22564497500472,
+          "layoutMsPerSecond": 3.077983564144837,
+          "styleMsPerSecond": 15.423086822023107,
+          "jsHeapMiB": 3.0360755920410156,
+          "domNodes": 555,
+          "room": "inside",
+          "quality": "full",
+          "renderer": "webgl",
+          "heap": 4697358,
+          "canvases": [
+            {
+              "id": "sky",
+              "width": 780,
+              "height": 1688
+            },
+            {
+              "id": "",
+              "width": 110,
+              "height": 110
+            },
+            {
+              "id": "",
+              "width": 360,
+              "height": 360
+            }
+          ]
+        },
+        {
+          "name": "sky",
+          "callbacks": 241,
+          "intervalP95Ms": 17.69999999999891,
+          "intervalsOver34Ms": 0,
+          "progressMutations": 0,
+          "mainThreadBusyPercent": 9.467858349310784,
+          "scriptMsPerSecond": 50.00866956104028,
+          "layoutMsPerSecond": 0,
+          "styleMsPerSecond": 9.65435356460939,
+          "jsHeapMiB": 3.80389404296875,
+          "domNodes": 558,
+          "room": "outside",
+          "quality": "full",
+          "renderer": "webgl",
+          "heap": 5502492,
+          "canvases": [
+            {
+              "id": "sky",
+              "width": 780,
+              "height": 1688
+            },
+            {
+              "id": "",
+              "width": 110,
+              "height": 110
+            },
+            {
+              "id": "",
+              "width": 360,
+              "height": 360
+            }
+          ]
+        },
+        {
+          "name": "selected",
+          "callbacks": 241,
+          "intervalP95Ms": 17.600000000002183,
+          "intervalsOver34Ms": 0,
+          "progressMutations": 0,
+          "mainThreadBusyPercent": 11.616613475854418,
+          "scriptMsPerSecond": 56.06492352334693,
+          "layoutMsPerSecond": 0,
+          "styleMsPerSecond": 12.755327097303338,
+          "jsHeapMiB": 3.1897239685058594,
+          "domNodes": 1083,
+          "room": "outside",
+          "quality": "full",
+          "renderer": "webgl",
+          "heap": 4858344,
+          "canvases": [
+            {
+              "id": "sky",
+              "width": 780,
+              "height": 1688
+            },
+            {
+              "id": "",
+              "width": 110,
+              "height": 110
+            },
+            {
+              "id": "",
+              "width": 360,
+              "height": 360
+            }
+          ]
+        },
+        {
+          "name": "reader",
+          "callbacks": 241,
+          "intervalP95Ms": 17.600000000002183,
+          "intervalsOver34Ms": 0,
+          "progressMutations": 1,
+          "mainThreadBusyPercent": 5.757335089032818,
+          "scriptMsPerSecond": 13.588311713766299,
+          "layoutMsPerSecond": 3.409887704265458,
+          "styleMsPerSecond": 10.912187867373966,
+          "jsHeapMiB": 4.85528564453125,
+          "domNodes": 1453,
+          "room": "outside",
+          "quality": "full",
+          "renderer": "webgl",
+          "heap": 6669850,
+          "canvases": [
+            {
+              "id": "sky",
+              "width": 780,
+              "height": 1688
+            },
+            {
+              "id": "",
+              "width": 110,
+              "height": 110
+            },
+            {
+              "id": "",
+              "width": 360,
+              "height": 360
+            }
+          ]
+        }
+      ],
+      "loading": {
+        "paints": [
+          {
+            "name": "first-paint",
+            "start": 140,
+            "duration": 0
+          },
+          {
+            "name": "first-contentful-paint",
+            "start": 140,
+            "duration": 0
+          }
+        ],
+        "lcp": [
+          {
+            "name": "",
+            "start": 356,
+            "duration": 0,
+            "size": 663
+          }
+        ],
+        "longTasks": [],
+        "resources": [
+          {
+            "path": "/css/starry/site.css",
+            "type": "link",
+            "bytes": 18425,
+            "decoded": 18425,
+            "duration": 2
+          },
+          {
+            "path": "/css/starry/scene.css",
+            "type": "link",
+            "bytes": 13357,
+            "decoded": 13357,
+            "duration": 2
+          },
+          {
+            "path": "/css/starry/motion.css",
+            "type": "link",
+            "bytes": 4527,
+            "decoded": 4527,
+            "duration": 2.199999988079071
+          },
+          {
+            "path": "/css/starry/reader.css",
+            "type": "link",
+            "bytes": 7150,
+            "decoded": 7150,
+            "duration": 2.2999999821186066
+          },
+          {
+            "path": "/css/starry/observation.css",
+            "type": "link",
+            "bytes": 7416,
+            "decoded": 7416,
+            "duration": 2.4000000059604645
+          },
+          {
+            "path": "/images/observation/waves.png",
+            "type": "img",
+            "bytes": 57383,
+            "decoded": 57383,
+            "duration": 6.5
+          },
+          {
+            "path": "/images/observation/silhouette.png",
+            "type": "img",
+            "bytes": 248138,
+            "decoded": 248138,
+            "duration": 6.699999988079071
+          },
+          {
+            "path": "/image/starfield/painted-sky-v11.webp",
+            "type": "link",
+            "bytes": 1090084,
+            "decoded": 1090084,
+            "duration": 4.300000011920929
+          },
+          {
+            "path": "/images/observation/year-pointer.png",
+            "type": "img",
+            "bytes": 10710,
+            "decoded": 10710,
+            "duration": 6.9000000059604645
+          },
+          {
+            "path": "/images/observation/diamond.png",
+            "type": "img",
+            "bytes": 4341,
+            "decoded": 4341,
+            "duration": 6.9000000059604645
+          },
+          {
+            "path": "/images/observation/dial-ticks.png",
+            "type": "img",
+            "bytes": 7310,
+            "decoded": 7310,
+            "duration": 6.9000000059604645
+          },
+          {
+            "path": "/images/observation/dial-bracket.png",
+            "type": "img",
+            "bytes": 5454,
+            "decoded": 5454,
+            "duration": 7.0999999940395355
+          },
+          {
+            "path": "/images/observation/waveform.png",
+            "type": "img",
+            "bytes": 52269,
+            "decoded": 52269,
+            "duration": 7.300000011920929
+          },
+          {
+            "path": "/images/observation/starlink.png",
+            "type": "img",
+            "bytes": 4106,
+            "decoded": 4106,
+            "duration": 7.4000000059604645
+          },
+          {
+            "path": "/images/observation/call-word.png",
+            "type": "img",
+            "bytes": 5893,
+            "decoded": 5893,
+            "duration": 7.9000000059604645
+          },
+          {
+            "path": "/images/observation/call-underline.png",
+            "type": "img",
+            "bytes": 4047,
+            "decoded": 4047,
+            "duration": 7.9000000059604645
+          },
+          {
+            "path": "/images/observation/hour-label.png",
+            "type": "img",
+            "bytes": 4432,
+            "decoded": 4432,
+            "duration": 8.300000011920929
+          },
+          {
+            "path": "/images/observation/date-boxes.png",
+            "type": "img",
+            "bytes": 22759,
+            "decoded": 22759,
+            "duration": 8.300000011920929
+          },
+          {
+            "path": "/images/observation/observation-id.png",
+            "type": "img",
+            "bytes": 3200,
+            "decoded": 3200,
+            "duration": 8.200000017881393
+          },
+          {
+            "path": "/images/observation/close.png",
+            "type": "img",
+            "bytes": 4386,
+            "decoded": 4386,
+            "duration": 8.400000005960464
+          },
+          {
+            "path": "/images/observation/read-rule.png",
+            "type": "img",
+            "bytes": 11171,
+            "decoded": 11171,
+            "duration": 8.799999982118607
+          },
+          {
+            "path": "/image/starfield/room-portrait-v11.webp",
+            "type": "img",
+            "bytes": 959460,
+            "decoded": 959460,
+            "duration": 5
+          },
+          {
+            "path": "/images/observation/read.png",
+            "type": "img",
+            "bytes": 4455,
+            "decoded": 4455,
+            "duration": 8.699999988079071
+          },
+          {
+            "path": "/images/observation/polyhedron.png",
+            "type": "img",
+            "bytes": 220772,
+            "decoded": 220772,
+            "duration": 8.900000005960464
+          },
+          {
+            "path": "/js/starfield/app.js",
+            "type": "script",
+            "bytes": 59335,
+            "decoded": 59335,
+            "duration": 2.5999999940395355
+          },
+          {
+            "path": "/js/starfield/static-page.js",
+            "type": "script",
+            "bytes": 234,
+            "decoded": 234,
+            "duration": 3.199999988079071
+          },
+          {
+            "path": "/js/starfield/audio.js",
+            "type": "script",
+            "bytes": 3088,
+            "decoded": 3088,
+            "duration": 2.7000000178813934
+          },
+          {
+            "path": "/js/starfield/dome.js",
+            "type": "script",
+            "bytes": 4168,
+            "decoded": 4168,
+            "duration": 2.100000023841858
+          },
+          {
+            "path": "/js/starfield/interactive-clouds.js",
+            "type": "script",
+            "bytes": 5653,
+            "decoded": 5653,
+            "duration": 2
+          },
+          {
+            "path": "/js/starfield/painted.js",
+            "type": "script",
+            "bytes": 10229,
+            "decoded": 10229,
+            "duration": 2.100000023841858
+          },
+          {
+            "path": "/js/starfield/motion.js",
+            "type": "script",
+            "bytes": 10230,
+            "decoded": 10230,
+            "duration": 2.7000000178813934
+          },
+          {
+            "path": "/js/starfield/experience.js",
+            "type": "script",
+            "bytes": 818,
+            "decoded": 818,
+            "duration": 2.5999999940395355
+          },
+          {
+            "path": "/js/starfield/navigation.js",
+            "type": "script",
+            "bytes": 2470,
+            "decoded": 2470,
+            "duration": 3.199999988079071
+          },
+          {
+            "path": "/js/starfield/sky-map.js",
+            "type": "script",
+            "bytes": 6322,
+            "decoded": 6322,
+            "duration": 3.199999988079071
+          },
+          {
+            "path": "/js/starfield/render-budget.js",
+            "type": "script",
+            "bytes": 1150,
+            "decoded": 1150,
+            "duration": 3.399999976158142
+          },
+          {
+            "path": "/js/starfield/dome-renderer.js",
+            "type": "script",
+            "bytes": 10316,
+            "decoded": 10316,
+            "duration": 3.4000000059604645
+          },
+          {
+            "path": "/js/starfield/observation.js",
+            "type": "script",
+            "bytes": 2398,
+            "decoded": 2398,
+            "duration": 3.5999999940395355
+          },
+          {
+            "path": "/js/starfield/star-targets.js",
+            "type": "script",
+            "bytes": 1124,
+            "decoded": 1124,
+            "duration": 3.5
+          },
+          {
+            "path": "/js/starfield/polyhedron.js",
+            "type": "script",
+            "bytes": 4642,
+            "decoded": 4642,
+            "duration": 3.699999988079071
+          },
+          {
+            "path": "/starry/index.json",
+            "type": "fetch",
+            "bytes": 9782,
+            "decoded": 9782,
+            "duration": 1.5
+          },
+          {
+            "path": "/image/starfield/room-window-portrait-mask-v17.svg",
+            "type": "img",
+            "bytes": 1089,
+            "decoded": 1089,
+            "duration": 1.2999999821186066
+          },
+          {
+            "path": "/image/starfield/room-window-mask-v17.svg",
+            "type": "img",
+            "bytes": 1297,
+            "decoded": 1297,
+            "duration": 1.2999999821186066
+          },
+          {
+            "path": "/images/observation/glyphs/Y.png",
+            "type": "img",
+            "bytes": 13310,
+            "decoded": 13310,
+            "duration": 1.7999999821186066
+          },
+          {
+            "path": "/images/observation/glyphs/E.png",
+            "type": "img",
+            "bytes": 2770,
+            "decoded": 2770,
+            "duration": 1.7999999821186066
+          },
+          {
+            "path": "/images/observation/glyphs/M.png",
+            "type": "img",
+            "bytes": 11475,
+            "decoded": 11475,
+            "duration": 1.699999988079071
+          },
+          {
+            "path": "/images/observation/glyphs/D.png",
+            "type": "img",
+            "bytes": 6630,
+            "decoded": 6630,
+            "duration": 2.0999999940395355
+          },
+          {
+            "path": "/images/observation/glyphs/A.png",
+            "type": "img",
+            "bytes": 17010,
+            "decoded": 17010,
+            "duration": 2.0999999940395355
+          },
+          {
+            "path": "/images/observation/glyphs/O.png",
+            "type": "img",
+            "bytes": 8776,
+            "decoded": 8776,
+            "duration": 2.199999988079071
+          },
+          {
+            "path": "/image/starfield/room-window-portrait-mask-v17.svg",
+            "type": "css",
+            "bytes": 1089,
+            "decoded": 1089,
+            "duration": 1.2000000178813934
+          },
+          {
+            "path": "/2025/10/20/%E6%A2%A6%E5%BC%80%E5%A7%8B%E7%9A%84%E5%9C%B0%E6%96%B9%5B%E7%BD%AE%E9%A1%B6%5D/",
+            "type": "fetch",
+            "bytes": 17961,
+            "decoded": 17961,
+            "duration": 3.0999999940395355
+          },
+          {
+            "path": "/images/observation/glyphs/2.png",
+            "type": "img",
+            "bytes": 11344,
+            "decoded": 11344,
+            "duration": 3.699999988079071
+          },
+          {
+            "path": "/images/observation/glyphs/3.png",
+            "type": "img",
+            "bytes": 16098,
+            "decoded": 16098,
+            "duration": 3.5
+          },
+          {
+            "path": "/images/observation/glyphs/4.png",
+            "type": "img",
+            "bytes": 8939,
+            "decoded": 8939,
+            "duration": 4
+          },
+          {
+            "path": "/images/observation/glyphs/5.png",
+            "type": "img",
+            "bytes": 10800,
+            "decoded": 10800,
+            "duration": 4.9000000059604645
+          },
+          {
+            "path": "/images/observation/glyphs/6.png",
+            "type": "img",
+            "bytes": 8017,
+            "decoded": 8017,
+            "duration": 6.299999982118607
+          },
+          {
+            "path": "/images/observation/glyphs/7.png",
+            "type": "img",
+            "bytes": 12221,
+            "decoded": 12221,
+            "duration": 6.5999999940395355
+          },
+          {
+            "path": "/images/observation/glyphs/1.png",
+            "type": "img",
+            "bytes": 6587,
+            "decoded": 6587,
+            "duration": 6.300000011920929
+          },
+          {
+            "path": "/images/observation/glyphs/0.png",
+            "type": "img",
+            "bytes": 7565,
+            "decoded": 7565,
+            "duration": 6.5
+          },
+          {
+            "path": "/images/reader-grain.svg",
+            "type": "css",
+            "bytes": 392,
+            "decoded": 392,
+            "duration": 4.799999982118607
+          },
+          {
+            "path": "/assets/css/APlayer.min.css",
+            "type": "link",
+            "bytes": 12528,
+            "decoded": 12528,
+            "duration": 2.5
+          },
+          {
+            "path": "/assets/js/APlayer.min.js",
+            "type": "script",
+            "bytes": 59325,
+            "decoded": 59325,
+            "duration": 2.4000000059604645
+          },
+          {
+            "path": "/assets/js/Meting.min.js",
+            "type": "script",
+            "bytes": 1795,
+            "decoded": 1795,
+            "duration": 1.5
+          },
+          {
+            "path": "/meting/api",
+            "type": "xmlhttprequest",
+            "bytes": 0,
+            "decoded": 0,
+            "duration": 1383
+          },
+          {
+            "path": "/meting/api",
+            "type": "xmlhttprequest",
+            "bytes": 0,
+            "decoded": 0,
+            "duration": 440.7999999821186
+          },
+          {
+            "path": "/meting/api",
+            "type": "audio",
+            "bytes": 0,
+            "decoded": 0,
+            "duration": 3536.5999999940395
+          }
+        ],
+        "navigation": [
+          {
+            "domContentLoadedMs": 92.2999999821186,
+            "loadMs": 94.7999999821186
+          }
+        ]
+      },
+      "errors": []
+    },
+    {
+      "device": "mobile",
+      "repeat": 2,
+      "initialBytes": 2966650,
+      "samples": [
+        {
+          "name": "room",
+          "callbacks": 241,
+          "intervalP95Ms": 17.600000000000364,
+          "intervalsOver34Ms": 0,
+          "progressMutations": 0,
+          "mainThreadBusyPercent": 8.144200130845498,
+          "scriptMsPerSecond": 12.780676161223987,
+          "layoutMsPerSecond": 3.2125269888280177,
+          "styleMsPerSecond": 15.253592784353899,
+          "jsHeapMiB": 3.0355491638183594,
+          "domNodes": 555,
+          "room": "inside",
+          "quality": "full",
+          "renderer": "webgl",
+          "heap": 4696806,
+          "canvases": [
+            {
+              "id": "sky",
+              "width": 780,
+              "height": 1688
+            },
+            {
+              "id": "",
+              "width": 110,
+              "height": 110
+            },
+            {
+              "id": "",
+              "width": 360,
+              "height": 360
+            }
+          ]
+        },
+        {
+          "name": "sky",
+          "callbacks": 241,
+          "intervalP95Ms": 17.599999999998545,
+          "intervalsOver34Ms": 0,
+          "progressMutations": 0,
+          "mainThreadBusyPercent": 9.62848324980994,
+          "scriptMsPerSecond": 51.415522565961375,
+          "layoutMsPerSecond": 0,
+          "styleMsPerSecond": 9.81508369366493,
+          "jsHeapMiB": 3.3252716064453125,
+          "domNodes": 558,
+          "room": "outside",
+          "quality": "full",
+          "renderer": "webgl",
+          "heap": 5001110,
+          "canvases": [
+            {
+              "id": "sky",
+              "width": 780,
+              "height": 1688
+            },
+            {
+              "id": "",
+              "width": 110,
+              "height": 110
+            },
+            {
+              "id": "",
+              "width": 360,
+              "height": 360
+            }
+          ]
+        },
+        {
+          "name": "selected",
+          "callbacks": 241,
+          "intervalP95Ms": 17.5,
+          "intervalsOver34Ms": 0,
+          "progressMutations": 0,
+          "mainThreadBusyPercent": 10.916194248955726,
+          "scriptMsPerSecond": 52.5570358572189,
+          "layoutMsPerSecond": 0,
+          "styleMsPerSecond": 11.677901615681643,
+          "jsHeapMiB": 4.160316467285156,
+          "domNodes": 1083,
+          "room": "outside",
+          "quality": "full",
+          "renderer": "webgl",
+          "heap": 5876092,
+          "canvases": [
+            {
+              "id": "sky",
+              "width": 780,
+              "height": 1688
+            },
+            {
+              "id": "",
+              "width": 110,
+              "height": 110
+            },
+            {
+              "id": "",
+              "width": 360,
+              "height": 360
+            }
+          ]
+        },
+        {
+          "name": "reader",
+          "callbacks": 241,
+          "intervalP95Ms": 17.400000000001455,
+          "intervalsOver34Ms": 0,
+          "progressMutations": 1,
+          "mainThreadBusyPercent": 4.646526319255011,
+          "scriptMsPerSecond": 11.049001111782815,
+          "layoutMsPerSecond": 2.64942386138765,
+          "styleMsPerSecond": 8.487941302301271,
+          "jsHeapMiB": 4.322521209716797,
+          "domNodes": 1453,
+          "room": "outside",
+          "quality": "full",
+          "renderer": "webgl",
+          "heap": 6111214,
+          "canvases": [
+            {
+              "id": "sky",
+              "width": 780,
+              "height": 1688
+            },
+            {
+              "id": "",
+              "width": 110,
+              "height": 110
+            },
+            {
+              "id": "",
+              "width": 360,
+              "height": 360
+            }
+          ]
+        }
+      ],
+      "loading": {
+        "paints": [
+          {
+            "name": "first-paint",
+            "start": 116,
+            "duration": 0
+          },
+          {
+            "name": "first-contentful-paint",
+            "start": 116,
+            "duration": 0
+          }
+        ],
+        "lcp": [
+          {
+            "name": "",
+            "start": 348,
+            "duration": 0,
+            "size": 663
+          }
+        ],
+        "longTasks": [
+          {
+            "name": "self",
+            "start": 5872.199999988079,
+            "duration": 52
+          }
+        ],
+        "resources": [
+          {
+            "path": "/css/starry/site.css",
+            "type": "link",
+            "bytes": 18425,
+            "decoded": 18425,
+            "duration": 2
+          },
+          {
+            "path": "/css/starry/scene.css",
+            "type": "link",
+            "bytes": 13357,
+            "decoded": 13357,
+            "duration": 2.2000000178813934
+          },
+          {
+            "path": "/css/starry/motion.css",
+            "type": "link",
+            "bytes": 4527,
+            "decoded": 4527,
+            "duration": 2.2000000178813934
+          },
+          {
+            "path": "/css/starry/reader.css",
+            "type": "link",
+            "bytes": 7150,
+            "decoded": 7150,
+            "duration": 2.2000000178813934
+          },
+          {
+            "path": "/css/starry/observation.css",
+            "type": "link",
+            "bytes": 7416,
+            "decoded": 7416,
+            "duration": 2.300000011920929
+          },
+          {
+            "path": "/image/starfield/painted-sky-v11.webp",
+            "type": "link",
+            "bytes": 1090084,
+            "decoded": 1090084,
+            "duration": 3.5
+          },
+          {
+            "path": "/images/observation/year-pointer.png",
+            "type": "img",
+            "bytes": 10710,
+            "decoded": 10710,
+            "duration": 5.0999999940395355
+          },
+          {
+            "path": "/images/observation/waves.png",
+            "type": "img",
+            "bytes": 57383,
+            "decoded": 57383,
+            "duration": 5.0999999940395355
+          },
+          {
+            "path": "/images/observation/silhouette.png",
+            "type": "img",
+            "bytes": 248138,
+            "decoded": 248138,
+            "duration": 5.299999982118607
+          },
+          {
+            "path": "/images/observation/diamond.png",
+            "type": "img",
+            "bytes": 4341,
+            "decoded": 4341,
+            "duration": 5.5
+          },
+          {
+            "path": "/images/observation/dial-ticks.png",
+            "type": "img",
+            "bytes": 7310,
+            "decoded": 7310,
+            "duration": 5.5
+          },
+          {
+            "path": "/images/observation/dial-bracket.png",
+            "type": "img",
+            "bytes": 5454,
+            "decoded": 5454,
+            "duration": 5.699999988079071
+          },
+          {
+            "path": "/images/observation/waveform.png",
+            "type": "img",
+            "bytes": 52269,
+            "decoded": 52269,
+            "duration": 6.4000000059604645
+          },
+          {
+            "path": "/images/observation/starlink.png",
+            "type": "img",
+            "bytes": 4106,
+            "decoded": 4106,
+            "duration": 6.4000000059604645
+          },
+          {
+            "path": "/images/observation/call-word.png",
+            "type": "img",
+            "bytes": 5893,
+            "decoded": 5893,
+            "duration": 6.799999982118607
+          },
+          {
+            "path": "/images/observation/call-underline.png",
+            "type": "img",
+            "bytes": 4047,
+            "decoded": 4047,
+            "duration": 6.799999982118607
+          },
+          {
+            "path": "/images/observation/hour-label.png",
+            "type": "img",
+            "bytes": 4432,
+            "decoded": 4432,
+            "duration": 6.699999988079071
+          },
+          {
+            "path": "/images/observation/date-boxes.png",
+            "type": "img",
+            "bytes": 22759,
+            "decoded": 22759,
+            "duration": 6.800000011920929
+          },
+          {
+            "path": "/images/observation/observation-id.png",
+            "type": "img",
+            "bytes": 3200,
+            "decoded": 3200,
+            "duration": 7.0999999940395355
+          },
+          {
+            "path": "/images/observation/close.png",
+            "type": "img",
+            "bytes": 4386,
+            "decoded": 4386,
+            "duration": 7.0999999940395355
+          },
+          {
+            "path": "/images/observation/read-rule.png",
+            "type": "img",
+            "bytes": 11171,
+            "decoded": 11171,
+            "duration": 7.5999999940395355
+          },
+          {
+            "path": "/image/starfield/room-portrait-v11.webp",
+            "type": "img",
+            "bytes": 959460,
+            "decoded": 959460,
+            "duration": 4.200000017881393
+          },
+          {
+            "path": "/images/observation/read.png",
+            "type": "img",
+            "bytes": 4455,
+            "decoded": 4455,
+            "duration": 7.5
+          },
+          {
+            "path": "/images/observation/polyhedron.png",
+            "type": "img",
+            "bytes": 220772,
+            "decoded": 220772,
+            "duration": 7.5999999940395355
+          },
+          {
+            "path": "/js/starfield/static-page.js",
+            "type": "script",
+            "bytes": 234,
+            "decoded": 234,
+            "duration": 3.2000000178813934
+          },
+          {
+            "path": "/js/starfield/app.js",
+            "type": "script",
+            "bytes": 59335,
+            "decoded": 59335,
+            "duration": 3.300000011920929
+          },
+          {
+            "path": "/js/starfield/audio.js",
+            "type": "script",
+            "bytes": 3088,
+            "decoded": 3088,
+            "duration": 2.5999999940395355
+          },
+          {
+            "path": "/js/starfield/dome.js",
+            "type": "script",
+            "bytes": 4168,
+            "decoded": 4168,
+            "duration": 2.5999999940395355
+          },
+          {
+            "path": "/js/starfield/interactive-clouds.js",
+            "type": "script",
+            "bytes": 5653,
+            "decoded": 5653,
+            "duration": 2.5
+          },
+          {
+            "path": "/js/starfield/painted.js",
+            "type": "script",
+            "bytes": 10229,
+            "decoded": 10229,
+            "duration": 2.5999999940395355
+          },
+          {
+            "path": "/js/starfield/experience.js",
+            "type": "script",
+            "bytes": 818,
+            "decoded": 818,
+            "duration": 3
+          },
+          {
+            "path": "/js/starfield/motion.js",
+            "type": "script",
+            "bytes": 10230,
+            "decoded": 10230,
+            "duration": 3
+          },
+          {
+            "path": "/js/starfield/sky-map.js",
+            "type": "script",
+            "bytes": 6322,
+            "decoded": 6322,
+            "duration": 3.800000011920929
+          },
+          {
+            "path": "/js/starfield/navigation.js",
+            "type": "script",
+            "bytes": 2470,
+            "decoded": 2470,
+            "duration": 3.9000000059604645
+          },
+          {
+            "path": "/js/starfield/render-budget.js",
+            "type": "script",
+            "bytes": 1150,
+            "decoded": 1150,
+            "duration": 4.0999999940395355
+          },
+          {
+            "path": "/js/starfield/dome-renderer.js",
+            "type": "script",
+            "bytes": 10316,
+            "decoded": 10316,
+            "duration": 3.9000000059604645
+          },
+          {
+            "path": "/js/starfield/star-targets.js",
+            "type": "script",
+            "bytes": 1124,
+            "decoded": 1124,
+            "duration": 4.0999999940395355
+          },
+          {
+            "path": "/js/starfield/observation.js",
+            "type": "script",
+            "bytes": 2398,
+            "decoded": 2398,
+            "duration": 4.300000011920929
+          },
+          {
+            "path": "/js/starfield/polyhedron.js",
+            "type": "script",
+            "bytes": 4642,
+            "decoded": 4642,
+            "duration": 4.700000017881393
+          },
+          {
+            "path": "/starry/index.json",
+            "type": "fetch",
+            "bytes": 9782,
+            "decoded": 9782,
+            "duration": 2.0999999940395355
+          },
+          {
+            "path": "/image/starfield/room-window-portrait-mask-v17.svg",
+            "type": "img",
+            "bytes": 1089,
+            "decoded": 1089,
+            "duration": 2
+          },
+          {
+            "path": "/image/starfield/room-window-mask-v17.svg",
+            "type": "img",
+            "bytes": 1297,
+            "decoded": 1297,
+            "duration": 2.4000000059604645
+          },
+          {
+            "path": "/images/observation/glyphs/Y.png",
+            "type": "img",
+            "bytes": 13310,
+            "decoded": 13310,
+            "duration": 2.300000011920929
+          },
+          {
+            "path": "/images/observation/glyphs/E.png",
+            "type": "img",
+            "bytes": 2770,
+            "decoded": 2770,
+            "duration": 2.300000011920929
+          },
+          {
+            "path": "/images/observation/glyphs/M.png",
+            "type": "img",
+            "bytes": 11475,
+            "decoded": 11475,
+            "duration": 2.300000011920929
+          },
+          {
+            "path": "/images/observation/glyphs/O.png",
+            "type": "img",
+            "bytes": 8776,
+            "decoded": 8776,
+            "duration": 2.7000000178813934
+          },
+          {
+            "path": "/images/observation/glyphs/D.png",
+            "type": "img",
+            "bytes": 6630,
+            "decoded": 6630,
+            "duration": 2.7000000178813934
+          },
+          {
+            "path": "/images/observation/glyphs/A.png",
+            "type": "img",
+            "bytes": 17010,
+            "decoded": 17010,
+            "duration": 2.9000000059604645
+          },
+          {
+            "path": "/image/starfield/room-window-portrait-mask-v17.svg",
+            "type": "css",
+            "bytes": 1089,
+            "decoded": 1089,
+            "duration": 1.199999988079071
+          },
+          {
+            "path": "/2025/10/20/%E6%A2%A6%E5%BC%80%E5%A7%8B%E7%9A%84%E5%9C%B0%E6%96%B9%5B%E7%BD%AE%E9%A1%B6%5D/",
+            "type": "fetch",
+            "bytes": 17961,
+            "decoded": 17961,
+            "duration": 6.9000000059604645
+          },
+          {
+            "path": "/images/observation/glyphs/2.png",
+            "type": "img",
+            "bytes": 11344,
+            "decoded": 11344,
+            "duration": 6.5999999940395355
+          },
+          {
+            "path": "/images/observation/glyphs/3.png",
+            "type": "img",
+            "bytes": 16098,
+            "decoded": 16098,
+            "duration": 7.699999988079071
+          },
+          {
+            "path": "/images/observation/glyphs/4.png",
+            "type": "img",
+            "bytes": 8939,
+            "decoded": 8939,
+            "duration": 6.699999988079071
+          },
+          {
+            "path": "/images/observation/glyphs/5.png",
+            "type": "img",
+            "bytes": 10800,
+            "decoded": 10800,
+            "duration": 7.5999999940395355
+          },
+          {
+            "path": "/images/observation/glyphs/6.png",
+            "type": "img",
+            "bytes": 8017,
+            "decoded": 8017,
+            "duration": 8.099999994039536
+          },
+          {
+            "path": "/images/observation/glyphs/7.png",
+            "type": "img",
+            "bytes": 12221,
+            "decoded": 12221,
+            "duration": 8.900000005960464
+          },
+          {
+            "path": "/images/observation/glyphs/1.png",
+            "type": "img",
+            "bytes": 6587,
+            "decoded": 6587,
+            "duration": 9
+          },
+          {
+            "path": "/images/observation/glyphs/0.png",
+            "type": "img",
+            "bytes": 7565,
+            "decoded": 7565,
+            "duration": 8.899999976158142
+          },
+          {
+            "path": "/images/reader-grain.svg",
+            "type": "css",
+            "bytes": 392,
+            "decoded": 392,
+            "duration": 3.4000000059604645
+          },
+          {
+            "path": "/assets/css/APlayer.min.css",
+            "type": "link",
+            "bytes": 12528,
+            "decoded": 12528,
+            "duration": 2.2999999821186066
+          },
+          {
+            "path": "/assets/js/APlayer.min.js",
+            "type": "script",
+            "bytes": 59325,
+            "decoded": 59325,
+            "duration": 2.0999999940395355
+          },
+          {
+            "path": "/assets/js/Meting.min.js",
+            "type": "script",
+            "bytes": 1795,
+            "decoded": 1795,
+            "duration": 2.300000011920929
+          },
+          {
+            "path": "/meting/api",
+            "type": "xmlhttprequest",
+            "bytes": 0,
+            "decoded": 0,
+            "duration": 2736.2000000178814
+          },
+          {
+            "path": "/meting/api",
+            "type": "xmlhttprequest",
+            "bytes": 0,
+            "decoded": 0,
+            "duration": 309.69999998807907
+          },
+          {
+            "path": "/meting/api",
+            "type": "audio",
+            "bytes": 0,
+            "decoded": 0,
+            "duration": 1177.7999999821186
+          }
+        ],
+        "navigation": [
+          {
+            "domContentLoadedMs": 88.7999999821186,
+            "loadMs": 92.19999998807907
+          }
+        ]
+      },
+      "errors": []
+    },
+    {
+      "device": "mobile-throttled",
+      "cpuRate": 4,
+      "downloadBytesPerSecond": 200000,
+      "latencyMs": 150,
+      "readyMs": 16073,
+      "roomImageMs": 16102,
+      "resources": [
+        {
+          "path": "/css/starry/site.css",
+          "bytes": 18425,
+          "duration": 548.8999999761581
+        },
+        {
+          "path": "/css/starry/motion.css",
+          "bytes": 4527,
+          "duration": 284.30000001192093
+        },
+        {
+          "path": "/css/starry/scene.css",
+          "bytes": 13357,
+          "duration": 456.80000001192093
+        },
+        {
+          "path": "/css/starry/reader.css",
+          "bytes": 7150,
+          "duration": 345.10000002384186
+        },
+        {
+          "path": "/css/starry/observation.css",
+          "bytes": 7416,
+          "duration": 382.60000002384186
+        },
+        {
+          "path": "/image/starfield/painted-sky-v11.webp",
+          "bytes": 1090084,
+          "duration": 15199.5
+        },
+        {
+          "path": "/images/observation/waves.png",
+          "bytes": 57383,
+          "duration": 6048.5
+        },
+        {
+          "path": "/images/observation/silhouette.png",
+          "bytes": 248138,
+          "duration": 9423.800000011921
+        },
+        {
+          "path": "/images/observation/year-pointer.png",
+          "bytes": 10710,
+          "duration": 6426.9000000059605
+        },
+        {
+          "path": "/images/observation/diamond.png",
+          "bytes": 4341,
+          "duration": 6697.299999982119
+        },
+        {
+          "path": "/images/observation/dial-ticks.png",
+          "bytes": 7310,
+          "duration": 7026.699999988079
+        },
+        {
+          "path": "/images/observation/dial-bracket.png",
+          "bytes": 5454,
+          "duration": 7297.9000000059605
+        },
+        {
+          "path": "/images/observation/waveform.png",
+          "bytes": 52269,
+          "duration": 8497.800000011921
+        },
+        {
+          "path": "/images/observation/starlink.png",
+          "bytes": 4106,
+          "duration": 8736.199999988079
+        },
+        {
+          "path": "/images/observation/call-word.png",
+          "bytes": 5893,
+          "duration": 9030.700000017881
+        },
+        {
+          "path": "/images/observation/call-underline.png",
+          "bytes": 4047,
+          "duration": 9268.800000011921
+        },
+        {
+          "path": "/images/observation/hour-label.png",
+          "bytes": 4432,
+          "duration": 9508.700000017881
+        },
+        {
+          "path": "/images/observation/observation-id.png",
+          "bytes": 3200,
+          "duration": 9741.200000017881
+        },
+        {
+          "path": "/images/observation/date-boxes.png",
+          "bytes": 22759,
+          "duration": 9959.700000017881
+        },
+        {
+          "path": "/images/observation/close.png",
+          "bytes": 4386,
+          "duration": 10004.5
+        },
+        {
+          "path": "/images/observation/read.png",
+          "bytes": 4455,
+          "duration": 10272.90000000596
+        },
+        {
+          "path": "/images/observation/read-rule.png",
+          "bytes": 11171,
+          "duration": 10318.100000023842
+        },
+        {
+          "path": "/images/observation/polyhedron.png",
+          "bytes": 220772,
+          "duration": 4717.5
+        },
+        {
+          "path": "/image/starfield/room-portrait-v11.webp",
+          "bytes": 959460,
+          "duration": 14562.300000011921
+        },
+        {
+          "path": "/js/starfield/app.js",
+          "bytes": 59335,
+          "duration": 1598.6000000238419
+        },
+        {
+          "path": "/js/starfield/static-page.js",
+          "bytes": 234,
+          "duration": 501.2999999821186
+        },
+        {
+          "path": "/js/starfield/audio.js",
+          "bytes": 3088,
+          "duration": 257.59999999403954
+        },
+        {
+          "path": "/js/starfield/interactive-clouds.js",
+          "bytes": 5653,
+          "duration": 312
+        },
+        {
+          "path": "/js/starfield/painted.js",
+          "bytes": 10229,
+          "duration": 410.59999999403954
+        },
+        {
+          "path": "/js/starfield/dome.js",
+          "bytes": 4168,
+          "duration": 280.80000001192093
+        },
+        {
+          "path": "/js/starfield/motion.js",
+          "bytes": 10230,
+          "duration": 670.8000000119209
+        },
+        {
+          "path": "/js/starfield/experience.js",
+          "bytes": 818,
+          "duration": 498.40000000596046
+        },
+        {
+          "path": "/js/starfield/sky-map.js",
+          "bytes": 6322,
+          "duration": 746.9000000059605
+        },
+        {
+          "path": "/js/starfield/navigation.js",
+          "bytes": 2470,
+          "duration": 730.5999999940395
+        },
+        {
+          "path": "/js/starfield/render-budget.js",
+          "bytes": 1150,
+          "duration": 844
+        },
+        {
+          "path": "/js/starfield/star-targets.js",
+          "bytes": 1124,
+          "duration": 926.0999999940395
+        },
+        {
+          "path": "/js/starfield/observation.js",
+          "bytes": 2398,
+          "duration": 1069.199999988079
+        },
+        {
+          "path": "/js/starfield/dome-renderer.js",
+          "bytes": 10316,
+          "duration": 1157.9000000059605
+        },
+        {
+          "path": "/js/starfield/polyhedron.js",
+          "bytes": 4642,
+          "duration": 1219.199999988079
+        },
+        {
+          "path": "/starry/index.json",
+          "bytes": 9782,
+          "duration": 358.2000000178814
+        },
+        {
+          "path": "/image/starfield/room-window-mask-v17.svg",
+          "bytes": 1297,
+          "duration": 7588
+        },
+        {
+          "path": "/image/starfield/room-window-portrait-mask-v17.svg",
+          "bytes": 1089,
+          "duration": 7617.5
+        },
+        {
+          "path": "/images/observation/glyphs/E.png",
+          "bytes": 2770,
+          "duration": 7827.5
+        },
+        {
+          "path": "/images/observation/glyphs/Y.png",
+          "bytes": 13310,
+          "duration": 7977.5
+        },
+        {
+          "path": "/images/observation/glyphs/M.png",
+          "bytes": 11475,
+          "duration": 8164.800000011921
+        },
+        {
+          "path": "/images/observation/glyphs/O.png",
+          "bytes": 8776,
+          "duration": 8276.799999982119
+        },
+        {
+          "path": "/images/observation/glyphs/D.png",
+          "bytes": 6630,
+          "duration": 8419
+        },
+        {
+          "path": "/images/observation/glyphs/A.png",
+          "bytes": 17010,
+          "duration": 8697
+        }
+      ]
+    }
+  ]
+}

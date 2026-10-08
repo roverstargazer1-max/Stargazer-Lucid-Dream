@@ -1,0 +1,34 @@
+[
+  {
+    "original": "themes/hexo-theme-kira/prototypes/starfield/assets/painted-sky-v11.png",
+    "optimized": "source/image/starfield/painted-sky-v11.webp",
+    "width": 2172,
+    "height": 724,
+    "dimensionsEqual": true,
+    "browserChannelDifferences": 0
+  },
+  {
+    "original": "themes/hexo-theme-kira/prototypes/starfield/assets/room-poster-detail-v20.png",
+    "optimized": "source/image/starfield/room-poster-detail-v20.webp",
+    "width": 1672,
+    "height": 941,
+    "dimensionsEqual": true,
+    "browserChannelDifferences": 0
+  },
+  {
+    "original": "themes/hexo-theme-kira/prototypes/starfield/assets/room-portrait-v11.png",
+    "optimized": "source/image/starfield/room-portrait-v11.webp",
+    "width": 941,
+    "height": 1672,
+    "dimensionsEqual": true,
+    "browserChannelDifferences": 0
+  },
+  {
+    "original": "assets/详情弹窗/详细工程文件/人物剪影.png",
+    "optimized": "themes/stargazer-starfield/source/images/observation/silhouette.png",
+    "width": 1024,
+    "height": 1536,
+    "dimensionsEqual": true,
+    "browserChannelDifferences": 0
+  }
+]
