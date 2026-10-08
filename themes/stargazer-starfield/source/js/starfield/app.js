@@ -962,6 +962,8 @@ async function start() {
       if (!staticScene || !restingFrameDrawn) drawScene(now);
       restingFrameDrawn = Boolean(staticScene);
       polyhedron.render(now, !reducedMotion && !document.hidden && !roomScene?.active && !reader.open);
+      observationPanel.render(now, !preview.hidden && !reducedMotion && renderBudget.current.ambientMotion &&
+        !document.hidden && !roomScene?.active && !reader.open && !egg.open && !collectionOpen && !arrival);
       skyMap.update(camera, projectionSettings(), articles.map(item => ({ id: item.id, point: positionOf(item) })), selected, !reader.open && !egg.open && !arrival && !roomScene?.active && !collectionOpen, width, height, now);
       for (let i = meteors.length - 1; i >= 0; i--) {
         const meteor = meteors[i], age = (now - meteor.start) / 1800;

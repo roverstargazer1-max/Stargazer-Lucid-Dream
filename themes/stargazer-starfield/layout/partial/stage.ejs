@@ -30,7 +30,10 @@
       <span class="observation-axis" aria-hidden="true"><img src="<%= url_for('images/observation/diamond.png') %>" alt="" draggable="false"><img src="<%= url_for('images/observation/diamond.png') %>" alt="" draggable="false"></span>
       <img class="observation-ticks" src="<%= url_for('images/observation/dial-ticks.png') %>" alt="" aria-hidden="true" draggable="false">
       <img class="observation-bracket" src="<%= url_for('images/observation/dial-bracket.png') %>" alt="" aria-hidden="true" draggable="false">
-      <img class="observation-waveform" src="<%= url_for('images/observation/waveform.png') %>" alt="" aria-hidden="true" draggable="false">
+      <div class="observation-waveform" aria-hidden="true">
+        <img src="<%= url_for('images/observation/waveform.png') %>" alt="" draggable="false">
+        <canvas hidden></canvas>
+      </div>
       <div class="observation-call" aria-hidden="true">
         <img src="<%= url_for('images/observation/starlink.png') %>" alt="" draggable="false">
         <span class="call-label"><img src="<%= url_for('images/observation/call-word.png') %>" alt="" draggable="false"><img class="call-underline" src="<%= url_for('images/observation/call-underline.png') %>" alt="" draggable="false"></span>

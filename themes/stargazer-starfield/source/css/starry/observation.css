@@ -41,7 +41,9 @@ body[data-scene=painted] #preview.observation-panel::after { content: none; }
 .observation-axis > img:last-child { bottom: 28%; left: -3cqw; }
 .observation-ticks { left: 39%; top: 53%; width: 8%; height: auto; }
 .observation-bracket { left: 32%; top: 64%; width: 1.8%; height: auto; }
-.observation-waveform { left: 41%; top: 14%; width: 43%; height: auto; opacity: .7; }
+.observation-waveform { position: absolute; left: 41%; top: 14%; width: 43%; aspect-ratio: 423 / 93; opacity: .95; pointer-events: none; }
+.observation-waveform > img, .observation-waveform > canvas { display: block; width: 100%; height: 100%; }
+.observation-waveform > canvas { position: absolute; left: 0; top: -25%; height: 150%; }
 .observation-call { position: absolute; right: 4%; top: 23%; width: 11%; display: flex; flex-direction: column; align-items: center; gap: .35cqw; }
 .observation-call > img { width: 100%; height: auto; }
 .observation-call > .call-label { width: 76%; height: auto; margin-top: -.35cqw; }
