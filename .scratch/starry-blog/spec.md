@@ -2,6 +2,8 @@
 
 > 2026-10-01：当前实施以 [个人博客正式化计划](theme-production-plan.md) 和 [本次访谈](theme-planning.md) 为准。本文保留历史规格；公开模板、AI 候选、场景校准工具和额外规模验证不属于当前任务。作者关系改为文章 Front-matter 按文件名引用，理由选填，自动双向。
 
+> 2026-10-08 状态指引：新版个人主题已接入真实文章并完成本地静态构建，见 [实施记录](implementation-progress.md)及[运行指南](../../docs/operations/starfield-blog.md)。下面的 tracker 状态和“尚未执行”描述原规格发布时的范围，不是当前个人主题状态；历史工单不因本次文档更新而关闭，远程发布和公开模板也未被记作完成。
+
 Status: ready-for-agent
 State: open
 Category: enhancement

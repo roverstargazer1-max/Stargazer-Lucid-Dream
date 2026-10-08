@@ -1,5 +1,31 @@
 # 星空交互原型
 
+更新日期：2026-10-08。本目录保留 **V20 模拟文章设计原型**，用于重看窗边、穹顶、镜头和 A/B/C 设计试验。它使用 `mock.js` 中的 16 篇虚构文章，不读取 `source/_posts/`，不构建真实博客，也不属于 Kira 的发布资源。
+
+真实文章新版已实现于相邻的 [stargazer-starfield 主题](../../../stargazer-starfield/README.md)，仓库根目录运行 `npm ci` 后 `npm run start:starfield`，打开 [4175 新版](http://127.0.0.1:4175/)。2026-10-02 之后的阅读窗口、观测面板与配色更新在该主题中；本目录保留相应设计基线。旧 Kira 和全部入口的关系见 [项目 README](../../../../README.md)。
+
+## 快速启动当前 V20 原型
+
+在仓库根目录执行，只需要 Node.js（项目固定为 `22.19.0`），无需安装 Hexo 或其他依赖：
+
+```bash
+node themes/hexo-theme-kira/prototypes/starfield/server.mjs
+```
+
+也可用 `npm run prototype:stars`。打开 [V20 推荐入口](http://127.0.0.1:4173/pages/starfield-prototype/?variant=C&scene=painted&v=20&controls=quiet&motion=full&living=1)，服务仅监听本机，按 `Ctrl+C` 停止。点击窗户入场，选星靠近，再次点同星或使用阅读动作进入模拟正文；`motion=soft` 使用轻过渡，`review=1` 显示验收工具。
+
+`v` 参数仅标注研究版本，共用本目录当前代码；修改它不会还原旧实现。真正冻结的 V19 对照使用独立副本：
+
+```bash
+node .scratch/starry-blog/baseline-server.mjs
+```
+
+打开 [4174 冻结对照](http://127.0.0.1:4174/pages/starfield-prototype/?variant=C&scene=painted&v=19&controls=quiet&motion=soft&living=0)。它也不同于旧 Kira 博客，旧博客隔离预览使用 4176。
+
+## V20 基线与历史记录
+
+以下带日期的段落和 V2–V19 章节保留当时设计过程，不代表新版真实文章主题的当前界面或发布状态。V20 的优化证据见 [验收记录](../../../../.scratch/starry-blog/optimization-v20-acceptance.md)，个人站点当前实现见 [实施记录](../../../../.scratch/starry-blog/implementation-progress.md)。
+
 ## 当前试作：V20 操作与阅读优化
 
 2026-09-16 细节重绘试作后按作者要求恢复：桌面入口继续采用 [room-poster-detail-v20.png](assets/room-poster-detail-v20.png)，原窗口遮罩也已恢复。细节重绘图、提示词与检查记录保留在 [本次重绘记录](../../../../.scratch/starry-blog/ztmy-detail-20260916.md)，供后续对照。
@@ -20,7 +46,7 @@
 
 冻结原版启动命令：`node .scratch/starry-blog/baseline-server.mjs`。该目录与清单保留了修改前的 46 个文件和素材。跨系统字体、真实触屏与原生页面缩放的验证范围以验收记录为准。
 
-本轮仍是本地 mock 原型；正式文章迁移、路由整合与部署不在这次优化范围。2026-09-30 用户已确认主题化整体方案及 R1–R6 范围调整后规则；后续实施以 [正式规格](../../../../.scratch/starry-blog/spec.md) 为入口。历史版本中的待复核文字描述当时状态，原型仍不代表正式博客已验收。
+本轮 V20 优化仍是本地 mock 原型，正式文章迁移、路由整合与部署不在该轮范围。后续真实内容接入已在 `codex/starfield-personal` 实现，以 [个人正式化计划](../../../../.scratch/starry-blog/theme-production-plan.md)及后续明确的设计更新为准；2026-09-30 的 [公开模板规格](../../../../.scratch/starry-blog/spec.md)保留历史范围。历史版本中的待复核文字描述当时状态，原型验收不能替代正式主题或线上部署验收。
 
 ## V19 穿窗入星
 
@@ -78,15 +104,15 @@
 
 打开 <http://127.0.0.1:4173/pages/starfield-prototype/?variant=C&scene=painted>，点击窗户进入厚涂星空；右上房子图标回窗边。桌面使用作者参考图，手机使用同画风竖向构图。文章探索与两次点星阅读保持原逻辑，天空、星芒和阅读纸面统一配色。右下提供轻过渡开关。
 
-旧版对照：<http://127.0.0.1:4173/pages/starfield-prototype/?variant=C&scene=classic>。以下历史入口加 `scene=classic` 可恢复当时的天空与屋顶。素材、完整生图提示词及本版限制见 [ART-STUDY-06.md](ART-STUDY-06.md)。当前仍为 mock 原型，美术尚待体验确认。
+早期原型场景对照：<http://127.0.0.1:4173/pages/starfield-prototype/?variant=C&scene=classic>。以下历史入口加 `scene=classic` 可查看保留的天空与屋顶方案，不会恢复全部历史代码。素材、完整生图提示词及本版限制见 [ART-STUDY-06.md](ART-STUDY-06.md)。当时仍为 mock 原型，美术尚待体验确认。
 
 本地、可丢弃的 UI 实验。16 篇虚构文章，3 种结构方案，共用同一套空间坐标与交互。用于判断视觉、镜头推进及阅读衔接；不是正式主题实现。
 
-## 启动
+## 早期试验入口与工具
 
 仓库根目录执行（无须安装额外依赖）：
 
-```powershell
+```bash
 node themes/hexo-theme-kira/prototypes/starfield/server.mjs
 ```
 
@@ -110,7 +136,7 @@ node themes/hexo-theme-kira/prototypes/starfield/server.mjs
 
 按作者本次明确要求，V2 默认播放约 1.05 秒的快速推进镜头，先快速前行，再减速停靠。工具条可切换到 220ms 的“轻过渡”；不修改系统设置。正式版本的动态效果策略仍需结合最终体验确定。
 
-## 体验顺序
+## 早期体验顺序（V2）
 
 1. 点击近处星星：第一次选中并靠近；约 1.05 秒后再次点同一颗星进入正文，也可点击“进入阅读”。移动中的重复点击不会打开正文。
 2. 阅读到正文结束，出现与其他文章的关联理由。“留白也是一种回答”用于检查短文无需滚动的情况，是否直接读完取决于可用屏幕高度。
@@ -119,7 +145,9 @@ node themes/hexo-theme-kira/prototypes/starfield/server.mjs
 5. 拖动转向、滚轮向上前进/向下后退。手机单指拖动、双指张开前进/收拢后退。手动操作中断自动镜头，随后再次点星先重新靠近。
 6. `↶` 返回上一个停靠点，`⌂` 回到屋顶。屋顶手记可点开；远处波纹符号可触发一颗流星。
 
-## 实现范围与限制
+## 早期实现范围与限制（V2–V5）
+
+以下保留早期研究结论；当前 V20 的动效、性能测量与检查范围以上方 V20 基线及验收记录为准。真实内容管线属于独立主题，不属于本原型。
 
 - 使用原生 Canvas 的透视投影与三维镜头平移。远景由球面星点和微弱银河尘带生成，与文章共用朝向投影；远景忽略平移，近景星点具有移动视差。V2 参考照片保留作素材记录，页面不再加载它。
 - 文章星有细小光核、克制散射与按 ID 固定的个体差异，少量使用双星和短星芒；背景保持低亮度，不再绘制文章周围的避让暗圈。近处显露轻量标题，并在窄屏避让。视野没有文章时，出现“回望最近的文章”入口。
@@ -132,7 +160,7 @@ node themes/hexo-theme-kira/prototypes/starfield/server.mjs
 - 两项彩蛋仅验证轻反馈。手机彩蛋首次触碰即触发，不据此确认设计文档 R5 的两次触碰规则。
 - 已在浏览器检查桌面和窄屏布局、阅读闭环、镜头坐标恢复、时间切换、短文已读与手动巡视；双指缩放仍需真实触屏验证，尚未做性能基准测试。
 - 原型位于主题的 `prototypes/`，不在 Hexo 发布资源目录。启动器拒绝 `NODE_ENV=production`，工具条只在 localhost 显示。
-- 原型分支：`codex/prototype-starfield`。作者选择 C 作为继续迭代方向；A/B 保留对照，最终美术尚待反馈，不直接合入正式站点。
+- 原型最初在 `codex/prototype-starfield` 分支迭代，现随 `codex/starfield-personal` 保留。作者选择 C 作为继续迭代方向，A/B 保留历史对照；正式站点使用独立主题，不直接发布本目录。
 
 素材来源、轮廓说明及完整生图提示词见 [ART-DIRECTION.md](ART-DIRECTION.md)。
 

@@ -31,4 +31,6 @@ Use the single-context layout: root `CONTEXT.md` and `docs/adr/`. Read [docs/age
 
 ## 星空改版设计
 
-处理星空博客的设计、拆票或实现时，先读 [docs/design/starry-blog.md](docs/design/starry-blog.md)。遵循其中已确认的决定，并保留“待整体复核”的默认规则状态；工程技能配置不代表这些规则已经获批。
+处理星空博客的设计、拆票或实现时，先读 [docs/design/starry-blog.md](docs/design/starry-blog.md)。R1–R6 已于 2026-09-30 整体确认；当前个人站点范围以 2026-10-01 正式化计划及后续明确的设计更新为准。旧日期的“待整体复核”和公开模板工单描述历史状态，不能据此回退已确认决定或扩大当前任务。
+
+涉及启动、写作、构建或发布时，读 [新版操作指南](docs/operations/starfield-blog.md)；涉及 Kira 对照或恢复时，读 [旧版恢复指南](docs/operations/legacy-blog-recovery.md)。新版主题已接入真实文章，V20 模拟原型另行保留；仓库默认构建仍选 Kira。区分本地实现、配置中的 Deploy Preview 与实际线上部署，按各自证据报告状态。

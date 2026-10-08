@@ -1,6 +1,6 @@
 # Domain docs
 
-本仓库采用 **single-context** 布局。现有 `pnpm-workspace.yaml` 只有依赖构建设置，没有多包上下文，不据此建立多上下文文档。
+本仓库采用 **single-context** 布局。新旧主题共享同一套 Hexo 内容与根目录 npm 依赖，不按主题拆成多个领域上下文。当前使用 `package-lock.json`；旧 pnpm 锁文件已归档，根目录不再有 `pnpm-workspace.yaml`。
 
 ## 探索前按需读取
 
