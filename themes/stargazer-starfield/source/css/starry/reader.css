@@ -65,7 +65,8 @@
   background-repeat: no-repeat, repeat-y;
 }
 #reading-journey {
-  --reading-fraction: 0; position: relative; width: 100%; aspect-ratio: 2172 / 140;
+  --reading-fraction: 0; --reading-walker-width: clamp(25px, 6cqw, 58px);
+  position: relative; width: 100%; aspect-ratio: 2172 / 140;
   min-height: 36px;
 }
 #reading-journey::before {
@@ -76,7 +77,13 @@
 }
 .reading-rail { position: absolute; top: 42.15%; left: 7.83%; width: 90.8%; height: max(2px, .414cqw); background: #fff; border-radius: 2px; }
 .reading-rail-fill { display: block; width: calc(var(--reading-fraction) * 100%); height: 100%; background: #00d5ff; border-radius: inherit; box-shadow: 0 0 5px #00bfff; }
-.reading-walker { position: absolute; z-index: 1; left: calc(7.83% + var(--reading-fraction) * 90.8%); bottom: 57.85%; width: clamp(25px, 6cqw, 58px); height: clamp(35px, 8.4cqw, 82px); transform: translateX(-50%); pointer-events: none; }
+.reading-walker {
+  position: absolute; z-index: 1;
+  /* Reserve the whole silhouette at the rail's end, including its forward foot. */
+  left: min(calc(7.83% + var(--reading-fraction) * 90.8%), calc(98.63% - var(--reading-walker-width) / 2 - 2px));
+  bottom: 57.85%; width: var(--reading-walker-width); height: clamp(35px, 8.4cqw, 82px);
+  transform: translateX(-50%); pointer-events: none;
+}
 .reading-walker > :is(img, canvas) { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: contain; object-position: center bottom; }
 #reading-progress { position: absolute; top: 9%; left: 9%; color: #e5f6ff; font: clamp(9px, 1.25cqw, 12px)/1.3 var(--sans); font-variant-numeric: tabular-nums; }
 .reading-track-label { position: absolute; top: 59%; right: 3.3%; color: #e5f6ff; font: clamp(9px, 1.25cqw, 12px)/1.3 var(--sans); }
