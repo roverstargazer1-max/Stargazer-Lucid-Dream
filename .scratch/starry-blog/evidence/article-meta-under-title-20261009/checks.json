@@ -1,0 +1,192 @@
+[
+  {
+    "sample": "desktop-before",
+    "author": "观星者的清醒梦",
+    "bannerRect": {
+      "bottom": 353,
+      "height": 329,
+      "right": 1190,
+      "width": 940,
+      "x": 250,
+      "y": 24
+    },
+    "centerOffset": 0,
+    "date": "2025-10-20",
+    "gap": 108.3359375,
+    "insideHeader": false,
+    "metaRect": {
+      "bottom": 373.3984375,
+      "height": 20.3984375,
+      "right": 1058.40625,
+      "width": 676.8125,
+      "x": 381.59375,
+      "y": 353
+    },
+    "overflow": false,
+    "title": "梦开始的地方[置顶]",
+    "titleRect": {
+      "bottom": 244.6640625,
+      "height": 46.3359375,
+      "right": 861.6796875,
+      "width": 283.359375,
+      "x": 578.3203125,
+      "y": 198.328125
+    },
+    "viewport": {
+      "height": 1000,
+      "width": 1440
+    }
+  },
+  {
+    "sample": "desktop-after",
+    "author": "观星者的清醒梦",
+    "bannerRect": {
+      "bottom": 353,
+      "height": 329,
+      "right": 1190,
+      "width": 940,
+      "x": 250,
+      "y": 24
+    },
+    "centerOffset": 0,
+    "date": "2025-10-20",
+    "gap": 12,
+    "insideHeader": true,
+    "metaRect": {
+      "bottom": 277.0625,
+      "height": 20.3984375,
+      "right": 809.1171875,
+      "width": 178.234375,
+      "x": 630.8828125,
+      "y": 256.6640625
+    },
+    "overflow": false,
+    "title": "梦开始的地方[置顶]",
+    "titleRect": {
+      "bottom": 244.6640625,
+      "height": 46.3359375,
+      "right": 861.6796875,
+      "width": 283.359375,
+      "x": 578.3203125,
+      "y": 198.328125
+    },
+    "viewport": {
+      "height": 1000,
+      "width": 1440
+    }
+  },
+  {
+    "sample": "mobile-featured",
+    "author": "观星者的清醒梦",
+    "bannerRect": {
+      "bottom": 140.3984375,
+      "height": 140.3984375,
+      "right": 390,
+      "width": 390,
+      "x": 0,
+      "y": 0
+    },
+    "centerOffset": 0,
+    "date": "2025-10-20",
+    "gap": 8,
+    "insideHeader": true,
+    "metaRect": {
+      "bottom": 119.7421875,
+      "height": 17,
+      "right": 267.30859375,
+      "width": 144.6171875,
+      "x": 122.69140625,
+      "y": 102.7421875
+    },
+    "overflow": false,
+    "title": "梦开始的地方[置顶]",
+    "titleRect": {
+      "bottom": 94.7421875,
+      "height": 26.09375,
+      "right": 274.796875,
+      "width": 159.59375,
+      "x": 115.203125,
+      "y": 68.6484375
+    },
+    "viewport": {
+      "height": 844,
+      "width": 390
+    }
+  },
+  {
+    "sample": "mobile-320-long",
+    "author": "观星者的清醒梦",
+    "bannerRect": {
+      "bottom": 122.578125,
+      "height": 122.578125,
+      "right": 320,
+      "width": 320,
+      "x": 0,
+      "y": 0
+    },
+    "centerOffset": 0,
+    "date": "2025-10-21",
+    "gap": 8,
+    "insideHeader": true,
+    "metaRect": {
+      "bottom": 120.3828125,
+      "height": 17,
+      "right": 231.3125,
+      "width": 142.625,
+      "x": 88.6875,
+      "y": 103.3828125
+    },
+    "overflow": false,
+    "title": "活在真实天空下，做半个君子",
+    "titleRect": {
+      "bottom": 95.3828125,
+      "height": 52.1875,
+      "right": 262.40625,
+      "width": 204.8125,
+      "x": 57.59375,
+      "y": 43.1953125
+    },
+    "viewport": {
+      "height": 740,
+      "width": 320
+    }
+  },
+  {
+    "sample": "mobile-320-short",
+    "author": "观星者的清醒梦",
+    "bannerRect": {
+      "bottom": 115.1953125,
+      "height": 115.1953125,
+      "right": 320,
+      "width": 320,
+      "x": 0,
+      "y": 0
+    },
+    "centerOffset": -0.00390625,
+    "date": "2026-05-14",
+    "gap": 8,
+    "insideHeader": true,
+    "metaRect": {
+      "bottom": 103.640625,
+      "height": 17,
+      "right": 232.30078125,
+      "width": 144.6171875,
+      "x": 87.68359375,
+      "y": 86.640625
+    },
+    "overflow": false,
+    "title": "慢",
+    "titleRect": {
+      "bottom": 78.640625,
+      "height": 26.09375,
+      "right": 169.1796875,
+      "width": 18.3671875,
+      "x": 150.8125,
+      "y": 52.546875
+    },
+    "viewport": {
+      "height": 740,
+      "width": 320
+    }
+  }
+]

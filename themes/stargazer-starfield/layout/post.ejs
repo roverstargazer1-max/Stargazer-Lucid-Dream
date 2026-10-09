@@ -5,8 +5,12 @@
   <%- partial('partial/stage', { articlePath, articleTitle: page.title }) %>
   <main id="static-article-fallback" class="static-article-fallback">
     <article class="article" data-starry-id="<%= page.starry_id %>">
-      <header class="article-title-banner"><h1 id="reader-title"><%= page.title %></h1></header>
-      <div class="article-meta"><time datetime="<%= date(page.date, 'YYYY-MM-DD') %>"><%= date(page.date, 'YYYY-MM-DD') %></time><span>观星者的清醒梦</span></div>
+      <header class="article-title-banner">
+        <div class="article-title-heading">
+          <h1 id="reader-title"><%= page.title %></h1>
+          <div class="article-meta"><time datetime="<%= date(page.date, 'YYYY-MM-DD') %>"><%= date(page.date, 'YYYY-MM-DD') %></time><span>观星者的清醒梦</span></div>
+        </div>
+      </header>
       <% if (page.subheading) { %><div class="article-media"><%- page.subheading %></div><% } %>
       <div id="reader-content"><%- starry_content(page) %></div>
       <% const relatedArticles = starry_related_articles(page); %>
