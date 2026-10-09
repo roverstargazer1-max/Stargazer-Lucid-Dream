@@ -39,6 +39,7 @@ async function start() {
   const polyhedron = createPolyhedron(document.querySelector('.sky-polyhedron'));
   const readingWalker = createSilhouetteWalker(reader.querySelector('.reading-walker'), { compact: true, white: true });
   const journey = document.getElementById('reading-journey');
+  const readingFooter = reader.querySelector('.reading-footer');
   const readingMotionPreference = matchMedia('(prefers-reduced-motion: reduce)');
   let readingWalkUntil = 0;
   let lastReadingFraction = 0;
@@ -1009,11 +1010,17 @@ async function start() {
     const articleId = articleNode?.dataset.starryId;
     const end = content.getBoundingClientRect();
     const viewport = scroller.getBoundingClientRect();
+    const scrollTop = scroller.scrollTop;
     const progress = readingProgress({
-      scrollTop: scroller.scrollTop,
-      contentBottom: end.bottom - viewport.top + scroller.scrollTop,
+      scrollTop,
+      contentBottom: end.bottom - viewport.top + scrollTop,
       viewportHeight: scroller.clientHeight,
     });
+    // Scope the scrolling paper to the footer, and avoid repainting it while reading is idle.
+    const paperWidth = `${scroller.clientWidth}px`;
+    const paperOffset = `${-scrollTop - viewport.height}px`;
+    if (readingFooter.style.getPropertyValue('--reading-paper-width') !== paperWidth) readingFooter.style.setProperty('--reading-paper-width', paperWidth);
+    if (readingFooter.style.getPropertyValue('--reading-paper-offset') !== paperOffset) readingFooter.style.setProperty('--reading-paper-offset', paperOffset);
     const { complete, fraction, percent } = progress;
     if (complete && articleId) readArticleIds.add(articleId);
     const revealed = Boolean(articleId && readArticleIds.has(articleId));
