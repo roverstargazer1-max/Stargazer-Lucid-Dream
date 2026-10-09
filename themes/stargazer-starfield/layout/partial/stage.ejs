@@ -1,56 +1,55 @@
-<link rel="preload" as="image" href="<%= url_for(theme.scene.painted_sky) %>" fetchpriority="high">
 <main id="world" aria-label="星空探索">
   <canvas id="sky" aria-hidden="true"></canvas>
   <div class="grain" aria-hidden="true"></div>
   <div id="star-targets"></div>
   <header class="masthead"><a id="brand" href="<%= url_for('/') %>" aria-label="观星者的清醒梦，回到窗边">
-      <img class="wordmark" src="<%= url_for('images/branding/logo2.png') %>" width="1081" height="452" alt="" aria-hidden="true" draggable="false">
+      <img class="wordmark" data-src="<%= url_for('images/branding/logo2.png') %>" width="1081" height="452" alt="" aria-hidden="true" draggable="false">
     </a></header>
   <section id="preview" class="preview observation-panel" aria-labelledby="preview-title" data-asset-root="<%= url_for('images/observation/') %>" hidden>
     <h2 id="preview-title" class="sr-only"></h2>
     <div class="observation-artboard">
-      <img class="observation-waves" src="<%= url_for('images/observation/waves.png') %>" alt="" aria-hidden="true" draggable="false">
+      <img class="observation-waves" data-src="<%= url_for('images/observation/waves.png') %>" alt="" aria-hidden="true" draggable="false">
       <div class="observation-silhouette" aria-hidden="true">
-        <img class="silhouette-still" src="<%= url_for('images/observation/silhouette.png') %>" alt="" draggable="false">
-        <img class="silhouette-frames" src="<%= url_for('images/observation/silhouette-walk-frames.png') %>" alt="" draggable="false" decoding="async" hidden>
+        <img class="silhouette-still" data-src="<%= url_for('images/observation/silhouette.png') %>" alt="" draggable="false">
+        <img class="silhouette-frames" data-src="<%= url_for('images/observation/silhouette-walk-frames.png') %>" alt="" draggable="false" decoding="async" hidden>
         <canvas hidden></canvas>
       </div>
       <div class="year-scale" role="group" aria-label="文章发布年份">
         <% for (let offset = -2; offset <= 2; offset++) { %>
         <div class="year-row<%= offset === 0 ? ' is-current' : '' %>">
           <span class="year-number asset-glyphs" aria-hidden="true"></span>
-          <% if (offset === 0) { %><img class="year-arrow" src="<%= url_for('images/observation/year-pointer.png') %>" alt="" aria-hidden="true" draggable="false"><span class="year-unit asset-glyphs" data-glyph-text="YE" aria-hidden="true"></span><% } %>
+          <% if (offset === 0) { %><img class="year-arrow" data-src="<%= url_for('images/observation/year-pointer.png') %>" alt="" aria-hidden="true" draggable="false"><span class="year-unit asset-glyphs" data-glyph-text="YE" aria-hidden="true"></span><% } %>
         </div>
         <% } %>
       </div>
-      <span class="observation-axis" aria-hidden="true"><img src="<%= url_for('images/observation/diamond.png') %>" alt="" draggable="false"><img src="<%= url_for('images/observation/diamond.png') %>" alt="" draggable="false"></span>
-      <img class="observation-ticks" src="<%= url_for('images/observation/dial-ticks.png') %>" alt="" aria-hidden="true" draggable="false">
-      <img class="observation-bracket" src="<%= url_for('images/observation/dial-bracket.png') %>" alt="" aria-hidden="true" draggable="false">
+      <span class="observation-axis" aria-hidden="true"><img data-src="<%= url_for('images/observation/diamond.png') %>" alt="" draggable="false"><img data-src="<%= url_for('images/observation/diamond.png') %>" alt="" draggable="false"></span>
+      <img class="observation-ticks" data-src="<%= url_for('images/observation/dial-ticks.png') %>" alt="" aria-hidden="true" draggable="false">
+      <img class="observation-bracket" data-src="<%= url_for('images/observation/dial-bracket.png') %>" alt="" aria-hidden="true" draggable="false">
       <div class="observation-waveform" aria-hidden="true">
-        <img src="<%= url_for('images/observation/waveform.png') %>" alt="" draggable="false">
+        <img data-src="<%= url_for('images/observation/waveform.png') %>" alt="" draggable="false">
         <canvas hidden></canvas>
       </div>
       <div class="observation-call" aria-hidden="true">
-        <img src="<%= url_for('images/observation/starlink.png') %>" alt="" draggable="false">
-        <span class="call-label"><img src="<%= url_for('images/observation/call-word.png') %>" alt="" draggable="false"><img class="call-underline" src="<%= url_for('images/observation/call-underline.png') %>" alt="" draggable="false"></span>
+        <img data-src="<%= url_for('images/observation/starlink.png') %>" alt="" draggable="false">
+        <span class="call-label"><img data-src="<%= url_for('images/observation/call-word.png') %>" alt="" draggable="false"><img class="call-underline" data-src="<%= url_for('images/observation/call-underline.png') %>" alt="" draggable="false"></span>
       </div>
       <div class="observation-labels" aria-hidden="true">
         <span class="asset-glyphs" data-glyph-text="Y-E"></span><span class="asset-glyphs" data-glyph-text="MO"></span>
-        <span class="asset-glyphs" data-glyph-text="DAY"></span><img class="hour-label" src="<%= url_for('images/observation/hour-label.png') %>" alt="" draggable="false">
+        <span class="asset-glyphs" data-glyph-text="DAY"></span><img class="hour-label" data-src="<%= url_for('images/observation/hour-label.png') %>" alt="" draggable="false">
       </div>
-      <img class="observation-slashes" src="<%= url_for('images/observation/date-boxes.png') %>" alt="" aria-hidden="true" draggable="false">
+      <img class="observation-slashes" data-src="<%= url_for('images/observation/date-boxes.png') %>" alt="" aria-hidden="true" draggable="false">
       <time id="preview-date" class="asset-glyphs observation-date"></time>
-      <img class="observation-id" src="<%= url_for('images/observation/observation-id.png') %>" alt="" aria-hidden="true" draggable="false">
-      <button id="deselect" type="button" aria-label="取消选择" title="取消选择"><img src="<%= url_for('images/observation/close.png') %>" alt="" draggable="false"></button>
+      <img class="observation-id" data-src="<%= url_for('images/observation/observation-id.png') %>" alt="" aria-hidden="true" draggable="false">
+      <button id="deselect" type="button" aria-label="取消选择" title="取消选择"><img data-src="<%= url_for('images/observation/close.png') %>" alt="" draggable="false"></button>
       <div class="preview-bottom">
         <button id="read-button" type="button" disabled aria-label="进入阅读" aria-describedby="approach-status">
-          <img class="read-rule" src="<%= url_for('images/observation/read-rule.png') %>" alt="" aria-hidden="true" draggable="false"><img class="read-label" src="<%= url_for('images/observation/read.png') %>" alt="READ" draggable="false">
+          <img class="read-rule" data-src="<%= url_for('images/observation/read-rule.png') %>" alt="" aria-hidden="true" draggable="false"><img class="read-label" data-src="<%= url_for('images/observation/read.png') %>" alt="READ" draggable="false">
         </button>
         <span id="approach-status" class="sr-only" aria-live="polite">再点星，阅读</span>
       </div>
     </div>
   </section>
-  <div class="sky-polyhedron" aria-hidden="true"><img src="<%= url_for('images/observation/polyhedron.png') %>" alt="" draggable="false"><canvas hidden></canvas></div>
+  <div class="sky-polyhedron" aria-hidden="true"><img data-src="<%= url_for('images/observation/polyhedron.png') %>" alt="" draggable="false"><canvas hidden></canvas></div>
   <nav id="exploration-controls" class="exploration-controls navigation" aria-label="星空探索控制">
     <div class="mode-switch" role="group" aria-label="星空模式">
       <button id="relation-mode" type="button" aria-pressed="true">关联</button>
@@ -58,10 +57,10 @@
       <button id="time-mode" type="button" aria-pressed="false">时间</button>
     </div>
     <button id="back-dock" class="icon-control" type="button" aria-label="返回上个停靠点" title="返回上个停靠点" disabled>
-      <span class="navigation-art navigation-art-back" aria-hidden="true"><img src="<%= url_for('images/branding/right-icons.png') %>" width="147" height="89" alt="" draggable="false"></span>
+      <span class="navigation-art navigation-art-back" aria-hidden="true"><img data-src="<%= url_for('images/branding/right-icons.png') %>" width="147" height="89" alt="" draggable="false"></span>
     </button>
     <button id="home" class="icon-control" type="button" aria-label="回到窗边" title="回到窗边" hidden>
-      <span class="navigation-art navigation-art-home" aria-hidden="true"><img src="<%= url_for('images/branding/right-icons.png') %>" width="147" height="89" alt="" draggable="false"></span>
+      <span class="navigation-art navigation-art-home" aria-hidden="true"><img data-src="<%= url_for('images/branding/right-icons.png') %>" width="147" height="89" alt="" draggable="false"></span>
     </button>
   </nav>
   <span id="time-cue" class="time-cue" role="status" hidden></span>
@@ -76,7 +75,7 @@
       <source media="(max-width: 760px)" srcset="<%= url_for(theme.scene.room_mobile) %>">
       <img class="room-image" src="<%= url_for(theme.scene.room_desktop) %>" alt="夜色里的窗边，窗外是深蓝天空" fetchpriority="high">
     </picture>
-    <button id="window-entry" type="button" aria-label="穿过窗户，进入星空"></button>
+    <button id="window-entry" type="button" aria-label="穿过窗户，进入星空" disabled></button>
       <svg class="window-invitation window-invitation-wide" viewBox="0 0 1672 941" aria-hidden="true" focusable="false">
         <defs><linearGradient id="window-light-wide" gradientUnits="userSpaceOnUse" x1="0" y1="700" x2="0" y2="90"><stop offset="0" stop-color="#c8dfec" stop-opacity="0"/><stop offset=".48" stop-color="#d4e5eb" stop-opacity=".75"/><stop offset="1" stop-color="#c8dfec" stop-opacity="0"/></linearGradient></defs>
         <g class="window-edge" fill="none" stroke="url(#window-light-wide)"><path d="M524 90V700 M1144 90V700"/></g>
@@ -109,7 +108,7 @@
     <header class="reading-header">
       <span id="reading-window-title" class="sr-only">观星者的清醒梦</span>
       <button id="close-reader" type="button" aria-label="关闭文章，返回星空" title="关闭文章，返回星空">
-        <img src="<%= url_for('images/observation/close.png') %>" alt="" draggable="false">
+        <img data-src="<%= url_for('images/observation/close.png') %>" alt="" draggable="false">
       </button>
     </header>
     <div id="reading-scroll" tabindex="0"><div id="reading-content-slot"></div></div>
@@ -117,8 +116,8 @@
       <div id="reading-journey" role="progressbar" aria-label="文章阅读进度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
         <div class="reading-rail" aria-hidden="true"><span class="reading-rail-fill"></span></div>
         <div class="reading-walker" aria-hidden="true">
-          <img class="silhouette-still" src="<%= url_for('images/reader/walker.png') %>" alt="" draggable="false">
-          <img class="silhouette-frames" src="<%= url_for('images/observation/silhouette-walk-frames.png') %>" alt="" hidden>
+          <img class="silhouette-still" data-src="<%= url_for('images/reader/walker.png') %>" alt="" draggable="false">
+          <img class="silhouette-frames" data-src="<%= url_for('images/observation/silhouette-walk-frames.png') %>" alt="" hidden>
           <canvas hidden></canvas>
         </div>
         <span id="reading-progress">0%</span>
@@ -140,4 +139,4 @@
 <dialog id="egg-dialog"><button id="close-egg" class="egg-close" type="button" aria-label="关闭">×</button><span class="eyebrow">A NOTE FROM THE ROOFTOP</span><h2 id="egg-title"></h2><p id="egg-copy"></p><span class="egg-signature">来自这片天空的主人</span></dialog>
 <div id="announcement" class="sr-only" role="status" aria-live="polite"></div>
 
-<script type="module" src="<%= url_for('js/starfield/app.js') %>"></script>
+<script type="module" src="<%= url_for('js/starfield/app.js') %>" onerror="window.starfieldStartup?.fail()"></script>

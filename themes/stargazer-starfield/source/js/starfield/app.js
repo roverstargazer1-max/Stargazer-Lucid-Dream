@@ -18,6 +18,15 @@ const world = document.getElementById('world');
 if (world) start().catch(fallback);
 
 async function start() {
+  // Let the original room paint before the hidden sky interface competes for bandwidth.
+  await waitForImage(document.querySelector('.room-image'));
+  await new Promise(resolve => requestAnimationFrame(() => setTimeout(resolve, 0)));
+  for (const image of document.querySelectorAll('img[data-src]')) {
+    image.fetchPriority = 'low';
+    image.decoding = 'async';
+    image.src = image.dataset.src;
+    delete image.dataset.src;
+  }
   const canvas = document.getElementById('sky');
   const ctx = canvas.getContext('2d');
   if (!ctx) throw new Error('Canvas 2D is unavailable.');
@@ -245,6 +254,7 @@ async function start() {
   preflightRenderer();
 
   body.classList.add('starry-ready');
+  document.documentElement.classList.remove('starry-loading');
   if (isDirectEntry) openDirectArticle();
   else if (isDirectCollection) openCollectionPanel();
   animationStarted = true;
@@ -1271,6 +1281,7 @@ function setText(element, value) {
 }
 
 function fallback(error) {
+  window.starfieldStartup?.fail();
   if (error) console.error('Starfield enhancement stayed in the readable fallback.', error);
   stopEmbeddedAudio();
   const articleNode = document.querySelector('#reader .article[data-starry-id], #static-article-fallback .article[data-starry-id]');

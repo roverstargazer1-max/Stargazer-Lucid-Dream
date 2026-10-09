@@ -4,7 +4,6 @@ import { createTimeline, unit, ENTRANCE } from './motion.js';
 // The final room leads into one painted, navigable sky.
 export const painted = true;
 const plate = new Image();
-if (painted) plate.src = document.body.dataset.skyImage;
 // Load both aperture masks before revealing the live sky, including across a resize.
 const windowMasks = painted ? [document.body.dataset.windowMaskDesktop, document.body.dataset.windowMaskMobile].map(src=>{
   const mask=new Image();mask.src=src;return mask;
@@ -17,7 +16,9 @@ function waitForImage(image){
   });
 }
 export async function preparePaintedScene(){
+  if (!plate.src) plate.src = document.body.dataset.skyImage;
   await Promise.all([waitForImage(plate),...windowMasks.map(waitForImage)]);
+  await plate.decode();
   return true;
 }
 let seed=812;

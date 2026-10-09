@@ -1,0 +1,53 @@
+{
+  "checks": [
+    {
+      "device": "desktop",
+      "heldRequest": "app.js",
+      "ready": false,
+      "imageDecoded": true,
+      "roomVisible": true,
+      "fallbackVisible": false,
+      "fallbackHeading": "窗外有真实的故事"
+    },
+    {
+      "device": "desktop",
+      "failure": "no-javascript",
+      "readableFallback": true
+    },
+    {
+      "device": "desktop",
+      "failure": "module-error",
+      "readableFallback": true
+    },
+    {
+      "device": "desktop",
+      "failure": "webgl-unavailable",
+      "readableFallback": true
+    },
+    {
+      "device": "mobile",
+      "heldRequest": "app.js",
+      "ready": false,
+      "imageDecoded": true,
+      "roomVisible": true,
+      "fallbackVisible": false,
+      "fallbackHeading": "窗外有真实的故事"
+    },
+    {
+      "device": "mobile",
+      "failure": "no-javascript",
+      "readableFallback": true
+    },
+    {
+      "device": "mobile",
+      "failure": "module-error",
+      "readableFallback": true
+    },
+    {
+      "device": "mobile",
+      "failure": "webgl-unavailable",
+      "readableFallback": true
+    }
+  ],
+  "directArticleModuleFailure": "passed"
+}

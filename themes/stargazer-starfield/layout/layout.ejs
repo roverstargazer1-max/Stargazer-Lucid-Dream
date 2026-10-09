@@ -48,6 +48,22 @@
   <meta name="twitter:card" content="<%= image ? 'summary_large_image' : 'summary' %>">
   <meta name="twitter:title" content="<%= title %>">
   <% if (description) { %><meta name="twitter:description" content="<%= description %>"><% } %>
+  <% if (is_home()) { %>
+  <link rel="preload" as="image" href="<%= url_for(theme.scene.room_desktop) %>" media="(min-width: 761px)" fetchpriority="high">
+  <link rel="preload" as="image" href="<%= url_for(theme.scene.room_mobile) %>" media="(max-width: 760px)" fetchpriority="high">
+  <style>
+    html.starry-loading,html.starry-loading body{margin:0;background:#042b68;overflow:hidden}
+    .starry-loading #home-fallback{display:none}
+    .starry-loading #room:not([hidden]){display:block;position:fixed;inset:0;z-index:40;overflow:clip}
+    .starry-loading .room-stage{position:absolute;width:max(100vw,177.683vh);height:max(56.28vw,100vh);left:50%;top:50%;margin-left:min(-50vw,-88.8415vh);margin-top:min(-28.14vw,-50vh)}
+    .starry-loading .room-image{display:block;width:100%;height:100%;object-fit:cover}
+    @media(max-width:760px){.starry-loading .room-stage{width:max(100vw,56.28vh);height:max(177.683vw,100vh);margin-left:min(-50vw,-28.14vh);margin-top:min(-88.8415vw,-50vh)}}
+  </style>
+  <script>
+    document.documentElement.classList.add('starry-loading');
+    window.starfieldStartup={fail:function(){document.documentElement.classList.remove('starry-loading');document.getElementById('room')?.setAttribute('hidden','');}};
+  </script>
+  <% } %>
   <link rel="stylesheet" href="<%= url_for('css/starry/site.css') %>">
   <link rel="stylesheet" href="<%= url_for('css/starry/scene.css') %>">
   <link rel="stylesheet" href="<%= url_for('css/starry/motion.css') %>">
