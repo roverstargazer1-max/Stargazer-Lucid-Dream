@@ -1,7 +1,7 @@
 /* Visitor controls carried over from V20. */
 .masthead{position:absolute;pointer-events:none;z-index:5}
 .masthead a{display:flex;color:#d4deeb;text-decoration:none;pointer-events:auto}
-.wordmark{display:block;width:228px;height:auto;overflow:visible}
+.wordmark{display:block;width:370px;height:auto;overflow:visible}
 .signal-egg{position:absolute;font-size:24px;animation:signal 6s ease-in-out infinite;z-index:4}
 .signal-egg span{font-size:11px;position:absolute;white-space:nowrap;right:100%;opacity:0;transition:opacity .3s}
 .signal-egg:hover span,.signal-egg:focus-visible span{opacity:1}
@@ -13,7 +13,6 @@ body[data-render-quality=low] .signal-egg{animation:none}
 #egg-dialog p{white-space:pre-line}
 .egg-close{position:absolute;min-width:44px;min-height:44px;font-size:24px}
 .egg-signature{letter-spacing:2px;display:block;margin-top:25px}
-.path-legend{position:absolute;pointer-events:none;z-index:3}
 .edge-guide{position:absolute;transform:translate(-50%,-50%);font-size:23px;z-index:4}
 .edge-guide:hover,.edge-guide:focus-visible{color:#e5eff6}
 /* Final painted scene from the accepted V20 prototype. */
@@ -59,16 +58,22 @@ body[data-room=entering] #world>:not(#sky){visibility:hidden}
 body[data-room=returning] #world>:not(#sky){visibility:hidden}
 body[data-scene=painted] .grain{opacity:.013}
 body[data-scene=painted] .masthead{top:26px;left:3.8%;opacity:.87}
-body[data-scene=painted] .wordmark{width:228px}
-body[data-scene=painted] #exploration-controls{background:none;border:0;border-radius:0;backdrop-filter:none;box-shadow:none;opacity:1;padding:0;top:24px;gap:8px;z-index:10;isolation:isolate}
+body[data-scene=painted] .wordmark{width:370px}
+body[data-scene=painted] #exploration-controls{background:none;border:0;border-radius:0;backdrop-filter:none;box-shadow:none;opacity:1;padding:0;top:26px;right:max(24px,3.8%);gap:14px;z-index:10;isolation:isolate}
 body[data-scene=painted] #exploration-controls{text-shadow:0 1px 2px #081b57}
-body[data-scene=painted] .mode-switch{gap:8px;font-size:.8125rem;letter-spacing:.5px;border-bottom:1px solid #72dbff44}
+body[data-scene=painted] .mode-switch{gap:8px;margin-right:8px;font-size:.8125rem;letter-spacing:.5px;border-bottom:1px solid #72dbff44}
 body[data-scene=painted] .mode-switch>span{display:none}
 body[data-scene=painted] .mode-switch button{color:#c4d4e1;min-width:44px;min-height:44px;padding:8px 6px}
 body[data-scene=painted] .mode-switch button[aria-pressed=true]{color:#edf1ec;text-decoration-color:#72dbff}
 body[data-scene=painted] .icon-control{background:none;box-shadow:none;border-bottom:1px solid #72dbff44;border-radius:0}
 body[data-scene=painted] .icon-control,body[data-scene=painted] .preview-meta button,body[data-scene=painted] .egg-close{display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;color:#d9e3eb;min-width:44px;width:44px;min-height:44px;padding:0;line-height:1}
 .ui-icon{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;pointer-events:none;vertical-align:middle}
+body[data-scene=painted] #exploration-controls .icon-control{width:56px;min-width:56px;height:56px;min-height:56px;border:0}
+/* Two 60 × 60 regions of the original 147 × 89 PNG, starting at (0,14) and (87,14). */
+.navigation-art{position:relative;display:block;width:40px;height:40px;overflow:hidden;pointer-events:none}
+.navigation-art img{position:absolute;left:0;top:-23.333333%;display:block;width:245%;max-width:none;height:auto}
+.navigation-art-home img{left:-145%}
+body[data-scene=painted] #exploration-controls .icon-control:not(:disabled):hover .navigation-art{filter:drop-shadow(0 0 4px #72dbff88)}
 .star-label.label-crowded{opacity:0!important}
 .star-label{overflow:hidden;text-overflow:ellipsis}
 body[data-scene=painted] :is(button,a,summary,[tabindex]):focus-visible{outline:1.5px solid #72dbff;outline-offset:2px}
@@ -78,10 +83,8 @@ body[data-scene=painted] #egg-dialog :focus-visible{outline-color:#405976}
 #sky.over-cloud{cursor:pointer}
 body[data-scene=painted] .star-label{font-family:var(--sans);font-size:.875rem;letter-spacing:.3px;text-shadow:0 2px 12px #00183c}
 body[data-scene=painted] .star-target:before,body[data-scene=painted] .star-target:after{display:none}
-body[data-scene=painted] .world-footer,body[data-scene=painted] .path-legend{color:#d9e3eb;font-size:.6875rem;line-height:1.7;opacity:1;text-shadow:0 1px 3px #060d30,0 0 8px #060d30,0 0 12px #060d30;letter-spacing:.5px}
+body[data-scene=painted] .world-footer{color:#d9e3eb;font-size:.6875rem;line-height:1.7;opacity:1;text-shadow:0 1px 3px #060d30,0 0 8px #060d30,0 0 12px #060d30;letter-spacing:.5px}
 body[data-scene=painted] .world-footer{bottom:16px}
-body[data-scene=painted]:has(#preview:not([hidden])) #gesture-help{display:none}
-body[data-scene=painted] .path-legend{bottom:16px}
 body[data-scene=painted] #find-star{min-height:44px;font-size:.8125rem;padding:6px 0}
 body[data-scene=painted] .signal-egg{color:#8de5ff;left:50%;right:auto;top:110px;width:44px;height:44px;padding:0}
 body[data-scene=painted] .edge-guide{color:#e1e8ee;width:44px;height:44px;opacity:.95;text-shadow:0 0 8px #060d30;background:radial-gradient(ellipse,#060d3099,transparent 70%)}
@@ -112,22 +115,23 @@ body[data-scene=painted] #egg-dialog p{font-size:.875rem;line-height:2}
   .window-invitation-tall{display:block}
   #room-journal{left:3%;top:87%;width:24%;height:5%}
   body[data-scene=painted] .masthead{left:20px;top:20px}
-  body[data-scene=painted] .wordmark{width:166px}
-  body[data-scene=painted] #exploration-controls{right:16px;left:16px;justify-content:flex-end;top:76px}
+  body[data-scene=painted] .wordmark{width:min(270px,calc(100vw - 40px))}
+  body[data-scene=painted] #exploration-controls{right:16px;left:16px;justify-content:flex-end;top:136px;gap:12px}
+  body[data-scene=painted] #exploration-controls .icon-control{width:52px;min-width:52px;height:52px;min-height:52px}
+  .navigation-art{width:36px;height:36px}
   body[data-scene=painted] .star-label{font-size:.875rem;letter-spacing:.5px}
-  body[data-scene=painted] .signal-egg{left:auto;right:16px;top:184px}
+  body[data-scene=painted] .signal-egg{left:auto;right:16px;top:218px}
   body[data-scene=painted] .world-footer{bottom:16px;left:16px;right:140px}
-  body[data-scene=painted] .path-legend{bottom:16px;left:16px;right:16px;font-size:.6875rem}
-  body[data-scene=painted]:not(:has(#preview:not([hidden]))) .path-legend{bottom:46px}
 }
 .time-cue{position:absolute;left:40%;top:92px;transform:translateX(-50%);pointer-events:none;color:#d9ecff;font-size:.8125rem;letter-spacing:2px;text-shadow:0 1px 5px #060d30,0 0 10px #060d30;animation:time-cue 3s ease both}
 @keyframes time-cue{0%,100%{opacity:0}12%,80%{opacity:1}}
-@media(max-width:760px){.time-cue{top:180px;left:16px;right:auto;transform:none;font-size:.75rem}}
+@media(max-width:760px){.time-cue{top:218px;left:16px;right:auto;transform:none;font-size:.75rem}}
 @media(max-height:500px) and (orientation:landscape){
-  body[data-scene=painted] .masthead{top:10px;left:16px}body[data-scene=painted] .wordmark{width:132px}
+  body[data-scene=painted] .masthead{top:10px;left:16px}body[data-scene=painted] .wordmark{width:214px}
   body[data-scene=painted] #exploration-controls{top:8px;left:auto;right:16px}
+  body[data-scene=painted] #exploration-controls .icon-control{width:48px;min-width:48px;height:48px;min-height:48px}
+  .navigation-art{width:34px;height:34px}
   body[data-scene=painted] .world-footer{display:none}
-  body[data-scene=painted] .path-legend{top:65px;left:16px;right:auto;bottom:auto;width:44%;font-size:.6875rem}
   body[data-scene=painted] .signal-egg{left:152px;right:auto;top:auto;bottom:64px}
   .time-cue{top:96px;left:20px;right:auto;transform:none}
 }

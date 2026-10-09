@@ -1,0 +1,180 @@
+{
+  "initial": {
+    "guideCount": 0,
+    "icons": [
+      {
+        "disabled": true,
+        "id": "back-dock",
+        "image": "/images/branding/right-icons.png",
+        "rect": {
+          "height": 56,
+          "width": 56,
+          "x": 1126.53125,
+          "y": 26
+        }
+      },
+      {
+        "disabled": false,
+        "id": "home",
+        "image": "/images/branding/right-icons.png",
+        "rect": {
+          "height": 56,
+          "width": 56,
+          "x": 1196.53125,
+          "y": 26
+        }
+      }
+    ],
+    "logoWidth": 370,
+    "stars": [
+      {
+        "name": "选择文章：梦开始的地方[置顶]",
+        "near": false,
+        "opacity": "0",
+        "x": 703.328125,
+        "y": 336.625
+      },
+      {
+        "name": "选择文章：随笔3",
+        "near": false,
+        "opacity": "0",
+        "x": 172.2421875,
+        "y": 218.609375
+      }
+    ],
+    "viewport": [
+      1302,
+      954
+    ]
+  },
+  "nearPointer": {
+    "previewHidden": true,
+    "stars": [
+      {
+        "name": "选择文章：梦开始的地方[置顶]",
+        "near": true,
+        "opacity": "0.924668",
+        "selected": false
+      },
+      {
+        "name": "选择文章：随笔3",
+        "near": false,
+        "opacity": "0",
+        "selected": false
+      }
+    ]
+  },
+  "leavingPointer": [
+    {
+      "name": "选择文章：梦开始的地方[置顶]",
+      "near": false,
+      "opacity": "0.0510889"
+    },
+    {
+      "name": "选择文章：随笔3",
+      "near": false,
+      "opacity": "0"
+    }
+  ],
+  "returnedToDock": {
+    "backDisabled": true,
+    "previewHidden": true,
+    "stars": [
+      {
+        "name": "选择文章：梦开始的地方[置顶]",
+        "opacity": "0",
+        "x": 703.328125,
+        "y": 336.625
+      },
+      {
+        "name": "选择文章：随笔3",
+        "opacity": "0",
+        "x": 172.2421875,
+        "y": 218.609375
+      }
+    ]
+  },
+  "mobile": {
+    "controls": {
+      "bottom": 188,
+      "height": 52,
+      "right": 374,
+      "width": 358,
+      "x": 16,
+      "y": 136
+    },
+    "horizontalOverflow": false,
+    "icons": [
+      {
+        "bottom": 188,
+        "height": 52,
+        "id": "back-dock",
+        "right": 310,
+        "width": 52,
+        "x": 258,
+        "y": 136
+      },
+      {
+        "bottom": 188,
+        "height": 52,
+        "id": "home",
+        "right": 374,
+        "width": 52,
+        "x": 322,
+        "y": 136
+      }
+    ],
+    "logo": {
+      "bottom": 132.890625,
+      "height": 112.890625,
+      "right": 290,
+      "width": 270,
+      "x": 20,
+      "y": 20
+    },
+    "titleOpacities": [
+      "0",
+      "0"
+    ],
+    "viewport": [
+      390,
+      844
+    ]
+  },
+  "compact": {
+    "controlsRight": 304,
+    "controlsTop": 136,
+    "horizontalOverflow": false,
+    "logoBottom": 132.890625,
+    "logoRight": 290,
+    "logoWidth": 270,
+    "viewport": [
+      320,
+      568
+    ]
+  },
+  "landscape": {
+    "controlsLeft": 600,
+    "horizontalOverflow": false,
+    "logoRight": 230,
+    "logoWidth": 214,
+    "viewport": [
+      844,
+      390
+    ]
+  },
+  "home": {
+    "homeIconReturned": true,
+    "room": "inside"
+  },
+  "keyboard": {
+    "focusVisible": true,
+    "settledTitleOpacity": "1"
+  },
+  "reader": {
+    "opened": true,
+    "title": "梦开始的地方[置顶]",
+    "bodyLength": 814,
+    "closed": true
+  }
+}

@@ -65,15 +65,15 @@ body[data-scene=painted] .observation-panel #read-button { position: relative; d
 #read-button > .read-label { display: block; width: 74%; height: auto; transition: filter .25s, transform .25s; }
 #read-button:hover > .read-label, #read-button:focus-visible > .read-label { filter: drop-shadow(0 0 5px #72dbffaa); transform: translate(2px, -1px); }
 body[data-scene=painted] #read-button .read-rule { position: absolute; inset: 0 0 auto; width: 100%; height: auto; pointer-events: none; }
-/* Only the label beside each article star carries its visible title in the sky. */
-body[data-scene=painted] .star-target .star-label { color: #fff; opacity: 1; transform: none; text-shadow: 0 1px 6px #031a87; }
+/* Titles reveal near the pointer; touch selection and keyboard focus remain usable. */
+body[data-scene=painted] .star-target .star-label { color: #fff; opacity: 0; transform: translateX(-3px); pointer-events: none; text-shadow: 0 1px 6px #031a87; }
+body[data-scene=painted] .star-target.is-near-pointer .star-label,
+body[data-scene=painted] .star-target:focus-visible .star-label,
+body[data-scene=painted][data-star-input=touch] .star-target.is-selected .star-label { opacity: 1; transform: none; pointer-events: auto; }
 body[data-scene=painted] .star-target.is-read .star-label { color: #929bbb; }
-body[data-scene=painted][data-focus=approaching] .star-target.is-selected .star-label,
-body[data-scene=painted]:has(#preview[aria-busy=true]) .star-target.is-selected .star-label { opacity: 1; }
 .sky-polyhedron { position: absolute; z-index: 4; right: 3%; bottom: 1.5%; width: clamp(48px, 3.5vw, 78px); aspect-ratio: 1; pointer-events: none; opacity: .65; }
 .sky-polyhedron img, .sky-polyhedron canvas { position: absolute; left: -10%; top: -25%; width: 125%; height: auto; }
 .sky-polyhedron canvas { height: 125%; }
-body[data-scene] #gesture-help, body[data-scene] .path-legend { right: calc(3% + 90px); }
 body[data-motion=full] .sky-polyhedron { animation: polyhedron-hop 4.8s ease-in-out infinite !important; }
 body[data-motion=soft] .sky-polyhedron { animation: none !important; }
 @keyframes polyhedron-hop { 0%, 38%, 100% { translate: 0 0; } 48% { translate: 0 -9px; } 59% { translate: 0 1px; } 67% { translate: 0 -3px; } 75% { translate: 0 0; } }
@@ -88,7 +88,6 @@ body[data-motion=soft] .sky-polyhedron { animation: none !important; }
   .observation-labels { font-size: max(9px, 1.75cqw); }
   .observation-axis { left: 40%; }
   .sky-polyhedron { bottom: max(18px, env(safe-area-inset-bottom)); right: 18px; width: 44px; }
-  body[data-scene] #gesture-help, body[data-scene] .path-legend { left: 16px; right: 78px; }
 }
 @media (max-height: 500px) and (orientation: landscape) {
   body[data-scene=painted] #preview.observation-panel { width: min(51vw, 470px); top: 60%; bottom: auto; right: 20px; transform: translateY(-50%); }

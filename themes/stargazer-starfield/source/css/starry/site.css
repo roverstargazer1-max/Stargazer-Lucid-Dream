@@ -57,7 +57,6 @@ button:focus-visible, a:focus-visible { outline: 2px solid #72dbff; outline-offs
 .known-reasons { max-height: 92px; margin-top: 10px; padding-top: 10px; overflow: auto; border-top: 1px solid #bbd0b422; }
 .known-reasons h3 { margin: 0 0 5px; color: #a4bdd4; font: 10px/1.6 var(--sans); letter-spacing: .8px; }
 .known-reasons p { margin: 0 0 5px; color: #c4cfda; font: 12px/1.7 var(--serif); }
-#gesture-help { position: absolute; z-index: 3; right: 30px; bottom: 24px; margin: 0; color: #d2dee8; font-size: 12px; letter-spacing: .6px; text-shadow: 0 1px 6px #061831; pointer-events: none; }
 
 #room { position: fixed; z-index: 40; inset: 0; display: none; overflow: clip; background: transparent; }
 .starry-ready #room:not([hidden]) { display: block; }
@@ -165,7 +164,6 @@ body[data-room="inside"] #world, body[data-room="entering"] #world > :not(#sky),
   .preview p { display: -webkit-box; overflow: hidden; -webkit-box-orient: vertical; -webkit-line-clamp: 2; font-size: 13px; line-height: 1.7; }
   .preview-bottom { margin-top: 10px; padding-top: 8px; }
   .preview-bottom button { min-height: 44px; }
-  #gesture-help { right: 15px; bottom: 10px; font-size: 10px; }
   #collection-panel { width: calc(100% - 20px); height: calc(100% - max(20px, env(safe-area-inset-top) + env(safe-area-inset-bottom))); border-radius: 5px; }
   .collection-header { margin: 0 18px; padding: 14px 0 12px; }
   .collection-header h2 { font-size: 20px; }
@@ -180,7 +178,6 @@ body[data-room="inside"] #world, body[data-room="entering"] #world > :not(#sky),
 @media (max-width: 760px) and (orientation: landscape) {
   #preview { right: 18px; left: auto; bottom: 14px; width: min(58vw, 480px); }
   .preview p { -webkit-line-clamp: 1; }
-  #gesture-help { right: auto; left: 18px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -190,8 +187,5 @@ body[data-room="inside"] #world, body[data-room="entering"] #world > :not(#sky),
 /* Keep optional author reasons reachable in the title panel. */
 body[data-scene] #preview .known-reasons { overflow: visible; max-height: none; }
 #deselect { margin-left: auto; min-width: 44px; min-height: 44px; font-size: 20px; }
-body[data-scene] #gesture-help { bottom: 38px; font-size: .6875rem; }
-body[data-scene] .path-legend { left: auto; right: 30px; bottom: 16px; }
 body[data-scene] #preview .preview-meta { flex-wrap: nowrap; }
 body[data-render-quality=low] .window-dust > * { animation: none !important; opacity: .25; }
-@media (max-width:760px) { body[data-scene] #gesture-help { bottom: 38px; right: 16px; left: 16px; text-align: right; } body[data-scene] .path-legend { right: 16px; left: 16px; text-align: right; } }

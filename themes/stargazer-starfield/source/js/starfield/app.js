@@ -92,6 +92,7 @@ async function start() {
   let timeCueUntil = 0;
   let lineOpacity = 1;
   let lastCamera = null;
+  let labelPointer = null;
   let lastFrame = 0;
   let restingFrameDrawn = false;
   const meteors = [];
@@ -421,7 +422,6 @@ async function start() {
       target.setAttribute('aria-label', `${active && phase === 'settled' ? '阅读文章' : '选择文章'}：${item.title}`);
     }
     homeButton.hidden = Boolean(roomScene?.active) || reader.open || collectionOpen;
-    document.getElementById('gesture-help').textContent = width <= 760 ? '单指巡视 · 双指前行 · 点星靠近' : '拖动巡视 · 滚轮前行 · 点星靠近';
     document.getElementById('journal-egg').hidden = true;
   }
 
@@ -804,6 +804,9 @@ async function start() {
       const target = starTargets.get(item.id);
       const hidden = Boolean(!isStarReachable(point, width, height, obstacles) || roomScene?.active || arrival);
       if (target.hidden !== hidden) target.hidden = hidden;
+      const nearPointer = !hidden && labelPointer && !pointers.size && !travel && !reader.open && !egg.open && !collectionOpen &&
+        (Math.hypot(point.x - labelPointer.x, point.y - labelPointer.y) <= 88 || target.matches(':hover'));
+      target.classList.toggle('is-near-pointer', Boolean(nearPointer));
       if (!point) continue;
       projectedStars.set(item.id, point);
       if (!target.hidden) visibleStars.set(item.id, point);
@@ -891,7 +894,6 @@ async function start() {
       guide.style.transform = 'translate(-50%,-50%)'; guide.textContent = '✧';
       guide.onclick = () => activateStar(target.id); guide.hidden = false;
     }
-    setText(document.getElementById('path-legend'), selected && mode === 'relation' && (relationsByArticle.get(selected) || []).length ? '实线：文章关联' : '虚线：探索路径');
   }
 
   function drawGuideLine(origin, target) {
@@ -1115,6 +1117,11 @@ async function start() {
     });
 
     world.addEventListener('pointermove', (event) => {
+      if (event.pointerType === 'mouse' || event.pointerType === 'pen') {
+        if (body.dataset.starInput !== event.pointerType) body.dataset.starInput = event.pointerType;
+        labelPointer = !event.buttons && (event.target === canvas || event.target.closest('.star-target'))
+          ? { x: event.clientX, y: event.clientY } : null;
+      }
       if (event.pointerType === 'mouse' && !event.buttons && !roomScene?.active && !reader.open) {
         ambient.targetX = clamp((event.clientX / width) * 2 - 1, -1, 1);
         ambient.targetY = clamp((event.clientY / height) * 2 - 1, -1, 1);
@@ -1142,6 +1149,8 @@ async function start() {
       }
     });
     world.addEventListener('pointerdown', (event) => {
+      body.dataset.starInput = event.pointerType;
+      if (event.pointerType === 'touch') labelPointer = null;
       if (roomScene?.active || reader.open || event.target.closest('.star-target') || event.target !== canvas) return;
       pointers.set(event.pointerId, { x: event.clientX, y: event.clientY });
       world.setPointerCapture(event.pointerId);
@@ -1178,6 +1187,7 @@ async function start() {
       press = null;
     });
     world.addEventListener('pointerleave', () => {
+      labelPointer = null;
       ambient.targetX = 0;
       ambient.targetY = 0;
       clouds?.clearHover();

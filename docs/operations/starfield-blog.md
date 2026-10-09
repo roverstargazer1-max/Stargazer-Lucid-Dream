@@ -33,7 +33,7 @@ npm run preview:starfield
 
 终端按 `Ctrl+C` 停止服务。`serve:starfield` 只提供已有静态文件，不会生成；首次运行或清理产物后应先预览生成。
 
-自动生成的 `starry_id`、`starry_original_permalink`、`permalink`、`starry_excerpt_generated` 不要手动改。改文章标题不会改身份、旧链接或星位。`starry_excerpt` 继续用于文章描述元信息；点星后用观测面板显示发布年份、月日和 READ 入口，不展示长摘要。标题只在文章星旁显示，未读为白色，当次访问读到文末后为灰色；关联理由和跳转保留在正文中。若想自写描述，填写 `starry_excerpt`，并删除 `starry_excerpt_generated` 或设为 false。没写时会从正文自动提取。
+自动生成的 `starry_id`、`starry_original_permalink`、`permalink`、`starry_excerpt_generated` 不要手动改。改文章标题不会改身份、旧链接或星位。`starry_excerpt` 继续用于文章描述元信息；点星后用观测面板显示发布年份、月日和 READ 入口，不展示长摘要。标题默认隐藏，鼠标靠近文章星时才在星旁显示；键盘聚焦或触屏点选也可显露对应标题。未读为白色，当次访问读到文末后为灰色；关联理由和跳转保留在正文中。若想自写描述，填写 `starry_excerpt`，并删除 `starry_excerpt_generated` 或设为 false。没写时会从正文自动提取。
 
 准备结果保存在文章 Front-matter 和 `source/_data/starry-layout.json`，应与正文、图片一起提交。新文章只寻找空位，已经保存的关联模式位置不会重排。删除文章后的坐标保留，恢复同一篇文章时仍能找回原位置。时间模式根据真实日期排列。
 
