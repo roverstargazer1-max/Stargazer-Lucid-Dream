@@ -1,0 +1,186 @@
+{
+  "environment": "Codex browser viewport simulation; no physical phone",
+  "viewports": [
+    {
+      "allTargetsAtLeast44px": true,
+      "mode": {
+        "bottom": 820,
+        "bottomGap": 24,
+        "height": 45,
+        "right": 116,
+        "width": 96,
+        "x": 20,
+        "y": 775
+      },
+      "overflow": false,
+      "overlappingTargets": [],
+      "room": "outside",
+      "toolbar": {
+        "bottom": 79.9375,
+        "height": 59.9375,
+        "right": 374,
+        "width": 354,
+        "x": 20,
+        "y": 20
+      },
+      "viewport": {
+        "height": 844,
+        "width": 390
+      }
+    },
+    {
+      "allTargetsAtLeast44px": true,
+      "mode": {
+        "bottom": 544,
+        "bottomGap": 24,
+        "height": 45,
+        "right": 116,
+        "width": 96,
+        "x": 20,
+        "y": 499
+      },
+      "overflow": false,
+      "overlappingTargets": [],
+      "room": "outside",
+      "toolbar": {
+        "bottom": 72,
+        "height": 52,
+        "right": 304,
+        "width": 284,
+        "x": 20,
+        "y": 20
+      },
+      "viewport": {
+        "height": 568,
+        "width": 320
+      }
+    },
+    {
+      "allTargetsAtLeast44px": true,
+      "mode": {
+        "bottom": 908,
+        "bottomGap": 24,
+        "height": 45,
+        "right": 116,
+        "width": 96,
+        "x": 20,
+        "y": 863
+      },
+      "overflow": false,
+      "overlappingTargets": [],
+      "room": "outside",
+      "toolbar": {
+        "bottom": 79.9375,
+        "height": 59.9375,
+        "right": 414,
+        "width": 394,
+        "x": 20,
+        "y": 20
+      },
+      "viewport": {
+        "height": 932,
+        "width": 430
+      }
+    },
+    {
+      "allTargetsAtLeast44px": true,
+      "mode": {
+        "bottom": 59.5,
+        "bottomGap": 330.5,
+        "height": 45,
+        "right": 696,
+        "width": 96,
+        "x": 600,
+        "y": 14.5
+      },
+      "overflow": false,
+      "overlappingTargets": [],
+      "room": "outside",
+      "toolbar": {
+        "bottom": 61,
+        "height": 48,
+        "right": 828,
+        "width": 228,
+        "x": 600,
+        "y": 13
+      },
+      "viewport": {
+        "height": 390,
+        "width": 844
+      }
+    },
+    {
+      "allTargetsAtLeast44px": true,
+      "mode": {
+        "bottom": 81.5,
+        "bottomGap": 818.5,
+        "height": 45,
+        "right": 1237.28125,
+        "width": 96,
+        "x": 1141.28125,
+        "y": 36.5
+      },
+      "overflow": false,
+      "overlappingTargets": [],
+      "room": "outside",
+      "toolbar": {
+        "bottom": 87,
+        "height": 56,
+        "right": 1385.28125,
+        "width": 244,
+        "x": 1141.28125,
+        "y": 31
+      },
+      "viewport": {
+        "height": 900,
+        "width": 1440
+      }
+    }
+  ],
+  "interactions": [
+    {
+      "action": "time-mode",
+      "pressed": "true"
+    },
+    {
+      "action": "relation-mode",
+      "pressed": "true"
+    },
+    {
+      "action": "home",
+      "room": "inside"
+    },
+    {
+      "action": "reenter",
+      "room": "outside",
+      "bottomGap": 24
+    }
+  ],
+  "reentry": {
+    "allTargetsAtLeast44px": true,
+    "mode": {
+      "bottom": 820,
+      "bottomGap": 24,
+      "height": 45,
+      "right": 116,
+      "width": 96,
+      "x": 20,
+      "y": 775
+    },
+    "overflow": false,
+    "overlappingTargets": [],
+    "room": "outside",
+    "toolbar": {
+      "bottom": 79.9375,
+      "height": 59.9375,
+      "right": 374,
+      "width": 354,
+      "x": 20,
+      "y": 20
+    },
+    "viewport": {
+      "height": 844,
+      "width": 390
+    }
+  }
+}

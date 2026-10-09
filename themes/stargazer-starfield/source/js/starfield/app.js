@@ -815,7 +815,7 @@ async function start() {
     const showStars = !roomScene?.active && !arrival;
     // Titles and navigation are hidden for the whole passage. Measuring their
     // obstacles after camera style writes otherwise forces layout on every frame.
-    const obstacles = showStars ? [...world.querySelectorAll('.masthead a, #exploration-controls:not([hidden]), #preview:not([hidden]), #signal-egg:not([hidden])')]
+    const obstacles = showStars ? [...world.querySelectorAll('.masthead a, #exploration-controls:not([hidden]), #exploration-controls:not([hidden]) .mode-switch, #preview:not([hidden]), #signal-egg:not([hidden])')]
       .map(element => element.getBoundingClientRect()).filter(rect => rect.width && rect.height) : [];
     for (const item of articles) {
       const target = starTargets.get(item.id);
@@ -902,7 +902,7 @@ async function start() {
     const hint = hints[0];
     if (phase === 'moving' || lineOpacity < .5) return;
     if (hint && !selected) {
-      const obstacles = [...world.querySelectorAll('nav,header,#preview,.signal-egg')].filter(el => !el.hidden).map(el => el.getBoundingClientRect());
+      const obstacles = [...world.querySelectorAll('nav,nav .mode-switch,header,#preview,.signal-egg')].filter(el => !el.hidden).map(el => el.getBoundingClientRect());
       if (!obstacles.some(rect => hint.point.x + 24 > rect.left && hint.point.x - 24 < rect.right && hint.point.y + 24 > rect.top && hint.point.y - 24 < rect.bottom)) {
         guide.style.left = hint.point.x + 'px'; guide.style.top = hint.point.y + 'px';
         guide.style.transform = 'translate(-50%,-50%)'; guide.textContent = '›';

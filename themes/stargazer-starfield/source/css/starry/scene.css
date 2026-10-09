@@ -133,10 +133,14 @@ body[data-scene=painted] #egg-dialog p{font-size:.875rem;line-height:2}
   /* Lettering lies within the PNG's first 900 × 240px; keep all padding visible without enlarging its touch target. */
   body[data-scene=painted] .masthead a{width:calc(var(--mobile-logo-width) * 900 / 1081);height:var(--mobile-logo-height);min-height:44px;align-items:flex-start}
   body[data-scene=painted] .wordmark{width:var(--mobile-logo-width);flex-shrink:0;pointer-events:none}
-  body[data-scene=painted] #exploration-controls{display:grid;grid-template-columns:minmax(0,1fr) 52px 52px;grid-template-rows:max(52px,var(--mobile-logo-height)) auto;left:max(20px,env(safe-area-inset-left));right:max(16px,env(safe-area-inset-right));top:max(20px,env(safe-area-inset-top));gap:12px;pointer-events:none}
-  body[data-scene=painted] #exploration-controls .mode-switch{grid-column:1;grid-row:2;justify-self:start;margin-right:0;pointer-events:auto}
+  body[data-scene=painted] #exploration-controls{display:grid;grid-template-columns:minmax(0,1fr) 52px 52px;grid-template-rows:max(52px,var(--mobile-logo-height));left:max(20px,env(safe-area-inset-left));right:max(16px,env(safe-area-inset-right));top:max(20px,env(safe-area-inset-top));gap:12px;pointer-events:none;animation:none}
+  body[data-scene=painted] #exploration-controls .mode-switch{position:fixed;left:max(20px,env(safe-area-inset-left));bottom:max(24px,calc(env(safe-area-inset-bottom) + 12px));margin-right:0;pointer-events:auto}
   body[data-scene=painted] #back-dock{grid-column:2;grid-row:1;pointer-events:auto}
   body[data-scene=painted] #home{grid-column:3;grid-row:1;pointer-events:auto}
+}
+/* Translating the toolbar would anchor its fixed mode switch to the top; preserve arrival motion on the controls. */
+@media(max-width:760px) and (orientation:portrait) and (prefers-reduced-motion:no-preference){
+  body[data-room=outside]:not([data-arrival]) #exploration-controls>*{animation:sky-arrival .9s .1s ease both}
 }
 @media(max-height:500px) and (orientation:landscape){
   body[data-scene=painted] .masthead{top:10px;left:16px}body[data-scene=painted] .wordmark{width:214px}
