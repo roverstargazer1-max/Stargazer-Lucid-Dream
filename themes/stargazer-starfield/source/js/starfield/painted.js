@@ -131,14 +131,18 @@ export function createRoom({onEnter,onProgress,onEntered,onReturnStart,onReturnP
   function enterSky(){
     if(flight)return;
     if(room.hidden)return;
+    // Read the room geometry before changing state, so entering does not force
+    // a synchronous style/layout pass over the newly hidden interface.
+    const timeline=passageTimeline();
     entry.disabled=true;room.inert=true;document.body.dataset.room='entering';
     const duration=short?220:ENTRANCE.passage;
-    const current={timeline:passageTimeline(),raf:0,start:performance.now(),direction:1,progress:0};flight=current;
+    const current={timeline,raf:0,start:performance.now(),duration,direction:1,progress:0};flight=current;
+    current.timeline.play(current.start,duration);
     onEnter(current.start);
     const advance=now=>{
       if(flight!==current)return;
       const progress=unit((now-current.start)/duration);
-      current.progress=progress;current.timeline.seek(progress);onProgress(progress);
+      current.progress=progress;onProgress(progress);
       if(progress<1){current.raf=requestAnimationFrame(advance);return;}
       room.hidden=true;current.timeline.cancel();flight=null;world.inert=false;
       document.body.dataset.room='outside';onEntered();
@@ -153,12 +157,12 @@ export function createRoom({onEnter,onProgress,onEntered,onReturnStart,onReturnP
     room.hidden=false;room.inert=true;world.inert=true;entry.disabled=true;
     document.body.dataset.room='returning';
     const duration=short?220:ENTRANCE.retreat;
-    const current={timeline:passageTimeline(),raf:0,start:performance.now(),direction:-1,progress:0};flight=current;
-    current.timeline.seek(1);onReturnStart();
+    const current={timeline:passageTimeline(),raf:0,start:performance.now(),duration,direction:-1,progress:0};flight=current;
+    current.timeline.play(current.start,duration,-1);onReturnStart();
     const advance=now=>{
       if(flight!==current)return;
       const progress=unit((now-current.start)/duration);
-      current.progress=progress;current.timeline.seek(1-progress);onReturnProgress(progress);
+      current.progress=progress;onReturnProgress(progress);
       if(progress<1){current.raf=requestAnimationFrame(advance);return;}
       current.timeline.cancel();flight=null;show();
     };
@@ -167,7 +171,7 @@ export function createRoom({onEnter,onProgress,onEntered,onReturnStart,onReturnP
   window.addEventListener('resize',()=>{
     if(!flight)return;
     flight.timeline.cancel();flight.timeline=passageTimeline();
-    flight.timeline.seek(flight.direction>0?flight.progress:1-flight.progress);
+    flight.timeline.play(flight.start,flight.duration,flight.direction);
   });
   if(startOutside){
     room.hidden=true;room.inert=true;world.inert=false;document.body.dataset.room='outside';

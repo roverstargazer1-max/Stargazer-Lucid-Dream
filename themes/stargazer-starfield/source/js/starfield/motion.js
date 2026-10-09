@@ -54,7 +54,8 @@ export function approachFrame(progress) {
   };
 }
 
-// Paused Web Animations are scrubbed by the same RAF timestamp as Canvas.
+// Reading gestures seek a paused timeline; room transitions play on the browser's
+// timeline with the same clock as the Canvas camera, without a seek on every RAF.
 export function createTimeline() {
   const effects = [];
   return {
@@ -68,6 +69,15 @@ export function createTimeline() {
     seek(progress) {
       for (const { effect, start, end } of effects) {
         effect.currentTime = cue(progress, start, end) * 1000;
+      }
+    },
+    play(startTime, duration, direction = 1) {
+      for (const { effect, start, end } of effects) {
+        effect.effect.updateTiming({ duration: duration * (end - start), delay: duration * start, endDelay: duration * (1 - end) });
+        effect.currentTime = direction > 0 ? 0 : duration;
+        effect.playbackRate = direction;
+        effect.play();
+        effect.startTime = direction > 0 ? startTime : startTime + duration;
       }
     },
     cancel() { for (const { effect } of effects) effect.cancel(); effects.length = 0; },
