@@ -1,32 +1,46 @@
 import {direction,projectDome} from './dome.js';
 
 // Small independent painted clouds. The same raster alpha drives paint and hit testing.
-let sprites = null;
-export async function prepareInteractiveClouds(){
-  if(sprites)return;
-  const images=await Promise.all([1,2,3].map(async seed=>{
-    const image=new Image();
-    image.src=new URL(`../../images/optimized/cloud-${seed}.png`,import.meta.url).href;
-    await image.decode();return image;
-  }));
-  sprites=images.map(makeCloud);
-}
-function makeCloud(image){
+function makeCloud(seed){
   const canvas=document.createElement('canvas');canvas.width=512;canvas.height=224;
-  const ctx=canvas.getContext('2d');ctx.drawImage(image,0,0);
-  // The cached pixels are the original seed's raster, including the exact hit-test alpha.
-  const alpha=ctx.getImageData(0,0,512,224).data;
+  const ctx=canvas.getContext('2d'),pixels=ctx.createImageData(512,224);
+  const hash=(x,y)=>{const n=Math.sin(x*127.1+y*311.7+seed*43.3)*43758.5453;return n-Math.floor(n);};
+  const smooth=(a,b,x)=>{const t=Math.max(0,Math.min(1,(x-a)/(b-a)));return t*t*(3-2*t);};
+  const noise=(x,y)=>{
+    const ix=Math.floor(x),iy=Math.floor(y),u=smooth(0,1,x-ix),v=smooth(0,1,y-iy);
+    return (hash(ix,iy)*(1-u)+hash(ix+1,iy)*u)*(1-v)+(hash(ix,iy+1)*(1-u)+hash(ix+1,iy+1)*u)*v;
+  };
+  const lobes=[[-.63,.21,.29,.29],[-.34,.02,.34,.43],[-.04,-.16,.30,.51],[.27,.06,.34,.38],[.58,.22,.31,.25],[-.42,.31,.32,.25],[.02,.35,.34,.25],[.40,.34,.30,.18]];
+  for(let y=0;y<224;y++)for(let x=0;x<512;x++){
+    const u=x/256-1,v=y/112-1,coarse=noise(u*11+9,v*9+7),fine=noise(u*41,v*31);
+    let density=-1;
+    for(const [cx,cy,rx,ry] of lobes){
+      const offset=(hash(Math.round(cx*100),4)-.5)*.07;
+      density=Math.max(density,1-((u-cx)/rx)**2-((v-cy-offset)/ry)**2);
+    }
+    density+=(coarse-.5)*.35+(fine-.5)*.09;
+    const alpha=smooth(-.03,.20,density)*.84;
+    if(!alpha)continue;
+    const layer=smooth(.27,.40,coarse)*.45+smooth(.54,.64,coarse)*.55;
+    const light=Math.min(1,Math.max(0,(.8-v)*.44+layer*.24));
+    const i=(y*512+x)*4;
+    pixels.data[i]=(12+light*19)*.86;
+    pixels.data[i+1]=(32+light*35)*.60;
+    pixels.data[i+2]=(79+light*53)*1.30;
+    pixels.data[i+3]=alpha*255;
+  }
+  ctx.putImageData(pixels,0,0);
   const glow=document.createElement('canvas');glow.width=512;glow.height=224;
   const glowCtx=glow.getContext('2d');glowCtx.drawImage(canvas,0,0);
   glowCtx.globalCompositeOperation='source-atop';glowCtx.fillStyle='#5bd9ff30';glowCtx.fillRect(0,0,512,224);
-  return {canvas,glow,alpha};
+  return {canvas,glow,alpha:pixels.data};
 }
 
 export function createInteractiveClouds(world,isSoft=()=>matchMedia('(prefers-reduced-motion: reduce)').matches){
   const clouds=[[-.38,.28,.36,.15],[1.94,.37,.40,.16],[4.18,.42,.44,.18]].map(([azimuth,elevation,width,height],i)=>{
     const button=document.createElement('button');button.className='cloud-target';button.hidden=true;
     button.setAttribute('aria-label',`轻触第 ${i+1} 朵云`);world.append(button);
-    const cloud={id:i,azimuth,elevation,width,height,age:null,hover:0,sprite:sprites[i],button};
+    const cloud={id:i,azimuth,elevation,width,height,age:null,hover:0,sprite:makeCloud(i+1),button};
     button.onclick=e=>{if(e.detail===0)activate(cloud);};
     return cloud;
   });

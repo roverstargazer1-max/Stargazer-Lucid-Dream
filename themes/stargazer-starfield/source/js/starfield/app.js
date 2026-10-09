@@ -1,5 +1,5 @@
 import { prepareEmbeddedPlayer } from './audio.js';
-import { createInteractiveClouds } from './interactive-clouds.js';
+import { createInteractiveClouds, prepareInteractiveClouds } from './interactive-clouds.js';
 import { createRoom, paintCloudVeil, paintPaintedSky, paintPaintedStar, preparePaintedScene } from './painted.js';
 import { HOME_ELEVATION, MIN_SKY_ZOOM, clamp, domeDestination, direction, domePosition, projectDome } from './dome.js';
 import { createStarMotion, ENTRANCE, entranceFrame, returnFrame, smooth } from './motion.js';
@@ -162,7 +162,7 @@ async function start() {
   }
 
   resize();
-  await preparePaintedScene();
+  await Promise.all([preparePaintedScene(), prepareInteractiveClouds()]);
   await waitForImage(document.querySelector('.room-image'));
   clouds = createInteractiveClouds(world, () => reducedMotion || !renderBudget.current.ambientMotion);
   starMotion = createStarMotion({ preview, reader, scroller, isSoft: () => reducedMotion });

@@ -1,0 +1,25 @@
+[
+  {
+    "name": "silhouette-walk-frames",
+    "dimensionsEqual": true,
+    "differences": 0
+  },
+  {
+    "name": "cloud-1",
+    "dimensionsEqual": true,
+    "differences": 0,
+    "alphaDifferences": 0
+  },
+  {
+    "name": "cloud-2",
+    "dimensionsEqual": true,
+    "differences": 0,
+    "alphaDifferences": 0
+  },
+  {
+    "name": "cloud-3",
+    "dimensionsEqual": true,
+    "differences": 0,
+    "alphaDifferences": 0
+  }
+]
