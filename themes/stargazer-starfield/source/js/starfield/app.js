@@ -10,6 +10,8 @@ import { setRenderQuality } from './dome-renderer.js';
 import { isStarReachable, starLabelPlacement } from './star-targets.js';
 import { createObservationPanel } from './observation.js';
 import { createPolyhedron } from './polyhedron.js';
+import { createSilhouetteWalker } from './silhouette-walker.js';
+import { readingProgress } from './reading-progress.js';
 
 const body = document.body;
 const world = document.getElementById('world');
@@ -26,6 +28,11 @@ async function start() {
   const preview = document.getElementById('preview');
   const observationPanel = createObservationPanel(preview);
   const polyhedron = createPolyhedron(document.querySelector('.sky-polyhedron'));
+  const readingWalker = createSilhouetteWalker(reader.querySelector('.reading-walker'), { compact: true, white: true });
+  const journey = document.getElementById('reading-journey');
+  const readingMotionPreference = matchMedia('(prefers-reduced-motion: reduce)');
+  let readingWalkUntil = 0;
+  let lastReadingFraction = 0;
   const status = document.getElementById('approach-status');
   const readButton = document.getElementById('read-button');
   const controls = document.getElementById('exploration-controls');
@@ -559,6 +566,11 @@ async function start() {
     document.getElementById('reading-window-title').textContent = `${article.title} · 观星者的清醒梦`;
     if (!reader.open) reader.showModal();
     scroller.scrollTop = 0;
+    lastReadingFraction = 0;
+    readingWalkUntil = 0;
+    journey.style.setProperty('--reading-fraction', 0);
+    journey.setAttribute('aria-valuenow', '0');
+    setText(document.getElementById('reading-progress'), '0%');
     phase = 'reading';
     starMotion.open(origin, () => {
       phase = 'reading';
@@ -943,6 +955,8 @@ async function start() {
       polyhedron.render(now, !reducedMotion && !document.hidden && !roomScene?.active && !reader.open);
       observationPanel.render(now, !preview.hidden && !reducedMotion && renderBudget.current.ambientMotion &&
         !document.hidden && !roomScene?.active && !reader.open && !egg.open && !collectionOpen && !arrival);
+      readingWalker.render(now, reader.open && phase === 'reading' && now < readingWalkUntil &&
+        !reducedMotion && !readingMotionPreference.matches && !document.hidden);
       for (let i = meteors.length - 1; i >= 0; i--) {
         const meteor = meteors[i], age = (now - meteor.start) / 1800;
         if (age > 1) { meteors.splice(i, 1); continue; }
@@ -969,14 +983,22 @@ async function start() {
     const articleId = articleNode?.dataset.starryId;
     const end = content.getBoundingClientRect();
     const viewport = scroller.getBoundingClientRect();
-    const complete = end.bottom <= viewport.bottom + 2;
+    const progress = readingProgress({
+      scrollTop: scroller.scrollTop,
+      contentBottom: end.bottom - viewport.top + scroller.scrollTop,
+      viewportHeight: scroller.clientHeight,
+    });
+    const { complete, fraction, percent } = progress;
     if (complete && articleId) readArticleIds.add(articleId);
     const revealed = Boolean(articleId && readArticleIds.has(articleId));
     const hasReasons = (relationsByArticle.get(articleId) || []).some((relation) => relation.reason);
     renderReadingRelations(articleNode, revealed);
-    const total = Math.max(1, content.offsetTop + content.offsetHeight);
-    const percent = Math.min(100, Math.round((scroller.scrollTop + scroller.clientHeight) / total * 100));
-    setText(document.getElementById('reading-progress'), `${complete ? 100 : percent}%`);
+    if (Math.abs(fraction - lastReadingFraction) > .00001) readingWalkUntil = performance.now() + 180;
+    lastReadingFraction = fraction;
+    journey.style.setProperty('--reading-fraction', fraction);
+    journey.setAttribute('aria-valuenow', String(percent));
+    journey.setAttribute('aria-valuetext', complete ? '已到文末，100%' : `已阅读 ${percent}%`);
+    setText(document.getElementById('reading-progress'), `${percent}%`);
     setText(document.getElementById('reading-state'), complete
       ? (revealed && hasReasons ? '已到文末 · 关联理由已显露' : '已到文末')
       : '沿着文字，慢慢往下');

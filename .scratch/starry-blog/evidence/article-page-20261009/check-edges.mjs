@@ -1,0 +1,38 @@
+import { chromium } from 'file:///C:/Users/diamo/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright/index.mjs';
+import fs from 'node:fs/promises';import assert from 'node:assert/strict';
+const browser=await chromium.launch({headless:true,executablePath:'C:/Users/diamo/AppData/Local/ms-playwright/chromium-1228/chrome-win64/chrome.exe'});
+const index=JSON.parse(await fs.readFile('.preview/stargazer/starry/index.json','utf8'));
+const result={};
+const page=await browser.newPage({viewport:{width:1440,height:2400}});
+await page.goto('http://127.0.0.1:4175/'+index.articles[0].path);
+await page.waitForFunction(()=>document.body.dataset.reading==='open');
+result.short=await page.evaluate(()=>{const s=document.querySelector('#reading-scroll'),c=document.querySelector('#reader-content');return{percent:document.querySelector('#reading-journey').getAttribute('aria-valuenow'),fullyVisible:c.getBoundingClientRect().bottom<=s.getBoundingClientRect().bottom,scrollTop:s.scrollTop}});
+assert.equal(result.short.fullyVisible,true);assert.equal(result.short.percent,'100');
+await page.close();
+const quiet=await browser.newPage({viewport:{width:390,height:844},reducedMotion:'reduce'});
+await quiet.goto('http://127.0.0.1:4175/'+index.articles[1].path);
+await quiet.waitForFunction(()=>document.body.dataset.reading==='open');
+await quiet.evaluate(()=>{document.querySelector('#reading-scroll').scrollTop=1200});
+await quiet.waitForTimeout(100);
+result.reducedMotion=await quiet.evaluate(()=>({percent:document.querySelector('#reading-journey').getAttribute('aria-valuenow'),stillVisible:!document.querySelector('.reading-walker .silhouette-still').hidden,canvasHidden:document.querySelector('.reading-walker canvas').hidden}));
+assert.equal(result.reducedMotion.stillVisible,true);assert.equal(result.reducedMotion.canvasHidden,true);assert.ok(+result.reducedMotion.percent>0);
+await quiet.close();
+const moving=await browser.newPage({viewport:{width:1440,height:1000}});
+await moving.goto('http://127.0.0.1:4175/'+index.articles[1].path);
+await moving.waitForFunction(()=>document.body.dataset.reading==='open');
+await moving.locator('.reading-walker .silhouette-frames').evaluate(im=>im.decode());
+result.animation=await moving.evaluate(async()=>{
+ const s=document.querySelector('#reading-scroll'),c=document.querySelector('.reading-walker canvas');
+ const samples=[];
+ for(let i=0;i<7;i++){s.scrollTop+=90;await new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));samples.push({visible:!c.hidden,data:c.toDataURL()})}
+ return{rendered:samples.every(x=>x.visible),uniqueFrames:new Set(samples.map(x=>x.data)).size};
+});
+assert.equal(result.animation.rendered,true);assert.ok(result.animation.uniqueFrames>1);
+await moving.waitForTimeout(220);
+result.stopped=await moving.locator('.reading-walker canvas').evaluate(c=>c.hidden);assert.equal(result.stopped,true);
+await moving.setViewportSize({width:320,height:740});
+await moving.waitForTimeout(100);
+result.resize=await moving.evaluate(()=>{const s=document.querySelector('#reading-scroll'),c=document.querySelector('#reader-content'),bottom=c.getBoundingClientRect().bottom-s.getBoundingClientRect().top+s.scrollTop;return {overflow:s.scrollWidth>s.clientWidth,expected:Math.round(s.scrollTop/(bottom-s.clientHeight)*100),actual:+document.querySelector('#reading-journey').getAttribute('aria-valuenow')}});
+assert.equal(result.resize.overflow,false);assert.equal(result.resize.actual,result.resize.expected);
+await moving.close();
+await browser.close();await fs.writeFile('.scratch/starry-blog/evidence/article-page-20261009/edge-checks.json',JSON.stringify(result,null,2));console.log(JSON.stringify(result));

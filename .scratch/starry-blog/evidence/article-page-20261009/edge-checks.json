@@ -1,0 +1,22 @@
+{
+  "short": {
+    "percent": "100",
+    "fullyVisible": true,
+    "scrollTop": 0
+  },
+  "reducedMotion": {
+    "percent": "15",
+    "stillVisible": true,
+    "canvasHidden": true
+  },
+  "animation": {
+    "rendered": true,
+    "uniqueFrames": 7
+  },
+  "stopped": true,
+  "resize": {
+    "overflow": false,
+    "expected": 6,
+    "actual": 6
+  }
+}

@@ -1,8 +1,8 @@
 # 星空博客的写作、预览与发布
 
-更新日期：2026-10-08。本文适用于 `codex/starfield-personal` 分支中的个人主题 `themes/stargazer-starfield/`。
+更新日期：2026-10-09。本文适用于 `codex/starfield-personal` 分支中的个人主题 `themes/stargazer-starfield/`。
 
-新版已接入真实文章，沿用 V20 窗边与穹顶场景，采用冷色复古阅读窗口、视线聚焦与轻雾显字；观测面板及宝蓝／深蓝配色以后续 2026-10-07、2026-10-08 更新为准。旧 Kira 主题、配置和源内容继续保留，仓库默认生产构建仍选择 Kira。实际线上切换尚无本仓库内的部署验收证据。
+新版已接入真实文章，沿用 V20 窗边与穹顶场景、视线聚焦与轻雾显字。文章页采用 2026-10-09 作者提供的蓝色星月素材，顶部几何装饰承载标题，底部小人随正文阅读进度移动；观测面板以 2026-10-07、2026-10-08 更新为准。旧 Kira 主题、配置和源内容继续保留，仓库默认生产构建仍选择 Kira。实际线上切换尚无本仓库内的部署验收证据。
 
 V20 模拟文章原型另在 `themes/hexo-theme-kira/prototypes/starfield/`，使用 4173 端口；本指南运行的是真实文章新版，使用 4175 端口。三种入口的关系和启动方式见 [项目 README](../../README.md)。
 
@@ -103,4 +103,4 @@ star:
 
 本地执行 `npm run preview:legacy` 和 `npm run serve:legacy` 可随时核对旧版。需要完整恢复历史配置/锁文件时，按照 [旧版恢复说明](legacy-blog-recovery.md) 从保存的基线恢复；不要删除新版主题或原文章来切换外观。
 
-实现验收和设备／媒体限制见 [实施记录](../../.scratch/starry-blog/implementation-progress.md)，阅读窗口最近配色见 [2026-10-08 记录](../../.scratch/starry-blog/evidence/reader-palette-20261008/README.md)。
+实现验收和设备／媒体限制见 [实施记录](../../.scratch/starry-blog/implementation-progress.md)，当前文章页素材、进度和截图见 [2026-10-09 记录](../../.scratch/starry-blog/evidence/article-page-20261009/README.md)。

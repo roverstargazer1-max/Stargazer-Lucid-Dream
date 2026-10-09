@@ -117,16 +117,25 @@
 <dialog id="reader" aria-labelledby="reader-title">
   <div class="reading-frame">
     <header class="reading-header">
-      <span class="reading-site">
-        <svg class="window-icon" viewBox="0 0 16 16" aria-hidden="true" shape-rendering="crispEdges"><path fill="currentColor" d="M7 0h2v5h2v2h5v2h-5v2H9v5H7v-5H5V9H0V7h5V5h2z"/><path fill="#7373a1" d="M7 7h2v2H7z"/></svg>
-        <span id="reading-window-title" class="window-title">观星者的清醒梦</span>
-      </span>
+      <span id="reading-window-title" class="sr-only">观星者的清醒梦</span>
       <button id="close-reader" type="button" aria-label="关闭文章，返回星空" title="关闭文章，返回星空">
-        <svg class="window-close-icon" viewBox="0 0 16 16" aria-hidden="true" shape-rendering="crispEdges"><path fill="currentColor" d="M2 2h3v1h1v1h1v1h2V4h1V3h1V2h3v2h-1v1h-1v1h-1v1h-1v2h1v1h1v1h1v1h1v2h-3v-1h-1v-1H9v-1H7v1H6v1H5v1H2v-2h1v-1h1v-1h1V9h1V7H5V6H4V5H3V4H2z"/></svg>
+        <img src="<%= url_for('images/observation/close.png') %>" alt="" draggable="false">
       </button>
     </header>
     <div id="reading-scroll" tabindex="0"><div id="reading-content-slot"></div></div>
-    <footer class="reading-footer"><span id="reading-state">沿着文字，慢慢往下</span><span id="reading-progress">0%</span></footer>
+    <footer class="reading-footer">
+      <div id="reading-journey" role="progressbar" aria-label="文章阅读进度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <div class="reading-rail" aria-hidden="true"><span class="reading-rail-fill"></span></div>
+        <div class="reading-walker" aria-hidden="true">
+          <img class="silhouette-still" src="<%= url_for('images/reader/walker.png') %>" alt="" draggable="false">
+          <img class="silhouette-frames" src="<%= url_for('images/observation/silhouette-walk-frames.png') %>" alt="" hidden>
+          <canvas hidden></canvas>
+        </div>
+        <span id="reading-progress">0%</span>
+        <span class="reading-track-label" aria-hidden="true">阅读</span>
+      </div>
+      <span id="reading-state" class="sr-only">沿着文字，慢慢往下</span>
+    </footer>
   </div>
 </dialog>
 <dialog id="collection-panel" aria-labelledby="collection-panel-title">

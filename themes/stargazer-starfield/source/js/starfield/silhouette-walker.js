@@ -5,7 +5,7 @@ const FRAME_WIDTH = 280, FRAME_HEIGHT = 390, FRAME_COLUMNS = 6, FRAME_COUNT = 68
 const PERIOD = 17 * 1000 / 30;
 const REFERENCE_FLOOR = 385, REFERENCE_HEIGHT = 355;
 
-export function createSilhouetteWalker(element) {
+export function createSilhouetteWalker(element, { compact = false, white = false } = {}) {
   const image = element?.querySelector('.silhouette-still'), frames = element?.querySelector('.silhouette-frames');
   const canvas = element?.querySelector('canvas'), context = canvas?.getContext('2d');
   if (!image || !frames || !context) return { render() {} };
@@ -33,9 +33,10 @@ export function createSilhouetteWalker(element) {
       context.clearRect(0, 0, width, height);
       const scale = Math.min(width / SOURCE_WIDTH, height / SOURCE_HEIGHT);
       const offsetX = (width - SOURCE_WIDTH * scale) / 2, offsetY = (height - SOURCE_HEIGHT * scale) / 2;
-      const poseScale = 1302 * scale / REFERENCE_HEIGHT;
-      const x = offsetX + 528 * scale - 125 * poseScale;
-      const y = offsetY + 1420 * scale - REFERENCE_FLOOR * poseScale;
+      const poseScale = compact ? Math.min(width / FRAME_WIDTH, height / FRAME_HEIGHT) : 1302 * scale / REFERENCE_HEIGHT;
+      const x = compact ? (width - FRAME_WIDTH * poseScale) / 2 : offsetX + 528 * scale - 125 * poseScale;
+      const y = compact ? height - REFERENCE_FLOOR * poseScale : offsetY + 1420 * scale - REFERENCE_FLOOR * poseScale;
+      context.filter = white ? 'brightness(0) invert(1)' : 'none';
       context.drawImage(frames, frame % FRAME_COLUMNS * FRAME_WIDTH, Math.floor(frame / FRAME_COLUMNS) * FRAME_HEIGHT,
         FRAME_WIDTH, FRAME_HEIGHT, x, y, FRAME_WIDTH * poseScale, FRAME_HEIGHT * poseScale);
       if (canvas.hidden) canvas.hidden = false;
