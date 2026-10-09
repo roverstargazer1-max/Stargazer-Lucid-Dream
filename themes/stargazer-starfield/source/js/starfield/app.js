@@ -37,7 +37,7 @@ async function start() {
   const preview = document.getElementById('preview');
   const observationPanel = createObservationPanel(preview);
   const polyhedron = createPolyhedron(document.querySelector('.sky-polyhedron'));
-  const readingWalker = createSilhouetteWalker(reader.querySelector('.reading-walker'), { compact: true, white: true });
+  const readingWalker = createSilhouetteWalker(reader.querySelector('.reading-walker'), { compact: true, white: true, freezeWhenIdle: true });
   const journey = document.getElementById('reading-journey');
   const readingFooter = reader.querySelector('.reading-footer');
   const readingMotionPreference = matchMedia('(prefers-reduced-motion: reduce)');

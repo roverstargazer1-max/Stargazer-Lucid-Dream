@@ -5,24 +5,25 @@ const FRAME_WIDTH = 280, FRAME_HEIGHT = 390, FRAME_COLUMNS = 6, FRAME_COUNT = 68
 const PERIOD = 17 * 1000 / 30;
 const REFERENCE_FLOOR = 385, REFERENCE_HEIGHT = 355;
 
-export function createSilhouetteWalker(element, { compact = false, white = false } = {}) {
+export function createSilhouetteWalker(element, { compact = false, white = false, freezeWhenIdle = false } = {}) {
   const image = element?.querySelector('.silhouette-still'), frames = element?.querySelector('.silhouette-frames');
   const canvas = element?.querySelector('canvas'), context = canvas?.getContext('2d');
-  if (!image || !frames || !context) return { render() {} };
+  if (!frames || !context) return { render() {} };
   let failed = false, walkTime = 0, previousTime = null, lastFrame = -1;
   function showStill() {
-    if (image.hidden) image.hidden = false;
+    if (image?.hidden) image.hidden = false;
     if (!canvas.hidden) canvas.hidden = true;
     previousTime = null; lastFrame = -1;
   }
   return {
     render(now, enabled) {
-      if (!enabled || failed || !frames.complete || !frames.naturalWidth) { showStill(); return; }
+      if ((!enabled && !freezeWhenIdle) || failed || !frames.complete || !frames.naturalWidth) { showStill(); return; }
       if (frames.naturalWidth !== FRAME_WIDTH * FRAME_COLUMNS || frames.naturalHeight !== FRAME_HEIGHT * Math.ceil(FRAME_COUNT / FRAME_COLUMNS)) {
         failed = true; showStill(); return;
       }
-      if (previousTime !== null) walkTime += Math.min(100, now - previousTime);
-      previousTime = now;
+      // Reading pauses the same pose instead of swapping to a differently sized character.
+      if (enabled && previousTime !== null) walkTime += Math.min(100, now - previousTime);
+      previousTime = enabled ? now : null;
       const ratio = Math.min(devicePixelRatio || 1, 2);
       const width = Math.max(1, Math.round(element.clientWidth * ratio)), height = Math.max(1, Math.round(element.clientHeight * ratio));
       const frame = Math.floor(walkTime % PERIOD / PERIOD * FRAME_COUNT);
@@ -40,7 +41,7 @@ export function createSilhouetteWalker(element, { compact = false, white = false
       context.drawImage(frames, frame % FRAME_COLUMNS * FRAME_WIDTH, Math.floor(frame / FRAME_COLUMNS) * FRAME_HEIGHT,
         FRAME_WIDTH, FRAME_HEIGHT, x, y, FRAME_WIDTH * poseScale, FRAME_HEIGHT * poseScale);
       if (canvas.hidden) canvas.hidden = false;
-      if (!image.hidden) image.hidden = true;
+      if (image && !image.hidden) image.hidden = true;
     },
   };
 }
