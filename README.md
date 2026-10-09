@@ -157,6 +157,8 @@ npx hexo publish "草稿文件名"
 └── public/                          # 当前一次生产构建产物，不提交
 ```
 
+测试代码、复测脚本和简明结论随仓库保存；截图、录像、完整性能报告及逐次测量数据只保留在本地，摘要 JSON 继续提交。范围和历史产物的取得方式见[测试产物保存约定](.scratch/starry-blog/evidence/README.md)。设计规格、工单及正式素材仍正常跟踪，不能忽略整个 `.scratch/`。
+
 - [新版写作、预览与发布](docs/operations/starfield-blog.md)：日常操作和可选文章配置。
 - [旧 Kira 恢复](docs/operations/legacy-blog-recovery.md)：新旧对照、切回和历史基线。
 - [新版主题说明](themes/stargazer-starfield/README.md)：主题入口、配置与界面实现。
@@ -164,4 +166,4 @@ npx hexo publish "草稿文件名"
 - [设计主文档](docs/design/starry-blog.md)：已确认决定与历史演变。
 - [个人博客正式化计划](.scratch/starry-blog/theme-production-plan.md)及[实施记录](.scratch/starry-blog/implementation-progress.md)：当前实现范围和验证证据。
 
-带日期的研究、截图和旧工单保留当时状态。2026-09-30 的[公开模板规格](.scratch/starry-blog/spec.md)属于历史范围，当前个人站点以 2026-10-01 正式化计划及后续明确的视觉更新为准。
+带日期的研究结论和旧工单保留当时状态，原始截图及完整报告按上述约定仅本地归档。2026-09-30 的[公开模板规格](.scratch/starry-blog/spec.md)属于历史范围，当前个人站点以 2026-10-01 正式化计划及后续明确的视觉更新为准。

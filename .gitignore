@@ -10,3 +10,18 @@ _multiconfig.yml
 # Local-only performance optimization notes and domain context
 CONTEXT.md
 docs/optimization/
+
+# Generated browser evidence stays local; retain reproducible scripts and concise summaries.
+/.scratch/**/evidence/**
+!/.scratch/**/evidence/**/
+!/.scratch/**/evidence/**/*.md
+!/.scratch/**/evidence/**/*.js
+!/.scratch/**/evidence/**/*.mjs
+!/.scratch/**/evidence/**/*.py
+!/.scratch/**/evidence/**/*.sh
+!/.scratch/**/evidence/**/*-summary.json
+
+# Standard automated-test output directories.
+/test-results/
+/playwright-report/
+/coverage/
