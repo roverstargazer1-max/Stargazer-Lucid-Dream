@@ -104,3 +104,9 @@ star:
 本地执行 `npm run preview:legacy` 和 `npm run serve:legacy` 可随时核对旧版。需要完整恢复历史配置/锁文件时，按照 [旧版恢复说明](legacy-blog-recovery.md) 从保存的基线恢复；不要删除新版主题或原文章来切换外观。
 
 实现验收和设备／媒体限制见 [实施记录](../../.scratch/starry-blog/implementation-progress.md)，当前文章页素材、进度和截图见 [2026-10-09 记录](../../.scratch/starry-blog/evidence/article-page-20261009/README.md)。
+
+## 首屏与性能检查（2026-10-09）
+
+首页加载时先显示原房间插图，窗口按钮在星空准备完成后启用；不会先闪出文章清单。关闭 JavaScript、主模块请求失败或渲染不可用时，文章清单恢复供访问。深链接仍有静态正文回退。
+
+互动云缓存和无损步行动作图集已随主题保存，预览、生产构建无须安装图像处理工具。更换步行动作 PNG 时需重新生成 WebP 并核对浏览器绘制像素；更新云的种子或造型算法时需同步重建三张 PNG 缓存与命中透明度。生成、回归、冷缓存测量与当前限制见 [性能复测记录](../../.scratch/starry-blog/evidence/performance-20261009/README.md)。

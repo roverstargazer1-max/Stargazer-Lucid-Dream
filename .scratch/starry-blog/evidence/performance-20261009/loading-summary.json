@@ -1,0 +1,38 @@
+[
+  {
+    "label": "baseline",
+    "device": "desktop",
+    "roomPaintMs": 19941.5,
+    "readyMs": 19941.5,
+    "blockingMs": 639,
+    "initialResourceBytes": 3874627,
+    "runs": 3
+  },
+  {
+    "label": "baseline",
+    "device": "mobile",
+    "roomPaintMs": 19486.8,
+    "readyMs": 19486.8,
+    "blockingMs": 605,
+    "initialResourceBytes": 3781515,
+    "runs": 3
+  },
+  {
+    "label": "optimized",
+    "device": "desktop",
+    "roomPaintMs": 6581.4,
+    "readyMs": 18999.3,
+    "blockingMs": 29,
+    "initialResourceBytes": 3642324,
+    "runs": 3
+  },
+  {
+    "label": "optimized",
+    "device": "mobile",
+    "roomPaintMs": 6120.2,
+    "readyMs": 18537.9,
+    "blockingMs": 34,
+    "initialResourceBytes": 3549212,
+    "runs": 3
+  }
+]

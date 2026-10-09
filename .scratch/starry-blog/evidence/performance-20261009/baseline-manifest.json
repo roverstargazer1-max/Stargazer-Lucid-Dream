@@ -1,0 +1,57 @@
+[
+  {
+    "path": "index.html",
+    "bytes": 14138,
+    "sha256": "ee4bbf10e4a9044ed05ace4e510cfbf11d2941c96e50fdd600db6062a4331b7c"
+  },
+  {
+    "path": "js/starfield/app.js",
+    "bytes": 59529,
+    "sha256": "10425c812330c1aec6904742bd5bca9d47856605ce56dc0d8a5c4635e53763d7"
+  },
+  {
+    "path": "js/starfield/painted.js",
+    "bytes": 9999,
+    "sha256": "42b944d3706d15a0048ada3b0659c47619ce32673a5c5e7ca20664f7f02b7e53"
+  },
+  {
+    "path": "js/starfield/interactive-clouds.js",
+    "bytes": 5653,
+    "sha256": "bb2fb74c845e9150c95115745d0721ce36d10bd055fd6f44677282e38416fec7"
+  },
+  {
+    "path": "js/starfield/dome-renderer.js",
+    "bytes": 10316,
+    "sha256": "6da2d103bd4a5f7a4e2b179d02feff7e1b8697a7c297987f49bdae82f417545c"
+  },
+  {
+    "path": "image/starfield/room-poster-detail-v20.webp",
+    "bytes": 1052364,
+    "sha256": "19d3e7a1451398d37deca4ecd11e3f1a382d130cb906ff6bfff491c45a3d7cf3"
+  },
+  {
+    "path": "image/starfield/room-portrait-v11.webp",
+    "bytes": 959460,
+    "sha256": "5f443bc0a11a69141610787f46fbe8fa07faa4d6d54592c811f3b2990f1618e0"
+  },
+  {
+    "path": "image/starfield/painted-sky-v11.webp",
+    "bytes": 1090084,
+    "sha256": "b50571d6f8af2503c2be51c0f8be4acf8326adec72ffaa1a7cc244c19d1c59de"
+  },
+  {
+    "path": "images/observation/silhouette-walk-frames.png",
+    "bytes": 430982,
+    "sha256": "f1abdeae2aff9680001bb98772cdd54b84bec298d8f6053ee7460b5ee3eec173"
+  },
+  {
+    "path": "images/branding/logo2.png",
+    "bytes": 364153,
+    "sha256": "5dac43515fe5d183d029bc275e69ebc7396d6e667f0f71c003f8f23129d77aea"
+  },
+  {
+    "path": "images/branding/right-icons.png",
+    "bytes": 11273,
+    "sha256": "4ce8b2b22349a23a835fa438fcb886add760761ab06ec8ebade4722c276d4829"
+  }
+]

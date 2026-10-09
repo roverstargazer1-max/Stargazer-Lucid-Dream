@@ -1,0 +1,34 @@
+{
+  "article": "dream-begins",
+  "warmupCycles": 3,
+  "repeatedCycles": 12,
+  "forcedGC": true,
+  "samples": [
+    {
+      "cycle": 0,
+      "jsHeapMiB": 2.8856964111328125,
+      "domNodes": 1297,
+      "liveElements": 253
+    },
+    {
+      "cycle": 4,
+      "jsHeapMiB": 3.0099830627441406,
+      "domNodes": 1311,
+      "liveElements": 318
+    },
+    {
+      "cycle": 8,
+      "jsHeapMiB": 3.1884384155273438,
+      "domNodes": 1906,
+      "liveElements": 318
+    },
+    {
+      "cycle": 12,
+      "jsHeapMiB": 3.2300567626953125,
+      "domNodes": 2503,
+      "liveElements": 318
+    }
+  ],
+  "heapGrowthMiB": 0.3443603515625,
+  "errors": []
+}

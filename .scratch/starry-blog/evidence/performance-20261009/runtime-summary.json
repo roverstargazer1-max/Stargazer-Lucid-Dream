@@ -1,0 +1,210 @@
+[
+  {
+    "label": "baseline",
+    "device": "desktop",
+    "scene": "room",
+    "busyPercent": 6.080237398056179,
+    "scriptMsPerSecond": 7.905050735457837,
+    "frameP95Ms": 17.59999999999991,
+    "over34Ms": 0,
+    "qualities": [
+      "full"
+    ],
+    "errors": []
+  },
+  {
+    "label": "baseline",
+    "device": "desktop",
+    "scene": "sky",
+    "busyPercent": 8.72616806504979,
+    "scriptMsPerSecond": 46.20911411134632,
+    "frameP95Ms": 17.600000000000364,
+    "over34Ms": 0,
+    "qualities": [
+      "full"
+    ],
+    "errors": []
+  },
+  {
+    "label": "baseline",
+    "device": "desktop",
+    "scene": "selected",
+    "busyPercent": 7.217055640827233,
+    "scriptMsPerSecond": 38.070787079241,
+    "frameP95Ms": 17.599999999998545,
+    "over34Ms": 0,
+    "qualities": [
+      "full"
+    ],
+    "errors": []
+  },
+  {
+    "label": "baseline",
+    "device": "desktop",
+    "scene": "reader",
+    "busyPercent": 4.064556343791768,
+    "scriptMsPerSecond": 8.473437085377055,
+    "frameP95Ms": 17.599999999998545,
+    "over34Ms": 0,
+    "qualities": [
+      "full"
+    ],
+    "errors": []
+  },
+  {
+    "label": "baseline",
+    "device": "mobile",
+    "scene": "room",
+    "busyPercent": 6.162586236971433,
+    "scriptMsPerSecond": 8.128066548799383,
+    "frameP95Ms": 17.300000000000182,
+    "over34Ms": 0,
+    "qualities": [
+      "full"
+    ],
+    "errors": []
+  },
+  {
+    "label": "baseline",
+    "device": "mobile",
+    "scene": "sky",
+    "busyPercent": 8.486382525514898,
+    "scriptMsPerSecond": 44.68017867605087,
+    "frameP95Ms": 17.30000000000109,
+    "over34Ms": 0,
+    "qualities": [
+      "full"
+    ],
+    "errors": []
+  },
+  {
+    "label": "baseline",
+    "device": "mobile",
+    "scene": "selected",
+    "busyPercent": 9.483412295154293,
+    "scriptMsPerSecond": 49.011954032024576,
+    "frameP95Ms": 17.30000000000291,
+    "over34Ms": 0,
+    "qualities": [
+      "full"
+    ],
+    "errors": []
+  },
+  {
+    "label": "baseline",
+    "device": "mobile",
+    "scene": "reader",
+    "busyPercent": 4.2150313714557015,
+    "scriptMsPerSecond": 8.606209290460043,
+    "frameP95Ms": 17.399999999997817,
+    "over34Ms": 0,
+    "qualities": [
+      "full"
+    ],
+    "errors": []
+  },
+  {
+    "label": "optimized",
+    "device": "desktop",
+    "scene": "room",
+    "busyPercent": 6.306117072768763,
+    "scriptMsPerSecond": 8.055712441110224,
+    "frameP95Ms": 18.200000000000273,
+    "over34Ms": 0,
+    "qualities": [
+      "full"
+    ],
+    "errors": []
+  },
+  {
+    "label": "optimized",
+    "device": "desktop",
+    "scene": "sky",
+    "busyPercent": 8.63999107340035,
+    "scriptMsPerSecond": 45.282550400896845,
+    "frameP95Ms": 18.399999999999636,
+    "over34Ms": 0,
+    "qualities": [
+      "full"
+    ],
+    "errors": []
+  },
+  {
+    "label": "optimized",
+    "device": "desktop",
+    "scene": "selected",
+    "busyPercent": 9.75387104454667,
+    "scriptMsPerSecond": 51.502612263270564,
+    "frameP95Ms": 18.299999999999272,
+    "over34Ms": 0,
+    "qualities": [
+      "full"
+    ],
+    "errors": []
+  },
+  {
+    "label": "optimized",
+    "device": "desktop",
+    "scene": "reader",
+    "busyPercent": 3.6975520300456814,
+    "scriptMsPerSecond": 8.34281927487516,
+    "frameP95Ms": 17.5,
+    "over34Ms": 0,
+    "qualities": [
+      "full"
+    ],
+    "errors": []
+  },
+  {
+    "label": "optimized",
+    "device": "mobile",
+    "scene": "room",
+    "busyPercent": 6.102671392370821,
+    "scriptMsPerSecond": 7.541977152204462,
+    "frameP95Ms": 17.699999999999818,
+    "over34Ms": 0,
+    "qualities": [
+      "full"
+    ],
+    "errors": []
+  },
+  {
+    "label": "optimized",
+    "device": "mobile",
+    "scene": "sky",
+    "busyPercent": 8.584072712986186,
+    "scriptMsPerSecond": 45.73785994737776,
+    "frameP95Ms": 17.600000000000364,
+    "over34Ms": 0,
+    "qualities": [
+      "full"
+    ],
+    "errors": []
+  },
+  {
+    "label": "optimized",
+    "device": "mobile",
+    "scene": "selected",
+    "busyPercent": 9.600289004741265,
+    "scriptMsPerSecond": 50.574175889944,
+    "frameP95Ms": 17.600000000002183,
+    "over34Ms": 0,
+    "qualities": [
+      "full"
+    ],
+    "errors": []
+  },
+  {
+    "label": "optimized",
+    "device": "mobile",
+    "scene": "reader",
+    "busyPercent": 4.685901274033836,
+    "scriptMsPerSecond": 9.838332839993544,
+    "frameP95Ms": 17.600000000002183,
+    "over34Ms": 0,
+    "qualities": [
+      "full"
+    ],
+    "errors": []
+  }
+]
