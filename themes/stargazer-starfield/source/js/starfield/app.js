@@ -210,8 +210,6 @@ async function start() {
     onReturnProgress(progress) {
       if (!retreatCamera) return;
       camera = returnFrame(progress, retreatCamera, width <= 760 ? .78 : 1);
-      body.style.setProperty('--entry-bank', `${reducedMotion ? 0 : camera.bank}rad`);
-      body.style.setProperty('--entry-scale', String(reducedMotion ? 1 : 1 + Math.abs(camera.bank || 0) * Math.max(width / height, height / width) * 1.1));
     },
     onReturned() {
       const start = entranceFrame(0, width <= 760 ? .78 : 1);
@@ -223,8 +221,8 @@ async function start() {
       phase = 'idle';
       starMotion.clearSelection();
       delete body.dataset.arrival;
-      body.style.removeProperty('--entry-bank');
-      body.style.removeProperty('--entry-scale');
+      canvas.style.removeProperty('--entry-bank');
+      canvas.style.removeProperty('--entry-scale');
       seedDockHistory('relation', camera, null);
       seedDockHistory('time', camera, null);
       replaceViewState(mode);
@@ -236,7 +234,6 @@ async function start() {
     onMotion(value) {
       restingFrameDrawn = false;
       reducedMotion = value;
-      if (body.dataset.room === 'inside') body.style.setProperty('--sky-clarity', value ? '1' : '0');
     },
   });
 
@@ -286,11 +283,11 @@ async function start() {
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
   }
 
-  function projectionSettings() {
+  function projectionSettings(view = camera) {
     return {
       cx: width * (width <= 760 ? .56 : .5),
       cy: height * (width <= 760 ? .49 : .46),
-      focal: Math.min(width, height * 1.2) * 1.05 * (camera.zoom || 1),
+      focal: Math.min(width, height * 1.2) * 1.05 * (view.zoom || 1),
     };
   }
 
@@ -773,8 +770,8 @@ async function start() {
     arrival = null;
     phase = 'idle';
     delete body.dataset.arrival;
-    body.style.removeProperty('--entry-bank');
-    body.style.removeProperty('--entry-scale');
+    canvas.style.removeProperty('--entry-bank');
+    canvas.style.removeProperty('--entry-scale');
     updateUI();
     homeButton.focus({ preventScroll: true });
   }
@@ -783,13 +780,23 @@ async function start() {
     if (!arrival) return;
     const frame = entranceFrame(now - arrival.start, width <= 760 ? .78 : 1);
     camera = { x: frame.x, y: frame.y, z: frame.z, yaw: frame.yaw, pitch: frame.pitch, zoom: frame.zoom };
-    body.dataset.arrival = frame.stage;
-    body.style.setProperty('--entry-bank', `${frame.bank}rad`);
-    body.style.setProperty('--entry-scale', String(1 + Math.abs(frame.bank) * Math.max(width / height, height / width) * 1.1));
+    if (body.dataset.arrival !== frame.stage) body.dataset.arrival = frame.stage;
+    // Only this canvas uses these values. Inheriting them from body invalidates
+    // every hidden article's styles on each camera frame.
+    canvas.style.setProperty('--entry-bank', `${frame.bank}rad`);
+    canvas.style.setProperty('--entry-scale', String(1 + Math.abs(frame.bank) * Math.max(width / height, height / width) * 1.1));
     if (frame.done) finishArrival();
   }
 
   function preflightRenderer() {
+    // A single static preflight only warms cache hits. Exercise both changing
+    // scenery passes before the first click needs their Canvas texture copies.
+    if (roomScene?.active && !reducedMotion) for (const elapsed of [16, 32]) {
+      const frame = entranceFrame(elapsed, width <= 760 ? .78 : 1);
+      const settings = projectionSettings(frame);
+      paintPaintedSky(ctx, width, height, frame, settings, { x: 0, y: 0, seconds: null, clarity: 0 });
+      paintCloudVeil(ctx, width, height, frame, settings);
+    }
     paintPaintedSky(ctx, width, height, camera, projectionSettings(), { x: 0, y: 0, seconds: null, clarity: 1 });
     if (body.dataset.domeRenderer !== 'webgl') throw new Error('WebGL could not prepare the starfield.');
     if (body.dataset.liveWindow !== 'ready') throw new Error('The window aperture could not be prepared.');
@@ -801,18 +808,25 @@ async function start() {
     ctx.clearRect(0, 0, width, height);
     const seconds = reducedMotion || !renderBudget.current.ambientMotion ? null : ambient.seconds;
     const clarity = arrival ? entranceFrame(now - arrival.start).clarity : 1;
-    if (body.style.getPropertyValue('--sky-clarity') !== String(clarity)) body.style.setProperty('--sky-clarity', String(clarity));
     paintPaintedSky(ctx, width, height, camera, projectionSettings(), { x: ambient.x, y: ambient.y, seconds, clarity, backgroundStride: renderBudget.current.backgroundStride });
     if (animationStarted && body.dataset.domeRenderer !== 'webgl') throw new Error('The starfield renderer stopped being available.');
     visibleStars.clear();
     projectedStars.clear();
-    const obstacles = [...world.querySelectorAll('.masthead a, #exploration-controls:not([hidden]), #preview:not([hidden]), #signal-egg:not([hidden])')]
-      .map(element => element.getBoundingClientRect()).filter(rect => rect.width && rect.height);
+    const showStars = !roomScene?.active && !arrival;
+    // Titles and navigation are hidden for the whole passage. Measuring their
+    // obstacles after camera style writes otherwise forces layout on every frame.
+    const obstacles = showStars ? [...world.querySelectorAll('.masthead a, #exploration-controls:not([hidden]), #preview:not([hidden]), #signal-egg:not([hidden])')]
+      .map(element => element.getBoundingClientRect()).filter(rect => rect.width && rect.height) : [];
     for (const item of articles) {
+      const target = starTargets.get(item.id);
+      if (!showStars) {
+        if (!target.hidden) target.hidden = true;
+        target.classList.toggle('is-near-pointer', false);
+        continue;
+      }
       const projected = project(positionOf(item));
       const point = projected && Number.isFinite(projected.x) && Number.isFinite(projected.y) ? projected : null;
-      const target = starTargets.get(item.id);
-      const hidden = Boolean(!isStarReachable(point, width, height, obstacles) || roomScene?.active || arrival);
+      const hidden = !isStarReachable(point, width, height, obstacles);
       if (target.hidden !== hidden) target.hidden = hidden;
       const nearPointer = !hidden && labelPointer && !pointers.size && !travel && !reader.open && !egg.open && !collectionOpen &&
         (Math.hypot(point.x - labelPointer.x, point.y - labelPointer.y) <= 88 || target.matches(':hover'));
