@@ -139,22 +139,38 @@ function createRenderer(image){
   gl.texImage2D(gl.TEXTURE_2D,0,gl.RGB,gl.RGB,gl.UNSIGNED_BYTE,image);
   const uniform=Object.fromEntries(['size','center','focal','yaw','pitch','origin','overlay','cloudTreatment'].map(key=>[key,gl.getUniformLocation(program,key)]));
   // Scenery is static in world space. Keep both passes while only a cloud animates.
-  const cache=[0,1].map(()=>({key:null,canvas:document.createElement('canvas')}));
+  const cache=new Map();
+  let viewportSize='';
   return {canvas,draw(w,h,camera,settings,overlay){
     if(gl.isContextLost())throw new Error('The WebGL context was lost.');
     const ratio=Math.min(devicePixelRatio||1,pixelRatioCap);
     const rw=Math.round(w*ratio),rh=Math.round(h*ratio);
-    const entry=cache[overlay?1:0];
+    const sizeKey=[w,h].join(',');
+    if(viewportSize!==sizeKey){
+      cache.clear();viewportSize=sizeKey;
+      canvas.width=rw;canvas.height=rh;
+    }
+    const cacheKey=[rw,rh,overlay?1:0].join(',');
+    let entry=cache.get(cacheKey);
+    if(!entry){
+      const saved=document.createElement('canvas');saved.width=rw;saved.height=rh;
+      entry={key:null,canvas:saved,context:saved.getContext('2d')};cache.set(cacheKey,entry);
+    }
     const key=[rw,rh,settings.cx,settings.cy,settings.focal,camera.x,camera.y,camera.z,camera.yaw,camera.pitch,cloudTreatment].join(',');
     if(entry.key===key)return entry.canvas;
-    if(canvas.width!==rw||canvas.height!==rh){canvas.width=rw;canvas.height=rh;gl.viewport(0,0,rw,rh);}
+    // Keep the largest buffer for this viewport. Changing quality must not
+    // discard/reallocate WebGL and Canvas surfaces in the middle of a passage.
+    if(canvas.width<rw||canvas.height<rh){canvas.width=Math.max(canvas.width,rw);canvas.height=Math.max(canvas.height,rh);}
+    gl.viewport(0,0,rw,rh);
     gl.uniform2f(uniform.size,rw,rh);gl.uniform2f(uniform.center,settings.cx*ratio,settings.cy*ratio);
     gl.uniform1f(uniform.focal,settings.focal*ratio);gl.uniform1f(uniform.yaw,camera.yaw);gl.uniform1f(uniform.pitch,camera.pitch);
     gl.uniform3f(uniform.origin,camera.x,camera.y,camera.z);gl.uniform1f(uniform.overlay,overlay?1:0);
     gl.uniform1f(uniform.cloudTreatment,cloudTreatment);
     gl.drawArrays(gl.TRIANGLES,0,6);
-    if(entry.canvas.width!==rw||entry.canvas.height!==rh){entry.canvas.width=rw;entry.canvas.height=rh;}
-    const cached=entry.canvas.getContext('2d');cached.clearRect(0,0,rw,rh);cached.drawImage(canvas,0,0);
+    const cached=entry.context;cached.clearRect(0,0,rw,rh);
+    // WebGL's viewport starts at the bottom left; Canvas image crops start at
+    // the top left. Ignore the unused rows of the retained larger buffer.
+    cached.drawImage(canvas,0,canvas.height-rh,rw,rh,0,0,rw,rh);
     entry.key=key;return entry.canvas;
   }};
 }

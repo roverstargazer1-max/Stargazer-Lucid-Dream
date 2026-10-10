@@ -830,6 +830,14 @@ async function start() {
       paintPaintedSky(ctx, width, height, frame, settings, { x: 0, y: 0, seconds: null, clarity: 0 });
       paintCloudVeil(ctx, width, height, frame, settings);
     }
+    // Allocate the smaller background surfaces before interaction. The full
+    // resolution sky is restored below, in the same task before any frame paints.
+    for (const cap of [1, .75]) if (cap < renderBudget.current.environmentRatioCap) {
+      setRenderQuality(cap);
+      paintPaintedSky(ctx, width, height, camera, projectionSettings(), { x: 0, y: 0, seconds: null, clarity: 1 });
+      paintCloudVeil(ctx, width, height, camera, projectionSettings());
+    }
+    setRenderQuality(renderBudget.current.environmentRatioCap);
     paintPaintedSky(ctx, width, height, camera, projectionSettings(), { x: 0, y: 0, seconds: null, clarity: 1 });
     if (body.dataset.domeRenderer !== 'webgl') throw new Error('WebGL could not prepare the starfield.');
     if (body.dataset.liveWindow !== 'ready') throw new Error('The window aperture could not be prepared.');
