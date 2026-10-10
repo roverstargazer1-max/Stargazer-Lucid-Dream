@@ -36,9 +36,11 @@ test('the generated PNG artwork and glyphs retain the supplied bytes, and the pr
     assert.deepEqual(fs.readFileSync(path.join(output, name)),
       fs.readFileSync(path.join(artwork, 'supplement-crops', name)), name);
   }
+  const glyphs = fs.existsSync('assets/科技小字-修订版7-透明字形')
+    ? 'assets/科技小字-修订版7-透明字形/透明PNG' : 'assets/zmd科技小字-修订版7-透明字形/透明PNG';
   for (const character of '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ') {
     const folder = /\d/.test(character) ? '数字' : '大写字母';
     assert.deepEqual(fs.readFileSync(path.join(output, `glyphs/${character}.png`)),
-      fs.readFileSync(path.join('assets/zmd科技小字-修订版7-透明字形/透明PNG', folder, `${character}.png`)), character);
+      fs.readFileSync(path.join(glyphs, folder, `${character}.png`)), character);
   }
 });

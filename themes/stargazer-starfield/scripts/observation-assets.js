@@ -5,7 +5,9 @@ const path = require('node:path');
 hexo.extend.generator.register('starry-observation-assets', function () {
   if (hexo.config.theme !== 'stargazer-starfield') return [];
   const assets = path.join(hexo.base_dir, 'assets');
-  const glyphs = path.join(assets, 'zmd科技小字-修订版7-透明字形', '透明PNG');
+  const glyphFolder = fs.existsSync(path.join(assets, '科技小字-修订版7-透明字形'))
+    ? '科技小字-修订版7-透明字形' : 'zmd科技小字-修订版7-透明字形';
+  const glyphs = path.join(assets, glyphFolder, '透明PNG');
   const artwork = path.join(assets, '详情弹窗', '详细工程文件');
   const files = [
     ['waveform.png', '声音频率.png'],
