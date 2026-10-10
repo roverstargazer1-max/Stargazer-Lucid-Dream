@@ -12,6 +12,7 @@ import { createObservationPanel } from './observation.js';
 import { createPolyhedron } from './polyhedron.js';
 import { createSilhouetteWalker } from './silhouette-walker.js';
 import { readingProgress } from './reading-progress.js';
+import { constrainSkyCamera, skyProjection } from './camera-bounds.js';
 
 const body = document.body;
 const world = document.getElementById('world');
@@ -180,7 +181,7 @@ async function start() {
   roomScene = createRoom({
     startOutside: isDirectEntry || isDirectCollection,
     onEnter(startTime) {
-      const first = entranceFrame(0, width <= 760 ? .78 : 1);
+      const first = entryFrame(0);
       camera = { ...first };
       if (reducedMotion) arrival = null;
       else arrival = { start: startTime };
@@ -189,8 +190,8 @@ async function start() {
     },
     onProgress(progress) {
       if (!reducedMotion) return;
-      const from = entranceFrame(0, width <= 760 ? .78 : 1);
-      const to = entranceFrame(ENTRANCE.duration, width <= 760 ? .78 : 1);
+      const from = entryFrame(0);
+      const to = entryFrame(ENTRANCE.duration);
       camera = interpolate(from, to, smooth(progress));
     },
     onEntered() {
@@ -272,6 +273,7 @@ async function start() {
       if (targetArticle) travel.to = destination(targetArticle, travel.layout);
     }
     if (selected && phase === 'settled' && !reader.open && article) camera = destination(article);
+    if (roomScene && !roomScene.active && !arrival) limitCamera();
   }
 
   function applyRenderQuality() {
@@ -285,11 +287,19 @@ async function start() {
   }
 
   function projectionSettings(view = camera) {
-    return {
-      cx: width * (width <= 760 ? .56 : .5),
-      cy: height * (width <= 760 ? .49 : .46),
-      focal: Math.min(width, height * 1.2) * 1.05 * (view.zoom || 1),
-    };
+    return skyProjection(width, height, view.zoom || 1);
+  }
+
+  function limitCamera() {
+    camera = constrainSkyCamera(camera, width, height);
+  }
+
+  function entryFrame(elapsed) {
+    const frame = entranceFrame(elapsed, width <= 760 ? .78 : 1);
+    const bounded = constrainSkyCamera(frame, width, height);
+    const progress = smooth(elapsed / ENTRANCE.passage);
+    return { ...frame, pitch: frame.pitch + (bounded.pitch - frame.pitch) * progress,
+      zoom: frame.zoom + (bounded.zoom - frame.zoom) * progress };
   }
 
   function project(point) {
@@ -309,21 +319,21 @@ async function start() {
   function focusCamera(targetArticle, layout = mode) {
     const settings = projectionSettings();
     const baseFocal = settings.focal / (camera.zoom || 1);
-    return domeDestination(positionOf(targetArticle, layout), camera, {
+    return constrainSkyCamera(domeDestination(positionOf(targetArticle, layout), camera, {
       cx: settings.cx,
       cy: settings.cy,
       focal: baseFocal * 1.55,
-    }, { x: width * .40, y: height * .42 });
+    }, { x: width * .40, y: height * .42 }), width, height);
   }
 
   function destination(targetArticle, layout = mode) {
     const settings = projectionSettings();
     const baseFocal = settings.focal / (camera.zoom || 1);
-    return domeDestination(positionOf(targetArticle, layout), camera, {
+    return constrainSkyCamera(domeDestination(positionOf(targetArticle, layout), camera, {
       cx: settings.cx,
       cy: settings.cy,
       focal: baseFocal * 1.55,
-    }, dockTarget(width, height, preview.getBoundingClientRect()));
+    }, dockTarget(width, height, preview.getBoundingClientRect())), width, height);
   }
 
   function seedDockHistory(layout, cameraState, selectedArticleId) {
@@ -771,7 +781,7 @@ async function start() {
   }
 
   function finishArrival() {
-    const end = entranceFrame(ENTRANCE.duration, width <= 760 ? .78 : 1);
+    const end = entryFrame(ENTRANCE.duration);
     camera = { x: end.x, y: end.y, z: end.z, yaw: end.yaw, pitch: end.pitch, zoom: end.zoom };
     seedDockHistory(mode, camera, null);
     arrival = null;
@@ -785,7 +795,7 @@ async function start() {
 
   function updateArrival(now) {
     if (!arrival) return;
-    const frame = entranceFrame(now - arrival.start, width <= 760 ? .78 : 1);
+    const frame = entryFrame(now - arrival.start);
     camera = { x: frame.x, y: frame.y, z: frame.z, yaw: frame.yaw, pitch: frame.pitch, zoom: frame.zoom };
     if (body.dataset.arrival !== frame.stage) body.dataset.arrival = frame.stage;
     // Only this canvas uses these values. Inheriting them from body invalidates
@@ -972,6 +982,7 @@ async function start() {
         }
       }
       updateArrival(now);
+      if (!roomScene?.active && !arrival) limitCamera();
       const delta = lastFrame ? Math.min(50, now - lastFrame) : 16;
       const moving = lastCamera && (Math.abs(camera.yaw - lastCamera.yaw) + Math.abs(camera.pitch - lastCamera.pitch) + Math.abs(camera.zoom - lastCamera.zoom) > .01);
       lineOpacity += ((moving || travel || pointers.size ? 0 : 1) - lineOpacity) * Math.min(1, delta / (moving ? 100 : 380));
@@ -1183,6 +1194,7 @@ async function start() {
         const sensitivity = Math.sqrt(Math.min(camera.zoom, 1 / camera.zoom));
         camera.yaw -= (event.clientX - previous.x) * .003 * sensitivity;
         camera.pitch = clamp(camera.pitch + (event.clientY - previous.y) * .0025 * sensitivity, 0, Math.PI / 2);
+        limitCamera();
         if (selected) phase = 'selected';
       }
     });
@@ -1242,6 +1254,7 @@ async function start() {
         event.preventDefault(); interrupt();
         camera.yaw += event.key === 'ArrowLeft' ? -.09 : event.key === 'ArrowRight' ? .09 : 0;
         camera.pitch = clamp(camera.pitch + (event.key === 'ArrowUp' ? .065 : event.key === 'ArrowDown' ? -.065 : 0), 0, Math.PI / 2);
+        limitCamera();
         if (selected) phase = 'selected';
         updateUI();
         return;
@@ -1260,6 +1273,7 @@ async function start() {
     const distance = clamp((camera.zoom - 1) * 1100, 0, 1200);
     const ray = direction(camera.yaw, camera.pitch, distance);
     camera.x = ray.x; camera.y = ray.y; camera.z = ray.z;
+    limitCamera();
     if (selected) phase = 'selected';
     updateUI();
   }
