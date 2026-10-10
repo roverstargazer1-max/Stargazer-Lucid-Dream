@@ -19,6 +19,9 @@ body[data-render-quality=low] .signal-egg{animation:none}
 body[data-scene=painted]{background:#042b68;--type-main:#edf1ec;--type-soft:#d9e3eb;--type-muted:#c4d4e1;--type-line:#bbd0e433;--paper:#e4eaf5;--paper-ink:#34485e;--paper-muted:#4f6375}
 #room{position:fixed;inset:0;z-index:40;overflow:clip;background:transparent}
 .room-stage{position:absolute;width:max(100vw,177.683vh);height:max(56.28vw,100vh);left:50%;top:50%;margin-left:min(-50vw,-88.8415vh);margin-top:min(-28.14vw,-50vh);will-change:transform,opacity}
+/* Large filtered room surfaces compete with the moving sky on constrained GPUs.
+   Keep the camera passage; omit only its slight blur after measured overload. */
+body[data-room-blur=off] .room-stage{filter:none!important}
 .room-image{width:100%;height:100%;display:block;object-fit:cover}
 /* The illustration supplies only the near room; both sides of the window use #sky. */
 body[data-live-window=ready] .room-image{mask-image:var(--window-mask-desktop);mask-mode:alpha;mask-size:100% 100%;mask-repeat:no-repeat}

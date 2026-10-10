@@ -87,6 +87,7 @@
       data-blog-target-root="<%= config.dual_theme?.target_root || '' %>"
       data-scene="painted"
       data-default-motion="<%= theme.scene.motion === 'soft' ? 'soft' : 'full' %>"
+      data-passage-blur="<%= theme.scene.passage_blur === true ? 'on' : 'off' %>"
       data-starry-article-id="<%= isStarryArticle ? page.starry_id : '' %>"
       data-starry-collection-kind="<%= collectionKind %>"
       data-starry-collection-path="<%= isStarryCollection ? url_for(collectionUrl) : '' %>"

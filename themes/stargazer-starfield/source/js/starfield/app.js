@@ -106,9 +106,12 @@ async function start() {
   let labelPointer = null;
   let lastFrame = 0;
   let restingFrameDrawn = false;
+  let renderQualityPending = false;
+  let foregroundQualityPending = false;
   const meteors = [];
   const egg = document.getElementById('egg-dialog');
-  const renderBudget = createRenderBudget(navigator);
+  const renderBudget = createRenderBudget({ hardwareConcurrency: navigator.hardwareConcurrency,
+    deviceMemory: navigator.deviceMemory, roomBlur: body.dataset.passageBlur === 'on' });
   const pointers = new Map();
   let press = null;
   let gestureMoved = false;
@@ -278,12 +281,25 @@ async function start() {
 
   function applyRenderQuality() {
     const quality = renderBudget.current;
+    restingFrameDrawn = false;
     body.dataset.renderQuality = quality.tier;
+    body.dataset.roomBlur = quality.roomBlur ? 'on' : 'off';
     setRenderQuality(quality.environmentRatioCap);
-    dpr = Math.min(devicePixelRatio || 1, quality.pixelRatioCap);
-    canvas.width = Math.round(width * dpr);
-    canvas.height = Math.round(height * dpr);
+    const nextDpr = Math.min(devicePixelRatio || 1, quality.pixelRatioCap);
+    // A new foreground surface can require a synchronous GPU allocation. The
+    // background adapts immediately; resize this surface once the camera rests.
+    foregroundQualityPending = animationStarted && cameraIsMoving() && nextDpr !== dpr;
+    if (!foregroundQualityPending) dpr = nextDpr;
+    const drawableWidth = Math.round(width * dpr), drawableHeight = Math.round(height * dpr);
+    if (canvas.width !== drawableWidth || canvas.height !== drawableHeight) {
+      canvas.width = drawableWidth;
+      canvas.height = drawableHeight;
+    }
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+
+  function cameraIsMoving() {
+    return Boolean(travel || arrival || pointers.size || body.dataset.room === 'entering' || body.dataset.room === 'returning');
   }
 
   function projectionSettings(view = camera) {
@@ -958,6 +974,10 @@ async function start() {
   function animate(now) {
     try {
       const renderStart = performance.now();
+      if (renderQualityPending) {
+        applyRenderQuality();
+        renderQualityPending = false;
+      }
       if (travel) {
         const currentTravel = travel;
         const t = Math.min(1, (now - currentTravel.start) / currentTravel.duration);
@@ -983,6 +1003,7 @@ async function start() {
       }
       updateArrival(now);
       if (!roomScene?.active && !arrival) limitCamera();
+      if (foregroundQualityPending && !cameraIsMoving()) applyRenderQuality();
       const delta = lastFrame ? Math.min(50, now - lastFrame) : 16;
       const moving = lastCamera && (Math.abs(camera.yaw - lastCamera.yaw) + Math.abs(camera.pitch - lastCamera.pitch) + Math.abs(camera.zoom - lastCamera.zoom) > .01);
       lineOpacity += ((moving || travel || pointers.size ? 0 : 1) - lineOpacity) * Math.min(1, delta / (moving ? 100 : 380));
@@ -1011,7 +1032,13 @@ async function start() {
       }
       if (timeCueUntil && now > timeCueUntil) document.getElementById('time-cue').hidden = true;
       starMotion.tick(now);
-      if (!reader.open && !egg.open && !document.hidden && renderBudget.sample(performance.now() - renderStart)) applyRenderQuality();
+      const canSample = !reader.open && !egg.open && !document.hidden;
+      const movingScene = cameraIsMoving();
+      const drawingOverloaded = canSample && renderBudget.sample(performance.now() - renderStart);
+      const presentationOverloaded = renderBudget.sampleFrame(canSample && lastFrame ? now - lastFrame : 0, movingScene);
+      // Resize at the beginning of the next draw. Clearing the canvas after this
+      // frame was painted would expose an empty sky until the following RAF.
+      if (drawingOverloaded || presentationOverloaded) renderQualityPending = true;
       lastFrame = now;
       requestAnimationFrame(animate);
     } catch (error) {
