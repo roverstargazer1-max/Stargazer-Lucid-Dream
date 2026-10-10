@@ -6,7 +6,7 @@
 
 ## 诊断与执行计划
 
-先建立真实浏览器回归：暂停实际入口 `app.js`，等房间图片下载完成，再检查页面。优化前桌面和手机均为 `roomVisible:false, fallbackVisible:true`；这准确复现了作者所说的文字回退页抢先出现。反馈循环见 [`startup-check.mjs`](../../startup-check.mjs)，原始结果见 [baseline-startup.json](baseline-startup.json)。
+先建立真实浏览器回归：暂停实际入口 `app.js`，等房间图片下载完成，再检查页面。优化前桌面和手机均为 `roomVisible:false, fallbackVisible:true`；这准确复现了作者所说的文字回退页抢先出现。反馈循环见 [`startup-check.mjs`](startup-check.mjs)，原始结果见 [baseline-startup.json](baseline-startup.json)。
 
 按以下顺序验证并执行：
 
@@ -73,15 +73,15 @@ Apple M1／16 GB；Node 22.19.0，Chromium 149.0.7827.55，Playwright 1.62.1，L
 
 先启动本地预览（操作见仓库新版操作指南）。本轮浏览器脚本使用本机固定的 bundled Playwright、Chrome 和 Node 路径；换机器应修改路径，不能直接比较不同机器的绝对数值。
 
-- 首屏／失败回退：`node .scratch/starry-blog/startup-check.mjs optimized`
-- 冷缓存／慢网：`node .scratch/starry-blog/startup-performance.mjs optimized`
-- 四状态：`PERF_SKIP_THROTTLE=1 node .scratch/starry-blog/performance-check-20261009.mjs optimized-runtime`
-- 像素：`node .scratch/starry-blog/artwork-pixels-20261009.mjs`
-- 功能：`node .scratch/starry-blog/performance-regression-20261009.mjs optimized`
-- 内存：`node .scratch/starry-blog/performance-memory-20261009.mjs`
+- 首屏／失败回退：`node .scratch/starry-blog/evidence/performance-20261009/startup-check.mjs optimized`
+- 冷缓存／慢网：`node .scratch/starry-blog/evidence/performance-20261009/startup-performance.mjs optimized`
+- 四状态：`PERF_SKIP_THROTTLE=1 node .scratch/starry-blog/evidence/performance-20261009/performance-check-20261009.mjs optimized-runtime`
+- 像素：`node .scratch/starry-blog/evidence/performance-20261009/artwork-pixels-20261009.mjs`
+- 功能：`node .scratch/starry-blog/evidence/performance-20261009/performance-regression-20261009.mjs optimized`
+- 内存：`node .scratch/starry-blog/evidence/performance-20261009/performance-memory-20261009.mjs`
 
-基线需先冻结相应版本的 `.preview/stargazer`；使用 [`performance-baseline-server-20261009.mjs`](../../performance-baseline-server-20261009.mjs) 和 `STARFIELD_TEST_ROOT` 指向冻结目录，测量脚本的 `STARFIELD_TEST_URL` 指向端口 4177。[Lighthouse 脚本](../../lighthouse-check-20261009.sh) 保留实际参数。
+基线需先冻结相应版本的 `.preview/stargazer`；使用 [`performance-baseline-server-20261009.mjs`](performance-baseline-server-20261009.mjs) 和 `STARFIELD_TEST_ROOT` 指向冻结目录，测量脚本的 `STARFIELD_TEST_URL` 指向端口 4177。[Lighthouse 脚本](lighthouse-check-20261009.sh) 保留实际参数。
 
-[`cache-artwork-20261009.mjs`](../../cache-artwork-20261009.mjs) 离线重建缓存：读取原步行动作 PNG，以及本目录保存的 [原云图算法](cloud-artwork-baseline.js)。更改云造型时需同时更新算法基线及三个缓存，并重跑像素比较。普通预览和部署直接发布已保存的四个缓存文件，不新增运行时或构建依赖。
+[`cache-artwork-20261009.mjs`](cache-artwork-20261009.mjs) 离线重建缓存：读取原步行动作 PNG，以及本目录保存的 [原云图算法](cloud-artwork-baseline.js)。更改云造型时需同时更新算法基线及三个缓存，并重跑像素比较。普通预览和部署直接发布已保存的四个缓存文件，不新增运行时或构建依赖。
 
 限制：这是本机浏览器与触屏模拟，未验真机或线上 CDN。慢网下完整星空仍需约 19 秒，主要受保留的原房间图、天空图与界面图片体积限制。没有通过减小画面分辨率、减少帧数、改动素材或隐藏失败状态来缩短该时间。下一步线上测量应使用部署后的真实地址和服务器缓存／压缩策略；部署须按单独请求执行。

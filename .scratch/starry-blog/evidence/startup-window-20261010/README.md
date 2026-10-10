@@ -24,7 +24,7 @@
 
 ```bash
 npm run preview:starfield
-node .scratch/starry-blog/startup-visual-server-20261010.mjs
+node .scratch/starry-blog/evidence/startup-window-20261010/startup-visual-server-20261010.mjs
 ```
 
 在实际浏览器打开 `http://127.0.0.1:4187/`。服务器自动记录并判定；初始化及淡入完成后，读取 `html` 的 `data-startup-visual-probe` 属性，`verdict` 应为 `PASS`，`fadeObserved` 应为 `true`。`/?probe=pause` 停在首屏；`/?probe=module-failure` 和 `/?probe=mask-failure` 注入失败，应得到 `PASS: readable fallback`。从 `/legacy/` 点击“新版”可覆盖原操作。停止服务器后再使用正常 4175 预览。

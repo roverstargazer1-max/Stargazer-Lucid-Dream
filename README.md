@@ -82,5 +82,6 @@ blog:
 - [写作、预览与 Netlify 发布](docs/operations/starfield-blog.md)。
 - [旧 Kira 预览和恢复](docs/operations/legacy-blog-recovery.md)。
 - [新主题说明](themes/stargazer-starfield/README.md)、[设计主文档](docs/design/starry-blog.md)及[实施记录](.scratch/starry-blog/implementation-progress.md)。
+- [星空开发资料索引](.scratch/starry-blog/README.md)：当前计划、有效验证及恢复资料；早期原型、历史工单和美术试验集中在 [历史归档](.scratch/starry-blog/archive/README.md)。
 
 根目录使用 `package-lock.json`；旧 pnpm 锁文件只作归档。`.preview/`、`public/` 和完整浏览器测试产物不提交，脚本和简明验证记录仍随仓库保存。2026-09-30 公开模板规格及带日期的旧工单保留历史范围，当前个人站点以 2026-10-01 计划和后续明确更新为准。

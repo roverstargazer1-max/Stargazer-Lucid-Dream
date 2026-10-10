@@ -4,7 +4,7 @@
 
 ## 保留的基线
 
-- 开始实施前的分支为 `codex/prototype-starfield`，HEAD 为 `d6d6a1c2c04593cc07bba69e7ad66e0308d8018c`，origin 仍为个人博客远程。初始工作区状态保存在 [status](../baseline-worktree-status-20260930.txt)；[文件清单](../baseline-worktree-manifest-20260930.json)为 218 个已有变更/未跟踪文件记录了路径、字节数和 SHA-256，包括原型代码、插画、设计资料和正式工单。原型历史快照和素材未清理。
+- 开始实施前的分支为 `codex/prototype-starfield`，HEAD 为 `d6d6a1c2c04593cc07bba69e7ad66e0308d8018c`，origin 仍为个人博客远程。初始工作区状态保存在 [status](../baselines/worktree-20260930/baseline-worktree-status-20260930.txt)；[文件清单](../baselines/worktree-20260930/baseline-worktree-manifest-20260930.json)为 218 个已有变更/未跟踪文件记录了路径、字节数和 SHA-256，包括原型代码、插画、设计资料和正式工单。原型历史快照和素材未清理。
 - 旧 Kira/Hexo 配置、`package.json`、npm 锁、Netlify 配置、Node 固定版本和 `.gitignore` 的字节级副本在 [legacy-2026-09-30](../baselines/legacy-2026-09-30/manifest.json)，由清单列出 SHA-256。
 - 旧版主题代码、站点/主题配置、文章、页面、图片、音乐插件和 npm 依赖留在原位置。`_config.yml` 仍选择 Kira，未改线上主题。
 - 旧的 pnpm lock 原样保存为 [基线归档](../baselines/pnpm-lock.yaml)，SHA-256：`BE2C7DAE8A7963173DFD29DFBB33BE194F7F373F8BC60D2E39DD91036E6BCF2B`。根 `package-lock.json` 为 lockfile v3，Hexo `8.1.2`；pnpm v9 lock 解析为 Hexo `8.0.0`。两个文件中其余 15 个直接依赖版本相同，`moment-timezone` 分别为 `0.6.2` / `0.6.0`。

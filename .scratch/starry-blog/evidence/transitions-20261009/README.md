@@ -48,8 +48,8 @@
 在已构建并启动的真实新版预览上运行：
 
 ```sh
-PERF_ASSERT=1 PERF_HEADED=1 PERF_CPU=4 PERF_CYCLES=2 node .scratch/starry-blog/transition-check-20261009.mjs verify
-node .scratch/starry-blog/transition-regression-20261009.mjs
+PERF_ASSERT=1 PERF_HEADED=1 PERF_CPU=4 PERF_CYCLES=2 node .scratch/starry-blog/evidence/transitions-20261009/transition-check-20261009.mjs verify
+node .scratch/starry-blog/evidence/transitions-20261009/transition-regression-20261009.mjs
 ```
 
 可用 `STARFIELD_TEST_URL` 指向冻结基线；`PERF_CPU=12` 放大压力，`PERF_VARIANT` 的各个对照仅用于诊断。探针全部位于日期标记的 scratch 脚本，未进入生产代码。大型绘制追踪移到 `/tmp`，仓库保留事件和 CPU 摘要。未推送或部署。

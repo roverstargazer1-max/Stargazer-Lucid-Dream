@@ -45,7 +45,7 @@ npm run build:legacy
 
 根目录活动 npm 锁文件锁定 Hexo `8.1.2` 和 moment-timezone `0.6.2`。旧 pnpm v9 锁文件在 `.scratch/starry-blog/baselines/pnpm-lock.yaml`，只用于历史对照，不参与当前安装。
 
-- [2026-09-30 工作区清单](../../.scratch/starry-blog/baseline-worktree-manifest-20260930.json)及[当时状态](../../.scratch/starry-blog/baseline-worktree-status-20260930.txt)。
+- [2026-09-30 工作区清单](../../.scratch/starry-blog/baselines/worktree-20260930/baseline-worktree-manifest-20260930.json)及[当时状态](../../.scratch/starry-blog/baselines/worktree-20260930/baseline-worktree-status-20260930.txt)。
 - [旧版配置基线](../../.scratch/starry-blog/baselines/legacy-2026-09-30/manifest.json)：配置、锁文件、Netlify、Node 及忽略规则。
 - [旧版重建证据](../../.scratch/starry-blog/evidence/02-legacy-build.md)：当时的安装、构建与浏览器验证。
 

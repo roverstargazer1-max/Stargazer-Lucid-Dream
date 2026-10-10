@@ -17,22 +17,22 @@ node themes/hexo-theme-kira/prototypes/starfield/server.mjs
 `v` 参数仅标注研究版本，共用本目录当前代码；修改它不会还原旧实现。真正冻结的 V19 对照使用独立副本：
 
 ```bash
-node .scratch/starry-blog/baseline-server.mjs
+node .scratch/starry-blog/archive/prototypes/v19/baseline-server.mjs
 ```
 
 打开 [4174 冻结对照](http://127.0.0.1:4174/pages/starfield-prototype/?variant=C&scene=painted&v=19&controls=quiet&motion=soft&living=0)。它也不同于旧 Kira 博客，旧博客隔离预览使用 4176。
 
 ## V20 基线与历史记录
 
-以下带日期的段落和 V2–V19 章节保留当时设计过程，不代表新版真实文章主题的当前界面或发布状态。V20 的优化证据见 [验收记录](../../../../.scratch/starry-blog/optimization-v20-acceptance.md)，个人站点当前实现见 [实施记录](../../../../.scratch/starry-blog/implementation-progress.md)。
+以下带日期的段落和 V2–V19 章节保留当时设计过程，不代表新版真实文章主题的当前界面或发布状态。V20 的优化证据见 [验收记录](../../../../.scratch/starry-blog/archive/prototypes/v20/optimization-v20-acceptance.md)，个人站点当前实现见 [实施记录](../../../../.scratch/starry-blog/implementation-progress.md)。
 
 ## 当前试作：V20 操作与阅读优化
 
-2026-09-16 细节重绘试作后按作者要求恢复：桌面入口继续采用 [room-poster-detail-v20.png](assets/room-poster-detail-v20.png)，原窗口遮罩也已恢复。细节重绘图、提示词与检查记录保留在 [本次重绘记录](../../../../.scratch/starry-blog/ztmy-detail-20260916.md)，供后续对照。
+2026-09-16 细节重绘试作后按作者要求恢复：桌面入口继续采用 [room-poster-detail-v20.png](assets/room-poster-detail-v20.png)，原窗口遮罩也已恢复。细节重绘图、提示词与检查记录保留在 [本次重绘记录](../../../../.scratch/starry-blog/archive/artwork/ztmy-detail-20260916.md)，供后续对照。
 
-2026-09-15 插画更新：桌面窗边入口采用作者新提供的 [room-personal-v20.png](assets/room-personal-v20.png)，原样复制，包含新增海报、挂件和书本细节。构图与原图一致，沿用已校准的窗口遮罩与穿窗动画。手机暂沿用独立竖版，待作者选择是否同步重做。更新与检查见 [插画替换记录](../../../../.scratch/starry-blog/room-artwork-update-20260915.md)。
+2026-09-15 插画更新：桌面窗边入口采用作者新提供的 [room-personal-v20.png](assets/room-personal-v20.png)，原样复制，包含新增海报、挂件和书本细节。构图与原图一致，沿用已校准的窗口遮罩与穿窗动画。手机暂沿用独立竖版，待作者选择是否同步重做。更新与检查见 [插画替换记录](../../../../.scratch/starry-blog/archive/artwork/room-artwork-update-20260915.md)。
 
-同日海报细化：按作者提供的刺猬、双颈吉他与带环行星参考，用内置 image_gen 重绘墙面小海报。该次生成 [room-poster-detail-v20.png](assets/room-poster-detail-v20.png)，作为后续细化的基底保留。提示词、参考与检查见 [海报重绘记录](../../../../.scratch/starry-blog/poster-redraw-20260915.md)。
+同日海报细化：按作者提供的刺猬、双颈吉他与带环行星参考，用内置 image_gen 重绘墙面小海报。该次生成 [room-poster-detail-v20.png](assets/room-poster-detail-v20.png)，作为后续细化的基底保留。提示词、参考与检查见 [海报重绘记录](../../../../.scratch/starry-blog/archive/artwork/poster-redraw-20260915.md)。
 
 打开 [V20 本地原型](http://127.0.0.1:4173/pages/starfield-prototype/?variant=C&scene=painted&v=20&controls=quiet&motion=full&living=1)。启动仍使用 `node themes/hexo-theme-kira/prototypes/starfield/server.mjs`，服务仅监听本机。`v` 是标记，原版对照使用独立的 4174 冻结副本。
 
@@ -42,11 +42,11 @@ node .scratch/starry-blog/baseline-server.mjs
 
 首次穿窗约 2.5 秒、首次简介约 2.8 秒、反向归窗约 2.6 秒。当前访问内完整显露过的同篇简介改为约 0.7 秒；这与读到文末的标记分开。相机到位后即可使用阅读动作。切到时间模式会短暂显示对应年月。
 
-实施参数、逐项证据和环境限制见 [优化验收记录](../../../../.scratch/starry-blog/optimization-v20-acceptance.md)，工作范围见 [V19 优化计划](../../../../.scratch/starry-blog/optimization-plan-v19.md)。需要复查时使用 `node --test .scratch/starry-blog/experience.test.mjs`；在本地 URL 加 `review=1` 可打开内容、文字放大、美术对照和完整状态验收工具，加 `monitor=1` 可记录可见页面的帧回调间隔。它们都位于原型目录，不属于正式博客输出。
+实施参数、逐项证据和环境限制见 [优化验收记录](../../../../.scratch/starry-blog/archive/prototypes/v20/optimization-v20-acceptance.md)，工作范围见 [V19 优化计划](../../../../.scratch/starry-blog/archive/prototypes/v20/optimization-plan-v19.md)。需要复查时使用 `node --test .scratch/starry-blog/archive/prototypes/v20/experience.test.mjs`；在本地 URL 加 `review=1` 可打开内容、文字放大、美术对照和完整状态验收工具，加 `monitor=1` 可记录可见页面的帧回调间隔。它们都位于原型目录，不属于正式博客输出。
 
-冻结原版启动命令：`node .scratch/starry-blog/baseline-server.mjs`。该目录与清单保留了修改前的 46 个文件和素材。跨系统字体、真实触屏与原生页面缩放的验证范围以验收记录为准。
+冻结原版启动命令：`node .scratch/starry-blog/archive/prototypes/v19/baseline-server.mjs`。该目录与清单保留了修改前的 46 个文件和素材。跨系统字体、真实触屏与原生页面缩放的验证范围以验收记录为准。
 
-本轮 V20 优化仍是本地 mock 原型，正式文章迁移、路由整合与部署不在该轮范围。后续真实内容接入已在 `codex/starfield-personal` 实现，以 [个人正式化计划](../../../../.scratch/starry-blog/theme-production-plan.md)及后续明确的设计更新为准；2026-09-30 的 [公开模板规格](../../../../.scratch/starry-blog/spec.md)保留历史范围。历史版本中的待复核文字描述当时状态，原型验收不能替代正式主题或线上部署验收。
+本轮 V20 优化仍是本地 mock 原型，正式文章迁移、路由整合与部署不在该轮范围。后续真实内容接入已在 `codex/starfield-personal` 实现，以 [个人正式化计划](../../../../.scratch/starry-blog/theme-production-plan.md)及后续明确的设计更新为准；2026-09-30 的 [公开模板规格](../../../../.scratch/starry-blog/archive/planning/spec.md)保留历史范围。历史版本中的待复核文字描述当时状态，原型验收不能替代正式主题或线上部署验收。
 
 ## V19 穿窗入星
 
@@ -164,4 +164,4 @@ node themes/hexo-theme-kira/prototypes/starfield/server.mjs
 
 素材来源、轮廓说明及完整生图提示词见 [ART-DIRECTION.md](ART-DIRECTION.md)。
 
-详见 [原型评审记录](../../../../.scratch/starry-blog/prototype-review.md)。
+详见 [原型评审记录](../../../../.scratch/starry-blog/archive/prototypes/v20/prototype-review.md)。

@@ -22,7 +22,7 @@
 ```bash
 npm test
 npm run netlify
-node .scratch/starry-blog/camera-bounds-server-20261010.mjs
+node .scratch/starry-blog/evidence/camera-bounds-20261010/camera-bounds-server-20261010.mjs
 ```
 
 在实际浏览器打开 `http://127.0.0.1:4188/`，分别以手机和桌面尺寸进入星空，向下拖动或按方向键、缩远、切换时间模式并选择文章。读取 `html` 的 `data-camera-bounds-probe` 属性：星空稳定状态的 `terrainBudgetPass` 应为 `true`，`minimumElevation` 应不低于 0.06（允许浮点误差）。房间和穿窗中的过渡帧不适用自由探索下限。停止专用服务器后使用正常 4175 预览。

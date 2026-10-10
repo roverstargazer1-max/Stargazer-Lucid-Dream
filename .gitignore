@@ -17,6 +17,7 @@ docs/optimization/
 !/.scratch/**/evidence/**/*.md
 !/.scratch/**/evidence/**/*.js
 !/.scratch/**/evidence/**/*.mjs
+!/.scratch/**/evidence/**/*.cjs
 !/.scratch/**/evidence/**/*.py
 !/.scratch/**/evidence/**/*.sh
 !/.scratch/**/evidence/**/*-summary.json
@@ -25,3 +26,6 @@ docs/optimization/
 /test-results/
 /playwright-report/
 /coverage/
+
+# Temporary cleanup helpers stay local.
+/.scratch/starry-blog/archive/redundant/*

@@ -28,13 +28,13 @@
 
 ## 验证
 
-- `node .scratch/starry-blog/dome-check.mjs`：80 组射线与正反投影、一整圈接缝检查通过；两个布局均在上半球，所有目标从各方位和天顶都可到达；新增星保持半径及已有位置。
+- `node .scratch/starry-blog/archive/prototypes/sky-studies/dome-check.mjs`：80 组射线与正反投影、一整圈接缝检查通过；两个布局均在上半球，所有目标从各方位和天顶都可到达；新增星保持半径及已有位置。
 - 本机无头 Microsoft Edge 实际渲染为 WebGL，桌面 1440×900，手机视口 390×844；抬头可到 90°，转到另一面能发现文章。手机没有横向溢出。
 - 实际云层覆盖层的最大 alpha 为 199/255；白色测试像素经过厚云后为 `[68,103,182]`，证明星光经过云色遮挡。水平旋转 360° 前后平均通道误差为 0.0000875/255。
 - 拖动后小星图出现；静止后 opacity 为 0、inert 为 true。图内点击实测转向东南、仰角 19°。
 - 桌面 night 阅读前后镜头均为 `(-189,450,756)`、方向 `(-0.24,0.45)`；手机雨后文章 rain 切换时间模式仍保持选中并能阅读，阅读层横向溢出为 0。
 - 浏览器检查未记录页面脚本错误；新增及修改 JavaScript 的语法检查通过。
-- 截图：[桌面与星图](../../../../.scratch/starry-blog/dome-desktop.png)、[手机天顶](../../../../.scratch/starry-blog/dome-mobile.png)。
+- 截图：[桌面与星图](../../../../.scratch/starry-blog/archive/prototypes/sky-studies/dome-desktop.png)、[手机天顶](../../../../.scratch/starry-blog/archive/prototypes/sky-studies/dome-mobile.png)。
 
 测试工具 API 根据 Context7 查询的 [Playwright 官方文档](https://github.com/microsoft/playwright/blob/main/docs/src/browsers.md) 使用本机已安装的 Edge，没有安装新浏览器或网站运行依赖。
 
@@ -42,7 +42,7 @@
 
 根据作者要求去掉弹窗感：移除底板、硬边框、阴影与背景模糊，不再向上滑入；以轻微虚焦和透明度在原位浮现、消退。圆周改为低对比点线，去掉十字网格和面板标题，视野范围使用淡光薄边，文章点带少量星光，方位与说明降低对比。保留点击转向及自动隐藏。
 
-桌面 1440×900 与手机视口 390×844 已检查。实际样式为透明底、0px 边框、无阴影；显露初期 opacity 约 0.087，稳定为 0.88，静止后回到 0 且 inert=true。点击星图转向东南、仰角 27°；手机横向溢出为 0，浏览器无页面脚本错误。截图：[桌面](../../../../.scratch/starry-blog/sky-map-soft-desktop.png)、[手机](../../../../.scratch/starry-blog/sky-map-soft-mobile.png)。仍等待作者审美反馈，不改变 R1–R6 状态。
+桌面 1440×900 与手机视口 390×844 已检查。实际样式为透明底、0px 边框、无阴影；显露初期 opacity 约 0.087，稳定为 0.88，静止后回到 0 且 inert=true。点击星图转向东南、仰角 27°；手机横向溢出为 0，浏览器无页面脚本错误。截图：[桌面](../../../../.scratch/starry-blog/archive/prototypes/sky-studies/sky-map-soft-desktop.png)、[手机](../../../../.scratch/starry-blog/archive/prototypes/sky-studies/sky-map-soft-mobile.png)。仍等待作者审美反馈，不改变 R1–R6 状态。
 
 ## 文字、导航与快速移动（2026-09-10）
 
@@ -50,7 +50,7 @@
 
 探索虚线、时间顺序线和内容关联实线共用移动透明度：按实际镜头的转向、位移与缩放速度检测快速移动，快速淡出；速度降下来并安静 220ms 后，约 1.5 秒恢复至 95%。持续慢速拖动不触发隐藏，连线淡出不影响星点、标签和点击命中。系统偏好减少动态时缩短恢复过程。
 
-无头 Edge 桌面实测慢拖透明度 1、快拖 0、停止 100ms 后仍为 0，随后逐渐恢复（采样 0.70 → 1）；未记录页面脚本错误。桌面与手机视口的导航圆角均为 16px，手机横向溢出为 0。截图：[桌面](../../../../.scratch/starry-blog/sky-controls-desktop.png)、[手机](../../../../.scratch/starry-blog/sky-controls-mobile.png)。本次没有修改真实内容或主设计 R1–R6 状态。
+无头 Edge 桌面实测慢拖透明度 1、快拖 0、停止 100ms 后仍为 0，随后逐渐恢复（采样 0.70 → 1）；未记录页面脚本错误。桌面与手机视口的导航圆角均为 16px，手机横向溢出为 0。截图：[桌面](../../../../.scratch/starry-blog/archive/prototypes/sky-studies/sky-controls-desktop.png)、[手机](../../../../.scratch/starry-blog/archive/prototypes/sky-studies/sky-controls-mobile.png)。本次没有修改真实内容或主设计 R1–R6 状态。
 
 ## 星图与导航继续减法（2026-09-10）
 
@@ -64,7 +64,7 @@
 
 银河使用球面世界坐标的程序色块，在现有 WebGL 背景通道绘制，不使用摄影素材，不增加运行依赖或纹理文件。它随穹顶转向，天顶不用经纬贴图避免极点汇聚；银河不进入云层遮光通道，文章星仍比装饰碎星更大更亮。
 
-验证：桌面 1440×900、手机视口 390×844 实际渲染正常；WebGL 着色器编译与 JavaScript 语法检查通过，无页面脚本错误。320×200 天顶渲染转动整圈前后像素平均／最大差异均为 0，天顶云遮挡 alpha 为 0。检查了首屏云景与抬头后的银河。截图位于 `.scratch/starry-blog/galaxy-zenith-desktop.png`、`galaxy-zenith-mobile.png`、`galaxy-opening.png`。这是待作者审美反馈的本地试作，未改变 R1–R6 状态，真实手机性能仍待实机体验。
+验证：桌面 1440×900、手机视口 390×844 实际渲染正常；WebGL 着色器编译与 JavaScript 语法检查通过，无页面脚本错误。320×200 天顶渲染转动整圈前后像素平均／最大差异均为 0，天顶云遮挡 alpha 为 0。检查了首屏云景与抬头后的银河。截图位于 `.scratch/starry-blog/archive/prototypes/sky-studies/galaxy-zenith-desktop.png`、`galaxy-zenith-mobile.png`、`galaxy-opening.png`。这是待作者审美反馈的本地试作，未改变 R1–R6 状态，真实手机性能仍待实机体验。
 
 ## 广角仰望与方向恢复（2026-09-10）
 
@@ -74,4 +74,4 @@
 
 设计边界：这是透视广角，不是完整 180° 半球投影。桌面 1440×900 最宽水平视野约 121°，完整文章分布仍由小星图提供。完整半球更适合独立圆形／鱼眼总览，会带来另一种形变；当前先验证较温和的广角与定位组合。动画舒适度仍需作者实际体验，不据此承诺消除眩晕。
 
-验证：连续 14 次滚轮缩小停在 0.36，yaw/pitch 未改变；初始可见 3 颗文章星，仰望后 8 颗，静止 5 秒小星图仍为 opacity 0.88。星图点击保留 0.36；文章 unfinished 靠近后返回恢复广角朝向与缩放；回正恢复 yaw 0、pitch 0.43、zoom 1，星图静止后为 opacity 0、inert=true。手机视口 390×844 可见 9 颗，控件宽约 117px，无横向溢出。无页面脚本错误，修改脚本语法及 diff 检查通过。截图在 `.scratch/starry-blog/sky-overview-desktop.png` 和 `sky-overview-mobile.png`。仍为本地试作，不改变 R1–R6 待复核状态。
+验证：连续 14 次滚轮缩小停在 0.36，yaw/pitch 未改变；初始可见 3 颗文章星，仰望后 8 颗，静止 5 秒小星图仍为 opacity 0.88。星图点击保留 0.36；文章 unfinished 靠近后返回恢复广角朝向与缩放；回正恢复 yaw 0、pitch 0.43、zoom 1，星图静止后为 opacity 0、inert=true。手机视口 390×844 可见 9 颗，控件宽约 117px，无横向溢出。无页面脚本错误，修改脚本语法及 diff 检查通过。截图在 `.scratch/starry-blog/archive/prototypes/sky-studies/sky-overview-desktop.png` 和 `sky-overview-mobile.png`。仍为本地试作，不改变 R1–R6 待复核状态。

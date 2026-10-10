@@ -1,0 +1,1004 @@
+{
+  "date": "2026-10-10",
+  "gitHeadBeforeCleanup": "94bb89ca75a6d7de74637bc03f33b2ad3b14cdef",
+  "before": {
+    "files": 348,
+    "rootEntries": 124
+  },
+  "movedFiles": 285,
+  "moves": [
+    {
+      "from": ".scratch/starry-blog/baseline-v19-20260914",
+      "to": ".scratch/starry-blog/archive/prototypes/v19/baseline-v19-20260914",
+      "files": 46
+    },
+    {
+      "from": ".scratch/starry-blog/baseline-server.mjs",
+      "to": ".scratch/starry-blog/archive/prototypes/v19/baseline-server.mjs",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/baseline-v19-manifest.json",
+      "to": ".scratch/starry-blog/archive/prototypes/v19/baseline-v19-manifest.json",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/optimization-plan-v19.md",
+      "to": ".scratch/starry-blog/archive/prototypes/v20/optimization-plan-v19.md",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/optimization-v20-acceptance.md",
+      "to": ".scratch/starry-blog/archive/prototypes/v20/optimization-v20-acceptance.md",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/prototype-review.md",
+      "to": ".scratch/starry-blog/archive/prototypes/v20/prototype-review.md",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/experience.test.mjs",
+      "to": ".scratch/starry-blog/archive/prototypes/v20/experience.test.mjs",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/contrast-samples.py",
+      "to": ".scratch/starry-blog/archive/prototypes/v20/contrast-samples.py",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/evidence-v20",
+      "to": ".scratch/starry-blog/archive/prototypes/v20/evidence-v20",
+      "files": 73
+    },
+    {
+      "from": ".scratch/starry-blog/v20-verification-manifest.json",
+      "to": ".scratch/starry-blog/archive/prototypes/v20/v20-verification-manifest.json",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/prototypes/cold-reading-20261002",
+      "to": ".scratch/starry-blog/archive/prototypes/cold-reading-20261002",
+      "files": 7
+    },
+    {
+      "from": ".scratch/starry-blog/poster-redraw-20260915",
+      "to": ".scratch/starry-blog/archive/artwork/poster-redraw-20260915",
+      "files": 4
+    },
+    {
+      "from": ".scratch/starry-blog/poster-redraw-20260915.md",
+      "to": ".scratch/starry-blog/archive/artwork/poster-redraw-20260915.md",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/ztmy-detail-20260916",
+      "to": ".scratch/starry-blog/archive/artwork/ztmy-detail-20260916",
+      "files": 6
+    },
+    {
+      "from": ".scratch/starry-blog/ztmy-detail-20260916.md",
+      "to": ".scratch/starry-blog/archive/artwork/ztmy-detail-20260916.md",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/room-artwork-update-20260915.md",
+      "to": ".scratch/starry-blog/archive/artwork/room-artwork-update-20260915.md",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/evidence-room-art-20260915",
+      "to": ".scratch/starry-blog/archive/artwork/evidence-room-art-20260915",
+      "files": 4
+    },
+    {
+      "from": ".scratch/starry-blog/spec.md",
+      "to": ".scratch/starry-blog/archive/planning/spec.md",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/theme-discovery.md",
+      "to": ".scratch/starry-blog/archive/planning/theme-discovery.md",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/theme-implementation-plan.md",
+      "to": ".scratch/starry-blog/archive/planning/theme-implementation-plan.md",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/ticket-plan.md",
+      "to": ".scratch/starry-blog/archive/planning/ticket-plan.md",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/execution-handoff.md",
+      "to": ".scratch/starry-blog/archive/planning/execution-handoff.md",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/execution-progress.md",
+      "to": ".scratch/starry-blog/archive/planning/execution-progress.md",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/sky-atmosphere-plan.md",
+      "to": ".scratch/starry-blog/archive/planning/sky-atmosphere-plan.md",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/issues",
+      "to": ".scratch/starry-blog/archive/issues",
+      "files": 18
+    },
+    {
+      "from": ".scratch/starry-blog/baseline-worktree-manifest-20260930.json",
+      "to": ".scratch/starry-blog/baselines/worktree-20260930/baseline-worktree-manifest-20260930.json",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/baseline-worktree-status-20260930.txt",
+      "to": ".scratch/starry-blog/baselines/worktree-20260930/baseline-worktree-status-20260930.txt",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/optimize-scene-assets.cjs",
+      "to": ".scratch/starry-blog/evidence/performance-20261008/optimize-scene-assets.cjs",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/performance-check.mjs",
+      "to": ".scratch/starry-blog/evidence/performance-20261008/performance-check.mjs",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/performance-memory-check.mjs",
+      "to": ".scratch/starry-blog/evidence/performance-20261008/performance-memory-check.mjs",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/performance-regression-check.mjs",
+      "to": ".scratch/starry-blog/evidence/performance-20261008/performance-regression-check.mjs",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/artwork-pixels-20261009.mjs",
+      "to": ".scratch/starry-blog/evidence/performance-20261009/artwork-pixels-20261009.mjs",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/cache-artwork-20261009.mjs",
+      "to": ".scratch/starry-blog/evidence/performance-20261009/cache-artwork-20261009.mjs",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/lighthouse-check-20261009.sh",
+      "to": ".scratch/starry-blog/evidence/performance-20261009/lighthouse-check-20261009.sh",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/paired-selected-performance.mjs",
+      "to": ".scratch/starry-blog/evidence/performance-20261009/paired-selected-performance.mjs",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/performance-baseline-server-20261009.mjs",
+      "to": ".scratch/starry-blog/evidence/performance-20261009/performance-baseline-server-20261009.mjs",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/performance-check-20261009.mjs",
+      "to": ".scratch/starry-blog/evidence/performance-20261009/performance-check-20261009.mjs",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/performance-memory-20261009.mjs",
+      "to": ".scratch/starry-blog/evidence/performance-20261009/performance-memory-20261009.mjs",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/performance-regression-20261009.mjs",
+      "to": ".scratch/starry-blog/evidence/performance-20261009/performance-regression-20261009.mjs",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/profile-startup.mjs",
+      "to": ".scratch/starry-blog/evidence/performance-20261009/profile-startup.mjs",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/startup-check.mjs",
+      "to": ".scratch/starry-blog/evidence/performance-20261009/startup-check.mjs",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/startup-performance.mjs",
+      "to": ".scratch/starry-blog/evidence/performance-20261009/startup-performance.mjs",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/transition-check-20261009.mjs",
+      "to": ".scratch/starry-blog/evidence/transitions-20261009/transition-check-20261009.mjs",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/transition-regression-20261009.mjs",
+      "to": ".scratch/starry-blog/evidence/transitions-20261009/transition-regression-20261009.mjs",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/camera-bounds-server-20261010.mjs",
+      "to": ".scratch/starry-blog/evidence/camera-bounds-20261010/camera-bounds-server-20261010.mjs",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/startup-visual-server-20261010.mjs",
+      "to": ".scratch/starry-blog/evidence/startup-window-20261010/startup-visual-server-20261010.mjs",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/atmosphere-low-desktop-v13.png",
+      "to": ".scratch/starry-blog/archive/prototypes/sky-studies/atmosphere-low-desktop-v13.png",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/atmosphere-low-mobile-v13.png",
+      "to": ".scratch/starry-blog/archive/prototypes/sky-studies/atmosphere-low-mobile-v13.png",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/atmosphere-opening-v13.png",
+      "to": ".scratch/starry-blog/archive/prototypes/sky-studies/atmosphere-opening-v13.png",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/atmosphere-zenith-v13.png",
+      "to": ".scratch/starry-blog/archive/prototypes/sky-studies/atmosphere-zenith-v13.png",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/cloud-touched-v13.png",
+      "to": ".scratch/starry-blog/archive/prototypes/sky-studies/cloud-touched-v13.png",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/default-motion-20261008.md",
+      "to": ".scratch/starry-blog/archive/implementation/default-motion-20261008.md",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/dome-check.mjs",
+      "to": ".scratch/starry-blog/archive/prototypes/sky-studies/dome-check.mjs",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/dome-desktop.png",
+      "to": ".scratch/starry-blog/archive/prototypes/sky-studies/dome-desktop.png",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/dome-mobile.png",
+      "to": ".scratch/starry-blog/archive/prototypes/sky-studies/dome-mobile.png",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/galaxy-opening.png",
+      "to": ".scratch/starry-blog/archive/prototypes/sky-studies/galaxy-opening.png",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/galaxy-zenith-desktop.png",
+      "to": ".scratch/starry-blog/archive/prototypes/sky-studies/galaxy-zenith-desktop.png",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/galaxy-zenith-mobile.png",
+      "to": ".scratch/starry-blog/archive/prototypes/sky-studies/galaxy-zenith-mobile.png",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/observation-panel-lower-20261008.md",
+      "to": ".scratch/starry-blog/archive/implementation/observation-panel-lower-20261008.md",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/observation-ui-rollout-20261007.md",
+      "to": ".scratch/starry-blog/archive/implementation/observation-ui-rollout-20261007.md",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/polyhedron-perspective-20261008.md",
+      "to": ".scratch/starry-blog/archive/implementation/polyhedron-perspective-20261008.md",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/reader-rollout-20261002.md",
+      "to": ".scratch/starry-blog/archive/implementation/reader-rollout-20261002.md",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/remove-sky-controls-20261008.md",
+      "to": ".scratch/starry-blog/archive/implementation/remove-sky-controls-20261008.md",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/rhine-reference-boot-motion.jpg",
+      "to": ".scratch/starry-blog/archive/prototypes/sky-studies/rhine-reference-boot-motion.jpg",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/rhine-reference-browse.jpg",
+      "to": ".scratch/starry-blog/archive/prototypes/sky-studies/rhine-reference-browse.jpg",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/rhine-reference-decryption.jpg",
+      "to": ".scratch/starry-blog/archive/prototypes/sky-studies/rhine-reference-decryption.jpg",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/rhine-video-timeline-v14.jpg",
+      "to": ".scratch/starry-blog/archive/prototypes/sky-studies/rhine-video-timeline-v14.jpg",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/roof-boundary-check.mjs",
+      "to": ".scratch/starry-blog/archive/prototypes/sky-studies/roof-boundary-check.mjs",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/silhouette-walk-20261008.md",
+      "to": ".scratch/starry-blog/archive/implementation/silhouette-walk-20261008.md",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/silhouette-walk-edge-20261008.md",
+      "to": ".scratch/starry-blog/archive/implementation/silhouette-walk-edge-20261008.md",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/silhouette-walk-redo-20261008.md",
+      "to": ".scratch/starry-blog/archive/implementation/silhouette-walk-redo-20261008.md",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/silhouette-walk-smooth-20261008.md",
+      "to": ".scratch/starry-blog/archive/implementation/silhouette-walk-smooth-20261008.md",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/sky-controls-desktop.png",
+      "to": ".scratch/starry-blog/archive/prototypes/sky-studies/sky-controls-desktop.png",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/sky-controls-mobile.png",
+      "to": ".scratch/starry-blog/archive/prototypes/sky-studies/sky-controls-mobile.png",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/sky-map-soft-desktop.png",
+      "to": ".scratch/starry-blog/archive/prototypes/sky-studies/sky-map-soft-desktop.png",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/sky-map-soft-mobile.png",
+      "to": ".scratch/starry-blog/archive/prototypes/sky-studies/sky-map-soft-mobile.png",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/sky-overview-desktop.png",
+      "to": ".scratch/starry-blog/archive/prototypes/sky-studies/sky-overview-desktop.png",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/sky-overview-mobile.png",
+      "to": ".scratch/starry-blog/archive/prototypes/sky-studies/sky-overview-mobile.png",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/sky-quiet-desktop.png",
+      "to": ".scratch/starry-blog/archive/prototypes/sky-studies/sky-quiet-desktop.png",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/sky-quiet-mobile.png",
+      "to": ".scratch/starry-blog/archive/prototypes/sky-studies/sky-quiet-mobile.png",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/sky-ui-rollout-20261003.md",
+      "to": ".scratch/starry-blog/archive/implementation/sky-ui-rollout-20261003.md",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/star-clicks-20261002.md",
+      "to": ".scratch/starry-blog/archive/implementation/star-clicks-20261002.md",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/starlink-call-20261008.md",
+      "to": ".scratch/starry-blog/archive/implementation/starlink-call-20261008.md",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/supplement-ui-rollout-20261007.md",
+      "to": ".scratch/starry-blog/archive/implementation/supplement-ui-rollout-20261007.md",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/ticket-drafts/07-modes-history-interruption.md",
+      "to": ".scratch/starry-blog/archive/planning/ticket-drafts/07-modes-history-interruption.md",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/article-page-preview-20261009.log",
+      "to": ".scratch/starry-blog/archive/redundant/logs/article-page-preview-20261009.log",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/article-page-production-20261009.log",
+      "to": ".scratch/starry-blog/archive/redundant/logs/article-page-production-20261009.log",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/article-page-tests-20261009.log",
+      "to": ".scratch/starry-blog/archive/redundant/logs/article-page-tests-20261009.log",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/baseline-server.err.log",
+      "to": ".scratch/starry-blog/archive/redundant/logs/baseline-server.err.log",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/baseline-server.out.log",
+      "to": ".scratch/starry-blog/archive/redundant/logs/baseline-server.out.log",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/design-review-preview.err.log",
+      "to": ".scratch/starry-blog/archive/redundant/logs/design-review-preview.err.log",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/design-review-preview.out.log",
+      "to": ".scratch/starry-blog/archive/redundant/logs/design-review-preview.out.log",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/live-server.err.log",
+      "to": ".scratch/starry-blog/archive/redundant/logs/live-server.err.log",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/live-server.out.log",
+      "to": ".scratch/starry-blog/archive/redundant/logs/live-server.out.log",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/motion-v14-server-error.log",
+      "to": ".scratch/starry-blog/archive/redundant/logs/motion-v14-server-error.log",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/motion-v14-server.log",
+      "to": ".scratch/starry-blog/archive/redundant/logs/motion-v14-server.log",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/observation-build.log",
+      "to": ".scratch/starry-blog/archive/redundant/logs/observation-build.log",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/observation-production-build.log",
+      "to": ".scratch/starry-blog/archive/redundant/logs/observation-production-build.log",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/observation-spacing-preview.log",
+      "to": ".scratch/starry-blog/archive/redundant/logs/observation-spacing-preview.log",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/observation-spacing-production.log",
+      "to": ".scratch/starry-blog/archive/redundant/logs/observation-spacing-production.log",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/observation-spacing-tests.log",
+      "to": ".scratch/starry-blog/archive/redundant/logs/observation-spacing-tests.log",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/observation-tests.log",
+      "to": ".scratch/starry-blog/archive/redundant/logs/observation-tests.log",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/polyhedron-axis-preview.log",
+      "to": ".scratch/starry-blog/archive/redundant/logs/polyhedron-axis-preview.log",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/polyhedron-axis-production.log",
+      "to": ".scratch/starry-blog/archive/redundant/logs/polyhedron-axis-production.log",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/polyhedron-axis-tests.log",
+      "to": ".scratch/starry-blog/archive/redundant/logs/polyhedron-axis-tests.log",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/polyhedron-perspective-preview-20261008.log",
+      "to": ".scratch/starry-blog/archive/redundant/logs/polyhedron-perspective-preview-20261008.log",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/polyhedron-perspective-production-20261008.log",
+      "to": ".scratch/starry-blog/archive/redundant/logs/polyhedron-perspective-production-20261008.log",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/polyhedron-perspective-tests-20261008.log",
+      "to": ".scratch/starry-blog/archive/redundant/logs/polyhedron-perspective-tests-20261008.log",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/preview-v17.err.log",
+      "to": ".scratch/starry-blog/archive/redundant/logs/preview-v17.err.log",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/preview-v17.out.log",
+      "to": ".scratch/starry-blog/archive/redundant/logs/preview-v17.out.log",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/preview-window-guidance.err.log",
+      "to": ".scratch/starry-blog/archive/redundant/logs/preview-window-guidance.err.log",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/preview-window-guidance.out.log",
+      "to": ".scratch/starry-blog/archive/redundant/logs/preview-window-guidance.out.log",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/supplement-build.log",
+      "to": ".scratch/starry-blog/archive/redundant/logs/supplement-build.log",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/supplement-production.log",
+      "to": ".scratch/starry-blog/archive/redundant/logs/supplement-production.log",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/supplement-tests.log",
+      "to": ".scratch/starry-blog/archive/redundant/logs/supplement-tests.log",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/waves-opacity-preview.log",
+      "to": ".scratch/starry-blog/archive/redundant/logs/waves-opacity-preview.log",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/waves-opacity-production.log",
+      "to": ".scratch/starry-blog/archive/redundant/logs/waves-opacity-production.log",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/waves-position-preview.log",
+      "to": ".scratch/starry-blog/archive/redundant/logs/waves-position-preview.log",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/waves-position-production.log",
+      "to": ".scratch/starry-blog/archive/redundant/logs/waves-position-production.log",
+      "files": 1
+    },
+    {
+      "from": ".scratch/starry-blog/ticket-drafts",
+      "to": ".scratch/starry-blog/archive/redundant/ticket-drafts",
+      "files": 15
+    },
+    {
+      "from": ".scratch/starry-blog/prototypes",
+      "to": ".scratch/starry-blog/archive/redundant/empty-prototypes",
+      "files": 0
+    }
+  ],
+  "deletedFiles": 49,
+  "deletedBytes": 244971,
+  "deletions": [
+    {
+      "path": ".scratch/starry-blog/article-page-preview-20261009.log",
+      "reason": "过期本地服务、构建或测试日志；结论已保存在 Markdown 验收记录中。",
+      "bytes": 8023,
+      "sha256": "7199d6c2612f65b33810888d44d791a641f23f14298042619fc25571bc0019ff",
+      "archivedAt": ".scratch/starry-blog/archive/redundant/logs/article-page-preview-20261009.log"
+    },
+    {
+      "path": ".scratch/starry-blog/article-page-production-20261009.log",
+      "reason": "过期本地服务、构建或测试日志；结论已保存在 Markdown 验收记录中。",
+      "bytes": 8004,
+      "sha256": "a6b18a9d0bdc52db9ad84b064e84cbe9783af31928c48a54f625bde8a0a4b698",
+      "archivedAt": ".scratch/starry-blog/archive/redundant/logs/article-page-production-20261009.log"
+    },
+    {
+      "path": ".scratch/starry-blog/article-page-tests-20261009.log",
+      "reason": "过期本地服务、构建或测试日志；结论已保存在 Markdown 验收记录中。",
+      "bytes": 10368,
+      "sha256": "4d8ed40f581ec54bcf68fe730d510a36e0ceedfdaff3b6600c74f2e76613c98a",
+      "archivedAt": ".scratch/starry-blog/archive/redundant/logs/article-page-tests-20261009.log"
+    },
+    {
+      "path": ".scratch/starry-blog/baseline-server.err.log",
+      "reason": "过期本地服务、构建或测试日志；结论已保存在 Markdown 验收记录中。",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archivedAt": ".scratch/starry-blog/archive/redundant/logs/baseline-server.err.log"
+    },
+    {
+      "path": ".scratch/starry-blog/baseline-server.out.log",
+      "reason": "过期本地服务、构建或测试日志；结论已保存在 Markdown 验收记录中。",
+      "bytes": 130,
+      "sha256": "9679466d70acfa4ff2a21621e235c6db20e1d849da5482c6ad66c1ac0860ff71",
+      "archivedAt": ".scratch/starry-blog/archive/redundant/logs/baseline-server.out.log"
+    },
+    {
+      "path": ".scratch/starry-blog/design-review-preview.err.log",
+      "reason": "过期本地服务、构建或测试日志；结论已保存在 Markdown 验收记录中。",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archivedAt": ".scratch/starry-blog/archive/redundant/logs/design-review-preview.err.log"
+    },
+    {
+      "path": ".scratch/starry-blog/design-review-preview.out.log",
+      "reason": "过期本地服务、构建或测试日志；结论已保存在 Markdown 验收记录中。",
+      "bytes": 80,
+      "sha256": "6b65eecfa7ff993f59f744a796f706c63faf37399beeeecfa3f3ea61e7fe2014",
+      "archivedAt": ".scratch/starry-blog/archive/redundant/logs/design-review-preview.out.log"
+    },
+    {
+      "path": ".scratch/starry-blog/live-server.err.log",
+      "reason": "过期本地服务、构建或测试日志；结论已保存在 Markdown 验收记录中。",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archivedAt": ".scratch/starry-blog/archive/redundant/logs/live-server.err.log"
+    },
+    {
+      "path": ".scratch/starry-blog/live-server.out.log",
+      "reason": "过期本地服务、构建或测试日志；结论已保存在 Markdown 验收记录中。",
+      "bytes": 80,
+      "sha256": "6b65eecfa7ff993f59f744a796f706c63faf37399beeeecfa3f3ea61e7fe2014",
+      "archivedAt": ".scratch/starry-blog/archive/redundant/logs/live-server.out.log"
+    },
+    {
+      "path": ".scratch/starry-blog/motion-v14-server-error.log",
+      "reason": "过期本地服务、构建或测试日志；结论已保存在 Markdown 验收记录中。",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archivedAt": ".scratch/starry-blog/archive/redundant/logs/motion-v14-server-error.log"
+    },
+    {
+      "path": ".scratch/starry-blog/motion-v14-server.log",
+      "reason": "过期本地服务、构建或测试日志；结论已保存在 Markdown 验收记录中。",
+      "bytes": 80,
+      "sha256": "6b65eecfa7ff993f59f744a796f706c63faf37399beeeecfa3f3ea61e7fe2014",
+      "archivedAt": ".scratch/starry-blog/archive/redundant/logs/motion-v14-server.log"
+    },
+    {
+      "path": ".scratch/starry-blog/observation-build.log",
+      "reason": "过期本地服务、构建或测试日志；结论已保存在 Markdown 验收记录中。",
+      "bytes": 6976,
+      "sha256": "686b67e154e99dde569ee3cb44910940aad814ac74634ba531560408a71822dc",
+      "archivedAt": ".scratch/starry-blog/archive/redundant/logs/observation-build.log"
+    },
+    {
+      "path": ".scratch/starry-blog/observation-production-build.log",
+      "reason": "过期本地服务、构建或测试日志；结论已保存在 Markdown 验收记录中。",
+      "bytes": 6957,
+      "sha256": "d2cb42d95958ffc9560c42c3c7f6b0bc8801a230210cb9607ee6e70576b4ba65",
+      "archivedAt": ".scratch/starry-blog/archive/redundant/logs/observation-production-build.log"
+    },
+    {
+      "path": ".scratch/starry-blog/observation-spacing-preview.log",
+      "reason": "过期本地服务、构建或测试日志；结论已保存在 Markdown 验收记录中。",
+      "bytes": 7499,
+      "sha256": "cbc541e73c65caa9f2ff96a42d5d57193ed2c3955ffbee742ca65829fcf5dae5",
+      "archivedAt": ".scratch/starry-blog/archive/redundant/logs/observation-spacing-preview.log"
+    },
+    {
+      "path": ".scratch/starry-blog/observation-spacing-production.log",
+      "reason": "过期本地服务、构建或测试日志；结论已保存在 Markdown 验收记录中。",
+      "bytes": 7480,
+      "sha256": "caa47d078bbd2c0f606aee623bf6092889a90d3e638fdc9b5aacb9dd26c44d1b",
+      "archivedAt": ".scratch/starry-blog/archive/redundant/logs/observation-spacing-production.log"
+    },
+    {
+      "path": ".scratch/starry-blog/observation-spacing-tests.log",
+      "reason": "过期本地服务、构建或测试日志；结论已保存在 Markdown 验收记录中。",
+      "bytes": 7753,
+      "sha256": "0d6b6d78fcb037a0ea0fc4de18ae67f2360094d7bf53daf260bf1932dccbf688",
+      "archivedAt": ".scratch/starry-blog/archive/redundant/logs/observation-spacing-tests.log"
+    },
+    {
+      "path": ".scratch/starry-blog/observation-tests.log",
+      "reason": "过期本地服务、构建或测试日志；结论已保存在 Markdown 验收记录中。",
+      "bytes": 15099,
+      "sha256": "b70912cb3c473d05c61a6b11eb6537895604356e3ab5f9e09875403ea5df2eec",
+      "archivedAt": ".scratch/starry-blog/archive/redundant/logs/observation-tests.log"
+    },
+    {
+      "path": ".scratch/starry-blog/polyhedron-axis-preview.log",
+      "reason": "过期本地服务、构建或测试日志；结论已保存在 Markdown 验收记录中。",
+      "bytes": 7544,
+      "sha256": "d26eb0495bb96b37dbe76ad541b9f134b499b7a3d41a67ef6f84a1812cfc5b85",
+      "archivedAt": ".scratch/starry-blog/archive/redundant/logs/polyhedron-axis-preview.log"
+    },
+    {
+      "path": ".scratch/starry-blog/polyhedron-axis-production.log",
+      "reason": "过期本地服务、构建或测试日志；结论已保存在 Markdown 验收记录中。",
+      "bytes": 7525,
+      "sha256": "25f219e8c75e0591d48795ecdd42701b422182370e312d968c1b2eaebe19b428",
+      "archivedAt": ".scratch/starry-blog/archive/redundant/logs/polyhedron-axis-production.log"
+    },
+    {
+      "path": ".scratch/starry-blog/polyhedron-axis-tests.log",
+      "reason": "过期本地服务、构建或测试日志；结论已保存在 Markdown 验收记录中。",
+      "bytes": 8930,
+      "sha256": "ebe8dd4340af2e40d0fc78b8059cf20e0dbbd961a8a0afda8ef9f227add2c55d",
+      "archivedAt": ".scratch/starry-blog/archive/redundant/logs/polyhedron-axis-tests.log"
+    },
+    {
+      "path": ".scratch/starry-blog/polyhedron-perspective-preview-20261008.log",
+      "reason": "过期本地服务、构建或测试日志；结论已保存在 Markdown 验收记录中。",
+      "bytes": 7544,
+      "sha256": "451067e77223d439987a11b34a5f98c9948fa60d176e89b208be9dca9ba0d06b",
+      "archivedAt": ".scratch/starry-blog/archive/redundant/logs/polyhedron-perspective-preview-20261008.log"
+    },
+    {
+      "path": ".scratch/starry-blog/polyhedron-perspective-production-20261008.log",
+      "reason": "过期本地服务、构建或测试日志；结论已保存在 Markdown 验收记录中。",
+      "bytes": 39634,
+      "sha256": "2b246fa2cbe2aef7fdeaab7fb4cda31083346e433349c38c570f72299b58235c",
+      "archivedAt": ".scratch/starry-blog/archive/redundant/logs/polyhedron-perspective-production-20261008.log"
+    },
+    {
+      "path": ".scratch/starry-blog/polyhedron-perspective-tests-20261008.log",
+      "reason": "过期本地服务、构建或测试日志；结论已保存在 Markdown 验收记录中。",
+      "bytes": 9141,
+      "sha256": "9fdeaf44951a18cf8cfe25b9c5f9788ff636c95ec55270df7fa9b043507f4ec1",
+      "archivedAt": ".scratch/starry-blog/archive/redundant/logs/polyhedron-perspective-tests-20261008.log"
+    },
+    {
+      "path": ".scratch/starry-blog/preview-v17.err.log",
+      "reason": "过期本地服务、构建或测试日志；结论已保存在 Markdown 验收记录中。",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archivedAt": ".scratch/starry-blog/archive/redundant/logs/preview-v17.err.log"
+    },
+    {
+      "path": ".scratch/starry-blog/preview-v17.out.log",
+      "reason": "过期本地服务、构建或测试日志；结论已保存在 Markdown 验收记录中。",
+      "bytes": 80,
+      "sha256": "6b65eecfa7ff993f59f744a796f706c63faf37399beeeecfa3f3ea61e7fe2014",
+      "archivedAt": ".scratch/starry-blog/archive/redundant/logs/preview-v17.out.log"
+    },
+    {
+      "path": ".scratch/starry-blog/preview-window-guidance.err.log",
+      "reason": "过期本地服务、构建或测试日志；结论已保存在 Markdown 验收记录中。",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archivedAt": ".scratch/starry-blog/archive/redundant/logs/preview-window-guidance.err.log"
+    },
+    {
+      "path": ".scratch/starry-blog/preview-window-guidance.out.log",
+      "reason": "过期本地服务、构建或测试日志；结论已保存在 Markdown 验收记录中。",
+      "bytes": 80,
+      "sha256": "6b65eecfa7ff993f59f744a796f706c63faf37399beeeecfa3f3ea61e7fe2014",
+      "archivedAt": ".scratch/starry-blog/archive/redundant/logs/preview-window-guidance.out.log"
+    },
+    {
+      "path": ".scratch/starry-blog/supplement-build.log",
+      "reason": "过期本地服务、构建或测试日志；结论已保存在 Markdown 验收记录中。",
+      "bytes": 7392,
+      "sha256": "4e78bf3c8bfbe46a04dd370a959c41c24459de0453ece37a8b717035e6678725",
+      "archivedAt": ".scratch/starry-blog/archive/redundant/logs/supplement-build.log"
+    },
+    {
+      "path": ".scratch/starry-blog/supplement-production.log",
+      "reason": "过期本地服务、构建或测试日志；结论已保存在 Markdown 验收记录中。",
+      "bytes": 7373,
+      "sha256": "9dff700f9bad9d90a59da93f158051d2be7a61c84246f4347f0b4874ca1fcce9",
+      "archivedAt": ".scratch/starry-blog/archive/redundant/logs/supplement-production.log"
+    },
+    {
+      "path": ".scratch/starry-blog/supplement-tests.log",
+      "reason": "过期本地服务、构建或测试日志；结论已保存在 Markdown 验收记录中。",
+      "bytes": 7758,
+      "sha256": "3f14f74faf9aa2244795a7c08b97587369a5492d7506e521e5f85288adefd29d",
+      "archivedAt": ".scratch/starry-blog/archive/redundant/logs/supplement-tests.log"
+    },
+    {
+      "path": ".scratch/starry-blog/waves-opacity-preview.log",
+      "reason": "过期本地服务、构建或测试日志；结论已保存在 Markdown 验收记录中。",
+      "bytes": 7392,
+      "sha256": "4dbcd87a866a3776bc980570c49c6491685013a36cb1a8e710c8a7d2ab6d7a9c",
+      "archivedAt": ".scratch/starry-blog/archive/redundant/logs/waves-opacity-preview.log"
+    },
+    {
+      "path": ".scratch/starry-blog/waves-opacity-production.log",
+      "reason": "过期本地服务、构建或测试日志；结论已保存在 Markdown 验收记录中。",
+      "bytes": 7373,
+      "sha256": "9478379f329e91da5fae5dc1da0558e119598340f12eb2f7018d4c735a995e75",
+      "archivedAt": ".scratch/starry-blog/archive/redundant/logs/waves-opacity-production.log"
+    },
+    {
+      "path": ".scratch/starry-blog/waves-position-preview.log",
+      "reason": "过期本地服务、构建或测试日志；结论已保存在 Markdown 验收记录中。",
+      "bytes": 7392,
+      "sha256": "3d144fd3bea48f75deb31c64f6264e3514a41d0fe2a556a2953634dfcc8cf04d",
+      "archivedAt": ".scratch/starry-blog/archive/redundant/logs/waves-position-preview.log"
+    },
+    {
+      "path": ".scratch/starry-blog/waves-position-production.log",
+      "reason": "过期本地服务、构建或测试日志；结论已保存在 Markdown 验收记录中。",
+      "bytes": 7373,
+      "sha256": "1906ba2ffc7157e31dccc98127232f80d4086eab7ced4ce90f904a3306d6da46",
+      "archivedAt": ".scratch/starry-blog/archive/redundant/logs/waves-position-production.log"
+    },
+    {
+      "path": ".scratch/starry-blog/ticket-drafts/02-legacy-recovery-baseline.md",
+      "retained": ".scratch/starry-blog/archive/issues/02-legacy-recovery-baseline.md",
+      "reason": "正文与已发布工单一致；差异仅为草案状态、已勾选验收项和“草案/工单”称呼，正式工单及评论保留。",
+      "bytes": 2168,
+      "sha256": "efa0f308cec1557bfbff1368fd16eb69cd49326b430625e512f81fe386a2b59d",
+      "archivedAt": ".scratch/starry-blog/archive/redundant/ticket-drafts/02-legacy-recovery-baseline.md"
+    },
+    {
+      "path": ".scratch/starry-blog/ticket-drafts/03-first-real-article.md",
+      "retained": ".scratch/starry-blog/archive/issues/03-first-real-article.md",
+      "reason": "正文与已发布工单一致；差异仅为草案状态、已勾选验收项和“草案/工单”称呼，正式工单及评论保留。",
+      "bytes": 2486,
+      "sha256": "b192c162a631e35972f640e196daf85faa8f7d87f7cbd0b0ab2aca950f10abb7",
+      "archivedAt": ".scratch/starry-blog/archive/redundant/ticket-drafts/03-first-real-article.md"
+    },
+    {
+      "path": ".scratch/starry-blog/ticket-drafts/04-stable-article-publication.md",
+      "retained": ".scratch/starry-blog/archive/issues/04-stable-article-publication.md",
+      "reason": "正文与已发布工单一致；差异仅为草案状态、已勾选验收项和“草案/工单”称呼，正式工单及评论保留。",
+      "bytes": 2534,
+      "sha256": "4df7e3973c77c1eeaaa6018837d739cfc17367ee17a5a4eef7efc37f4a2c9ed5",
+      "archivedAt": ".scratch/starry-blog/archive/redundant/ticket-drafts/04-stable-article-publication.md"
+    },
+    {
+      "path": ".scratch/starry-blog/ticket-drafts/05-real-content-media-compatibility.md",
+      "retained": ".scratch/starry-blog/archive/issues/05-real-content-media-compatibility.md",
+      "reason": "正文与已发布工单一致；差异仅为草案状态、已勾选验收项和“草案/工单”称呼，正式工单及评论保留。",
+      "bytes": 2322,
+      "sha256": "2501044fb72135a2250a1d261cf9baf6a55793690857ef13c4a0bfa919544f63",
+      "archivedAt": ".scratch/starry-blog/archive/redundant/ticket-drafts/05-real-content-media-compatibility.md"
+    },
+    {
+      "path": ".scratch/starry-blog/ticket-drafts/06-bidirectional-relations.md",
+      "retained": ".scratch/starry-blog/archive/issues/06-bidirectional-relations.md",
+      "reason": "正文与已发布工单一致；差异仅为草案状态、已勾选验收项和“草案/工单”称呼，正式工单及评论保留。",
+      "bytes": 2145,
+      "sha256": "b1f74cf7a75584fa6d1a976a968ec4753988bb60e8109a30d87136092e9f079a",
+      "archivedAt": ".scratch/starry-blog/archive/redundant/ticket-drafts/06-bidirectional-relations.md"
+    },
+    {
+      "path": ".scratch/starry-blog/ticket-drafts/08-archives-and-legacy-collections.md",
+      "retained": ".scratch/starry-blog/archive/issues/08-archives-and-legacy-collections.md",
+      "reason": "正文与已发布工单一致；差异仅为草案状态、已勾选验收项和“草案/工单”称呼，正式工单及评论保留。",
+      "bytes": 2093,
+      "sha256": "8162bce779261338844214687db48e51201e8a4da14c44fed9cb5d3b89968ff4",
+      "archivedAt": ".scratch/starry-blog/archive/redundant/ticket-drafts/08-archives-and-legacy-collections.md"
+    },
+    {
+      "path": ".scratch/starry-blog/ticket-drafts/09-friends-and-legacy-about.md",
+      "retained": ".scratch/starry-blog/archive/issues/09-friends-and-legacy-about.md",
+      "reason": "正文与已发布工单一致；差异仅为草案状态、已勾选验收项和“草案/工单”称呼，正式工单及评论保留。",
+      "bytes": 2186,
+      "sha256": "0e1467fefd8381f8fd104df6105bb2c5c7a51826783c23790fa1b975359a5617",
+      "archivedAt": ".scratch/starry-blog/archive/redundant/ticket-drafts/09-friends-and-legacy-about.md"
+    },
+    {
+      "path": ".scratch/starry-blog/ticket-drafts/10-content-and-appearance-config.md",
+      "retained": ".scratch/starry-blog/archive/issues/10-content-and-appearance-config.md",
+      "reason": "正文与已发布工单一致；差异仅为草案状态、已勾选验收项和“草案/工单”称呼，正式工单及评论保留。",
+      "bytes": 2270,
+      "sha256": "d45d1a7ea6d7f0f200072ace8fef4563852bd3746b4103815276c0a870a9eaa7",
+      "archivedAt": ".scratch/starry-blog/archive/redundant/ticket-drafts/10-content-and-appearance-config.md"
+    },
+    {
+      "path": ".scratch/starry-blog/ticket-drafts/11-desktop-scene-calibration.md",
+      "retained": ".scratch/starry-blog/archive/issues/11-desktop-scene-calibration.md",
+      "reason": "正文与已发布工单一致；差异仅为草案状态、已勾选验收项和“草案/工单”称呼，正式工单及评论保留。",
+      "bytes": 2098,
+      "sha256": "4a87f4329d342096abe911a366ecba37aefa300e04daca1a7f309c7cd6f8ecdb",
+      "archivedAt": ".scratch/starry-blog/archive/redundant/ticket-drafts/11-desktop-scene-calibration.md"
+    },
+    {
+      "path": ".scratch/starry-blog/ticket-drafts/12-mobile-scene-calibration.md",
+      "retained": ".scratch/starry-blog/archive/issues/12-mobile-scene-calibration.md",
+      "reason": "正文与已发布工单一致；差异仅为草案状态、已勾选验收项和“草案/工单”称呼，正式工单及评论保留。",
+      "bytes": 2121,
+      "sha256": "9a0244ab3f0d90268144065eabccaea6471c894946fb981fb29b66a0874522d4",
+      "archivedAt": ".scratch/starry-blog/archive/redundant/ticket-drafts/12-mobile-scene-calibration.md"
+    },
+    {
+      "path": ".scratch/starry-blog/ticket-drafts/13-mobile-and-accessible-reading.md",
+      "retained": ".scratch/starry-blog/archive/issues/13-mobile-and-accessible-reading.md",
+      "reason": "正文与已发布工单一致；差异仅为草案状态、已勾选验收项和“草案/工单”称呼，正式工单及评论保留。",
+      "bytes": 2363,
+      "sha256": "6ab2960a3d6ffdc076608a9b9ee2f7c0110af472f9a6bef9c5905c70d093cd97",
+      "archivedAt": ".scratch/starry-blog/archive/redundant/ticket-drafts/13-mobile-and-accessible-reading.md"
+    },
+    {
+      "path": ".scratch/starry-blog/ticket-drafts/14-performance-graceful-degradation.md",
+      "retained": ".scratch/starry-blog/archive/issues/14-performance-graceful-degradation.md",
+      "reason": "正文与已发布工单一致；差异仅为草案状态、已勾选验收项和“草案/工单”称呼，正式工单及评论保留。",
+      "bytes": 2047,
+      "sha256": "f2e61f2a1846d253145824802210fa62591660771b478d822654318001dc579e",
+      "archivedAt": ".scratch/starry-blog/archive/redundant/ticket-drafts/14-performance-graceful-degradation.md"
+    },
+    {
+      "path": ".scratch/starry-blog/ticket-drafts/15-netlify-release-and-rollback.md",
+      "retained": ".scratch/starry-blog/archive/issues/15-netlify-release-and-rollback.md",
+      "reason": "正文与已发布工单一致；差异仅为草案状态、已勾选验收项和“草案/工单”称呼，正式工单及评论保留。",
+      "bytes": 2538,
+      "sha256": "a032eb700c49e06352435a2d76c5031a2a036b6b2a057f6a6e4ee898621adf67",
+      "archivedAt": ".scratch/starry-blog/archive/redundant/ticket-drafts/15-netlify-release-and-rollback.md"
+    },
+    {
+      "path": ".scratch/starry-blog/ticket-drafts/16-generic-template-export.md",
+      "retained": ".scratch/starry-blog/archive/issues/16-generic-template-export.md",
+      "reason": "正文与已发布工单一致；差异仅为草案状态、已勾选验收项和“草案/工单”称呼，正式工单及评论保留。",
+      "bytes": 2279,
+      "sha256": "788d028f4c0608f255a94d8a155a14799bf14b5d461c3bf12bb465198df3de19",
+      "archivedAt": ".scratch/starry-blog/archive/redundant/ticket-drafts/16-generic-template-export.md"
+    },
+    {
+      "path": ".scratch/starry-blog/ticket-drafts/17-public-template-publication.md",
+      "retained": ".scratch/starry-blog/archive/issues/17-public-template-publication.md",
+      "reason": "正文与已发布工单一致；差异仅为草案状态、已勾选验收项和“草案/工单”称呼，正式工单及评论保留。",
+      "bytes": 2261,
+      "sha256": "d17e4075189f6c36ac1dc9e8169213e1ea92fd882092387c30bb5a4a0dc48156",
+      "archivedAt": ".scratch/starry-blog/archive/redundant/ticket-drafts/17-public-template-publication.md"
+    }
+  ],
+  "deletionBlocked": false,
+  "protectedSnapshots": [
+    "archive/prototypes/v19/baseline-v19-20260914/",
+    "archive/prototypes/v19/baseline-v19-manifest.json",
+    "archive/prototypes/v20/v20-verification-manifest.json",
+    "archive/prototypes/v20/evidence-v20/",
+    "baselines/"
+  ],
+  "note": "moves 记录整理过程中的中间位置；deletions 中的 34 份过期日志与 15 份重复草稿已于 2026-10-10 经作者确认后逐文件物理删除。冻结代码、历史配置与测量清单不重写原路径或校验值。原已跟踪文件可从 gitHeadBeforeCleanup 恢复。",
+  "after": {
+    "files": 306,
+    "rootEntries": 7
+  },
+  "verification": {
+    "snapshotsChecked": 131,
+    "changedSnapshots": 0,
+    "productionContentAndRuntimeUnchanged": true,
+    "newBrokenMarkdownLinks": 0,
+    "existingMissingLocalEvidenceLinks": 198,
+    "syntaxCheckedScripts": 31,
+    "diffWhitespaceCheck": "passed",
+    "runtimeTestsRun": false
+  },
+  "deletionConfirmedByAuthor": true,
+  "physicalDeletionComplete": true,
+  "temporaryHelpersRemoved": 2
+}

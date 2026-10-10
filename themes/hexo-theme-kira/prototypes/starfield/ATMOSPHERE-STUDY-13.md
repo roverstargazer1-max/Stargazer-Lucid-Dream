@@ -2,7 +2,7 @@
 
 日期：2026-09-10。原型分支：`codex/prototype-starfield`。
 
-作者已明确批准 [方案](../../../../.scratch/starry-blog/sky-atmosphere-plan.md) 的 A＋B＋C 一起实施。本次仅更新本地 mock 原型，不改变主设计 R1–R6 的待整体复核状态，未部署正式主题。
+作者已明确批准 [方案](../../../../.scratch/starry-blog/archive/planning/sky-atmosphere-plan.md) 的 A＋B＋C 一起实施。本次仅更新本地 mock 原型，不改变主设计 R1–R6 的待整体复核状态，未部署正式主题。
 
 ## 体验
 
@@ -33,6 +33,6 @@
 - 减少动态下云位置矩阵不变，约 0.85 秒复位。键盘焦点连续绘制时保留，Enter 可触发；700ms 长按不触发。
 - 未注入测试钩子的页面完成窗边进入、仰望、星图定位、回正、点星、正文阅读与返回。修改脚本语法及 diff 检查通过。
 
-截图：[首屏](../../../../.scratch/starry-blog/atmosphere-opening-v13.png)、[天顶](../../../../.scratch/starry-blog/atmosphere-zenith-v13.png)、[低空桌面](../../../../.scratch/starry-blog/atmosphere-low-desktop-v13.png)、[低空手机](../../../../.scratch/starry-blog/atmosphere-low-mobile-v13.png)、[轻触云](../../../../.scratch/starry-blog/cloud-touched-v13.png)。
+截图：[首屏](../../../../.scratch/starry-blog/archive/prototypes/sky-studies/atmosphere-opening-v13.png)、[天顶](../../../../.scratch/starry-blog/archive/prototypes/sky-studies/atmosphere-zenith-v13.png)、[低空桌面](../../../../.scratch/starry-blog/archive/prototypes/sky-studies/atmosphere-low-desktop-v13.png)、[低空手机](../../../../.scratch/starry-blog/archive/prototypes/sky-studies/atmosphere-low-mobile-v13.png)、[轻触云](../../../../.scratch/starry-blog/archive/prototypes/sky-studies/cloud-touched-v13.png)。
 
 模拟触屏按 Context7 查询的 Playwright 官方 [CDP session](https://github.com/microsoft/playwright/blob/main/docs/src/api/class-browsercontext.md) 和 [触控接口](https://github.com/microsoft/playwright/blob/main/docs/src/api/class-touchscreen.md) 执行，不等于实体手机验收。
