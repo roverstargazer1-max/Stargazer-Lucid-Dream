@@ -1,4 +1,10 @@
 /* The author's layered PNG sheet, with a fixed reading journey underneath. */
+@font-face {
+  font-family: 'LXGW Marker Gothic';
+  src: url('../../fonts/lxgw-marker-gothic-v1.003.woff2') format('woff2');
+  font-style: normal; font-weight: 400; font-display: swap;
+}
+
 #reader {
   --paper-ink: #f0f8ff; --paper-muted: #c5e5ff;
   color-scheme: dark; position: fixed; z-index: 60; inset: 0;
@@ -37,6 +43,7 @@
   min-height: 35cqw; padding: 17cqw 23% 7cqw;
 }
 #reader h1 { margin: 0; color: #fff; text-align: center; font: 600 clamp(20px, 3.4cqw, 32px)/1.45 var(--sans); letter-spacing: .02em; text-shadow: 0 2px 10px #032886; }
+#reader .article-title-heading > h1 { font-family: 'LXGW Marker Gothic', var(--sans); font-weight: 400; font-synthesis: none; }
 #reader .article-title-heading { position: relative; min-width: 0; max-width: 100%; transform: translateY(clamp(-14px, -1.5cqw, -8px)); }
 #reader .article-meta { margin: 0 0 24px; color: var(--paper-muted); font-size: 12px; }
 #reader .article-title-banner .article-meta {

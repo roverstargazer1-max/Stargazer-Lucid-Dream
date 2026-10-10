@@ -48,6 +48,9 @@
   <meta name="twitter:card" content="<%= image ? 'summary_large_image' : 'summary' %>">
   <meta name="twitter:title" content="<%= title %>">
   <% if (description) { %><meta name="twitter:description" content="<%= description %>"><% } %>
+  <% if (isStarryArticle) { %>
+  <link rel="preload" as="font" type="font/woff2" href="<%= url_for('fonts/lxgw-marker-gothic-v1.003.woff2') %>" crossorigin>
+  <% } %>
   <% if (is_home()) { %>
   <link rel="preload" as="image" href="<%= url_for(theme.scene.room_desktop) %>" media="(min-width: 761px)" fetchpriority="high">
   <link rel="preload" as="image" href="<%= url_for(theme.scene.room_mobile) %>" media="(max-width: 760px)" fetchpriority="high">
