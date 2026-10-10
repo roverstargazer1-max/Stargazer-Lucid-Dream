@@ -1,0 +1,94 @@
+{
+  "rounds": 3,
+  "lowPowerMode": true,
+  "cpuRate": 1,
+  "rows": [
+    {
+      "device": "desktop",
+      "name": "enter",
+      "p95Before": 33.40000000000009,
+      "p95After": 17.700000000000273,
+      "maxBefore": 66.79999999999973,
+      "maxAfter": 66.69999999999982,
+      "qualities": [
+        "full",
+        "balanced",
+        "balanced"
+      ],
+      "longTasks": [
+        [
+          {
+            "start": 1172.7000000178814,
+            "duration": 68
+          }
+        ],
+        [
+          {
+            "start": 1213.800000011921,
+            "duration": 53
+          }
+        ],
+        [
+          {
+            "start": 1194.9000000059605,
+            "duration": 60
+          }
+        ]
+      ]
+    },
+    {
+      "device": "desktop",
+      "name": "return",
+      "p95Before": 34.5,
+      "p95After": 17.699999999999818,
+      "maxBefore": 49.399999999999636,
+      "maxAfter": 17.800000000000182,
+      "qualities": [
+        "full",
+        "balanced",
+        "balanced"
+      ],
+      "longTasks": [
+        [],
+        [],
+        []
+      ]
+    },
+    {
+      "device": "mobile",
+      "name": "enter",
+      "p95Before": 18.600000000000364,
+      "p95After": 17.600000000000364,
+      "maxBefore": 18.800000000000182,
+      "maxAfter": 17.700000000000273,
+      "qualities": [
+        "full",
+        "full",
+        "full"
+      ],
+      "longTasks": [
+        [],
+        [],
+        []
+      ]
+    },
+    {
+      "device": "mobile",
+      "name": "return",
+      "p95Before": 18.699999999999818,
+      "p95After": 17.699999999999818,
+      "maxBefore": 18.800000000000182,
+      "maxAfter": 17.800000000000182,
+      "qualities": [
+        "full",
+        "full",
+        "full"
+      ],
+      "longTasks": [
+        [],
+        [],
+        []
+      ]
+    }
+  ]
+}

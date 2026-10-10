@@ -79,6 +79,8 @@ blog:
 
 默认服务只监听 `127.0.0.1`。端口占用可沿用现有服务，或设置 `STARFIELD_PREVIEW_PORT` 后启动；此变量也适用于旧版静态服务。
 
+完整镜头仍为 `scene.motion: full`。穿窗与回屋的微小房间模糊默认关闭，以减轻省电模式的合成开销；在 `themes/stargazer-starfield/_config.yml` 将 `scene.passage_blur` 设为 `true` 可恢复。实际持续掉帧会触发背景精度调整，静止、隐藏页面及浏览器固定刷新节奏不会单独触发降级。复测与仍有的首次进入峰值见[省电过场记录](../../.scratch/starry-blog/evidence/power-transitions-20261010/README.md)。
+
 ## GitHub → Netlify
 
 已修改仓库中的 `netlify.toml`：

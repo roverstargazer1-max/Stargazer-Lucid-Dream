@@ -1,0 +1,218 @@
+[
+  {
+    "device": "desktop",
+    "cycle": 0,
+    "name": "enter",
+    "animations": 0,
+    "roomHidden": true,
+    "worldInert": false,
+    "quality": "low",
+    "roomBlur": "off",
+    "emptySkyFrames": 0,
+    "foregroundResizes": [
+      {
+        "room": "outside",
+        "moving": false,
+        "width": 1260
+      }
+    ],
+    "filter": "none"
+  },
+  {
+    "device": "desktop",
+    "cycle": 0,
+    "name": "return",
+    "animations": 0,
+    "roomHidden": false,
+    "worldInert": true,
+    "quality": "low",
+    "roomBlur": "off",
+    "emptySkyFrames": 0,
+    "foregroundResizes": [
+      {
+        "room": "outside",
+        "moving": false,
+        "width": 1260
+      }
+    ],
+    "filter": "none"
+  },
+  {
+    "device": "desktop",
+    "cycle": 1,
+    "name": "enter",
+    "animations": 0,
+    "roomHidden": true,
+    "worldInert": false,
+    "quality": "low",
+    "roomBlur": "off",
+    "emptySkyFrames": 0,
+    "foregroundResizes": [
+      {
+        "room": "outside",
+        "moving": false,
+        "width": 1260
+      },
+      {
+        "room": "entering",
+        "arrival": "passage",
+        "moving": true,
+        "width": 1200
+      }
+    ],
+    "filter": "none"
+  },
+  {
+    "device": "desktop",
+    "cycle": 1,
+    "name": "return",
+    "animations": 0,
+    "roomHidden": false,
+    "worldInert": true,
+    "quality": "low",
+    "roomBlur": "off",
+    "emptySkyFrames": 0,
+    "foregroundResizes": [
+      {
+        "room": "outside",
+        "moving": false,
+        "width": 1260
+      },
+      {
+        "room": "entering",
+        "arrival": "passage",
+        "moving": true,
+        "width": 1200
+      }
+    ],
+    "filter": "none"
+  },
+  {
+    "device": "desktop",
+    "name": "enter",
+    "motion": "soft",
+    "animations": 0,
+    "roomHidden": true,
+    "worldInert": false,
+    "transientCameraStyles": "",
+    "rootWrites": []
+  },
+  {
+    "device": "desktop",
+    "name": "return",
+    "motion": "soft",
+    "animations": 0,
+    "roomHidden": false,
+    "worldInert": true,
+    "transientCameraStyles": "",
+    "rootWrites": []
+  },
+  {
+    "device": "mobile",
+    "cycle": 0,
+    "name": "enter",
+    "animations": 0,
+    "roomHidden": true,
+    "worldInert": false,
+    "quality": "low",
+    "roomBlur": "off",
+    "emptySkyFrames": 0,
+    "foregroundResizes": [
+      {
+        "room": "outside",
+        "moving": false,
+        "width": 293
+      }
+    ],
+    "filter": "none"
+  },
+  {
+    "device": "mobile",
+    "cycle": 0,
+    "name": "return",
+    "animations": 0,
+    "roomHidden": false,
+    "worldInert": true,
+    "quality": "low",
+    "roomBlur": "off",
+    "emptySkyFrames": 0,
+    "foregroundResizes": [
+      {
+        "room": "outside",
+        "moving": false,
+        "width": 293
+      }
+    ],
+    "filter": "none"
+  },
+  {
+    "device": "mobile",
+    "cycle": 1,
+    "name": "enter",
+    "animations": 0,
+    "roomHidden": true,
+    "worldInert": false,
+    "quality": "low",
+    "roomBlur": "off",
+    "emptySkyFrames": 0,
+    "foregroundResizes": [
+      {
+        "room": "outside",
+        "moving": false,
+        "width": 293
+      },
+      {
+        "room": "entering",
+        "arrival": "passage",
+        "moving": true,
+        "width": 309
+      }
+    ],
+    "filter": "none"
+  },
+  {
+    "device": "mobile",
+    "cycle": 1,
+    "name": "return",
+    "animations": 0,
+    "roomHidden": false,
+    "worldInert": true,
+    "quality": "low",
+    "roomBlur": "off",
+    "emptySkyFrames": 0,
+    "foregroundResizes": [
+      {
+        "room": "outside",
+        "moving": false,
+        "width": 293
+      },
+      {
+        "room": "entering",
+        "arrival": "passage",
+        "moving": true,
+        "width": 309
+      }
+    ],
+    "filter": "none"
+  },
+  {
+    "device": "mobile",
+    "name": "enter",
+    "motion": "soft",
+    "animations": 0,
+    "roomHidden": true,
+    "worldInert": false,
+    "transientCameraStyles": "",
+    "rootWrites": []
+  },
+  {
+    "device": "mobile",
+    "name": "return",
+    "motion": "soft",
+    "animations": 0,
+    "roomHidden": false,
+    "worldInert": true,
+    "transientCameraStyles": "",
+    "rootWrites": []
+  }
+]
