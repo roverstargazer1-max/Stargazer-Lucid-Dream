@@ -1,5 +1,6 @@
 <%
   const audioConfig = config.aplayer || {};
+  const themeSwitch = blog_theme_switch(page);
   const audioPath = (directory, filename) => `${String(directory || '').replace(/\/+$/, '')}/${filename}`;
   const audioAssets = {
     stylesheet: audioConfig.style_cdn || url_for(audioPath(audioConfig.style_dir || 'assets/css', 'APlayer.min.css')),
@@ -24,7 +25,7 @@
   const description = isPost
     ? String(page.starry_excerpt || config.description || '')
     : isStarryCollection ? `${collectionTitle} · 文章清单` : String(config.description || '');
-  const canonical = isPost
+  const canonical = config.dual_theme ? blog_canonical(page) : isPost
     ? page.permalink
     : isStarryCollection ? new URL(url_for(collectionUrl), config.url).href : new URL(url_for('/'), config.url).href;
   const image = isPost && page.cover
@@ -52,15 +53,22 @@
   <link rel="preload" as="font" type="font/woff2" href="<%= url_for('fonts/lxgw-marker-gothic-v1.003.woff2') %>" crossorigin>
   <% } %>
   <% if (is_home()) { %>
+  <link rel="preload" as="image" type="image/svg+xml" href="<%= url_for(theme.scene.window_mask_desktop) %>" media="(min-width: 761px)" fetchpriority="high">
+  <link rel="preload" as="image" type="image/svg+xml" href="<%= url_for(theme.scene.window_mask_mobile) %>" media="(max-width: 760px)" fetchpriority="high">
   <link rel="preload" as="image" href="<%= url_for(theme.scene.room_desktop) %>" media="(min-width: 761px)" fetchpriority="high">
   <link rel="preload" as="image" href="<%= url_for(theme.scene.room_mobile) %>" media="(max-width: 760px)" fetchpriority="high">
   <style>
-    html.starry-loading,html.starry-loading body{margin:0;background:#042b68;overflow:hidden}
+    html.starry-loading,html.starry-loading body{margin:0;background:#031a87;overflow:hidden}
     .starry-loading #home-fallback{display:none}
+    .starry-loading #world{visibility:visible;background:#031a87}
+    .starry-loading #world>:not(#sky){visibility:hidden}
+    #sky{opacity:1;transition:opacity .45s ease}
+    .starry-loading #sky{opacity:0}
     .starry-loading #room:not([hidden]){display:block;position:fixed;inset:0;z-index:40;overflow:clip}
     .starry-loading .room-stage{position:absolute;width:max(100vw,177.683vh);height:max(56.28vw,100vh);left:50%;top:50%;margin-left:min(-50vw,-88.8415vh);margin-top:min(-28.14vw,-50vh)}
-    .starry-loading .room-image{display:block;width:100%;height:100%;object-fit:cover}
-    @media(max-width:760px){.starry-loading .room-stage{width:max(100vw,56.28vh);height:max(177.683vw,100vh);margin-left:min(-50vw,-28.14vh);margin-top:min(-88.8415vw,-50vh)}}
+    .starry-loading .room-image{display:block;width:100%;height:100%;object-fit:cover;mask-image:var(--window-mask-desktop);mask-mode:alpha;mask-size:100% 100%;mask-repeat:no-repeat}
+    @media(max-width:760px){.starry-loading .room-stage{width:max(100vw,56.28vh);height:max(177.683vw,100vh);margin-left:min(-50vw,-28.14vh);margin-top:min(-88.8415vw,-50vh)}.starry-loading .room-image{mask-image:var(--window-mask-mobile)}}
+    @media(prefers-reduced-motion:reduce){#sky{transition:none}}
   </style>
   <script>
     document.documentElement.classList.add('starry-loading');
@@ -72,8 +80,11 @@
   <link rel="stylesheet" href="<%= url_for('css/starry/motion.css') %>">
   <link rel="stylesheet" href="<%= url_for('css/starry/reader.css') %>">
   <link rel="stylesheet" href="<%= url_for('css/starry/observation.css') %>">
+  <% if (themeSwitch) { %><link rel="stylesheet" href="<%= url_for('css/blog-theme-switch.css') %>"><% } %>
 </head>
 <body class="<%= isStarryArticle || isStarryCollection ? 'has-starry-experience' : '' %><%= isStarryArticle ? ' article-page' : '' %>"
+      data-blog-current-root="<%= config.dual_theme?.current_root || '' %>"
+      data-blog-target-root="<%= config.dual_theme?.target_root || '' %>"
       data-scene="painted"
       data-default-motion="<%= theme.scene.motion === 'soft' ? 'soft' : 'full' %>"
       data-starry-article-id="<%= isStarryArticle ? page.starry_id : '' %>"
@@ -90,6 +101,10 @@
       data-starry-meting-script="<%= audioAssets.meting %>"
       style="--window-mask-desktop:url('<%= url_for(theme.scene.window_mask_desktop) %>');--window-mask-mobile:url('<%= url_for(theme.scene.window_mask_mobile) %>')">
   <%- body %>
+  <% if (themeSwitch) { %>
+  <a class="blog-theme-switch blog-theme-switch-fixed" data-blog-theme-switch href="<%= themeSwitch.href %>"><%= themeSwitch.label %></a>
+  <script src="<%= url_for('js/blog-theme-switch.js') %>"></script>
+  <% } %>
   <script type="module" src="<%= url_for('js/starfield/static-page.js') %>"></script>
 </body>
 </html>

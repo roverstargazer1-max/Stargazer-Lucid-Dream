@@ -1,3 +1,5 @@
-# Production static output for the new theme; does not change the default Kira build.
+# Standalone new-theme output. Normal production builds use the dual-theme pipeline.
 theme: stargazer-starfield
 public_dir: public
+root: /
+dual_theme: false

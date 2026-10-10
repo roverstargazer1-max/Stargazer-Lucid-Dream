@@ -96,7 +96,11 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: hexo-theme-kira
+theme: stargazer-starfield
+
+# npm run build publishes both themes. Choose which one occupies the root URL.
+blog:
+  default_theme: starfield # starfield or legacy; the other theme gets a subdirectory
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment

@@ -1,6 +1,6 @@
 # Stargazer Starfield 个人主题
 
-更新日期：2026-10-08。位于 `codex/starfield-personal` 分支的独立 Hexo 主题，采用 V20 窗边与穹顶场景、冷色复古阅读窗口、B「视线聚焦」开合和点星后轻雾显字。当前观测面板与宝蓝／深蓝配色已接入真实文章页面。使用全部真实文章；原型中的调试面板、模拟文章、布局导出和方案切换留在实验目录。旧 Kira 主题及配置保留，默认生产构建仍选择 Kira。
+更新日期：2026-10-10。位于 `codex/starfield-personal` 分支的独立 Hexo 主题，采用 V20 窗边与穹顶场景、冷色复古阅读窗口、B「视线聚焦」开合和点星后轻雾显字。当前观测面板与宝蓝／深蓝配色已接入真实文章页面。使用全部真实文章；原型中的调试面板、模拟文章、布局导出和方案切换留在实验目录。旧 Kira 主题及配置保留，统一构建以新版为根主页、旧版为 `/legacy/`，两边提供切换入口。
 
 本主题是 V20 设计成果接入真实内容后的实现，和 [4173 模拟文章原型](../hexo-theme-kira/prototypes/starfield/README.md)分别维护。最近的阅读与观测界面调整发生在本主题中，预览最新效果请使用 4175。完整入口关系见 [项目 README](../../README.md)。
 
@@ -13,15 +13,15 @@ npm ci
 npm run start:starfield
 ```
 
-写完 Markdown，执行 `npm run start:starfield`，自动保存身份、原链接、描述和新星位置，并启动 [http://127.0.0.1:4175/](http://127.0.0.1:4175/)。服务已运行时执行 `npm run preview:starfield` 后刷新页面；静态服务不监听文件，也不会自动打开浏览器。预览位于 `.preview/stargazer/`。`prepare:starfield` 是同一准备与生成流程的别名；`serve:starfield` 仅提供已有静态文件。
+写完 Markdown，执行 `npm run start:starfield`，自动保存身份、原链接、描述和新星位置，并启动 [http://127.0.0.1:4175/](http://127.0.0.1:4175/)。服务已运行时执行 `npm run preview:starfield` 后刷新页面；静态服务不监听文件，也不会自动打开浏览器。双主题预览位于 `.preview/stargazer/`，旧版在其 `legacy/` 下；两边共享一份文章。`prepare:starfield` 是同一准备与生成流程的别名；`serve:starfield` 仅提供已有静态文件。
 
-预览保存的文章 Front-matter 和 `source/_data/starry-layout.json` 要与正文一起提交。`npm run build:starfield` 读取已保存数据，生成用于托管的 `public/`，不自动为新文章分配星位，也不执行远程部署。Netlify 默认生产构建仍是旧 Kira，新版只配置在 Deploy Preview；发布与恢复见 [操作指南](../../docs/operations/starfield-blog.md)。
+预览保存的文章 Front-matter 和 `source/_data/starry-layout.json` 与正文一起提交。`npm run build`、`npm run build:starfield` 和 `npm run netlify` 都自动准备新文章并生成双主题 `public/`；只填写原有字段也可构建。托管端新增身份可复现，生成文件不会自动写回 GitHub。正式与 Deploy Preview 使用相同流程；这些命令只构建本地文件。发布、平台生产分支核对与旧版设为默认的方法见 [操作指南](../../docs/operations/starfield-blog.md)。
 
 ## 内容与配置
 
 默认动效采用镜头推进，窗边和星空界面均不显示方式切换按钮。轻过渡逻辑保留；以后只需把本主题 `_config.yml` 中的 `scene.motion` 从 `full` 改为 `soft`，重新生成预览即可切换。`?motion=soft`／`?motion=full` 保留为开发检查入口。
 
-文章、页面和图片共享根目录的 `source/`。主题场景与首页重点文章设置在本目录 `_config.yml`；预览和生产输出选择在根目录 `_config.stargazer-preview.yml`、`_config.stargazer.yml`。友链继续读取 `_config.hexo-theme-kira.yml`。
+文章、页面和图片共享根目录的 `source/`。主题场景与首页重点文章设置在本目录 `_config.yml`；常规预览和生产输出由根目录 `build-blog.cjs` 管理；`_config.stargazer-preview.yml`、`_config.stargazer.yml` 只作低层单主题覆盖。根入口选择在 `_config.yml` 的 `blog.default_theme`。友链继续读取 `_config.hexo-theme-kira.yml`。
 
 文章关系填写在 Front-matter 的 `related` 中，引用文件名而非标题，不含 `.md`。每对文章只配置一次，自动双向；理由选填，未写理由仍保留文末跳转入口。修改文件名时同步修改引用；修改标题不影响引用、旧链接或星位。
 

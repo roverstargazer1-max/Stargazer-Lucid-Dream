@@ -1,8 +1,8 @@
 <div class="kira-sidebar" id="sidebar">
 	<div class="kira-avatar mdui-ripple">
-		<a href="<%= theme.avatar %>" title="<%= config.author || config.title %>">
+		<a href="<%= url_for(theme.avatar) %>" title="<%= config.author || config.title %>">
 			<img
-				src="<%= theme.avatar %>"
+				src="<%= url_for(theme.avatar) %>"
 				alt="<%= config.author || config.title %>"
 			/>
 		</a>

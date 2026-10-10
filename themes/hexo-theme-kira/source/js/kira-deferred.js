@@ -1,9 +1,10 @@
 (function () {
 	'use strict';
+	const root = document.body.dataset.kiraRoot || '/';
 
 	const musicScripts = [
-		'/deps/js/APlayer.min.js',
-		'/deps/js/Meting.min.js',
+		`${root}deps/js/APlayer.min.js`,
+		`${root}deps/js/Meting.min.js`,
 	];
 	let musicPromise = null;
 
@@ -11,7 +12,7 @@
 		if (document.querySelector('link[data-kira-deferred-aplayer]')) return;
 		const link = document.createElement('link');
 		link.rel = 'stylesheet';
-		link.href = '/deps/css/APlayer.min.css';
+		link.href = `${root}deps/css/APlayer.min.css`;
 		link.setAttribute('data-kira-deferred-aplayer', '');
 		document.head.appendChild(link);
 	};

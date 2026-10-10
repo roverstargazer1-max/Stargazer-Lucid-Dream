@@ -107,6 +107,9 @@
   <div class="reading-frame">
     <header class="reading-header">
       <span id="reading-window-title" class="sr-only">观星者的清醒梦</span>
+      <% const readerThemeSwitch = blog_theme_switch(page); if (readerThemeSwitch) { %>
+      <a class="blog-theme-switch" data-blog-theme-switch href="<%= readerThemeSwitch.href %>"><%= readerThemeSwitch.label %></a>
+      <% } %>
       <button id="close-reader" type="button" aria-label="关闭文章，返回星空" title="关闭文章，返回星空">
         <img data-src="<%= url_for('images/observation/close.png') %>" alt="" draggable="false">
       </button>
@@ -130,6 +133,7 @@
   <div class="collection-frame">
     <header class="collection-header">
       <div><h2 id="collection-panel-title">文章清单</h2></div>
+      <% if (readerThemeSwitch) { %><a class="blog-theme-switch" data-blog-theme-switch href="<%= readerThemeSwitch.href %>"><%= readerThemeSwitch.label %></a><% } %>
       <button id="close-collection" type="button">回到星空</button>
     </header>
     <div id="collection-scroll" tabindex="0"><div id="collection-content-slot"></div></div>

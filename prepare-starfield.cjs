@@ -12,7 +12,8 @@ const MINIMUM_SPACING = 900;
 
 async function main() {
   const root = process.cwd();
-  const hexo = new Hexo(root, { silent: true });
+  // Read posts through the original theme, which also owns the existing tag syntax.
+  const hexo = new Hexo(root, { silent: true, config: '_config.yml,_config.legacy-preview.yml' });
   await hexo.init();
 
   let posts;
@@ -45,7 +46,8 @@ async function main() {
     }
 
     let id = frontMatter.starry_id == null ? '' : String(frontMatter.starry_id).trim();
-    if (!id) id = `article-${crypto.randomUUID()}`;
+    // A clean Netlify checkout must assign the same identity as a local build.
+    if (!id) id = `article-${crypto.createHash('sha256').update(post.source).digest('hex').slice(0, 32)}`;
     if (!ID_PATTERN.test(id)) {
       throw new Error(`Invalid starry_id "${id}" in ${post.source}; use a saved lowercase ID.`);
     }

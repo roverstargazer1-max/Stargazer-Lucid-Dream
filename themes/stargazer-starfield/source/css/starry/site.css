@@ -119,6 +119,7 @@ body[data-room="inside"] #world, body[data-room="entering"] #world > :not(#sky),
 #reader-content :is(ul, ol), .article-content :is(ul, ol) { padding-left: 1.6em; color: #34485e; font: 16px/2 var(--serif); }
 #reader-content li, .article-content li { margin: 0 0 12px; }
 #reader-content img, .article-content img { display: block; max-width: 100%; height: auto; margin: 24px auto; }
+#reader-content :is(video, audio, iframe), .article-content :is(video, audio, iframe) { max-width: 100%; }
 #reader-content a, .article-content a, .generic-post a { color: #365b7b; text-decoration: underline; text-underline-offset: 3px; overflow-wrap: anywhere; }
 #reader-content pre, .article-content pre { max-width: 100%; overflow: auto; overscroll-behavior: contain; }
 #reader-content blockquote, .article-content blockquote { margin: 24px 0; padding: 3px 0 3px 18px; color: #52677a; border-left: 2px solid #a8b2b8; }

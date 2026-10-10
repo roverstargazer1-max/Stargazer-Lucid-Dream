@@ -6,9 +6,9 @@
   NODE_VERSION = "22.19.0"
   NPM_VERSION = "10.9.3"
 
-# A future preview deployment can exercise the new static theme without switching production.
+# Deploy Previews exercise the same two-theme output as production.
 [context.deploy-preview]
-  command = "npm run build:starfield"
+  command = "npm run netlify"
 
 [[headers]]
   for = "/image/*"
@@ -37,5 +37,16 @@
 
 [[headers]]
   for = "/starry/*"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# The alternate theme has separate scripts and styles; always revalidate them.
+[[headers]]
+  for = "/legacy/*"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/starfield/*"
   [headers.values]
     Cache-Control = "public, max-age=0, must-revalidate"

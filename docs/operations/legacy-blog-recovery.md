@@ -1,66 +1,53 @@
 # 旧 Kira 博客的预览与恢复
 
-更新日期：2026-10-08。旧博客的文章、图片、本地定制主题与配置都保留在仓库中，新版星空主题读取同一份源内容。切回 Kira 通常只需恢复构建选择，无须覆盖文章或删除新版代码。
+更新日期：2026-10-10。新旧博客共享一份 `source/`，默认统一构建是新版 `/`、旧版 `/legacy/`。旧主题与配置仍在仓库中，文章无需复制或回退。
 
-## 运行环境与保存的基线
+## 日常新旧对照
 
-使用 `.nvmrc` 中的 Node.js `22.19.0`、npm `10.9.3` 和根目录 `package-lock.json`，安装命令为 `npm ci`。当前 npm 锁文件为 v3，锁定 Hexo `8.1.2` 和 moment-timezone `0.6.2`。
-
-旧 pnpm v9 锁文件保存在 `.scratch/starry-blog/baselines/pnpm-lock.yaml`，当时解析为 Hexo `8.0.0` 和 moment-timezone `0.6.0`。它用于历史恢复对照，不参与当前安装；将它放回站点根目录会影响部署平台的包管理器选择。
-
-恢复资料：
-
-- [2026-09-30 工作区清单](../../.scratch/starry-blog/baseline-worktree-manifest-20260930.json)及[当时状态](../../.scratch/starry-blog/baseline-worktree-status-20260930.txt)：记录已有文件和校验值。
-- [旧版配置基线](../../.scratch/starry-blog/baselines/legacy-2026-09-30/manifest.json)：保存站点配置、Kira 配置、package.json、npm 锁文件、Netlify 配置、Node 版本与忽略规则。
-- [旧版重建证据](../../.scratch/starry-blog/evidence/02-legacy-build.md)：记录当时的干净安装、构建、路由及浏览器验证。
-
-## 日常预览旧博客
-
-在仓库根目录安装依赖后启动 Hexo 开发服务：
+使用 `.nvmrc` 中的 Node.js `22.19.0`、npm `10.9.3` 和根目录 `package-lock.json`：
 
 ```bash
 npm ci
-npm run server
+npm start
 ```
 
-打开 [http://localhost:4000/](http://localhost:4000/)。默认 `_config.yml` 选择 `hexo-theme-kira`，`_config.hexo-theme-kira.yml` 提供本地主题配置。该开发服务监听文件变化；可用 `npm run server -- --port 4001` 改端口。
+同时打开 [新版](http://127.0.0.1:4175/)和 [旧版](http://127.0.0.1:4175/legacy/)。两边文章／归档均可切换到对应内容。写作仍只改 `source/_posts/`，修改后执行 `npm run preview:starfield` 并刷新；统一入口自动准备星位和生成两个主题。
 
-需要与新版同时对照时，使用旧版隔离的静态预览：
+单独预览原来根路径下的旧主题：
 
 ```bash
 npm run preview:legacy
 npm run serve:legacy
 ```
 
-打开 [http://127.0.0.1:4176/](http://127.0.0.1:4176/)。产物为 `.preview/legacy/`；服务不监听源文件，修改后重新执行 `preview:legacy` 并刷新。
+打开 [4176 旧版独立预览](http://127.0.0.1:4176/)。需要监听文件修改的旧 Hexo 开发服务，使用 `npm run server:legacy`，地址为 [4000](http://localhost:4000/)；可加 `-- --port 4001`。`npm run server` 现在启动统一的双主题静态预览。
 
-## 新旧预览目录与生产目录
+## 让旧版重新成为默认主页
 
-| 用途 | 启动方式 | 目录 / 地址 |
-| --- | --- | --- |
-| 真实文章新版 | `npm run start:starfield` | `.preview/stargazer/`，4175 |
-| 旧 Kira 静态预览 | `npm run preview:legacy` 后 `npm run serve:legacy` | `.preview/legacy/`，4176 |
-| V20 模拟文章原型 | `npm run prototype:stars` | 原型源目录，[4173 原型](http://127.0.0.1:4173/pages/starfield-prototype/?variant=C&scene=painted&v=20&controls=quiet&motion=full&living=1) |
-| V19 冻结对照 | `node .scratch/starry-blog/baseline-server.mjs` | 冻结副本，[4174 对照](http://127.0.0.1:4174/pages/starfield-prototype/?variant=C&scene=painted&controls=quiet&motion=soft&living=0) |
-| 旧版生产构建 | `npm run netlify` | `public/` |
-| 新版生产构建 | `npm run build:starfield` | `public/` |
+在 `_config.yml` 中修改：
 
-两个静态预览服务可同时打开；准备和 Hexo 生成流程共享 `db.json`，依次执行。新旧生产构建共用 `public/`，后一次构建替换前一次产物。原型在 Kira 的 `prototypes/` 中，不属于主题发布资源，启动器拒绝 `NODE_ENV=production`。
-
-## 切回旧主题
-
-当前默认构建已是旧 Kira。未来上线新版后，切回时：
-
-1. 保留文章、布局与新版主题，确认 `_config.yml` 的 `theme` 为 `hexo-theme-kira`。
-2. 将 Netlify 的生产构建恢复为 `npm run netlify`，发布目录保持 `public/`。若设置了 `[context.production]` 覆盖，也同步恢复；Deploy Preview 可继续使用新版。
-3. 本地运行以下命令，检查旧站产物，再按实际发布安排部署并验证旧文章直达地址。
-
-```bash
-npm run netlify
-npm run server -- --static --port 4000
+```yaml
+blog:
+  default_theme: legacy
 ```
 
-新版准备流程保存的 `starry_*` 字段和 `permalink` 与 Kira 兼容；恢复外观不需要回退正文或删除稳定星位。实际发布与回滚以 Netlify 项目的绑定及部署记录为准，见 [发布指南](starfield-blog.md#github--netlify)。
+然后运行 `npm run preview:starfield` 或 `npm run build`。Kira 将位于 `/`，新版位于 `/starfield/`，一份文章仍同时渲染，切换入口继续保留。改回 `starfield` 恢复新版根主页。普通根配置中的 `theme` 沿用新版，双主题构建以 `blog.default_theme` 选择根入口。
+
+如果需要只生成旧主题作为应急恢复：
+
+```bash
+npm run build:legacy
+```
+
+输出为 `public/`，Kira 占根路径。此命令没有备用主题切换入口；不会删除主题代码、正文、自动元信息或稳定星位。线上回滚可先通过 Netlify 的 Deploys 重新发布此前成功的部署；后续构建选择与平台操作见 [发布指南](starfield-blog.md#github--netlify)。
+
+## 运行环境与保存的基线
+
+根目录活动 npm 锁文件锁定 Hexo `8.1.2` 和 moment-timezone `0.6.2`。旧 pnpm v9 锁文件在 `.scratch/starry-blog/baselines/pnpm-lock.yaml`，只用于历史对照，不参与当前安装。
+
+- [2026-09-30 工作区清单](../../.scratch/starry-blog/baseline-worktree-manifest-20260930.json)及[当时状态](../../.scratch/starry-blog/baseline-worktree-status-20260930.txt)。
+- [旧版配置基线](../../.scratch/starry-blog/baselines/legacy-2026-09-30/manifest.json)：配置、锁文件、Netlify、Node 及忽略规则。
+- [旧版重建证据](../../.scratch/starry-blog/evidence/02-legacy-build.md)：当时的安装、构建与浏览器验证。
 
 ## 完整重建历史配置
 
@@ -85,8 +72,8 @@ npm run server -- --static --port 4000
 
 ## Netlify 配置与验证边界
 
-当前 `netlify.toml` 固定 Node `22.19.0`、npm `10.9.3`，默认命令为 `npm run netlify`，Deploy Preview 命令为 `npm run build:starfield`，发布目录均为 `public/`。`/image/*`、`/lib/*`、`/deps/*` 保留一周缓存；`/css/*`、`/js/*`、`/starry/*` 要求重新验证缓存，避免新旧模块混用。
+当前 `netlify.toml` 固定 Node `22.19.0`、npm `10.9.3`。正式与 Deploy Preview 均使用 `npm run netlify`，发布 `public/`，包含两个主题。备用主题目录、脚本、样式和星图要求重新验证缓存；原图片等共享资源的缓存策略沿用。
 
-实际生产分支、项目绑定、构建镜像、远程预览、部署历史和线上深链接没有本仓库内的完整验收记录。此次文档说明不替代平台验证；恢复步骤本身也不会执行线上发布。
+只在平台界面改构建命令会被 TOML 中的同名设置覆盖。要持续以旧主题作根主页，优先提交 `blog.default_theme: legacy`；只输出旧主题时才将 TOML 命令改为 `npm run build:legacy`，并处理 Deploy Preview 覆盖。
 
-官方参考：[Hexo 环境要求](https://hexo.io/docs/)、[Hexo 静态预览](https://hexo.io/docs/server)、[npm ci](https://docs.npmjs.com/cli/v10/commands/npm-ci)、[Netlify 构建配置](https://docs.netlify.com/build/configure-builds/file-based-configuration/)。
+作者已确认平台生产分支为 `master`；Linux 云构建和此次线上部署仍需发布时验收。这里的恢复步骤不会自行部署。依据：[Netlify 文件配置](https://docs.netlify.com/build/configure-builds/file-based-configuration/)。

@@ -5,7 +5,7 @@
     <div class="kira-friends-friendWrapper">
       <a href="<%= friend.link %>" target="_blank" class="mdui-ripple kira-friends-item">
         <div class="kira-friends-avatarWrapper">
-          <img src="<%= friend.avatar %>" alt="<%= friend.name %>">
+          <img src="<%= url_for(friend.avatar) %>" alt="<%= friend.name %>">
         </div>
         <div class="kira-friends-intro">
           <div class="kira-friends-blogName"><%= friend.name %></div>

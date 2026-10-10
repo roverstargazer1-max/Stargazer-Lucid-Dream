@@ -364,6 +364,7 @@ async function start() {
         ? { starryView: 'collection', mode: layout, collectionPath }
         : { starryView: 'sky', mode: layout };
     history.replaceState(state, '', location.href);
+    window.blogThemeSwitch?.refresh();
   }
 
   function openCollectionPanel() {
@@ -385,6 +386,7 @@ async function start() {
     collectionOpen = false;
     collectionDialog.close();
     history.pushState({ starryView: 'sky', mode }, '', body.dataset.starryRoot);
+    window.blogThemeSwitch?.refresh();
     updateUI();
     homeButton.focus({ preventScroll: true });
   }
@@ -517,6 +519,7 @@ async function start() {
       readerSlot.replaceChildren(node);
       internalArticleHistory = true;
       history.pushState({ starryView: 'reader', starryArticleId: targetArticle.id, mode }, '', localArticleUrl(targetArticle).pathname);
+      window.blogThemeSwitch?.refresh();
       showReader(project(positionOf(targetArticle)));
       void prepareEmbeddedPlayer(node);
     } catch (error) {
@@ -556,6 +559,7 @@ async function start() {
       readerSlot.replaceChildren(node);
       internalArticleHistory = true;
       history.pushState({ starryView: 'reader', starryArticleId: id, mode }, '', localArticleUrl(targetArticle).pathname);
+      window.blogThemeSwitch?.refresh();
       showReader(project(positionOf(targetArticle)));
       void prepareEmbeddedPlayer(node);
     } catch (error) {
@@ -598,6 +602,7 @@ async function start() {
       directCloseInProgress = false;
       internalArticleHistory = false;
       history.replaceState({ starryView: 'sky', mode }, '', body.dataset.starryRoot);
+      window.blogThemeSwitch?.refresh();
       phase = 'settled';
       selected = article.id;
       updateUI();
@@ -702,6 +707,7 @@ async function start() {
       ? localArticleUrl(displayingArticle).pathname
       : displayingCollection ? collectionPath : body.dataset.starryRoot;
     history.replaceState(state, '', url);
+    window.blogThemeSwitch?.refresh();
     internalArticleHistory = Boolean(displayingArticle);
   }
 
@@ -1127,6 +1133,7 @@ async function start() {
         reader.close(); collectionOpen = false; collectionDialog.close();
         readingSnapshot = null; internalArticleHistory = false;
         history.replaceState({ starryView: 'sky', mode }, '', body.dataset.starryRoot);
+        window.blogThemeSwitch?.refresh();
         phase = 'settled'; updateUI(); activateStar(target.id);
       }, project(positionOf(article)));
     });

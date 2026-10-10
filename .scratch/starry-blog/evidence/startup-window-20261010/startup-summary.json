@@ -1,0 +1,15 @@
+{
+  "date": "2026-10-10",
+  "testDelayMs": 5000,
+  "baseline": { "repeatedFailures": 2, "symptom": "visible room mask switches from none to window aperture in one frame" },
+  "desktop": { "viewport": [1280, 720], "verdict": "PASS", "maskUnchanged": true, "fadeObserved": true, "skyOpacity": [0, 0.116662, 1] },
+  "mobile": { "viewport": [390, 844], "verdict": "PASS", "maskUnchanged": true, "fadeObserved": true, "skyOpacity": [0, 0.0217182, 1] },
+  "legacyToNewMobile": "PASS",
+  "pausedMobile": "PASS: stable initial window",
+  "moduleFailure": "PASS: readable fallback",
+  "maskFailure": "PASS: readable fallback",
+  "enterAndReturnDesktop": "PASS",
+  "unitAndBuildTests": { "pass": 35, "fail": 0 },
+  "productionBuild": "PASS: both themes",
+  "deployed": false
+}

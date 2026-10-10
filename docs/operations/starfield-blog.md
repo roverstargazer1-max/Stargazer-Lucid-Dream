@@ -1,45 +1,43 @@
 # 星空博客的写作、预览与发布
 
-更新日期：2026-10-09。本文适用于 `codex/starfield-personal` 分支中的个人主题 `themes/stargazer-starfield/`。
+更新日期：2026-10-10。当前分支 `codex/starfield-personal` 统一构建两个主题：新版在 `/`，旧 Kira 在 `/legacy/`。同一份 Markdown 同时渲染，文章原地址由新版承接；旧版对应地址加上 `/legacy/`。两边的切换入口保留当前文章、归档、标签或页面位置，新版正文阅读窗口内也有入口。
 
-新版已接入真实文章，沿用 V20 窗边与穹顶场景、视线聚焦与轻雾显字。文章页采用 2026-10-09 作者提供的蓝色星月素材，顶部几何装饰承载标题，底部小人随正文阅读进度移动；观测面板以 2026-10-07、2026-10-08 更新为准。旧 Kira 主题、配置和源内容继续保留，仓库默认生产构建仍选择 Kira。实际线上切换尚无本仓库内的部署验收证据。
+这些是仓库配置与本地输出关系，不代表线上已经切换。V20 模拟文章原型仍独立在 4173；真实博客预览使用 4175。
 
-V20 模拟文章原型另在 `themes/hexo-theme-kira/prototypes/starfield/`，使用 4173 端口；本指南运行的是真实文章新版，使用 4175 端口。三种入口的关系和启动方式见 [项目 README](../../README.md)。
+## 首次运行与日常写作
 
-## 首次运行
-
-使用 `.nvmrc` 中的 Node.js `22.19.0` 和 npm `10.9.3`，在仓库根目录执行：
+使用 Node.js `22.19.0`、npm `10.9.3` 和根目录 `package-lock.json`：
 
 ```bash
 npm ci
-npm run start:starfield
+npm start
 ```
 
-打开 [http://127.0.0.1:4175/](http://127.0.0.1:4175/)。根目录只有 `package-lock.json` 作为活动锁文件；历史 pnpm 锁文件归档，不参与当前安装。
+打开 [新版主页](http://127.0.0.1:4175/)和 [旧版主页](http://127.0.0.1:4175/legacy/)。`npm run start:starfield`、`npm run server` 为同一入口。
 
-## 日常写作
-
-继续在 `source/_posts/` 写 Markdown，填写原有 title、date、tags、cover 等字段；可用 `npx hexo new post "文章标题"` 新建文章。全部已发布文章都会成为星星，不需要填写编号。草稿仍放在 `source/_drafts/`，正常星空生成不包含草稿；用 `npx hexo publish "草稿文件名"` 发布后再预览。写完执行：
+按原来的主题方式写文章：
 
 ```bash
-npm run start:starfield
+npx hexo new post "文章标题"
 ```
 
-它先自动准备身份、原链接、描述和新星位置，再生成新版预览并启动服务。服务不会自动打开浏览器，也不监听文件修改。如果服务已经运行，在另一个终端执行以下命令，然后刷新浏览器；主题或配置修改也用同一流程：
+在 `source/_posts/` 中填写原有 title、date、tags、cover 等字段与 Markdown 正文。原有相对 `../image/` 图片写法继续兼容，两边的 HTML 都映射到各自发布的图片目录；原稿不改。原生 HTML、引用、列表仍走 Hexo 渲染；原 Kira 的 biliplayer、pen、krplayer、meting 标签由新版复用原实现，写法相同。
+
+服务已运行时，修改文章、配置或主题后执行：
 
 ```bash
 npm run preview:starfield
 ```
 
-终端按 `Ctrl+C` 停止服务。`serve:starfield` 只提供已有静态文件，不会生成；首次运行或清理产物后应先预览生成。
+随后刷新浏览器。该命令自动完成准备、保存与两个主题的生成，无须先执行额外准备命令；服务没有文件监听。服务未运行则直接 `npm start`，停止按 `Ctrl+C`。
 
-自动生成的 `starry_id`、`starry_original_permalink`、`permalink`、`starry_excerpt_generated` 不要手动改。改文章标题不会改身份、旧链接或星位。`starry_excerpt` 继续用于文章描述元信息；点星后用观测面板显示发布年份、月日和 READ 入口，不展示长摘要。标题默认隐藏，鼠标靠近文章星时才在星旁显示；键盘聚焦或触屏点选也可显露对应标题。未读为白色，当次访问读到文末后为灰色；关联理由和跳转保留在正文中。若想自写描述，填写 `starry_excerpt`，并删除 `starry_excerpt_generated` 或设为 false。没写时会从正文自动提取。
+文章身份、原链接、描述与新星位自动保存到 Front-matter 和 `source/_data/starry-layout.json`，与文章一起提交即可。已有文章与星位不会因新增文章重排，自动字段不要手工修改。新文章只填原字段也能在 Netlify 构建：身份由文件路径确定，相同源内容与已有布局可复现。为了让后续更名也延续身份与链接，正常写作仍建议先本地预览，再提交准备结果；托管构建中生成的文件不会自动写回 GitHub。
 
-准备结果保存在文章 Front-matter 和 `source/_data/starry-layout.json`，应与正文、图片一起提交。新文章只寻找空位，已经保存的关联模式位置不会重排。删除文章后的坐标保留，恢复同一篇文章时仍能找回原位置。时间模式根据真实日期排列。
+草稿放在 `source/_drafts/`，正常构建不发布。用 `npx hexo publish "草稿文件名"` 发布后，两边下一次构建同时加入该文章。
 
 ## 可选文章配置
 
-关联引用**文件名，不含 .md**；每对文章只配一次，双方都会出现入口。下面仅说明格式，请替换为自己的真实文件名，不要照抄示例目标：
+不填下面的字段也能发布。文章关系引用**文件名，不含 .md**，每对只写一次，自动双向；理由选填：
 
 ```yaml
 related:
@@ -51,64 +49,66 @@ star:
   isolated: false
 ```
 
-`rank` 可选 ordinary（普通，默认）、important（重要）、treasured（珍藏）。`isolated: true` 不自动生成空间探索路径或时间连线，文章仍可发现、阅读；作者显式写的关联照常保留。
+`rank` 可选 ordinary、important、treasured；`isolated: true` 不生成空间探索路径或时间连线，作者明确的关联仍保留。无效关联会提示源文件，不阻止合法文章阅读。标题可改；改文件名时同步改其他文章的 related 引用。标签与距离不会自动成为内容关系。
 
-标题可以改；文件名改了则同步改其他文章中的 related 引用。文件名应唯一。自关联、找不到目标或无效理由会在生成时提示源文件，合法文章仍能生成。不给理由也有文末文章入口；没有 related 的文章照常发布。标签或距离不会被当作内容关系。
+`starry_excerpt` 用于描述元信息；不填时自动提取正文。要手写描述，填写它并删除 `starry_excerpt_generated` 或设为 false。点星后仍显示既有日期观测面板，不展示长摘要。其余星空交互和文章视觉沿用当前已确认设计。
 
-## 预览与生产输出
+## 预览、生产与切回
 
 | 用途 | 命令 | 输出 / 地址 |
 | --- | --- | --- |
-| 新版准备并生成 | `npm run preview:starfield` | `.preview/stargazer/` |
-| 准备别名 | `npm run prepare:starfield` | 与 `preview:starfield` 相同，也生成预览 |
-| 仅生成已准备内容 | `npm run generate:starfield` | `.preview/stargazer/`，不自动分配身份／星位 |
-| 新版服务 | `npm run serve:starfield` | `http://127.0.0.1:4175/` |
-| 新版一次预览并服务 | `npm run start:starfield` | 同上 |
-| 旧版生成 | `npm run preview:legacy` | `.preview/legacy/` |
-| 旧版服务 | `npm run serve:legacy` | `http://127.0.0.1:4176/` |
-| 新版生产构建 | `npm run build:starfield` | `public/`，读取已提交布局，不自动改文章 |
-| 当前默认生产构建 | `npm run netlify` | 旧 Kira，`public/` |
-| 本地自动验证 | `npm test` | 准备、静态生成与行为检查 |
+| 双主题准备与生成 | `npm run preview:starfield` | `.preview/stargazer/`，含 `legacy/` |
+| 双主题预览并启动 | `npm start` / `npm run start:starfield` | 4175 |
+| 仅提供已有预览 | `npm run serve:starfield` | 4175 |
+| 单独旧版预览 | `npm run preview:legacy` 后 `npm run serve:legacy` | `.preview/legacy/`，4176 |
+| 旧版监听式开发服务 | `npm run server:legacy` | 4000 |
+| 双主题正式构建 | `npm run build` / `npm run build:starfield` / `npm run netlify` | `public/`，含 `legacy/` |
+| 只输出旧版用于恢复 | `npm run build:legacy` | `public/`，Kira 在根路径 |
+| 自动验证 | `npm test` | 包含双主题与新增普通文章回归 |
 
-各预览目录分开；两个生产构建都会重建 `public/`，后执行的构建会替换前一个结果。Hexo 共享根目录 `db.json`，准备与生成命令按顺序运行。两个静态服务可同时运行，旧版服务直接读取旧版静态预览，不受随后新版生成影响。
+`prepare:starfield` 是双主题预览的兼容别名。`generate:starfield` 是仅生成已准备内容的低层命令，会生成没有旧版切换入口的单主题预览；日常请用统一入口。准备与生成共享 `db.json`，不能并发执行；静态服务可以并行。统一构建先在临时目录完成两边，成功后替换输出，避免一边构建失败覆盖可用预览。`/legacy/` 为备用主题保留，不能给文章或页面配置冲突地址。
 
-默认预览服务仅监听 `127.0.0.1`。端口占用时先停止旧进程，或在当前终端设置 `STARFIELD_PREVIEW_PORT` 再启动服务；该变量同时适用于新版和旧版静态服务。`start:starfield` 包含两个脚本，不能用 `-- --port` 给其中的静态服务改端口；4000 的 Hexo 开发服务则使用 `npm run server -- --port 4001`。
+若希望旧版重新作为全站默认主页，修改 `_config.yml`：
 
-原文章地址打开先显示正文；关闭正文后进入该文章的星空。旧 `/pages/archive/`、`/pages/friends/`、`/pages/mine/`、归档年月、标签和分类地址保留。友链继续读取 `_config.hexo-theme-kira.yml`，避免两份名单漂移。音乐继续用原歌单和资源；第三方音乐服务失败时不会挡住正文。
+```yaml
+blog:
+  default_theme: legacy
+```
 
-星空失败时显示静态正文或全部真实文章入口。文章内部 style 限制在文章作用域；当前内容使用的相对 image 路径在生成时承接到现有图片，Markdown 原文不改。旧浏览器不支持 CSS 作用域时可继续阅读正文，但自定义美术样式可能不显示。
+执行统一构建后，Kira 在 `/`，新版在 `/starfield/`。改回 `starfield` 恢复新版根主页和 `/legacy/`。文章继续在原来的 `source/` 维护。独立历史恢复见 [旧版指南](legacy-blog-recovery.md)。
+
+默认服务只监听 `127.0.0.1`。端口占用可沿用现有服务，或设置 `STARFIELD_PREVIEW_PORT` 后启动；此变量也适用于旧版静态服务。
 
 ## GitHub → Netlify
 
-当前 `netlify.toml` 的默认构建命令为 `npm run netlify`，输出 `public/`，选择旧 Kira；`[context.deploy-preview]` 覆盖为 `npm run build:starfield`，使用相同发布目录。Deploy Preview 配置只声明预览构建方式，不代表已创建或验证远程预览。构建上下文规则见 [Netlify 配置文档](https://docs.netlify.com/build/configure-builds/file-based-configuration/)。
+已修改仓库中的 `netlify.toml`：
 
-正式发布新版的流程：
+| 设置 | 值 |
+| --- | --- |
+| 构建命令 | `npm run netlify` |
+| 发布目录 | `public` |
+| Deploy Preview 命令 | `npm run netlify`，与正式输出一致 |
+| Node / npm | `22.19.0` / `10.9.3` |
+| 默认内容 | 新版 `/` 与旧版 `/legacy/` |
 
-1. 本地执行 `npm run preview:starfield`，确认真实文章、图片、正文直达和准备数据。
-2. 将文章 Front-matter 与 `source/_data/starry-layout.json` 的变更一并提交，再执行 `npm run build:starfield` 检查生产产物。
-3. 在实际 Netlify 项目核对生产分支、base directory、Node/npm 环境、构建命令、`public/` 发布目录及 Deploy Preview 是否启用。
-4. 先验证远程预览，再按明确的发布安排将生产构建改为 `npm run build:starfield`，向平台绑定的分支推送并检查部署结果。保留可重新发布的旧部署或旧构建配置。
+Netlify 中具体操作：
 
-生产切换独立于本地预览；运行 `start:starfield` 或 `build:starfield` 不会发布线上。
+1. 打开现有项目的 **Project configuration → Build & deploy → Continuous deployment**（部分界面归在 **Developer settings**），确认仓库为本项目，Base directory 为仓库根目录／留空，Build command 为 `npm run netlify`，Publish directory 为 `public`。
+2. 作者已于 2026-10-10 确认 Production branch 为 `master`。保留该绑定，将 `codex/starfield-personal` 的此次改动提交为指向 `master` 的 PR；验证预览后合并。无需把生产分支改为开发分支。可在 **Branches and deploy contexts** 核对绑定是否仍为 `master`。
+3. 确认 Deploy Previews 开启。先通过指向生产分支的 PR 验证远程预览；检查 `/`、`/legacy/`、原中文文章直达和刷新、对应旧文章、双向切换、归档／标签、图片和音乐资源。
+4. 将代码、正文和本地生成的元信息提交并推送到所选生产分支，或合并已验收的 PR，Netlify 自动构建。构建日志应包含两个主题及最终 `Both themes built`，发布目录应同时有两套 HTML。
+5. 发布完成后在正式域名重复核对上述地址。需要回滚可先在 **Deploys** 中将此前成功的部署重新发布；如果希望之后每次构建都保持旧版根主页，再提交 `blog.default_theme: legacy`。只需原主题的应急构建可将 TOML 中构建命令改为 `npm run build:legacy`，Deploy Preview 覆盖也需同步处理。
 
-固定 Node 22.19.0、npm 10.9.3，保留根目录 package-lock.json；安装用 npm ci。新版不需要运行本地原型服务器或后端。JS、CSS、文章索引要求缓存重新验证，避免更新后混用旧模块；已有图片继续按原缓存策略使用。
+同名设置以 `netlify.toml` 为准，只改平台界面的构建命令不能覆盖文件中的命令；生产分支绑定仍需在平台设置。依据：[Netlify 文件配置与优先级](https://docs.netlify.com/build/configure-builds/file-based-configuration/)。
 
-推送前必须先本地预览并提交准备结果。托管端缺少新文章身份/星位时会明确报错，请回到本地预览并提交，不能让托管构建自行分配不持久的位置。
+域名与 DNS 可沿用，单个 Netlify 项目发布整套 `public/` 即可，不需要第二个站点或后台服务。每个原文章和旧版对应地址都有实际 HTML；不要增加 `/* → /index.html` 的强制统一重写。JS、CSS、星图及备用主题目录已配置缓存重新验证，避免更新时混用不同版本。
 
-本地静态生产构建已有成功记录。实际 Netlify 绑定分支、项目设置、Linux 云构建和深链接 HTTP 响应尚无远程验收记录，不能从配置推断线上已切换。发布时检查中文文章直达、刷新、图片与音乐。每个旧文章地址有对应静态 HTML，保持直接访问，不将所有旧链接统一重定向到首页。
-
-## 切回旧版
-
-现在默认构建本就使用 Kira。未来切换后，恢复生产构建为 `npm run netlify`，并确保 `_config.yml` 的 `theme` 仍为 `hexo-theme-kira`；如果新增了 `[context.production]` 覆盖，也需同步恢复它。文章的自动元信息不会妨碍 Kira 读取原正文。
-
-本地执行 `npm run preview:legacy` 和 `npm run serve:legacy` 可随时核对旧版。需要完整恢复历史配置/锁文件时，按照 [旧版恢复说明](legacy-blog-recovery.md) 从保存的基线恢复；不要删除新版主题或原文章来切换外观。
-
-实现验收和设备／媒体限制见 [实施记录](../../.scratch/starry-blog/implementation-progress.md)，当前文章页素材、进度和截图见 [2026-10-09 记录](../../.scratch/starry-blog/evidence/article-page-20261009/README.md)。
+本地生产构建与已登录平台、Linux 云构建、正式上线分别验证。作者已确认生产分支为 `master`；已登录平台设置、云构建与新部署结果尚未验收，本次配置修改及本地预览不会触发线上发布。第三方音频是否成功播放取决于原音乐接口，页面资源可用与音频接口成功应分别判断。
 
 ## 首屏与性能检查（2026-10-09）
 
 复测脚本、Markdown 结论和 `*-summary.json` 摘要提交到仓库；完整报告、截图、录像及逐次测量数据保留本地并由 `.gitignore` 忽略。历史记录中详细产物的相对链接指向本地归档，取得和提交范围见[测试产物保存约定](../../.scratch/starry-blog/evidence/README.md)。
 
-首页加载时先显示原房间插图，窗口按钮在星空准备完成后启用；不会先闪出文章清单。关闭 JavaScript、主模块请求失败或渲染不可用时，文章清单恢复供访问。深链接仍有静态正文回退。
+首页加载时先显示房间前景与最终窗口轮廓，窗外以深蓝底色承接，实时星空准备完成后在 0.45 秒内淡入；不再先露出原插画里另一套窗景。窗口按钮在星空准备完成后启用；不会先闪出文章清单。关闭 JavaScript、主模块请求失败、遮罩图片失败或渲染不可用时，文章清单恢复供访问。深链接仍有静态正文回退。
 
 互动云缓存和无损步行动作图集已随主题保存，预览、生产构建无须安装图像处理工具。更换步行动作 PNG 时需重新生成 WebP 并核对浏览器绘制像素；更新云的种子或造型算法时需同步重建三张 PNG 缓存与命中透明度。生成、回归、冷缓存测量与当前限制见 [性能复测记录](../../.scratch/starry-blog/evidence/performance-20261009/README.md)。

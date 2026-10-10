@@ -45,7 +45,7 @@ test('legacy collections retain scope, friends retain source data, music keeps i
   const expected = yaml.load(fs.readFileSync('_config.hexo-theme-kira.yml', 'utf8')).friends;
   for (const friend of expected) assert.ok(friends('.legacy-friends a').toArray().some(el => friends(el).attr('href') === friend.link));
   const mine = load(fs.readFileSync(path.join(root, 'pages/mine/index.html'), 'utf8'));
-  assert.equal(mine('.aplayer').attr('data-id'), '14457276201');
+  assert.equal(mine('meting-js').attr('id') || mine('.aplayer').attr('data-id'), '14457276201');
   assert.ok(mine('script[src$="static-page.js"]').length);
   const home = load(fs.readFileSync(path.join(root, 'index.html'), 'utf8'));
   assert.equal(home('#home-fallback a').length, posts.length);

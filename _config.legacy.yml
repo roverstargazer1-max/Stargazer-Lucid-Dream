@@ -1,0 +1,5 @@
+# Standalone Kira build for recovery. Shared articles and theme settings are retained.
+theme: hexo-theme-kira
+public_dir: public
+root: /
+dual_theme: false

@@ -3,21 +3,24 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "build": "hexo generate",
+    "build": "node build-blog.cjs",
     "clean": "hexo clean",
     "deploy": "hexo deploy",
-    "server": "hexo server",
+    "start": "npm run preview:starfield && npm run serve:starfield",
+    "server": "npm start",
+    "server:legacy": "hexo server --config _config.yml,_config.legacy-preview.yml",
     "prototype:stars": "node themes/hexo-theme-kira/prototypes/starfield/server.mjs",
     "prepare:starfield": "npm run preview:starfield",
-    "preview:starfield": "node prepare-starfield.cjs && npm run generate:starfield",
+    "preview:starfield": "node build-blog.cjs --preview",
     "generate:starfield": "hexo clean --config _config.yml,_config.stargazer-preview.yml && hexo --config _config.yml,_config.stargazer-preview.yml generate",
-    "start:starfield": "npm run preview:starfield && npm run serve:starfield",
-    "build:starfield": "hexo clean --config _config.yml,_config.stargazer.yml && hexo generate --config _config.yml,_config.stargazer.yml",
+    "start:starfield": "npm start",
+    "build:starfield": "npm run build",
+    "build:legacy": "hexo clean --config _config.yml,_config.legacy.yml && hexo generate --bail --config _config.yml,_config.legacy.yml",
     "preview:legacy": "hexo clean --config _config.yml,_config.legacy-preview.yml && hexo generate --config _config.yml,_config.legacy-preview.yml",
     "serve:legacy": "node themes/stargazer-starfield/tools/preview-server.mjs --legacy",
     "test": "npm run preview:starfield && node --test tests/*.test.*",
     "serve:starfield": "node themes/stargazer-starfield/tools/preview-server.mjs",
-    "netlify": "npm run clean && npm run build"
+    "netlify": "npm run build"
   },
   "hexo": {
     "version": "8.1.2"

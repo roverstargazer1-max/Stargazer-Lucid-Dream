@@ -7,6 +7,9 @@
         <i class="kirafont icon-menu"></i>
     </a>
     <div class="kira-header-right">
+        <% if (themeSwitch) { %>
+        <a class="blog-theme-switch blog-theme-switch-legacy" data-blog-theme-switch href="<%= themeSwitch.href %>"><%= themeSwitch.label %></a>
+        <% } %>
         <button
             type="button"
             class="kira-header-theme-toggle kira-theme-toggle mdui-ripple"
@@ -50,7 +53,7 @@
         </button>
         <a class="kira-header-avatar" href="<%- url_for('/') %>" title="<%= config.title %>">
             <img
-                src="<%= theme.avatar %>"
+                src="<%= url_for(theme.avatar) %>"
                 alt="<%= config.author || config.title %>"
             />
         </a>
