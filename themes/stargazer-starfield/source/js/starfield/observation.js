@@ -29,7 +29,8 @@ export function renderGlyphs(element, value, assetRoot) {
       return glyph;
     }
     const punctuation = document.createElement('span');
-    punctuation.className = character === '.' ? 'glyph-dot' : character === '-' ? 'glyph-dash' : 'glyph-space';
+    punctuation.className = character === '.' ? 'glyph-dot' : character === '-' ? 'glyph-dash'
+      : character === '·' ? 'glyph-middle-dot' : 'glyph-space';
     return punctuation;
   });
   element.replaceChildren(...glyphs);
@@ -44,10 +45,19 @@ export function createObservationPanel(preview) {
   }
   const yearRows = [...preview.querySelectorAll('.year-row')];
   const dateElement = preview.querySelector('#preview-date');
-  let currentDate = null;
+  const idElement = preview.querySelector('#preview-id');
+  let currentDate = null, currentDisplayId = null;
   return {
     render(now, enabled) { waveform.render(now, enabled); walker.render(now, enabled); },
     update(article) {
+      const displayId = String(article.displayId || '');
+      if (displayId !== currentDisplayId) {
+        renderGlyphs(idElement, displayId, assetRoot);
+        idElement.dataset.displayId = displayId;
+        idElement.setAttribute('aria-label', `文章 ID：${displayId}`);
+        idElement.hidden = !displayId;
+        currentDisplayId = displayId;
+      }
       if (article.date === currentDate) return;
       const date = observationDate(article.date);
       date.years.forEach((item, index) => {

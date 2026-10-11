@@ -28,6 +28,7 @@ body[data-scene=painted] #preview.observation-panel::after { content: none; }
 .asset-glyphs img { display: block; width: auto; height: 1em; pointer-events: none; }
 .glyph-dot { display: block; flex: 0 0 .15em; width: .15em; height: .15em; align-self: flex-end; margin-bottom: .045em; background: #fff; }
 .glyph-dash { display: block; width: .45em; height: .1em; background: #fff; }
+.glyph-middle-dot { display: block; flex: 0 0 .15em; width: .15em; height: .15em; background: #fff; }
 .glyph-space { width: .35em; }
 .year-scale { position: absolute; left: 23.5%; top: 22%; width: 14%; height: 62%; display: grid; grid-template-rows: repeat(5, 1fr); }
 .year-row { position: relative; display: flex; align-items: center; padding-left: 8%; font-size: 2.15cqw; }
@@ -56,6 +57,7 @@ body[data-scene=painted] #preview.observation-panel::after { content: none; }
 .observation-slashes { left: 47.5%; top: 46%; width: 17%; height: auto; }
 body[data-scene=painted] #preview .observation-date { position: absolute; left: 71.5%; top: 56%; font-size: 5.15cqw; gap: .08em; color: #fff; }
 .observation-id { left: 47.5%; top: 78%; width: 3%; height: auto; }
+.observation-id-value { position: absolute; left: 52%; top: 79.3%; font-size: min(1.6cqw, 11px); gap: .06em; color: #fff; pointer-events: none; }
 body[data-scene=painted] #preview #deselect { position: absolute; right: 0; top: 0; display: grid; place-items: center; width: 44px; height: 44px; min-width: 44px; min-height: 44px; padding: 10px; margin: -12px -12px 0 0; }
 #deselect img { display: block; width: 17px; height: auto; }
 /* Include the original decorative rule in the READ button's hit area. */
