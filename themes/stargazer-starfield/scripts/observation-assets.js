@@ -12,12 +12,12 @@ hexo.extend.generator.register('starry-observation-assets', function () {
   const files = [
     ['waveform.png', '声音频率.png'],
     ['waves.png', '波浪纹理.png'],
-    ['read.png', 'READ.png'],
     ['starlink.png', 'STARLINK.png'],
     ['observation-id.png', 'OBS&ID.png'],
     ['close.png', '退出按钮.png'],
     ['polyhedron.png', '右下角跳动几何块.png'],
   ].map(([name, source]) => [name, path.join(artwork, source)]);
+  files.push(['read.png', path.join(assets, '补充素材', '补充', 'READ重设计.png')]);
   for (const name of ['year-pointer', 'diamond', 'dial-ticks', 'dial-bracket', 'date-boxes', 'call-label', 'call-word', 'call-underline', 'hour-label', 'read-rule']) {
     files.push([`${name}.png`, path.join(artwork, 'supplement-crops', `${name}.png`)]);
   }

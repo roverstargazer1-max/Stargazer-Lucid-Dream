@@ -74,9 +74,11 @@ test('the generated PNG artwork and glyphs retain the supplied bytes, and the pr
   const artwork = 'assets/详情弹窗/详细工程文件';
   for (const [name, source] of [
     ['waveform.png', '声音频率.png'],
-    ['waves.png', '波浪纹理.png'], ['read.png', 'READ.png'], ['close.png', '退出按钮.png'],
+    ['waves.png', '波浪纹理.png'], ['close.png', '退出按钮.png'],
     ['polyhedron.png', '右下角跳动几何块.png'], ['starlink.png', 'STARLINK.png'], ['observation-id.png', 'OBS&ID.png'],
   ]) assert.deepEqual(fs.readFileSync(path.join(output, name)), fs.readFileSync(path.join(artwork, source)), name);
+  assert.deepEqual(fs.readFileSync(path.join(output, 'read.png')),
+    fs.readFileSync('assets/补充素材/补充/READ重设计.png'));
   assert.deepEqual(fs.readFileSync(path.join(output, 'silhouette.png')),
     fs.readFileSync('themes/stargazer-starfield/source/images/observation/silhouette.png'));
   const crops = JSON.parse(fs.readFileSync(path.join(artwork, 'supplement-crops/crops.json')));

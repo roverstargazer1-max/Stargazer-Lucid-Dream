@@ -8,6 +8,7 @@
 | 图文开发时间线、历史版本与资料缺口 | [开发记录资料集](../../docs/development/starfield-history/README.md) |
 | 新增星图与文章检索设计、底图候选 | [检索设计记录](../starry-search/spec.md)（设计中，未实现） |
 | 文章星表与组合展示 ID | [暂定采用的决策](../../docs/adr/0001-article-display-id.md)、[研究与登记方案](../starry-astronomy/proposal.md)、[本地实现与验证](evidence/article-display-id-20261011/README.md)（编号与观测面板已接入，星图检索仍待实施） |
+| 最新补充素材、观测间距与 READ 点击范围 | [2026-10-11 接入与验证](evidence/observation-refresh-20261011/README.md) |
 | 作者确认的个人站点范围 | [正式化计划](theme-production-plan.md)、[访谈](theme-planning.md) |
 | 本地实现进展与验证边界 | [实施记录](implementation-progress.md) |
 | 写作、双主题预览与发布 | [操作指南](../../docs/operations/starfield-blog.md) |

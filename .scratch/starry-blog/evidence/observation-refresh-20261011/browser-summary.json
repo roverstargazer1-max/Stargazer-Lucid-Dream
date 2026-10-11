@@ -1,0 +1,478 @@
+[
+  {
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "measurement": {
+      "button": {
+        "x": 1234.140625,
+        "y": 620.8671875,
+        "width": 129.140625,
+        "height": 71.90625,
+        "right": 1363.28125,
+        "bottom": 692.7734375
+      },
+      "image": {
+        "x": 1238.25,
+        "y": 634.1484375,
+        "width": 125.03125,
+        "height": 58.609375,
+        "right": 1363.28125,
+        "bottom": 692.7578125
+      },
+      "rule": {
+        "x": 1235.046875,
+        "y": 621.3203125,
+        "width": 109.90625,
+        "height": 19.234375,
+        "right": 1344.953125,
+        "bottom": 640.5546875
+      },
+      "hits": [
+        "read-button",
+        "read-button",
+        "read-button",
+        "read-button",
+        "read-button"
+      ],
+      "outside": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "id": {
+        "x": 1162.515625,
+        "y": 624.9453125,
+        "width": 61.78125,
+        "height": 6.109375,
+        "right": 1224.296875,
+        "bottom": 631.0546875
+      },
+      "idLabel": {
+        "x": 1143.453125,
+        "y": 620.8671875,
+        "width": 13.734375,
+        "height": 16.9375,
+        "right": 1157.1875,
+        "bottom": 637.8046875
+      },
+      "year": {
+        "x": 1034.4375,
+        "y": 571.1171875,
+        "width": 13.234375,
+        "height": 7.4375,
+        "right": 1047.671875,
+        "bottom": 578.5546875
+      },
+      "unit": {
+        "x": 1055.03125,
+        "y": 568.2265625,
+        "width": 23.984375,
+        "height": 13.21875,
+        "right": 1079.015625,
+        "bottom": 581.4453125
+      },
+      "starlink": {
+        "x": 1304.203125,
+        "y": 505.9140625,
+        "width": 39.828125,
+        "height": 6.40625,
+        "right": 1344.03125,
+        "bottom": 512.3203125
+      },
+      "call": {
+        "x": 1313.8125,
+        "y": 512.3203125,
+        "width": 29.296875,
+        "height": 16.921875,
+        "right": 1343.109375,
+        "bottom": 529.2421875
+      },
+      "bracket": {
+        "x": 1069.71875,
+        "y": 595.2265625,
+        "width": 8.6875,
+        "height": 37.03125,
+        "right": 1078.40625,
+        "bottom": 632.2578125
+      },
+      "ticks": {
+        "x": 1095.828125,
+        "y": 576.4453125,
+        "width": 28.84375,
+        "height": 28.375,
+        "right": 1124.671875,
+        "bottom": 604.8203125
+      },
+      "loaded": true,
+      "overflow": false
+    },
+    "future": {
+      "right": 1229.5,
+      "readLeft": 1234.140625
+    },
+    "coordinateClicks": 5,
+    "keyboard": "passed",
+    "timeMode": "passed",
+    "errors": []
+  },
+  {
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "measurement": {
+      "button": {
+        "x": 264.25,
+        "y": 706.453125,
+        "width": 95.484375,
+        "height": 53.15625,
+        "right": 359.734375,
+        "bottom": 759.609375
+      },
+      "image": {
+        "x": 267.296875,
+        "y": 716.265625,
+        "width": 92.4375,
+        "height": 43.328125,
+        "right": 359.734375,
+        "bottom": 759.59375
+      },
+      "rule": {
+        "x": 264.921875,
+        "y": 706.78125,
+        "width": 81.265625,
+        "height": 14.21875,
+        "right": 346.1875,
+        "bottom": 721
+      },
+      "hits": [
+        "read-button",
+        "read-button",
+        "read-button",
+        "read-button",
+        "read-button"
+      ],
+      "outside": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "id": {
+        "x": 211.28125,
+        "y": 709.46875,
+        "width": 45.671875,
+        "height": 4.515625,
+        "right": 256.953125,
+        "bottom": 713.984375
+      },
+      "idLabel": {
+        "x": 197.1875,
+        "y": 706.453125,
+        "width": 10.15625,
+        "height": 12.515625,
+        "right": 207.34375,
+        "bottom": 718.96875
+      },
+      "year": {
+        "x": 116.59375,
+        "y": 668.90625,
+        "width": 12.453125,
+        "height": 7,
+        "right": 129.046875,
+        "bottom": 675.90625
+      },
+      "unit": {
+        "x": 133.15625,
+        "y": 667.5234375,
+        "width": 17.71875,
+        "height": 9.765625,
+        "right": 150.875,
+        "bottom": 677.2890625
+      },
+      "starlink": {
+        "x": 316.046875,
+        "y": 621.46875,
+        "width": 29.453125,
+        "height": 4.734375,
+        "right": 345.5,
+        "bottom": 626.203125
+      },
+      "call": {
+        "x": 323.15625,
+        "y": 626.203125,
+        "width": 21.671875,
+        "height": 12.515625,
+        "right": 344.828125,
+        "bottom": 638.71875
+      },
+      "bracket": {
+        "x": 142.671875,
+        "y": 687.5,
+        "width": 6.421875,
+        "height": 27.375,
+        "right": 149.09375,
+        "bottom": 714.875
+      },
+      "ticks": {
+        "x": 161.96875,
+        "y": 673.609375,
+        "width": 21.328125,
+        "height": 20.984375,
+        "right": 183.296875,
+        "bottom": 694.59375
+      },
+      "loaded": true,
+      "overflow": false
+    },
+    "future": {
+      "right": 260.796875,
+      "readLeft": 264.25
+    },
+    "coordinateClicks": 5,
+    "keyboard": "passed",
+    "timeMode": "passed",
+    "errors": []
+  },
+  {
+    "viewport": {
+      "width": 320,
+      "height": 568
+    },
+    "measurement": {
+      "button": {
+        "x": 215.859375,
+        "y": 441.203125,
+        "width": 77.015625,
+        "height": 44,
+        "right": 292.875,
+        "bottom": 485.203125
+      },
+      "image": {
+        "x": 218.3125,
+        "y": 449.125,
+        "width": 74.5625,
+        "height": 34.953125,
+        "right": 292.875,
+        "bottom": 484.078125
+      },
+      "rule": {
+        "x": 216.390625,
+        "y": 441.46875,
+        "width": 65.546875,
+        "height": 11.46875,
+        "right": 281.9375,
+        "bottom": 452.9375
+      },
+      "hits": [
+        "read-button",
+        "read-button",
+        "read-button",
+        "read-button",
+        "read-button"
+      ],
+      "outside": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "id": {
+        "x": 173.125,
+        "y": 443.625,
+        "width": 36.828125,
+        "height": 3.640625,
+        "right": 209.953125,
+        "bottom": 447.265625
+      },
+      "idLabel": {
+        "x": 161.765625,
+        "y": 441.203125,
+        "width": 8.1875,
+        "height": 10.09375,
+        "right": 169.953125,
+        "bottom": 451.296875
+      },
+      "year": {
+        "x": 96.734375,
+        "y": 410.234375,
+        "width": 12.453125,
+        "height": 7,
+        "right": 109.1875,
+        "bottom": 417.234375
+      },
+      "unit": {
+        "x": 110.09375,
+        "y": 409.734375,
+        "width": 14.515625,
+        "height": 8,
+        "right": 124.609375,
+        "bottom": 417.734375
+      },
+      "starlink": {
+        "x": 257.640625,
+        "y": 372.640625,
+        "width": 23.75,
+        "height": 3.8125,
+        "right": 281.390625,
+        "bottom": 376.453125
+      },
+      "call": {
+        "x": 263.375,
+        "y": 376.453125,
+        "width": 17.46875,
+        "height": 10.09375,
+        "right": 280.84375,
+        "bottom": 386.546875
+      },
+      "bracket": {
+        "x": 117.796875,
+        "y": 425.90625,
+        "width": 5.1875,
+        "height": 22.109375,
+        "right": 122.984375,
+        "bottom": 448.015625
+      },
+      "ticks": {
+        "x": 133.359375,
+        "y": 414.703125,
+        "width": 17.203125,
+        "height": 16.921875,
+        "right": 150.5625,
+        "bottom": 431.625
+      },
+      "loaded": true,
+      "overflow": false
+    },
+    "future": {
+      "right": 213.046875,
+      "readLeft": 215.859375
+    },
+    "coordinateClicks": 5,
+    "keyboard": "passed",
+    "timeMode": "passed",
+    "errors": []
+  },
+  {
+    "viewport": {
+      "width": 844,
+      "height": 390
+    },
+    "measurement": {
+      "button": {
+        "x": 691.109375,
+        "y": 273.4453125,
+        "width": 113.546875,
+        "height": 63.21875,
+        "right": 804.65625,
+        "bottom": 336.6640625
+      },
+      "image": {
+        "x": 694.71875,
+        "y": 285.1171875,
+        "width": 109.921875,
+        "height": 51.53125,
+        "right": 804.640625,
+        "bottom": 336.6484375
+      },
+      "rule": {
+        "x": 691.90625,
+        "y": 273.8359375,
+        "width": 96.625,
+        "height": 16.90625,
+        "right": 788.53125,
+        "bottom": 290.7421875
+      },
+      "hits": [
+        "read-button",
+        "read-button",
+        "read-button",
+        "read-button",
+        "read-button"
+      ],
+      "outside": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "id": {
+        "x": 628.140625,
+        "y": 277.0390625,
+        "width": 54.28125,
+        "height": 5.375,
+        "right": 682.421875,
+        "bottom": 282.4140625
+      },
+      "idLabel": {
+        "x": 611.390625,
+        "y": 273.4453125,
+        "width": 12.0625,
+        "height": 14.875,
+        "right": 623.453125,
+        "bottom": 288.3203125
+      },
+      "year": {
+        "x": 515.546875,
+        "y": 229.7109375,
+        "width": 11.625,
+        "height": 6.53125,
+        "right": 527.171875,
+        "bottom": 236.2421875
+      },
+      "unit": {
+        "x": 533.65625,
+        "y": 227.171875,
+        "width": 21.0625,
+        "height": 11.609375,
+        "right": 554.71875,
+        "bottom": 238.78125
+      },
+      "starlink": {
+        "x": 752.71875,
+        "y": 172.3828125,
+        "width": 35.015625,
+        "height": 5.625,
+        "right": 787.734375,
+        "bottom": 178.0078125
+      },
+      "call": {
+        "x": 761.171875,
+        "y": 178.0078125,
+        "width": 25.765625,
+        "height": 14.875,
+        "right": 786.9375,
+        "bottom": 192.8828125
+      },
+      "bracket": {
+        "x": 546.5625,
+        "y": 250.8984375,
+        "width": 7.640625,
+        "height": 32.5625,
+        "right": 554.203125,
+        "bottom": 283.4609375
+      },
+      "ticks": {
+        "x": 569.515625,
+        "y": 234.3984375,
+        "width": 25.359375,
+        "height": 24.953125,
+        "right": 594.875,
+        "bottom": 259.3515625
+      },
+      "loaded": true,
+      "overflow": false
+    },
+    "future": {
+      "right": 686.984375,
+      "readLeft": 691.109375
+    },
+    "coordinateClicks": 5,
+    "keyboard": "passed",
+    "timeMode": "passed",
+    "errors": []
+  }
+]

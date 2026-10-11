@@ -22,7 +22,7 @@
         </div>
         <% } %>
       </div>
-      <span class="observation-axis" aria-hidden="true"><img data-src="<%= url_for('images/observation/diamond.png') %>" alt="" draggable="false"><img data-src="<%= url_for('images/observation/diamond.png') %>" alt="" draggable="false"></span>
+      <img class="observation-diamond" data-src="<%= url_for('images/observation/diamond.png') %>" alt="" aria-hidden="true" draggable="false">
       <img class="observation-ticks" data-src="<%= url_for('images/observation/dial-ticks.png') %>" alt="" aria-hidden="true" draggable="false">
       <img class="observation-bracket" data-src="<%= url_for('images/observation/dial-bracket.png') %>" alt="" aria-hidden="true" draggable="false">
       <div class="observation-waveform" aria-hidden="true">
@@ -44,7 +44,7 @@
       <button id="deselect" type="button" aria-label="取消选择" title="取消选择"><img data-src="<%= url_for('images/observation/close.png') %>" alt="" draggable="false"></button>
       <div class="preview-bottom">
         <button id="read-button" type="button" disabled aria-label="进入阅读" aria-describedby="approach-status">
-          <img class="read-rule" data-src="<%= url_for('images/observation/read-rule.png') %>" alt="" aria-hidden="true" draggable="false"><img class="read-label" data-src="<%= url_for('images/observation/read.png') %>" alt="READ" draggable="false">
+          <span class="read-rule" aria-hidden="true"><% for (const part of ['start', 'middle', 'end']) { %><span class="read-rule-<%= part %>"><img data-src="<%= url_for('images/observation/read-rule.png') %>" alt="" draggable="false"></span><% } %></span><img class="read-label" data-src="<%= url_for('images/observation/read.png') %>" width="273" height="128" alt="Read Me" draggable="false">
         </button>
         <span id="approach-status" class="sr-only" aria-live="polite">再点星，阅读</span>
       </div>
