@@ -1,0 +1,123 @@
+[
+  {
+    "file": "images/v12-dome.png",
+    "kind": "existing-evidence",
+    "record_date": "2026-09-10",
+    "source_path": ".scratch/starry-blog/archive/prototypes/sky-studies/dome-desktop.png",
+    "source_tracked_at_87a0401": true,
+    "description": "原型半球穹顶",
+    "bytes": 818306,
+    "sha256": "a8af350de8b1b4be8269c27b73954f1cc7eb9d21b5946d74e558c8262e98052a",
+    "method": "原文件逐字节复制；日期来自目录及关联记录，不推定精确截图时间。"
+  },
+  {
+    "file": "images/v13-atmosphere.png",
+    "kind": "existing-evidence",
+    "record_date": "2026-09-10",
+    "source_path": ".scratch/starry-blog/archive/prototypes/sky-studies/atmosphere-low-desktop-v13.png",
+    "source_tracked_at_87a0401": true,
+    "description": "原型低空山丘和互动云",
+    "bytes": 547138,
+    "sha256": "514656266e5e6ecf6ae65ad58795f12e7429e611dda4722d37c28585270be8d9",
+    "method": "原文件逐字节复制；日期来自目录及关联记录，不推定精确截图时间。"
+  },
+  {
+    "file": "images/v20-mobile.png",
+    "kind": "existing-evidence",
+    "record_date": "2026-09-15",
+    "source_path": ".scratch/starry-blog/archive/prototypes/v20/evidence-v20/final-preview.png",
+    "source_tracked_at_87a0401": true,
+    "description": "V20 窄屏模拟文章简介",
+    "bytes": 22743,
+    "sha256": "c4968277a40591d249b4016ea49f5c27b4ff0e9f0c6981dbd7bc8e65bab454fb",
+    "method": "原文件逐字节复制；日期来自目录及关联记录，不推定精确截图时间。"
+  },
+  {
+    "file": "images/reader-20261002.png",
+    "kind": "existing-evidence",
+    "record_date": "2026-10-02",
+    "source_path": ".scratch/starry-blog/evidence/reader-rollout-20261002/reader-desktop.png",
+    "source_tracked_at_87a0401": false,
+    "description": "正式主题冷色复古阅读窗口",
+    "bytes": 70924,
+    "sha256": "ef6151d9ff575b496f953c72e1d7cd0ed71d4f415a4a8e576f59a691d746e7d8",
+    "method": "原文件逐字节复制；日期来自目录及关联记录，不推定精确截图时间。"
+  },
+  {
+    "file": "images/note-20261003.png",
+    "kind": "existing-evidence",
+    "record_date": "2026-10-03",
+    "source_path": ".scratch/starry-blog/evidence/sky-ui-rollout-20261003/note-desktop.png",
+    "source_tracked_at_87a0401": false,
+    "description": "正式主题 B 观测注记",
+    "bytes": 30589,
+    "sha256": "ede6785bda4f816ea4b2a64ed66b6d0d64e8640248599cee09eaefd203cae076",
+    "method": "原文件逐字节复制；日期来自目录及关联记录，不推定精确截图时间。"
+  },
+  {
+    "file": "images/panel-initial-20261007.png",
+    "kind": "existing-evidence",
+    "record_date": "2026-10-07",
+    "source_path": ".scratch/starry-blog/evidence/observation-ui-20261007/desktop-unread-2026.png",
+    "source_tracked_at_87a0401": false,
+    "description": "观测面板最初实现，后经原图裁片修正",
+    "bytes": 50944,
+    "sha256": "a260b358d5ba32b119d94c21b0a35590dd911bfd4ccba80b65ae24814ec0de49",
+    "method": "原文件逐字节复制；日期来自目录及关联记录，不推定精确截图时间。"
+  },
+  {
+    "file": "images/panel-detail-20261007.png",
+    "kind": "existing-evidence",
+    "record_date": "2026-10-07",
+    "source_path": ".scratch/starry-blog/evidence/observation-spacing-20261007/panel-detail.png",
+    "source_tracked_at_87a0401": false,
+    "description": "观测面板原图裁片及排布细调",
+    "bytes": 21499,
+    "sha256": "b78f7ccc82a34daaab32698d20cd28d20cf2314578957d63a7707ab447b78bf9",
+    "method": "原文件逐字节复制；日期来自目录及关联记录，不推定精确截图时间。"
+  },
+  {
+    "file": "images/palette-20261007.png",
+    "kind": "existing-evidence",
+    "record_date": "2026-10-07，提交 2026-10-08",
+    "source_path": ".scratch/starry-blog/evidence/palette-20261007/after-sky.png",
+    "source_tracked_at_87a0401": false,
+    "description": "宝蓝星空配色",
+    "bytes": 45401,
+    "sha256": "50cbfa97cf26b75747edc14e5b1cf3b343b4a0aba20bd9cad01a9071cea765ba",
+    "method": "原文件逐字节复制；日期来自目录及关联记录，不推定精确截图时间。"
+  },
+  {
+    "file": "images/reader-blue-20261008.png",
+    "kind": "existing-evidence",
+    "record_date": "2026-10-08",
+    "source_path": ".scratch/starry-blog/evidence/reader-palette-20261008/after-desktop.png",
+    "source_tracked_at_87a0401": false,
+    "description": "复古窗口的宝蓝配色，后被原图文章页替代",
+    "bytes": 62316,
+    "sha256": "6579644ea457c09766ae777bb6dfd0d4e5c806469e2e5ed4fa34f96cd1282c70",
+    "method": "原文件逐字节复制；日期来自目录及关联记录，不推定精确截图时间。"
+  },
+  {
+    "file": "images/reader-art-20261009.png",
+    "kind": "existing-evidence",
+    "record_date": "2026-10-09",
+    "source_path": ".scratch/starry-blog/evidence/article-page-20261009/desktop-start.png",
+    "source_tracked_at_87a0401": false,
+    "description": "原图文章页初始实现，标题及署名后再调整",
+    "bytes": 856230,
+    "sha256": "519188148e6f2729a7d7234f5876c205af1e45196d9915421d8dd010ccde7e41",
+    "method": "原文件逐字节复制；日期来自目录及关联记录，不推定精确截图时间。"
+  },
+  {
+    "file": "images/legacy-switch-20261010.png",
+    "kind": "existing-evidence",
+    "record_date": "2026-10-10",
+    "source_path": ".scratch/starry-blog/evidence/dual-theme-20261010/legacy-switch-light.png",
+    "source_tracked_at_87a0401": false,
+    "description": "旧版手机导航中的新版切换入口局部",
+    "bytes": 20882,
+    "sha256": "fb500c96fa0f6144861806cf11442971ebfa79230d9191a14a71d9e2b0ecd1c5",
+    "method": "原文件逐字节复制；日期来自目录及关联记录，不推定精确截图时间。"
+  }
+]
