@@ -1,0 +1,113 @@
+[
+  {
+    "name": "desktop",
+    "passed": true,
+    "articles": 10,
+    "fullTextRequests": 1,
+    "scrollTop": 109,
+    "collapsed": {
+      "x": 264.34375,
+      "y": 90,
+      "width": 911.3125,
+      "height": 819.984375
+    },
+    "expanded": {
+      "x": 107.546875,
+      "y": 90,
+      "width": 1224.890625,
+      "height": 819.984375
+    },
+    "miniatureRemoved": true,
+    "v2Artwork": true,
+    "collapsedHeadingAndCloseHidden": true,
+    "originalFilterCells": true,
+    "selectedUnderline": true,
+    "clockwise90": true,
+    "outsideDismissal": true,
+    "insideDragPreservesDialog": true,
+    "errors": []
+  },
+  {
+    "name": "mobile",
+    "passed": true,
+    "articles": 10,
+    "fullTextRequests": 1,
+    "scrollTop": 470,
+    "collapsed": {
+      "x": 16,
+      "y": 172.015625,
+      "width": 358,
+      "height": 499.953125
+    },
+    "expanded": {
+      "x": 16,
+      "y": 32,
+      "width": 358,
+      "height": 780
+    },
+    "miniatureRemoved": true,
+    "v2Artwork": true,
+    "collapsedHeadingAndCloseHidden": true,
+    "originalFilterCells": true,
+    "selectedUnderline": true,
+    "clockwise90": true,
+    "outsideDismissal": true,
+    "insideDragPreservesDialog": true,
+    "errors": []
+  },
+  {
+    "name": "landscape",
+    "passed": true,
+    "articles": 10,
+    "fullTextRequests": 1,
+    "scrollTop": 680,
+    "collapsed": {
+      "x": 244.296875,
+      "y": 35.09375,
+      "width": 355.40625,
+      "height": 319.796875
+    },
+    "expanded": {
+      "x": 183.140625,
+      "y": 35.09375,
+      "width": 477.703125,
+      "height": 319.796875
+    },
+    "miniatureRemoved": true,
+    "v2Artwork": true,
+    "collapsedHeadingAndCloseHidden": true,
+    "originalFilterCells": true,
+    "selectedUnderline": true,
+    "clockwise90": true,
+    "outsideDismissal": true,
+    "insideDragPreservesDialog": true,
+    "errors": []
+  },
+  {
+    "name": "failure-recovery",
+    "passed": true,
+    "searchUnavailable": true,
+    "readableList": true,
+    "articleErrorPreservesAddress": true
+  },
+  {
+    "name": "full-motion",
+    "passed": true,
+    "backgroundPausesWhileSearching": true,
+    "suppliedEntry": true,
+    "timeModePositions": true,
+    "sharedReaderFrames": true,
+    "focusIn440ms": true,
+    "fadeOut240ms": true,
+    "openingMid": {
+      "opacity": 0.919409,
+      "filter": "blur(0.161182px)",
+      "backdrop": "blur(2.21px)",
+      "inert": true
+    },
+    "backdropSettled": "blur(2.4px)",
+    "openingCancellation": true,
+    "articleOutsideReturnsToSearch": true,
+    "panelExpansion360ms": true
+  }
+]

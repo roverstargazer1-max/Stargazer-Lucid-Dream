@@ -1,0 +1,171 @@
+import { chromium } from 'file:///C:/Users/diamo/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright/index.mjs';
+import fs from 'node:fs/promises';
+import assert from 'node:assert/strict';
+import { fileURLToPath } from 'node:url';
+import { atlasPoint } from '../../../../themes/stargazer-starfield/source/js/starfield/search.js';
+import { domePosition } from '../../../../themes/stargazer-starfield/source/js/starfield/dome.js';
+
+const dir = new URL('./', import.meta.url);
+const index = JSON.parse(await fs.readFile('.preview/stargazer/starry/index.json', 'utf8'));
+const documents = JSON.parse(await fs.readFile('.preview/stargazer/starry/search.json', 'utf8')).documents;
+const browser = await chromium.launch({ headless: true, executablePath: 'C:/Users/diamo/AppData/Local/ms-playwright/chromium-1228/chrome-win64/chrome.exe' });
+const summaries = [];
+const ids = page => page.locator('#search-results .search-result').evaluateAll(rows => rows.map(row => row.dataset.articleId));
+async function enter(page) {
+  await page.goto('http://127.0.0.1:4175/?motion=soft');
+  await page.waitForFunction(() => document.body.classList.contains('starry-ready'));
+  const rect = await page.locator('#window-entry').boundingBox();
+  await page.locator('#window-entry').click({ position: { x: rect.width * .35, y: rect.height * .25 } });
+  await page.waitForFunction(() => document.body.dataset.room === 'outside' && !document.body.dataset.arrival);
+}
+try {
+  for (const [name, viewport] of [['desktop', { width: 1440, height: 1000 }], ['mobile', { width: 390, height: 844 }], ['landscape', { width: 844, height: 390 }]]) {
+    const page = await browser.newPage({ viewport, reducedMotion: 'reduce' });
+    const errors = []; page.on('pageerror', error => errors.push(error.message));
+    let searchRequests = 0;
+    page.on('request', request => { if (request.url().endsWith('/starry/search.json')) searchRequests++; });
+    await enter(page);
+    assert.equal(searchRequests, 0, 'full body text should load only when opening search');
+    await page.locator('#sky').press('ArrowRight');
+    await page.locator('#mini-map').waitFor({ state: 'visible' });
+    await page.locator('#mini-map').click();
+    await page.waitForFunction(() => document.querySelector('#star-search').open);
+    assert.equal(await page.locator('#search-index-toggle').getAttribute('aria-expanded'), 'false');
+    assert.equal(await page.locator('#search-index').isVisible(), false);
+    await page.locator('#search-index-toggle').click();
+    assert.equal((await ids(page)).length, index.articles.length);
+    if (name === 'desktop') {
+      const relationPoints = await page.locator('.search-map-star').evaluateAll(stars => stars.map(star => [star.style.left, star.style.top]));
+      await page.locator('#close-search').click();
+      await page.locator('#time-mode').click();
+      await page.locator('#search-entry').click();
+      const actual = await page.locator('.search-map-star').evaluateAll(stars => Object.fromEntries(stars.map(star => [star.dataset.articleId, [parseFloat(star.style.left), parseFloat(star.style.top)]])));
+      const ordered = [...index.articles].sort((a, b) => a.timeOrder.localeCompare(b.timeOrder));
+      ordered.forEach((article, i) => {
+        const expected = atlasPoint(domePosition(article, i, 'time'));
+        assert.ok(Math.abs(actual[article.id][0] - expected.x * 100) < .001);
+        assert.ok(Math.abs(actual[article.id][1] - expected.y * 100) < .001);
+      });
+      assert.notDeepEqual(Object.values(actual), relationPoints);
+      await page.locator('#search-index-toggle').click();
+      await page.locator('#close-search').click();
+      await page.locator('#relation-mode').click();
+      await page.locator('#search-entry').click();
+      await page.locator('#search-index-toggle').click();
+    }
+    await page.screenshot({ path: fileURLToPath(new URL(`${name}-open.png`, dir)) });
+    const points = await page.locator('.search-map-star').evaluateAll(buttons => Object.fromEntries(buttons.map(button => [button.dataset.articleId, [button.style.left, button.style.top]])));
+    await page.locator('[data-filter=year] button[data-value="2025"]').click();
+    assert.deepEqual(new Set(await ids(page)), new Set(index.articles.filter(article => article.date.startsWith('2025')).map(article => article.id)));
+    await page.locator('[data-filter=magnitude] button[data-value="1.0"]').click();
+    assert.equal((await ids(page)).length, 0);
+    assert.match(await page.locator('#search-feedback').textContent(), /未找到/);
+    await page.locator('#search-clear').click();
+    assert.equal((await ids(page)).length, index.articles.length);
+    const target = index.articles.find(article => article.title === '慢');
+    await page.locator('#search-query').fill(target.catalogNumber.toLowerCase());
+    await page.waitForFunction(() => document.querySelector('#search-feedback').textContent === '1 篇文章');
+    assert.deepEqual(await ids(page), [target.id]);
+    const filteredPoints = await page.locator('.search-map-star').evaluateAll(buttons => Object.fromEntries(buttons.map(button => [button.dataset.articleId, [button.style.left, button.style.top]])));
+    assert.deepEqual(filteredPoints, points, 'filtering must preserve all positions');
+    await page.locator('#search-index-toggle').click();
+    assert.equal(await page.locator('#search-index').isVisible(), false);
+    await page.locator('#search-query').fill('慢');
+    assert.equal(await page.locator('#search-index').isVisible(), true);
+    await page.locator('#search-query').fill('');
+    assert.equal(await page.locator('#search-index').isVisible(), true, 'clearing must keep index open');
+
+    // Composition text should not change the results until the IME commits.
+    await page.locator('#search-query').evaluate(input => {
+      input.dispatchEvent(new CompositionEvent('compositionstart', { bubbles: true }));
+      input.value = '没有这篇文章';
+      input.dispatchEvent(new InputEvent('input', { bubbles: true, isComposing: true }));
+    });
+    assert.equal((await ids(page)).length, index.articles.length);
+    await page.locator('#search-query').evaluate(input => input.dispatchEvent(new CompositionEvent('compositionend', { bubbles: true })));
+    assert.equal((await ids(page)).length, 0);
+    await page.locator('#search-clear').click();
+
+    // A word near the end of an actual post proves this is full-text search, not the excerpt.
+    const long = documents.find(document => document.text.length > 1000);
+    const lastWord = long.text.slice(-24, -14).trim();
+    await page.locator('#search-query').fill(lastWord);
+    assert.ok((await ids(page)).includes(long.id));
+    await page.locator('#search-query').fill(target.catalogNumber);
+    await page.locator(`#search-results [data-article-id="${target.id}"]`).click();
+    await page.waitForFunction(() => document.querySelector('#reader').open && document.body.dataset.reading === 'open');
+    assert.equal(await page.locator('#reader-title').textContent(), target.title);
+    assert.equal(decodeURI(new URL(page.url()).pathname), '/' + target.path);
+    assert.equal(await page.locator('#star-search').evaluate(dialog => dialog.open), false);
+    await page.locator('#close-reader').click();
+    await page.waitForFunction(() => !document.querySelector('#reader').open && document.querySelector('#star-search').open);
+    assert.equal(await page.locator('#search-query').inputValue(), target.catalogNumber);
+    assert.deepEqual(await ids(page), [target.id]);
+    await page.goForward();
+    await page.waitForFunction(() => document.querySelector('#reader').open && document.body.dataset.reading === 'open');
+    await page.goBack();
+    await page.waitForFunction(() => !document.querySelector('#reader').open && document.querySelector('#star-search').open);
+    assert.equal(await page.locator('#search-query').inputValue(), target.catalogNumber);
+    await page.locator('#search-query').fill('');
+    await page.locator('#search-results').evaluate(list => { list.scrollTop = list.scrollHeight; });
+    const scrollTop = await page.locator('#search-results').evaluate(list => list.scrollTop);
+    const lastId = (await ids(page)).at(-1);
+    await page.locator(`#search-results [data-article-id="${lastId}"]`).click();
+    await page.waitForFunction(() => document.querySelector('#reader').open && document.body.dataset.reading === 'open');
+    await page.locator('#close-reader').click();
+    await page.waitForFunction(() => document.querySelector('#star-search').open && !document.querySelector('#reader').open);
+    assert.ok(Math.abs(await page.locator('#search-results').evaluate(list => list.scrollTop) - scrollTop) < 2);
+    await page.locator('#search-query').focus();
+    await page.keyboard.press('Escape');
+    await page.waitForFunction(() => !document.querySelector('#star-search').open);
+    await page.locator('#search-entry').click();
+    assert.equal(await page.locator('#search-index').isVisible(), false);
+    assert.equal(await page.locator('#search-query').inputValue(), '');
+    await page.locator('#close-search').click();
+    assert.equal(await page.locator('#star-search').evaluate(dialog => dialog.open), false);
+    assert.equal(searchRequests, 1);
+    assert.deepEqual(errors, []);
+    summaries.push({ name, passed: true, articles: index.articles.length, fullTextRequests: searchRequests, scrollTop, errors });
+    await page.close();
+  }
+
+  const failing = await browser.newPage({ viewport: { width: 1440, height: 900 }, reducedMotion: 'reduce' });
+  await failing.route('**/starry/search.json', route => route.fulfill({ status: 503, body: 'offline' }));
+  await enter(failing);
+  await failing.locator('#search-entry').click();
+  await failing.locator('#search-query').fill('慢');
+  await failing.waitForFunction(() => document.querySelector('#search-feedback').textContent.includes('暂不可用'));
+  assert.equal((await ids(failing)).length, 0);
+  await failing.locator('#search-clear').click();
+  assert.equal((await ids(failing)).length, index.articles.length);
+  await failing.route('**/2026/05/14/**', route => route.fulfill({ status: 503, body: 'offline' }));
+  const failedArticle = index.articles.find(article => article.title === '慢');
+  const beforeUrl = failing.url();
+  await failing.locator(`#search-results [data-article-id="${failedArticle.id}"]`).click();
+  await failing.waitForFunction(() => document.querySelector('#search-feedback').textContent.includes('请重试'));
+  assert.equal(failing.url(), beforeUrl);
+  assert.equal(await failing.locator('#star-search').evaluate(dialog => dialog.open), true);
+  summaries.push({ name: 'failure-recovery', passed: true, searchUnavailable: true, readableList: true, articleErrorPreservesAddress: true });
+  await failing.close();
+
+  const full = await browser.newPage({ viewport: { width: 1440, height: 900 } });
+  await full.goto('http://127.0.0.1:4175/');
+  await full.waitForFunction(() => document.body.classList.contains('starry-ready'));
+  const rect = await full.locator('#window-entry').boundingBox();
+  await full.locator('#window-entry').click({ position: { x: rect.width * .35, y: rect.height * .25 } });
+  await full.waitForFunction(() => document.body.dataset.room === 'outside' && !document.body.dataset.arrival);
+  await full.locator('#search-entry').waitFor({ state: 'visible' });
+  await full.waitForFunction(() => { const image = document.querySelector('#search-entry img'); return image.complete && image.naturalWidth > 0; });
+  await full.waitForTimeout(300);
+  await full.screenshot({ path: fileURLToPath(new URL('entry.png', dir)) });
+  await full.locator('#search-entry').click();
+  await full.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+  const sky = await full.locator('#sky').evaluate(canvas => canvas.toDataURL());
+  await full.waitForTimeout(250);
+  assert.equal(await full.locator('#sky').evaluate(canvas => canvas.toDataURL()), sky);
+  await full.locator('#close-search').click();
+  summaries.push({ name: 'full-motion', passed: true, backgroundPausesWhileSearching: true, suppliedEntry: true, timeModePositions: true });
+  await full.close();
+  await fs.writeFile(new URL('browser-summary.json', dir), JSON.stringify(summaries, null, 2));
+  console.log(JSON.stringify(summaries));
+} finally { await browser.close(); }

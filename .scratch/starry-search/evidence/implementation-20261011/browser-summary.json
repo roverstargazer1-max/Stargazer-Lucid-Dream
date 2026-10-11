@@ -1,0 +1,40 @@
+[
+  {
+    "name": "desktop",
+    "passed": true,
+    "articles": 10,
+    "fullTextRequests": 1,
+    "scrollTop": 57,
+    "errors": []
+  },
+  {
+    "name": "mobile",
+    "passed": true,
+    "articles": 10,
+    "fullTextRequests": 1,
+    "scrollTop": 440,
+    "errors": []
+  },
+  {
+    "name": "landscape",
+    "passed": true,
+    "articles": 10,
+    "fullTextRequests": 1,
+    "scrollTop": 416,
+    "errors": []
+  },
+  {
+    "name": "failure-recovery",
+    "passed": true,
+    "searchUnavailable": true,
+    "readableList": true,
+    "articleErrorPreservesAddress": true
+  },
+  {
+    "name": "full-motion",
+    "passed": true,
+    "backgroundPausesWhileSearching": true,
+    "suppliedEntry": true,
+    "timeModePositions": true
+  }
+]

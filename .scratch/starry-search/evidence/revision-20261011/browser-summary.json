@@ -1,0 +1,88 @@
+[
+  {
+    "name": "desktop",
+    "passed": true,
+    "articles": 10,
+    "fullTextRequests": 1,
+    "scrollTop": 135,
+    "collapsed": {
+      "x": 281.203125,
+      "y": 90,
+      "width": 877.59375,
+      "height": 819.984375
+    },
+    "expanded": {
+      "x": 114.765625,
+      "y": 90,
+      "width": 1210.46875,
+      "height": 819.984375
+    },
+    "miniatureRemoved": true,
+    "originalFilterCells": true,
+    "clockwise90": true,
+    "errors": []
+  },
+  {
+    "name": "mobile",
+    "passed": true,
+    "articles": 10,
+    "fullTextRequests": 1,
+    "scrollTop": 470,
+    "collapsed": {
+      "x": 16,
+      "y": 172.015625,
+      "width": 358,
+      "height": 499.953125
+    },
+    "expanded": {
+      "x": 16,
+      "y": 32,
+      "width": 358,
+      "height": 780
+    },
+    "miniatureRemoved": true,
+    "originalFilterCells": true,
+    "clockwise90": true,
+    "errors": []
+  },
+  {
+    "name": "landscape",
+    "passed": true,
+    "articles": 10,
+    "fullTextRequests": 1,
+    "scrollTop": 690,
+    "collapsed": {
+      "x": 250.875,
+      "y": 35.109375,
+      "width": 342.25,
+      "height": 319.78125
+    },
+    "expanded": {
+      "x": 185.953125,
+      "y": 35.109375,
+      "width": 472.078125,
+      "height": 319.78125
+    },
+    "miniatureRemoved": true,
+    "originalFilterCells": true,
+    "clockwise90": true,
+    "errors": []
+  },
+  {
+    "name": "failure-recovery",
+    "passed": true,
+    "searchUnavailable": true,
+    "readableList": true,
+    "articleErrorPreservesAddress": true
+  },
+  {
+    "name": "full-motion",
+    "passed": true,
+    "backgroundPausesWhileSearching": true,
+    "suppliedEntry": true,
+    "timeModePositions": true,
+    "fadeIn320ms": true,
+    "fadeOut240ms": true,
+    "panelExpansion360ms": true
+  }
+]
