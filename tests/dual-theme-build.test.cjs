@@ -16,7 +16,7 @@ test('an ordinary post builds in both themes, survives a fresh checkout, and sup
     for (const name of ['build-blog.cjs', 'prepare-starfield.cjs', 'package.json', '_config.yml', '_config.legacy-preview.yml', '_config.hexo-theme-kira.yml']) {
       fs.copyFileSync(path.join(project, name), path.join(fixture, name));
     }
-    for (const name of ['node_modules', 'themes', 'assets', 'blog-assets', 'scripts']) {
+    for (const name of ['node_modules', 'themes', 'assets', 'blog-assets', 'scripts', 'tools']) {
       fs.symlinkSync(path.join(project, name), path.join(fixture, name), 'dir');
     }
     fs.mkdirSync(path.join(fixture, 'source'));
