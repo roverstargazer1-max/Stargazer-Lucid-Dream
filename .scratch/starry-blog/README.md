@@ -5,6 +5,7 @@
 | 内容 | 入口 |
 | --- | --- |
 | 当前设计与后续明确更新 | [设计主文档](../../docs/design/starry-blog.md) |
+| 新增星图与文章检索设计、底图候选 | [检索设计记录](../starry-search/spec.md)（设计中，未实现） |
 | 作者确认的个人站点范围 | [正式化计划](theme-production-plan.md)、[访谈](theme-planning.md) |
 | 本地实现进展与验证边界 | [实施记录](implementation-progress.md) |
 | 写作、双主题预览与发布 | [操作指南](../../docs/operations/starfield-blog.md) |
