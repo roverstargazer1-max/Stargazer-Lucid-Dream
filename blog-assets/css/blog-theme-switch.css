@@ -22,6 +22,8 @@
   top: max(16px, env(safe-area-inset-top));
 }
 body:has(#reader[open], #collection-panel[open]) > .blog-theme-switch-fixed { visibility: hidden; }
+body[data-room=outside] > .blog-theme-switch-fixed { visibility: hidden; }
+.blog-theme-switch-sky { min-width: 52px; flex-shrink: 0; }
 #reader .reading-header { display: flex; align-items: center; gap: 6px; }
 #reader .reading-header .blog-theme-switch { color: #e2edff; margin: 0; }
 .collection-header .blog-theme-switch {

@@ -140,6 +140,10 @@ body[data-scene=painted] #egg-dialog p{font-size:.875rem;line-height:2}
   body[data-scene=painted] #exploration-controls .mode-switch{position:fixed;left:max(20px,env(safe-area-inset-left));bottom:max(24px,calc(env(safe-area-inset-bottom) + 12px));margin-right:0;pointer-events:auto}
   body[data-scene=painted] #back-dock{grid-column:2;grid-row:1;pointer-events:auto}
   body[data-scene=painted] #home{grid-column:3;grid-row:1;pointer-events:auto}
+  /* Reserve the third 52px control and its 12px gap beside the logo. */
+  #world:has(.blog-theme-switch-sky){--mobile-logo-width:min(270px,calc((100vw - max(20px,env(safe-area-inset-left)) - max(16px,env(safe-area-inset-right)) - 188px) * 1081 / 900))}
+  body[data-scene=painted] #exploration-controls:has(.blog-theme-switch-sky){grid-template-columns:minmax(0,1fr) 52px 52px 52px}
+  body[data-scene=painted] .blog-theme-switch-sky{grid-column:4;grid-row:1;align-self:center;pointer-events:auto}
 }
 /* Translating the toolbar would anchor its fixed mode switch to the top; preserve arrival motion on the controls. */
 @media(max-width:760px) and (orientation:portrait) and (prefers-reduced-motion:no-preference){

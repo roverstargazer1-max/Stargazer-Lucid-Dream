@@ -63,6 +63,9 @@
     <button id="home" class="icon-control" type="button" aria-label="回到窗边" title="回到窗边" hidden>
       <span class="navigation-art navigation-art-home" aria-hidden="true"><img data-src="<%= url_for('images/branding/right-icons.png') %>" width="147" height="89" alt="" draggable="false"></span>
     </button>
+    <% const navigationThemeSwitch = blog_theme_switch(page); if (navigationThemeSwitch) { %>
+    <a class="blog-theme-switch blog-theme-switch-sky" data-blog-theme-switch href="<%= navigationThemeSwitch.href %>"><%= navigationThemeSwitch.label %></a>
+    <% } %>
   </nav>
   <span id="time-cue" class="time-cue" role="status" hidden></span>
   <button id="journal-egg" class="scene-egg" type="button" aria-label="翻开屋顶手记" title="翻开屋顶手记">⌑<span>屋顶手记</span></button>
