@@ -5,6 +5,7 @@ import { HOME_ELEVATION, MIN_SKY_ZOOM, clamp, domeDestination, direction, domePo
 import { createStarMotion, ENTRANCE, entranceFrame, returnFrame, smooth } from './motion.js';
 import { dockTarget } from './experience.js';
 import { buildPaths, buildTimePaths, clipSegment, crosses } from './navigation.js';
+import { createEdgeGuide } from './edge-guide.js';
 import { createRenderBudget } from './render-budget.js';
 import { setRenderQuality } from './dome-renderer.js';
 import { isStarReachable, starLabelPlacement } from './star-targets.js';
@@ -52,6 +53,7 @@ async function start() {
   const backDockButton = document.getElementById('back-dock');
   const homeButton = document.getElementById('home');
   const targetLayer = document.getElementById('star-targets');
+  const edgeGuide = createEdgeGuide(document.getElementById('edge-guide'), activateStar);
   const directId = body.dataset.starryArticleId;
   const isDirectEntry = Boolean(directId);
   const collectionKind = body.dataset.starryCollectionKind || '';
@@ -137,6 +139,7 @@ async function start() {
     const rightOrder = String(right.timeOrder || `${right.date}|${right.id}`);
     return leftOrder < rightOrder ? -1 : leftOrder > rightOrder ? 1 : 0;
   });
+  const timeEdges = buildTimePaths(timeOrderedArticles);
   timeOrderedArticles.forEach((item, index) => {
     timePositionById.set(item.id, domePosition({ position: item.savedPosition }, index, 'time'));
   });
@@ -907,11 +910,12 @@ async function start() {
   }
 
   function drawNavigationGuides() {
-    const guide = document.getElementById('edge-guide');
-    guide.hidden = true;
-    if (roomScene?.active || arrival || reader.open || collectionOpen) return;
+    if (roomScene?.active || arrival || reader.open || collectionOpen) {
+      edgeGuide.present(null);
+      return;
+    }
     const box = { left: 28, right: width - 28, top: 100, bottom: height - 85 };
-    const edges = mode === 'time' ? buildTimePaths(timeOrderedArticles) : navigationEdges;
+    const edges = mode === 'time' ? timeEdges : navigationEdges;
     const painted = [];
     const hints = [];
     ctx.save();
@@ -941,13 +945,15 @@ async function start() {
     ctx.restore();
     const visible = [...starTargets.values()].some(target => !target.hidden);
     const hint = hints[0];
-    if (phase === 'moving' || lineOpacity < .5) return;
+    if (phase === 'moving' || lineOpacity < .5) {
+      edgeGuide.present(null);
+      return;
+    }
+    let guideState = null;
     if (hint && !selected) {
       const obstacles = [...world.querySelectorAll('nav,nav .mode-switch,header,#preview,.signal-egg')].filter(el => !el.hidden).map(el => el.getBoundingClientRect());
       if (!obstacles.some(rect => hint.point.x + 24 > rect.left && hint.point.x - 24 < rect.right && hint.point.y + 24 > rect.top && hint.point.y - 24 < rect.bottom)) {
-        guide.style.left = hint.point.x + 'px'; guide.style.top = hint.point.y + 'px';
-        guide.style.transform = 'translate(-50%,-50%)'; guide.textContent = '›';
-        guide.onclick = () => activateStar(hint.id); guide.hidden = false;
+        guideState = { left: hint.point.x + 'px', top: hint.point.y + 'px', text: '›', articleId: hint.id };
       }
     } else if (!visible && articles.length) {
       const target = articles.reduce((nearest, item) => {
@@ -955,10 +961,9 @@ async function start() {
         const score = (point.x * ray.x + point.y * ray.y + point.z * ray.z) / Math.hypot(point.x, point.y, point.z);
         return !nearest || score > nearest.score ? { item, score } : nearest;
       }, null).item;
-      guide.style.left = '50%'; guide.style.top = 'calc(100% - 110px)';
-      guide.style.transform = 'translate(-50%,-50%)'; guide.textContent = '✧';
-      guide.onclick = () => activateStar(target.id); guide.hidden = false;
+      guideState = { left: '50%', top: 'calc(100% - 110px)', text: '✧', articleId: target.id };
     }
+    edgeGuide.present(guideState);
   }
 
   function drawGuideLine(origin, target) {
