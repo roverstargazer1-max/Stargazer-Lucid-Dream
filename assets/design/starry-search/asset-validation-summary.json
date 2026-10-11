@@ -1,0 +1,139 @@
+{
+  "date": "2026-10-12",
+  "passed": true,
+  "decodedPNGs": 12,
+  "pngs": [
+    {
+      "file": "astrolabe-entry-v1/astrolabe-entry-reference.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alphaRange": [
+        0,
+        255
+      ]
+    },
+    {
+      "file": "astrolabe-entry-v2/astrolabe-entry-bright.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alphaRange": [
+        0,
+        255
+      ]
+    },
+    {
+      "file": "astrolabe-entry-v3/astrolabe-entry-blue-violet.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alphaRange": [
+        0,
+        255
+      ]
+    },
+    {
+      "file": "astrolabe-entry-v4/astrolabe-entry.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alphaRange": [
+        0,
+        255
+      ]
+    },
+    {
+      "file": "astrolabe-entry-v4/reference-structure.png",
+      "size": [
+        1482,
+        659
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "astrolabe-entry-v5/astrolabe-entry.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alphaRange": [
+        0,
+        255
+      ]
+    },
+    {
+      "file": "astrolabe-entry-v6/astrolabe-entry.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "mode": "RGBA",
+      "alphaRange": [
+        0,
+        255
+      ]
+    },
+    {
+      "file": "title-color-study-v1/index-blue-white-v1.png",
+      "size": [
+        610,
+        182
+      ],
+      "mode": "RGBA"
+    },
+    {
+      "file": "title-color-study-v1/references/index-original.png",
+      "size": [
+        610,
+        182
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "title-color-study-v1/references/read-palette-reference.png",
+      "size": [
+        660,
+        243
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "title-color-study-v1/references/star-chart-original.png",
+      "size": [
+        1233,
+        178
+      ],
+      "mode": "RGB"
+    },
+    {
+      "file": "title-color-study-v1/star-chart-blue-white-v1.png",
+      "size": [
+        1233,
+        178
+      ],
+      "mode": "RGBA"
+    }
+  ],
+  "titleMasks": [
+    {
+      "file": "index-blue-white-v1.png",
+      "glyphMaskUnchanged": true,
+      "maskSha256": "83d06744d4a3db15f0e467f965e3da10113a214ee42ab69f247cbdd1d5470a83"
+    },
+    {
+      "file": "star-chart-blue-white-v1.png",
+      "glyphMaskUnchanged": true,
+      "maskSha256": "f678b3bf62daedd8c59110ceb3de453794c3d8b90eb69685e3222173f4b665f8"
+    }
+  ]
+}
