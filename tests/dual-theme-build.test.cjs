@@ -55,6 +55,9 @@ test('an ordinary post builds in both themes, survives a fresh checkout, and sup
     const index = JSON.parse(fs.readFileSync(path.join(fixture, 'public/starry/index.json')));
     const article = index.articles.find(item => item.id === prepared.starry_id);
     assert.ok(article);
+    assert.match(article.catalogNumber, /^SLD-\d{4,}$/);
+    assert.equal(article.magnitude, 4);
+    assert.equal(article.displayId, `${article.catalogNumber} · 4.0`);
     assert.equal(index.articles.length, publishedCount + 1);
     assert.equal(prepared._content, parse(mediaPost)._content);
     assert.ok(page('')('#room').length);
@@ -84,6 +87,8 @@ test('an ordinary post builds in both themes, survives a fresh checkout, and sup
     const fresh = JSON.parse(fs.readFileSync(path.join(fixture, 'public/starry/index.json'))).articles.find(item => item.title === '双主题文章');
     assert.equal(fresh.id, article.id);
     assert.equal(fresh.path, article.path);
+    assert.equal(fresh.catalogNumber, article.catalogNumber);
+    assert.equal(fresh.displayId, article.displayId);
     assert.deepEqual(fresh.position, article.position);
 
     const configFile = path.join(fixture, '_config.yml');

@@ -15,10 +15,13 @@ test('every published real article has its original address, readable body and s
   const layout = JSON.parse(fs.readFileSync('source/_data/starry-layout.json', 'utf8'));
   assert.equal(index.articles.length, posts.length);
   assert.equal(new Set(index.articles.map(post => post.id)).size, posts.length);
+  assert.equal(new Set(index.articles.map(post => post.catalogNumber)).size, posts.length);
   for (const post of posts) {
     const article = index.articles.find(item => item.id === post.starry_id);
     assert.equal(article.path, post.starry_original_permalink);
     assert.deepEqual(article.position, layout.articles[post.starry_id].position);
+    assert.equal(article.catalogNumber, layout.articles[post.starry_id].catalogNumber);
+    assert.equal(article.displayId, `${article.catalogNumber} · ${article.magnitude.toFixed(1)}`);
     const $ = load(fs.readFileSync(path.join(root, article.path, 'index.html'), 'utf8'));
     assert.equal($('#reader-title').text(), post.title);
     assert.ok($('#reader-content').text().trim().length > 0);

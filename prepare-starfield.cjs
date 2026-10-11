@@ -2,6 +2,7 @@ const crypto = require('node:crypto');
 const fs = require('node:fs');
 const path = require('node:path');
 const Hexo = require('hexo');
+const { assignCatalogueNumbers } = require('./themes/stargazer-starfield/lib/catalogue');
 
 const frontMatterPath = require.resolve('hexo-front-matter', {
   paths: [path.dirname(require.resolve('hexo'))],
@@ -92,6 +93,10 @@ async function main() {
   }
 
   active.sort((left, right) => left.id < right.id ? -1 : left.id > right.id ? 1 : 0);
+  const catalogue = assignCatalogueNumbers(savedArticles, active.map(entry => ({
+    id: entry.id,
+    timeOrder: `${entry.post.date.format('YYYY-MM-DDTHH:mm:ss')}|${entry.id}`,
+  })));
   const occupied = Object.values(savedArticles)
     .map((record) => record?.position)
     .filter(isPosition);
@@ -117,6 +122,7 @@ async function main() {
 
     savedArticles[entry.id] = {
       ...(entry.existingRecord || {}),
+      catalogNumber: catalogue.get(entry.id),
       position,
       originalPermalink: entry.originalPermalink,
       importance: entry.existingRecord?.importance || 'ordinary',
@@ -135,7 +141,7 @@ async function main() {
   if (serializedLayout !== previousLayout) writeAtomically(layoutPath, serializedLayout);
 
   console.log(`Prepared ${active.length} published article(s); ${pendingFiles.length} post file(s) updated.`);
-  console.log(`Stable IDs, original permalinks, excerpts, and positions are saved in source/_posts and ${path.relative(root, layoutPath)}.`);
+  console.log(`Stable IDs, original permalinks, excerpts, positions, and catalogue numbers are saved in source/_posts and ${path.relative(root, layoutPath)}.`);
 }
 
 function readLayout(layoutPath) {

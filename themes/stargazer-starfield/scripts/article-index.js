@@ -1,5 +1,6 @@
 const { normalizeArticleRelations } = require('../lib/relations');
 const { normalizeStar } = require('../lib/star');
+const { readCatalogueNumbers, makeDisplayId } = require('../lib/catalogue');
 
 hexo.extend.generator.register('starry-article-index', function (locals) {
   if (hexo.config.theme !== 'stargazer-starfield') return [];
@@ -9,6 +10,7 @@ hexo.extend.generator.register('starry-article-index', function (locals) {
   if (layout?.version !== 2 || !savedArticles || typeof savedArticles !== 'object' || Array.isArray(savedArticles)) {
     throw new Error('Starfield layout is not prepared. Run `npm run prepare:starfield` locally and commit source/_data/starry-layout.json.');
   }
+  const { catalogue } = readCatalogueNumbers(savedArticles);
 
   const articles = [];
   const ids = new Set();
@@ -39,8 +41,15 @@ hexo.extend.generator.register('starry-article-index', function (locals) {
     paths.set(path, post.source);
 
     const dateKey = post.date.format('YYYY-MM-DDTHH:mm:ss');
+    const catalogNumber = catalogue.get(id);
+    if (!catalogNumber) {
+      throw new Error(`Missing catalogNumber for "${id}" in source/_data/starry-layout.json. Run \`npm run prepare:starfield\` locally and commit the prepared layout.`);
+    }
+    const star = normalizeStar(post, message => hexo.log.warn(message));
     articles.push({
       id,
+      catalogNumber,
+      displayId: makeDisplayId(catalogNumber, star.magnitude),
       title: String(post.title || ''),
       excerpt: String(post.starry_excerpt || '').trim(),
       date: post.date.format('YYYY-MM-DD'),
@@ -48,7 +57,7 @@ hexo.extend.generator.register('starry-article-index', function (locals) {
       path,
       url: String(post.permalink),
       position: saved.position,
-      ...normalizeStar(post, message => hexo.log.warn(message)),
+      ...star,
       constellation: typeof post.starry_constellation === 'string' ? post.starry_constellation.trim() : '',
     });
   });
