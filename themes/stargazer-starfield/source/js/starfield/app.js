@@ -709,6 +709,9 @@ async function start() {
         collectionOpen = false;
         collectionDialog.close();
       }
+      // Cached players survive DOM replacement; pause the departing article only
+      // after this history request has succeeded and is still the current one.
+      if (reader.open) stopEmbeddedAudio();
       article = targetArticle;
       selected = id;
       phase = 'reading';
