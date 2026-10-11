@@ -1,6 +1,6 @@
 # 星空博客开发资料
 
-整理日期：2026-10-10。此目录的日常入口集中在下表；早期原型、想法、截图与旧工单已移入 [历史归档](archive/README.md)。
+更新日期：2026-10-11。此目录的日常入口集中在下表；2026-10-10 已将早期原型、想法、截图与旧工单移入 [历史归档](archive/README.md)。
 
 | 内容 | 入口 |
 | --- | --- |
@@ -9,6 +9,7 @@
 | 作者确认的个人站点范围 | [正式化计划](theme-production-plan.md)、[访谈](theme-planning.md) |
 | 本地实现进展与验证边界 | [实施记录](implementation-progress.md) |
 | 写作、双主题预览与发布 | [操作指南](../../docs/operations/starfield-blog.md) |
+| 新文章默认字段、中文注释与填写示例 | [文章模板](../../scaffolds/post.md)、[创建注释钩子](../../scripts/post-scaffold.js) |
 | 有效验证结论、摘要及复测代码 | [验证资料](evidence/README.md) |
 | 保持 UI/动效的工程与性能整改 | [2026-10-11 逐项核查](evidence/engineering-20261011/README.md) |
 | Kira 配置和旧工作区恢复资料 | [基线目录](baselines/)、[恢复指南](../../docs/operations/legacy-blog-recovery.md) |
