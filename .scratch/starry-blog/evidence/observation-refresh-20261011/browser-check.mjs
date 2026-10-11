@@ -5,9 +5,10 @@ import { fileURLToPath } from 'node:url';
 const { chromium } = await import(process.env.PLAYWRIGHT_MODULE || 'playwright');
 const browser = await chromium.launch({ headless: true, executablePath: process.env.CHROMIUM_PATH });
 const base = process.env.STARFIELD_TEST_URL || 'http://127.0.0.1:4175/';
+const suffix = process.env.STARFIELD_EVIDENCE_SUFFIX || '';
 const results = [];
 try {
-  for (const [width, height] of [[1440, 900], [390, 844], [320, 568], [844, 390]]) {
+  for (const [width, height] of [[1440, 900], [390, 844], [320, 568], [844, 390], [844, 300]]) {
     const context = await browser.newContext({ viewport: { width, height }, hasTouch: width < 900, isMobile: width < 900 });
     const page = await context.newPage(), errors = [];
     page.on('pageerror', error => errors.push(error.message));
@@ -19,6 +20,19 @@ try {
     await page.locator('#star-targets button').first().evaluate(button => button.click());
     await page.waitForFunction(() => !document.querySelector('#preview').hidden && !document.querySelector('#read-button').disabled);
     await page.locator('#preview img').evaluateAll(images => Promise.all(images.filter(image => image.src).map(image => image.decode())));
+    await page.waitForFunction(() => ['.observation-silhouette canvas', '.observation-waveform canvas']
+      .every(selector => !document.querySelector(selector).hidden));
+    const animation = await page.evaluate(async () => {
+      const selectors = ['.observation-silhouette canvas', '.observation-waveform canvas'];
+      const samples = selectors.map(() => new Set());
+      for (let frame = 0; frame < 4; frame++) {
+        selectors.forEach((selector, index) => samples[index].add(document.querySelector(selector).toDataURL()));
+        await new Promise(resolve => setTimeout(resolve, 250));
+      }
+      return { walkerFrames: samples[0].size, waveformFrames: samples[1].size };
+    });
+    assert.ok(animation.walkerFrames > 1, 'the original walking poses must continue changing');
+    assert.ok(animation.waveformFrames > 1, 'the original frequency waveform must continue changing');
     const measurement = await page.evaluate(() => {
       const bounds = selector => {
         const { x, y, width, height } = document.querySelector(selector).getBoundingClientRect();
@@ -34,12 +48,13 @@ try {
         year: bounds('.is-current .year-number'), unit: bounds('.year-unit'), starlink: bounds('.observation-call > img'),
         call: bounds('.call-label'), bracket: bounds('.observation-bracket'), ticks: bounds('.observation-ticks'),
         loaded: [...document.querySelectorAll('#preview img')].filter(image => image.src).every(image => image.complete && image.naturalWidth > 0),
-        overflow: document.documentElement.scrollWidth > innerWidth };
+        panel: bounds('#preview'), overflow: document.documentElement.scrollWidth > innerWidth };
     });
     assert.equal(measurement.loaded, true);
     assert.equal(measurement.overflow, false);
     assert.ok(measurement.button.height >= 44);
     assert.ok(measurement.button.right <= width && measurement.button.bottom <= height);
+    assert.ok(measurement.panel.x >= 0 && measurement.panel.right <= width && measurement.panel.y >= 0 && measurement.panel.bottom <= height);
     for (const part of [measurement.image, measurement.rule]) {
       assert.ok(part.x >= measurement.button.x - .1 && part.y >= measurement.button.y - .1);
       assert.ok(part.right <= measurement.button.right + .1 && part.bottom <= measurement.button.bottom + .1);
@@ -51,8 +66,8 @@ try {
     assert.ok(measurement.year.right < measurement.unit.x, 'year digits must stay before YE');
     assert.ok(measurement.starlink.bottom <= measurement.call.y + .1, 'CALL must stay below STARLINK');
     assert.ok(measurement.bracket.right < measurement.ticks.x);
-    await page.screenshot({ path: fileURLToPath(new URL(`./${width}x${height}.png`, import.meta.url)) });
-    await page.locator('#preview').screenshot({ path: fileURLToPath(new URL(`./panel-${width}x${height}.png`, import.meta.url)) });
+    await page.screenshot({ path: fileURLToPath(new URL(`./${width}x${height}${suffix}.png`, import.meta.url)) });
+    await page.locator('#preview').screenshot({ path: fileURLToPath(new URL(`./panel-${width}x${height}${suffix}.png`, import.meta.url)) });
     const future = await page.evaluate(async () => {
       const { renderGlyphs } = await import('/js/starfield/observation.js');
       const id = document.querySelector('#preview-id');
@@ -82,9 +97,9 @@ try {
     await page.locator('#time-mode').click();
     await page.waitForFunction(() => document.querySelector('#time-mode').getAttribute('aria-pressed') === 'true' && !document.querySelector('#read-button').disabled);
     assert.deepEqual(errors, []);
-    results.push({ viewport: { width, height }, measurement, future, coordinateClicks: points.length, keyboard: 'passed', timeMode: 'passed', errors });
-    console.log(`${width}x${height}: layout, five graphic click points, keyboard and time mode passed`);
+    results.push({ viewport: { width, height }, animation, measurement, future, coordinateClicks: points.length, keyboard: 'passed', timeMode: 'passed', errors });
+    console.log(`${width}x${height}: animation, layout, five graphic click points, keyboard and time mode passed`);
     await context.close();
   }
-  await fs.writeFile(new URL(`./browser-summary.json`, import.meta.url), JSON.stringify(results, null, 2) + '\n');
+  await fs.writeFile(new URL(`./browser${suffix}-summary.json`, import.meta.url), JSON.stringify(results, null, 2) + '\n');
 } finally { await browser.close(); }

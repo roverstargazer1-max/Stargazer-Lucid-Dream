@@ -32,3 +32,13 @@
 截图与完整测量产物按[测试产物保存约定](../README.md)保留本地；可重复的脚本、简明结论与摘要随仓库保存。
 
 从仓库根执行 `node .scratch/starry-blog/evidence/observation-refresh-20261011/browser-check.mjs`；如运行环境未在项目中安装 Playwright，可通过 `PLAYWRIGHT_MODULE` 指向包的 ESM 文件 URL，并用 `CHROMIUM_PATH` 指定已安装的 Chromium 可执行文件。预览地址可用 `STARFIELD_TEST_URL` 覆盖。
+
+## 整组放大与原动效保留
+
+作者随后要求面板整体更大、保留原人物走动及声频波动。桌面宽度改为 `clamp(560px, 41vw, 900px)`：1440px 视口从约 490px 放大至 590px，约增加 20.6%。手机侧边从 14px 缩到 8px、最大宽从 430px 增加到 480px；390px 视口使用 374px 宽，320px 视口使用 304px 宽。短横屏改为 `min(61vw, 560px, calc(160dvh - 48px))`，常见 844×390 面板约宽 515px，极短横屏按高度收窄以保留底部空间。
+
+内部元素和 READ 热区按同一面板比例扩大，原步行图集、声频绘制算法、动画节奏与既有暂停条件沿用。没有更改动画 JavaScript。
+
+双主题预览及生产构建通过。[放大后的浏览器摘要](browser-enlarged-summary.json)覆盖 1440×900、390×844、320×568、844×390、844×300：每种视口连续四次、每次间隔 250ms 采样人物与声频画布，均得到多个不同画面，确认两个原动效实际继续运行；面板完整处于视口，ID／年份／CALL 等间隔、READ 图形及热区、五处图形点击、外侧不命中、Enter 和时间模式均通过，无页面运行错误。1440 宽屏 READ 热区约 156×87px。手机仍为浏览器模拟，未线上发布。
+
+放大后截图：[桌面](1440x900-enlarged.png)、[手机](390x844-enlarged.png)、[最窄手机](320x568-enlarged.png)、[横屏](844x390-enlarged.png)、[极短横屏](844x300-enlarged.png)。设置 `STARFIELD_EVIDENCE_SUFFIX=-enlarged` 可复测并另存该组证据。
