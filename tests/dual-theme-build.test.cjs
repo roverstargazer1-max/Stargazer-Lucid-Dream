@@ -17,7 +17,7 @@ test('an ordinary post builds in both themes, survives a fresh checkout, and sup
       fs.copyFileSync(path.join(project, name), path.join(fixture, name));
     }
     for (const name of ['node_modules', 'themes', 'assets', 'blog-assets', 'scripts', 'tools']) {
-      fs.symlinkSync(path.join(project, name), path.join(fixture, name), 'dir');
+      fs.symlinkSync(path.join(project, name), path.join(fixture, name), process.platform === 'win32' ? 'junction' : 'dir');
     }
     fs.mkdirSync(path.join(fixture, 'source'));
     for (const name of ['_posts', '_data', 'pages', 'image']) {
