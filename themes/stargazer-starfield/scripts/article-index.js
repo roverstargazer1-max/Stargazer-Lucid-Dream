@@ -1,6 +1,8 @@
 const { normalizeArticleRelations } = require('../lib/relations');
 const { normalizeStar } = require('../lib/star');
 const { readCatalogueNumbers, makeDisplayId } = require('../lib/catalogue');
+const pathUtil = require('node:path');
+const { load } = require(require.resolve('cheerio', { paths: [pathUtil.dirname(require.resolve('hexo'))] }));
 
 hexo.extend.generator.register('starry-article-index', function (locals) {
   if (hexo.config.theme !== 'stargazer-starfield') return [];
@@ -46,12 +48,16 @@ hexo.extend.generator.register('starry-article-index', function (locals) {
       throw new Error(`Missing catalogNumber for "${id}" in source/_data/starry-layout.json. Run \`npm run prepare:starfield\` locally and commit the prepared layout.`);
     }
     const star = normalizeStar(post, message => hexo.log.warn(message));
+    const tags = (post.tags?.toArray() || []).map(tag => String(tag.name));
+    const categories = (post.categories?.toArray() || []).map(category => String(category.name));
     articles.push({
       id,
       catalogNumber,
       displayId: makeDisplayId(catalogNumber, star.magnitude),
       title: String(post.title || ''),
       excerpt: String(post.starry_excerpt || '').trim(),
+      tags,
+      categories,
       date: post.date.format('YYYY-MM-DD'),
       timeOrder: `${dateKey}|${id}`,
       path,
@@ -82,6 +88,19 @@ hexo.extend.generator.register('starry-article-index', function (locals) {
   return {
     path: 'starry/index.json',
     data: JSON.stringify({ version: 2, featuredArticleId, articles, archivePeriods: [...archivePeriods.values()], relations }),
+  };
+});
+
+hexo.extend.generator.register('starry-search-index', function (locals) {
+  if (hexo.config.theme !== 'stargazer-starfield') return [];
+  const documents = locals.posts.toArray().filter(post => post.published !== false).map(post => {
+    const searchable = load(String(post.content || ''), null, false);
+    searchable('script, style').remove();
+    return { id: String(post.starry_id), text: searchable.root().text().replace(/\s+/g, ' ').trim() };
+  });
+  return {
+    path: 'starry/search.json',
+    data: JSON.stringify({ version: 1, documents }),
   };
 });
 

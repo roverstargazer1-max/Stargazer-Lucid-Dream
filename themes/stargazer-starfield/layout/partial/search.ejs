@@ -1,0 +1,42 @@
+<button id="search-entry" type="button" aria-label="展开星图检索" title="星图检索" aria-controls="star-search" hidden>
+  <img data-src="<%= url_for('images/search/entry-blue-purple.png') %>" alt="" draggable="false">
+</button>
+<dialog id="star-search" aria-label="星图与文章检索" data-index-open="false" data-search-url="<%= url_for('starry/search.json') %>" data-glyph-root="<%= url_for('images/observation/') %>" data-filter-src="<%= url_for('images/search/filters.png') %>">
+  <div class="search-artboard" data-index-open="false">
+    <div class="search-background" aria-hidden="true">
+      <img class="search-base" data-search-src="<%= url_for('images/search/base-v2.png') %>" alt="" draggable="false">
+      <img class="search-grid" data-search-src="<%= url_for('images/search/grid-v2.png') %>" alt="" draggable="false">
+    </div>
+    <h2 class="search-heading"><span class="sr-only">STAR CHART · 星图</span><img data-search-src="<%= url_for('images/search/star-chart.png') %>" alt="" draggable="false"></h2>
+    <form class="search-bar" role="search">
+      <img class="search-frame" data-search-src="<%= url_for('images/search/frame-v2.png') %>" alt="" draggable="false">
+      <label class="sr-only" for="search-query">检索文章标题、标签、正文或星表号</label>
+      <input id="search-query" type="search" autocomplete="off" placeholder="" spellcheck="false">
+      <button class="search-submit" type="submit" aria-label="检索文章" title="检索文章"></button>
+    </form>
+    <div class="search-filters" aria-label="文章筛选">
+      <% for (const [kind, label] of [['year', '年份'], ['magnitude', '星等']]) { %>
+      <div class="search-filter-row" data-filter="<%= kind %>" role="group" aria-label="按<%= label %>筛选，同一选项再次点击可取消">
+        <span class="search-filter-label search-filter-label-<%= kind %>" aria-hidden="true"><img data-search-src="<%= url_for('images/search/filters.png') %>" alt="" draggable="false"></span>
+        <div class="search-filter-options"></div>
+      </div>
+      <% } %>
+    </div>
+    <div class="search-map" aria-label="全部文章的星位与当前视野">
+      <canvas aria-hidden="true"></canvas>
+      <div class="search-map-stars"></div>
+      <span class="search-map-title" hidden></span>
+    </div>
+    <button id="search-index-toggle" type="button" aria-label="展开检索索引" aria-expanded="false" aria-controls="search-index">
+      <img class="search-toggle-arrow" data-search-src="<%= url_for('images/search/arrow.png') %>" alt="" draggable="false">
+      <img class="search-index-heading" data-search-src="<%= url_for('images/search/index.png') %>" alt="" draggable="false">
+    </button>
+    <button id="close-search" type="button" aria-label="关闭检索，返回星空" title="返回星空"><img data-search-src="<%= url_for('images/search/close.png') %>" alt="" draggable="false"></button>
+    <section id="search-index" aria-label="文章索引" hidden>
+      <div class="search-index-columns" aria-hidden="true"><img class="search-name-heading" data-search-src="<%= url_for('images/search/name.png') %>" alt="" draggable="false"><img class="search-id-heading" data-search-src="<%= url_for('images/search/id.png') %>" alt="" draggable="false"></div>
+      <div id="search-results" tabindex="0"></div>
+      <p id="search-feedback" role="status" aria-live="polite"></p>
+      <button id="search-clear" type="button" hidden>清除条件</button>
+    </section>
+  </div>
+</dialog>

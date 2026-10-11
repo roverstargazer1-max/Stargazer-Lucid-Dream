@@ -14,6 +14,7 @@ import { createPolyhedron } from './polyhedron.js';
 import { createSilhouetteWalker } from './silhouette-walker.js';
 import { readingProgress } from './reading-progress.js';
 import { constrainSkyCamera, skyProjection } from './camera-bounds.js';
+import { createArticleSearch } from './search.js';
 
 const body = document.body;
 const world = document.getElementById('world');
@@ -100,6 +101,7 @@ async function start() {
   let directCloseInProgress = false;
   let collectionOpen = isDirectCollection;
   let collectionTrigger = null;
+  let articleSearch = null;
   let animationStarted = false;
   let navigationEdges = [];
   let timeCueUntil = 0;
@@ -254,6 +256,18 @@ async function start() {
   }
 
   mountStar();
+  articleSearch = createArticleSearch({
+    articles,
+    isSoft: () => reducedMotion,
+    getScene: () => ({ camera, mode, selected, width, height, settings: projectionSettings(), positionOf }),
+    articleUrl: localArticleUrl,
+    onRead: openReaderFromSearch,
+    onOpen() {
+      interrupt(); pointers.clear(); press = null; labelPointer = null;
+      restingFrameDrawn = false; updateUI();
+    },
+    onClose() { restingFrameDrawn = false; updateUI(); },
+  });
   wireControls();
   updateUI();
   preflightRenderer();
@@ -439,8 +453,8 @@ async function start() {
 
   function updateUI() {
     const isSelected = Boolean(article && selected === article.id);
-    preview.hidden = !isSelected || reader.open;
-    controls.hidden = Boolean(roomScene?.active) || reader.open || collectionOpen;
+    preview.hidden = !isSelected || reader.open || Boolean(articleSearch?.isOpen);
+    controls.hidden = Boolean(roomScene?.active) || reader.open || collectionOpen || Boolean(articleSearch?.isOpen);
     relationModeButton.setAttribute('aria-pressed', String(mode === 'relation'));
     timeModeButton.setAttribute('aria-pressed', String(mode === 'time'));
     relationModeButton.disabled = Boolean(arrival || phase === 'loading');
@@ -597,6 +611,32 @@ async function start() {
     }
   }
 
+  async function openReaderFromSearch(id, trigger) {
+    if (!articleSearch?.isOpen || reader.open) return false;
+    const targetArticle = articleById.get(id);
+    if (!targetArticle) return false;
+    try {
+      const node = articleNodes.get(id) || await articleLoads.get(id) || await loadArticleNode(targetArticle);
+      if (!articleSearch.isOpen || reader.open || !node) return false;
+      articleNodes.set(id, node);
+      readingSnapshot = { camera: { ...camera }, selected, articleId: article?.id, phase, mode, searchOpen: true };
+      readerTrigger = trigger;
+      const rect = trigger.getBoundingClientRect();
+      articleSearch.suspend();
+      article = targetArticle; selected = id;
+      readerSlot.replaceChildren(node);
+      internalArticleHistory = true;
+      history.pushState({ starryView: 'reader', starryArticleId: id, mode }, '', localArticleUrl(targetArticle).pathname);
+      window.blogThemeSwitch?.refresh();
+      showReader({ x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 });
+      void prepareEmbeddedPlayer(node);
+      return true;
+    } catch (error) {
+      console.warn(`Search article "${id}" could not be opened.`, error);
+      return false;
+    }
+  }
+
   function openDirectArticle() {
     readerTrigger = document.getElementById('home');
     showReader(project(positionOf(article)));
@@ -649,6 +689,7 @@ async function start() {
     historyNavigationVersion += 1;
     stopEmbeddedAudio();
     const returnToCollection = Boolean(readingSnapshot?.collectionOpen);
+    const returnToSearch = Boolean(readingSnapshot?.searchOpen);
     phase = 'closing';
     starMotion.close(() => {
       reader.close();
@@ -668,6 +709,7 @@ async function start() {
         collectionOpen = true;
         collectionDialog.showModal();
       }
+      if (returnToSearch) articleSearch.resume();
       updateUI();
       const target = returnToCollection && collectionTrigger?.isConnected
         ? collectionTrigger
@@ -688,6 +730,7 @@ async function start() {
     if (reader.open && article?.id === id) return;
     const wasOpen = reader.open;
     const openingFromCollection = !wasOpen && collectionOpen && collectionDialog.open;
+    const openingFromSearch = !wasOpen && articleSearch?.isOpen;
     const activeCollectionTrigger = openingFromCollection
       ? document.activeElement.closest?.('a[data-starry-article-id]')
       : null;
@@ -702,7 +745,12 @@ async function start() {
         phase: selected ? 'settled' : 'idle',
         mode,
         collectionOpen: openingFromCollection,
+        searchOpen: openingFromSearch,
       };
+      if (openingFromSearch) {
+        readerTrigger = document.activeElement;
+        articleSearch.suspend();
+      }
       if (openingFromCollection) {
         collectionTrigger = activeCollectionTrigger || collectionTrigger;
         readerTrigger = collectionTrigger;
@@ -862,7 +910,7 @@ async function start() {
     const showStars = !roomScene?.active && !arrival;
     // Titles and navigation are hidden for the whole passage. Measuring their
     // obstacles after camera style writes otherwise forces layout on every frame.
-    const obstacles = showStars ? [...world.querySelectorAll('.masthead a, #exploration-controls:not([hidden]), #exploration-controls:not([hidden]) .mode-switch, #preview:not([hidden]), #signal-egg:not([hidden])')]
+    const obstacles = showStars ? [...document.querySelectorAll('.masthead a, #exploration-controls:not([hidden]), #exploration-controls:not([hidden]) .mode-switch, #preview:not([hidden]), #signal-egg:not([hidden]), #search-entry:not([hidden])')]
       .map(element => element.getBoundingClientRect()).filter(rect => rect.width && rect.height) : [];
     for (const item of articles) {
       const target = starTargets.get(item.id);
@@ -913,7 +961,7 @@ async function start() {
   }
 
   function drawNavigationGuides() {
-    if (roomScene?.active || arrival || reader.open || collectionOpen) {
+    if (roomScene?.active || arrival || reader.open || collectionOpen || articleSearch?.isOpen) {
       edgeGuide.present(null);
       return;
     }
@@ -954,7 +1002,7 @@ async function start() {
     }
     let guideState = null;
     if (hint && !selected) {
-      const obstacles = [...world.querySelectorAll('nav,nav .mode-switch,header,#preview,.signal-egg')].filter(el => !el.hidden).map(el => el.getBoundingClientRect());
+      const obstacles = [...document.querySelectorAll('#world nav,#world nav .mode-switch,#world header,#preview,.signal-egg,#search-entry')].filter(el => !el.hidden).map(el => el.getBoundingClientRect());
       if (!obstacles.some(rect => hint.point.x + 24 > rect.left && hint.point.x - 24 < rect.right && hint.point.y + 24 > rect.top && hint.point.y - 24 < rect.bottom)) {
         guideState = { left: hint.point.x + 'px', top: hint.point.y + 'px', text: '›', articleId: hint.id };
       }
@@ -1024,16 +1072,17 @@ async function start() {
       const moving = lastCamera && (Math.abs(camera.yaw - lastCamera.yaw) + Math.abs(camera.pitch - lastCamera.pitch) + Math.abs(camera.zoom - lastCamera.zoom) > .01);
       lineOpacity += ((moving || travel || pointers.size ? 0 : 1) - lineOpacity) * Math.min(1, delta / (moving ? 100 : 380));
       lastCamera = { ...camera };
-      if (!reader.open && !egg.open && !roomScene?.active && !reducedMotion) ambient.seconds += delta / 1000;
+      if (!reader.open && !egg.open && !roomScene?.active && !articleSearch?.isOpen && !reducedMotion) ambient.seconds += delta / 1000;
       ambient.x += (ambient.targetX - ambient.x) * .035;
       ambient.y += (ambient.targetY - ambient.y) * .035;
       // Sky/cloud motion already pauses at the window and while reading. Keep
       // that frame until a resize, transition or meteor changes it. CSS micro-motion continues.
       const staticScene = !travel && !arrival && !meteors.length &&
-        ((reader.open && body.dataset.reading === 'open') || (roomScene?.active && body.dataset.room === 'inside'));
+        (articleSearch?.isOpen || (reader.open && body.dataset.reading === 'open') || (roomScene?.active && body.dataset.room === 'inside'));
       if (!staticScene || !restingFrameDrawn) drawScene(now);
       restingFrameDrawn = Boolean(staticScene);
-      polyhedron.render(now, !reducedMotion && !document.hidden && !roomScene?.active && !reader.open);
+      polyhedron.render(now, !reducedMotion && !document.hidden && !roomScene?.active && !reader.open && !articleSearch?.isOpen);
+      articleSearch?.update(now, !roomScene?.active && !arrival && !reader.open && !collectionOpen && !egg.open);
       // The low sky budget must not freeze the selected article's walking and frequency artwork.
       observationPanel.render(now, !preview.hidden && !reducedMotion &&
         !document.hidden && !roomScene?.active && !reader.open && !egg.open && !collectionOpen && !arrival);
@@ -1049,7 +1098,7 @@ async function start() {
       }
       if (timeCueUntil && now > timeCueUntil) document.getElementById('time-cue').hidden = true;
       starMotion.tick(now);
-      const canSample = !reader.open && !egg.open && !document.hidden;
+      const canSample = !reader.open && !egg.open && !articleSearch?.isOpen && !document.hidden;
       const movingScene = cameraIsMoving();
       const drawingOverloaded = canSample && renderBudget.sample(performance.now() - renderStart);
       const presentationOverloaded = renderBudget.sampleFrame(canSample && lastFrame ? now - lastFrame : 0, movingScene);
@@ -1186,6 +1235,7 @@ async function start() {
       stopEmbeddedAudio(); phase = 'closing';
       starMotion.close(() => {
         reader.close(); collectionOpen = false; collectionDialog.close();
+        articleSearch?.abandon();
         readingSnapshot = null; internalArticleHistory = false;
         history.replaceState({ starryView: 'sky', mode }, '', body.dataset.starryRoot);
         window.blogThemeSwitch?.refresh();
@@ -1215,7 +1265,7 @@ async function start() {
         labelPointer = !event.buttons && (event.target === canvas || event.target.closest('.star-target'))
           ? { x: event.clientX, y: event.clientY } : null;
       }
-      if (event.pointerType === 'mouse' && !event.buttons && !roomScene?.active && !reader.open) {
+      if (event.pointerType === 'mouse' && !event.buttons && !roomScene?.active && !reader.open && !articleSearch?.isOpen) {
         ambient.targetX = clamp((event.clientX / width) * 2 - 1, -1, 1);
         ambient.targetY = clamp((event.clientY / height) * 2 - 1, -1, 1);
       }
@@ -1245,7 +1295,7 @@ async function start() {
     world.addEventListener('pointerdown', (event) => {
       body.dataset.starInput = event.pointerType;
       if (event.pointerType === 'touch') labelPointer = null;
-      if (roomScene?.active || reader.open || event.target.closest('.star-target') || event.target !== canvas) return;
+      if (roomScene?.active || reader.open || articleSearch?.isOpen || event.target.closest('.star-target') || event.target !== canvas) return;
       pointers.set(event.pointerId, { x: event.clientX, y: event.clientY });
       world.setPointerCapture(event.pointerId);
       if (pointers.size === 1) {
@@ -1287,13 +1337,13 @@ async function start() {
       clouds?.clearHover();
     });
     world.addEventListener('wheel', (event) => {
-      if (roomScene?.active || reader.open || event.target.closest('#preview, dialog')) return;
+      if (roomScene?.active || reader.open || articleSearch?.isOpen || event.target.closest('#preview, dialog')) return;
       event.preventDefault();
       interrupt();
       moveForward(Math.max(-600, Math.min(600, -event.deltaY * .8)));
     }, { passive: false });
     document.addEventListener('keydown', (event) => {
-      if (reader.open || egg.open || roomScene?.active || collectionOpen || event.target.closest('input, textarea, select, [contenteditable], #preview')) return;
+      if (reader.open || egg.open || roomScene?.active || collectionOpen || articleSearch?.isOpen || event.target.closest('input, textarea, select, [contenteditable], #preview')) return;
       if (['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(event.key)) {
         event.preventDefault(); interrupt();
         camera.yaw += event.key === 'ArrowLeft' ? -.09 : event.key === 'ArrowRight' ? .09 : 0;
@@ -1383,6 +1433,7 @@ function fallback(error) {
     void prepareEmbeddedPlayer(articleNode);
   }
   document.getElementById('reader')?.open && document.getElementById('reader').close();
+  document.getElementById('star-search')?.open && document.getElementById('star-search').close();
   document.body.classList.remove('starry-ready');
   document.getElementById('world').hidden = true;
   document.getElementById('room').hidden = true;
