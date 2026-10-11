@@ -9,6 +9,18 @@ export const cue = (progress, start, end) => smooth((progress - start) / (end - 
 export const ENTRANCE = { passage: 1900, duration: 2500, turn: Math.PI / 3, clarify: 950, clear: 2300, retreat: 2600 };
 export const PREVIEW = { duration: 1100, clear: 950 };
 
+// The article reader and star chart use the same focus reveal and backdrop.
+export function dialogFrames(soft, opening, pose = null) {
+  return [pose ? { opacity: pose.opacity, filter: soft ? 'none' : pose.filter }
+    : { opacity: 0, filter: soft ? 'none' : 'blur(2px)' },
+  { opacity: opening ? 1 : 0, filter: soft ? 'none' : opening ? 'blur(0px)' : 'blur(1.5px)' }];
+}
+export function dialogDuration(soft, opening) { return soft ? (opening ? 160 : 120) : (opening ? 440 : 240); }
+export function dialogBackdrop(progress, soft) {
+  return { background: `rgb(6 13 48 / ${(.15 * progress).toFixed(3)})`,
+    backdropFilter: `blur(${soft ? 0 : (2.4 * progress).toFixed(2)}px)` };
+}
+
 // The window and open sky share this camera, even before the entry button is pressed.
 // A short turn carries the passage into its landing; stars clear during deceleration.
 export function entranceFrame(elapsed, windowZoom = 1) {
@@ -97,8 +109,7 @@ export function createStarMotion({ preview, reader, scroller, isSoft }) {
   let backdropFocus = 0;
   function setBackdrop(progress, soft) {
     backdropFocus = progress;
-    backdrop.background = `rgb(6 13 48 / ${(.15 * progress).toFixed(3)})`;
-    backdrop.backdropFilter = `blur(${soft ? 0 : (2.4 * progress).toFixed(2)}px)`;
+    Object.assign(backdrop, dialogBackdrop(progress, soft));
   }
   setBackdrop(0, isSoft());
   function clearApproach() {
@@ -156,16 +167,15 @@ export function createStarMotion({ preview, reader, scroller, isSoft }) {
     const fromFocus = backdropFocus;
     // Closing midway or reopening during a close starts from the displayed pose.
     const pose = page || !opening ? getComputedStyle(reader) : null;
-    const from = pose ? { opacity: pose.opacity, filter: soft ? 'none' : pose.filter }
-      : { opacity: 0, filter: soft ? 'none' : 'blur(2px)' };
+    const frames = dialogFrames(soft, opening, pose);
     page?.timeline.cancel();
     const timeline = createTimeline();
-    timeline.add(reader, [from, { opacity: opening ? 1 : 0, filter: soft ? 'none' : opening ? 'blur(0px)' : 'blur(1.5px)' }]);
+    timeline.add(reader, frames);
     reader.dataset.motion = opening ? 'opening' : 'closing';
     body.dataset.reading = reader.dataset.motion;
     scroller.inert = true;
     page = { timeline, direction, fromFocus, toFocus: opening ? 1 : 0, soft,
-      start: performance.now(), duration: soft ? (opening ? 160 : 120) : (opening ? 440 : 240), done };
+      start: performance.now(), duration: dialogDuration(soft, opening), done };
     tick(page.start);
   }
   function openPage(_origin, done) {
