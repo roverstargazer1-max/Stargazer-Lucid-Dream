@@ -1,0 +1,12 @@
+[
+  {
+    "quality": "low",
+    "motion": "full",
+    "canvasHidden": [
+      false,
+      false
+    ],
+    "walkerFrames": 4,
+    "waveformFrames": 4
+  }
+]

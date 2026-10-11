@@ -42,3 +42,13 @@
 双主题预览及生产构建通过。[放大后的浏览器摘要](browser-enlarged-summary.json)覆盖 1440×900、390×844、320×568、844×390、844×300：每种视口连续四次、每次间隔 250ms 采样人物与声频画布，均得到多个不同画面，确认两个原动效实际继续运行；面板完整处于视口，ID／年份／CALL 等间隔、READ 图形及热区、五处图形点击、外侧不命中、Enter 和时间模式均通过，无页面运行错误。1440 宽屏 READ 热区约 156×87px。手机仍为浏览器模拟，未线上发布。
 
 放大后截图：[桌面](1440x900-enlarged.png)、[手机](390x844-enlarged.png)、[最窄手机](320x568-enlarged.png)、[横屏](844x390-enlarged.png)、[极短横屏](844x300-enlarged.png)。设置 `STARFIELD_EVIDENCE_SUFFIX=-enlarged` 可复测并另存该组证据。
+
+## 省电档动画停动修复
+
+作者反馈“依然不会动”。实际在用户当前的内置浏览器读取到 `data-motion=full`、`data-render-quality=low`、选星已停靠；人物和声频画布均隐藏且没有绘制尺寸，显示的是原静图。上一轮五种尺寸的检查没有覆盖 low 档，因此不能证明该状态下仍播放。
+
+[低档复现脚本](low-budget-check.mjs)在完整页面启动前把浏览器的硬件并行度和内存提示设为 2，使实际绘制预算进入 low。选星后连续四次、间隔 250ms 采样两个真实画布；修复前得到 `canvasHidden=[true,true]`、人物和声频各仅 1 帧，断言失败，与用户页面一致。
+
+根因是 `app.js` 把观测面板动画与背景装饰共用 `renderBudget.current.ambientMotion` 开关。修复只移除面板对该预算开关的依赖；背景 low 档仍正常降低开销，原人物图集、声频绘制及其余暂停条件沿用。
+
+复现脚本修复后通过：[low-budget-summary.json](low-budget-summary.json)记录 low/full 下两个画布均显示，四次采样的人物和声频各得到 4 个不同画面。75 项自动检查、双主题预览和正式构建再次通过。当前内置浏览器已刷新并选回原文章，确认 low/full 下两个画布显示且具备绘制尺寸；其两次实际截图的人物和声频区域像素均发生变化，见 [in-app-motion-summary.json](in-app-motion-summary.json)。修复效果见[低档复现场景截图](low-budget-fixed.png)。未线上发布。

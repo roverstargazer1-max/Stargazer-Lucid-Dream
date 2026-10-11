@@ -1034,7 +1034,8 @@ async function start() {
       if (!staticScene || !restingFrameDrawn) drawScene(now);
       restingFrameDrawn = Boolean(staticScene);
       polyhedron.render(now, !reducedMotion && !document.hidden && !roomScene?.active && !reader.open);
-      observationPanel.render(now, !preview.hidden && !reducedMotion && renderBudget.current.ambientMotion &&
+      // The low sky budget must not freeze the selected article's walking and frequency artwork.
+      observationPanel.render(now, !preview.hidden && !reducedMotion &&
         !document.hidden && !roomScene?.active && !reader.open && !egg.open && !collectionOpen && !arrival);
       readingWalker.render(now, reader.open && phase === 'reading' && now < readingWalkUntil &&
         !reducedMotion && !readingMotionPreference.matches && !document.hidden);

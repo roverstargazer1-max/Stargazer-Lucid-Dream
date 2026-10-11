@@ -1,0 +1,11 @@
+{
+  "quality": "low",
+  "motion": "full",
+  "figureChanged": true,
+  "waveformChanged": true,
+  "screenshot": "in-app-fixed.png",
+  "frameSize": [
+    1504,
+    1091
+  ]
+}
