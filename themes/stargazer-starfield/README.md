@@ -13,9 +13,9 @@ npm ci
 npm run start:starfield
 ```
 
-写完 Markdown，执行 `npm run start:starfield`，自动保存身份、原链接、描述和新星位置，并启动 [http://127.0.0.1:4175/](http://127.0.0.1:4175/)。服务已运行时执行 `npm run preview:starfield` 后刷新页面；静态服务不监听文件，也不会自动打开浏览器。双主题预览位于 `.preview/stargazer/`，旧版在其 `legacy/` 下；两边共享一份文章。`prepare:starfield` 是同一准备与生成流程的别名；`serve:starfield` 仅提供已有静态文件。
+写完 Markdown，执行 `npm run start:starfield`，自动保存身份、原链接、描述、新星位置和永久星表号，并启动 [http://127.0.0.1:4175/](http://127.0.0.1:4175/)。服务已运行时执行 `npm run preview:starfield` 后刷新页面；静态服务不监听文件，也不会自动打开浏览器。双主题预览位于 `.preview/stargazer/`，旧版在其 `legacy/` 下；两边共享一份文章。`prepare:starfield` 是同一准备与生成流程的别名；`serve:starfield` 仅提供已有静态文件。
 
-预览保存的文章 Front-matter 和 `source/_data/starry-layout.json` 与正文一起提交。`npm run build`、`npm run build:starfield` 和 `npm run netlify` 都自动准备新文章并生成双主题 `public/`；只填写原有字段也可构建。托管端新增身份可复现，生成文件不会自动写回 GitHub。正式与 Deploy Preview 使用相同流程；这些命令只构建本地文件。发布、平台生产分支核对与旧版设为默认的方法见 [操作指南](../../docs/operations/starfield-blog.md)。
+日常先本地预览，将准备后的文章 Front-matter 和 `source/_data/starry-layout.json` 与正文一起提交。星表号只保存到布局的 `articles[id].catalogNumber`，首次按发表时间和内部身份登记，以后从包括已删除文章在内的最大号继续追加；补发旧日期不重排，删除文章后保留登记，退休号不复用。`npm run build`、`npm run build:starfield` 和 `npm run netlify` 都自动准备新文章并生成双主题 `public/`；只填写原有字段也可构建。相同源内容与已有登记可复现，托管生成文件不会自动写回 GitHub；固定后续身份和编号仍须提交准备结果。正式与 Deploy Preview 使用相同流程；本地构建不代表线上已发布。发布、平台生产分支核对与旧版设为默认的方法见 [操作指南](../../docs/operations/starfield-blog.md)。
 
 ## 内容与配置
 
@@ -23,7 +23,9 @@ npm run start:starfield
 
 文章、页面和图片共享根目录的 `source/`。主题场景与首页重点文章设置在本目录 `_config.yml`；常规预览和生产输出由根目录 `build-blog.cjs` 管理；`_config.stargazer-preview.yml`、`_config.stargazer.yml` 只作低层单主题覆盖。根入口选择在 `_config.yml` 的 `blog.default_theme`。友链继续读取 `_config.hexo-theme-kira.yml`。
 
-在仓库根目录执行 `npx hexo new post "文章标题"`，会按 [文章模板](../../scaffolds/post.md) 预填常用字段和中文说明；根 `scripts/post-scaffold.js` 保留 Hexo 创建时会清除的 YAML 注释。封面与语义关联由作者选填，空值也可发布；`star` 默认普通星、非孤立。标题和日期在新建时填写，文章身份、原链接、摘要和星位在预览/构建时保存。
+在仓库根目录执行 `npx hexo new post "文章标题"`，会按 [文章模板](../../scaffolds/post.md) 预填常用字段和中文说明；根 `scripts/post-scaffold.js` 保留 Hexo 创建时会清除的 YAML 注释。封面与语义关联由作者选填，空值也可发布；`star` 默认普通星、非孤立。标题和日期在新建时填写，文章身份、原链接、摘要、星位和星表号在预览/构建时保存。
+
+`star.rank` 的 ordinary／important／treasured 对应博客星等 4.0／2.5／1.0，未填写时采用普通 4.0。观测面板的展示 `ID` 自动组合星表号与当前星等，例如 `SLD-0006 · 4.0`，不需要作者手填。调整档位会更新展示值，永久号、链接与内部身份保持稳定；本次只接入编号和星等展示，光色与闪烁沿用现有实现。
 
 文章关系填写在 Front-matter 的 `related` 中，引用文件名而非标题，不含 `.md`。每对文章只配置一次，自动双向；理由选填，未写理由仍保留文末跳转入口。修改文件名时同步修改引用；修改标题不影响引用、旧链接或星位。
 
@@ -49,7 +51,8 @@ related:
 | `edge-guide.js` / `observation.js` | 导向按钮和观测面板呈现；不重新定义文章关系 |
 | `audio.js` | 文章播放器的素材加载、容器初始化及失败恢复；按已安装 MetingJS 的选项契约保持界面 |
 | 根 `scaffolds/post.md` / `scripts/post-scaffold.js` | 新文章字段默认值、示例及创建时的注释恢复 |
-| 根 `prepare-starfield.cjs` | 保存文章身份、原链接、自动摘要与稳定星位 |
+| 根 `prepare-starfield.cjs` | 保存文章身份、原链接、自动摘要、稳定星位与永久星表号 |
+| `lib/catalogue.js` / `lib/star.js` / `scripts/article-index.js` | 星表登记和唯一性校验、三档博客星等与文章索引输出 |
 | 根 `build-blog.cjs` / `tools/install-build-output.cjs` | 双主题顺序构建和可回滚的输出安装 |
 | 主题 `tools/preview-server.mjs` / 根 `tools/preview-http.mjs` | 本地服务入口和流式 HTTP 文件处理 |
 
@@ -58,6 +61,8 @@ related:
 选星后的观测面板采用根 `assets/详情弹窗/详细工程文件/` 的原始素材。箭头、菱形、刻度、括号、斜线方框、CALL／H- 和 READ 折线从 `补充图形.png` 原样裁切，坐标记录在 `supplement-crops/crops.json`；数字和其余技术字母采用根 `assets/zmd科技小字-修订版7-透明字形/透明PNG/` 的现成字形，构建时自动发布，无须另装字体。五行年份始终围绕文章发布年排列，月日显示为 `MM.DD`，READ 打开对应正文。星空中的标题默认隐藏，鼠标靠近对应文章星时显露，离开后淡出；键盘聚焦和触屏点选也能显露标题。当次访问读到文末后由白变灰。Logo2 与返回／回到窗边按钮直接使用根 `assets/代码程序素材/` 的原始 PNG。手机竖屏的模式组位于左下，返回与回到窗边位于右上，见[模式组位置](../../.scratch/starry-blog/evidence/mobile-mode-corner-20261009/README.md)；常驻测试说明和手势提示已移除，见[星空入口整理记录](../../.scratch/starry-blog/evidence/sky-ui-20261009/README.md)。右下几何图形自动旋转、轻跳，轻过渡模式静止。实现与截图见 [观测面板记录](../../.scratch/starry-blog/archive/implementation/observation-ui-rollout-20261007.md)及[补充图形替换记录](../../.scratch/starry-blog/archive/implementation/supplement-ui-rollout-20261007.md)。
 
 右下图形按作者的中心轴参考校正透视，上下尖点共用竖直轴，中间顶点绕轴作三维转动并按远近缩放。棱线采用原 PNG 干净线段的像素纹理，逐条连接投影顶点，后侧线较淡；不重画 SVG。完整动效模式每 13 秒一圈，整体轻跳沿用原节奏；轻过渡模式固定在校正后的参考角度，不支持绘制时保留原 PNG。动画共用星空现有的绘制循环，每秒最多更新 30 次，静态模式仅在切换或尺寸改变时重绘。
+
+`OBS／ID` 标识后的原留白显示当前文章的组合 `ID`。文字使用较小字号，数字和字母复用日期观测面板的现成 PNG 字形；换篇或调整星等后同步更新，同日期文章也各自显示自己的 ID。星等保留一位小数，永久星表号完整显示。
 
 ## 性能与素材维护
 

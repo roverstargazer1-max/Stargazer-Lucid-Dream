@@ -1,0 +1,446 @@
+[
+  {
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "checkedIds": [
+      "SLD-0001 · 4.0",
+      "SLD-0002 · 4.0",
+      "SLD-0003 · 4.0",
+      "SLD-0004 · 4.0",
+      "SLD-0005 · 4.0",
+      "SLD-0006 · 4.0",
+      "SLD-0007 · 4.0",
+      "SLD-0008 · 4.0",
+      "SLD-0009 · 4.0",
+      "SLD-0010 · 4.0"
+    ],
+    "modes": [
+      "relation",
+      "time"
+    ],
+    "measurement": {
+      "id": {
+        "x": 1150.265625,
+        "y": 647.7109375,
+        "width": 79.328125,
+        "height": 7.828125,
+        "right": 1229.59375,
+        "bottom": 655.5390625
+      },
+      "label": {
+        "x": 1128.234375,
+        "y": 644.5390625,
+        "width": 14.6875,
+        "height": 18.109375,
+        "right": 1142.921875,
+        "bottom": 662.6484375
+      },
+      "read": {
+        "x": 1240.84375,
+        "y": 640.4296875,
+        "width": 115.0625,
+        "height": 53,
+        "right": 1355.90625,
+        "bottom": 693.4296875
+      },
+      "rule": {
+        "x": 1240.84375,
+        "y": 640.4296875,
+        "width": 115.0625,
+        "height": 22.15625,
+        "right": 1355.90625,
+        "bottom": 662.5859375
+      },
+      "date": {
+        "x": 1245.734375,
+        "y": 590.6796875,
+        "width": 99.609375,
+        "height": 25.203125,
+        "right": 1345.34375,
+        "bottom": 615.8828125
+      },
+      "panel": {
+        "x": 895.6875,
+        "y": 453.6015625,
+        "width": 489.59375,
+        "height": 244.796875,
+        "right": 1385.28125,
+        "bottom": 698.3984375
+      },
+      "idFont": 7.8335,
+      "dateFont": 25.2141,
+      "glyphs": [
+        {
+          "src": "http://127.0.0.1:4175/images/observation/glyphs/S.png",
+          "loaded": true
+        },
+        {
+          "src": "http://127.0.0.1:4175/images/observation/glyphs/L.png",
+          "loaded": true
+        },
+        {
+          "src": "http://127.0.0.1:4175/images/observation/glyphs/D.png",
+          "loaded": true
+        },
+        {
+          "src": "http://127.0.0.1:4175/images/observation/glyphs/0.png",
+          "loaded": true
+        },
+        {
+          "src": "http://127.0.0.1:4175/images/observation/glyphs/0.png",
+          "loaded": true
+        },
+        {
+          "src": "http://127.0.0.1:4175/images/observation/glyphs/1.png",
+          "loaded": true
+        },
+        {
+          "src": "http://127.0.0.1:4175/images/observation/glyphs/0.png",
+          "loaded": true
+        },
+        {
+          "src": "http://127.0.0.1:4175/images/observation/glyphs/4.png",
+          "loaded": true
+        },
+        {
+          "src": "http://127.0.0.1:4175/images/observation/glyphs/0.png",
+          "loaded": true
+        }
+      ]
+    },
+    "futureMeasurement": {
+      "right": 1236.265625,
+      "readLeft": 1240.84375
+    },
+    "errors": []
+  },
+  {
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "checkedIds": [
+      "SLD-0001 · 4.0",
+      "SLD-0010 · 4.0"
+    ],
+    "modes": [
+      "relation",
+      "time"
+    ],
+    "measurement": {
+      "id": {
+        "x": 202.234375,
+        "y": 724.53125,
+        "width": 58.484375,
+        "height": 5.78125,
+        "right": 260.71875,
+        "bottom": 730.3125
+      },
+      "label": {
+        "x": 185.9375,
+        "y": 722.171875,
+        "width": 10.859375,
+        "height": 13.390625,
+        "right": 196.796875,
+        "bottom": 735.5625
+      },
+      "read": {
+        "x": 269.203125,
+        "y": 716.796875,
+        "width": 85.078125,
+        "height": 53,
+        "right": 354.28125,
+        "bottom": 769.796875
+      },
+      "rule": {
+        "x": 269.203125,
+        "y": 716.796875,
+        "width": 85.078125,
+        "height": 16.390625,
+        "right": 354.28125,
+        "bottom": 733.1875
+      },
+      "date": {
+        "x": 272.828125,
+        "y": 682.359375,
+        "width": 73.640625,
+        "height": 18.640625,
+        "right": 346.46875,
+        "bottom": 701
+      },
+      "panel": {
+        "x": 14,
+        "y": 581,
+        "width": 362,
+        "height": 181,
+        "right": 376,
+        "bottom": 762
+      },
+      "idFont": 5.792,
+      "dateFont": 18.643,
+      "glyphs": [
+        {
+          "src": "http://127.0.0.1:4175/images/observation/glyphs/S.png",
+          "loaded": true
+        },
+        {
+          "src": "http://127.0.0.1:4175/images/observation/glyphs/L.png",
+          "loaded": true
+        },
+        {
+          "src": "http://127.0.0.1:4175/images/observation/glyphs/D.png",
+          "loaded": true
+        },
+        {
+          "src": "http://127.0.0.1:4175/images/observation/glyphs/0.png",
+          "loaded": true
+        },
+        {
+          "src": "http://127.0.0.1:4175/images/observation/glyphs/0.png",
+          "loaded": true
+        },
+        {
+          "src": "http://127.0.0.1:4175/images/observation/glyphs/1.png",
+          "loaded": true
+        },
+        {
+          "src": "http://127.0.0.1:4175/images/observation/glyphs/0.png",
+          "loaded": true
+        },
+        {
+          "src": "http://127.0.0.1:4175/images/observation/glyphs/4.png",
+          "loaded": true
+        },
+        {
+          "src": "http://127.0.0.1:4175/images/observation/glyphs/0.png",
+          "loaded": true
+        }
+      ]
+    },
+    "futureMeasurement": {
+      "right": 265.625,
+      "readLeft": 269.203125
+    },
+    "errors": []
+  },
+  {
+    "viewport": {
+      "width": 320,
+      "height": 568
+    },
+    "checkedIds": [
+      "SLD-0001 · 4.0",
+      "SLD-0010 · 4.0"
+    ],
+    "modes": [
+      "relation",
+      "time"
+    ],
+    "measurement": {
+      "id": {
+        "x": 165.828125,
+        "y": 455.765625,
+        "width": 47.09375,
+        "height": 4.671875,
+        "right": 212.921875,
+        "bottom": 460.4375
+      },
+      "label": {
+        "x": 152.6875,
+        "y": 453.875,
+        "width": 8.75,
+        "height": 10.78125,
+        "right": 161.4375,
+        "bottom": 464.65625
+      },
+      "read": {
+        "x": 219.859375,
+        "y": 447.796875,
+        "width": 68.625,
+        "height": 53,
+        "right": 288.484375,
+        "bottom": 500.796875
+      },
+      "rule": {
+        "x": 219.859375,
+        "y": 447.796875,
+        "width": 68.625,
+        "height": 13.21875,
+        "right": 288.484375,
+        "bottom": 461.015625
+      },
+      "date": {
+        "x": 222.765625,
+        "y": 421.75,
+        "width": 59.359375,
+        "height": 15.03125,
+        "right": 282.125,
+        "bottom": 436.78125
+      },
+      "panel": {
+        "x": 14,
+        "y": 340,
+        "width": 292,
+        "height": 146,
+        "right": 306,
+        "bottom": 486
+      },
+      "idFont": 4.672,
+      "dateFont": 15.038,
+      "glyphs": [
+        {
+          "src": "http://127.0.0.1:4175/images/observation/glyphs/S.png",
+          "loaded": true
+        },
+        {
+          "src": "http://127.0.0.1:4175/images/observation/glyphs/L.png",
+          "loaded": true
+        },
+        {
+          "src": "http://127.0.0.1:4175/images/observation/glyphs/D.png",
+          "loaded": true
+        },
+        {
+          "src": "http://127.0.0.1:4175/images/observation/glyphs/0.png",
+          "loaded": true
+        },
+        {
+          "src": "http://127.0.0.1:4175/images/observation/glyphs/0.png",
+          "loaded": true
+        },
+        {
+          "src": "http://127.0.0.1:4175/images/observation/glyphs/1.png",
+          "loaded": true
+        },
+        {
+          "src": "http://127.0.0.1:4175/images/observation/glyphs/0.png",
+          "loaded": true
+        },
+        {
+          "src": "http://127.0.0.1:4175/images/observation/glyphs/4.png",
+          "loaded": true
+        },
+        {
+          "src": "http://127.0.0.1:4175/images/observation/glyphs/0.png",
+          "loaded": true
+        }
+      ]
+    },
+    "futureMeasurement": {
+      "right": 216.890625,
+      "readLeft": 219.859375
+    },
+    "errors": []
+  },
+  {
+    "viewport": {
+      "width": 844,
+      "height": 390
+    },
+    "checkedIds": [
+      "SLD-0001 · 4.0",
+      "SLD-0010 · 4.0"
+    ],
+    "modes": [
+      "relation",
+      "time"
+    ],
+    "measurement": {
+      "id": {
+        "x": 617.375,
+        "y": 297.046875,
+        "width": 69.59375,
+        "height": 6.875,
+        "right": 686.96875,
+        "bottom": 303.921875
+      },
+      "label": {
+        "x": 598.015625,
+        "y": 294.25,
+        "width": 12.90625,
+        "height": 15.90625,
+        "right": 610.921875,
+        "bottom": 310.15625
+      },
+      "read": {
+        "x": 697.015625,
+        "y": 289.5625,
+        "width": 101.171875,
+        "height": 53,
+        "right": 798.1875,
+        "bottom": 342.5625
+      },
+      "rule": {
+        "x": 697.015625,
+        "y": 289.5625,
+        "width": 101.171875,
+        "height": 19.484375,
+        "right": 798.1875,
+        "bottom": 309.046875
+      },
+      "date": {
+        "x": 701.3125,
+        "y": 246.90625,
+        "width": 87.546875,
+        "height": 22.15625,
+        "right": 788.859375,
+        "bottom": 269.0625
+      },
+      "panel": {
+        "x": 393.5625,
+        "y": 126.390625,
+        "width": 430.4375,
+        "height": 215.21875,
+        "right": 824,
+        "bottom": 341.609375
+      },
+      "idFont": 6.887,
+      "dateFont": 22.1675,
+      "glyphs": [
+        {
+          "src": "http://127.0.0.1:4175/images/observation/glyphs/S.png",
+          "loaded": true
+        },
+        {
+          "src": "http://127.0.0.1:4175/images/observation/glyphs/L.png",
+          "loaded": true
+        },
+        {
+          "src": "http://127.0.0.1:4175/images/observation/glyphs/D.png",
+          "loaded": true
+        },
+        {
+          "src": "http://127.0.0.1:4175/images/observation/glyphs/0.png",
+          "loaded": true
+        },
+        {
+          "src": "http://127.0.0.1:4175/images/observation/glyphs/0.png",
+          "loaded": true
+        },
+        {
+          "src": "http://127.0.0.1:4175/images/observation/glyphs/1.png",
+          "loaded": true
+        },
+        {
+          "src": "http://127.0.0.1:4175/images/observation/glyphs/0.png",
+          "loaded": true
+        },
+        {
+          "src": "http://127.0.0.1:4175/images/observation/glyphs/4.png",
+          "loaded": true
+        },
+        {
+          "src": "http://127.0.0.1:4175/images/observation/glyphs/0.png",
+          "loaded": true
+        }
+      ]
+    },
+    "futureMeasurement": {
+      "right": 692.8125,
+      "readLeft": 697.015625
+    },
+    "errors": []
+  }
+]
