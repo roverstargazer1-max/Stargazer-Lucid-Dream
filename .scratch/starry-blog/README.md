@@ -10,6 +10,7 @@
 | 本地实现进展与验证边界 | [实施记录](implementation-progress.md) |
 | 写作、双主题预览与发布 | [操作指南](../../docs/operations/starfield-blog.md) |
 | 有效验证结论、摘要及复测代码 | [验证资料](evidence/README.md) |
+| 保持 UI/动效的工程与性能整改 | [2026-10-11 逐项核查](evidence/engineering-20261011/README.md) |
 | Kira 配置和旧工作区恢复资料 | [基线目录](baselines/)、[恢复指南](../../docs/operations/legacy-blog-recovery.md) |
 | 历史规格、工单、原型与美术试验 | [归档索引](archive/README.md) |
 

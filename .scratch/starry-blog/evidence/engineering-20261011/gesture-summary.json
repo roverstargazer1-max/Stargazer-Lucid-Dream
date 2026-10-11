@@ -1,0 +1,16 @@
+[
+  {
+    "device": "desktop",
+    "drag": "passed",
+    "zoom": "passed",
+    "return": "passed",
+    "errors": []
+  },
+  {
+    "device": "touch-simulation",
+    "drag": "passed",
+    "zoom": "passed",
+    "return": "passed",
+    "errors": []
+  }
+]

@@ -1,0 +1,32 @@
+{
+  "samples": 432,
+  "viewports": [
+    [
+      640,
+      360
+    ],
+    [
+      390,
+      844
+    ]
+  ],
+  "dpr": [
+    0.75,
+    1,
+    1.5,
+    2
+  ],
+  "environmentCaps": [
+    1.5,
+    1,
+    0.75
+  ],
+  "backgroundStrides": [
+    1,
+    2,
+    4
+  ],
+  "changedChannels": 0,
+  "maxDelta": 0,
+  "roomASTEqual": true
+}

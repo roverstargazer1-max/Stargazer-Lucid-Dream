@@ -3,6 +3,8 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 const label = process.argv[2] || 'baseline';
 const results = [];
+const output = process.env.STARFIELD_EVIDENCE_DIR || '.scratch/starry-blog/evidence/performance-20261009';
+await fs.mkdir(output, { recursive: true });
 const browser = await chromium.launch({ headless: true, executablePath: '/Users/Stargazer/Library/Caches/ms-playwright/chromium-1228/chrome-mac-arm64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing' });
 try {
   for (const width of [1440, 390]) {
@@ -82,7 +84,7 @@ try {
     results.push(result); console.log(JSON.stringify(result));
     await context.close();
   }
-  await fs.writeFile(`.scratch/starry-blog/evidence/performance-20261009/${label}-regression.json`, JSON.stringify(results, null, 2));
+  await fs.writeFile(`${output}/${label}-regression.json`, JSON.stringify(results, null, 2));
   assert.ok(results.every(r => r.idle.redundantMutations === 0), 'stationary reading must not rewrite unchanged progress text');
   assert.ok(results.every(r => r.idle.sceneRedraws === 0), 'a frozen reading background must not redraw continuously');
   assert.ok(results.every(r => r.roomIdle.sceneRedraws === 0 && r.roomIdle.pixelsUnchanged), 'the unchanged room canvas must not redraw continuously');

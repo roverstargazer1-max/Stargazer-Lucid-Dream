@@ -4,6 +4,8 @@ import { chromium } from '/Users/Stargazer/.cache/codex-runtimes/codex-primary-r
 
 const browser = await chromium.launch({ headless: true, executablePath: '/Users/Stargazer/Library/Caches/ms-playwright/chromium-1228/chrome-mac-arm64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing' });
 const results = [];
+const output = process.env.STARFIELD_EVIDENCE_DIR || '.scratch/starry-blog/evidence/power-transitions-20261010';
+await fs.mkdir(output, { recursive: true });
 try {
   for (const mobile of [false, true]) {
     const context = await browser.newContext({ viewport: mobile ? { width: 390, height: 844 } : { width: 1680, height: 970 }, deviceScaleFactor: 2, hasTouch: mobile, isMobile: mobile });
@@ -93,5 +95,5 @@ try {
     await context.close();
   }
   console.log(JSON.stringify(results));
-  await fs.writeFile('.scratch/starry-blog/evidence/power-transitions-20261010/regression-summary.json', JSON.stringify(results, null, 2));
+  await fs.writeFile(`${output}/regression-summary.json`, JSON.stringify(results, null, 2));
 } finally { await browser.close(); }

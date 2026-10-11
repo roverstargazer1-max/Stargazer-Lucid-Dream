@@ -5,7 +5,7 @@ import path from 'node:path';
 
 const label = process.argv[2] || 'baseline';
 const url = process.env.STARFIELD_TEST_URL || 'http://127.0.0.1:4175/';
-const output = path.resolve('.scratch/starry-blog/evidence/performance-20261009');
+const output = path.resolve(process.env.STARFIELD_EVIDENCE_DIR || '.scratch/starry-blog/evidence/performance-20261009');
 await fs.mkdir(output, { recursive: true });
 const browser = await chromium.launch({ headless: true, executablePath: '/Users/Stargazer/Library/Caches/ms-playwright/chromium-1228/chrome-mac-arm64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing' });
 const results = [];

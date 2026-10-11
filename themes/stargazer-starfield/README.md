@@ -34,6 +34,21 @@ related:
 
 `starry_excerpt` 用于描述元信息，点星后不展示长摘要。已有自动身份与星位由准备流程维护，不需要作者填写编号。更完整的写作、可选配置、静态地址与旧版切回步骤见 [使用指南](../../docs/operations/starfield-blog.md)。阅读开合的决定与验证见 [2026-10-02 落地记录](../../.scratch/starry-blog/archive/implementation/reader-rollout-20261002.md)，当前窗口配色见 [2026-10-08 记录](../../.scratch/starry-blog/evidence/reader-palette-20261008/README.md)。
 
+## 代码职责与验证
+
+正式运行代码在 `source/js/starfield/`，真实内容生成在 `scripts/`、`lib/`，离线素材工具在 `tools/`。根 `tests/` 维护业务与生命周期回归，浏览器性能、像素对照及其环境记录在 [工程与性能核查](../../.scratch/starry-blog/evidence/engineering-20261011/README.md)。
+
+| 边界 | 职责 |
+| --- | --- |
+| `app.js` | 文章选择、阅读、历史导航与各控制器的编排 |
+| `dome.js` / `camera-bounds.js` / `navigation.js` | 投影、视角边界和路径几何；不写 DOM |
+| `painted.js` / `dome-renderer.js` / `interactive-clouds.js` | 原像素素材绘制、背景缓存、云绘制与命中；`painted.js` 保留房间入口兼容导出 |
+| `room-scene.js` / `motion.js` | 房间过场、阅读开合及既有时间线 |
+| `edge-guide.js` / `observation.js` | 导向按钮和观测面板呈现；不重新定义文章关系 |
+| `audio.js` | 文章播放器的素材加载、容器初始化及失败恢复；按已安装 MetingJS 的选项契约保持界面 |
+| 根 `build-blog.cjs` / `tools/install-build-output.cjs` | 双主题顺序构建和可回滚的输出安装 |
+| 主题 `tools/preview-server.mjs` / 根 `tools/preview-http.mjs` | 本地服务入口和流式 HTTP 文件处理 |
+
 ## 观测面板实现
 
 选星后的观测面板采用 `assets/详情弹窗/详细工程文件/` 的原始素材。箭头、菱形、刻度、括号、斜线方框、CALL／H- 和 READ 折线从 `补充图形.png` 原样裁切，坐标记录在 `supplement-crops/crops.json`；数字和其余技术字母采用 `assets/zmd科技小字-修订版7-透明字形/透明PNG/` 的现成字形，构建时自动发布，无须另装字体。五行年份始终围绕文章发布年排列，月日显示为 `MM.DD`，READ 打开对应正文。星空中的标题默认隐藏，鼠标靠近对应文章星时显露，离开后淡出；键盘聚焦和触屏点选也能显露标题。当次访问读到文末后由白变灰。Logo2 与右上角返回／回到窗边按钮直接使用 `assets/代码程序素材/` 的原始 PNG，手机导航位于 Logo 下方；常驻测试说明和手势提示已移除，见[星空入口整理记录](../../.scratch/starry-blog/evidence/sky-ui-20261009/README.md)。右下几何图形自动旋转、轻跳，轻过渡模式静止。实现与截图见 [观测面板记录](../../.scratch/starry-blog/archive/implementation/observation-ui-rollout-20261007.md)及[补充图形替换记录](../../.scratch/starry-blog/archive/implementation/supplement-ui-rollout-20261007.md)。
