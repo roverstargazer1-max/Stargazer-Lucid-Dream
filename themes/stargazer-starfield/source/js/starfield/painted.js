@@ -136,11 +136,36 @@ export function paintPaintedStar(ctx, x, y, id, {
   ctx.fill();
   ctx.fillStyle = coreColors[2];
   ctx.fillRect(-.8, -.8, 1.6, 1.6);
-  if (active || hover) {
-    ctx.strokeStyle = active ? '#5bd9ff99' : '#d5e8ff77';
-    ctx.lineWidth = .85;
+  ctx.restore();
+  // State furniture is drawn unrotated so ticks stay on the screen axes.
+  // `hover` and `active` are 0..1 (booleans still work) and are eased by the caller,
+  // so the ring draws itself in rather than switching on.
+  const h = +hover, a = +active;
+  if (h < .01 && a < .01) return;
+  ctx.save();
+  ctx.translate(x, y);
+  ctx.lineCap = 'round';
+  // Hover: one open hairline arc that sweeps closed as attention settles.
+  if (h > .01) {
+    const r = size + 9 - h * 1.5, sweep = Math.PI * (.35 + 1.25 * h);
+    ctx.strokeStyle = `rgba(213,232,255,${(.48 * h).toFixed(3)})`;
+    ctx.lineWidth = .8;
     ctx.beginPath();
-    ctx.ellipse(0, 0, size + 10, size + 9, -.2, .2, 5.8);
+    ctx.arc(0, 0, r, -Math.PI * .62, -Math.PI * .62 + sweep);
+    ctx.stroke();
+  }
+  // Selection: four axis ticks that slide inward and lock, an instrument reticle
+  // rather than a glow. Reads as "acquired" without adding light to the sky.
+  if (a > .01) {
+    const inner = size + 6 + (1 - a) * 10, len = 3 + a * 3;
+    ctx.strokeStyle = `rgba(114,219,255,${(.78 * a).toFixed(3)})`;
+    ctx.lineWidth = .9;
+    ctx.beginPath();
+    for (let i = 0; i < 4; i++) {
+      const dx = Math.cos(i * Math.PI / 2), dy = Math.sin(i * Math.PI / 2);
+      ctx.moveTo(dx * inner, dy * inner);
+      ctx.lineTo(dx * (inner + len), dy * (inner + len));
+    }
     ctx.stroke();
   }
   ctx.restore();

@@ -1,0 +1,46 @@
+/* Motion vocabulary. One clock, four curves, five durations.
+   The site had ~30 hand-written durations and every module picked its own curve,
+   which is why unrelated moments felt unrelated. Everything below is referenced by
+   name; nothing animates on a bare `ease` or an ad-hoc millisecond count.
+   Curves are also exported to JS through `tokens.js` so Canvas and DOM agree. */
+
+:root {
+  /* Curves ------------------------------------------------------------------
+     settle: things coming to rest. Long tail, no overshoot — the sky's own feel.
+             The camera uses the exact smootherstep t³(10−15t+6t²) in tokens.js;
+             this bezier is its CSS-side equivalent for UI surfaces.
+     enter:  something arriving into view. Firm start so it reads as decisive.
+     exit:   something leaving. Leaves faster than it arrives; that is what makes
+             a dismissal feel like a response rather than a fade.
+     drift:  continuous ambient loop motion only. Never use for state changes. */
+  --ease-settle: cubic-bezier(.22, .68, .20, 1);
+  --ease-enter: cubic-bezier(.16, .84, .24, 1);
+  --ease-exit: cubic-bezier(.55, .02, .80, .30);
+  --ease-drift: cubic-bezier(.45, .05, .55, .95);
+
+  /* Durations ---------------------------------------------------------------
+     Read these as "how long until the user can act again", not decoration.
+     A control that responds slower than --dur-press feels broken; a panel that
+     arrives faster than --dur-panel feels like a glitch. */
+  --dur-press: 90ms;    /* button press-down feedback                  */
+  --dur-hover: 180ms;   /* pointer entering a control                  */
+  --dur-quick: 260ms;   /* small state swaps, label changes             */
+  --dur-panel: 420ms;   /* a surface arriving or leaving                */
+  --dur-scene: 800ms;   /* something that changes the sense of place    */
+
+  /* Stagger -----------------------------------------------------------------
+     Sequential reveals step by this. Applied per item, capped so a long list
+     never makes the last item wait. */
+  --stagger-step: 38ms;
+  --stagger-max: 6;
+
+  /* Composite transitions ---------------------------------------------------
+     Named so components stop re-declaring the same three properties. */
+  --t-control: color var(--dur-hover) var(--ease-enter),
+               background-color var(--dur-hover) var(--ease-enter),
+               border-color var(--dur-hover) var(--ease-enter),
+               opacity var(--dur-hover) var(--ease-enter),
+               transform var(--dur-press) var(--ease-enter);
+  --t-surface: opacity var(--dur-panel) var(--ease-settle),
+               transform var(--dur-panel) var(--ease-settle);
+}

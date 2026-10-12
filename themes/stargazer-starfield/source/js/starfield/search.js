@@ -1,6 +1,7 @@
 import { angles, clamp, domeIntersection, viewRay } from './dome.js';
 import { renderGlyphs } from './observation.js';
-import { createTimeline, smooth, unit, dialogFrames, dialogDuration, dialogBackdrop } from './motion.js';
+import { unit, dialogBackdrop } from './motion.js';
+import { enter, exit, DUR, STAGGER_STEP, STAGGER_MAX } from './tokens.js';
 import { createAstrolabe } from './astrolabe.js';
 
 const normalize = value => String(value || '').normalize('NFKC').trim().toLocaleLowerCase();
@@ -62,8 +63,9 @@ export function createArticleSearch({ articles, getScene, onRead, onOpen, onClos
   let matched = new Set(articles.map(article => article.id));
   let composing = false, reading = false, closing = false, dialogAnimation = null;
   let openingTrigger = entry, readingTrigger = null, session = false;
-  let lastMapKey = '';
+  let lastMapKey = '', entryOrigin = null;
   const filterButtons = new Map();
+  const filterSeams = new Map();
   const starButtons = new Map();
   const rowLinks = new Map();
   const backdropSheet = document.createElement('style');
@@ -122,6 +124,10 @@ export function createArticleSearch({ articles, getScene, onRead, onOpen, onClos
       rail.append(button);
       return button;
     });
+    // One light seam per rail glides between choices instead of each option owning an underline.
+    const seam = document.createElement('span'); seam.className = 'search-filter-seam';
+    seam.setAttribute('aria-hidden', 'true'); seam.dataset.on = 'false';
+    rail.append(seam); filterSeams.set(kind, { seam, value: '' });
     filterButtons.set(kind, buttons);
   }
 
@@ -129,6 +135,8 @@ export function createArticleSearch({ articles, getScene, onRead, onOpen, onClos
     const star = document.createElement('button');
     star.type = 'button'; star.className = 'search-map-star';
     star.dataset.articleId = article.id;
+    const reticle = document.createElement('span'); reticle.className = 'search-map-reticle';
+    reticle.setAttribute('aria-hidden', 'true'); star.append(reticle);
     star.setAttribute('aria-label', `阅读：${article.title}，${article.displayId}`);
     star.addEventListener('mouseenter', () => highlight(article.id));
     star.addEventListener('mouseleave', () => highlight(null));
@@ -145,7 +153,9 @@ export function createArticleSearch({ articles, getScene, onRead, onOpen, onClos
     const date = document.createElement('time'); date.dateTime = article.date; date.textContent = article.date;
     const id = document.createElement('span'); id.className = 'search-result-id';
     id.textContent = article.displayId;
-    label.append(name, date); row.append(label, id);
+    const mark = document.createElement('span'); mark.className = 'search-result-mark';
+    mark.setAttribute('aria-hidden', 'true');
+    label.append(name, date); row.append(mark, label, id);
     row.addEventListener('mouseenter', () => highlight(article.id));
     row.addEventListener('mouseleave', () => highlight(null));
     row.addEventListener('focus', () => highlight(article.id));
@@ -158,6 +168,7 @@ export function createArticleSearch({ articles, getScene, onRead, onOpen, onClos
   }
 
   function setIndex(open) {
+    const wasOpen = artboard.dataset.indexOpen === 'true';
     index.hidden = false;
     index.inert = !open;
     index.setAttribute('aria-hidden', String(!open));
@@ -165,6 +176,37 @@ export function createArticleSearch({ articles, getScene, onRead, onOpen, onClos
     artboard.dataset.indexOpen = String(open);
     toggle.setAttribute('aria-expanded', String(open));
     toggle.setAttribute('aria-label', open ? '收起检索索引' : '展开检索索引');
+    if (open && !wasOpen) revealRows();
+  }
+
+  // Rows rise in sequence when the index opens or the result set changes.
+  function revealRows() {
+    const rows = [...results.children];
+    for (const row of rows) row.classList.remove('is-entering');
+    if (isSoft() || !rows.length) return;
+    void results.offsetWidth;
+    rows.forEach((row, order) => {
+      row.style.setProperty('--row-delay', `${Math.min(order, STAGGER_MAX + 2) * STAGGER_STEP + 60}ms`);
+      row.classList.add('is-entering');
+    });
+  }
+
+  // The seam travels from the previous choice; a first choice ignites in place.
+  function placeSeams() {
+    for (const [kind, state] of filterSeams) {
+      const { seam } = state, value = conditions[kind];
+      const button = filterButtons.get(kind).find(item => item.dataset.value === value);
+      if (!button || !button.offsetWidth) { seam.dataset.on = 'false'; state.value = ''; continue; }
+      if (state.value === value) continue;
+      const inset = button.offsetWidth * .16;
+      const fresh = !state.value || isSoft();
+      if (fresh) seam.dataset.instant = 'true';
+      seam.style.setProperty('--seam-x', `${button.offsetLeft + inset}px`);
+      seam.style.setProperty('--seam-w', `${button.offsetWidth - inset * 2}px`);
+      if (fresh) { void seam.offsetWidth; delete seam.dataset.instant; }
+      seam.dataset.on = 'true'; state.value = value;
+      seam.classList.remove('is-flash'); void seam.offsetWidth; seam.classList.add('is-flash');
+    }
   }
 
   function changed() {
@@ -182,8 +224,12 @@ export function createArticleSearch({ articles, getScene, onRead, onOpen, onClos
     const failed = Boolean(conditions.query.trim() && loadError);
     const found = findArticles(articles, documents, conditions);
     matched = new Set(found.map(article => article.id));
-    results.replaceChildren(...(waiting || failed ? [] : found.map(article => rowLinks.get(article.id))));
+    const rows = waiting || failed ? [] : found.map(article => rowLinks.get(article.id));
+    const same = rows.length === results.children.length && rows.every((row, i) => results.children[i] === row);
+    results.replaceChildren(...rows);
     results.scrollTop = preserveScroll ? scrollTop : 0;
+    if (!same && !preserveScroll && artboard.dataset.indexOpen === 'true') revealRows();
+    placeSeams();
     feedback.textContent = waiting ? '正在准备检索…' : failed ? '正文检索暂不可用，请清除关键词浏览文章。'
       : found.length ? `${found.length} 篇文章` : '未找到匹配文章';
     clear.hidden = !(conditions.query || conditions.year || conditions.magnitude);
@@ -215,9 +261,11 @@ export function createArticleSearch({ articles, getScene, onRead, onOpen, onClos
     if (dialog.open || session) return;
     openingTrigger = trigger;
     session = true;
+    const origin = entry.getBoundingClientRect();
+    entryOrigin = origin.width ? { x: origin.left + origin.width / 2, y: origin.top + origin.height / 2 } : null;
     conditions = { query: '', year: '', magnitude: '' }; input.value = '';
     setIndex(false); hydrate(dialog);
-    void showDialog().then(() => {
+    void showDialog(entryOrigin).then(() => {
       if (session && !closing && dialog.open) input.focus({ preventScroll: true });
     });
     onOpen();
@@ -225,15 +273,37 @@ export function createArticleSearch({ articles, getScene, onRead, onOpen, onClos
     void loadDocuments();
   }
 
-  function animateDialog(out = false) {
-    const soft = isSoft(), fromFocus = backdropFocus;
-    const frames = dialogFrames(soft, !out, out || dialogAnimation ? getComputedStyle(dialog) : null);
+  // The chart unfolds out of the astrolabe as an iris and folds back into it on close.
+  // One progress value drives the aperture, the sheet, the staged furniture and the
+  // star ignition, so an interrupted open closes from exactly where it was.
+  let unfold = 0;
+  function setUnfold(value) {
+    unfold = value;
+    dialog.style.setProperty('--unfold', value.toFixed(4));
+  }
+  function aperture(origin) {
+    const rect = dialog.getBoundingClientRect();
+    const x = origin ? origin.x - rect.left : rect.width * .08;
+    const y = origin ? origin.y - rect.top : rect.height * .92;
+    const reach = Math.max(...[[0, 0], [rect.width, 0], [0, rect.height], [rect.width, rect.height]]
+      .map(([cx, cy]) => Math.hypot(cx - x, cy - y)));
+    dialog.style.setProperty('--iris-x', `${x.toFixed(1)}px`);
+    dialog.style.setProperty('--iris-y', `${y.toFixed(1)}px`);
+    // Start at the dialog's nearest edge so the iris is visible from the first frame.
+    const near = Math.hypot(Math.max(0, -x, x - rect.width), Math.max(0, -y, y - rect.height));
+    dialog.style.setProperty('--iris-r0', `${Math.max(0, near - 8).toFixed(1)}px`);
+    dialog.style.setProperty('--iris-r', `${Math.ceil(reach + 24)}px`);
+  }
+  function animateDialog(out = false, origin = entryOrigin) {
+    const soft = isSoft(), fromFocus = backdropFocus, fromUnfold = dialogAnimation || out ? unfold : 0;
     cancelDialogAnimation();
-    const timeline = createTimeline(); timeline.add(dialog, frames);
-    dialog.dataset.motion = out ? 'closing' : 'opening'; artboard.inert = true;
+    aperture(origin);
+    dialog.dataset.motion = out ? 'closing' : 'opening'; dialog.dataset.soft = String(soft); artboard.inert = true;
+    const span = out ? fromUnfold : 1 - fromUnfold;
+    const full = soft ? (out ? DUR.hover - 60 : DUR.press + 70) : out ? DUR.panel + 60 : DUR.scene + 120;
     const finished = new Promise(resolve => {
-      dialogAnimation = { timeline, start:performance.now(), duration:dialogDuration(soft, !out),
-        fromFocus, toFocus:out ? 0 : 1, soft, resolve };
+      dialogAnimation = { start:performance.now(), duration:Math.max(1, full * Math.max(span, .35)),
+        fromFocus, toFocus:out ? 0 : 1, fromUnfold, toUnfold:out ? 0 : 1, out, soft, resolve };
     });
     tickDialog(performance.now());
     return finished;
@@ -241,20 +311,21 @@ export function createArticleSearch({ articles, getScene, onRead, onOpen, onClos
 
   function cancelDialogAnimation() {
     const current = dialogAnimation; dialogAnimation = null;
-    current?.timeline.cancel(); current?.resolve();
+    current?.resolve();
     artboard.inert = false; delete dialog.dataset.motion;
   }
 
   function tickDialog(now) {
     if (!dialogAnimation) return;
     const current = dialogAnimation, progress = unit((now - current.start) / current.duration);
-    current.timeline.seek(progress);
-    setBackdrop(current.fromFocus + (current.toFocus - current.fromFocus) * smooth(progress), current.soft);
+    const curve = current.out ? exit : enter;
+    setUnfold(current.fromUnfold + (current.toUnfold - current.fromUnfold) * curve(progress));
+    setBackdrop(current.fromFocus + (current.toFocus - current.fromFocus) * curve(progress), current.soft);
     if (progress === 1) cancelDialogAnimation();
   }
 
-  function showDialog() {
-    closing = false; dialog.showModal(); return animateDialog();
+  function showDialog(origin) {
+    closing = false; dialog.showModal(); setUnfold(0); return animateDialog(false, origin);
   }
 
   async function close() {
@@ -271,11 +342,17 @@ export function createArticleSearch({ articles, getScene, onRead, onOpen, onClos
     reading = true; readingTrigger = trigger;
     feedback.textContent = '正在准备正文…';
     dialog.setAttribute('aria-busy', 'true');
+    // Departure beat: the chosen star blooms while the rest of the chart recedes,
+    // so the reader appears to open out of that point rather than cut in.
+    const star = starButtons.get(id);
+    star?.classList.add('is-departing'); dialog.dataset.departing = 'true';
     try {
-      const opened = await onRead(id, trigger);
-      if (!opened) feedback.textContent = '这篇文章暂时无法加载，请重试。';
+      if (!isSoft()) await new Promise(resolve => setTimeout(resolve, 280));
+      const opened = dialog.open && await onRead(id, star?.isConnected ? star : trigger);
+      if (!opened && dialog.open) feedback.textContent = '这篇文章暂时无法加载，请重试。';
     } finally {
       reading = false; dialog.removeAttribute('aria-busy');
+      star?.classList.remove('is-departing'); delete dialog.dataset.departing;
     }
   }
 
@@ -283,10 +360,16 @@ export function createArticleSearch({ articles, getScene, onRead, onOpen, onClos
     for (const [key, star] of starButtons) star.classList.toggle('is-highlighted', id === key);
     for (const [key, row] of rowLinks) row.classList.toggle('is-highlighted', id === key);
     const article = articles.find(article => article.id === id);
-    title.hidden = !article;
+    // While one star is singled out the rest of the chart steps back a little.
+    if (article) dialog.dataset.focusing = 'true'; else delete dialog.dataset.focusing;
+    title.dataset.on = String(Boolean(article));
+    if (article) title.hidden = false;
     if (article) {
       const star = starButtons.get(id);
-      title.textContent = article.title;
+      title.textContent = '';
+      const name = document.createElement('span'); name.className = 'search-map-title-name'; name.textContent = article.title;
+      const meta = document.createElement('span'); meta.className = 'search-map-title-meta'; meta.textContent = `${article.date} · ${article.displayId}`;
+      title.append(name, meta);
       // Keep the label near its star and inside the map, including after a resize.
       title.style.left = `${clamp(parseFloat(star.style.left), 26, 74)}%`;
       title.style.top = star.style.top;
@@ -328,6 +411,7 @@ export function createArticleSearch({ articles, getScene, onRead, onOpen, onClos
     for (const article of articles) {
       const point = atlasPoint(scene.positionOf(article)), star = starButtons.get(article.id);
       star.style.left = `${point.x * 100}%`; star.style.top = `${point.y * 100}%`;
+      star.style.setProperty('--ring', (Math.hypot(point.x - .5, point.y - .5) * 2).toFixed(3));
       star.classList.toggle('is-selected', scene.selected === article.id);
       star.classList.toggle('is-muted', !matched.has(article.id));
       star.style.setProperty('--star-size', article.magnitude === 1 ? '9px' : article.magnitude === 2.5 ? '7px' : '5px');
@@ -358,21 +442,26 @@ export function createArticleSearch({ articles, getScene, onRead, onOpen, onClos
     conditions = { query: '', year: '', magnitude: '' }; input.value = '';
     renderResults(); input.focus({ preventScroll: true });
   });
-  new ResizeObserver(() => { lastMapKey = ''; paintMap(); }).observe(artboard);
+  new ResizeObserver(() => {
+    lastMapKey = ''; paintMap();
+    for (const state of filterSeams.values()) state.value = '';
+    if (dialog.open) placeSeams();
+  }).observe(artboard);
 
   return {
     get isOpen() { return dialog.open; },
-    suspend() { closing = false; cancelDialogAnimation(); dialog.close(); setBackdrop(0, isSoft()); },
+    suspend() { closing = false; cancelDialogAnimation(); dialog.close(); setUnfold(0); setBackdrop(0, isSoft()); },
     resume() {
       if (!session || dialog.open) return;
-      void showDialog().then(() => {
+      const anchor = readingTrigger?.isConnected ? readingTrigger.getBoundingClientRect() : null;
+      void showDialog(anchor?.width ? { x: anchor.left + anchor.width / 2, y: anchor.top + anchor.height / 2 } : entryOrigin).then(() => {
         if (session && !closing && dialog.open) (readingTrigger?.isConnected ? readingTrigger : input).focus({ preventScroll: true });
       });
       lastMapKey = ''; paintMap();
       if (conditions.query.trim()) renderResults(true);
       feedback.textContent = `${results.children.length} 篇文章`;
     },
-    abandon() { session = false; closing = false; cancelDialogAnimation(); if (dialog.open) dialog.close(); setBackdrop(0, isSoft()); },
+    abandon() { session = false; closing = false; cancelDialogAnimation(); if (dialog.open) dialog.close(); setUnfold(0); setBackdrop(0, isSoft()); },
     update(now, active) {
       tickDialog(now);
       entry.hidden = !active || dialog.open;

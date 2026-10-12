@@ -64,14 +64,21 @@ body[data-scene=painted] .masthead{top:26px;left:3.8%;opacity:.87}
 body[data-scene=painted] .wordmark{width:370px}
 body[data-scene=painted] #exploration-controls{background:none;border:0;border-radius:0;backdrop-filter:none;box-shadow:none;opacity:1;padding:0;top:26px;right:max(24px,3.8%);gap:14px;z-index:10;isolation:isolate}
 body[data-scene=painted] #exploration-controls{text-shadow:0 1px 2px #081b57}
-body[data-scene=painted] .mode-switch{gap:8px;margin-right:8px;font-size:.8125rem;letter-spacing:.5px;border-bottom:1px solid #72dbff44}
+/* One baseline for every nav control. The mode switch keeps its hairline; the icon
+   controls and the version switch get the same hairline at lower weight, so the row
+   reads as a single instrument strip instead of three unrelated treatments. */
+body[data-scene=painted] .mode-switch{gap:8px;margin-right:8px;font-size:.8125rem;letter-spacing:.5px;border-bottom:1px solid var(--panel-line-strong)}
 body[data-scene=painted] .mode-switch>span{display:none}
-body[data-scene=painted] .mode-switch button{color:#c4d4e1;min-width:44px;min-height:44px;padding:8px 6px}
-body[data-scene=painted] .mode-switch button[aria-pressed=true]{color:#edf1ec;text-decoration-color:#72dbff}
-body[data-scene=painted] .icon-control{background:none;box-shadow:none;border-bottom:1px solid #72dbff44;border-radius:0}
+body[data-scene=painted] .mode-switch button{color:var(--ink-muted);min-width:44px;min-height:44px;padding:8px 6px;transition:color .22s ease}
+body[data-scene=painted] #exploration-controls .mode-switch button:hover{color:var(--ink-soft)}
+body[data-scene=painted] .mode-switch button[aria-pressed=true]{color:var(--ink);text-decoration-color:var(--accent-cyan)}
+body[data-scene=painted] .icon-control{background:none;box-shadow:none;border-bottom:1px solid var(--panel-line);border-radius:0}
+body[data-scene=painted] #exploration-controls > .blog-theme-switch-sky{border-bottom:1px solid var(--panel-line);align-self:center}
+body[data-scene=painted] #exploration-controls > .blog-theme-switch-sky:hover{border-bottom-color:var(--panel-line-strong)}
 body[data-scene=painted] .icon-control,body[data-scene=painted] .preview-meta button,body[data-scene=painted] .egg-close{display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;color:#d9e3eb;min-width:44px;width:44px;min-height:44px;padding:0;line-height:1}
 .ui-icon{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;pointer-events:none;vertical-align:middle}
-body[data-scene=painted] #exploration-controls .icon-control{width:56px;min-width:56px;height:56px;min-height:56px;border:0}
+body[data-scene=painted] #exploration-controls .icon-control{width:56px;min-width:56px;height:56px;min-height:56px;border:0;border-bottom:1px solid var(--panel-line);border-radius:0}
+body[data-scene=painted] #exploration-controls .icon-control:not(:disabled):hover{border-bottom-color:var(--panel-line-strong)}
 /* Two 60 × 60 regions of the original 147 × 89 PNG, starting at (0,14) and (87,14). */
 .navigation-art{position:relative;display:block;width:40px;height:40px;overflow:hidden;pointer-events:none}
 .navigation-art img{position:absolute;left:0;top:-23.333333%;display:block;width:245%;max-width:none;height:auto}

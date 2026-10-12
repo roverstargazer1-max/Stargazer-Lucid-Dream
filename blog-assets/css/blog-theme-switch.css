@@ -1,15 +1,21 @@
 .blog-theme-switch {
   display: inline-flex; align-items: center; justify-content: center; gap: 7px;
   min-height: 44px; padding: 8px 4px; border: 0;
-  font: 12px/1.4 system-ui, sans-serif;
-  color: #e2edff; background: transparent; text-decoration: none;
+  /* Shares the starfield type stack rather than the OS default, so the sky's nav
+     row reads as one system. */
+  font: 12px/1.4 var(--sans, "Microsoft YaHei", "PingFang SC", system-ui, sans-serif);
+  letter-spacing: .5px;
+  color: #cfe0f2; background: transparent; text-decoration: none;
+  transition: color .22s ease;
 }
 .blog-theme-switch::after {
   content: ''; width: 0; height: 0;
   border-left: 4px solid transparent; border-right: 4px solid transparent;
-  border-top: 5px solid currentColor; opacity: .8;
+  border-top: 5px solid currentColor; opacity: .75;
+  transition: transform .22s ease, opacity .22s ease;
 }
-.blog-theme-switch:hover { color: #fff; }
+.blog-theme-switch:hover { color: #eef6ff; }
+.blog-theme-switch:hover::after { opacity: 1; transform: translateY(1px); }
 .blog-theme-switch:focus-visible { outline: 2px solid #72dbff; outline-offset: 4px; }
 .blog-theme-switch-fixed {
   position: fixed; top: max(90px, env(safe-area-inset-top));

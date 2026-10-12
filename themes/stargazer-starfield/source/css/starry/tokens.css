@@ -1,0 +1,79 @@
+/* One token set for every surface: room, sky, observation panel, star chart and reader.
+   Values are sampled from the author's own artwork so panels sit inside the painting
+   rather than on top of it. Loaded before every other starry stylesheet. */
+:root {
+  /* Deep blues, sampled from painted-sky-v11 and room-poster-detail-v20. */
+  --night-900: #031a87;
+  --night-800: #01276f;
+  --night-700: #012e7f;
+  --night-600: #0d3a9a;
+  --night-500: #084ec1;
+  --night-400: #075ac0;
+  --night-300: #0862c5;
+
+  /* The panel fill: the sky's own blue, carried by translucency. */
+  --panel-fill: rgb(4 30 96 / .58);
+  --panel-fill-strong: rgb(3 22 74 / .82);
+  --panel-line: rgb(187 208 228 / .2);
+  --panel-line-strong: rgb(114 219 255 / .46);
+
+  /* Ink. The cool whites are the only pure text colours on the site. */
+  --ink: #eef6ff;
+  --ink-soft: #cfe0f2;
+  --ink-muted: #a9c0d8;
+  --ink-faint: #8fa6bf;
+
+  /* One accent in two temperatures. Cyan is interactive, cobalt is structural. */
+  --accent-cyan: #72dbff;
+  --accent-cyan-dim: #5bd9ff;
+  --accent-cobalt: #3f8fe0;
+
+  /* The paper side of the site (reader, fallbacks, collection panel). */
+  --paper: #e4eaf5;
+  --paper-line: #536c8530;
+  --paper-ink: #34485e;
+  --paper-heading: #293e5b;
+  --paper-muted: #4f6375;
+
+  /* Type. The site has no serif; headings step up in size and colour, not family. */
+  --sans: "Microsoft YaHei", "PingFang SC", "Noto Sans CJK SC", system-ui, sans-serif;
+  --serif: var(--sans);
+  --display: 'LXGW Marker Gothic', var(--sans);
+
+  --step-caption: .6875rem;  /*  11px — meta, ids, footnotes   */
+  --step-small:   .8125rem;  /*  13px — controls, labels        */
+  --step-body:    .875rem;   /*  14px — panel copy, secondary   */
+  --step-lead:    1rem;      /*  16px — reading body            */
+  --step-h3:      1.125rem;  /*  18px — in-article headings     */
+  --step-h2:      1.25rem;   /*  20px — observation title       */
+  --step-h1:      2.125rem;  /*  34px — article title           */
+
+  --leading-body: 1.95;
+  --leading-reading: 2.05;
+  --tracking-mark: .5px;
+  --tracking-wide: 1.1px;
+  --tracking-figure: 2px;
+
+  /* Vertical rhythm. Every gap is one of three units. */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+
+  --radius-panel: 5px 9px 4px 7px;
+  --radius-soft: 3px;
+  --tap: 44px;
+
+  --line-hair: 1px solid var(--panel-line);
+  --glow-cyan: 0 0 5px rgb(114 219 255 / .55);
+  --glow-cyan-wide: 0 0 12px rgb(114 219 255 / .34);
+  --shadow-panel: 0 18px 60px rgb(0 8 40 / .45);
+  --shadow-dialog: 0 24px 100px rgb(0 10 44 / .55);
+
+  /* Text on the painted sky needs a shadow to survive the clouds. */
+  --text-on-sky: 0 1px 2px #081b57, 0 0 10px rgb(4 14 60 / .5);
+  --scrim-panel: linear-gradient(160deg, rgb(4 30 96 / .62), rgb(2 18 66 / .72));
+}

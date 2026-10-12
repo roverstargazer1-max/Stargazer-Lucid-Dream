@@ -3,6 +3,7 @@ import { createInteractiveClouds, prepareInteractiveClouds } from './interactive
 import { createRoom, paintCloudVeil, paintPaintedSky, paintPaintedStar, preparePaintedScene } from './painted.js';
 import { HOME_ELEVATION, MIN_SKY_ZOOM, clamp, domeDestination, direction, domePosition, projectDome } from './dome.js';
 import { createStarMotion, ENTRANCE, entranceFrame, returnFrame, smooth } from './motion.js';
+import { approach } from './tokens.js';
 import { dockTarget } from './experience.js';
 import { buildPaths, buildTimePaths, clipSegment, crosses } from './navigation.js';
 import { createEdgeGuide } from './edge-guide.js';
@@ -89,8 +90,11 @@ async function start() {
   let dpr = Math.min(devicePixelRatio || 1, 2);
   let camera = { x: 0, y: 0, z: 0, yaw: 0, pitch: HOME_ELEVATION, zoom: 1 };
   let starTargets = new Map();
+  // Per-star eased hover/lock, so rings draw in rather than switching on.
+  const starEase = new Map();
   let visibleStars = new Map();
   const projectedStars = new Map();
+  let layoutMorph = null;
   let articleLoads = new Map();
   let readingSnapshot = null;
   const dockHistoryByMode = new Map();
@@ -337,8 +341,27 @@ async function start() {
     return projectDome(point, camera, projectionSettings());
   }
 
+  function layoutPosition(targetArticle, layout) {
+    const p = layout === 'time' ? timePositionById.get(targetArticle.id) : targetArticle.position;
+    return Array.isArray(p) ? { x: p[0], y: p[1], z: p[2] } : p;
+  }
+
+  // While modes swap, each star glides along the dome (great-circle slerp with a
+  // per-star stagger) instead of teleporting to its new constellation.
   function positionOf(targetArticle, layout = mode) {
-    return layout === 'time' ? timePositionById.get(targetArticle.id) : targetArticle.position;
+    const end = layoutPosition(targetArticle, layout);
+    if (!layoutMorph || layout !== layoutMorph.to || reducedMotion) return end;
+    const order = layoutMorph.order.get(targetArticle.id) || 0;
+    const t = clamp((performance.now() - layoutMorph.start - order * 260) / (layoutMorph.duration - 260), 0, 1);
+    if (t >= 1) return end;
+    const start = layoutPosition(targetArticle, layoutMorph.from);
+    const k = smooth(t), ra = Math.hypot(start.x, start.y, start.z), rb = Math.hypot(end.x, end.y, end.z);
+    const dot = clamp((start.x * end.x + start.y * end.y + start.z * end.z) / (ra * rb), -1, 1), w = Math.acos(dot);
+    if (w < 1e-4) return end;
+    const sa = Math.sin((1 - k) * w) / Math.sin(w) / ra, sb = Math.sin(k * w) / Math.sin(w) / rb, r = ra + (rb - ra) * k;
+    // A slight lift toward the zenith mid-flight reads as stars rising, not sliding.
+    const lift = Math.sin(k * Math.PI) * .06 * r;
+    return { x: (start.x * sa + end.x * sb) * r, y: (start.y * sa + end.y * sb) * r + lift, z: (start.z * sa + end.z * sb) * r };
   }
 
   function defaultArticleForMode(layout) {
@@ -350,7 +373,7 @@ async function start() {
   function focusCamera(targetArticle, layout = mode) {
     const settings = projectionSettings();
     const baseFocal = settings.focal / (camera.zoom || 1);
-    return constrainSkyCamera(domeDestination(positionOf(targetArticle, layout), camera, {
+    return constrainSkyCamera(domeDestination(layoutPosition(targetArticle, layout), camera, {
       cx: settings.cx,
       cy: settings.cy,
       focal: baseFocal * 1.55,
@@ -360,7 +383,7 @@ async function start() {
   function destination(targetArticle, layout = mode) {
     const settings = projectionSettings();
     const baseFocal = settings.focal / (camera.zoom || 1);
-    return constrainSkyCamera(domeDestination(positionOf(targetArticle, layout), camera, {
+    return constrainSkyCamera(domeDestination(layoutPosition(targetArticle, layout), camera, {
       cx: settings.cx,
       cy: settings.cy,
       focal: baseFocal * 1.55,
@@ -796,6 +819,10 @@ async function start() {
     const defaultArticle = defaultArticleForMode(nextMode);
     if (!defaultArticle) return;
     interrupt();
+    layoutMorph = {
+      from: mode, to: nextMode, start: performance.now(), duration: 1500,
+      order: new Map(articles.map((item, i) => [item.id, (i * .618) % 1])),
+    };
     mode = nextMode;
     if (mode === 'time') showTimeCue(selectedArticle || defaultArticle);
     else document.getElementById('time-cue').hidden = true;
@@ -932,14 +959,24 @@ async function start() {
       }
     }
     drawNavigationGuides();
+    const easeDt = Math.min(.05, (now - lastFrame) / 1000 || 0);
     for (const item of articles) {
       const point = (showStars ? visibleStars : projectedStars).get(item.id);
-      if (!point) continue;
       const target = starTargets.get(item.id);
+      // Hover and lock ease toward their targets every frame, offscreen too, so a
+      // star never reappears mid-state. Reduced motion snaps.
+      const state = starEase.get(item.id) || { hover: 0, lock: 0 };
+      const hoverTarget = showStars && selected !== item.id &&
+        (target.matches(':hover') || target.matches(':focus-visible')) ? 1 : 0;
+      const lockTarget = showStars && selected === item.id && phase === 'settled' && !reader.open ? 1 : 0;
+      state.hover = reducedMotion ? hoverTarget : approach(state.hover, hoverTarget, easeDt, hoverTarget ? 70 : 110);
+      state.lock = reducedMotion ? lockTarget : approach(state.lock, lockTarget, easeDt, lockTarget ? 120 : 80);
+      starEase.set(item.id, state);
+      if (!point) continue;
       paintPaintedStar(ctx, point.x, point.y, item.id, {
         depth: point.depth / 3,
-        active: false,
-        hover: selected !== item.id && target.matches(':hover'),
+        active: state.lock,
+        hover: state.hover,
         zoom: 1,
         importance: item.importance,
         seconds,

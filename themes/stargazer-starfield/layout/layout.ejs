@@ -75,12 +75,15 @@
     window.starfieldStartup={fail:function(){document.documentElement.classList.remove('starry-loading');document.getElementById('room')?.setAttribute('hidden','');}};
   </script>
   <% } %>
+  <link rel="stylesheet" href="<%= url_for('css/starry/tokens.css') %>">
+  <link rel="stylesheet" href="<%= url_for('css/starry/motion-tokens.css') %>">
   <link rel="stylesheet" href="<%= url_for('css/starry/site.css') %>">
   <link rel="stylesheet" href="<%= url_for('css/starry/scene.css') %>">
   <link rel="stylesheet" href="<%= url_for('css/starry/motion.css') %>">
   <link rel="stylesheet" href="<%= url_for('css/starry/reader.css') %>">
   <link rel="stylesheet" href="<%= url_for('css/starry/observation.css') %>">
   <link rel="stylesheet" href="<%= url_for('css/starry/search.css') %>">
+  <link rel="stylesheet" href="<%= url_for('css/starry/collection.css') %>">
   <% if (themeSwitch) { %><link rel="stylesheet" href="<%= url_for('css/blog-theme-switch.css') %>"><% } %>
 </head>
 <body class="<%= isStarryArticle || isStarryCollection ? 'has-starry-experience' : '' %><%= isStarryArticle ? ' article-page' : '' %>"

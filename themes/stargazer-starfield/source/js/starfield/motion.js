@@ -1,21 +1,17 @@
 // One clock for the camera, the reading window and the mist reveal. No animation-library dependency.
 import { createPreviewMemory } from './experience.js';
-export const unit = value => Math.max(0, Math.min(1, value));
-export function smooth(value) {
-  const t = unit(value);
-  return t * t * t * (10 + t * (-15 + 6 * t));
-}
-export const cue = (progress, start, end) => smooth((progress - start) / (end - start));
-export const ENTRANCE = { passage: 2857, turnStart: 0, duration: 2857, turn: Math.PI / 3, clarify: 593, clear: 2679, retreat: 2857 };
-export const PREVIEW = { duration: 1100, clear: 950 };
+import { smooth, cue, settle, enter, exit, unit, DUR, staggerDelay, ENTRANCE, PREVIEW, TRAVEL_SCENE, TRAVEL_QUICK } from './tokens.js';
+export { unit, smooth, cue, ENTRANCE, PREVIEW, TRAVEL_SCENE, TRAVEL_QUICK, staggerDelay };
 
-// The article reader and star chart use the same focus reveal and backdrop.
+// The article reader and star chart share the same focus reveal and backdrop.
 export function dialogFrames(soft, opening, pose = null) {
   return [pose ? { opacity: pose.opacity, filter: soft ? 'none' : pose.filter }
     : { opacity: 0, filter: soft ? 'none' : 'blur(2px)' },
   { opacity: opening ? 1 : 0, filter: soft ? 'none' : opening ? 'blur(0px)' : 'blur(1.5px)' }];
 }
-export function dialogDuration(soft, opening) { return soft ? (opening ? 160 : 120) : (opening ? 440 : 240); }
+export function dialogDuration(soft, opening) {
+  return soft ? (opening ? DUR.press + 70 : DUR.hover - 60) : (opening ? DUR.panel : DUR.quick - 20);
+}
 export function dialogBackdrop(progress, soft) {
   return { background: `rgb(6 13 48 / ${(.15 * progress).toFixed(3)})`,
     backdropFilter: `blur(${soft ? 0 : (2.4 * progress).toFixed(2)}px)` };
@@ -130,11 +126,22 @@ export function createStarMotion({ preview, reader, scroller, isSoft }) {
     // Real text emerges through a slight loss of focus; no masks or copied text.
     timeline.add(preview, [{ opacity: 0 }, { opacity: 1 }], 0, soft ? 1 : .75);
     for (const [order, element] of [...preview.querySelectorAll('#preview-date, #preview-title')].entries()) {
-      const delay = soft ? 0 : .08 + order * .035;
+      // Stagger by the shared step so the date and title arrive as one gesture
+      // rather than two independently-delayed fades.
+      const delay = soft ? 0 : .08 + staggerDelay(order) / 1000;
       timeline.add(element, [
         { opacity: 0, filter: soft ? 'none' : `blur(${repeat ? 1 : 3}px)` },
         { opacity: 1, filter: 'blur(0px)' },
       ], delay, soft ? 1 : repeat ? .85 : PREVIEW.clear / duration);
+    }
+    // The panel's own furniture (years, ticks, silhouette, waveform) settles a beat
+    // after the text, so the panel assembles instead of appearing all at once.
+    const furniture = preview.querySelector('.observation-artboard');
+    if (furniture && !soft) {
+      timeline.add(furniture, [
+        { opacity: repeat ? .82 : 0, transform: repeat ? 'none' : 'translateY(6px)' },
+        { opacity: 1, transform: 'none' },
+      ], .1, repeat ? .9 : .72);
     }
     timeline.add(preview.querySelector('.preview-bottom'), [{ opacity: 0 }, { opacity: 1 }], soft ? 0 : .3, 1);
     preview.setAttribute('aria-busy', 'true');
