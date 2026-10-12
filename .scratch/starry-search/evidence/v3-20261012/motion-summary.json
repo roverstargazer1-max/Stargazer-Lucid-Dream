@@ -1,0 +1,19 @@
+{
+  "opening": {
+    "bodyMotion": "full",
+    "reduce": false,
+    "animations": [
+      1000
+    ],
+    "elapsedMs": 555.1999999880791
+  },
+  "transition": {
+    "arrow": "0.36s",
+    "panel": "0.36s"
+  },
+  "closing": [
+    1000
+  ],
+  "closingElapsedMs": 270.5,
+  "stableMapWidth": 572.84375
+}

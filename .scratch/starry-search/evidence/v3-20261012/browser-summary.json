@@ -1,0 +1,527 @@
+[
+  {
+    "name": "desktop",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "closed": {
+      "panel": {
+        "x": 260.1875,
+        "y": 90,
+        "width": 919.625,
+        "height": 820
+      },
+      "map": {
+        "x": 478.59375,
+        "y": 272,
+        "width": 572.84375,
+        "height": 572.84375
+      },
+      "base": {
+        "x": 260.1875,
+        "y": 90,
+        "width": 1224.25,
+        "height": 819.984375
+      },
+      "heading": {
+        "x": 642.078125,
+        "y": 100.203125,
+        "width": 235,
+        "height": 72.15625
+      },
+      "bar": {
+        "x": 366.1875,
+        "y": 160.234375,
+        "width": 762.515625,
+        "height": 89.40625
+      },
+      "filters": {
+        "x": 374.5,
+        "y": 243.265625,
+        "width": 198.609375,
+        "height": 61.9375
+      },
+      "scrollWidth": 1222,
+      "clientWidth": 920,
+      "scrollHeight": 820,
+      "clientHeight": 820,
+      "ringAlignment": {
+        "x": 0.007360133020256399,
+        "y": 0.011810446009349107,
+        "diameter": 0.005624021909170551
+      },
+      "rows": 10
+    },
+    "expanded": {
+      "panel": {
+        "x": 107.875,
+        "y": 90,
+        "width": 1224.25,
+        "height": 820
+      },
+      "map": {
+        "x": 326.28125,
+        "y": 272,
+        "width": 572.84375,
+        "height": 572.84375
+      },
+      "base": {
+        "x": 107.875,
+        "y": 90,
+        "width": 1224.25,
+        "height": 819.984375
+      },
+      "heading": {
+        "x": 489.765625,
+        "y": 100.203125,
+        "width": 235,
+        "height": 72.15625
+      },
+      "bar": {
+        "x": 213.875,
+        "y": 160.234375,
+        "width": 762.515625,
+        "height": 89.40625
+      },
+      "filters": {
+        "x": 222.1875,
+        "y": 243.265625,
+        "width": 198.609375,
+        "height": 61.9375
+      },
+      "scrollWidth": 1224,
+      "clientWidth": 1224,
+      "scrollHeight": 820,
+      "clientHeight": 820,
+      "ringAlignment": {
+        "x": 0.007360133020256399,
+        "y": 0.011810446009349107,
+        "diameter": 0.005624021909170551
+      },
+      "rows": 10
+    },
+    "errors": [],
+    "interaction": "year/magnitude intersection, clear, ID search, read-return state, Escape, fresh session and outside close passed"
+  },
+  {
+    "name": "tablet",
+    "viewport": {
+      "width": 1024,
+      "height": 768
+    },
+    "closed": {
+      "panel": {
+        "x": 173.546875,
+        "y": 82.21875,
+        "width": 676.890625,
+        "height": 603.5625
+      },
+      "map": {
+        "x": 334.296875,
+        "y": 216.1875,
+        "width": 421.640625,
+        "height": 421.640625
+      },
+      "base": {
+        "x": 173.546875,
+        "y": 82.21875,
+        "width": 901.109375,
+        "height": 603.546875
+      },
+      "heading": {
+        "x": 454.640625,
+        "y": 89.734375,
+        "width": 172.984375,
+        "height": 53.109375
+      },
+      "bar": {
+        "x": 251.578125,
+        "y": 133.921875,
+        "width": 561.25,
+        "height": 65.796875
+      },
+      "filters": {
+        "x": 257.6875,
+        "y": 195.03125,
+        "width": 146.1875,
+        "height": 45.59375
+      },
+      "scrollWidth": 904,
+      "clientWidth": 677,
+      "scrollHeight": 604,
+      "clientHeight": 604,
+      "ringAlignment": {
+        "x": 0.013913341158058756,
+        "y": 0.0016138497652491424,
+        "diameter": 0.005232785602515833
+      },
+      "rows": 10
+    },
+    "expanded": {
+      "panel": {
+        "x": 61.4375,
+        "y": 82.21875,
+        "width": 901.109375,
+        "height": 603.5625
+      },
+      "map": {
+        "x": 222.1875,
+        "y": 216.1875,
+        "width": 421.640625,
+        "height": 421.640625
+      },
+      "base": {
+        "x": 61.4375,
+        "y": 82.21875,
+        "width": 901.109375,
+        "height": 603.546875
+      },
+      "heading": {
+        "x": 342.53125,
+        "y": 89.734375,
+        "width": 172.984375,
+        "height": 53.109375
+      },
+      "bar": {
+        "x": 139.46875,
+        "y": 133.921875,
+        "width": 561.25,
+        "height": 65.796875
+      },
+      "filters": {
+        "x": 145.578125,
+        "y": 195.03125,
+        "width": 146.1875,
+        "height": 45.59375
+      },
+      "scrollWidth": 901,
+      "clientWidth": 901,
+      "scrollHeight": 604,
+      "clientHeight": 604,
+      "ringAlignment": {
+        "x": 0.013913341158058756,
+        "y": 0.0016138497652491424,
+        "diameter": 0.005232785602515833
+      },
+      "rows": 10
+    },
+    "errors": [],
+    "interaction": "year/magnitude intersection, clear, ID search, read-return state, Escape, fresh session and outside close passed"
+  },
+  {
+    "name": "mobile",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "closed": {
+      "panel": {
+        "x": 16,
+        "y": 173.625,
+        "width": 358,
+        "height": 496.75
+      },
+      "map": {
+        "x": 55.375,
+        "y": 358.90625,
+        "width": 279.234375,
+        "height": 279.234375
+      },
+      "base": {
+        "x": -51.078125,
+        "y": 270.1875,
+        "width": 596.765625,
+        "height": 399.703125
+      },
+      "heading": {
+        "x": 109.078125,
+        "y": 181.625,
+        "width": 171.828125,
+        "height": 52.75
+      },
+      "bar": {
+        "x": 36,
+        "y": 247.625,
+        "width": 318,
+        "height": 37.28125
+      },
+      "filters": {
+        "x": 40,
+        "y": 297.625,
+        "width": 145.21875,
+        "height": 45.28125
+      },
+      "scrollWidth": 358,
+      "clientWidth": 358,
+      "scrollHeight": 853,
+      "clientHeight": 497,
+      "ringAlignment": {
+        "x": 0.01379107981219363,
+        "y": 0.003961267605632202,
+        "diameter": 0.003374413145536437
+      },
+      "rows": 10
+    },
+    "expanded": {
+      "panel": {
+        "x": 16,
+        "y": 32,
+        "width": 358,
+        "height": 780
+      },
+      "map": {
+        "x": 55.375,
+        "y": 217.28125,
+        "width": 279.234375,
+        "height": 279.234375
+      },
+      "base": {
+        "x": -51.078125,
+        "y": 128.5625,
+        "width": 596.765625,
+        "height": 399.703125
+      },
+      "heading": {
+        "x": 109.078125,
+        "y": 40,
+        "width": 171.828125,
+        "height": 52.75
+      },
+      "bar": {
+        "x": 36,
+        "y": 106,
+        "width": 318,
+        "height": 37.28125
+      },
+      "filters": {
+        "x": 40,
+        "y": 156,
+        "width": 145.21875,
+        "height": 45.28125
+      },
+      "scrollWidth": 358,
+      "clientWidth": 358,
+      "scrollHeight": 853,
+      "clientHeight": 780,
+      "ringAlignment": {
+        "x": 0.01379107981219363,
+        "y": 0.003961267605632202,
+        "diameter": 0.003374413145536437
+      },
+      "rows": 10
+    },
+    "errors": [],
+    "interaction": "year/magnitude intersection, clear, ID search, read-return state, Escape, fresh session and outside close passed"
+  },
+  {
+    "name": "narrow",
+    "viewport": {
+      "width": 320,
+      "height": 568
+    },
+    "closed": {
+      "panel": {
+        "x": 16,
+        "y": 70.5,
+        "width": 288,
+        "height": 426.984375
+      },
+      "map": {
+        "x": 47.671875,
+        "y": 246.9375,
+        "width": 224.625,
+        "height": 224.625
+      },
+      "base": {
+        "x": -37.953125,
+        "y": 175.5625,
+        "width": 480.078125,
+        "height": 321.546875
+      },
+      "heading": {
+        "x": 90.875,
+        "y": 78.5,
+        "width": 138.234375,
+        "height": 42.4375
+      },
+      "bar": {
+        "x": 36,
+        "y": 144.5,
+        "width": 248,
+        "height": 29.078125
+      },
+      "filters": {
+        "x": 40,
+        "y": 194.5,
+        "width": 116.8125,
+        "height": 36.421875
+      },
+      "scrollWidth": 288,
+      "clientWidth": 288,
+      "scrollHeight": 783,
+      "clientHeight": 427,
+      "ringAlignment": {
+        "x": 0.02898816510170832,
+        "y": 0.004364730046972909,
+        "diameter": 0.012495109546165395
+      },
+      "rows": 10
+    },
+    "expanded": {
+      "panel": {
+        "x": 16,
+        "y": 32,
+        "width": 288,
+        "height": 504
+      },
+      "map": {
+        "x": 47.671875,
+        "y": 208.4375,
+        "width": 224.625,
+        "height": 224.625
+      },
+      "base": {
+        "x": -37.953125,
+        "y": 137.0625,
+        "width": 480.078125,
+        "height": 321.546875
+      },
+      "heading": {
+        "x": 90.875,
+        "y": 40,
+        "width": 138.234375,
+        "height": 42.4375
+      },
+      "bar": {
+        "x": 36,
+        "y": 106,
+        "width": 248,
+        "height": 29.078125
+      },
+      "filters": {
+        "x": 40,
+        "y": 156,
+        "width": 116.8125,
+        "height": 36.421875
+      },
+      "scrollWidth": 288,
+      "clientWidth": 288,
+      "scrollHeight": 783,
+      "clientHeight": 504,
+      "ringAlignment": {
+        "x": 0.02898816510170832,
+        "y": 0.004364730046972909,
+        "diameter": 0.012495109546165395
+      },
+      "rows": 10
+    },
+    "errors": [],
+    "interaction": "year/magnitude intersection, clear, ID search, read-return state, Escape, fresh session and outside close passed"
+  },
+  {
+    "name": "landscape",
+    "viewport": {
+      "width": 844,
+      "height": 390
+    },
+    "closed": {
+      "panel": {
+        "x": 143.484375,
+        "y": 24,
+        "width": 557.03125,
+        "height": 342
+      },
+      "map": {
+        "x": 275.78125,
+        "y": 134.234375,
+        "width": 346.984375,
+        "height": 346.984375
+      },
+      "base": {
+        "x": 143.484375,
+        "y": 24,
+        "width": 741.546875,
+        "height": 496.671875
+      },
+      "heading": {
+        "x": 374.796875,
+        "y": 30.1875,
+        "width": 142.34375,
+        "height": 43.703125
+      },
+      "bar": {
+        "x": 207.6875,
+        "y": 66.546875,
+        "width": 461.875,
+        "height": 54.140625
+      },
+      "filters": {
+        "x": 212.71875,
+        "y": 116.828125,
+        "width": 120.296875,
+        "height": 37.515625
+      },
+      "scrollWidth": 747,
+      "clientWidth": 557,
+      "scrollHeight": 497,
+      "clientHeight": 342,
+      "ringAlignment": {
+        "x": -0.002518583724565815,
+        "y": 0.010856807511743227,
+        "diameter": -0.0007824726134799675
+      },
+      "rows": 10
+    },
+    "expanded": {
+      "panel": {
+        "x": 51.21875,
+        "y": 24,
+        "width": 741.546875,
+        "height": 342
+      },
+      "map": {
+        "x": 183.515625,
+        "y": 134.234375,
+        "width": 346.984375,
+        "height": 346.984375
+      },
+      "base": {
+        "x": 51.21875,
+        "y": 24,
+        "width": 741.546875,
+        "height": 496.671875
+      },
+      "heading": {
+        "x": 282.53125,
+        "y": 30.1875,
+        "width": 142.34375,
+        "height": 43.703125
+      },
+      "bar": {
+        "x": 115.421875,
+        "y": 66.546875,
+        "width": 461.875,
+        "height": 54.140625
+      },
+      "filters": {
+        "x": 120.453125,
+        "y": 116.828125,
+        "width": 120.296875,
+        "height": 37.515625
+      },
+      "scrollWidth": 742,
+      "clientWidth": 742,
+      "scrollHeight": 497,
+      "clientHeight": 342,
+      "ringAlignment": {
+        "x": -0.002518583724565815,
+        "y": 0.010856807511743227,
+        "diameter": -0.0007824726134799675
+      },
+      "rows": 10
+    },
+    "errors": [],
+    "interaction": "year/magnitude intersection, clear, ID search, read-return state, Escape, fresh session and outside close passed"
+  }
+]
