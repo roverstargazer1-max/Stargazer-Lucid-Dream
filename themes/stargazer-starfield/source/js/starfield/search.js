@@ -69,7 +69,10 @@ export function createArticleSearch({ articles, getScene, onRead, onOpen, onClos
   const backdrop = backdropSheet.sheet.cssRules[0].style;
   let backdropFocus = 0, outsidePointer = false;
   const setBackdrop = (progress, soft) => {
-    backdropFocus = progress; Object.assign(backdrop, dialogBackdrop(progress, soft));
+    backdropFocus = progress;
+    Object.assign(backdrop, dialogBackdrop(progress, soft), {
+      backdropFilter: `blur(${soft ? 0 : (1.2 * progress).toFixed(2)}px)`,
+    });
   };
   setBackdrop(0, isSoft());
 
@@ -279,7 +282,14 @@ export function createArticleSearch({ articles, getScene, onRead, onOpen, onClos
     for (const [key, row] of rowLinks) row.classList.toggle('is-highlighted', id === key);
     const article = articles.find(article => article.id === id);
     title.hidden = !article;
-    if (article) title.textContent = article.title;
+    if (article) {
+      const star = starButtons.get(id);
+      title.textContent = article.title;
+      // Keep the label near its star and inside the map, including after a resize.
+      title.style.left = `${clamp(parseFloat(star.style.left), 26, 74)}%`;
+      title.style.top = star.style.top;
+      title.dataset.below = String(parseFloat(star.style.top) < 18);
+    }
   }
 
   function drawView(canvas, scene) {
@@ -318,7 +328,7 @@ export function createArticleSearch({ articles, getScene, onRead, onOpen, onClos
       star.style.left = `${point.x * 100}%`; star.style.top = `${point.y * 100}%`;
       star.classList.toggle('is-selected', scene.selected === article.id);
       star.classList.toggle('is-muted', !matched.has(article.id));
-      star.style.setProperty('--star-size', article.magnitude === 1 ? '8px' : article.magnitude === 2.5 ? '6px' : '4px');
+      star.style.setProperty('--star-size', article.magnitude === 1 ? '9px' : article.magnitude === 2.5 ? '7px' : '5px');
     }
   }
 
