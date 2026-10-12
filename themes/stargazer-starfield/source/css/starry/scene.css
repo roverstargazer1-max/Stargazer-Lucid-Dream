@@ -18,6 +18,7 @@ body[data-render-quality=low] .signal-egg{animation:none}
 /* Final painted scene from the accepted V20 prototype. */
 body[data-scene=painted]{background:#042b68;--type-main:#edf1ec;--type-soft:#d9e3eb;--type-muted:#c4d4e1;--type-line:#bbd0e433;--paper:#e4eaf5;--paper-ink:#34485e;--paper-muted:#4f6375}
 #room{position:fixed;inset:0;z-index:40;overflow:clip;background:transparent}
+body[data-room=entering]>.blog-theme-switch-fixed,body[data-room=returning]>.blog-theme-switch-fixed,body[data-arrival]>.blog-theme-switch-fixed{visibility:hidden}
 .room-stage{position:absolute;width:max(100vw,177.683vh);height:max(56.28vw,100vh);left:50%;top:50%;margin-left:min(-50vw,-88.8415vh);margin-top:min(-28.14vw,-50vh);will-change:transform,opacity}
 /* Large filtered room surfaces compete with the moving sky on constrained GPUs.
    Keep the camera passage; omit only its slight blur after measured overload. */
@@ -27,7 +28,6 @@ body[data-room-blur=off] .room-stage{filter:none!important}
 body[data-live-window=ready] .room-image{mask-image:var(--window-mask-desktop);mask-mode:alpha;mask-size:100% 100%;mask-repeat:no-repeat}
 body[data-live-window=ready][data-room=inside] #world{visibility:visible}
 body[data-live-window=ready][data-room=inside] #world>:not(#sky){visibility:hidden}
-body[data-arrival] #sky{transform:rotate(var(--entry-bank,0rad)) scale(var(--entry-scale,1));transform-origin:center}
 #window-entry{position:absolute;left:31.3%;top:1%;width:68%;height:79%;padding:0;clip-path:polygon(0 0,100% 0,100% 100%,59% 100%,52% 78%,52% 55%,41% 53%,31% 76%,24% 100%,11% 100%,0 49%);cursor:zoom-in;border-radius:0}
 #window-entry:focus-visible{outline:none;background:none}
 /* Light follows the illustrated window; no text or button-shaped overlay. */

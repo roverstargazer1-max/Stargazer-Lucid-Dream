@@ -1,0 +1,230 @@
+[
+  {
+    "name": "desktop",
+    "viewport": {
+      "width": 1440,
+      "height": 1040
+    },
+    "soft": false,
+    "pressure": false,
+    "audit": {
+      "movingFrames": 679,
+      "emptyFrames": 0,
+      "warpedFrames": 0,
+      "transformedSkyFrames": 0,
+      "overlapFrames": 220
+    },
+    "states": [
+      {
+        "direction": "enter",
+        "roomHidden": true,
+        "roomInert": true,
+        "worldInert": false,
+        "animations": 0,
+        "transientSkyStyle": "",
+        "quality": "full"
+      },
+      {
+        "direction": "return",
+        "roomHidden": false,
+        "roomInert": false,
+        "worldInert": true,
+        "animations": 0,
+        "transientSkyStyle": "",
+        "quality": "full"
+      }
+    ],
+    "errors": [],
+    "interaction": "enter, search, collapse/expand, close search and return passed"
+  },
+  {
+    "name": "mobile",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "soft": false,
+    "pressure": false,
+    "audit": {
+      "movingFrames": 1538,
+      "emptyFrames": 0,
+      "warpedFrames": 0,
+      "transformedSkyFrames": 0,
+      "overlapFrames": 301
+    },
+    "states": [
+      {
+        "direction": "enter",
+        "roomHidden": true,
+        "roomInert": true,
+        "worldInert": false,
+        "animations": 0,
+        "transientSkyStyle": "",
+        "quality": "full"
+      },
+      {
+        "direction": "return",
+        "roomHidden": false,
+        "roomInert": false,
+        "worldInert": true,
+        "animations": 0,
+        "transientSkyStyle": "",
+        "quality": "full"
+      }
+    ],
+    "errors": [],
+    "interaction": "enter, search, collapse/expand, close search and return passed"
+  },
+  {
+    "name": "landscape",
+    "viewport": {
+      "width": 844,
+      "height": 390
+    },
+    "soft": false,
+    "pressure": false,
+    "audit": {
+      "movingFrames": 1536,
+      "emptyFrames": 0,
+      "warpedFrames": 0,
+      "transformedSkyFrames": 0,
+      "overlapFrames": 426
+    },
+    "states": [
+      {
+        "direction": "enter",
+        "roomHidden": true,
+        "roomInert": true,
+        "worldInert": false,
+        "animations": 0,
+        "transientSkyStyle": "",
+        "quality": "full"
+      },
+      {
+        "direction": "return",
+        "roomHidden": false,
+        "roomInert": false,
+        "worldInert": true,
+        "animations": 0,
+        "transientSkyStyle": "",
+        "quality": "full"
+      }
+    ],
+    "errors": [],
+    "interaction": "enter, search, collapse/expand, close search and return passed"
+  },
+  {
+    "name": "resize",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "soft": false,
+    "pressure": false,
+    "audit": {
+      "movingFrames": 875,
+      "emptyFrames": 0,
+      "warpedFrames": 0,
+      "transformedSkyFrames": 0,
+      "overlapFrames": 316
+    },
+    "states": [
+      {
+        "direction": "enter",
+        "roomHidden": true,
+        "roomInert": true,
+        "worldInert": false,
+        "animations": 0,
+        "transientSkyStyle": "",
+        "quality": "full"
+      },
+      {
+        "direction": "return",
+        "roomHidden": false,
+        "roomInert": false,
+        "worldInert": true,
+        "animations": 0,
+        "transientSkyStyle": "",
+        "quality": "full"
+      }
+    ],
+    "errors": [],
+    "interaction": "enter, search, collapse/expand, close search and return passed"
+  },
+  {
+    "name": "pressure",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "soft": false,
+    "pressure": true,
+    "audit": {
+      "movingFrames": 824,
+      "emptyFrames": 0,
+      "warpedFrames": 0,
+      "transformedSkyFrames": 0,
+      "overlapFrames": 189
+    },
+    "states": [
+      {
+        "direction": "enter",
+        "roomHidden": true,
+        "roomInert": true,
+        "worldInert": false,
+        "animations": 0,
+        "transientSkyStyle": "",
+        "quality": "low"
+      },
+      {
+        "direction": "return",
+        "roomHidden": false,
+        "roomInert": false,
+        "worldInert": true,
+        "animations": 0,
+        "transientSkyStyle": "",
+        "quality": "low"
+      }
+    ],
+    "errors": [],
+    "interaction": "enter, search, collapse/expand, close search and return passed"
+  },
+  {
+    "name": "soft",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "soft": true,
+    "pressure": false,
+    "audit": {
+      "movingFrames": 72,
+      "emptyFrames": 0,
+      "warpedFrames": 0,
+      "transformedSkyFrames": 0,
+      "overlapFrames": 0
+    },
+    "states": [
+      {
+        "direction": "enter",
+        "roomHidden": true,
+        "roomInert": true,
+        "worldInert": false,
+        "animations": 0,
+        "transientSkyStyle": "",
+        "quality": "full"
+      },
+      {
+        "direction": "return",
+        "roomHidden": false,
+        "roomInert": false,
+        "worldInert": true,
+        "animations": 0,
+        "transientSkyStyle": "",
+        "quality": "full"
+      }
+    ],
+    "errors": [],
+    "interaction": "enter, search, collapse/expand, close search and return passed"
+  }
+]

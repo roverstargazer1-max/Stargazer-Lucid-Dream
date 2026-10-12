@@ -89,7 +89,7 @@ blog:
 
 默认服务只监听 `127.0.0.1`。端口占用可沿用现有服务，或设置 `STARFIELD_PREVIEW_PORT` 后启动；此变量也适用于旧版静态服务。
 
-完整镜头仍为 `scene.motion: full`。穿窗与回屋的微小房间模糊默认关闭，以减轻省电模式的合成开销；在 `themes/stargazer-starfield/_config.yml` 将 `scene.passage_blur` 设为 `true` 可恢复。实际持续掉帧会触发背景精度调整，静止、隐藏页面及浏览器固定刷新节奏不会单独触发降级。复测与仍有的首次进入峰值见[省电过场记录](../../.scratch/starry-blog/evidence/power-transitions-20261010/README.md)。
+完整镜头仍为 `scene.motion: full`。当前穿窗约 2.86 秒：房间按原比例推进，同时侧移并转向星空，三者共用一条连续曲线，只在结尾一起减速停稳；天空与文章星沿途连续显示。回屋沿同步反向路径转回窗边并退入屋内。`?motion=soft` 采用 220ms 轻过渡。穿窗与回屋的微小房间模糊默认关闭，以减轻省电模式的合成开销；在 `themes/stargazer-starfield/_config.yml` 将 `scene.passage_blur` 设为 `true` 可恢复。实际持续掉帧会触发背景精度调整，静止、隐藏页面及浏览器固定刷新节奏不会单独触发降级。当前路径与验证见[连续运镜记录](../../.scratch/starry-blog/evidence/continuous-entry-20261012/README.md)，此前省电优化的测量与首次进入峰值见[省电过场记录](../../.scratch/starry-blog/evidence/power-transitions-20261010/README.md)。
 
 ## GitHub → Netlify
 

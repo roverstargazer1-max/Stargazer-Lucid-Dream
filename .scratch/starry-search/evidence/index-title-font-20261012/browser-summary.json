@@ -1,0 +1,45 @@
+{
+  "archive": {
+    "count": 10,
+    "dateFont": "\"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans CJK SC\", system-ui, sans-serif",
+    "fontLoaded": true,
+    "kind": "archive",
+    "titleFonts": [
+      "\"LXGW Marker Gothic\", \"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans CJK SC\", system-ui, sans-serif",
+      "\"LXGW Marker Gothic\", \"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans CJK SC\", system-ui, sans-serif",
+      "\"LXGW Marker Gothic\", \"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans CJK SC\", system-ui, sans-serif",
+      "\"LXGW Marker Gothic\", \"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans CJK SC\", system-ui, sans-serif",
+      "\"LXGW Marker Gothic\", \"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans CJK SC\", system-ui, sans-serif",
+      "\"LXGW Marker Gothic\", \"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans CJK SC\", system-ui, sans-serif",
+      "\"LXGW Marker Gothic\", \"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans CJK SC\", system-ui, sans-serif",
+      "\"LXGW Marker Gothic\", \"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans CJK SC\", system-ui, sans-serif",
+      "\"LXGW Marker Gothic\", \"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans CJK SC\", system-ui, sans-serif",
+      "\"LXGW Marker Gothic\", \"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans CJK SC\", system-ui, sans-serif"
+    ]
+  },
+  "tag": {
+    "count": 6,
+    "fontLoaded": true,
+    "kind": "tag",
+    "titleFonts": [
+      "\"LXGW Marker Gothic\", \"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans CJK SC\", system-ui, sans-serif",
+      "\"LXGW Marker Gothic\", \"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans CJK SC\", system-ui, sans-serif",
+      "\"LXGW Marker Gothic\", \"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans CJK SC\", system-ui, sans-serif",
+      "\"LXGW Marker Gothic\", \"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans CJK SC\", system-ui, sans-serif",
+      "\"LXGW Marker Gothic\", \"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans CJK SC\", system-ui, sans-serif",
+      "\"LXGW Marker Gothic\", \"Microsoft YaHei\", \"PingFang SC\", \"Noto Sans CJK SC\", system-ui, sans-serif"
+    ]
+  },
+  "search": {
+    "count": 10,
+    "fontFamily": "LXGW Marker Gothic",
+    "fontLoaded": true,
+    "weight": 400,
+    "dateFont": "Microsoft YaHei",
+    "idFont": "Consolas",
+    "viewports": [
+      "default desktop",
+      "390 × 844 override"
+    ]
+  }
+}

@@ -16,6 +16,7 @@
     <h2 class="search-heading"><span class="sr-only">STAR CHART · 星图</span><img data-search-src="<%= url_for('images/search/star-chart-v3.png') %>" alt="" draggable="false"></h2>
     <form class="search-bar" role="search">
       <img class="search-frame" data-search-src="<%= url_for('images/search/frame-v3.png') %>" alt="" draggable="false">
+      <span class="search-submit-art" aria-hidden="true"><img data-search-src="<%= url_for('images/search/frame-v3.png') %>" alt="" draggable="false"></span>
       <label class="sr-only" for="search-query">检索文章标题、标签、正文或星表号</label>
       <input id="search-query" type="search" autocomplete="off" placeholder="" spellcheck="false">
       <button class="search-submit" type="submit" aria-label="检索文章" title="检索文章"></button>
@@ -35,7 +36,7 @@
     </div>
     </div>
     <button id="search-index-toggle" type="button" aria-label="展开检索索引" aria-expanded="false" aria-controls="search-index">
-      <img class="search-toggle-arrow" data-search-src="<%= url_for('images/search/arrow-v3.png') %>" alt="" draggable="false">
+      <span class="search-toggle-feedback" aria-hidden="true"><img class="search-toggle-arrow" data-search-src="<%= url_for('images/search/arrow-v3.png') %>" alt="" draggable="false"></span>
     </button>
     <img class="search-index-heading" data-search-src="<%= url_for('images/search/index-v3.png') %>" alt="" draggable="false">
     <button id="close-search" type="button" aria-label="关闭检索，返回星空" title="返回星空"><img data-search-src="<%= url_for('images/search/close-v3.png') %>" alt="" draggable="false"></button>

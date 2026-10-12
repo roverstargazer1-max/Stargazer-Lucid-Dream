@@ -66,7 +66,6 @@ button:focus-visible, a:focus-visible { outline: 2px solid #72dbff; outline-offs
 body[data-live-window="ready"] .room-image { mask-image: var(--window-mask-desktop); mask-mode: alpha; mask-size: 100% 100%; mask-repeat: no-repeat; }
 body[data-live-window="ready"][data-room="inside"] #world { visibility: visible; }
 body[data-live-window="ready"][data-room="inside"] #world > :not(#sky) { visibility: hidden; }
-body[data-arrival] #sky { transform: rotate(var(--entry-bank, 0rad)) scale(var(--entry-scale, 1)); transform-origin: center; }
 #window-entry { position: absolute; left: 31.3%; top: 1%; width: 68%; height: 79%; padding: 0; clip-path: polygon(0 0, 100% 0, 100% 100%, 59% 100%, 52% 78%, 52% 55%, 41% 53%, 31% 76%, 24% 100%, 11% 100%, 0 49%); cursor: zoom-in; border-radius: 0; }
 #window-entry:focus-visible { outline: 2px solid #dbe8ec; outline-offset: -8px; background: #dcecff08; }
 .window-invitation { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; opacity: 0; transition: opacity .2s; }
@@ -147,7 +146,7 @@ body[data-room="inside"] #world, body[data-room="entering"] #world > :not(#sky),
 .archive-list { padding-left: 0; list-style: none; }
 .archive-list li { display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: 16px; margin: 0; padding: 12px 0; border-bottom: 1px solid #60748727; }
 .archive-list time { color: var(--paper-muted); font: 13px var(--sans); }
-.archive-list a { font: 16px/1.7 var(--serif); }
+.archive-list a { font: 400 16px/1.7 'LXGW Marker Gothic', var(--sans); font-synthesis: none; }
 
 @media (max-width: 760px) {
   body[data-live-window="ready"] .room-image { mask-image: var(--window-mask-mobile); }

@@ -1,4 +1,21 @@
-import { createTimeline, unit, ENTRANCE } from './motion.js';
+import { createTimeline, unit, smooth, ENTRANCE } from './motion.js';
+
+// A flat illustration can dolly without distortion; the sky supplies the turn.
+export function roomPassageFrames(rect, width, height) {
+  const mobile = width <= 760;
+  const origin = { x: rect.width * (mobile ? .55 : .50), y: rect.height * (mobile ? .29 : .28) };
+  const dx = width / 2 - (rect.left + origin.x), dy = height / 2 - (rect.top + origin.y);
+  const endScale = mobile ? 3.4 : 4;
+  const frames = Array.from({ length: 97 }, (_, i) => {
+    const offset = i / 96, progress = smooth(offset * ENTRANCE.duration / ENTRANCE.passage);
+    // Perspective growth along a forward dolly, with no skew or rotation of the artwork.
+    const scale = 1 / (1 - (1 - 1 / endScale) * progress);
+    // The nearby frame slips left as the shared sky camera pans right.
+    return { transform: `translate(${(dx - width * .10) * progress}px,${dy * progress}px) scale(${scale})`, opacity: 1,
+      filter: `blur(${.35 * Math.sin(Math.PI * progress) ** 2}px)`, offset };
+  });
+  return { origin, frames };
+}
 
 // Room transitions keep their own timeline and hand camera progress to the app.
 export function createRoom({
@@ -36,18 +53,10 @@ export function createRoom({
 
   function passageTimeline() {
     const rect = stage.getBoundingClientRect();
-    // Near window frame slips left as the continuous sky camera turns right.
-    const px = rect.width * (innerWidth <= 760 ? .55 : .52), py = rect.height * .29;
-    stage.style.transformOrigin = `${px}px ${py}px`;
-    const dx = innerWidth / 2 - (rect.left + px), dy = innerHeight / 2 - (rect.top + py);
+    const { origin, frames } = roomPassageFrames(rect, innerWidth, innerHeight);
+    stage.style.transformOrigin = `${origin.x}px ${origin.y}px`;
     const timeline = createTimeline();
-    timeline.add(stage, short ? [{ opacity: 1 }, { opacity: 0 }] : [
-      { transform: 'perspective(1100px) translate(0,0) rotateY(0deg) rotateZ(0deg) scale(1)', opacity: 1, filter: 'blur(0px)', offset: 0 },
-      { transform: `perspective(1100px) translate(${dx * .14 - innerWidth * .025}px,${dy * .18 + innerHeight * .01}px) rotateY(-6deg) rotateZ(-2deg) scale(1.22)`, opacity: 1, filter: 'blur(0px)', offset: .20 },
-      { transform: `perspective(1100px) translate(${dx * .68 - innerWidth * .18}px,${dy * .68 + innerHeight * .055}px) rotateY(-23deg) rotateZ(-6deg) scale(2.5)`, opacity: 1, filter: 'blur(.3px)', offset: .52 },
-      { transform: `perspective(1100px) translate(${dx - innerWidth * .6}px,${dy + innerHeight * .11}px) rotateY(-43deg) rotateZ(-8deg) scale(4.5)`, opacity: 1, filter: 'blur(.7px)', offset: .80 },
-      { transform: `perspective(1100px) translate(${dx - innerWidth * 1.35}px,${dy + innerHeight * .15}px) rotateY(-60deg) rotateZ(-10deg) scale(6.2)`, opacity: 0, filter: 'blur(1px)', offset: 1 },
-    ]);
+    timeline.add(stage, short ? [{ opacity: 1 }, { opacity: 0 }] : frames);
     return timeline;
   }
 
@@ -60,7 +69,7 @@ export function createRoom({
     entry.disabled = true;
     room.inert = true;
     document.body.dataset.room = 'entering';
-    const duration = short ? 220 : ENTRANCE.passage;
+    const duration = short ? 220 : ENTRANCE.duration;
     const current = { timeline, raf: 0, start: performance.now(), duration, direction: 1, progress: 0 };
     flight = current;
     current.timeline.play(current.start, duration);

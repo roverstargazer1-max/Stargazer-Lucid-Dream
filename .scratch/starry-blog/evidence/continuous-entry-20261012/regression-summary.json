@@ -1,0 +1,110 @@
+[
+  {
+    "name": "desktop",
+    "viewport": {
+      "width": 1440,
+      "height": 1040
+    },
+    "soft": false,
+    "pressure": false,
+    "audit": {
+      "movingFrames": 699,
+      "emptyFrames": 0,
+      "warpedFrames": 0,
+      "transformedSkyFrames": 0,
+      "turnWithForegroundFrames": 0
+    },
+    "errors": [],
+    "interaction": "enter, search, collapse/expand, close search and return passed"
+  },
+  {
+    "name": "mobile",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "soft": false,
+    "pressure": false,
+    "audit": {
+      "movingFrames": 1531,
+      "emptyFrames": 0,
+      "warpedFrames": 0,
+      "transformedSkyFrames": 0,
+      "turnWithForegroundFrames": 0
+    },
+    "errors": [],
+    "interaction": "enter, search, collapse/expand, close search and return passed"
+  },
+  {
+    "name": "landscape",
+    "viewport": {
+      "width": 844,
+      "height": 390
+    },
+    "soft": false,
+    "pressure": false,
+    "audit": {
+      "movingFrames": 1529,
+      "emptyFrames": 0,
+      "warpedFrames": 0,
+      "transformedSkyFrames": 0,
+      "turnWithForegroundFrames": 0
+    },
+    "errors": [],
+    "interaction": "enter, search, collapse/expand, close search and return passed"
+  },
+  {
+    "name": "resize",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "soft": false,
+    "pressure": false,
+    "audit": {
+      "movingFrames": 860,
+      "emptyFrames": 0,
+      "warpedFrames": 0,
+      "transformedSkyFrames": 0,
+      "turnWithForegroundFrames": 0
+    },
+    "errors": [],
+    "interaction": "enter, search, collapse/expand, close search and return passed"
+  },
+  {
+    "name": "pressure",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "soft": false,
+    "pressure": true,
+    "audit": {
+      "movingFrames": 796,
+      "emptyFrames": 0,
+      "warpedFrames": 0,
+      "transformedSkyFrames": 0,
+      "turnWithForegroundFrames": 0
+    },
+    "errors": [],
+    "interaction": "enter, search, collapse/expand, close search and return passed"
+  },
+  {
+    "name": "soft",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "soft": true,
+    "pressure": false,
+    "audit": {
+      "movingFrames": 73,
+      "emptyFrames": 0,
+      "warpedFrames": 0,
+      "transformedSkyFrames": 0,
+      "turnWithForegroundFrames": 0
+    },
+    "errors": [],
+    "interaction": "enter, search, collapse/expand, close search and return passed"
+  }
+]

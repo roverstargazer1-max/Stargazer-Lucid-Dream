@@ -1,0 +1,40 @@
+[
+  {
+    "name": "mobile",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "soft": false,
+    "pressure": false,
+    "audit": {
+      "movingFrames": 816,
+      "emptyFrames": 0,
+      "warpedFrames": 0,
+      "transformedSkyFrames": 0,
+      "overlapFrames": 143
+    },
+    "states": [
+      {
+        "direction": "enter",
+        "roomHidden": true,
+        "roomInert": true,
+        "worldInert": false,
+        "animations": 0,
+        "transientSkyStyle": "",
+        "quality": "balanced"
+      },
+      {
+        "direction": "return",
+        "roomHidden": false,
+        "roomInert": false,
+        "worldInert": true,
+        "animations": 0,
+        "transientSkyStyle": "",
+        "quality": "balanced"
+      }
+    ],
+    "errors": [],
+    "interaction": "enter, search, collapse/expand, close search and return passed"
+  }
+]

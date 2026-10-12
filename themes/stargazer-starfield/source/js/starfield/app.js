@@ -203,7 +203,7 @@ async function start() {
       camera = interpolate(from, to, smooth(progress));
     },
     onEntered() {
-      if (reducedMotion) finishArrival();
+      if (reducedMotion || !arrival) finishArrival();
       else phase = 'arriving';
       updateUI();
     },
@@ -231,8 +231,6 @@ async function start() {
       phase = 'idle';
       starMotion.clearSelection();
       delete body.dataset.arrival;
-      canvas.style.removeProperty('--entry-bank');
-      canvas.style.removeProperty('--entry-scale');
       seedDockHistory('relation', camera, null);
       seedDockHistory('time', camera, null);
       replaceViewState(mode);
@@ -857,8 +855,6 @@ async function start() {
     arrival = null;
     phase = 'idle';
     delete body.dataset.arrival;
-    canvas.style.removeProperty('--entry-bank');
-    canvas.style.removeProperty('--entry-scale');
     updateUI();
     homeButton.focus({ preventScroll: true });
   }
@@ -868,10 +864,6 @@ async function start() {
     const frame = entryFrame(now - arrival.start);
     camera = { x: frame.x, y: frame.y, z: frame.z, yaw: frame.yaw, pitch: frame.pitch, zoom: frame.zoom };
     if (body.dataset.arrival !== frame.stage) body.dataset.arrival = frame.stage;
-    // Only this canvas uses these values. Inheriting them from body invalidates
-    // every hidden article's styles on each camera frame.
-    canvas.style.setProperty('--entry-bank', `${frame.bank}rad`);
-    canvas.style.setProperty('--entry-scale', String(1 + Math.abs(frame.bank) * Math.max(width / height, height / width) * 1.1));
     if (frame.done) finishArrival();
   }
 
@@ -902,8 +894,7 @@ async function start() {
   function drawScene(now) {
     ctx.clearRect(0, 0, width, height);
     const seconds = reducedMotion || !renderBudget.current.ambientMotion ? null : ambient.seconds;
-    const clarity = arrival ? entranceFrame(now - arrival.start).clarity : 1;
-    paintPaintedSky(ctx, width, height, camera, projectionSettings(), { x: ambient.x, y: ambient.y, seconds, clarity, backgroundStride: renderBudget.current.backgroundStride });
+    paintPaintedSky(ctx, width, height, camera, projectionSettings(), { x: ambient.x, y: ambient.y, seconds, clarity: 1, backgroundStride: renderBudget.current.backgroundStride });
     if (animationStarted && body.dataset.domeRenderer !== 'webgl') throw new Error('The starfield renderer stopped being available.');
     visibleStars.clear();
     projectedStars.clear();
@@ -914,20 +905,20 @@ async function start() {
       .map(element => element.getBoundingClientRect()).filter(rect => rect.width && rect.height) : [];
     for (const item of articles) {
       const target = starTargets.get(item.id);
+      const projected = project(positionOf(item));
+      const point = projected && Number.isFinite(projected.x) && Number.isFinite(projected.y) ? projected : null;
+      if (point) projectedStars.set(item.id, point);
       if (!showStars) {
         if (!target.hidden) target.hidden = true;
         target.classList.toggle('is-near-pointer', false);
         continue;
       }
-      const projected = project(positionOf(item));
-      const point = projected && Number.isFinite(projected.x) && Number.isFinite(projected.y) ? projected : null;
       const hidden = !isStarReachable(point, width, height, obstacles);
       if (target.hidden !== hidden) target.hidden = hidden;
       const nearPointer = !hidden && labelPointer && !pointers.size && !travel && !reader.open && !egg.open && !collectionOpen &&
         (Math.hypot(point.x - labelPointer.x, point.y - labelPointer.y) <= 88 || target.matches(':hover'));
       target.classList.toggle('is-near-pointer', Boolean(nearPointer));
       if (!point) continue;
-      projectedStars.set(item.id, point);
       if (!target.hidden) visibleStars.set(item.id, point);
       target.style.left = `${point.x}px`;
       target.style.top = `${point.y}px`;
@@ -942,14 +933,14 @@ async function start() {
     }
     drawNavigationGuides();
     for (const item of articles) {
-      const point = visibleStars.get(item.id);
+      const point = (showStars ? visibleStars : projectedStars).get(item.id);
       if (!point) continue;
       const target = starTargets.get(item.id);
       paintPaintedStar(ctx, point.x, point.y, item.id, {
         depth: point.depth / 3,
         active: false,
         hover: selected !== item.id && target.matches(':hover'),
-        zoom: .62 + .38 * clarity,
+        zoom: 1,
         importance: item.importance,
         seconds,
       });

@@ -6,7 +6,7 @@ export function smooth(value) {
   return t * t * t * (10 + t * (-15 + 6 * t));
 }
 export const cue = (progress, start, end) => smooth((progress - start) / (end - start));
-export const ENTRANCE = { passage: 1900, duration: 2500, turn: Math.PI / 3, clarify: 950, clear: 2300, retreat: 2600 };
+export const ENTRANCE = { passage: 2857, turnStart: 0, duration: 2857, turn: Math.PI / 3, clarify: 593, clear: 2679, retreat: 2857 };
 export const PREVIEW = { duration: 1100, clear: 950 };
 
 // The article reader and star chart use the same focus reveal and backdrop.
@@ -22,9 +22,9 @@ export function dialogBackdrop(progress, soft) {
 }
 
 // The window and open sky share this camera, even before the entry button is pressed.
-// A short turn carries the passage into its landing; stars clear during deceleration.
+// Dolly and pan together on one smooth curve; only the end of the shot settles.
 export function entranceFrame(elapsed, windowZoom = 1) {
-  const turn = smooth(elapsed / ENTRANCE.duration);
+  const turn = cue(elapsed, ENTRANCE.turnStart, ENTRANCE.duration);
   const progress = unit(elapsed / ENTRANCE.passage), distance = 1 - smooth(progress);
   return {
     x: -180 * distance,
@@ -32,28 +32,29 @@ export function entranceFrame(elapsed, windowZoom = 1) {
     z: -420 * distance,
     yaw: ENTRANCE.turn * turn,
     pitch: .43 + .09 * Math.sin(Math.PI * turn) ** 2,
-    zoom: .50 + .22 * cue(elapsed / ENTRANCE.duration, .42, 1) + (windowZoom - .50) * (1 - cue(progress, .05, .88)),
-    bank: -.085 * Math.sin(Math.PI * cue(progress, .03, 1)),
+    zoom: windowZoom + (.72 - windowZoom) * turn,
+    bank: 0,
     clarity: cue(elapsed, ENTRANCE.clarify, ENTRANCE.clear),
-    stage: elapsed < ENTRANCE.passage ? 'passage' : 'settling',
+    stage: elapsed < ENTRANCE.passage ? 'passage' : 'turning',
     done: elapsed >= ENTRANCE.duration,
   };
 }
 // Reverse the near-window journey from wherever exploration left the camera.
 // Anchor the reverse lens to the actual passage endpoint to avoid a jump on return.
 export function returnFrame(progress, from, windowZoom = 1) {
-  const t = unit(progress), remaining = 1 - smooth(t);
-  const reverse = entranceFrame(ENTRANCE.passage * (1 - t), windowZoom);
-  const passageEnd = entranceFrame(ENTRANCE.passage, windowZoom);
+  const t = unit(progress);
+  const reverse = entranceFrame(ENTRANCE.duration * (1 - t), windowZoom);
+  const end = entranceFrame(ENTRANCE.duration, windowZoom);
+  const remaining = reverse.yaw / ENTRANCE.turn;
   const homeYaw = from.yaw + Math.atan2(Math.sin(-from.yaw), Math.cos(-from.yaw));
   return {
     x: reverse.x + from.x * remaining,
     y: reverse.y + from.y * remaining,
     z: reverse.z + from.z * remaining,
     yaw: homeYaw + (from.yaw - homeYaw) * remaining,
-    pitch: .43 + (from.pitch - .43) * remaining,
-    zoom: reverse.zoom + (from.zoom - passageEnd.zoom) * remaining,
-    bank: reverse.bank,
+    pitch: reverse.pitch + (from.pitch - end.pitch) * remaining,
+    zoom: reverse.zoom + (from.zoom - end.zoom) * remaining,
+    bank: 0,
   };
 }
 export function approachFrame(progress) {

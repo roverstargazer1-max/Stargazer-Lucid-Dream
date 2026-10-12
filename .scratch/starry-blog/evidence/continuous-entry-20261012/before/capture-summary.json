@@ -1,0 +1,17 @@
+{
+  "frames": 396,
+  "screenshots": 8,
+  "maxVisibleRoomTilt": 5.21503,
+  "viewportGapFrames": 0,
+  "firstWarp": {
+    "time": 894,
+    "state": "entering",
+    "arrival": "passage",
+    "opacity": 1,
+    "roomTransform": "matrix3d(1.00515, -0.000821761, 0.00246528, -2.24116e-06, 0.000821759, 1.00515, 2.01549e-06, -1.83226e-09, -0.00245264, 0, 0.999997, -0.000909088, -0.964366, 1.16431, 0, 1)",
+    "skyTransform": "matrix(1, 0, 0, 1, 0, 0)",
+    "roomTilt": 0.00246528,
+    "skyCoversViewport": true
+  },
+  "durationMs": 2516.9
+}
