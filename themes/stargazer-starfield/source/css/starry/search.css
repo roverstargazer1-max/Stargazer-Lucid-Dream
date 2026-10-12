@@ -51,7 +51,7 @@
 .search-map-title { position:absolute; z-index:2; max-width:48%; width:max-content; transform:translate(-50%,calc(-100% - 16px)); padding:6px 9px; background:#091b62f5; color:#e5f5ff; text-align:center; font-size:13px; line-height:1.5; overflow-wrap:anywhere; pointer-events:none; }
 .search-map-title[data-below=true] { transform:translate(-50%,16px); }
 #search-index-toggle { position:absolute; left:calc(var(--chart-width) * 1387.5 / 1440 - 22px); top:calc(var(--chart-width) * 38 / 1440 - 22px); width:44px; height:44px; padding:0; }
-.search-toggle-arrow { position:absolute; left:50%; top:50%; width:calc(var(--chart-width) * 55 / 1440); height:auto; transform:translate(-50%,-50%) rotate(-90deg); transition:transform .36s cubic-bezier(.22,.68,.2,1); }
+.search-toggle-arrow { position:absolute; left:50%; top:50%; width:calc(var(--chart-width) * 55 / 1440); height:auto; transform:translate(-50%,-50%) rotate(90deg); transition:transform .36s cubic-bezier(.22,.68,.2,1); }
 .search-index-heading { position:absolute; left:calc(var(--chart-width) * 1583 / 1440); top:calc(var(--chart-width) * 46 / 1440); width:calc(var(--chart-width) * 175 / 1440); height:auto; visibility:hidden; opacity:0; transition:opacity .24s; }
 .search-artboard .search-index-mobile-heading { display:none; }
 [data-index-open=true] .search-index-heading { visibility:visible; opacity:1; }
@@ -73,8 +73,11 @@
 #search-feedback { position:absolute; bottom:8px; left:0; right:0; margin:0; color:#c5ddff; font-size:12px; line-height:1.7; }
 #search-clear { position:absolute; right:0; bottom:0; padding:4px 0; min-height:32px; color:#d7eaff; font-size:12px; }
 #search-entry { position:fixed; z-index:9; left:28px; bottom:50px; width:100px; height:100px; padding:0; }
-/* The crop follows the supplied disc and the protruding needle, excluding only the white surround. */
-#search-entry img { display:block; width:100%; height:100%; object-fit:contain; clip-path:polygon(49.362% 4.545%,55.423% 4.864%,60.367% 5.742%,65.710% 7.337%,68.820% 8.612%,71.292% 9.888%,71.451% 9.888%,72.807% 7.735%,73.684% 7.576%,74.003% 7.895%,74.083% 8.373%,72.727% 10.686%,74.801% 11.882%,78.070% 14.195%,81.340% 16.986%,83.413% 19.059%,87.560% 24.163%,90.590% 29.027%,92.743% 33.652%,94.179% 37.959%,95.215% 42.504%,95.774% 47.528%,95.774% 52.073%,95.375% 56.220%,94.657% 60.128%,93.142% 65.152%,91.866% 68.262%,89.394% 72.887%,87.321% 75.997%,84.131% 79.904%,80.223% 83.732%,77.033% 86.284%,73.604% 88.596%,69.458% 90.829%,65.231% 92.584%,60.606% 93.939%,55.821% 94.817%,50.957% 95.215%,46.332% 95.136%,42.584% 94.737%,38.756% 94.019%,34.051% 92.663%,29.426% 90.750%,25.439% 88.596%,22.249% 86.443%,18.900% 83.732%,16.188% 81.100%,13.238% 77.671%,10.128% 73.206%,7.895% 69.139%,6.061% 64.673%,4.705% 59.888%,4.067% 56.300%,3.668% 51.595%,3.748% 46.252%,4.147% 42.584%,5.104% 37.959%,6.220% 34.450%,7.496% 31.340%,9.729% 27.113%,12.281% 23.365%,15.391% 19.697%,18.979% 16.268%,22.329% 13.636%,27.273% 10.526%,31.100% 8.612%,34.211% 7.337%,39.314% 5.821%,44.019% 4.944%); }
+/* Only the native hand rotates. The narrow repair stencil hides its baked-in copy. */
+#search-entry img { position:absolute; inset:0; display:block; width:100%; height:100%; object-fit:contain; pointer-events:none; user-select:none; }
+.search-entry-disc { position:absolute; inset:0; pointer-events:none; }
+.search-entry-needle { transform-origin:var(--entry-pivot-x) var(--entry-pivot-y); transform:rotate(calc(var(--view-heading,0rad) - var(--entry-native-angle))); }
+.search-entry-pivot { clip-path:circle(3.5% at var(--entry-pivot-x) var(--entry-pivot-y)); }
 #search-entry:hover { transform:translateY(-3px); }
 body:not(.starry-ready) #search-entry { display:none; }
 

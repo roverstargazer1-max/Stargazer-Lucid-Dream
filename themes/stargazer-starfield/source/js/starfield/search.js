@@ -1,6 +1,7 @@
 import { angles, clamp, domeIntersection, viewRay } from './dome.js';
 import { renderGlyphs } from './observation.js';
 import { createTimeline, smooth, unit, dialogFrames, dialogDuration, dialogBackdrop } from './motion.js';
+import { createAstrolabe } from './astrolabe.js';
 
 const normalize = value => String(value || '').normalize('NFKC').trim().toLocaleLowerCase();
 
@@ -44,6 +45,7 @@ export function createArticleSearch({ articles, getScene, onRead, onOpen, onClos
   const dialog = document.getElementById('star-search');
   const artboard = dialog.querySelector('.search-artboard');
   const entry = document.getElementById('search-entry');
+  const astrolabe = createAstrolabe(entry.querySelector('.search-entry-needle'));
   const map = dialog.querySelector('.search-map');
   const mapCanvas = map.querySelector('canvas');
   const starLayer = map.querySelector('.search-map-stars');
@@ -374,6 +376,7 @@ export function createArticleSearch({ articles, getScene, onRead, onOpen, onClos
     update(now, active) {
       tickDialog(now);
       entry.hidden = !active || dialog.open;
+      if (!entry.hidden) astrolabe.update(getScene().camera);
     },
   };
 }

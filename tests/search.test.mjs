@@ -62,6 +62,7 @@ test('all supplied search artwork is published byte for byte without SVG replace
     assert.deepEqual(fs.readFileSync(path.join(root, `images/search/${name}-v3.png`)), fs.readFileSync(`assets/检索页/v3/${name}-v3.png`));
   }
   assert.deepEqual(fs.readFileSync(path.join(root, 'images/search/entry-blue-purple.png')), fs.readFileSync('assets/蓝紫星盘.png'));
+  assert.deepEqual(fs.readFileSync(path.join(root, 'images/search/entry-disc-repair.png')), fs.readFileSync('assets/检索页/entry-heading/disc-repair.png'));
   const html = fs.readFileSync(path.join(root, 'index.html'), 'utf8').split('<dialog id="star-search"')[1].split('</dialog>')[0];
   assert.doesNotMatch(html, /<svg|data:image\/svg/);
   assert.doesNotMatch(html, /images\/search\/(?:base|frame)(?:-v2)?\.png/);

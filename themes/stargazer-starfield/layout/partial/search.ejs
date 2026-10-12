@@ -1,5 +1,11 @@
-<button id="search-entry" type="button" aria-label="展开星图检索" title="星图检索" aria-controls="star-search" hidden>
-  <img data-src="<%= url_for('images/search/entry-blue-purple.png') %>" alt="" draggable="false">
+<% const entryGeometry = starry_search_entry_geometry(); %>
+<button id="search-entry" type="button" aria-label="展开星图检索" title="星图检索" aria-controls="star-search" style="--entry-pivot-x:<%= entryGeometry.pivot[0] / entryGeometry.size[0] * 100 %>%;--entry-pivot-y:<%= entryGeometry.pivot[1] / entryGeometry.size[1] * 100 %>%;--entry-native-angle:<%= entryGeometry.nativeAzimuth %>rad" hidden>
+  <span class="search-entry-disc" style="clip-path:<%= entryGeometry.discClip %>" aria-hidden="true">
+    <img style="clip-path:<%= entryGeometry.discWithoutNeedleClip %>" data-src="<%= url_for('images/search/entry-blue-purple.png') %>" alt="" draggable="false">
+    <img class="search-entry-repair" style="clip-path:<%= entryGeometry.repairClip %>" data-src="<%= url_for('images/search/entry-disc-repair.png') %>" alt="" draggable="false">
+  </span>
+  <img class="search-entry-needle" style="clip-path:<%= entryGeometry.needleClip %>" data-src="<%= url_for('images/search/entry-blue-purple.png') %>" alt="" draggable="false">
+  <img class="search-entry-pivot" data-src="<%= url_for('images/search/entry-blue-purple.png') %>" alt="" draggable="false">
 </button>
 <dialog id="star-search" aria-label="星图与文章检索" data-index-open="false" data-search-url="<%= url_for('starry/search.json') %>" data-glyph-root="<%= url_for('images/observation/') %>" data-filter-src="<%= url_for('images/search/filters-v3.png') %>">
   <div class="search-artboard" data-index-open="false">

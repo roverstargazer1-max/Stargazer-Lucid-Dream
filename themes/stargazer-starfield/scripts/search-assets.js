@@ -1,5 +1,8 @@
 const fs = require('node:fs');
 const path = require('node:path');
+const entryGeometry = JSON.parse(fs.readFileSync(path.join(hexo.base_dir, 'assets/检索页/entry-heading/geometry.json'), 'utf8'));
+
+hexo.extend.helper.register('starry_search_entry_geometry', () => entryGeometry);
 
 // v3 files are native Photoshop exports with the author's adjustment layers intact.
 hexo.extend.generator.register('starry-search-assets', function () {
@@ -10,5 +13,6 @@ hexo.extend.generator.register('starry-search-assets', function () {
       .map(name => [`${name}-v3.png`, `v3/${name}-v3.png`]),
   ].map(([name, source]) => [name, path.join(root, '检索页', source)]);
   files.push(['entry-blue-purple.png', path.join(root, '蓝紫星盘.png')]);
+  files.push(['entry-disc-repair.png', path.join(root, '检索页/entry-heading/disc-repair.png')]);
   return files.map(([name, source]) => ({ path: `images/search/${name}`, data: fs.readFileSync(source) }));
 });
