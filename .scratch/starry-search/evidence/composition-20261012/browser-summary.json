@@ -1,0 +1,333 @@
+{
+  "date": "2026-10-12",
+  "layoutChecks": [
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "closed": {
+        "alignment": 0,
+        "dialog": {
+          "bottom": 910,
+          "height": 820,
+          "left": 330.8125,
+          "right": 1109.1875,
+          "top": 90,
+          "width": 778.375,
+          "x": 330.8125,
+          "y": 90
+        },
+        "map": {
+          "bottom": 863.2890625,
+          "height": 529.2890625,
+          "left": 455.3515625,
+          "right": 984.640625,
+          "top": 334,
+          "width": 529.2890625,
+          "x": 455.3515625,
+          "y": 334
+        },
+        "rails": [
+          {
+            "content": 223,
+            "width": 223
+          },
+          {
+            "content": 208,
+            "width": 208
+          }
+        ]
+      },
+      "open": {
+        "dialog": {
+          "bottom": 910,
+          "height": 820,
+          "left": 136.21875,
+          "right": 1303.78125,
+          "top": 90,
+          "width": 1167.5625,
+          "x": 136.21875,
+          "y": 90
+        },
+        "map": {
+          "bottom": 863.2890625,
+          "height": 529.2890625,
+          "left": 260.7578125,
+          "right": 790.046875,
+          "top": 334,
+          "width": 529.2890625,
+          "x": 260.7578125,
+          "y": 334
+        },
+        "pageOverflow": false
+      },
+      "stableMap": true
+    },
+    {
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "closed": {
+        "alignment": 0,
+        "dialog": {
+          "bottom": 698.875,
+          "height": 629.7578125,
+          "left": 251.3515625,
+          "right": 772.6484375,
+          "top": 69.1171875,
+          "width": 521.296875,
+          "x": 251.3515625,
+          "y": 69.1171875
+        },
+        "map": {
+          "bottom": 667.59375,
+          "height": 354.4765625,
+          "left": 334.7578125,
+          "right": 689.234375,
+          "top": 313.1171875,
+          "width": 354.4765625,
+          "x": 334.7578125,
+          "y": 313.1171875
+        },
+        "rails": [
+          {
+            "content": 223,
+            "width": 223
+          },
+          {
+            "content": 208,
+            "width": 208
+          }
+        ]
+      },
+      "open": {
+        "dialog": {
+          "bottom": 698.875,
+          "height": 629.7578125,
+          "left": 121.0234375,
+          "right": 902.96875,
+          "top": 69.1171875,
+          "width": 781.9453125,
+          "x": 121.0234375,
+          "y": 69.1171875
+        },
+        "map": {
+          "bottom": 667.59375,
+          "height": 354.4765625,
+          "left": 204.4296875,
+          "right": 558.90625,
+          "top": 313.1171875,
+          "width": 354.4765625,
+          "x": 204.4296875,
+          "y": 313.1171875
+        },
+        "pageOverflow": false
+      },
+      "stableMap": true
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "closed": {
+        "alignment": 0,
+        "dialog": {
+          "bottom": 697.9375,
+          "height": 551.875,
+          "left": 16,
+          "right": 374,
+          "top": 146.0625,
+          "width": 358,
+          "x": 16,
+          "y": 146.0625
+        },
+        "map": {
+          "bottom": 669.296875,
+          "height": 279.234375,
+          "left": 55.375,
+          "right": 334.609375,
+          "top": 390.0625,
+          "width": 279.234375,
+          "x": 55.375,
+          "y": 390.0625
+        },
+        "rails": [
+          {
+            "content": 192,
+            "width": 192
+          },
+          {
+            "content": 179,
+            "width": 179
+          }
+        ]
+      },
+      "open": {
+        "dialog": {
+          "bottom": 812,
+          "height": 780,
+          "left": 16,
+          "right": 374,
+          "top": 32,
+          "width": 358,
+          "x": 16,
+          "y": 32
+        },
+        "map": {
+          "bottom": 555.234375,
+          "height": 279.234375,
+          "left": 55.375,
+          "right": 334.609375,
+          "top": 276,
+          "width": 279.234375,
+          "x": 55.375,
+          "y": 276
+        },
+        "pageOverflow": false
+      },
+      "stableMap": true
+    },
+    {
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "closed": {
+        "alignment": 0,
+        "dialog": {
+          "bottom": 529.8359375,
+          "height": 491.6796875,
+          "left": 16,
+          "right": 304,
+          "top": 38.15625,
+          "width": 288,
+          "x": 16,
+          "y": 38.15625
+        },
+        "map": {
+          "bottom": 506.7890625,
+          "height": 224.6328125,
+          "left": 47.6796875,
+          "right": 272.3125,
+          "top": 282.15625,
+          "width": 224.6328125,
+          "x": 47.6796875,
+          "y": 282.15625
+        },
+        "rails": [
+          {
+            "content": 149,
+            "width": 149
+          },
+          {
+            "content": 138,
+            "width": 138
+          }
+        ]
+      },
+      "open": {
+        "dialog": {
+          "bottom": 536,
+          "height": 504,
+          "left": 16,
+          "right": 304,
+          "top": 32,
+          "width": 288,
+          "x": 16,
+          "y": 32
+        },
+        "map": {
+          "bottom": 500.6328125,
+          "height": 224.6328125,
+          "left": 47.6796875,
+          "right": 272.3125,
+          "top": 276,
+          "width": 224.6328125,
+          "x": 47.6796875,
+          "y": 276
+        },
+        "pageOverflow": false
+      },
+      "stableMap": true
+    },
+    {
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "closed": {
+        "alignment": 0,
+        "dialog": {
+          "bottom": 366,
+          "height": 342,
+          "left": 194.1171875,
+          "right": 649.875,
+          "top": 24,
+          "width": 455.7578125,
+          "x": 194.1171875,
+          "y": 24
+        },
+        "map": {
+          "bottom": 557.9140625,
+          "height": 309.9140625,
+          "left": 267.03125,
+          "right": 576.9453125,
+          "top": 248,
+          "width": 309.9140625,
+          "x": 267.03125,
+          "y": 248
+        },
+        "rails": [
+          {
+            "content": 215,
+            "width": 215
+          },
+          {
+            "content": 200,
+            "width": 200
+          }
+        ]
+      },
+      "open": {
+        "dialog": {
+          "bottom": 366,
+          "height": 342,
+          "left": 80.1796875,
+          "right": 763.8125,
+          "top": 24,
+          "width": 683.6328125,
+          "x": 80.1796875,
+          "y": 24
+        },
+        "map": {
+          "bottom": 557.9140625,
+          "height": 309.9140625,
+          "left": 153.09375,
+          "right": 463.0078125,
+          "top": 248,
+          "width": 309.9140625,
+          "x": 153.09375,
+          "y": 248
+        },
+        "pageOverflow": false
+      },
+      "stableMap": true
+    }
+  ],
+  "interactions": {
+    "year2025Results": 5,
+    "yearAndMagnitudeNoResults": true,
+    "catalogNumberResults": 1,
+    "readingReturnsWithQuery": true,
+    "clearKeepsIndexOpen": true,
+    "escapeWithEmptyQueryCloses": true,
+    "outsideClickCloses": true,
+    "interiorClickPreservesDialog": true,
+    "newEntryStartsCollapsedAndEmpty": true,
+    "starLabelNearPoint": true,
+    "landscapeScrollable": true
+  }
+}
