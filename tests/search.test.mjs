@@ -58,15 +58,15 @@ test('current view boundary uses the actual camera origin, zoom and inverse proj
 });
 test('all supplied search artwork is published byte for byte without SVG replacements', () => {
   const root = '.preview/stargazer';
-  for (const [name, source] of [['base-v2', '底图/底图v2'], ['grid-v2', '检索原型图v2'], ['frame-v2', '左侧/搜索栏v2'], ['filters', '左侧/筛选'], ['arrow', '左侧/折叠箭头'], ['star-chart', '左侧/Starchart'], ['index', '右侧/index'], ['name', '右侧/NAME'], ['id', '右侧/OBS&ID'], ['close', '右侧/退出按钮']]) {
-    assert.deepEqual(fs.readFileSync(path.join(root, `images/search/${name}.png`)), fs.readFileSync(`assets/检索页/${source}.png`));
+  for (const name of ['base', 'frame', 'filters', 'arrow', 'star-chart', 'index', 'name', 'id', 'close']) {
+    assert.deepEqual(fs.readFileSync(path.join(root, `images/search/${name}-v3.png`)), fs.readFileSync(`assets/检索页/v3/${name}-v3.png`));
   }
   assert.deepEqual(fs.readFileSync(path.join(root, 'images/search/entry-blue-purple.png')), fs.readFileSync('assets/蓝紫星盘.png'));
   const html = fs.readFileSync(path.join(root, 'index.html'), 'utf8').split('<dialog id="star-search"')[1].split('</dialog>')[0];
   assert.doesNotMatch(html, /<svg|data:image\/svg/);
-  assert.doesNotMatch(html, /images\/search\/(?:base|frame)\.png/);
-  assert.equal(fs.existsSync(path.join(root, 'images/search/base.png')), false);
-  assert.equal(fs.existsSync(path.join(root, 'images/search/frame.png')), false);
+  assert.doesNotMatch(html, /images\/search\/(?:base|frame)(?:-v2)?\.png/);
+  assert.equal(fs.existsSync(path.join(root, 'images/search/base-v2.png')), false);
+  assert.equal(fs.existsSync(path.join(root, 'images/search/frame-v2.png')), false);
 });
 test('every published article supplies full search text, tags and categories', () => {
   const index = JSON.parse(fs.readFileSync('.preview/stargazer/starry/index.json'));

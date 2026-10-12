@@ -101,9 +101,9 @@ export function createArticleSearch({ articles, getScene, onRead, onOpen, onClos
       const image = document.createElement('img'); image.dataset.searchSrc = dialog.dataset.filterSrc;
       image.alt = ''; image.draggable = false;
       if (nativeColumn >= 0) {
-        const cellWidth = kind === 'year' ? 238 / 3 : 221 / 3;
+        const cellWidth = kind === 'year' ? 241 / 3 : 223 / 3;
         image.style.width = `${383 / cellWidth * 100}%`;
-        image.style.left = `${-(145 + nativeColumn * cellWidth) / cellWidth * 100}%`;
+        image.style.left = `${-(142 + nativeColumn * cellWidth) / cellWidth * 100}%`;
         image.style.height = '200%'; image.style.top = kind === 'year' ? '0' : '-100%';
       } else {
         // Other real years reuse a blank strip of the native rail beneath the existing number glyphs.
