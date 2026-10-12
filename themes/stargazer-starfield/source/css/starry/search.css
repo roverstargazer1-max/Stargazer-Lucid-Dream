@@ -80,18 +80,18 @@ body:not(.starry-ready) #search-entry { display:none; }
 
 
 @media(max-width:760px) and (orientation:portrait) {
-  #star-search { --chart-width:calc(100vw - 32px); --chart-height:calc(230px + var(--chart-width) * .87); width:var(--chart-width); max-height:calc(100dvh - 64px); }
+  #star-search { --chart-width:calc(100vw - 32px); --mobile-map-top:calc(140px + var(--chart-width) * .48 * 97 / 368); --chart-height:calc(var(--mobile-map-top) + var(--chart-width) * .87); width:var(--chart-width); max-height:calc(100dvh - 64px); }
   #star-search[data-index-open=true] { width:var(--chart-width); }
   .search-artboard { max-height:calc(100dvh - 64px); overflow-y:auto; overscroll-behavior:contain; }
   [data-index-open=true].search-artboard { height:calc(var(--chart-height) + 380px); }
   .search-background { height:100%; background:#001b87; }
   [data-index-open=true] .search-background { height:calc(var(--chart-height) + 380px); }
-  .search-base { width:calc(var(--chart-width) * .78 * 1917 / 897); left:calc(var(--chart-width) * (.11 - .78 * 342 / 897)); top:calc(230px - var(--chart-width) * .78 * 285 / 897); }
+  .search-base { width:calc(var(--chart-width) * .78 * 1917 / 897); left:calc(var(--chart-width) * (.11 - .78 * 342 / 897)); top:calc(var(--mobile-map-top) - var(--chart-width) * .78 * 285 / 897); }
   .search-heading { left:26%; top:8px; width:48%; }
   .search-bar { left:20px; top:74px; width:calc(100% - 40px); }
   #search-query { top:8%; height:76%; }
-  .search-filters { left:24px; top:124px; width:290px; max-width:calc(100% - 48px); }
-  .search-map { left:11%; top:230px; width:78%; }
+  .search-filters { left:24px; top:124px; width:calc(var(--chart-width) * .48 * 311 / 368); }
+  .search-map { left:11%; top:var(--mobile-map-top); width:78%; }
   #search-index-toggle { left:auto; right:12px; top:20px; }
   .search-toggle-arrow { width:30px; }
   .search-artboard .search-index-heading { display:none; }
