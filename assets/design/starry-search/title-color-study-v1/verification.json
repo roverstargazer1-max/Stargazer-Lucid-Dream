@@ -1,0 +1,36 @@
+[
+  {
+    "name": "index",
+    "file": "index-blue-white-v1.png",
+    "width": 610,
+    "height": 182,
+    "glyphPixels": 40694,
+    "bounds": [
+      30,
+      27,
+      567,
+      169
+    ],
+    "changedMaskPixels": 0,
+    "transparentPixels": 70326,
+    "opaquePixels": 33651,
+    "maskSha256": "83d06744d4a3db15f0e467f965e3da10113a214ee42ab69f247cbdd1d5470a83"
+  },
+  {
+    "name": "star-chart",
+    "file": "star-chart-blue-white-v1.png",
+    "width": 1233,
+    "height": 178,
+    "glyphPixels": 73982,
+    "bounds": [
+      18,
+      15,
+      1222,
+      157
+    ],
+    "changedMaskPixels": 0,
+    "transparentPixels": 145492,
+    "opaquePixels": 60619,
+    "maskSha256": "f678b3bf62daedd8c59110ceb3de453794c3d8b90eb69685e3222173f4b665f8"
+  }
+]

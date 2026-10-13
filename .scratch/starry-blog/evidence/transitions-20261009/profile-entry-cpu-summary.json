@@ -1,0 +1,146 @@
+{
+  "windowMs": 300,
+  "cpuRate": 12,
+  "selfSamples": [
+    [
+      "(program) :0",
+      157.40699999999993
+    ],
+    [
+      "getBoundingClientRect :0",
+      29.764
+    ],
+    [
+      "drawImage :0",
+      22.960000000000004
+    ],
+    [
+      "paintPaintedSky painted.js:38",
+      11.391000000000002
+    ],
+    [
+      "render polyhedron.js:58",
+      10.255
+    ],
+    [
+      "drawScene app.js:799",
+      9.536000000000001
+    ],
+    [
+      "(garbage collector) :0",
+      9.198
+    ],
+    [
+      "animate app.js:925",
+      8.179
+    ],
+    [
+      "paint interactive-clouds.js:58",
+      6.225999999999999
+    ],
+    [
+      "entranceFrame motion.js:14",
+      5.164
+    ],
+    [
+      "draw dome-renderer.js:143",
+      4.965
+    ],
+    [
+      "enterSky painted.js:131",
+      4.46
+    ],
+    [
+      " painted.js:42",
+      3.385
+    ],
+    [
+      "mark :0",
+      2.364
+    ],
+    [
+      "animate :0",
+      2.348
+    ],
+    [
+      "projectDome dome.js:26",
+      1.847
+    ],
+    [
+      " :1",
+      1.738
+    ],
+    [
+      "getEntries :0",
+      1.42
+    ],
+    [
+      "evaluate :305",
+      1.33
+    ],
+    [
+      "(idle) :0",
+      1.28
+    ],
+    [
+      "querySelectorAll :0",
+      1.1580000000000001
+    ],
+    [
+      "add motion.js:62",
+      0.98
+    ],
+    [
+      "fill :0",
+      0.876
+    ],
+    [
+      "advance painted.js:142",
+      0.828
+    ],
+    [
+      "direction dome.js:7",
+      0.348
+    ],
+    [
+      "drawNavigationGuides app.js:852",
+      0.132
+    ],
+    [
+      "transform :0",
+      0.13
+    ],
+    [
+      "fillRect :0",
+      0.099
+    ],
+    [
+      " interactive-clouds.js:73",
+      0.058
+    ],
+    [
+      "updateArrival app.js:779",
+      0.018
+    ],
+    [
+      "project app.js:294",
+      0.009
+    ],
+    [
+      "render call-waveform.js:35",
+      0.005
+    ],
+    [
+      "tick :8",
+      -0.018
+    ],
+    [
+      "requestAnimationFrame :0",
+      -0.04
+    ],
+    [
+      " :0",
+      -0.055
+    ]
+  ]
+}

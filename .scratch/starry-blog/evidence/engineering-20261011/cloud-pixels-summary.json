@@ -1,0 +1,16 @@
+{
+  "samples": 96,
+  "changedChannels": 0,
+  "maxDelta": 0,
+  "buttonMismatches": 0,
+  "alphaSamples": 344064,
+  "alphaMismatches": 0,
+  "beforeAlphaBytes": 1376256,
+  "afterAlphaBytes": 344064,
+  "savedBytes": 1032192,
+  "hitSamples": 1182680,
+  "hitMismatches": 0,
+  "staticFrames": 180,
+  "beforeTrigonometry": 21600,
+  "afterTrigonometry": 0
+}

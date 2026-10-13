@@ -1,0 +1,129 @@
+{
+  "captured_at": "2026-10-11T04:57:07.511Z",
+  "browser": "149.0.7827.55",
+  "dpr": 1,
+  "temp_directory": "/var/folders/kx/zy28y4yd3bn5mnxm2tw5zbf80000gn/T/blog-theme-history-fTqhuk",
+  "method": "Historical theme exported with git archive, generated using current installed dependencies. Current theme uses existing generated preview after source-byte comparison. Screenshots taken now.",
+  "screenshots": [
+    {
+      "file": "images/formal-20261001-reader.png",
+      "kind": "reconstructed",
+      "source_commit": "670fa242cf8febafa9f28dd199203f39e26e737f",
+      "state": "real-reader",
+      "page_errors": [],
+      "caveat": "Current installed dependencies and Node v25.7.0; original runtime not reproduced.",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "bytes": 527864,
+      "sha256": "0b55f3eadf7da8ccbc91c510da861d78056f0a955474f5223b8c93c53dde6ed9"
+    },
+    {
+      "file": "images/formal-20261001-selected.png",
+      "kind": "reconstructed",
+      "source_commit": "670fa242cf8febafa9f28dd199203f39e26e737f",
+      "state": "real-selected-star",
+      "page_errors": [],
+      "caveat": "Current installed dependencies and Node v25.7.0; original runtime not reproduced.",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "bytes": 783562,
+      "sha256": "ef9e674415426a8985a7446b79ac1b8fb923a72a77955b94dfd4b525a39fdc33"
+    },
+    {
+      "file": "images/current-desktop-room.png",
+      "kind": "current-local",
+      "source_commit": "87a040148aef42608028c1cec0252f7b09029a1a",
+      "page_errors": [],
+      "state": "room",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "bytes": 866591,
+      "sha256": "501738cb3f220c5abd04dad9608a2b515eeb61bbdef443da3c99ee1b262ac094"
+    },
+    {
+      "file": "images/current-desktop-sky.png",
+      "kind": "current-local",
+      "source_commit": "87a040148aef42608028c1cec0252f7b09029a1a",
+      "page_errors": [],
+      "state": "unselected-sky",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "bytes": 808323,
+      "sha256": "4bbcfb38fe1643055f48585dea25417e74ee9a628d02b11fa23d9cc773939e59"
+    },
+    {
+      "file": "images/current-desktop-reader.png",
+      "kind": "current-local",
+      "source_commit": "87a040148aef42608028c1cec0252f7b09029a1a",
+      "page_errors": [],
+      "state": "real-reader",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "bytes": 796173,
+      "sha256": "0e874f71220ef2d3edecad5dc1cebe702c23ca52292a43c98faf3cace8444454"
+    },
+    {
+      "file": "images/current-desktop-selected.png",
+      "kind": "current-local",
+      "source_commit": "87a040148aef42608028c1cec0252f7b09029a1a",
+      "page_errors": [],
+      "state": "real-selected-star",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "bytes": 674780,
+      "sha256": "825abec62ce0636a5a4a8a21a99b26d23c53edcc9465f2b90aac16b933b320f8"
+    },
+    {
+      "file": "images/current-mobile-room.png",
+      "kind": "current-local",
+      "source_commit": "87a040148aef42608028c1cec0252f7b09029a1a",
+      "page_errors": [],
+      "state": "room",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "bytes": 222138,
+      "sha256": "7afde3dcc46d3e96ac3d1ef64f8f58a93a594b431b658dc62943a9d5a61c2dcf"
+    },
+    {
+      "file": "images/current-mobile-sky.png",
+      "kind": "current-local",
+      "source_commit": "87a040148aef42608028c1cec0252f7b09029a1a",
+      "page_errors": [],
+      "state": "unselected-sky",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "bytes": 242115,
+      "sha256": "737a9845a334b6f6d03bca7ab37e0502ce85ab37998902918c6058116bfa10da"
+    },
+    {
+      "file": "images/current-mobile-reader.png",
+      "kind": "current-local",
+      "source_commit": "87a040148aef42608028c1cec0252f7b09029a1a",
+      "page_errors": [],
+      "state": "real-reader",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "bytes": 337132,
+      "sha256": "d5946bb9ca809e414d8b6bbe58177feeb0d353857d840d4a8bcb6fa2b06728d3"
+    }
+  ],
+  "current_index_sha256": "ca4c5d5b95123dcf9d81bd995c3e7e3aa02b3f74fbd591030c9e13b86a5f0796"
+}

@@ -1,0 +1,42 @@
+{
+  "capturedAt": "2026-09-30",
+  "sourceBranch": "codex/prototype-starfield",
+  "sourceHead": "d6d6a1c2c04593cc07bba69e7ad66e0308d8018c",
+  "files": [
+    {
+      "path": "_config.yml",
+      "bytes": 2653,
+      "sha256": "D5D13BADDA1E790681D4A00FCFF55B1F26E43643F3427177294BAE62154EA3FD"
+    },
+    {
+      "path": "_config.hexo-theme-kira.yml",
+      "bytes": 5284,
+      "sha256": "3A0C308A626414DC08B010EFC6790DE4DB4525C60B2CD72C10A32E5EFCF02F71"
+    },
+    {
+      "path": "package.json",
+      "bytes": 981,
+      "sha256": "6EA160D9158CB1E56B7B6F4FCBF50FDCF49ED8E3797D4AB4DC0790251369F78E"
+    },
+    {
+      "path": "package-lock.json",
+      "bytes": 222838,
+      "sha256": "FCAF2B5EEBA1A6694C3D70DB29744BF441062B56AFC310EBC1E3E5A3E23F3220"
+    },
+    {
+      "path": "netlify.toml",
+      "bytes": 709,
+      "sha256": "2569791839D84632FC4D3F34A97996AF3BA004C70A5112814B255BD470C3F3ED"
+    },
+    {
+      "path": ".nvmrc",
+      "bytes": 8,
+      "sha256": "3151949A8B43E7DF5385B69FBAEB5652BBDC7F7924E4278D550348F42B103F13"
+    },
+    {
+      "path": ".gitignore",
+      "bytes": 198,
+      "sha256": "9E0A497058839886C2348822D56B4EBC7CA570BF1A90156088B6C45FD21108C0"
+    }
+  ]
+}

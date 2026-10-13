@@ -1,0 +1,11 @@
+{
+  "skyStars": 870,
+  "projectedBackgroundPoints": 578,
+  "verifiedPoints": 1040400,
+  "mismatches": 0,
+  "frames": 1800,
+  "rounds": 9,
+  "medianBeforeMs": 159.90262500000017,
+  "medianAfterMs": 64.24062499999991,
+  "scope": "Synchronous numerical microbenchmark; not browser FPS or presentation time"
+}

@@ -15,15 +15,15 @@
                 >
                     <img
                         <% if (isPriorityCover) { %>
-                        src="<%- page.cover %>"
-                        <% if (coverMobile) { %>srcset="<%- coverMobile %> 768w, <%- page.cover %> 1672w" sizes="100vw"<% } %>
+                        src="<%- url_for(page.cover) %>"
+                        <% if (coverMobile) { %>srcset="<%- url_for(coverMobile) %> 768w, <%- url_for(page.cover) %> 1672w" sizes="100vw"<% } %>
                         loading="eager"
                         fetchpriority="high"
                         decoding="async"
                         <% } else { %>
-                        data-src="<%- page.cover %>"
+                        data-src="<%- url_for(page.cover) %>"
                         data-sizes="auto"
-                        <% if (coverMobile) { %>data-srcset="<%- coverMobile %> 768w, <%- page.cover %> 1672w"<% } %>
+                        <% if (coverMobile) { %>data-srcset="<%- url_for(coverMobile) %> 768w, <%- url_for(page.cover) %> 1672w"<% } %>
                         <% } %>
                         alt="<%= page.title %>"
                         class="<%= isPriorityCover ? 'kira-post-cover-image is-priority-cover' : 'lazyload kira-post-cover-image' %>"
@@ -36,8 +36,8 @@
                     style="padding-bottom: '<%= theme.background.height / theme.background.width * 100 %>%'"
                 >
                     <img
-                        data-src="<%- bgDay %>"
-                        data-src-dark="<%- bgNight %>"
+                        data-src="<%- url_for(bgDay) %>"
+                        data-src-dark="<%- url_for(bgNight) %>"
                         data-sizes="auto"
                         alt="<%= page.title %>"
                         class="lazyload"

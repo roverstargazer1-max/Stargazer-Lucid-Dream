@@ -1,0 +1,242 @@
+[
+  {
+    "name": "desktop",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "reducedMotion": "no-preference",
+    "touch": false,
+    "sourceUnchanged": true,
+    "samples": [
+      {
+        "time": 0,
+        "transform": "matrix(0.9, 0, 0, 0.9, -1, 0)",
+        "animation": "search-result-arrow-spring",
+        "background": "url(\"http://127.0.0.1:4175/images/search/result-arrow.png\")"
+      },
+      {
+        "time": 147,
+        "transform": "matrix(1.13375, -0.119162, 0.119162, 1.13375, 3, 0)",
+        "animation": "search-result-arrow-spring",
+        "background": "url(\"http://127.0.0.1:4175/images/search/result-arrow.png\")"
+      },
+      {
+        "time": 286,
+        "transform": "matrix(0.968971, 0.0503125, -0.0503125, 0.968971, -0.594467, 0)",
+        "animation": "search-result-arrow-spring",
+        "background": "url(\"http://127.0.0.1:4175/images/search/result-arrow.png\")"
+      },
+      {
+        "time": 420,
+        "transform": "matrix(1, 0, 0, 1, 0, 0)",
+        "animation": "search-result-arrow-spring",
+        "background": "url(\"http://127.0.0.1:4175/images/search/result-arrow.png\")"
+      }
+    ],
+    "geometry": {
+      "gap": 19.990478515625,
+      "gutter": 6,
+      "artboardClearance": 889.953125,
+      "opacity": "1",
+      "border": "0px",
+      "background": "url(\"http://127.0.0.1:4175/images/search/result-arrow.png\")"
+    },
+    "exitOpacity": "0",
+    "keyboard": true,
+    "readingReturn": true,
+    "errors": []
+  },
+  {
+    "name": "mobile",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "reducedMotion": "no-preference",
+    "touch": true,
+    "sourceUnchanged": true,
+    "samples": [
+      {
+        "time": 0,
+        "transform": "matrix(0.9, 0, 0, 0.9, -1, 0)",
+        "animation": "search-result-arrow-spring",
+        "background": "url(\"http://127.0.0.1:4175/images/search/result-arrow.png\")"
+      },
+      {
+        "time": 147,
+        "transform": "matrix(1.13375, -0.119162, 0.119162, 1.13375, 3, 0)",
+        "animation": "search-result-arrow-spring",
+        "background": "url(\"http://127.0.0.1:4175/images/search/result-arrow.png\")"
+      },
+      {
+        "time": 286,
+        "transform": "matrix(0.968971, 0.0503125, -0.0503125, 0.968971, -0.594467, 0)",
+        "animation": "search-result-arrow-spring",
+        "background": "url(\"http://127.0.0.1:4175/images/search/result-arrow.png\")"
+      },
+      {
+        "time": 420,
+        "transform": "matrix(1, 0, 0, 1, 0, 0)",
+        "animation": "search-result-arrow-spring",
+        "background": "url(\"http://127.0.0.1:4175/images/search/result-arrow.png\")"
+      }
+    ],
+    "geometry": {
+      "gap": 19.990314483642578,
+      "gutter": 6,
+      "artboardClearance": 2,
+      "opacity": "1",
+      "border": "0px",
+      "background": "url(\"http://127.0.0.1:4175/images/search/result-arrow.png\")"
+    },
+    "exitOpacity": "0",
+    "keyboard": true,
+    "readingReturn": true,
+    "errors": []
+  },
+  {
+    "name": "narrow",
+    "viewport": {
+      "width": 320,
+      "height": 568
+    },
+    "reducedMotion": "no-preference",
+    "touch": true,
+    "sourceUnchanged": true,
+    "samples": [
+      {
+        "time": 0,
+        "transform": "matrix(0.9, 0, 0, 0.9, -1, 0)",
+        "animation": "search-result-arrow-spring",
+        "background": "url(\"http://127.0.0.1:4175/images/search/result-arrow.png\")"
+      },
+      {
+        "time": 147,
+        "transform": "matrix(1.13375, -0.119162, 0.119162, 1.13375, 3, 0)",
+        "animation": "search-result-arrow-spring",
+        "background": "url(\"http://127.0.0.1:4175/images/search/result-arrow.png\")"
+      },
+      {
+        "time": 286,
+        "transform": "matrix(0.968971, 0.0503125, -0.0503125, 0.968971, -0.594467, 0)",
+        "animation": "search-result-arrow-spring",
+        "background": "url(\"http://127.0.0.1:4175/images/search/result-arrow.png\")"
+      },
+      {
+        "time": 420,
+        "transform": "matrix(1, 0, 0, 1, 0, 0)",
+        "animation": "search-result-arrow-spring",
+        "background": "url(\"http://127.0.0.1:4175/images/search/result-arrow.png\")"
+      }
+    ],
+    "geometry": {
+      "gap": 19.99449920654297,
+      "gutter": 6,
+      "artboardClearance": 2,
+      "opacity": "1",
+      "border": "0px",
+      "background": "url(\"http://127.0.0.1:4175/images/search/result-arrow.png\")"
+    },
+    "exitOpacity": "0",
+    "keyboard": true,
+    "readingReturn": true,
+    "errors": []
+  },
+  {
+    "name": "landscape",
+    "viewport": {
+      "width": 844,
+      "height": 390
+    },
+    "reducedMotion": "no-preference",
+    "touch": true,
+    "sourceUnchanged": true,
+    "samples": [
+      {
+        "time": 0,
+        "transform": "matrix(0.9, 0, 0, 0.9, -1, 0)",
+        "animation": "search-result-arrow-spring",
+        "background": "url(\"http://127.0.0.1:4175/images/search/result-arrow.png\")"
+      },
+      {
+        "time": 147,
+        "transform": "matrix(1.13375, -0.119162, 0.119162, 1.13375, 3, 0)",
+        "animation": "search-result-arrow-spring",
+        "background": "url(\"http://127.0.0.1:4175/images/search/result-arrow.png\")"
+      },
+      {
+        "time": 286,
+        "transform": "matrix(0.968971, 0.0503125, -0.0503125, 0.968971, -0.594467, 0)",
+        "animation": "search-result-arrow-spring",
+        "background": "url(\"http://127.0.0.1:4175/images/search/result-arrow.png\")"
+      },
+      {
+        "time": 420,
+        "transform": "matrix(1, 0, 0, 1, 0, 0)",
+        "animation": "search-result-arrow-spring",
+        "background": "url(\"http://127.0.0.1:4175/images/search/result-arrow.png\")"
+      }
+    ],
+    "geometry": {
+      "gap": 17.99737548828125,
+      "gutter": 6,
+      "artboardClearance": 530.390625,
+      "opacity": "1",
+      "border": "0px",
+      "background": "url(\"http://127.0.0.1:4175/images/search/result-arrow.png\")"
+    },
+    "exitOpacity": "0",
+    "keyboard": true,
+    "readingReturn": true,
+    "errors": []
+  },
+  {
+    "name": "reduced",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "reducedMotion": "reduce",
+    "touch": false,
+    "sourceUnchanged": true,
+    "samples": [
+      {
+        "time": 0,
+        "transform": "none",
+        "animation": "none",
+        "background": "url(\"http://127.0.0.1:4175/images/search/result-arrow.png\")"
+      },
+      {
+        "time": 147,
+        "transform": "none",
+        "animation": "none",
+        "background": "url(\"http://127.0.0.1:4175/images/search/result-arrow.png\")"
+      },
+      {
+        "time": 286,
+        "transform": "none",
+        "animation": "none",
+        "background": "url(\"http://127.0.0.1:4175/images/search/result-arrow.png\")"
+      },
+      {
+        "time": 420,
+        "transform": "none",
+        "animation": "none",
+        "background": "url(\"http://127.0.0.1:4175/images/search/result-arrow.png\")"
+      }
+    ],
+    "geometry": {
+      "gap": 6,
+      "gutter": 6,
+      "artboardClearance": 889.953125,
+      "opacity": "1",
+      "border": "0px",
+      "background": "url(\"http://127.0.0.1:4175/images/search/result-arrow.png\")"
+    },
+    "exitOpacity": "0",
+    "keyboard": true,
+    "readingReturn": true,
+    "errors": []
+  }
+]

@@ -1,0 +1,17 @@
+{
+  "article": "letter",
+  "afterFirst": {
+    "readDisabled": true,
+    "readerOpen": false
+  },
+  "afterSecond": {
+    "readerOpen": true,
+    "title": "一封没有寄出的信"
+  },
+  "afterClose": {
+    "focusArticle": "letter",
+    "readerOpen": false,
+    "selected": "letter",
+    "veils": 0
+  }
+}

@@ -1,0 +1,397 @@
+[
+  {
+    "name": "desktop",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "reducedMotion": "no-preference",
+    "states": [
+      {
+        "control": "search",
+        "rest": {
+          "transform": "none",
+          "filter": "none",
+          "transition": "0.22s, 0.22s, 0s"
+        },
+        "hover": {
+          "transform": "matrix(1.08, 0, 0, 1.08, 0, 0)",
+          "filter": "brightness(1.16) drop-shadow(rgba(138, 230, 255, 0.4) 0px 0px 3px)",
+          "transition": "0.22s, 0.22s, 0s"
+        },
+        "focus": {
+          "transform": "matrix(1.08, 0, 0, 1.08, 0, 0)",
+          "filter": "brightness(1.16) drop-shadow(rgba(138, 230, 255, 0.4) 0px 0px 3px)",
+          "transition": "0.22s, 0.22s, 0s"
+        },
+        "hitAreaStable": true
+      },
+      {
+        "control": "arrow",
+        "rest": {
+          "transform": "none",
+          "filter": "none",
+          "transition": "0.22s, 0.22s"
+        },
+        "hover": {
+          "transform": "matrix(1.09, 0, 0, 1.09, 2, 2)",
+          "filter": "brightness(1.18) drop-shadow(rgba(138, 230, 255, 0.4) 0px 0px 3px)",
+          "transition": "0.22s, 0.22s"
+        },
+        "focus": {
+          "transform": "matrix(1.09, 0, 0, 1.09, 2, 2)",
+          "filter": "brightness(1.18) drop-shadow(rgba(138, 230, 255, 0.4) 0px 0px 3px)",
+          "transition": "0.22s, 0.22s"
+        },
+        "hitAreaStable": true
+      },
+      {
+        "control": "close",
+        "rest": {
+          "transform": "none",
+          "filter": "none",
+          "transition": "0.22s, 0.22s"
+        },
+        "hover": {
+          "transform": "matrix(1.08329, 0.191013, -0.191013, 1.08329, 0, 0)",
+          "filter": "brightness(1.2) drop-shadow(rgba(138, 230, 255, 0.4) 0px 0px 3px)",
+          "transition": "0.22s, 0.22s"
+        },
+        "focus": {
+          "transform": "matrix(1.08329, 0.191013, -0.191013, 1.08329, 0, 0)",
+          "filter": "brightness(1.2) drop-shadow(rgba(138, 230, 255, 0.4) 0px 0px 3px)",
+          "transition": "0.22s, 0.22s"
+        },
+        "hitAreaStable": true
+      }
+    ],
+    "collapsed": {
+      "transform": "matrix(0, 1, -1, 0, -17.5547, -15.3203)",
+      "filter": "none",
+      "transition": "0.36s"
+    },
+    "collapsedFeedback": {
+      "transform": "matrix(1.09, 0, 0, 1.09, -2, 2)",
+      "filter": "brightness(1.18) drop-shadow(rgba(138, 230, 255, 0.4) 0px 0px 3px)",
+      "transition": "0.22s, 0.22s"
+    },
+    "errors": [],
+    "interaction": "search, index collapse/expand, direct reading and return, close passed"
+  },
+  {
+    "name": "mobile",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "reducedMotion": "no-preference",
+    "states": [
+      {
+        "control": "search",
+        "rest": {
+          "transform": "none",
+          "filter": "none",
+          "transition": "0.22s, 0.22s, 0s"
+        },
+        "hover": {
+          "transform": "matrix(1.08, 0, 0, 1.08, 0, 0)",
+          "filter": "brightness(1.16) drop-shadow(rgba(138, 230, 255, 0.4) 0px 0px 3px)",
+          "transition": "0.22s, 0.22s, 0s"
+        },
+        "focus": {
+          "transform": "matrix(1.08, 0, 0, 1.08, 0, 0)",
+          "filter": "brightness(1.16) drop-shadow(rgba(138, 230, 255, 0.4) 0px 0px 3px)",
+          "transition": "0.22s, 0.22s, 0s"
+        },
+        "hitAreaStable": true
+      },
+      {
+        "control": "arrow",
+        "rest": {
+          "transform": "none",
+          "filter": "none",
+          "transition": "0.22s, 0.22s"
+        },
+        "hover": {
+          "transform": "matrix(1.09, 0, 0, 1.09, 2, 2)",
+          "filter": "brightness(1.18) drop-shadow(rgba(138, 230, 255, 0.4) 0px 0px 3px)",
+          "transition": "0.22s, 0.22s"
+        },
+        "focus": {
+          "transform": "matrix(1.09, 0, 0, 1.09, 2, 2)",
+          "filter": "brightness(1.18) drop-shadow(rgba(138, 230, 255, 0.4) 0px 0px 3px)",
+          "transition": "0.22s, 0.22s"
+        },
+        "hitAreaStable": true
+      },
+      {
+        "control": "close",
+        "rest": {
+          "transform": "none",
+          "filter": "none",
+          "transition": "0.22s, 0.22s"
+        },
+        "hover": {
+          "transform": "matrix(1.08329, 0.191013, -0.191013, 1.08329, 0, 0)",
+          "filter": "brightness(1.2) drop-shadow(rgba(138, 230, 255, 0.4) 0px 0px 3px)",
+          "transition": "0.22s, 0.22s"
+        },
+        "focus": {
+          "transform": "matrix(1.08329, 0.191013, -0.191013, 1.08329, 0, 0)",
+          "filter": "brightness(1.2) drop-shadow(rgba(138, 230, 255, 0.4) 0px 0px 3px)",
+          "transition": "0.22s, 0.22s"
+        },
+        "hitAreaStable": true
+      }
+    ],
+    "collapsed": {
+      "transform": "matrix(0, 1, -1, 0, -15, -13.0859)",
+      "filter": "none",
+      "transition": "0.36s"
+    },
+    "collapsedFeedback": {
+      "transform": "matrix(1.09, 0, 0, 1.09, -2, 2)",
+      "filter": "brightness(1.18) drop-shadow(rgba(138, 230, 255, 0.4) 0px 0px 3px)",
+      "transition": "0.22s, 0.22s"
+    },
+    "errors": [],
+    "interaction": "search, index collapse/expand, direct reading and return, close passed"
+  },
+  {
+    "name": "narrow",
+    "viewport": {
+      "width": 320,
+      "height": 568
+    },
+    "reducedMotion": "no-preference",
+    "states": [
+      {
+        "control": "search",
+        "rest": {
+          "transform": "none",
+          "filter": "none",
+          "transition": "0.22s, 0.22s, 0s"
+        },
+        "hover": {
+          "transform": "matrix(1.08, 0, 0, 1.08, 0, 0)",
+          "filter": "brightness(1.16) drop-shadow(rgba(138, 230, 255, 0.4) 0px 0px 3px)",
+          "transition": "0.22s, 0.22s, 0s"
+        },
+        "focus": {
+          "transform": "matrix(1.08, 0, 0, 1.08, 0, 0)",
+          "filter": "brightness(1.16) drop-shadow(rgba(138, 230, 255, 0.4) 0px 0px 3px)",
+          "transition": "0.22s, 0.22s, 0s"
+        },
+        "hitAreaStable": true
+      },
+      {
+        "control": "arrow",
+        "rest": {
+          "transform": "none",
+          "filter": "none",
+          "transition": "0.22s, 0.22s"
+        },
+        "hover": {
+          "transform": "matrix(1.09, 0, 0, 1.09, 2, 2)",
+          "filter": "brightness(1.18) drop-shadow(rgba(138, 230, 255, 0.4) 0px 0px 3px)",
+          "transition": "0.22s, 0.22s"
+        },
+        "focus": {
+          "transform": "matrix(1.09, 0, 0, 1.09, 2, 2)",
+          "filter": "brightness(1.18) drop-shadow(rgba(138, 230, 255, 0.4) 0px 0px 3px)",
+          "transition": "0.22s, 0.22s"
+        },
+        "hitAreaStable": true
+      },
+      {
+        "control": "close",
+        "rest": {
+          "transform": "none",
+          "filter": "none",
+          "transition": "0.22s, 0.22s"
+        },
+        "hover": {
+          "transform": "matrix(1.08329, 0.191013, -0.191013, 1.08329, 0, 0)",
+          "filter": "brightness(1.2) drop-shadow(rgba(138, 230, 255, 0.4) 0px 0px 3px)",
+          "transition": "0.22s, 0.22s"
+        },
+        "focus": {
+          "transform": "matrix(1.08329, 0.191013, -0.191013, 1.08329, 0, 0)",
+          "filter": "brightness(1.2) drop-shadow(rgba(138, 230, 255, 0.4) 0px 0px 3px)",
+          "transition": "0.22s, 0.22s"
+        },
+        "hitAreaStable": true
+      }
+    ],
+    "collapsed": {
+      "transform": "matrix(0, 1, -1, 0, -15, -13.0859)",
+      "filter": "none",
+      "transition": "0.36s"
+    },
+    "collapsedFeedback": {
+      "transform": "matrix(1.09, 0, 0, 1.09, -2, 2)",
+      "filter": "brightness(1.18) drop-shadow(rgba(138, 230, 255, 0.4) 0px 0px 3px)",
+      "transition": "0.22s, 0.22s"
+    },
+    "errors": [],
+    "interaction": "search, index collapse/expand, direct reading and return, close passed"
+  },
+  {
+    "name": "landscape",
+    "viewport": {
+      "width": 844,
+      "height": 390
+    },
+    "reducedMotion": "no-preference",
+    "states": [
+      {
+        "control": "search",
+        "rest": {
+          "transform": "none",
+          "filter": "none",
+          "transition": "0.22s, 0.22s, 0s"
+        },
+        "hover": {
+          "transform": "matrix(1.08, 0, 0, 1.08, 0, 0)",
+          "filter": "brightness(1.16) drop-shadow(rgba(138, 230, 255, 0.4) 0px 0px 3px)",
+          "transition": "0.22s, 0.22s, 0s"
+        },
+        "focus": {
+          "transform": "matrix(1.08, 0, 0, 1.08, 0, 0)",
+          "filter": "brightness(1.16) drop-shadow(rgba(138, 230, 255, 0.4) 0px 0px 3px)",
+          "transition": "0.22s, 0.22s, 0s"
+        },
+        "hitAreaStable": true
+      },
+      {
+        "control": "arrow",
+        "rest": {
+          "transform": "none",
+          "filter": "none",
+          "transition": "0.22s, 0.22s"
+        },
+        "hover": {
+          "transform": "matrix(1.09, 0, 0, 1.09, 2, 2)",
+          "filter": "brightness(1.18) drop-shadow(rgba(138, 230, 255, 0.4) 0px 0px 3px)",
+          "transition": "0.22s, 0.22s"
+        },
+        "focus": {
+          "transform": "matrix(1.09, 0, 0, 1.09, 2, 2)",
+          "filter": "brightness(1.18) drop-shadow(rgba(138, 230, 255, 0.4) 0px 0px 3px)",
+          "transition": "0.22s, 0.22s"
+        },
+        "hitAreaStable": true
+      },
+      {
+        "control": "close",
+        "rest": {
+          "transform": "none",
+          "filter": "none",
+          "transition": "0.22s, 0.22s"
+        },
+        "hover": {
+          "transform": "matrix(1.08329, 0.191013, -0.191013, 1.08329, 0, 0)",
+          "filter": "brightness(1.2) drop-shadow(rgba(138, 230, 255, 0.4) 0px 0px 3px)",
+          "transition": "0.22s, 0.22s"
+        },
+        "focus": {
+          "transform": "matrix(1.08329, 0.191013, -0.191013, 1.08329, 0, 0)",
+          "filter": "brightness(1.2) drop-shadow(rgba(138, 230, 255, 0.4) 0px 0px 3px)",
+          "transition": "0.22s, 0.22s"
+        },
+        "hitAreaStable": true
+      }
+    ],
+    "collapsed": {
+      "transform": "matrix(0, 1, -1, 0, -10.6328, -9.27344)",
+      "filter": "none",
+      "transition": "0.36s"
+    },
+    "collapsedFeedback": {
+      "transform": "matrix(1.09, 0, 0, 1.09, -2, 2)",
+      "filter": "brightness(1.18) drop-shadow(rgba(138, 230, 255, 0.4) 0px 0px 3px)",
+      "transition": "0.22s, 0.22s"
+    },
+    "errors": [],
+    "interaction": "search, index collapse/expand, direct reading and return, close passed"
+  },
+  {
+    "name": "reduced",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "reducedMotion": "reduce",
+    "states": [
+      {
+        "control": "search",
+        "rest": {
+          "transform": "none",
+          "filter": "none",
+          "transition": "1e-05s"
+        },
+        "hover": {
+          "transform": "none",
+          "filter": "brightness(1.16) drop-shadow(rgba(138, 230, 255, 0.4) 0px 0px 3px)",
+          "transition": "1e-05s"
+        },
+        "focus": {
+          "transform": "none",
+          "filter": "brightness(1.16) drop-shadow(rgba(138, 230, 255, 0.4) 0px 0px 3px)",
+          "transition": "1e-05s"
+        },
+        "hitAreaStable": true
+      },
+      {
+        "control": "arrow",
+        "rest": {
+          "transform": "none",
+          "filter": "none",
+          "transition": "1e-05s"
+        },
+        "hover": {
+          "transform": "none",
+          "filter": "brightness(1.18) drop-shadow(rgba(138, 230, 255, 0.4) 0px 0px 3px)",
+          "transition": "1e-05s"
+        },
+        "focus": {
+          "transform": "none",
+          "filter": "brightness(1.18) drop-shadow(rgba(138, 230, 255, 0.4) 0px 0px 3px)",
+          "transition": "1e-05s"
+        },
+        "hitAreaStable": true
+      },
+      {
+        "control": "close",
+        "rest": {
+          "transform": "none",
+          "filter": "none",
+          "transition": "1e-05s"
+        },
+        "hover": {
+          "transform": "none",
+          "filter": "brightness(1.2) drop-shadow(rgba(138, 230, 255, 0.4) 0px 0px 3px)",
+          "transition": "1e-05s"
+        },
+        "focus": {
+          "transform": "none",
+          "filter": "brightness(1.2) drop-shadow(rgba(138, 230, 255, 0.4) 0px 0px 3px)",
+          "transition": "1e-05s"
+        },
+        "hitAreaStable": true
+      }
+    ],
+    "collapsed": {
+      "transform": "matrix(0, 1, -1, 0, -17.5547, -15.3203)",
+      "filter": "none",
+      "transition": "1e-05s"
+    },
+    "collapsedFeedback": {
+      "transform": "none",
+      "filter": "brightness(1.18) drop-shadow(rgba(138, 230, 255, 0.4) 0px 0px 3px)",
+      "transition": "1e-05s"
+    },
+    "errors": [],
+    "interaction": "search, index collapse/expand, direct reading and return, close passed"
+  }
+]

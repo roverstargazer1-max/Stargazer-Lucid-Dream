@@ -1,0 +1,176 @@
+commit	author_date	committer_date	subject
+b862ab8a64a0cfc39c2509ed4e56af749d85ceb6	2025-10-19T10:59:32+08:00	2025-10-19T10:59:32+08:00	my blog first commit
+200af8394a2cf423db8b17cab1693ddd0d024447	2025-10-20T11:26:06+08:00	2025-10-20T11:26:06+08:00	Add initial blog description to README
+f46e910e458e04a06b025f784e16ae052445b967	2025-10-20T22:45:49+08:00	2025-10-20T22:45:49+08:00	fix 第一次更新博客
+be07583c300686a9def6fad8e8e47461eef8a7df	2025-10-20T22:55:27+08:00	2025-10-20T22:55:27+08:00	chore 更改背景图片
+8ee07951965dd3b8303ea2d61746c89471db7099	2025-10-21T22:22:11+08:00	2025-10-21T22:22:11+08:00	feat 更新博客内容
+69bdf948807d1ed40e0883386a74118ea2c48a79	2025-10-22T09:31:43+08:00	2025-10-22T09:31:43+08:00	feat 更新博客&小部分名称更改
+5ac78fef63f9e82c5a1fae149be5c94eb18eb4f9	2025-10-22T22:40:13+08:00	2025-10-22T22:40:13+08:00	style 更改部分样式
+4653ee8a7955109c6f9502782074a402d86e69ae	2025-10-24T09:19:57+08:00	2025-10-24T09:19:57+08:00	feat 增加主题中layout-副标题 & 增加音乐播放器
+fd6972a31db6f6f5c271b5195f85aba15b179539	2025-10-24T09:23:03+08:00	2025-10-24T09:23:03+08:00	fix 首页路由错误
+a557c9e256225c7bf0c43c6a273c234b561fd14f	2025-10-24T10:54:42+08:00	2025-10-24T10:54:42+08:00	style friends样式更改
+0993fe451fe5c0cb972aae29813a739f88de16ee	2025-10-24T11:11:41+08:00	2025-10-24T11:11:41+08:00	fix 友链样式
+62f289fddc4ad28552a63278b519d4587db1df66	2025-10-24T19:50:52+08:00	2025-10-24T19:50:52+08:00	feat  增加友链
+c299efef60d96fa344294fb1c84d73c0512ded1d	2025-10-25T09:30:05+08:00	2025-10-25T09:30:05+08:00	feat 增加友链
+5010993c60948af4a38aa57dc2cc8d074208c6b9	2025-10-25T09:54:41+08:00	2025-10-25T09:54:41+08:00	style 添加友链阴影样式
+a1d27011150b2746a9e47bc927e4beb25f510598	2025-10-25T16:51:05+08:00	2025-10-25T16:51:05+08:00	style 增加字体行间距
+7be5cb013d4e2fcf5861cbe0accda99e4b6ebce9	2025-10-25T20:27:43+08:00	2025-10-25T20:27:43+08:00	fix 更改图片
+ddf0a5a8774290e4b293c1b4123fe4a62b5a2b7d	2025-10-27T06:08:45Z	2025-10-27T06:08:45Z	Bump hexo-util from 3.3.0 to 4.0.0
+46c60f87b678caa80ffbf0f845039e8d8e0d0a5f	2025-11-17T22:48:59+08:00	2025-11-17T22:48:59+08:00	feat 随笔&积累
+1968009ff56795ef5f77410e27b0679f125c97c3	2025-11-17T22:53:12+08:00	2025-11-17T22:53:12+08:00	add tags
+78607bc5d9806045f883ebf78d8fb134181de137	2025-12-29T20:58:34+08:00	2025-12-29T20:58:34+08:00	update 更新积累
+b48b3bebe565881709520d419e37a87d2d1b455f	2025-12-29T21:00:24+08:00	2025-12-29T21:00:24+08:00	feat: Instructions
+734ff30c19478752f1798d2f1e3b2dea25c3f1b5	2026-04-02T22:30:47+08:00	2026-04-02T22:30:47+08:00	Add new member '天择' to the configuration
+649d31adb76ef17548f857cc718096c07356b127	2026-04-25T20:43:59+08:00	2026-04-25T20:43:59+08:00	Merge pull request #5 from beishantianze/patch-1
+2143d5459cb278239c777dab526341a61526306d	2026-04-27T06:05:42Z	2026-04-27T06:05:42Z	Bump moment-timezone from 0.6.0 to 0.6.2
+03125329bced6005f843e6a2b3ecdfc566267321	2026-05-14T23:04:40+08:00	2026-05-14T23:04:40+08:00	update: 更新网站图标
+9350b380c42ff7b72ac37b58c89068d778c5d42e	2026-05-14T23:04:57+08:00	2026-05-14T23:04:57+08:00	update:更新一篇文章
+968bbe43eb56ed20cdc9185d9694aa86c046a50f	2026-05-15T11:23:37+08:00	2026-05-15T11:23:37+08:00	update:更新一篇文章
+16295086d4c1d5891204e1e1537ca86261eb0675	2026-05-15T11:30:51+08:00	2026-05-15T11:30:51+08:00	refactor:图片分类
+566953a56cc95ace332b41b6fd81e3146ae3ab46	2026-06-15T19:06:14+08:00	2026-06-15T19:06:14+08:00	docs:REAMDME完善
+3ecd80edc217b968cb5a51b3d2671f33607f2b1c	2026-06-15T19:06:39+08:00	2026-06-15T19:06:39+08:00	update:更新一篇文章
+5d45481fbc5e0182a85517c1de98f8b56ce79bb0	2026-06-15T19:57:47+08:00	2026-06-15T19:57:47+08:00	update:添加完善文章封面
+2adcf08e882cb2b325e57ba73045c79964e9ecf9	2026-07-03T16:06:31+08:00	2026-07-03T16:06:31+08:00	update: 更新文章
+6f2aaa44189c30eda0e82bd5733e4c2c697483b3	2026-07-03T16:09:51+08:00	2026-07-03T16:09:51+08:00	fix:纠正图片后缀拼写问题
+a90806d5776c0c4d93b37d1c72894678a7e37848	2026-07-03T16:18:41+08:00	2026-07-03T16:18:41+08:00	fix: 删除多余的符号
+3e79305b341f83fe262321c1ed9d7ef0aa5e75ab	2026-07-05T13:14:23+08:00	2026-07-05T13:14:23+08:00	feat:添加蚊子哥友链
+e1f3ce31e179c4f43aedf3efbaa1679e2027da9e	2026-07-05T13:48:58+08:00	2026-07-05T13:48:58+08:00	feat:更新言论
+8ec6c67aad11ef949ba348ef99778317b749f42b	2026-07-05T13:58:12+08:00	2026-07-05T13:58:12+08:00	feat:更新一篇文章
+d322f010f0305067b71aeb0412ed11fcde5a1dab	2026-07-30T17:58:53+08:00	2026-07-30T17:58:53+08:00	chore:修改
+a6138ec5543404c8cac0d0cc43c85c28494880cd	2026-07-30T18:11:36+08:00	2026-07-30T18:11:36+08:00	feat:文章+1
+7601dd45bf9123768e78c8fc8716b3b439532d12	2026-07-31T20:50:26+08:00	2026-07-31T20:50:26+08:00	Merge branch 'master' of https://github.com/roverstargazer1-max/Stargazer-Lucid-Dream
+3cb9ab414316d74fd8647d99e6e98b0cb38f9086	2026-07-31T20:58:31+08:00	2026-07-31T20:58:31+08:00	chore:修改标题
+34c8424b8289d4b73509d12197b5ad645d1edc49	2026-07-31T21:09:11+08:00	2026-07-31T21:09:11+08:00	chore:清除几个友链的死人（哎哎，这些人真的第一篇发完就再没有管了）
+02f1e1764ae2bbb5ab63682a95841ca5614e05bb	2026-07-31T21:17:16+08:00	2026-07-31T21:17:16+08:00	chore:修改页脚引用
+4a9d922c86857298d91b72c47ae916e438eac1af	2026-08-01T10:57:03+08:00	2026-08-01T10:57:03+08:00	feat:添加封面
+e478d451c656d9303602552b574a0bdc07918ba7	2026-08-06T12:59:33+08:00	2026-08-06T12:59:33+08:00	chore:统一md格式
+1392f231f4dbd0385cef194e7f4fa3fb607941c0	2026-08-08T19:04:42+08:00	2026-08-08T19:04:42+08:00	chore:修改标题
+950b4c3f7fac823a80f05a20e43461c7075ab510	2026-08-09T22:04:21+08:00	2026-08-09T22:04:21+08:00	chore:添加背景图片素材
+a2f83919f7e2d1344aac1f6309730d999014a0f4	2026-08-09T22:04:31+08:00	2026-08-09T22:04:31+08:00	feat:更换博客背景图
+d5aef36e6455b698ef50cacbfb537659b6142d9f	2026-08-09T22:04:42+08:00	2026-08-09T22:04:42+08:00	style:调高背景图不透明度
+81d4f8259ae5f46a9bc0514ad6daf231f3422562	2026-08-09T22:04:57+08:00	2026-08-09T22:04:57+08:00	style:抽出半透明表面变量并应用到正文面板
+6a2a5a403c6040dcc0577a2da3b9a5689b7571b5	2026-08-09T22:05:13+08:00	2026-08-09T22:05:13+08:00	style:正文内浅色块改为半透明
+700a0a5a871ed63077c9a07918c2486646fb9cdf	2026-08-09T22:05:23+08:00	2026-08-09T22:05:23+08:00	style:移动端侧栏抽屉改为毛玻璃
+65905e3c87e170b7f61b3b3068ae3c415a31b09c	2026-08-09T22:25:24+08:00	2026-08-09T22:25:24+08:00	style:侧栏补半透明底并调深文字对比度
+ff99527e5e0d6e4039a5f1d9dc86fdd916c27a1e	2026-08-10T00:29:25+08:00	2026-08-10T00:29:25+08:00	feat:添加背景与面板透明度调节
+3d1fe85f17bf341ff5382645eb478c1fc936ce82	2026-08-10T00:32:17+08:00	2026-08-10T00:32:17+08:00	refactor:配色统一抽成 CSS 变量
+0df2685688d4264d10b74815aadac52a91d6b1e9	2026-08-10T00:37:54+08:00	2026-08-10T00:37:54+08:00	feat:添加昼夜模式切换
+9dafec3aeb225c8538e2d83365a007ef7f86a4d1	2026-08-10T00:38:24+08:00	2026-08-10T00:40:10+08:00	chore:更换两篇随笔的封面
+3bf680f7f5da6f138f1b6aa47ca62ea27a9a3778	2026-08-12T16:14:07+08:00	2026-08-12T16:14:07+08:00	chore:忽略本地优化记录
+70465108a1fae1ca70ae235dbfddb007d08ffd34	2026-08-12T16:14:13+08:00	2026-08-12T16:14:13+08:00	perf:优化首页首屏加载
+bc54c787e466eaaeb9643714fd4c6f58ae9c705c	2026-08-12T16:14:16+08:00	2026-08-12T16:14:16+08:00	perf:配置静态资源缓存
+f94de2e5881addf8d5daed640bede5939ce1adc8	2026-08-12T16:32:34+08:00	2026-08-12T16:32:34+08:00	fix: 修复首页置顶封面不可见
+5091807e759488e2dd9e131910d98c433e4e7004	2026-08-12T16:32:39+08:00	2026-08-12T16:32:39+08:00	feat: 调整透明度默认值和文案
+3903d57ac702c598225d1f4cd65154e5925b5468	2026-08-16T15:09:08+08:00	2026-08-16T15:09:08+08:00	chore:友链介绍
+875b0724781db5c6d226f2571f1da6f509df3137	2026-09-01T23:26:53+08:00	2026-09-01T23:26:53+08:00	feat: 优化移动端外观调节与夜间模式交互，精简悬浮按钮
+940503f356960540cafebd6013f700e4cb20905b	2026-09-08T13:31:37+08:00	2026-09-08T13:31:37+08:00	prototype: explore starfield camera and reading variants
+6586a83222637aed07c42b1935eb5f0ff8266c8d	2026-09-08T17:57:17+08:00	2026-09-08T17:57:17+08:00	prototype: refine photographic starfield and camera approach
+052d5ed728452b7649bb25facc99a9d5238a0400	2026-09-08T18:14:40+08:00	2026-09-08T18:14:40+08:00	prototype: replace sky wallpaper with spatial starfield and readable article stars
+bc6a04f26cb6756aa3c10f64b22101c33c1377da	2026-09-08T18:24:51+08:00	2026-09-08T18:24:51+08:00	prototype: anchor roof foreground to prevent rotation exposing image edges
+a7e9ad786b86c8ee727d94bcf4f53e658d0cd9d6	2026-09-08T22:52:10+08:00	2026-09-08T22:52:10+08:00	prototype: add four roof-only art styles and remove opening slogans
+6f697a996a28b15689571bfe02b542d5ecc38162	2026-09-08T23:10:00+08:00	2026-09-08T23:10:00+08:00	prototype: reduce anime roof and extend explorable article space
+db10650866e3bc12fad1ae9fceaf06dca6954435	2026-09-09T10:47:29+08:00	2026-09-09T10:47:29+08:00	prototype: compare static night palettes and individual star lights
+e04717ef014d1292d6b98ead53924fd2d6b9dd99	2026-09-09T11:14:17+08:00	2026-09-09T11:14:17+08:00	prototype: add restrained scintillation and layered mouse parallax
+5fcbf3d80f40bb8fe0c6073c705edf2f0e6aa277	2026-09-09T15:56:14+08:00	2026-09-09T15:56:14+08:00	prototype: refine wordmark and reading typography with on-demand titles
+aeca90d91099d97a860295c409bf8767eee09759	2026-09-09T16:32:39+08:00	2026-09-09T16:32:39+08:00	prototype: add rooftop stargazer and neutral typography studies
+d245a0477be2327489153f5c96adcb8f887d6c4e	2026-09-10T00:09:05+08:00	2026-09-10T00:09:05+08:00	prototype: add sparse discovery paths and incremental star growth
+f4ab4bd8f96c371d0867f7918604697e95b94c90	2026-09-10T12:14:34+08:00	2026-09-10T12:14:34+08:00	prototype: try painted window entry and a unified anime night sky
+e71f8a604f712e4018238d33232829a740d0887f	2026-09-10T15:08:27+08:00	2026-09-10T15:08:27+08:00	prototype: project a hemisphere sky with a fading orientation map and cloud veils
+4f31b681d7780d08635d665d3ffb02882429e197	2026-09-10T15:23:53+08:00	2026-09-10T15:23:53+08:00	prototype: blend the sky map into the painted night
+0e89413af903792ee984206f8955dcaa954cfc75	2026-09-10T15:33:12+08:00	2026-09-10T15:33:12+08:00	prototype: soften navigation and fade sky lines during fast movement
+dfbcd61ee6c506800e543bceaa41d06c8e85b317	2026-09-10T15:38:39+08:00	2026-09-10T15:38:39+08:00	prototype: remove map captions and blend navigation into the sky
+e451e2b963539178158b10636852aeefe89e2dcd	2026-09-10T20:31:36+08:00	2026-09-10T20:31:36+08:00	prototype: paint a faint galactic band across the zenith
+4541f5eec1a8fc72ffd22721cc11f7361351bd17	2026-09-10T20:40:10+08:00	2026-09-10T20:40:10+08:00	prototype: widen the sky view and add orientation recovery
+16122937525a9a2b22cb2151d84c63bf4d86af10	2026-09-10T21:01:08+08:00	2026-09-10T21:01:08+08:00	docs: record sky atmosphere and cloud interaction plan
+d6d6a1c2c04593cc07bba69e7ad66e0308d8018c	2026-09-10T21:32:01+08:00	2026-09-10T21:32:01+08:00	prototype: add misty foothills and three touchable painted clouds
+41b60e41d0aac4ceeb83490a8f3a617eb91adaff	2026-09-30T21:06:30+08:00	2026-09-30T21:06:30+08:00	chore(starry-blog-02): preserve and verify legacy recovery baseline
+2995e374780cdb17e0a3341e7171569d4bdc9347	2026-09-30T21:46:01+08:00	2026-09-30T21:46:01+08:00	feat(starry-blog-03): connect first real article to starfield reading
+7275831cef072828d7feb0dee9c4e3ef7e68a999	2026-09-30T23:07:33+08:00	2026-09-30T23:07:33+08:00	feat(starry-blog-04): prepare stable article IDs and star positions
+8d0a4d6de537d6f523e4406746e7be7d899eeadf	2026-10-01T00:04:36+08:00	2026-10-01T00:05:22+08:00	feat(starry-blog-05): preserve existing media in reader
+cea57bedc0f48f378bb51b7856668f2e7dec9586	2026-10-01T00:55:46+08:00	2026-10-01T00:56:40+08:00	feat(starry-blog-06): add bidirectional article relations
+356b4f6ef74a42fb0f85b5be7f2fc5cbf20d78ee	2026-10-01T01:58:40+08:00	2026-10-01T01:59:22+08:00	feat(starry-blog-07): add dual-mode navigation history
+ff846519a5c7e804b763d3b621caff229923307d	2026-10-01T11:57:27+08:00	2026-10-01T11:57:27+08:00	feat(starry-blog-08): preserve archive and collection routes
+a6a6c105288272555652a9e5a0b436ad5aff81ae	2026-10-01T14:02:06+08:00	2026-10-01T14:02:06+08:00	docs: confirm personal starfield implementation scope
+ba8aa2cd578642d4902689be52dc333a9529f2f1	2026-10-01T14:11:18+08:00	2026-10-01T14:11:18+08:00	feat: prepare real articles and filename relations during preview
+b6aa7b32ea48d3fbd91b07eb38cea056a0ea22f1	2026-10-01T14:21:40+08:00	2026-10-01T14:21:40+08:00	feat: bring V20 exploration and adaptive rendering into personal theme
+88a2004a97fb6eebfc2d2f556887f52e450601a2	2026-10-01T14:31:25+08:00	2026-10-01T14:31:25+08:00	feat: preserve legacy content and prepare isolated static publishing
+8f125447913193e05daeeb1c61d7a75b193003e1	2026-10-01T14:42:40+08:00	2026-10-01T14:42:40+08:00	fix: preserve visit state and V20 controls after review
+670fa242cf8febafa9f28dd199203f39e26e737f	2026-10-01T14:52:56+08:00	2026-10-01T14:52:56+08:00	fix: complete keyboard and motion controls with final verification
+5b81bfde3c7b146081c15a88bd08014f03703b3c	2026-10-01T14:54:40+08:00	2026-10-01T14:54:40+08:00	fix: reverse mouse wheel travel direction
+2b425bb6e43989fce7e9014cd35aa78f989a5aa6	2026-10-02T19:10:15+08:00	2026-10-02T19:10:15+08:00	fix: align visible article stars and title hit targets
+175eeb652398c894d6df94f63861ac1406893d82	2026-10-02T19:11:00+08:00	2026-10-02T19:11:00+08:00	prototype: preview cold reading styles in an isolated folder
+c94aa34553a0d039fdd2cf1237217f48eaf6bad3	2026-10-02T21:56:06+08:00	2026-10-02T21:56:06+08:00	feat: adopt the cool classic desktop reading window
+934ab453b4875eff90ac54fe45dafccc1b75c698	2026-10-02T22:02:24+08:00	2026-10-02T22:02:24+08:00	feat: focus reading transitions and simplify star previews
+8cffd157900ccf1677e45cdcb9eddb8513ec2c3a	2026-10-02T22:10:31+08:00	2026-10-02T22:10:31+08:00	docs: record approved reader design and rollout verification
+0fb236ff12433d20d791d36b070d0dca1ead3c7a	2026-10-02T22:15:43+08:00	2026-10-02T22:15:43+08:00	docs: track alternatives for dark sky interface veils
+a8dcc142782ee06eb1c84977a8ca0150f2944443	2026-10-03T00:16:40+08:00	2026-10-03T00:16:40+08:00	feat: adopt the compact observation note in the starfield theme
+223f28ab1e9fdcbef77a0443092a8476bd6704c1	2026-10-03T00:25:28+08:00	2026-10-03T00:25:28+08:00	docs: record the approved observation note rollout and verification
+f9d5cbe6b206dcba48da44217f374bec58e85e7e	2026-10-07T21:48:04+08:00	2026-10-07T21:48:04+08:00	assets:字体、图形资源
+9b9dad531920d3d3483e163140d006ee39c1ccb4	2026-10-07T22:05:17+08:00	2026-10-07T22:05:17+08:00	feat: publish original observation artwork and date glyphs
+e3a52b1774a32cd3d1f6e588cc3f4641ad0a150c	2026-10-07T22:05:38+08:00	2026-10-07T22:05:38+08:00	feat: match observation UI and animate sky geometry
+e476a0d59c4c45002ab4e4bedceeac81326c7a86	2026-10-07T22:06:57+08:00	2026-10-07T22:06:57+08:00	docs: record observation UI rollout and verification
+745ded4444b1d72ce92f3a40f2e88017d5b71c1c	2026-10-07T22:23:22+08:00	2026-10-07T22:23:22+08:00	assets: crop supplied observation symbols without redrawing
+1e2e5889fddc547909c95d737d868683ab74d9e6	2026-10-07T22:23:36+08:00	2026-10-07T22:23:36+08:00	fix: use original PNG artwork and glyphs in observation UI
+9be0f49796f7639cb1a9028a87c3c55d48c91825	2026-10-07T22:23:37+08:00	2026-10-07T22:23:37+08:00	docs: record supplied symbol replacement and visual checks
+a56184624d7544831a35f8318ee34fa0237f9878	2026-10-07T22:26:49+08:00	2026-10-07T22:26:49+08:00	style: make observation wave texture more visible
+b8c7b915736e11fda0ecdb851eadd2119b532675	2026-10-07T22:32:58+08:00	2026-10-07T22:32:58+08:00	style: move observation wave texture upward
+1043bb578bf40e889d62eea881f98864c4d1b1f6	2026-10-07T22:56:31+08:00	2026-10-07T22:56:31+08:00	fix: refine observation artwork spacing and READ affordance
+9f50f12113f4ec22b3a38b03a7e68aad9ab6b18f	2026-10-07T22:59:52+08:00	2026-10-07T22:59:52+08:00	docs: record observation spacing and READ verification
+eeed732f93be6a9da6fc7856028b30ee04fc9844	2026-10-07T23:43:22+08:00	2026-10-07T23:43:22+08:00	fix: rotate sky geometry around its 3D center axis
+588271b025d7ec383de99855c38afb9c479e0e0c	2026-10-07T23:43:46+08:00	2026-10-07T23:43:46+08:00	docs: record center-axis rotation verification
+595f4fd087be77a4d04317b14778d992a679650f	2026-10-08T00:05:31+08:00	2026-10-08T00:05:31+08:00	fix: correct polyhedron perspective and vertical rotation axis
+e1a5cd867c6e426ec4733f24b9bb71e3d35f5382	2026-10-08T00:05:32+08:00	2026-10-08T00:05:32+08:00	docs: record polyhedron perspective correction
+91914d1377ae7e4f5d89991492bc907e15ca4f71	2026-10-08T10:59:55+08:00	2026-10-08T10:59:55+08:00	style: refine observation interaction and reader blue palette
+14b3fa710f22e1193b83232841f220bc40a43e22	2026-10-08T12:18:08+08:00	2026-10-08T12:18:08+08:00	docs: 更新新旧博客与星空原型的使用说明
+7624e3ec110f9faa8b61a255245fd01e685e1ed9	2026-10-08T14:18:54+08:00	2026-10-08T14:18:54+08:00	style: use SVG icons for starfield navigation
+497e847154cf7aea65e15d1d9bd6299677e44df7	2026-10-08T14:19:00+08:00	2026-10-08T14:19:00+08:00	perf: avoid redundant updates in resting starfield scenes
+356f3251d07b38ec5d4eaf03740ca01267642c65	2026-10-08T14:19:07+08:00	2026-10-08T14:19:07+08:00	perf: reduce starfield image payload without visual changes
+86feab37b5461677fbdd8a90b48a756f8461a9ed	2026-10-08T14:19:20+08:00	2026-10-08T14:19:20+08:00	test: record starfield performance and visual regression evidence
+365585b3ee62c8badee50f874f4a139d5e31bd5d	2026-10-08T14:19:24+08:00	2026-10-08T14:19:24+08:00	docs: document starfield performance results and asset maintenance
+37dba03e31bd376321fa47345500e19faf4c1627	2026-10-08T21:24:44+08:00	2026-10-08T21:24:44+08:00	feat: animate STARLINK CALL waveform
+27ca3bea302fbe489cd6343656a7e12d5dd6c5fa	2026-10-08T21:25:12+08:00	2026-10-08T21:25:12+08:00	feat: add smooth walking silhouette with continuous contours
+3b863a21329069569dce12a7f2ebd78fc0d8bb7c	2026-10-08T21:25:13+08:00	2026-10-08T21:25:13+08:00	refactor: remove starfield direction controls and map
+315842c6586bbd08f0ce46c65aade0e2acd13387	2026-10-08T21:25:13+08:00	2026-10-08T21:25:13+08:00	style: move article observation panel lower
+df503b37d872a4afffc1730f396191e95318b3f6	2026-10-08T21:26:16+08:00	2026-10-08T21:26:16+08:00	feat: default to camera motion without mode controls
+2a3e947af973e8559cedf06fb56a05077e9984f5	2026-10-09T17:56:02+08:00	2026-10-09T17:56:02+08:00	feat: replace article reader with supplied starry artwork and walking progress
+d45c7537a74b8d886bcc5736e757ab209b46619a	2026-10-09T20:54:29+08:00	2026-10-09T20:54:29+08:00	feat(starfield): apply original branding and proximity titles
+81b57735469d4fa4d2e9f4936c4b77a8ff5a730e	2026-10-09T20:54:57+08:00	2026-10-09T20:54:57+08:00	fix(starfield): show room artwork before scene initialization
+a61ccfa113e18b2c135afab68f235e89c149571c	2026-10-09T20:55:31+08:00	2026-10-09T20:55:31+08:00	perf(starfield): cache cloud rasters and lossless walking frames
+7047cb181816648b65d1c2acb6241e88ca009dfe	2026-10-09T20:56:57+08:00	2026-10-09T20:56:57+08:00	test(starfield): record desktop and mobile performance comparisons
+8bc4986d138b81a338dac5e7b1648aa8c9a25983	2026-10-09T21:43:06+08:00	2026-10-09T21:43:06+08:00	perf(starfield): scope transition styles and warm moving scenery
+afcf0c931502854ca6b9e55b99e4a4497d20fab9	2026-10-09T21:43:46+08:00	2026-10-09T21:43:46+08:00	perf(starfield): play room transitions on the browser timeline
+e551e93882755d50f07b8236ef55e15cbf0505e0	2026-10-09T21:44:54+08:00	2026-10-09T21:44:54+08:00	test(starfield): cover entrance and return performance
+474c9d44db60ac0b3c53bce2bfe51c1db0ada2f7	2026-10-09T22:08:13+08:00	2026-10-09T22:08:13+08:00	fix(starfield): align mobile navigation around the logo
+a4a1ffbe524b9390267d8c8f5817f2741cd68553	2026-10-09T22:28:20+08:00	2026-10-09T22:28:20+08:00	fix(starfield): move mobile mode switch to the bottom left
+8d3a99d76b6153ff613f2af39006113d9d787f1f	2026-10-09T22:47:08+08:00	2026-10-09T22:47:08+08:00	fix(starfield): blend reading footer edges into the article sheet
+d17a4e12de5dd2db62aa31abcfa489a1ca37a6d3	2026-10-09T22:55:00+08:00	2026-10-09T22:55:00+08:00	fix(starfield): keep reader walker foot within the progress rail
+de410197f8b523220155d331a911472518519100	2026-10-09T23:12:33+08:00	2026-10-09T23:12:33+08:00	fix(starfield): freeze the reading walker instead of swapping silhouettes
+b6888709484129942862ec0e2b5ade9dba237692	2026-10-09T23:20:38+08:00	2026-10-09T23:20:38+08:00	style(starfield): lift all article titles within the banner
+e3e72e97b937cf6c8a3c4bf2818b82cbf09f8048	2026-10-09T23:30:03+08:00	2026-10-09T23:30:03+08:00	style(starfield): place article date and author below the title
+76df3298b8fc6ed455c4fee6ee9dff72997735aa	2026-10-09T23:51:06+08:00	2026-10-09T23:51:06+08:00	chore(starfield): ignore generated test evidence
+cb8ea885bb538d0c8dbc7401f440955ca8422289	2026-10-10T08:10:40+08:00	2026-10-10T08:10:40+08:00	style(starfield): temporarily hide the distant signal
+151cbf4c519d02b25816f553dfb0314f310b60b1	2026-10-10T08:31:56+08:00	2026-10-10T08:31:56+08:00	fix(starfield): support the renamed glyph asset directory
+bdba18125cb60432d8a9bdad2e22cd7dad82b5b9	2026-10-10T08:32:13+08:00	2026-10-10T08:32:13+08:00	style(starfield): try LXGW Marker Gothic for article titles
+eaa1a851080019264f34ad8475410c3d16b0ef70	2026-10-10T08:36:08+08:00	2026-10-10T08:36:08+08:00	chore:asstes添加
+96691617907ef8399ef5d8d1485974f8346afa00	2026-10-10T09:18:41+08:00	2026-10-10T09:18:41+08:00	feat(blog): serve both themes with seamless switching and startup
+c92b10bf3dd425812073f81e932c5e6cca66b311	2026-10-10T13:53:14+08:00	2026-10-10T13:53:14+08:00	fix(starfield): keep terrain within the lower fifth of the view
+2eb1dc27ba6b700f8c381654b1cc913af8942587	2026-10-10T13:53:29+08:00	2026-10-10T13:53:29+08:00	perf(starfield): adapt passage rendering to sustained frame drops
+31a11548f7d48853d77f1f335e91e6fbf92dda25	2026-10-10T13:53:36+08:00	2026-10-10T13:53:36+08:00	perf(starfield): reuse and prewarm background render buffers
+94bb89ca75a6d7de74637bc03f33b2ad3b14cdef	2026-10-10T13:53:53+08:00	2026-10-10T13:53:53+08:00	test(starfield): record low-power transition regressions
+9d90d8b57e9cfec926cc294fe697015ac0b69cc6	2026-10-10T14:51:37+08:00	2026-10-10T14:51:37+08:00	chore(starry-blog): archive development studies and remove obsolete files
+f23876dbd403b2a271ec967deb17fb1c147b7028	2026-10-11T10:54:23+08:00	2026-10-11T10:54:23+08:00	design(starry-search): add star-map artwork studies and references
+0e3c72b627ade40812f8924a7685d7f97adf5e26	2026-10-11T10:54:29+08:00	2026-10-11T10:54:29+08:00	design(starry-search): add slender transparent search-frame candidate
+44b68c2fda34422c4f820829f23b02b9ac28f1d5	2026-10-11T10:54:42+08:00	2026-10-11T10:54:42+08:00	design(starry-search): add four matching search-icon candidates
+e235a8c83244cc75f429c2f4196cae9828f2936c	2026-10-11T10:54:46+08:00	2026-10-11T10:54:46+08:00	docs(starry-search): record map and article-search design decisions
+3d69a23bc2f54c1fdf345cbd80734e3f5fe79012	2026-10-11T11:05:12+08:00	2026-10-11T11:05:12+08:00	docs(starfield): record verified engineering and performance findings
+3d8bb0243b37c5a782f907da021ef2794f7689e7	2026-10-11T11:06:05+08:00	2026-10-11T11:06:05+08:00	perf(starfield): avoid repeated navigation hint updates
+1797a5b0254c65ae34a60ed178c55229635e30b7	2026-10-11T11:06:37+08:00	2026-10-11T11:06:37+08:00	fix(build): restore previous output when installation fails
+5ef52d45362f9bb80b0b7f04a80a07de647221eb	2026-10-11T11:09:22+08:00	2026-10-11T11:09:22+08:00	fix(audio): reuse embedded players across cached article visits
+a97b257b6452f0713b428752ead1188f86269048	2026-10-11T11:09:22+08:00	2026-10-11T11:09:22+08:00	perf(navigation): refresh theme links only when routes change
+2e92639541c01654804dc6f26b6fe4db9baaa581	2026-10-11T11:09:22+08:00	2026-10-11T11:09:22+08:00	perf(preview): stream assets and skip content reads for HEAD
+92fec89c1b5d158b8a3ed40e3f12fdce89496dbc	2026-10-11T12:01:33+08:00	2026-10-11T12:01:33+08:00	perf(rendering): reuse camera projection and fixed sky geometry
+4f173d105b79e6b37eaac858e26e66b82706e788	2026-10-11T12:01:33+08:00	2026-10-11T12:01:33+08:00	perf(clouds): keep alpha-only hit data and cache unchanged projection
+7ded84d7d230e41564818f48147a44dbdf1d6be5	2026-10-11T12:03:32+08:00	2026-10-11T12:03:32+08:00	fix(reader): pause cached audio when history changes articles
+658d3bd7bb23cfa3a6eb67268cba210cd1aba942	2026-10-11T12:11:53+08:00	2026-10-11T12:11:53+08:00	docs(performance): record verified fixes and browser regressions
+585b6f75310ff09f4814afc955e882a61183a5a1	2026-10-11T12:35:39+08:00	2026-10-11T12:35:39+08:00	feat(writing): create posts with annotated field defaults
+87a040148aef42608028c1cec0252f7b09029a1a	2026-10-11T12:41:13+08:00	2026-10-11T12:41:13+08:00	docs: align readmes with current writing and dual-theme workflow

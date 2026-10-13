@@ -5,10 +5,11 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<% var bgDay = theme.background.path;
-		   var bgNight = (theme.backgroundDark && theme.backgroundDark.path) || bgDay;
-		   var bgDayMobile = (theme.background.mobilePath || bgDay);
-		   var bgNightMobile = (theme.backgroundDark && theme.backgroundDark.mobilePath) || bgDayMobile;
+		<% var bgDay = url_for(theme.background.path);
+		   var bgNight = url_for((theme.backgroundDark && theme.backgroundDark.path) || theme.background.path);
+		   var bgDayMobile = url_for(theme.background.mobilePath || theme.background.path);
+		   var bgNightMobile = url_for((theme.backgroundDark && theme.backgroundDark.mobilePath) || (theme.backgroundDark && theme.backgroundDark.path) || theme.background.path);
+		   var themeSwitch = blog_theme_switch(page);
 		   var isHomepage = is_home();
 		   var needsHighlight = is_post(); %>
 		<!-- 昼夜模式和首屏背景预加载必须早于样式表，避免背景等 CSS 解析后才开始请求 -->
@@ -58,6 +59,7 @@
 		+='：' + page.year; } } else if (is_category()){ title=__('count.categories') + '：' +
 		page.category; } else if (is_tag()){ title=__('count.tags') + '：' + page.tag; } %>
 		<title><% if (title){ %> <%= title %> - <% } %> <%= config.title %></title>
+		<% if (config.dual_theme) { %><link rel="canonical" href="<%= blog_canonical(page) %>"><% } %>
 		<!-- <link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css" /> -->
 		<%- css("lib/mdui/mdui.min") %>
 		<script src="<%- url_for('/lib/mdui/mdui.min.js') %>" defer></script>
@@ -77,7 +79,7 @@
 		<% } %>
 		<link
 			rel="shortcut icon"
-			href="<%= theme.favicon.href %>"
+			href="<%= url_for(theme.favicon.href) %>"
 			type="<%= theme.favicon.type %>"
 		/>
 		<% if (theme.customStyles) { %>
@@ -89,9 +91,10 @@
 		<script src="<%- url_for('/js/kira-theme.js') %>" defer></script>
 		<script src="<%- url_for('/js/kira-opacity.js') %>" defer></script>
 		<script src="<%- url_for('/js/kira-deferred.js') %>" defer></script>
+		<% if (themeSwitch) { %><link rel="stylesheet" href="<%= url_for('css/blog-theme-switch.css') %>"><% } %>
 	</head>
 
-	<body>
+	<body data-kira-root="<%= config.root %>" data-blog-current-root="<%= config.dual_theme?.current_root || '' %>" data-blog-target-root="<%= config.dual_theme?.target_root || '' %>">
 		<div
 			class="kira-background"
 			data-bg-day="<%= bgDay %>"
@@ -101,7 +104,7 @@
 		>
 			<img class="kira-background-image" alt="" aria-hidden="true" decoding="async" fetchpriority="high" />
 		</div>
-		<%- include("components/header") %>
+		<%- include("components/header", { themeSwitch: themeSwitch }) %>
 		<div class="kira-body">
 			<%- include("components/sidebar") %>
 			<div class="kira-content">
@@ -112,5 +115,9 @@
 			</div>
 			<%- include("components/right-column") %>
 		</div>
+		<% if (themeSwitch) { %>
+		<a class="blog-theme-switch blog-theme-switch-fixed blog-theme-switch-legacy" data-blog-theme-switch href="<%= themeSwitch.href %>"><%= themeSwitch.label %></a>
+		<script src="<%= url_for('js/blog-theme-switch.js') %>"></script>
+		<% } %>
 	</body>
 </html>

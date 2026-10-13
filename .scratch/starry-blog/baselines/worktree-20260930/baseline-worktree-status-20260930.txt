@@ -1,0 +1,72 @@
+## codex/prototype-starfield
+ M README.md
+ M themes/hexo-theme-kira/prototypes/starfield/README.md
+ M themes/hexo-theme-kira/prototypes/starfield/app.js
+ M themes/hexo-theme-kira/prototypes/starfield/dome-renderer.js
+ M themes/hexo-theme-kira/prototypes/starfield/dome.js
+ M themes/hexo-theme-kira/prototypes/starfield/index.html
+ M themes/hexo-theme-kira/prototypes/starfield/painted.css
+ M themes/hexo-theme-kira/prototypes/starfield/painted.js
+ M themes/hexo-theme-kira/prototypes/starfield/server.mjs
+ M themes/hexo-theme-kira/prototypes/starfield/sky-map.js
+ M themes/hexo-theme-kira/prototypes/starfield/style.css
+?? .scratch/starry-blog/baseline-server.mjs
+?? .scratch/starry-blog/baseline-v19-20260914/
+?? .scratch/starry-blog/baseline-v19-manifest.json
+?? .scratch/starry-blog/contrast-samples.py
+?? .scratch/starry-blog/evidence-room-art-20260915/
+?? .scratch/starry-blog/evidence-v20/
+?? .scratch/starry-blog/execution-handoff.md
+?? .scratch/starry-blog/experience.test.mjs
+?? .scratch/starry-blog/issues/02-legacy-recovery-baseline.md
+?? .scratch/starry-blog/issues/03-first-real-article.md
+?? .scratch/starry-blog/issues/04-stable-article-publication.md
+?? .scratch/starry-blog/issues/05-real-content-media-compatibility.md
+?? .scratch/starry-blog/issues/06-bidirectional-relations.md
+?? .scratch/starry-blog/issues/07-modes-history-interruption.md
+?? .scratch/starry-blog/issues/08-archives-and-legacy-collections.md
+?? .scratch/starry-blog/issues/09-friends-and-legacy-about.md
+?? .scratch/starry-blog/issues/10-content-and-appearance-config.md
+?? .scratch/starry-blog/issues/11-desktop-scene-calibration.md
+?? .scratch/starry-blog/issues/12-mobile-scene-calibration.md
+?? .scratch/starry-blog/issues/13-mobile-and-accessible-reading.md
+?? .scratch/starry-blog/issues/14-performance-graceful-degradation.md
+?? .scratch/starry-blog/issues/15-netlify-release-and-rollback.md
+?? .scratch/starry-blog/issues/16-generic-template-export.md
+?? .scratch/starry-blog/issues/17-public-template-publication.md
+?? .scratch/starry-blog/optimization-plan-v19.md
+?? .scratch/starry-blog/optimization-v20-acceptance.md
+?? .scratch/starry-blog/poster-redraw-20260915.md
+?? .scratch/starry-blog/poster-redraw-20260915/
+?? .scratch/starry-blog/rhine-reference-boot-motion.jpg
+?? .scratch/starry-blog/rhine-reference-browse.jpg
+?? .scratch/starry-blog/rhine-reference-decryption.jpg
+?? .scratch/starry-blog/rhine-video-timeline-v14.jpg
+?? .scratch/starry-blog/room-artwork-update-20260915.md
+?? .scratch/starry-blog/spec.md
+?? .scratch/starry-blog/theme-discovery.md
+?? .scratch/starry-blog/theme-implementation-plan.md
+?? .scratch/starry-blog/ticket-drafts/
+?? .scratch/starry-blog/ticket-plan.md
+?? .scratch/starry-blog/v20-verification-manifest.json
+?? .scratch/starry-blog/ztmy-detail-20260916.md
+?? .scratch/starry-blog/ztmy-detail-20260916/
+?? AGENTS.md
+?? docs/
+?? themes/hexo-theme-kira/prototypes/starfield/MOTION-STUDY-14.md
+?? themes/hexo-theme-kira/prototypes/starfield/MOTION-STUDY-15.md
+?? themes/hexo-theme-kira/prototypes/starfield/MOTION-STUDY-16.md
+?? themes/hexo-theme-kira/prototypes/starfield/MOTION-STUDY-17.md
+?? themes/hexo-theme-kira/prototypes/starfield/MOTION-STUDY-18.md
+?? themes/hexo-theme-kira/prototypes/starfield/MOTION-STUDY-19.md
+?? themes/hexo-theme-kira/prototypes/starfield/assets/room-personal-v20.png
+?? themes/hexo-theme-kira/prototypes/starfield/assets/room-poster-detail-v20.png
+?? themes/hexo-theme-kira/prototypes/starfield/assets/room-window-mask-v17.svg
+?? themes/hexo-theme-kira/prototypes/starfield/assets/room-window-mask-ztmy-v20.svg
+?? themes/hexo-theme-kira/prototypes/starfield/assets/room-window-portrait-mask-v17.svg
+?? themes/hexo-theme-kira/prototypes/starfield/assets/room-ztmy-detail-v20.png
+?? themes/hexo-theme-kira/prototypes/starfield/experience.js
+?? themes/hexo-theme-kira/prototypes/starfield/frame-monitor.js
+?? themes/hexo-theme-kira/prototypes/starfield/motion.css
+?? themes/hexo-theme-kira/prototypes/starfield/motion.js
+?? themes/hexo-theme-kira/prototypes/starfield/review-tools.js

@@ -1,0 +1,16 @@
+{
+  "date": "2026-10-11",
+  "tests": { "passed": 83, "failed": 0 },
+  "productionBuild": "both themes passed",
+  "browser": "desktop, portrait mobile, short landscape, failure recovery and full motion passed",
+  "entrySource": "assets/蓝紫星盘.png",
+  "miniatureMap": "removed",
+  "indexInitiallyCollapsed": true,
+  "arrowClockwiseDegrees": 90,
+  "originalFilterBlackRails": true,
+  "openingMilliseconds": 320,
+  "closingMilliseconds": 240,
+  "panelTransitionMilliseconds": 360,
+  "livePreviewRefreshed": true,
+  "deployed": false
+}

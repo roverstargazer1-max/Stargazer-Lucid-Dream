@@ -1,0 +1,246 @@
+{
+  "captured_at": "2026-10-11T04:54:32.825Z",
+  "browser": "149.0.7827.55",
+  "viewport": {
+    "width": 1440,
+    "height": 900
+  },
+  "dpr": 1,
+  "temp_directory": "/var/folders/kx/zy28y4yd3bn5mnxm2tw5zbf80000gn/T/blog-history-TKnVpB",
+  "method": "Historical source exported with git archive. Read-only static wrapper; no historical runtime source or CSS changed. Current browser/system fonts. Screenshots taken now, not contemporary captures.",
+  "screenshots": [
+    {
+      "file": "images/v01-1.png",
+      "kind": "reconstructed",
+      "source_commit": "940503f356960540cafebd6013f700e4cb20905b",
+      "source_path": "themes/hexo-theme-kira/prototypes/starfield",
+      "query": "variant=A",
+      "page_errors": [],
+      "state": "initial",
+      "bytes": 1058861,
+      "sha256": "c1a99c6644c75850f4b85bd1043826688b5474e8029d6d359d17be29d473914f"
+    },
+    {
+      "file": "images/v01-2.png",
+      "kind": "reconstructed",
+      "source_commit": "940503f356960540cafebd6013f700e4cb20905b",
+      "source_path": "themes/hexo-theme-kira/prototypes/starfield",
+      "query": "variant=B",
+      "page_errors": [],
+      "state": "initial",
+      "bytes": 1079999,
+      "sha256": "14342871ce83ec0835738a6aefc7620f367acb59d84e850cf4711b570732c65f"
+    },
+    {
+      "file": "images/v01-3.png",
+      "kind": "reconstructed",
+      "source_commit": "940503f356960540cafebd6013f700e4cb20905b",
+      "source_path": "themes/hexo-theme-kira/prototypes/starfield",
+      "query": "variant=C",
+      "page_errors": [],
+      "state": "initial",
+      "bytes": 1065677,
+      "sha256": "67b84e4894bad0edb7128dc0a4f098cb51e8ba26688eda7fde389e44db1a91c3"
+    },
+    {
+      "file": "images/v01-reader.png",
+      "kind": "reconstructed",
+      "source_commit": "940503f356960540cafebd6013f700e4cb20905b",
+      "source_path": "themes/hexo-theme-kira/prototypes/starfield",
+      "query": "variant=C",
+      "page_errors": [],
+      "state": "mock-reader",
+      "selected_id": "unfinished",
+      "bytes": 172570,
+      "sha256": "e00e38e5638fc116af1710431c4a9af97dee3b2431fcc1b62320b427e2b014c8"
+    },
+    {
+      "file": "images/v02-1.png",
+      "kind": "reconstructed",
+      "source_commit": "6586a83222637aed07c42b1935eb5f0ff8266c8d",
+      "source_path": "themes/hexo-theme-kira/prototypes/starfield",
+      "query": "variant=C",
+      "page_errors": [],
+      "state": "initial",
+      "bytes": 1521622,
+      "sha256": "1bab05b44270470f2a0c6fbbcd579eb1ee78317b89830fd3a61b6bf602251bd0"
+    },
+    {
+      "file": "images/v03-1.png",
+      "kind": "reconstructed",
+      "source_commit": "052d5ed728452b7649bb25facc99a9d5238a0400",
+      "source_path": "themes/hexo-theme-kira/prototypes/starfield",
+      "query": "variant=C",
+      "page_errors": [],
+      "state": "initial",
+      "bytes": 852298,
+      "sha256": "6a45374ffbd3fd50e6e01c78e3c42e853fea45c3603ac689e834a24f0fa54eb3"
+    },
+    {
+      "file": "images/v04-1.png",
+      "kind": "reconstructed",
+      "source_commit": "a7e9ad786b86c8ee727d94bcf4f53e658d0cd9d6",
+      "source_path": "themes/hexo-theme-kira/prototypes/starfield",
+      "query": "variant=C&roof=anime",
+      "page_errors": [],
+      "state": "initial",
+      "bytes": 971048,
+      "sha256": "45d5f0daa723ff755f29b2bc0713e458f2cfa06ea15e6fe56cbb73404aee8407"
+    },
+    {
+      "file": "images/v04-2.png",
+      "kind": "reconstructed",
+      "source_commit": "a7e9ad786b86c8ee727d94bcf4f53e658d0cd9d6",
+      "source_path": "themes/hexo-theme-kira/prototypes/starfield",
+      "query": "variant=C&roof=paper",
+      "page_errors": [],
+      "state": "initial",
+      "bytes": 988123,
+      "sha256": "1b2cdeaa4855046799c7929444983acfa74a7daca2d6c50feec25a872f9c89ff"
+    },
+    {
+      "file": "images/v05-1.png",
+      "kind": "reconstructed",
+      "source_commit": "6f697a996a28b15689571bfe02b542d5ecc38162",
+      "source_path": "themes/hexo-theme-kira/prototypes/starfield",
+      "query": "variant=C&roof=anime",
+      "page_errors": [],
+      "state": "initial",
+      "bytes": 715396,
+      "sha256": "1dc1288bf648bf63e9926a43af9b5e9b21a43ab978714adc0d4dd18be9aa5f21"
+    },
+    {
+      "file": "images/v06-1.png",
+      "kind": "reconstructed",
+      "source_commit": "db10650866e3bc12fad1ae9fceaf06dca6954435",
+      "source_path": "themes/hexo-theme-kira/prototypes/starfield",
+      "query": "variant=C&roof=anime&art=ink",
+      "page_errors": [],
+      "state": "initial",
+      "bytes": 484872,
+      "sha256": "71d2725d520127b0a832b9d71eaabea47d6ccc5b4c57ee0c4fddf46f928edfff"
+    },
+    {
+      "file": "images/v06-2.png",
+      "kind": "reconstructed",
+      "source_commit": "db10650866e3bc12fad1ae9fceaf06dca6954435",
+      "source_path": "themes/hexo-theme-kira/prototypes/starfield",
+      "query": "variant=C&roof=anime&art=umber",
+      "page_errors": [],
+      "state": "initial",
+      "bytes": 478616,
+      "sha256": "16fa424bee1ec6889b09aaaa16c5770fc3608ea03265bf1c427cc74f559a17ac"
+    },
+    {
+      "file": "images/v09-1.png",
+      "kind": "reconstructed",
+      "source_commit": "aeca90d91099d97a860295c409bf8767eee09759",
+      "source_path": "themes/hexo-theme-kira/prototypes/starfield",
+      "query": "variant=C&roof=anime&art=ink&labels=reveal&type=white",
+      "page_errors": [],
+      "state": "initial",
+      "bytes": 470573,
+      "sha256": "8a02168acad5989662ec1f579e78deffc5282432b56d9ca12afa7a8694804d4a"
+    },
+    {
+      "file": "images/v11-1.png",
+      "kind": "reconstructed",
+      "source_commit": "f4ab4bd8f96c371d0867f7918604697e95b94c90",
+      "source_path": "themes/hexo-theme-kira/prototypes/starfield",
+      "query": "variant=C&scene=painted",
+      "page_errors": [],
+      "state": "initial",
+      "bytes": 1116965,
+      "sha256": "90b7090f0c11433c86f16074b5037e192c8629d000ecf461773bafc36a4d6684"
+    },
+    {
+      "file": "images/v11-sky.png",
+      "kind": "reconstructed",
+      "source_commit": "f4ab4bd8f96c371d0867f7918604697e95b94c90",
+      "source_path": "themes/hexo-theme-kira/prototypes/starfield",
+      "query": "variant=C&scene=painted",
+      "page_errors": [],
+      "state": "sky-after-window",
+      "bytes": 989565,
+      "sha256": "a7ee206a38960952be5147234f738fca1cb3dc63be4040e69e206f91f6953715"
+    },
+    {
+      "file": "images/v19-1.png",
+      "kind": "reconstructed",
+      "source_commit": "41b60e41d0aac4ceeb83490a8f3a617eb91adaff",
+      "source_path": ".scratch/starry-blog/baseline-v19-20260914",
+      "query": "variant=C&scene=painted&v=19&controls=quiet&motion=full&living=1",
+      "page_errors": [],
+      "state": "initial",
+      "bytes": 848510,
+      "sha256": "36d20384e25e06964e1dd1cb2fe7bba76551808e483a2039c9c765988befba8b"
+    },
+    {
+      "file": "images/v19-sky.png",
+      "kind": "reconstructed",
+      "source_commit": "41b60e41d0aac4ceeb83490a8f3a617eb91adaff",
+      "source_path": ".scratch/starry-blog/baseline-v19-20260914",
+      "query": "variant=C&scene=painted&v=19&controls=quiet&motion=full&living=1",
+      "page_errors": [],
+      "state": "sky-after-window",
+      "bytes": 699568,
+      "sha256": "c3cbf3c7396bfdcf415f0134eddd178782dd1f7eeba9d034ad5ba84c4cee9388"
+    },
+    {
+      "file": "images/v20-1.png",
+      "kind": "reconstructed",
+      "source_commit": "41b60e41d0aac4ceeb83490a8f3a617eb91adaff",
+      "source_path": "themes/hexo-theme-kira/prototypes/starfield",
+      "query": "variant=C&scene=painted&v=20&controls=quiet&motion=full&living=1",
+      "page_errors": [],
+      "state": "initial",
+      "bytes": 883530,
+      "sha256": "bb751d867a854eea6fa5049661a145856e4f9f386ef467f549241831cb64db68"
+    },
+    {
+      "file": "images/v20-sky.png",
+      "kind": "reconstructed",
+      "source_commit": "41b60e41d0aac4ceeb83490a8f3a617eb91adaff",
+      "source_path": "themes/hexo-theme-kira/prototypes/starfield",
+      "query": "variant=C&scene=painted&v=20&controls=quiet&motion=full&living=1",
+      "page_errors": [],
+      "state": "sky-after-window",
+      "bytes": 717624,
+      "sha256": "3f0678fc22d392a36c7bb717003790ffe974d41c226eeca1461768a3b1f2435e"
+    },
+    {
+      "file": "images/v20-preview.png",
+      "kind": "reconstructed",
+      "source_commit": "41b60e41d0aac4ceeb83490a8f3a617eb91adaff",
+      "source_path": "themes/hexo-theme-kira/prototypes/starfield",
+      "query": "variant=C&scene=painted&v=20&controls=quiet&motion=full&living=1",
+      "page_errors": [],
+      "state": "mock-preview",
+      "selected_id": "answer",
+      "bytes": 496799,
+      "sha256": "0d8482880cfd4659ddd910490ab2ee41b03564ef861db2a0201aa5964486c963"
+    },
+    {
+      "file": "images/v20-reader.png",
+      "kind": "reconstructed",
+      "source_commit": "41b60e41d0aac4ceeb83490a8f3a617eb91adaff",
+      "source_path": "themes/hexo-theme-kira/prototypes/starfield",
+      "query": "variant=C&scene=painted&v=20&controls=quiet&motion=full&living=1",
+      "page_errors": [],
+      "state": "mock-reader",
+      "selected_id": "answer",
+      "bytes": 413621,
+      "sha256": "abcd714a96821901af7eae875bc10327d4657786eabae9d5c1ad7489d0f67dc8"
+    },
+    {
+      "file": "images/legacy-20260901.png",
+      "kind": "reconstructed",
+      "source_commit": "875b0724781db5c6d226f2571f1da6f509df3137",
+      "state": "home",
+      "page_errors": [],
+      "caveat": "Historical repository source; dependencies reused from current node_modules, Node v25.7.0. Not an exact historical dependency/runtime reproduction. Remote services and fonts may differ.",
+      "bytes": 1434793,
+      "sha256": "930101660e35966d3ec58e8a3b7b5d823790028746085954f125a6e7dc634745"
+    }
+  ]
+}

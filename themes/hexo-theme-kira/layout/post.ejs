@@ -10,7 +10,7 @@
 		<% if (page.cover){ %>
 		<div class="kira-post-cover">
 			<img
-				data-src="<%- page.cover %>"
+				data-src="<%- url_for(page.cover) %>"
 				data-sizes="auto"
 				alt="<%= page.title %>"
 				class="lazyload kira-post-cover-image disabled-kira-image"
@@ -23,8 +23,8 @@
 			style="padding-bottom: '<%= theme.background.height/theme.background.width * 100 %>%'"
 		>
 			<img
-				data-src="<%- bgDay %>"
-				data-src-dark="<%- bgNight %>"
+				data-src="<%- url_for(bgDay) %>"
+				data-src-dark="<%- url_for(bgNight) %>"
 				data-sizes="auto"
 				alt="<%= page.title %>"
 				class="lazyload kira-post-cover-image disabled-kira-image"

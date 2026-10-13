@@ -1,0 +1,38 @@
+[
+  {
+    "name": "full-desktop",
+    "settled": {
+      "activeAnimations": 0,
+      "transform": "none",
+      "opacity": "1",
+      "fill": "none"
+    },
+    "restart": "matrix(1.10799, -0.103169, 0.103169, 1.10799, 2.54645, 0)",
+    "mapHighlight": true,
+    "closed": true
+  },
+  {
+    "name": "full-mobile",
+    "settled": {
+      "activeAnimations": 0,
+      "transform": "none",
+      "opacity": "1",
+      "fill": "none"
+    },
+    "restart": "matrix(1.10135, -0.0991677, 0.0991677, 1.10135, 2.4301, 0)",
+    "mapHighlight": true,
+    "closed": true
+  },
+  {
+    "name": "reduced",
+    "settled": {
+      "activeAnimations": 0,
+      "transform": "none",
+      "opacity": "1",
+      "fill": "none"
+    },
+    "restart": "none",
+    "mapHighlight": true,
+    "closed": true
+  }
+]

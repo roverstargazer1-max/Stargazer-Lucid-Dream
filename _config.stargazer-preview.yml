@@ -1,0 +1,5 @@
+# Low-level new-theme generation; normal previews build both themes.
+theme: stargazer-starfield
+public_dir: .preview/stargazer
+root: /
+dual_theme: false

@@ -1,0 +1,487 @@
+{
+  "label": "headed-baseline",
+  "screenshots": true,
+  "marks": [],
+  "droppedFrames": [
+    {
+      "ts": 193206323401,
+      "frameSeqId": 98,
+      "hasPartialUpdate": false,
+      "layerTreeId": 2
+    },
+    {
+      "ts": 193206340067,
+      "frameSeqId": 99,
+      "hasPartialUpdate": false,
+      "layerTreeId": 2
+    },
+    {
+      "ts": 193206356733,
+      "frameSeqId": 100,
+      "hasPartialUpdate": false,
+      "layerTreeId": 2
+    },
+    {
+      "ts": 193206373399,
+      "frameSeqId": 101,
+      "hasPartialUpdate": false,
+      "layerTreeId": 2
+    },
+    {
+      "ts": 193206390065,
+      "frameSeqId": 102,
+      "hasPartialUpdate": false,
+      "layerTreeId": 2
+    },
+    {
+      "ts": 193206406731,
+      "frameSeqId": 103,
+      "hasPartialUpdate": false,
+      "layerTreeId": 2
+    },
+    {
+      "ts": 193206423397,
+      "frameSeqId": 104,
+      "hasPartialUpdate": false,
+      "layerTreeId": 2
+    },
+    {
+      "ts": 193206440063,
+      "frameSeqId": 105,
+      "hasPartialUpdate": false,
+      "layerTreeId": 2
+    },
+    {
+      "ts": 193206456729,
+      "frameSeqId": 106,
+      "hasPartialUpdate": false,
+      "layerTreeId": 2
+    },
+    {
+      "ts": 193206473395,
+      "frameSeqId": 107,
+      "hasPartialUpdate": false,
+      "layerTreeId": 2
+    },
+    {
+      "ts": 193206490061,
+      "frameSeqId": 108,
+      "hasPartialUpdate": false,
+      "layerTreeId": 2
+    },
+    {
+      "ts": 193206506727,
+      "frameSeqId": 109,
+      "hasPartialUpdate": false,
+      "layerTreeId": 2
+    },
+    {
+      "ts": 193206523393,
+      "frameSeqId": 110,
+      "hasPartialUpdate": false,
+      "layerTreeId": 2
+    },
+    {
+      "ts": 193206540059,
+      "frameSeqId": 111,
+      "hasPartialUpdate": false,
+      "layerTreeId": 2
+    },
+    {
+      "ts": 193206556725,
+      "frameSeqId": 112,
+      "hasPartialUpdate": false,
+      "layerTreeId": 2
+    },
+    {
+      "ts": 193206573391,
+      "frameSeqId": 113,
+      "hasPartialUpdate": false,
+      "layerTreeId": 2
+    },
+    {
+      "ts": 193206590057,
+      "frameSeqId": 114,
+      "hasPartialUpdate": false,
+      "layerTreeId": 2
+    },
+    {
+      "ts": 193206606723,
+      "frameSeqId": 115,
+      "hasPartialUpdate": false,
+      "layerTreeId": 2
+    },
+    {
+      "ts": 193206623389,
+      "frameSeqId": 116,
+      "hasPartialUpdate": false,
+      "layerTreeId": 2
+    },
+    {
+      "ts": 193206640055,
+      "frameSeqId": 117,
+      "hasPartialUpdate": false,
+      "layerTreeId": 2
+    },
+    {
+      "ts": 193206691995,
+      "frameSeqId": 120,
+      "hasPartialUpdate": true,
+      "layerTreeId": 2
+    },
+    {
+      "ts": 193206706669,
+      "frameSeqId": 121,
+      "hasPartialUpdate": true,
+      "layerTreeId": 2
+    },
+    {
+      "ts": 193213257532,
+      "frameSeqId": 514,
+      "hasPartialUpdate": false,
+      "layerTreeId": 2
+    },
+    {
+      "ts": 193213274198,
+      "frameSeqId": 515,
+      "hasPartialUpdate": false,
+      "layerTreeId": 2
+    },
+    {
+      "ts": 193213290864,
+      "frameSeqId": 516,
+      "hasPartialUpdate": false,
+      "layerTreeId": 2
+    },
+    {
+      "ts": 193213307530,
+      "frameSeqId": 517,
+      "hasPartialUpdate": false,
+      "layerTreeId": 2
+    },
+    {
+      "ts": 193213324196,
+      "frameSeqId": 518,
+      "hasPartialUpdate": false,
+      "layerTreeId": 2
+    },
+    {
+      "ts": 193213340862,
+      "frameSeqId": 519,
+      "hasPartialUpdate": false,
+      "layerTreeId": 2
+    },
+    {
+      "ts": 193213357528,
+      "frameSeqId": 520,
+      "hasPartialUpdate": false,
+      "layerTreeId": 2
+    },
+    {
+      "ts": 193213374194,
+      "frameSeqId": 521,
+      "hasPartialUpdate": false,
+      "layerTreeId": 2
+    },
+    {
+      "ts": 193213390860,
+      "frameSeqId": 522,
+      "hasPartialUpdate": false,
+      "layerTreeId": 2
+    },
+    {
+      "ts": 193213407526,
+      "frameSeqId": 523,
+      "hasPartialUpdate": false,
+      "layerTreeId": 2
+    },
+    {
+      "ts": 193213424192,
+      "frameSeqId": 524,
+      "hasPartialUpdate": false,
+      "layerTreeId": 2
+    }
+  ],
+  "expensiveEvents": [
+    [
+      "RunTask",
+      {
+        "count": 25026,
+        "totalMs": 5347.767000000359,
+        "maxMs": 364.462
+      }
+    ],
+    [
+      "ThreadControllerImpl::RunTask",
+      {
+        "count": 24433,
+        "totalMs": 5285.531000000595,
+        "maxMs": 364.461
+      }
+    ],
+    [
+      "ProxyMain::BeginMainFrame",
+      {
+        "count": 403,
+        "totalMs": 2305.675,
+        "maxMs": 41.875
+      }
+    ],
+    [
+      "Scheduler::RunTask",
+      {
+        "count": 4894,
+        "totalMs": 1627.3659999999975,
+        "maxMs": 364.456
+      }
+    ],
+    [
+      "FireAnimationFrame",
+      {
+        "count": 1065,
+        "totalMs": 1304.7159999999974,
+        "maxMs": 9.277
+      }
+    ],
+    [
+      "FunctionCall",
+      {
+        "count": 1099,
+        "totalMs": 1284.451999999998,
+        "maxMs": 9.255
+      }
+    ],
+    [
+      "GpuChannel::ExecuteDeferredRequest",
+      {
+        "count": 3356,
+        "totalMs": 845.2219999999994,
+        "maxMs": 239.831
+      }
+    ],
+    [
+      "ThreadPool_RunTask",
+      {
+        "count": 989,
+        "totalMs": 835.0559999999965,
+        "maxMs": 359.023
+      }
+    ],
+    [
+      "UpdateLayoutTree",
+      {
+        "count": 1078,
+        "totalMs": 809.7049999999998,
+        "maxMs": 4.542
+      }
+    ],
+    [
+      "GPUTask",
+      {
+        "count": 3321,
+        "totalMs": 807.5619999999994,
+        "maxMs": 239.825
+      }
+    ],
+    [
+      "CommandBuffer::Flush",
+      {
+        "count": 3274,
+        "totalMs": 793.7619999999987,
+        "maxMs": 239.817
+      }
+    ],
+    [
+      "CommandBufferStub::OnAsyncFlush",
+      {
+        "count": 3274,
+        "totalMs": 791.8919999999982,
+        "maxMs": 239.817
+      }
+    ],
+    [
+      "CommandBufferService:PutChanged",
+      {
+        "count": 3270,
+        "totalMs": 786.1079999999997,
+        "maxMs": 239.814
+      }
+    ],
+    [
+      "DawnPlatformImpl::RunWorkerTask",
+      {
+        "count": 22,
+        "totalMs": 631.8,
+        "maxMs": 359.008
+      }
+    ],
+    [
+      "RasterDecoderImpl::DoEndRasterCHROMIUM",
+      {
+        "count": 3483,
+        "totalMs": 520.5130000000003,
+        "maxMs": 239.608
+      }
+    ],
+    [
+      "RasterDecoderImpl::DoEndRasterCHROMIUM::Flush",
+      {
+        "count": 3483,
+        "totalMs": 509.7079999999994,
+        "maxMs": 239.596
+      }
+    ],
+    [
+      "RendererRasterWorker",
+      {
+        "count": 872,
+        "totalMs": 472.4089999999993,
+        "maxMs": 239.818
+      }
+    ],
+    [
+      "Graphics.Pipeline",
+      {
+        "count": 4470,
+        "totalMs": 443.41799999999625,
+        "maxMs": 12.074
+      }
+    ],
+    [
+      "SkiaOutputSurfaceImplOnGpu::CopyOutput",
+      {
+        "count": 400,
+        "totalMs": 403.6770000000003,
+        "maxMs": 362.451
+      }
+    ],
+    [
+      "LayerTreeHost::~LayerTreeHost",
+      {
+        "count": 1,
+        "totalMs": 299.842,
+        "maxMs": 299.842
+      }
+    ],
+    [
+      "ProxyMain::Stop",
+      {
+        "count": 1,
+        "totalMs": 299.821,
+        "maxMs": 299.821
+      }
+    ],
+    [
+      "CommandBufferHelper::Finish",
+      {
+        "count": 2,
+        "totalMs": 298.572,
+        "maxMs": 298.421
+      }
+    ],
+    [
+      "CommandBufferProxyImpl::WaitForGetOffset",
+      {
+        "count": 2,
+        "totalMs": 298.524,
+        "maxMs": 298.375
+      }
+    ],
+    [
+      "ProxyImpl::FinishGLOnImplThread",
+      {
+        "count": 1,
+        "totalMs": 298.473,
+        "maxMs": 298.473
+      }
+    ],
+    [
+      "RasterImplementation::Finish",
+      {
+        "count": 1,
+        "totalMs": 298.469,
+        "maxMs": 298.469
+      }
+    ],
+    [
+      "SkiaOutputSurfaceImplOnGpu::SwapBuffers",
+      {
+        "count": 402,
+        "totalMs": 286.945,
+        "maxMs": 12.274
+      }
+    ],
+    [
+      "RendererMainThread",
+      {
+        "count": 1127,
+        "totalMs": 232.6929999999993,
+        "maxMs": 8.863
+      }
+    ],
+    [
+      "SimpleWatcher::OnHandleReady",
+      {
+        "count": 5937,
+        "totalMs": 219.89799999999582,
+        "maxMs": 2.73
+      }
+    ],
+    [
+      "Receive mojo message",
+      {
+        "count": 5209,
+        "totalMs": 205.41099999999778,
+        "maxMs": 4.351
+      }
+    ],
+    [
+      "Paint",
+      {
+        "count": 845,
+        "totalMs": 198.83900000000003,
+        "maxMs": 2.926
+      }
+    ],
+    [
+      "SkiaOutputDevice->ScheduleOverlays()",
+      {
+        "count": 402,
+        "totalMs": 172.34900000000013,
+        "maxMs": 11.938
+      }
+    ],
+    [
+      "IOSurfaceImageBacking::WaitForCommandsToBeScheduled",
+      {
+        "count": 4051,
+        "totalMs": 169.10000000001546,
+        "maxMs": 11.909
+      }
+    ],
+    [
+      "IOSurfaceImageBacking::WaitForCommandsToBeScheduled::Dawn",
+      {
+        "count": 403,
+        "totalMs": 164.8099999999997,
+        "maxMs": 11.908
+      }
+    ],
+    [
+      "Commit",
+      {
+        "count": 405,
+        "totalMs": 135.9360000000001,
+        "maxMs": 2.999
+      }
+    ],
+    [
+      "PrePaint",
+      {
+        "count": 918,
+        "totalMs": 125.58100000000042,
+        "maxMs": 2.084
+      }
+    ]
+  ]
+}

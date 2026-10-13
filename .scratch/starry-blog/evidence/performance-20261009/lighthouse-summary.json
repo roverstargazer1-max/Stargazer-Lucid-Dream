@@ -1,0 +1,86 @@
+[
+  {
+    "label": "baseline",
+    "device": "desktop",
+    "score": 73,
+    "fcpMs": 465,
+    "lcpMs": 3703,
+    "tbtMs": 211,
+    "speedIndexMs": 514,
+    "cls": 0,
+    "observedLcpMs": 1033,
+    "runs": [
+      73,
+      74,
+      73
+    ],
+    "runtimeErrors": [
+      null,
+      null,
+      null
+    ]
+  },
+  {
+    "label": "baseline",
+    "device": "mobile",
+    "score": 51,
+    "fcpMs": 2030,
+    "lcpMs": 21603,
+    "tbtMs": 1021,
+    "speedIndexMs": 2030,
+    "cls": 0,
+    "observedLcpMs": 1038,
+    "runs": [
+      51,
+      51,
+      51
+    ],
+    "runtimeErrors": [
+      null,
+      null,
+      null
+    ]
+  },
+  {
+    "label": "optimized",
+    "device": "desktop",
+    "score": 86,
+    "fcpMs": 504,
+    "lcpMs": 2543,
+    "tbtMs": 0,
+    "speedIndexMs": 504,
+    "cls": 0,
+    "observedLcpMs": 803,
+    "runs": [
+      86,
+      86,
+      86
+    ],
+    "runtimeErrors": [
+      null,
+      null,
+      null
+    ]
+  },
+  {
+    "label": "optimized",
+    "device": "mobile",
+    "score": 71,
+    "fcpMs": 2180,
+    "lcpMs": 14028,
+    "tbtMs": 154,
+    "speedIndexMs": 2180,
+    "cls": 0,
+    "observedLcpMs": 822,
+    "runs": [
+      71,
+      69,
+      71
+    ],
+    "runtimeErrors": [
+      null,
+      null,
+      null
+    ]
+  }
+]

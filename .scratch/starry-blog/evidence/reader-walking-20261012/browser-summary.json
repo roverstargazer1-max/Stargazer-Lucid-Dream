@@ -1,0 +1,382 @@
+[
+  {
+    "name": "desktop",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "idle": [
+      {
+        "hash": "5fc4ce452bca939f3b806895333faeef7321fdba3b12e52dc245441468bd9da2",
+        "left": 327.296875,
+        "top": 862.578125,
+        "fraction": "0",
+        "hidden": false,
+        "tier": "full",
+        "motion": "full"
+      },
+      {
+        "hash": "04189b68cc52de816a1a8b12a29847ea58710d4273ed4af1c02cbcbefc83f2d8",
+        "left": 327.296875,
+        "top": 862.578125,
+        "fraction": "0",
+        "hidden": false,
+        "tier": "full",
+        "motion": "full"
+      },
+      {
+        "hash": "df85b2dacdb59971835945a580f07ce73bb6102b61f8f15ed446399e9c284d88",
+        "left": 327.296875,
+        "top": 862.578125,
+        "fraction": "0",
+        "hidden": false,
+        "tier": "full",
+        "motion": "full"
+      },
+      {
+        "hash": "3aa865ecdec11c2724c808261378f0d3974f4cbf175d9722c91ac50932375693",
+        "left": 327.296875,
+        "top": 862.578125,
+        "fraction": "0",
+        "hidden": false,
+        "tier": "full",
+        "motion": "full"
+      }
+    ],
+    "scrolling": [
+      {
+        "hash": "bcba722f356c1d83cbf9b6caf080cbb7b6c563669aecf778726fdf6b5fa7069f",
+        "left": 487.84375,
+        "top": 862.578125,
+        "fraction": "0.20337836205021628",
+        "hidden": false,
+        "tier": "full",
+        "motion": "full"
+      },
+      {
+        "hash": "2d0f0da6740c5e9b97f46de4a5c7e05b54b143e44740e9aa4380ca9e3cfe196d",
+        "left": 648.1875,
+        "top": 862.578125,
+        "fraction": "0.4064989568481509",
+        "hidden": false,
+        "tier": "full",
+        "motion": "full"
+      },
+      {
+        "hash": "35152ecd76897ffaab3a788f95faf807885a96907ba02730ec427cfe0dcdcd00",
+        "left": 848.8125,
+        "top": 862.578125,
+        "fraction": "0.6606574675978508",
+        "hidden": false,
+        "tier": "full",
+        "motion": "full"
+      }
+    ],
+    "errors": [],
+    "pausesWhenClosed": true
+  },
+  {
+    "name": "mobile",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "idle": [
+      {
+        "hash": "1ae869014e051f3dcc9f66bc34bace0317aab6d9410f31d025e7193c572fb344",
+        "left": 31.4375,
+        "top": 780.1875,
+        "fraction": "0",
+        "hidden": false,
+        "tier": "full",
+        "motion": "full"
+      },
+      {
+        "hash": "2d32200da2d8f4be1d569d3713dd28c13fb31edfe41260372a8be47e2b23fb52",
+        "left": 31.4375,
+        "top": 780.1875,
+        "fraction": "0",
+        "hidden": false,
+        "tier": "full",
+        "motion": "full"
+      },
+      {
+        "hash": "0711ca4e8fbfefd7ad27958c3b2853e134fd22a5a2b6276d68b649f2f9e20a6f",
+        "left": 31.4375,
+        "top": 780.1875,
+        "fraction": "0",
+        "hidden": false,
+        "tier": "full",
+        "motion": "full"
+      },
+      {
+        "hash": "02ba2306c06b6db14d51a1f0485d6c613b42bf7f0c4dac3e5fa88e2828b13800",
+        "left": 31.4375,
+        "top": 780.1875,
+        "fraction": "0",
+        "hidden": false,
+        "tier": "full",
+        "motion": "full"
+      }
+    ],
+    "scrolling": [
+      {
+        "hash": "e2d47565c44aa05a11c94c9c7056f7c5973276ee1c3bdc799fb81833c000ba7b",
+        "left": 96.90625,
+        "top": 780.1875,
+        "fraction": "0.20125786163522014",
+        "hidden": false,
+        "tier": "full",
+        "motion": "full"
+      },
+      {
+        "hash": "99c24de0934585118e1c06bce4ceab4a5d3e5066a26b8307b3bc25c8868104fd",
+        "left": 162.359375,
+        "top": 780.1875,
+        "fraction": "0.4025157232704403",
+        "hidden": false,
+        "tier": "full",
+        "motion": "full"
+      },
+      {
+        "hash": "1ae6c495784e99e0634f1d14458662850495ece51ffcb9925fd8f710892b76dd",
+        "left": 244.21875,
+        "top": 780.1875,
+        "fraction": "0.6542151070452957",
+        "hidden": false,
+        "tier": "full",
+        "motion": "full"
+      }
+    ],
+    "errors": [],
+    "pausesWhenClosed": true
+  },
+  {
+    "name": "soft",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "idle": [
+      {
+        "hash": "c17201184fc136ef84f3c70a96a165ecfe3bba7f18e9d8abb889ce30a46639da",
+        "left": 327.296875,
+        "top": 862.578125,
+        "fraction": "0",
+        "hidden": false,
+        "tier": "full",
+        "motion": "soft"
+      },
+      {
+        "hash": "820832994e70e4ffcc1372c9ec70a106a842e17e89f0bb9e3e151f937f1ae918",
+        "left": 327.296875,
+        "top": 862.578125,
+        "fraction": "0",
+        "hidden": false,
+        "tier": "full",
+        "motion": "soft"
+      },
+      {
+        "hash": "96ee4b704da3353b6dccdd45e80aee43ab6f47aaa2b6393006faeb31a1489ecc",
+        "left": 327.296875,
+        "top": 862.578125,
+        "fraction": "0",
+        "hidden": false,
+        "tier": "full",
+        "motion": "soft"
+      },
+      {
+        "hash": "aed84b8d5ab29404135a9c9af767d7036382210c5892dc74d8a7484d28487dc1",
+        "left": 327.296875,
+        "top": 862.578125,
+        "fraction": "0",
+        "hidden": false,
+        "tier": "full",
+        "motion": "soft"
+      }
+    ],
+    "scrolling": [
+      {
+        "hash": "e5074f3e7698f8ac732ad30c8950188adfdc1e83d82cd47434f0300324d6d8fb",
+        "left": 487.84375,
+        "top": 862.578125,
+        "fraction": "0.20337836205021628",
+        "hidden": false,
+        "tier": "full",
+        "motion": "soft"
+      },
+      {
+        "hash": "8faf3469398725c3ceab30884c7ea799103df90f331dc3f65402410a65d3318a",
+        "left": 648.1875,
+        "top": 862.578125,
+        "fraction": "0.4064989568481509",
+        "hidden": false,
+        "tier": "full",
+        "motion": "soft"
+      },
+      {
+        "hash": "3a591eaccf933b52eb44cf1f6f5210c047db5e6509892b1bd55b756aca6688b7",
+        "left": 848.8125,
+        "top": 862.578125,
+        "fraction": "0.6606574675978508",
+        "hidden": false,
+        "tier": "full",
+        "motion": "soft"
+      }
+    ],
+    "errors": [],
+    "pausesWhenClosed": true
+  },
+  {
+    "name": "low",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "idle": [
+      {
+        "hash": "d370ef7dd16a966ad44b13b0ce1e222461983c1491222cb47c2b7404008df07f",
+        "left": 327.296875,
+        "top": 862.578125,
+        "fraction": "0",
+        "hidden": false,
+        "tier": "low",
+        "motion": "full"
+      },
+      {
+        "hash": "a6e78b6b9f819d33dcae33d76915690338d909c758cf7577c01c0e0596e98cd9",
+        "left": 327.296875,
+        "top": 862.578125,
+        "fraction": "0",
+        "hidden": false,
+        "tier": "low",
+        "motion": "full"
+      },
+      {
+        "hash": "5eab2c539b70ac429bc42e0eb72ae043fbd69bd4544598a48059a72044488da5",
+        "left": 327.296875,
+        "top": 862.578125,
+        "fraction": "0",
+        "hidden": false,
+        "tier": "low",
+        "motion": "full"
+      },
+      {
+        "hash": "277fa581f715d247a2686deca22f650fe6dcc6b2ccf52d3ca9cb8ab4889de28e",
+        "left": 327.296875,
+        "top": 862.578125,
+        "fraction": "0",
+        "hidden": false,
+        "tier": "low",
+        "motion": "full"
+      }
+    ],
+    "scrolling": [
+      {
+        "hash": "ef9ff08204f302645dad8b81e2fa624e55dbc2a9699fa958e4cebb10eb8ce40f",
+        "left": 487.84375,
+        "top": 862.578125,
+        "fraction": "0.20337836205021628",
+        "hidden": false,
+        "tier": "low",
+        "motion": "full"
+      },
+      {
+        "hash": "525b7f7d86dcbae5b0595f1e54b4f1bc46901e27ef467d24dceb3d50a856c7dc",
+        "left": 648.1875,
+        "top": 862.578125,
+        "fraction": "0.4064989568481509",
+        "hidden": false,
+        "tier": "low",
+        "motion": "full"
+      },
+      {
+        "hash": "84b558e2f18dae2f4013174b2bd77d2c75f84e702b1f80d84fba33f791eab036",
+        "left": 848.8125,
+        "top": 862.578125,
+        "fraction": "0.6606574675978508",
+        "hidden": false,
+        "tier": "low",
+        "motion": "full"
+      }
+    ],
+    "errors": [],
+    "pausesWhenClosed": true
+  },
+  {
+    "name": "reduced",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "idle": [
+      {
+        "hash": "4aa0fe3cda43fa1eb37f68d31e1eef68c24f59bc3d40e238575d3fd8be3b7e90",
+        "left": 327.296875,
+        "top": 862.578125,
+        "fraction": "0",
+        "hidden": false,
+        "tier": "full",
+        "motion": "full"
+      },
+      {
+        "hash": "4aa0fe3cda43fa1eb37f68d31e1eef68c24f59bc3d40e238575d3fd8be3b7e90",
+        "left": 327.296875,
+        "top": 862.578125,
+        "fraction": "0",
+        "hidden": false,
+        "tier": "full",
+        "motion": "full"
+      },
+      {
+        "hash": "4aa0fe3cda43fa1eb37f68d31e1eef68c24f59bc3d40e238575d3fd8be3b7e90",
+        "left": 327.296875,
+        "top": 862.578125,
+        "fraction": "0",
+        "hidden": false,
+        "tier": "full",
+        "motion": "full"
+      },
+      {
+        "hash": "4aa0fe3cda43fa1eb37f68d31e1eef68c24f59bc3d40e238575d3fd8be3b7e90",
+        "left": 327.296875,
+        "top": 862.578125,
+        "fraction": "0",
+        "hidden": false,
+        "tier": "full",
+        "motion": "full"
+      }
+    ],
+    "scrolling": [
+      {
+        "hash": "4aa0fe3cda43fa1eb37f68d31e1eef68c24f59bc3d40e238575d3fd8be3b7e90",
+        "left": 487.84375,
+        "top": 862.578125,
+        "fraction": "0.20337836205021628",
+        "hidden": false,
+        "tier": "full",
+        "motion": "full"
+      },
+      {
+        "hash": "4aa0fe3cda43fa1eb37f68d31e1eef68c24f59bc3d40e238575d3fd8be3b7e90",
+        "left": 648.1875,
+        "top": 862.578125,
+        "fraction": "0.4064989568481509",
+        "hidden": false,
+        "tier": "full",
+        "motion": "full"
+      },
+      {
+        "hash": "4aa0fe3cda43fa1eb37f68d31e1eef68c24f59bc3d40e238575d3fd8be3b7e90",
+        "left": 848.8125,
+        "top": 862.578125,
+        "fraction": "0.6606574675978508",
+        "hidden": false,
+        "tier": "full",
+        "motion": "full"
+      }
+    ],
+    "errors": [],
+    "pausesWhenClosed": true
+  }
+]

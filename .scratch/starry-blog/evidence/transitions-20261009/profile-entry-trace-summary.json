@@ -1,0 +1,460 @@
+{
+  "label": "profile-entry",
+  "screenshots": false,
+  "marks": [
+    {
+      "name": "transition-enter",
+      "ts": 193735329114
+    },
+    {
+      "name": "transition-return",
+      "ts": 193739460416
+    }
+  ],
+  "droppedFrames": [
+    {
+      "ts": 193734920738,
+      "frameSeqId": 135,
+      "hasPartialUpdate": true,
+      "layerTreeId": 2
+    },
+    {
+      "ts": 193734937412,
+      "frameSeqId": 136,
+      "hasPartialUpdate": true,
+      "layerTreeId": 2
+    },
+    {
+      "ts": 193734953446,
+      "frameSeqId": 137,
+      "hasPartialUpdate": true,
+      "layerTreeId": 2
+    },
+    {
+      "ts": 193734970739,
+      "frameSeqId": 138,
+      "hasPartialUpdate": true,
+      "layerTreeId": 2
+    },
+    {
+      "ts": 193734986441,
+      "frameSeqId": 139,
+      "hasPartialUpdate": true,
+      "layerTreeId": 2
+    },
+    {
+      "ts": 193735004072,
+      "frameSeqId": 140,
+      "hasPartialUpdate": true,
+      "layerTreeId": 2
+    },
+    {
+      "ts": 193735020753,
+      "frameSeqId": 141,
+      "hasPartialUpdate": true,
+      "layerTreeId": 2
+    },
+    {
+      "ts": 193735037419,
+      "frameSeqId": 142,
+      "hasPartialUpdate": true,
+      "layerTreeId": 2
+    },
+    {
+      "ts": 193735053564,
+      "frameSeqId": 143,
+      "hasPartialUpdate": true,
+      "layerTreeId": 2
+    },
+    {
+      "ts": 193735070739,
+      "frameSeqId": 144,
+      "hasPartialUpdate": true,
+      "layerTreeId": 2
+    },
+    {
+      "ts": 193735086982,
+      "frameSeqId": 145,
+      "hasPartialUpdate": true,
+      "layerTreeId": 2
+    },
+    {
+      "ts": 193735104095,
+      "frameSeqId": 146,
+      "hasPartialUpdate": true,
+      "layerTreeId": 2
+    },
+    {
+      "ts": 193735120743,
+      "frameSeqId": 147,
+      "hasPartialUpdate": true,
+      "layerTreeId": 2
+    },
+    {
+      "ts": 193735136607,
+      "frameSeqId": 148,
+      "hasPartialUpdate": true,
+      "layerTreeId": 2
+    },
+    {
+      "ts": 193735154078,
+      "frameSeqId": 149,
+      "hasPartialUpdate": true,
+      "layerTreeId": 2
+    },
+    {
+      "ts": 193735170743,
+      "frameSeqId": 150,
+      "hasPartialUpdate": true,
+      "layerTreeId": 2
+    },
+    {
+      "ts": 193735186920,
+      "frameSeqId": 151,
+      "hasPartialUpdate": true,
+      "layerTreeId": 2
+    },
+    {
+      "ts": 193735204078,
+      "frameSeqId": 152,
+      "hasPartialUpdate": true,
+      "layerTreeId": 2
+    },
+    {
+      "ts": 193735336587,
+      "frameSeqId": 160,
+      "hasPartialUpdate": true,
+      "layerTreeId": 2
+    },
+    {
+      "ts": 193735354080,
+      "frameSeqId": 161,
+      "hasPartialUpdate": true,
+      "layerTreeId": 2
+    },
+    {
+      "ts": 193735369814,
+      "frameSeqId": 162,
+      "hasPartialUpdate": true,
+      "layerTreeId": 2
+    },
+    {
+      "ts": 193735386897,
+      "frameSeqId": 163,
+      "hasPartialUpdate": true,
+      "layerTreeId": 2
+    },
+    {
+      "ts": 193735420746,
+      "frameSeqId": 165,
+      "hasPartialUpdate": true,
+      "layerTreeId": 2
+    },
+    {
+      "ts": 193735454083,
+      "frameSeqId": 167,
+      "hasPartialUpdate": true,
+      "layerTreeId": 2
+    },
+    {
+      "ts": 193737869872,
+      "frameSeqId": 312,
+      "hasPartialUpdate": true,
+      "layerTreeId": 2
+    },
+    {
+      "ts": 193739453174,
+      "frameSeqId": 407,
+      "hasPartialUpdate": true,
+      "layerTreeId": 2
+    },
+    {
+      "ts": 193739469888,
+      "frameSeqId": 408,
+      "hasPartialUpdate": true,
+      "layerTreeId": 2
+    }
+  ],
+  "expensiveEvents": [
+    [
+      "RunTask",
+      {
+        "count": 21719,
+        "totalMs": 6162.301000000567,
+        "maxMs": 306.064
+      }
+    ],
+    [
+      "ThreadControllerImpl::RunTask",
+      {
+        "count": 21111,
+        "totalMs": 6030.987000000691,
+        "maxMs": 304.614
+      }
+    ],
+    [
+      "ProxyMain::BeginMainFrame",
+      {
+        "count": 441,
+        "totalMs": 4391.994999999996,
+        "maxMs": 66.031
+      }
+    ],
+    [
+      "FireAnimationFrame",
+      {
+        "count": 1062,
+        "totalMs": 2874.4650000000033,
+        "maxMs": 28.295
+      }
+    ],
+    [
+      "FunctionCall",
+      {
+        "count": 1099,
+        "totalMs": 2796.397999999999,
+        "maxMs": 28.276
+      }
+    ],
+    [
+      "UpdateLayoutTree",
+      {
+        "count": 856,
+        "totalMs": 819.4790000000003,
+        "maxMs": 8.871
+      }
+    ],
+    [
+      "Scheduler::RunTask",
+      {
+        "count": 3698,
+        "totalMs": 572.1399999999986,
+        "maxMs": 13.212
+      }
+    ],
+    [
+      "Receive mojo message",
+      {
+        "count": 4182,
+        "totalMs": 440.84299999999314,
+        "maxMs": 304.609
+      }
+    ],
+    [
+      "Graphics.Pipeline",
+      {
+        "count": 5142,
+        "totalMs": 342.87899999999445,
+        "maxMs": 13.093
+      }
+    ],
+    [
+      "PrePaint",
+      {
+        "count": 718,
+        "totalMs": 339.66999999999916,
+        "maxMs": 3.053
+      }
+    ],
+    [
+      "GpuChannel::ExecuteDeferredRequest",
+      {
+        "count": 2539,
+        "totalMs": 338.6329999999992,
+        "maxMs": 8.766
+      }
+    ],
+    [
+      "GPUTask",
+      {
+        "count": 2485,
+        "totalMs": 327.84599999999966,
+        "maxMs": 8.765
+      }
+    ],
+    [
+      "CommandBuffer::Flush",
+      {
+        "count": 2443,
+        "totalMs": 317.33000000000044,
+        "maxMs": 8.76
+      }
+    ],
+    [
+      "CommandBufferStub::OnAsyncFlush",
+      {
+        "count": 2443,
+        "totalMs": 315.96600000000075,
+        "maxMs": 8.76
+      }
+    ],
+    [
+      "CommandBufferService:PutChanged",
+      {
+        "count": 2441,
+        "totalMs": 311.5850000000003,
+        "maxMs": 8.757
+      }
+    ],
+    [
+      "Commit",
+      {
+        "count": 443,
+        "totalMs": 300.6690000000004,
+        "maxMs": 3.708
+      }
+    ],
+    [
+      "RendererMainThread",
+      {
+        "count": 1126,
+        "totalMs": 221.9459999999999,
+        "maxMs": 7.484
+      }
+    ],
+    [
+      "Layerize",
+      {
+        "count": 411,
+        "totalMs": 187.19700000000043,
+        "maxMs": 2.968
+      }
+    ],
+    [
+      "LayerTreeHost::DoUpdateLayers",
+      {
+        "count": 443,
+        "totalMs": 178.21299999999962,
+        "maxMs": 3.659
+      }
+    ],
+    [
+      "SkiaOutputSurfaceImplOnGpu::SwapBuffers",
+      {
+        "count": 461,
+        "totalMs": 173.25499999999997,
+        "maxMs": 13.172
+      }
+    ],
+    [
+      "Paint",
+      {
+        "count": 520,
+        "totalMs": 141.25300000000024,
+        "maxMs": 6.733
+      }
+    ],
+    [
+      "RasterImplementation::RasterCHROMIUM",
+      {
+        "count": 1130,
+        "totalMs": 136.4219999999999,
+        "maxMs": 2.866
+      }
+    ],
+    [
+      "RasterDecoderImpl::DoEndRasterCHROMIUM",
+      {
+        "count": 1130,
+        "totalMs": 125.97500000000032,
+        "maxMs": 8.611
+      }
+    ],
+    [
+      "RasterDecoderImpl::DoEndRasterCHROMIUM::Flush",
+      {
+        "count": 1130,
+        "totalMs": 121.26400000000025,
+        "maxMs": 8.599
+      }
+    ],
+    [
+      "ThreadPool_RunTask",
+      {
+        "count": 871,
+        "totalMs": 112.50500000000017,
+        "maxMs": 8.166
+      }
+    ],
+    [
+      "SkiaOutputDevice->ScheduleOverlays()",
+      {
+        "count": 461,
+        "totalMs": 102.2430000000001,
+        "maxMs": 12.799
+      }
+    ],
+    [
+      "IOSurfaceImageBacking::WaitForCommandsToBeScheduled",
+      {
+        "count": 2672,
+        "totalMs": 98.38900000000238,
+        "maxMs": 12.784
+      }
+    ],
+    [
+      "IOSurfaceImageBacking::WaitForCommandsToBeScheduled::Dawn",
+      {
+        "count": 479,
+        "totalMs": 95.73599999999986,
+        "maxMs": 12.783
+      }
+    ],
+    [
+      "CommandBufferHelper::Flush",
+      {
+        "count": 1757,
+        "totalMs": 89.65800000000043,
+        "maxMs": 3.098
+      }
+    ],
+    [
+      "LocalFrameView::ScheduleAnimation",
+      {
+        "count": 1846,
+        "totalMs": 87.53900000000081,
+        "maxMs": 3.07
+      }
+    ],
+    [
+      "CommandBufferProxyImpl::Flush",
+      {
+        "count": 1508,
+        "totalMs": 82.26400000000024,
+        "maxMs": 3.098
+      }
+    ],
+    [
+      "HitTest",
+      {
+        "count": 285,
+        "totalMs": 81.81000000000002,
+        "maxMs": 3.052
+      }
+    ],
+    [
+      "SimpleWatcher::OnHandleReady",
+      {
+        "count": 4224,
+        "totalMs": 74.80600000000061,
+        "maxMs": 1.652
+      }
+    ],
+    [
+      "DisplayScheduler::OnBeginFrameDeadline",
+      {
+        "count": 464,
+        "totalMs": 71.99899999999997,
+        "maxMs": 2.596
+      }
+    ],
+    [
+      "Layout",
+      {
+        "count": 263,
+        "totalMs": 71.74800000000002,
+        "maxMs": 7.464
+      }
+    ]
+  ]
+}

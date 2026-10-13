@@ -1,0 +1,20 @@
+{
+  "date": "2026-09-15",
+  "checks": [
+    {
+      "command": "node --test .scratch/starry-blog/experience.test.mjs",
+      "exitCode": 0,
+      "output": "TAP version 13\n# (node:41252) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///F:/blog/Stargazer-Lucid-Dream/themes/hexo-theme-kira/prototypes/starfield/experience.js is not specified and it doesn't parse as CommonJS.\n# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.\n# To eliminate this warning, add \"type\": \"module\" to F:\\\\blog\\\\Stargazer-Lucid-Dream\\\\themes\\\\hexo-theme-kira\\\\package.json.\n# (Use `node --trace-warnings ...` to show where the warning was created)\n# Subtest: only completed presentations repeat; cancellation and retargeting cannot complete stale tokens\nok 1 - only completed presentations repeat; cancellation and retargeting cannot complete stale tokens\n  ---\n  duration_ms: 0.6434\n  type: 'test'\n  ...\n# Subtest: docking preserves world positions and lands in the requested safe frame, including polar articles\nok 2 - docking preserves world positions and lands in the requested safe frame, including polar articles\n  ---\n  duration_ms: 2.0306\n  type: 'test'\n  ...\n1..2\n# tests 2\n# suites 0\n# pass 2\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 128.3582\n"
+    },
+    {
+      "command": "node --check: 9 ES modules and 2 server entry points",
+      "exitCode": 0,
+      "output": "9 modules and 2 server entry points: syntax OK\r\n"
+    },
+    {
+      "command": "git diff --check",
+      "exitCode": 0,
+      "output": "warning: in the working copy of 'README.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'themes/hexo-theme-kira/prototypes/starfield/README.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'themes/hexo-theme-kira/prototypes/starfield/app.js', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'themes/hexo-theme-kira/prototypes/starfield/dome-renderer.js', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'themes/hexo-theme-kira/prototypes/starfield/dome.js', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'themes/hexo-theme-kira/prototypes/starfield/index.html', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'themes/hexo-theme-kira/prototypes/starfield/painted.css', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'themes/hexo-theme-kira/prototypes/starfield/painted.js', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'themes/hexo-theme-kira/prototypes/starfield/server.mjs', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'themes/hexo-theme-kira/prototypes/starfield/sky-map.js', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'themes/hexo-theme-kira/prototypes/starfield/style.css', LF will be replaced by CRLF the next time Git touches it\n"
+    }
+  ]
+}

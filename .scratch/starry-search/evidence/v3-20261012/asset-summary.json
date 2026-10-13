@@ -1,0 +1,42 @@
+[
+  {
+    "asset": "star-chart",
+    "maxRGBDifference": 0,
+    "meanRGBDifference": 0.0
+  },
+  {
+    "asset": "frame",
+    "maxRGBDifference": 0,
+    "meanRGBDifference": 0.0
+  },
+  {
+    "asset": "filters",
+    "maxRGBDifference": 0,
+    "meanRGBDifference": 0.0
+  },
+  {
+    "asset": "arrow",
+    "maxRGBDifference": 0,
+    "meanRGBDifference": 0.0
+  },
+  {
+    "asset": "index",
+    "maxRGBDifference": 0,
+    "meanRGBDifference": 0.0
+  },
+  {
+    "asset": "name",
+    "maxRGBDifference": 0,
+    "meanRGBDifference": 0.0
+  },
+  {
+    "asset": "id",
+    "maxRGBDifference": 0,
+    "meanRGBDifference": 0.0
+  },
+  {
+    "asset": "close",
+    "maxRGBDifference": 0,
+    "meanRGBDifference": 0.0
+  }
+]

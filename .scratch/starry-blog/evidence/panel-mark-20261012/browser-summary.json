@@ -1,0 +1,172 @@
+[
+  {
+    "name": "desktop",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "reducedMotion": "no-preference",
+    "panel": {
+      "content": "none",
+      "background": "none"
+    },
+    "states": [
+      {
+        "state": "hover",
+        "gap": 19.55023193359375,
+        "gutterSpace": 2.55023193359375,
+        "markLeft": 1006.3783569335938,
+        "indexLeft": 1019.828125,
+        "opacity": "1",
+        "clipPath": "inset(0px 0px 0px -16px)"
+      },
+      {
+        "state": "keyboard",
+        "gap": 19.55023193359375,
+        "gutterSpace": 2.55023193359375,
+        "markLeft": 1006.3783569335938,
+        "indexLeft": 1019.828125,
+        "opacity": "1",
+        "clipPath": "inset(0px 0px 0px -16px)"
+      }
+    ],
+    "errors": [],
+    "interaction": "index opens; article reads and returns; search closes"
+  },
+  {
+    "name": "mobile",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "reducedMotion": "no-preference",
+    "panel": {
+      "content": "none",
+      "background": "none"
+    },
+    "states": [
+      {
+        "state": "hover",
+        "gap": 19.550251007080078,
+        "gutterSpace": 2.550252914428711,
+        "markLeft": 26.55025291442871,
+        "indexLeft": 40,
+        "opacity": "1",
+        "clipPath": "inset(0px 0px 0px -16px)"
+      },
+      {
+        "state": "keyboard",
+        "gap": 19.550251007080078,
+        "gutterSpace": 2.550252914428711,
+        "markLeft": 26.55025291442871,
+        "indexLeft": 40,
+        "opacity": "1",
+        "clipPath": "inset(0px 0px 0px -16px)"
+      }
+    ],
+    "errors": [],
+    "interaction": "index opens; article reads and returns; search closes"
+  },
+  {
+    "name": "narrow",
+    "viewport": {
+      "width": 320,
+      "height": 568
+    },
+    "reducedMotion": "no-preference",
+    "panel": {
+      "content": "none",
+      "background": "none"
+    },
+    "states": [
+      {
+        "state": "hover",
+        "gap": 19.550251007080078,
+        "gutterSpace": 2.550252914428711,
+        "markLeft": 26.55025291442871,
+        "indexLeft": 40,
+        "opacity": "1",
+        "clipPath": "inset(0px 0px 0px -16px)"
+      },
+      {
+        "state": "keyboard",
+        "gap": 19.550251007080078,
+        "gutterSpace": 2.550252914428711,
+        "markLeft": 26.55025291442871,
+        "indexLeft": 40,
+        "opacity": "1",
+        "clipPath": "inset(0px 0px 0px -16px)"
+      }
+    ],
+    "errors": [],
+    "interaction": "index opens; article reads and returns; search closes"
+  },
+  {
+    "name": "landscape",
+    "viewport": {
+      "width": 844,
+      "height": 390
+    },
+    "reducedMotion": "no-preference",
+    "panel": {
+      "content": "none",
+      "background": "none"
+    },
+    "states": [
+      {
+        "state": "hover",
+        "gap": 17.55023193359375,
+        "gutterSpace": 2.55023193359375,
+        "markLeft": 590.1596069335938,
+        "indexLeft": 603.609375,
+        "opacity": "1",
+        "clipPath": "inset(0px 0px 0px -16px)"
+      },
+      {
+        "state": "keyboard",
+        "gap": 17.55023193359375,
+        "gutterSpace": 2.55023193359375,
+        "markLeft": 590.1596069335938,
+        "indexLeft": 603.609375,
+        "opacity": "1",
+        "clipPath": "inset(0px 0px 0px -16px)"
+      }
+    ],
+    "errors": [],
+    "interaction": "index opens; article reads and returns; search closes"
+  },
+  {
+    "name": "reduced",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "reducedMotion": "reduce",
+    "panel": {
+      "content": "none",
+      "background": "none"
+    },
+    "states": [
+      {
+        "state": "hover",
+        "gap": 5.55023193359375,
+        "gutterSpace": 2.55023193359375,
+        "markLeft": 1006.3783569335938,
+        "indexLeft": 1019.828125,
+        "opacity": "1",
+        "clipPath": "inset(0px 0px 0px -16px)"
+      },
+      {
+        "state": "keyboard",
+        "gap": 5.55023193359375,
+        "gutterSpace": 2.55023193359375,
+        "markLeft": 1006.3783569335938,
+        "indexLeft": 1019.828125,
+        "opacity": "1",
+        "clipPath": "inset(0px 0px 0px -16px)"
+      }
+    ],
+    "errors": [],
+    "interaction": "index opens; article reads and returns; search closes"
+  }
+]

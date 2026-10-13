@@ -1,0 +1,12 @@
+Use case: precise-object-edit.
+Edit IMAGE 1, the isolated astrolabe. IMAGE 2, the cropped round dial supplied by the user, is the PRIMARY COLOR REFERENCE. The user says the previous result is too visually chaotic. Closely match the restrained palette distribution of image 2: a coherent saturated royal-blue / blue-violet disk, pale cyan celestial lines, deep indigo details, and one small clear white focal element. Keep it youthful and visible on a dark-blue starfield through the blue-violet body, not through multiple competing bright accents.
+
+Preserve the existing circular astronomical instrument, top suspension hole, open slots, concentric rim/ticks, curved sky grid, stars, central pivot and upper-right pointing arm. Keep the same front-facing square framing and transparent margins. Do not copy the cards or pawn graphic from image 2, and add no text.
+COLOR CHANGES:
+- Entire structural rim and suspension tab form ONE cohesive blue-violet color family, with just a thin pale cyan edge. NO alternating cyan/white/violet sector patches, no striped tab.
+- The face is a unified rich royal-blue field, transitioning gently to blue-violet toward the upper region, similar to the reference. REMOVE ALL diagonal bright-blue bands/facets.
+- All inner astronomical arcs, axes, and tick marks are consistently soft pale cyan / icy light blue. Reduce their contrast and visual weight so they form a quiet supporting pattern. No mix of bright white and neon turquoise competing arcs.
+- Central pivot and pointing arm provide ONE compact ice-white focal accent with deep indigo outline and minimal light-blue inset. Remove ALL yellow from the arrow tip and center.
+- Stars and small rim fasteners are light cyan and subdued, not competing white accents.
+The hierarchy is a blue-violet disk silhouette first, white pointing arm second, delicate pale-blue linework third. This is an intentional coherent three-family palette, not a patchwork of accents. Flat polished illustrated game-interface style, calm clean color blocking, crisp edges, no metallic shading, no realistic bevels, no heavy gradients, no glow or cast shadow. No yellow, lime, red, pink, multicolored sectors, extra decorative graphics, background cards, text, numbers, watermark.
+Output ONE standalone recolored astrolabe with genuine transparent background and alpha. Preserve transparency in the open slots, hanging hole and outside silhouette. No solid backdrop or checkerboard. Independent reference candidate only.

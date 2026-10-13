@@ -1,0 +1,35 @@
+[
+  {
+    "name": "desktop",
+    "errors": [],
+    "state": {
+      "resultCount": 10,
+      "width": 1210,
+      "scrollWidth": 1210,
+      "loadedImages": [],
+      "feedback": "10 篇文章"
+    }
+  },
+  {
+    "name": "mobile",
+    "errors": [],
+    "state": {
+      "resultCount": 10,
+      "width": 358,
+      "scrollWidth": 555,
+      "loadedImages": [],
+      "feedback": "10 篇文章"
+    }
+  },
+  {
+    "name": "landscape",
+    "errors": [],
+    "state": {
+      "resultCount": 10,
+      "width": 472,
+      "scrollWidth": 472,
+      "loadedImages": [],
+      "feedback": "10 篇文章"
+    }
+  }
+]

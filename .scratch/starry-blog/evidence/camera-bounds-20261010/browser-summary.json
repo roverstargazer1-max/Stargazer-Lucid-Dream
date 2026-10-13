@@ -1,0 +1,184 @@
+{
+  "samples": [
+    {
+      "case": "phone-keyboard-bottom",
+      "camera": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "yaw": 1.0471975511965976,
+        "pitch": 0.7944143515579621,
+        "zoom": 0.72
+      },
+      "size": [
+        390,
+        844
+      ],
+      "room": "outside",
+      "mode": "relation",
+      "phase": "idle",
+      "minimumElevation": 0.06000000000000002,
+      "terrainBudgetPass": true
+    },
+    {
+      "case": "phone-drag-and-zoom-out",
+      "camera": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "yaw": 1.0471975511965976,
+        "pitch": 1.117395013198094,
+        "zoom": 0.3721329608340234
+      },
+      "size": [
+        390,
+        844
+      ],
+      "room": "outside",
+      "mode": "relation",
+      "phase": "idle",
+      "minimumElevation": 0.06000000000000004,
+      "terrainBudgetPass": true
+    },
+    {
+      "case": "phone-min-zoom-rotate",
+      "camera": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "yaw": 1.2991975511965974,
+        "pitch": 1.131900856153243,
+        "zoom": 0.36
+      },
+      "size": [
+        390,
+        844
+      ],
+      "room": "outside",
+      "mode": "relation",
+      "phase": "idle",
+      "minimumElevation": 0.05999999999999998,
+      "terrainBudgetPass": true
+    },
+    {
+      "case": "phone-time-origin",
+      "camera": {
+        "x": 214.86915017850725,
+        "y": 123.94104646834658,
+        "z": 997.2268051828254,
+        "yaw": -0.30000000000000004,
+        "pitch": 0.44075798265222216,
+        "zoom": 1.5499999999999998
+      },
+      "size": [
+        390,
+        844
+      ],
+      "room": "outside",
+      "mode": "time",
+      "phase": "idle",
+      "minimumElevation": 0.06095287944901346,
+      "terrainBudgetPass": true
+    },
+    {
+      "case": "phone-low-article-dock",
+      "camera": {
+        "x": -614.129918630131,
+        "y": -343.00166778199264,
+        "z": 822.1748283772898,
+        "yaw": -0.3,
+        "pitch": 0.5386540408918012,
+        "zoom": 1.55
+      },
+      "size": [
+        390,
+        844
+      ],
+      "room": "outside",
+      "mode": "time",
+      "phase": "settled",
+      "minimumElevation": 0.060009200019113355,
+      "terrainBudgetPass": true
+    },
+    {
+      "case": "resize-docked-to-desktop",
+      "camera": {
+        "x": 434.9723328277754,
+        "y": 822.0630835322007,
+        "z": 943.630967619188,
+        "yaw": -0.3,
+        "pitch": 0.16499999999999998,
+        "zoom": 1.55
+      },
+      "size": [
+        1280,
+        720
+      ],
+      "room": "outside",
+      "mode": "time",
+      "phase": "settled",
+      "minimumElevation": 0.13103320490860926,
+      "terrainBudgetPass": true
+    },
+    {
+      "case": "desktop-keyboard-bottom",
+      "camera": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "yaw": 1.0471975511965976,
+        "pitch": 0.44004638038263794,
+        "zoom": 0.72
+      },
+      "size": [
+        1280,
+        720
+      ],
+      "room": "outside",
+      "mode": "time",
+      "phase": "idle",
+      "minimumElevation": 0.05999999999999999,
+      "terrainBudgetPass": true
+    },
+    {
+      "case": "desktop-drag-and-zoom-out",
+      "camera": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "yaw": 1.0471975511965976,
+        "pitch": 0.7374494628578573,
+        "zoom": 0.3721329608340234
+      },
+      "size": [
+        1280,
+        720
+      ],
+      "room": "outside",
+      "mode": "time",
+      "phase": "idle",
+      "minimumElevation": 0.05999999999999995,
+      "terrainBudgetPass": true
+    },
+    {
+      "case": "desktop-min-zoom",
+      "camera": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "yaw": 1.0471975511965976,
+        "pitch": 0.7549705099256436,
+        "zoom": 0.36
+      },
+      "size": [
+        1280,
+        720
+      ],
+      "room": "outside",
+      "mode": "time",
+      "phase": "idle",
+      "minimumElevation": 0.060000000000000046,
+      "terrainBudgetPass": true
+    }
+  ]
+}

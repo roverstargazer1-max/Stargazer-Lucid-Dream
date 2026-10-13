@@ -1,0 +1,22 @@
+[
+  {
+    "viewport": "desktop",
+    "maxRGBDifference": 1
+  },
+  {
+    "viewport": "mobile",
+    "maxRGBDifference": 0
+  },
+  {
+    "viewport": "narrow",
+    "maxRGBDifference": 0
+  },
+  {
+    "viewport": "landscape",
+    "maxRGBDifference": 1
+  },
+  {
+    "viewport": "reduced",
+    "maxRGBDifference": 1
+  }
+]

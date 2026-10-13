@@ -1,0 +1,109 @@
+/* V11: one requested painted variation; ?scene=classic retains the earlier study. */
+body[data-scene=painted]{background:#042b68;--type-main:#edf1ec;--type-soft:#c9d8e5;--type-muted:#a4bdd3;--type-line:#bbd0e433;--paper:#e9e7de;--paper-ink:#34485e;--paper-muted:#687b8b}
+#room{position:fixed;inset:0;z-index:40;overflow:clip;background:transparent}
+.room-stage{position:absolute;width:max(100vw,177.683vh);height:max(56.28vw,100vh);left:50%;top:50%;margin-left:min(-50vw,-88.8415vh);margin-top:min(-28.14vw,-50vh);will-change:transform,opacity}
+.room-image{width:100%;height:100%;display:block;object-fit:cover}
+/* The illustration supplies only the near room; both sides of the window use #sky. */
+body[data-live-window=ready] .room-image{mask-image:url('./assets/room-window-mask-v17.svg');mask-mode:alpha;mask-size:100% 100%;mask-repeat:no-repeat}
+body[data-live-window=ready][data-room=inside] #world{visibility:visible}
+body[data-live-window=ready][data-room=inside] #world>:not(#sky){visibility:hidden}
+body[data-arrival] #sky{transform:rotate(var(--entry-bank,0rad)) scale(var(--entry-scale,1));transform-origin:center}
+#window-entry{position:absolute;left:31.3%;top:1%;width:68%;height:79%;padding:0;clip-path:polygon(0 0,100% 0,100% 100%,59% 100%,52% 78%,52% 55%,41% 53%,31% 76%,24% 100%,11% 100%,0 49%);cursor:zoom-in;border-radius:0}
+#window-entry:focus-visible{outline:none;background:none}
+/* Light follows the illustrated window; no text or button-shaped overlay. */
+.window-invitation{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:0;transition:opacity .2s}
+.window-invitation-tall{display:none}
+body[data-room=inside] .window-invitation{opacity:1;transition-duration:.7s}
+.window-edge{opacity:0;stroke-width:1.6;filter:drop-shadow(0 0 4px #cce4ee77);transition:opacity .65s}
+#window-entry:hover~.window-invitation .window-edge{opacity:.5}
+#window-entry:focus-visible~.window-invitation .window-edge{opacity:.85;stroke-width:2.2}
+.window-dust{opacity:.75;transition:opacity .65s}
+#window-entry:is(:hover,:focus-visible)~.window-invitation .window-dust{opacity:1}
+.window-dust>*{opacity:0;transform-box:fill-box;transform-origin:center}
+/* The explicit Full/Soft control resolves the system motion preference in createRoom. */
+body[data-motion=full][data-room=inside] .window-dust>*{animation:window-drift 7s ease-in-out var(--dust-delay,1s) infinite!important}
+.window-dust>:nth-child(2){--dust-delay:1.3s}
+.window-dust>:nth-child(3){--dust-delay:1.65s}
+.window-dust>:nth-child(4){--dust-delay:1.9s}
+.window-dust>:nth-child(5){--dust-delay:1.15s}
+@keyframes window-drift{
+  0%{opacity:0;transform:translate(-10px,12px) scale(1)}
+  16%{opacity:.75}
+  42%{opacity:0;transform:translate(44px,-46px) scale(.45)}
+  100%{opacity:0;transform:translate(44px,-46px) scale(.45)}
+}
+/* A quiet fixed glint retains the cue when motion is reduced. */
+body[data-motion=soft][data-room=inside] .window-dust>*{animation:none;opacity:.35;transform:none}
+#room-journal{position:absolute;left:6%;top:88%;width:13%;height:7%;border-radius:50%;transform:rotate(-4deg)}
+#room-journal:hover,#room-journal:focus-visible{box-shadow:0 0 25px #ffd68e44;outline:1px solid #f7d88c66}
+.entry-motion{position:absolute;bottom:24px;right:30px;z-index:3;color:#c8d3df99;font-size:10px;letter-spacing:1px;padding:8px;background:#10274644;border-radius:2px}
+body[data-room=inside] #world,body[data-room=inside] .art-study-bar,body[data-room=inside] .prototype-tools{visibility:hidden}
+body[data-room=entering] #world>:not(#sky),body[data-room=entering] .art-study-bar,body[data-room=entering] .prototype-tools{visibility:hidden}
+body[data-room=entering] .entry-motion{opacity:0}
+body[data-room=returning] #world>:not(#sky),body[data-room=returning] .art-study-bar,body[data-room=returning] .prototype-tools{visibility:hidden}
+body[data-room=returning] .entry-motion{opacity:0}
+body[data-scene=painted] .grain{opacity:.013}
+body[data-scene=painted] .masthead{top:26px;left:3.8%;opacity:.87}
+body[data-scene=painted] .wordmark{width:228px}
+body[data-scene=painted] .navigation{background:none;border:0;border-radius:0;backdrop-filter:none;-webkit-backdrop-filter:none;box-shadow:none;text-shadow:0 0 10px #bbd7eb18;opacity:.82;transition:opacity .6s ease;padding:9px 13px;top:30px;gap:19px}
+body[data-scene=painted] .navigation:hover,body[data-scene=painted] .navigation:focus-within{opacity:1}
+body[data-scene=painted] .mode-switch button{color:#91adc7}
+body[data-scene=painted] .mode-switch button[aria-pressed=true]{color:#edf1ec}
+body[data-scene=painted] .icon-control{color:#d5e0e7}
+.cloud-target{position:absolute;width:44px;height:44px;transform:translate(-50%,-50%);pointer-events:none;border-radius:50%;z-index:2}
+.cloud-target:focus-visible{outline:1px dotted #b9d0df99;outline-offset:4px}
+#sky.over-cloud{cursor:pointer}
+body[data-scene=painted] .star-label{font-family:"KaiTi","STKaiti","Songti SC",serif;font-size:15px;letter-spacing:1.5px;text-shadow:0 2px 12px #00183c}
+body[data-scene=painted] .star-target:before,body[data-scene=painted] .star-target:after{display:none}
+body[data-scene=painted] .world-footer,body[data-scene=painted] .path-legend{color:#c1d5e5a6}
+body[data-scene=painted] .signal-egg{color:#e4cc98}
+body[data-scene=painted] .edge-guide{color:#d0deed}
+body[data-scene=painted][data-variant] .preview{background:linear-gradient(115deg,#09285dec,#14366be8);border:1px solid #a9c8df3b;border-top-color:#e3d3aa77;box-shadow:0 16px 50px #00132d40;backdrop-filter:blur(8px);border-radius:3px 7px 3px 6px;bottom:79px}
+body[data-scene=painted] .preview h2{font-family:"KaiTi","STKaiti","Songti SC",serif;font-weight:400}
+body[data-scene=painted] .preview-body p{color:#c5d6e7}
+body[data-scene=painted] #reader{background:#e9e7de;box-shadow:0 24px 100px #00112877;border:1px solid #d7d6cc;border-radius:5px 9px 4px 7px;color:#30435a}
+body[data-scene=painted] #reader::backdrop{background:#03265780;backdrop-filter:blur(5px)}
+body[data-scene=painted] .reading-frame{background:linear-gradient(110deg,#f0ece2,#e6e7e0)}
+body[data-scene=painted] #reader h1{color:#293e5b;font-family:"KaiTi","STKaiti","Songti SC",serif}
+body[data-scene=painted] #reader .article-intro{color:#6b7887}
+body[data-scene=painted] #reader-content{color:#34485e}
+body[data-scene=painted] #reader .reading-header,body[data-scene=painted] #reader .reading-footer{color:#62748b;border-color:#536c8530}
+body[data-scene=painted] #reader button{color:#365170}
+body[data-scene=painted] #egg-dialog{background:#e9e7de;color:#30435a;border-radius:5px 9px 4px 7px;border:1px solid #c7cfce}
+body[data-scene=painted] #egg-dialog h2,body[data-scene=painted] #egg-dialog p{color:#34485e}
+body[data-scene=painted] #egg-dialog .eyebrow,body[data-scene=painted] #egg-dialog .egg-signature{color:#718398}
+body[data-scene=painted] .art-study-bar{background:#08244ccb;border-color:#c3d7e332;color:#bdd0e2}
+body[data-scene=painted] .art-study-controls,body[data-scene=painted] .art-study-bar>summary{background:#08244ce8}
+body[data-scene=painted] .roof-switcher,body[data-scene=painted] #art-choice,body[data-scene=painted] #type-choice{display:none}
+body[data-scene=painted] #scene-compare{font-size:10px;color:#b7cbe0;text-decoration:none;padding:7px}
+#sky-map{--sky-map-size:180px;position:absolute;right:28px;bottom:83px;width:calc(var(--sky-map-size) + 20px);padding:13px 10px 9px;background:none;border:0;box-shadow:none;opacity:0;filter:blur(3px);pointer-events:none;transition:opacity 1.8s ease,filter 1.8s ease;z-index:8}
+#sky-map.is-visible{opacity:.88;filter:blur(0);pointer-events:auto;transition-duration:1.3s}
+#sky-map canvas{width:var(--sky-map-size);height:var(--sky-map-size);display:block;cursor:crosshair;touch-action:none}
+#sky-map-controls{position:absolute;right:29px;bottom:49px;display:flex;align-items:center;gap:12px;z-index:8}
+#sky-map-controls button{font-size:11px;font-weight:500;color:#bccfdc;letter-spacing:1px;padding:8px 3px;transition:color .4s}
+#sky-map-controls button:hover,#sky-map-controls button:focus-visible{color:#eff4f6}
+#sky-map-controls #sky-map-toggle{font-weight:600}
+@media(max-width:760px),(max-height:500px){
+  #sky-map{--sky-map-size:clamp(96px,28vmin,116px);width:calc(var(--sky-map-size) + 12px);padding:6px}
+}
+@media(max-width:760px){
+  #sky-map{top:148px;bottom:auto;left:15px;right:auto}
+  #sky-map-controls{right:20px;top:128px;bottom:auto;gap:11px}
+  #sky-map-controls button{font-size:10px}
+}
+@media(prefers-reduced-motion:reduce){#sky-map,#sky-map.is-visible{filter:none;transition:opacity .2s}}
+@media(max-width:760px){
+  .room-stage{width:max(100vw,56.28vh);height:max(177.683vw,100vh);margin-left:min(-50vw,-28.14vh);margin-top:min(-88.8415vw,-50vh)}
+  body[data-live-window=ready] .room-image{mask-image:url('./assets/room-window-portrait-mask-v17.svg')}
+  #window-entry{left:20%;top:0;width:80%;height:59%;clip-path:none}
+  .window-invitation-wide{display:none}
+  .window-invitation-tall{display:block}
+  #room-journal{left:3%;top:87%;width:24%;height:5%}
+  .entry-motion{right:16px;bottom:20px}
+  body[data-scene=painted] .masthead{left:20px;top:20px}
+  body[data-scene=painted] .wordmark{width:166px}
+  body[data-scene=painted] .navigation{right:14px;top:88px;gap:13px;padding:5px 8px}
+  body[data-scene=painted] .star-label{font-size:12px}
+  body[data-scene=painted][data-variant] .preview{bottom:90px;width:calc(100% - 36px)}
+  body[data-scene=painted] .world-footer{bottom:53px}
+}

@@ -1,0 +1,40 @@
+[
+  {
+    "name": "pressure",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "soft": false,
+    "pressure": true,
+    "audit": {
+      "movingFrames": 760,
+      "emptyFrames": 0,
+      "warpedFrames": 0,
+      "transformedSkyFrames": 0,
+      "turnWithForegroundFrames": 0
+    },
+    "states": [
+      {
+        "direction": "enter",
+        "roomHidden": true,
+        "roomInert": true,
+        "worldInert": false,
+        "animations": 0,
+        "transientSkyStyle": "",
+        "quality": "low"
+      },
+      {
+        "direction": "return",
+        "roomHidden": false,
+        "roomInert": false,
+        "worldInert": true,
+        "animations": 0,
+        "transientSkyStyle": "",
+        "quality": "low"
+      }
+    ],
+    "errors": [],
+    "interaction": "enter, search, collapse/expand, close search and return passed"
+  }
+]

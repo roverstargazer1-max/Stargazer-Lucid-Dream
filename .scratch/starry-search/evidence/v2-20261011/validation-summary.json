@@ -1,0 +1,22 @@
+{
+  "date": "2026-10-12",
+  "tests": { "command": "npm test", "passed": 83, "failed": 0 },
+  "build": { "command": "npm run build", "passed": true, "themes": ["/", "/legacy/"] },
+  "feedback": {
+    "v2AssetsReplaceFirstVersions": true,
+    "collapsedLayoutMatchesReference": true,
+    "collapsedArrowSouthwest": true,
+    "expandArrowClockwise90": true,
+    "selectedFiltersUseUnderline": true,
+    "sharedReadFocusTransition": true,
+    "outsideClickDismisses": true,
+    "v2RemovedBordersPreserved": true,
+    "suppliedBluePurpleEntry": true,
+    "miniatureAlwaysRemoved": true,
+    "homepageMarginsPreserved": true
+  },
+  "browser": { "script": "check.mjs", "passed": true, "viewports": ["1440x1000", "390x844", "844x390"], "pageErrors": [] },
+  "productionAssetsByteIdentical": true,
+  "deployed": false,
+  "physicalTouchVerified": false
+}

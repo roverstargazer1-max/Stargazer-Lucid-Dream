@@ -1,0 +1,75 @@
+[
+  {
+    "name": "移动中重复激活不打开正文",
+    "pass": true
+  },
+  {
+    "name": "相机到位时动作区已可见",
+    "pass": true,
+    "evidence": {
+      "elapsed": 1517,
+      "previewBusy": "true"
+    }
+  },
+  {
+    "name": "首次完整显露",
+    "pass": true,
+    "evidence": {
+      "elapsed": 2816
+    }
+  },
+  {
+    "name": "重复显露缩短但不能提前阅读",
+    "pass": true,
+    "evidence": {
+      "elapsed": 715
+    }
+  },
+  {
+    "name": "阅读返回位置和身份保持",
+    "pass": true,
+    "evidence": {
+      "before": [
+        427.1975402832031,
+        243.01441955566406
+      ],
+      "after": [
+        427.1975402832031,
+        243.01441955566406
+      ]
+    }
+  },
+  {
+    "name": "手动中断清理遮块",
+    "pass": true
+  },
+  {
+    "name": "中断的简介仍走首次",
+    "pass": true
+  },
+  {
+    "name": "移动中改选目标",
+    "pass": true
+  },
+  {
+    "name": "归窗清理选中与遮块",
+    "pass": true
+  },
+  {
+    "name": "切换时间仍聚焦同文",
+    "pass": true
+  },
+  {
+    "name": "时间提示来自文章年月",
+    "pass": true,
+    "evidence": "2023 年 6 月"
+  },
+  {
+    "name": "时间提示自动退出",
+    "pass": true
+  },
+  {
+    "name": "动画末尾没有遮块",
+    "pass": true
+  }
+]

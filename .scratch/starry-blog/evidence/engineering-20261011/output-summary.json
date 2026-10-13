@@ -1,0 +1,20 @@
+{
+  "baselineFiles": 276,
+  "currentFiles": 278,
+  "unchangedFiles": 269,
+  "changed": [
+    "js/blog-theme-switch.js",
+    "js/starfield/app.js",
+    "js/starfield/audio.js",
+    "js/starfield/dome.js",
+    "js/starfield/interactive-clouds.js",
+    "js/starfield/painted.js",
+    "legacy/js/blog-theme-switch.js"
+  ],
+  "added": [
+    "js/starfield/edge-guide.js",
+    "js/starfield/room-scene.js"
+  ],
+  "unchangedHtml": 63,
+  "htmlCssAssetsAndIndexIdentical": true
+}

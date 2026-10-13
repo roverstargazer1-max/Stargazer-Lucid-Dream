@@ -1,0 +1,517 @@
+[
+  {
+    "name": "mobile",
+    "width": 390,
+    "height": 844,
+    "touch": true,
+    "initial": {
+      "entry": {
+        "x": 14,
+        "y": 686,
+        "width": 72,
+        "height": 72,
+        "right": 86,
+        "bottom": 758
+      },
+      "modes": {
+        "x": 20,
+        "y": 775,
+        "width": 96,
+        "height": 45,
+        "right": 116,
+        "bottom": 820
+      },
+      "silhouette": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "right": 0,
+        "bottom": 0
+      },
+      "modeGap": 17,
+      "overlapsModes": false,
+      "overlapsSilhouette": false,
+      "centerHitsEntry": true
+    },
+    "selected": {
+      "entry": {
+        "x": 14,
+        "y": 686,
+        "width": 72,
+        "height": 72,
+        "right": 86,
+        "bottom": 758
+      },
+      "modes": {
+        "x": 20,
+        "y": 775,
+        "width": 96,
+        "height": 45,
+        "right": 116,
+        "bottom": 820
+      },
+      "silhouette": {
+        "x": 7.484375,
+        "y": 592.25,
+        "width": 86.015625,
+        "height": 104.9375,
+        "right": 93.5,
+        "bottom": 697.1875
+      },
+      "modeGap": 17,
+      "overlapsModes": false,
+      "overlapsSilhouette": true,
+      "centerHitsEntry": true
+    },
+    "returned": {
+      "entry": {
+        "x": 14,
+        "y": 686,
+        "width": 72,
+        "height": 72,
+        "right": 86,
+        "bottom": 758
+      },
+      "modes": {
+        "x": 20,
+        "y": 775.7107543945312,
+        "width": 96,
+        "height": 45,
+        "right": 116,
+        "bottom": 820.7107543945312
+      },
+      "silhouette": {
+        "x": 7.484375,
+        "y": 592.25,
+        "width": 86.015625,
+        "height": 104.9375,
+        "right": 93.5,
+        "bottom": 697.1875
+      },
+      "modeGap": 17.71075439453125,
+      "overlapsModes": false,
+      "overlapsSilhouette": true,
+      "centerHitsEntry": true
+    },
+    "errors": []
+  },
+  {
+    "name": "narrow",
+    "width": 320,
+    "height": 568,
+    "touch": true,
+    "initial": {
+      "entry": {
+        "x": 14,
+        "y": 410,
+        "width": 72,
+        "height": 72,
+        "right": 86,
+        "bottom": 482
+      },
+      "modes": {
+        "x": 20,
+        "y": 499,
+        "width": 96,
+        "height": 45,
+        "right": 116,
+        "bottom": 544
+      },
+      "silhouette": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "right": 0,
+        "bottom": 0
+      },
+      "modeGap": 17,
+      "overlapsModes": false,
+      "overlapsSilhouette": false,
+      "centerHitsEntry": true
+    },
+    "selected": {
+      "entry": {
+        "x": 14,
+        "y": 410,
+        "width": 72,
+        "height": 72,
+        "right": 86,
+        "bottom": 482
+      },
+      "modes": {
+        "x": 20,
+        "y": 499,
+        "width": 96,
+        "height": 45,
+        "right": 116,
+        "bottom": 544
+      },
+      "silhouette": {
+        "x": 7.578125,
+        "y": 348.015625,
+        "width": 69.90625,
+        "height": 85.296875,
+        "right": 77.484375,
+        "bottom": 433.3125
+      },
+      "modeGap": 17,
+      "overlapsModes": false,
+      "overlapsSilhouette": true,
+      "centerHitsEntry": true
+    },
+    "returned": {
+      "entry": {
+        "x": 14,
+        "y": 410,
+        "width": 72,
+        "height": 72,
+        "right": 86,
+        "bottom": 482
+      },
+      "modes": {
+        "x": 20,
+        "y": 499.65771484375,
+        "width": 96,
+        "height": 45,
+        "right": 116,
+        "bottom": 544.65771484375
+      },
+      "silhouette": {
+        "x": 7.578125,
+        "y": 348.015625,
+        "width": 69.90625,
+        "height": 85.296875,
+        "right": 77.484375,
+        "bottom": 433.3125
+      },
+      "modeGap": 17.65771484375,
+      "overlapsModes": false,
+      "overlapsSilhouette": true,
+      "centerHitsEntry": true
+    },
+    "errors": []
+  },
+  {
+    "name": "reference",
+    "width": 450,
+    "height": 875,
+    "touch": true,
+    "initial": {
+      "entry": {
+        "x": 14,
+        "y": 717,
+        "width": 72,
+        "height": 72,
+        "right": 86,
+        "bottom": 789
+      },
+      "modes": {
+        "x": 20,
+        "y": 806,
+        "width": 96,
+        "height": 45,
+        "right": 116,
+        "bottom": 851
+      },
+      "silhouette": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "right": 0,
+        "bottom": 0
+      },
+      "modeGap": 17,
+      "overlapsModes": false,
+      "overlapsSilhouette": false,
+      "centerHitsEntry": true
+    },
+    "selected": {
+      "entry": {
+        "x": 14,
+        "y": 717,
+        "width": 72,
+        "height": 72,
+        "right": 86,
+        "bottom": 789
+      },
+      "modes": {
+        "x": 20,
+        "y": 806,
+        "width": 96,
+        "height": 45,
+        "right": 116,
+        "bottom": 851
+      },
+      "silhouette": {
+        "x": 7.40625,
+        "y": 596,
+        "width": 99.8125,
+        "height": 121.78125,
+        "right": 107.21875,
+        "bottom": 717.78125
+      },
+      "modeGap": 17,
+      "overlapsModes": false,
+      "overlapsSilhouette": true,
+      "centerHitsEntry": true
+    },
+    "returned": {
+      "entry": {
+        "x": 14,
+        "y": 717,
+        "width": 72,
+        "height": 72,
+        "right": 86,
+        "bottom": 789
+      },
+      "modes": {
+        "x": 20,
+        "y": 806.6841430664062,
+        "width": 96,
+        "height": 45,
+        "right": 116,
+        "bottom": 851.6841430664062
+      },
+      "silhouette": {
+        "x": 7.40625,
+        "y": 596,
+        "width": 99.8125,
+        "height": 121.78125,
+        "right": 107.21875,
+        "bottom": 717.78125
+      },
+      "modeGap": 17.68414306640625,
+      "overlapsModes": false,
+      "overlapsSilhouette": true,
+      "centerHitsEntry": true
+    },
+    "errors": []
+  },
+  {
+    "name": "landscape",
+    "width": 844,
+    "height": 390,
+    "touch": true,
+    "initial": {
+      "entry": {
+        "x": 16,
+        "y": 306,
+        "width": 60,
+        "height": 60,
+        "right": 76,
+        "bottom": 366
+      },
+      "modes": {
+        "x": 534,
+        "y": 9.5,
+        "width": 96,
+        "height": 45,
+        "right": 630,
+        "bottom": 54.5
+      },
+      "silhouette": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "right": 0,
+        "bottom": 0
+      },
+      "modeGap": -356.5,
+      "overlapsModes": false,
+      "overlapsSilhouette": false,
+      "centerHitsEntry": true
+    },
+    "selected": {
+      "entry": {
+        "x": 16,
+        "y": 306,
+        "width": 60,
+        "height": 60,
+        "right": 76,
+        "bottom": 366
+      },
+      "modes": {
+        "x": 534,
+        "y": 9.5,
+        "width": 96,
+        "height": 45,
+        "right": 630,
+        "bottom": 54.5
+      },
+      "silhouette": {
+        "x": 308.453125,
+        "y": 126.5,
+        "width": 118.40625,
+        "height": 144.453125,
+        "right": 426.859375,
+        "bottom": 270.953125
+      },
+      "modeGap": -356.5,
+      "overlapsModes": false,
+      "overlapsSilhouette": false,
+      "centerHitsEntry": true
+    },
+    "returned": {
+      "entry": {
+        "x": 16,
+        "y": 306,
+        "width": 60,
+        "height": 60,
+        "right": 76,
+        "bottom": 366
+      },
+      "modes": {
+        "x": 534,
+        "y": 10.210592269897461,
+        "width": 96,
+        "height": 45,
+        "right": 630,
+        "bottom": 55.21059226989746
+      },
+      "silhouette": {
+        "x": 308.453125,
+        "y": 126.5,
+        "width": 118.40625,
+        "height": 144.453125,
+        "right": 426.859375,
+        "bottom": 270.953125
+      },
+      "modeGap": -355.78940773010254,
+      "overlapsModes": false,
+      "overlapsSilhouette": false,
+      "centerHitsEntry": true
+    },
+    "errors": []
+  },
+  {
+    "name": "desktop",
+    "width": 1440,
+    "height": 1000,
+    "touch": false,
+    "initial": {
+      "entry": {
+        "x": 28,
+        "y": 850,
+        "width": 100,
+        "height": 100,
+        "right": 128,
+        "bottom": 950
+      },
+      "modes": {
+        "x": 1075.28125,
+        "y": 31.5,
+        "width": 96,
+        "height": 45,
+        "right": 1171.28125,
+        "bottom": 76.5
+      },
+      "silhouette": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "right": 0,
+        "bottom": 0
+      },
+      "modeGap": -918.5,
+      "overlapsModes": false,
+      "overlapsSilhouette": false,
+      "centerHitsEntry": true
+    },
+    "selected": {
+      "entry": {
+        "x": 28,
+        "y": 850,
+        "width": 100,
+        "height": 100,
+        "right": 128,
+        "bottom": 950
+      },
+      "modes": {
+        "x": 1075.28125,
+        "y": 31.5,
+        "width": 96,
+        "height": 45,
+        "right": 1171.28125,
+        "bottom": 76.5
+      },
+      "silhouette": {
+        "x": 794.078125,
+        "y": 516.7109375,
+        "width": 135.78125,
+        "height": 165.671875,
+        "right": 929.859375,
+        "bottom": 682.3828125
+      },
+      "modeGap": -918.5,
+      "overlapsModes": false,
+      "overlapsSilhouette": false,
+      "centerHitsEntry": true
+    },
+    "returned": {
+      "entry": {
+        "x": 28,
+        "y": 850,
+        "width": 100,
+        "height": 100,
+        "right": 128,
+        "bottom": 950
+      },
+      "modes": {
+        "x": 1075.28125,
+        "y": 32.184051513671875,
+        "width": 96,
+        "height": 45,
+        "right": 1171.28125,
+        "bottom": 77.18405151367188
+      },
+      "silhouette": {
+        "x": 794.078125,
+        "y": 516.7109375,
+        "width": 135.78125,
+        "height": 165.671875,
+        "right": 929.859375,
+        "bottom": 682.3828125
+      },
+      "modeGap": -917.8159484863281,
+      "overlapsModes": false,
+      "overlapsSilhouette": false,
+      "centerHitsEntry": true
+    },
+    "resized": {
+      "entry": {
+        "x": 14,
+        "y": 686,
+        "width": 72,
+        "height": 72,
+        "right": 86,
+        "bottom": 758
+      },
+      "modes": {
+        "x": 20,
+        "y": 775.7380981445312,
+        "width": 96,
+        "height": 45,
+        "right": 116,
+        "bottom": 820.7380981445312
+      },
+      "silhouette": {
+        "x": 7.484375,
+        "y": 592.25,
+        "width": 86.015625,
+        "height": 104.9375,
+        "right": 93.5,
+        "bottom": 697.1875
+      },
+      "modeGap": 17.73809814453125,
+      "overlapsModes": false,
+      "overlapsSilhouette": true,
+      "centerHitsEntry": true
+    },
+    "errors": []
+  }
+]

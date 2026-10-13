@@ -1,0 +1,674 @@
+{
+  "created": "2026-09-15T03:01:52.107Z",
+  "baselineFiles": 46,
+  "baselineMismatches": [],
+  "source": "themes/hexo-theme-kira/prototypes/starfield",
+  "files": [
+    {
+      "path": "app.js",
+      "bytes": 50729,
+      "sha256": "cbbaefd37a38c848c10ad6bdb4b2ceb62848abded8908eca9b8041e727d827bc"
+    },
+    {
+      "path": "ART-DIRECTION.md",
+      "bytes": 7665,
+      "sha256": "ce7e2cab918e9e6962d7f7a5a938e6dbbd2916be222f4bd918b601a148abc795"
+    },
+    {
+      "path": "ART-STUDY-01.md",
+      "bytes": 2372,
+      "sha256": "17bbd18e2d19377dde3579beef0cff955a950c633bf8fddcc8f8e5554a02ceb5"
+    },
+    {
+      "path": "ART-STUDY-02.md",
+      "bytes": 2275,
+      "sha256": "b5f2f3a0e5ff62065e2ca9d6d6b8463cd750cd663bf49fd952f12b92d265ce15"
+    },
+    {
+      "path": "ART-STUDY-03.md",
+      "bytes": 2979,
+      "sha256": "c8c53c9d21cc708e9e5508cf44b6852630d09ba7de88c69aead13c172ac6f918"
+    },
+    {
+      "path": "ART-STUDY-04.md",
+      "bytes": 4467,
+      "sha256": "b101950b35501025fac3e08dbf50925b0b226b97eecb7ee624d8afa8bb678ac6"
+    },
+    {
+      "path": "ART-STUDY-06.md",
+      "bytes": 3370,
+      "sha256": "ff92a321fa41ddc9ffb086397c40b45319e236f22d55fa44fbf4425838a3d5c6"
+    },
+    {
+      "path": "art-study.js",
+      "bytes": 5824,
+      "sha256": "fb61e303554a6429808c315f429bdee4246ddd8da272e91532f874bf9d82b913"
+    },
+    {
+      "path": "art.js",
+      "bytes": 9008,
+      "sha256": "b0e34aad8323f4ba366c36dcd561273c7f32b5438c08b32965e72fc9094b9b46"
+    },
+    {
+      "path": "ATMOSPHERE-STUDY-13.md",
+      "bytes": 4256,
+      "sha256": "b5a94277de6c30ee66752a1e62c1f6edf5c438509b76eb5117e8aa750ef8f9b7"
+    },
+    {
+      "path": "dome-renderer.js",
+      "bytes": 9950,
+      "sha256": "a7d82149414592b31a386f24e6f804196192b55181c099ea5fcaf9e0863b62d1"
+    },
+    {
+      "path": "DOME-STUDY-12.md",
+      "bytes": 9914,
+      "sha256": "fbd7718937da76358c06f3c163cedf0045f5ef5a225261dd85b601d1f2815e9b"
+    },
+    {
+      "path": "dome.js",
+      "bytes": 4168,
+      "sha256": "b884201d123efaefaf7a0ddc8ff896d489c1dbf72021e026cf4599670b8f110a"
+    },
+    {
+      "path": "EXPLORATION-PATHS.md",
+      "bytes": 3864,
+      "sha256": "5a50be631a8429bf52806ca7a503f17e100c2dc6df768a38232080bd31e9197e"
+    },
+    {
+      "path": "index.html",
+      "bytes": 10213,
+      "sha256": "ceadd54a80ef48baa427a6920ad5f85d816e692f1003f931621735ee021484e3"
+    },
+    {
+      "path": "interactive-clouds.js",
+      "bytes": 5596,
+      "sha256": "c0854cc3396a3979e2fbd94b5b6f23f1167f158b3a14f994e0eccc9a8e0d1dfc"
+    },
+    {
+      "path": "mock.js",
+      "bytes": 9928,
+      "sha256": "38fd5d601ddff601880ec6dd3cdea6cb8aae42b9861ef02b4fe6a2b2689dd371"
+    },
+    {
+      "path": "MOTION-STUDY-14.md",
+      "bytes": 5229,
+      "sha256": "13bcaca348b767be54ed5242bc9555d9825dc831a91fca0a22f63059dab0964e"
+    },
+    {
+      "path": "MOTION-STUDY-15.md",
+      "bytes": 4963,
+      "sha256": "8c1575e59f5659e5bdf2d670f79832f49fc01f587eebf1628b51eed6a5678732"
+    },
+    {
+      "path": "MOTION-STUDY-16.md",
+      "bytes": 2348,
+      "sha256": "760fb41246415a51b302458ae5d3c918991515ffb4695cad483e003add5bb1bf"
+    },
+    {
+      "path": "MOTION-STUDY-17.md",
+      "bytes": 3224,
+      "sha256": "4ced0106215956cdd991e5060a45df6cd5d352e6aed63499b159ceb922723b58"
+    },
+    {
+      "path": "MOTION-STUDY-18.md",
+      "bytes": 2445,
+      "sha256": "0edcea80cb3c562739e006926056a2d9293da5f524f13a39c6035c250f139a1c"
+    },
+    {
+      "path": "MOTION-STUDY-19.md",
+      "bytes": 4941,
+      "sha256": "ef80f9853ddadcb5624ae9bfc46719fbb5c28aa1affea66f7e0e796734c5ae63"
+    },
+    {
+      "path": "motion.css",
+      "bytes": 6388,
+      "sha256": "31cd75fefd838920ed91f53c4aac855d0eb77ff3909cddb63d7eb7a22d1c03ae"
+    },
+    {
+      "path": "motion.js",
+      "bytes": 14790,
+      "sha256": "7f1da06e5f83a4ed5f35fe061187434f88f60e35800ab62569d88d8ae7d6ce2a"
+    },
+    {
+      "path": "navigation.js",
+      "bytes": 3577,
+      "sha256": "bcfcabbda17d9ff73bc370c59396e5a3363cc8b976e666c4d0d9fe773663e2c6"
+    },
+    {
+      "path": "painted.css",
+      "bytes": 15446,
+      "sha256": "e49b2ded96bc3187c6d7839abac433f1fcab73d4c93ed2df279b92347706dd4b"
+    },
+    {
+      "path": "painted.js",
+      "bytes": 9408,
+      "sha256": "3b7e2bcd50858ba861c35967b978a423546629fef61c6e047551421535e0cb09"
+    },
+    {
+      "path": "README.md",
+      "bytes": 15006,
+      "sha256": "cafbb86a0266a46ba52dff24a6cebf6a2b1b698e57adfd24362362e79f38cb47"
+    },
+    {
+      "path": "ROOF-STYLES.md",
+      "bytes": 2838,
+      "sha256": "0f01032b5b6d421ae18cf483e0b33ae7c7ed2a202666e43238faf035a6aacf8a"
+    },
+    {
+      "path": "server.mjs",
+      "bytes": 2318,
+      "sha256": "bf991e27b7384e7023ea5c77caab137bbccbaf33b34ff1b9d58f46d546fbd3b2"
+    },
+    {
+      "path": "sky-map.js",
+      "bytes": 6195,
+      "sha256": "87e65f98b768b75201fb6def3f75cff59712174216e27f59c57cad0e6dd7a494"
+    },
+    {
+      "path": "style.css",
+      "bytes": 38003,
+      "sha256": "3188bba3839190c6fb14eefc265b7ece510d951850764b32c32798cab1e672e6"
+    },
+    {
+      "path": "assets/painted-sky-v11.png",
+      "bytes": 1330878,
+      "sha256": "0bc0c5eac254152bafafc5a2e3d2a2f0f209059d12d31031ab71085a97c32599"
+    },
+    {
+      "path": "assets/roof-anime-v4.png",
+      "bytes": 1361296,
+      "sha256": "76c47a7c03e2cf05a7146548691390b81a74a6b6a4a687dc7c7ed0c4708ee3f5"
+    },
+    {
+      "path": "assets/roof-minimal-v4.png",
+      "bytes": 617604,
+      "sha256": "bc75ed00c5a35a318bcd0d2dd3a39e41af4c7325550a112410a7308e9a0e637f"
+    },
+    {
+      "path": "assets/roof-paper-v4.png",
+      "bytes": 1481895,
+      "sha256": "17fb2f1370189324d750b1093d73c92b34edb79d646867962370eab3934a6848"
+    },
+    {
+      "path": "assets/roof-pixel-v4.png",
+      "bytes": 1353117,
+      "sha256": "a5a7a3ce1b1b355768265bbc048462483f2b6900609c01f1d175ab5459952281"
+    },
+    {
+      "path": "assets/roof-silhouette-v2.svg",
+      "bytes": 662,
+      "sha256": "fbf523ddab5ce75b6aa38cb56bdc81fd52cae4c392452fc63195ead490dd2eb2"
+    },
+    {
+      "path": "assets/roof-stargazer-v9.png",
+      "bytes": 2017520,
+      "sha256": "902705cc0805a8f3f025a340dbbbce99c5ee097b85b7e66b0d02a4841ab8a602"
+    },
+    {
+      "path": "assets/rooftop-v2.png",
+      "bytes": 2088084,
+      "sha256": "fca5b76146439b0b4ccf2c949db53902f647ff101ab12c92a36bd20ab046b818"
+    },
+    {
+      "path": "assets/room-portrait-v11.png",
+      "bytes": 1326151,
+      "sha256": "bf8f98c84a050de63e3ce448187a13aa03d3dcedc8afe0f177740a205b280f78"
+    },
+    {
+      "path": "assets/room-reference-v11.png",
+      "bytes": 1280596,
+      "sha256": "010592c6b0def47c9627a7bbe0cf5038b632a527a3dbdfed82ebc356f53fb520"
+    },
+    {
+      "path": "assets/room-window-mask-v17.svg",
+      "bytes": 1297,
+      "sha256": "406b8f2cf2e844e7fc11bd4c37a87aedabad2ce0e2499c6536e42dbc694e56bd"
+    },
+    {
+      "path": "assets/room-window-portrait-mask-v17.svg",
+      "bytes": 1089,
+      "sha256": "69477340faabfee77f952fcd103b2f6be32b68ae3cbbceae7a22f9085605d1b3"
+    },
+    {
+      "path": "assets/sky-reference-v2.png",
+      "bytes": 1929618,
+      "sha256": "51a4e675327cb88cb115b4c952f2f29ed2daf6ec49cedfa808630c8a81ad107c"
+    },
+    {
+      "path": "experience.js",
+      "bytes": 818,
+      "sha256": "62307233722158aab993ceab1014a6f225a30b7e80ea0c1446c03768a6a81de6"
+    },
+    {
+      "path": "review-tools.js",
+      "bytes": 9170,
+      "sha256": "e0fac525cbf1ebc5dcb3b4d0583d71bc7d3cc451d8a55e93d14e3bed9defcd15"
+    },
+    {
+      "path": "frame-monitor.js",
+      "bytes": 1586,
+      "sha256": "76fa8c48ce394947f1dfdbf0e1b8032524f03aa0ae81c1d60bfa794ecb3a982e"
+    }
+  ],
+  "evidenceChecks": {
+    "layoutCases": 9,
+    "layoutFailures": [],
+    "motionCases": 13,
+    "motionFailures": []
+  },
+  "verifiedAt": "2026-09-15T08:53:04.914Z",
+  "documents": [
+    {
+      "path": ".scratch/starry-blog/optimization-plan-v19.md",
+      "bytes": 22349,
+      "sha256": "4f2b0142314291546b5410b4d91269967541a96491a49535a5e4e16897e3fd6d"
+    },
+    {
+      "path": ".scratch/starry-blog/optimization-v20-acceptance.md",
+      "bytes": 22048,
+      "sha256": "ce90b17ca44f3cd8c0bad9fb4074e03132869d8c1c32101d11153cad4bf3676e"
+    },
+    {
+      "path": "docs/design/starry-blog.md",
+      "bytes": 27248,
+      "sha256": "6697d920d3b0064aa40095f4101088151b4aec45b0fe2af587b583a1b4501dca"
+    },
+    {
+      "path": "themes/hexo-theme-kira/prototypes/starfield/README.md",
+      "bytes": 15006,
+      "sha256": "cafbb86a0266a46ba52dff24a6cebf6a2b1b698e57adfd24362362e79f38cb47"
+    }
+  ],
+  "evidence": [
+    {
+      "path": ".scratch/starry-blog/evidence-v20/baseline-clipping.json",
+      "bytes": 675,
+      "sha256": "92c16e49a21dbc8dea86b0687dbb39ad8a8aa95a7f44c022e3bd23ef3a3aee0d"
+    },
+    {
+      "path": ".scratch/starry-blog/evidence-v20/baseline-clipping.png",
+      "bytes": 16688,
+      "sha256": "a4b74a4a15464a7fe2e9a12db610eb5a1ab5e2855bb4c6e866d4aa802378d1e8"
+    },
+    {
+      "path": ".scratch/starry-blog/evidence-v20/baseline-room.png",
+      "bytes": 2530,
+      "sha256": "2c2813240e81d6913b6ebb67f11523e98719af21b3846bd2ce2d55238fe39ee2"
+    },
+    {
+      "path": ".scratch/starry-blog/evidence-v20/baseline-sky.png",
+      "bytes": 10934,
+      "sha256": "73097f3cd35f1537cb6c31a51322f72737021aca33d304fae8ac9df6cca875c5"
+    },
+    {
+      "path": ".scratch/starry-blog/evidence-v20/cloud-cloud-gray8.png",
+      "bytes": 26991,
+      "sha256": "a80efd085ccc2671ca63dbfe07ae4aa7054fafeaa5e2d65c33de39b35405c1a6"
+    },
+    {
+      "path": ".scratch/starry-blog/evidence-v20/cloud-cloud-original.png",
+      "bytes": 27078,
+      "sha256": "d02ffd287fef8120987a2afddd05d3f6e677801419d747a2a2f0ff9a6bc5bac8"
+    },
+    {
+      "path": ".scratch/starry-blog/evidence-v20/cloud-dark-gray8.png",
+      "bytes": 19887,
+      "sha256": "33537fe542faf32f18af44a62de6cc8942844670a3691a009fa1dcdda7ad905e"
+    },
+    {
+      "path": ".scratch/starry-blog/evidence-v20/cloud-dark-original.png",
+      "bytes": 19497,
+      "sha256": "90bb9540c772b0d038a6db8565c11da412873b407d00aa6423c4d160ebdedb98"
+    },
+    {
+      "path": ".scratch/starry-blog/evidence-v20/cloud-horizon-gray8.png",
+      "bytes": 25471,
+      "sha256": "128f433985c2ef83dde61c744e293500449e487b949fb6a57314ae6b2c05a3b1"
+    },
+    {
+      "path": ".scratch/starry-blog/evidence-v20/cloud-horizon-original.png",
+      "bytes": 25714,
+      "sha256": "6fa4b34eaa9983af69c3f3605284ad5d06e9d164444b899b6607408fe804aa64"
+    },
+    {
+      "path": ".scratch/starry-blog/evidence-v20/cloud-zenith-gray8.png",
+      "bytes": 20569,
+      "sha256": "02892d86ea9ef4e7d21d935b53a848bf257acf668c322a986728d9cb7b559e52"
+    },
+    {
+      "path": ".scratch/starry-blog/evidence-v20/cloud-zenith-original.png",
+      "bytes": 20158,
+      "sha256": "d9cd69b93be0d5fa2295bd0fdcc2ccb6ae5b8bca1fa13a74d6716bbdc13456d8"
+    },
+    {
+      "path": ".scratch/starry-blog/evidence-v20/computed-type.json",
+      "bytes": 755,
+      "sha256": "711f6dc813306695cd228435c2a7ca745e7f4fe485b6820b6e2dc20588229e53"
+    },
+    {
+      "path": ".scratch/starry-blog/evidence-v20/content-isolation.json",
+      "bytes": 4193,
+      "sha256": "9f9e08d6f056f9ed79138b8c6808ebcf008030856372d4f0bd9c726f13d94003"
+    },
+    {
+      "path": ".scratch/starry-blog/evidence-v20/contrast-samples.json",
+      "bytes": 4360,
+      "sha256": "2c52eb1642aef8f85a8995727bb9a3323aea76a3c0b02f7a1d1316a7e2754301"
+    },
+    {
+      "path": ".scratch/starry-blog/evidence-v20/core-answer-1.1.png",
+      "bytes": 29566,
+      "sha256": "e9987b55a1dd6c1f26f2521b307cc2c891f379b8b3f670d68bbfc61447f6b040"
+    },
+    {
+      "path": ".scratch/starry-blog/evidence-v20/core-answer-1.png",
+      "bytes": 29571,
+      "sha256": "f2fda7ca479f9708d94295dc9b206520ce1f95927244520dedd7faa4763d7008"
+    },
+    {
+      "path": ".scratch/starry-blog/evidence-v20/core-comparison.json",
+      "bytes": 2778,
+      "sha256": "91a2167c892338c1da5f2627ce5caa7ea8fd9fa647ee87912246ae67d3e97932"
+    },
+    {
+      "path": ".scratch/starry-blog/evidence-v20/core-night-1.1.png",
+      "bytes": 26163,
+      "sha256": "07f1af467e3a2c244dc9258ad4f6833c1a6369301d4ade5f190bbbd31f5a8703"
+    },
+    {
+      "path": ".scratch/starry-blog/evidence-v20/core-night-1.png",
+      "bytes": 26165,
+      "sha256": "497593372b619d18df6ada4c0f0e890c712b44f20389c6020fdde7664f6b1ed3"
+    },
+    {
+      "path": ".scratch/starry-blog/evidence-v20/core-roof-1.1.png",
+      "bytes": 35122,
+      "sha256": "581cf6e7020ccc22dc15442c6be675e77ea8ec21f99e54d93b6283b92b3d50e9"
+    },
+    {
+      "path": ".scratch/starry-blog/evidence-v20/core-roof-1.png",
+      "bytes": 35112,
+      "sha256": "cd0941e267e38b4ff3bc9a84194d0ab691f35fb205bc2f5201b27ac884a1e046"
+    },
+    {
+      "path": ".scratch/starry-blog/evidence-v20/delivery-state.json",
+      "bytes": 422,
+      "sha256": "4f83ad2c65f9859ed5c4cbb734f51427e7e2673496c7d0f6fd0f64b99068156d"
+    },
+    {
+      "path": ".scratch/starry-blog/evidence-v20/final-preview.png",
+      "bytes": 22743,
+      "sha256": "c4968277a40591d249b4016ea49f5c27b4ff0e9f0c6981dbd7bc8e65bab454fb"
+    },
+    {
+      "path": ".scratch/starry-blog/evidence-v20/keyboard-focus.json",
+      "bytes": 127,
+      "sha256": "24182aee5b2febc5515e3f449b07d72fd0ac0079a5777654fa759cb884074671"
+    },
+    {
+      "path": ".scratch/starry-blog/evidence-v20/layout-matrix-final.json",
+      "bytes": 33317,
+      "sha256": "55ffb1fe55c074022d71e96a5319c2190fcc001c6c862d2688735e22ccda1aea"
+    },
+    {
+      "path": ".scratch/starry-blog/evidence-v20/layout-matrix.json",
+      "bytes": 43870,
+      "sha256": "326826267defac73613a59759796191ce224c2a01e2492a6aace0931437354b6"
+    },
+    {
+      "path": ".scratch/starry-blog/evidence-v20/long-content.json",
+      "bytes": 1766,
+      "sha256": "753ea19e2b564bfbf909adad26fd71535276d3c7f32f819a6923a4000b178387"
+    },
+    {
+      "path": ".scratch/starry-blog/evidence-v20/media-reader.json",
+      "bytes": 295,
+      "sha256": "9fc66428189ebf2ac647307bc18c1d81955d3018e84f77b086d884f30b89e3c6"
+    },
+    {
+      "path": ".scratch/starry-blog/evidence-v20/motion-audit-final.json",
+      "bytes": 1299,
+      "sha256": "189a9e299b1a1030edcf2bd8a7f513ffb4a167dcd1a01446d3c34959ce098cb5"
+    },
+    {
+      "path": ".scratch/starry-blog/evidence-v20/motion-audit-visible.json",
+      "bytes": 1299,
+      "sha256": "63d61ac562610ea66bae00100391ee48789600eccf8d6ba12fb14d9e11f1f3ef"
+    },
+    {
+      "path": ".scratch/starry-blog/evidence-v20/motion-audit.json",
+      "bytes": 1300,
+      "sha256": "1e7a3e986389686020b0562da9c67deadc35e53131bc3370774b5e10531bcc36"
+    },
+    {
+      "path": ".scratch/starry-blog/evidence-v20/native-200-preview.png",
+      "bytes": 55202,
+      "sha256": "e4333475850bc6a4a3f584af77c3902661dcc29b6771bc079a5085f4c5f844a7"
+    },
+    {
+      "path": ".scratch/starry-blog/evidence-v20/native-200-reader.png",
+      "bytes": 37342,
+      "sha256": "bf554b0fa1ed2403c23eb64d70104f5ce55d8bcfe54505ef489b9afabaca3097"
+    },
+    {
+      "path": ".scratch/starry-blog/evidence-v20/native-200-zoom.json",
+      "bytes": 3033,
+      "sha256": "2cb4573d49d6db7a1dfbad3313e5a7cf7dbb003e5cca7f296e64a73f5f8d7a66"
+    },
+    {
+      "path": ".scratch/starry-blog/evidence-v20/native-zoom-attempt.json",
+      "bytes": 191,
+      "sha256": "06be32f43d8c1ecc3eb116722a747502fca7636c7fe72daea0d23fdf851f0b66"
+    },
+    {
+      "path": ".scratch/starry-blog/evidence-v20/overview-final.png",
+      "bytes": 31587,
+      "sha256": "abad36f857da74cc28b41e614a11e5e58529be3a0033f5f00845419817b12ff5"
+    },
+    {
+      "path": ".scratch/starry-blog/evidence-v20/overview-reset.json",
+      "bytes": 4972,
+      "sha256": "08636d5928d3206c6ec92698132251edd72a836a04e897b8e2254e989098c69b"
+    },
+    {
+      "path": ".scratch/starry-blog/evidence-v20/performance-baseline.json",
+      "bytes": 371,
+      "sha256": "837ffa07e367ad79dceab1516d095fec677b8a2a2034091b4d81a0630c2323a7"
+    },
+    {
+      "path": ".scratch/starry-blog/evidence-v20/performance-edge-baseline.json",
+      "bytes": 354,
+      "sha256": "42d416176773fda30d93dd852f30882457ddf0b65f640ae62c087a2ddfb01279"
+    },
+    {
+      "path": ".scratch/starry-blog/evidence-v20/performance-edge-new.json",
+      "bytes": 351,
+      "sha256": "caaaff0bb8cb00da7eb25783a4901fa5d09e8b5b2d6c0e1fa632055c251dda37"
+    },
+    {
+      "path": ".scratch/starry-blog/evidence-v20/performance-new.json",
+      "bytes": 380,
+      "sha256": "54030d909ca4488d11782c40cb38a1e21bc01a9b6c2cf05f55d7c038a68fe509"
+    },
+    {
+      "path": ".scratch/starry-blog/evidence-v20/pointer-interrupt-resize.json",
+      "bytes": 3966,
+      "sha256": "0f3824c845afd7a6b9f926823e11e7547f43b252dd8640b98e3185bc63e4344c"
+    },
+    {
+      "path": ".scratch/starry-blog/evidence-v20/reader-keyboard-end.json",
+      "bytes": 179,
+      "sha256": "66590519742d99d033e1342901cb14d4e31d714626fbd0ad23d9ff484b8b913c"
+    },
+    {
+      "path": ".scratch/starry-blog/evidence-v20/reader-resize.json",
+      "bytes": 3126,
+      "sha256": "37ef0f99eb93696863ef5e242d6dce8b60337e5588785a868a5a5d7cadca7739"
+    },
+    {
+      "path": ".scratch/starry-blog/evidence-v20/room-journal.json",
+      "bytes": 466,
+      "sha256": "cbb6a4a4f111fa90615e7cdd95a5970961de0425241cb018d7bb248967df663b"
+    },
+    {
+      "path": ".scratch/starry-blog/evidence-v20/short-and-map.json",
+      "bytes": 282,
+      "sha256": "f4c24e0ef3236a012817a82726688562912671f957f73420e5d0a67087b78867"
+    },
+    {
+      "path": ".scratch/starry-blog/evidence-v20/text-200-1123x631.png",
+      "bytes": 39483,
+      "sha256": "bdfad96924fec0ffb0578066cc9567827b213a43d7ce2e9b986921e8dfec1bd9"
+    },
+    {
+      "path": ".scratch/starry-blog/evidence-v20/text-200-320x568.png",
+      "bytes": 23118,
+      "sha256": "80ea3135a12d19667a23afeeec7e5ed6ebbf56fe8ab67273047da091e84fa1ab"
+    },
+    {
+      "path": ".scratch/starry-blog/evidence-v20/text-200-342x740.png",
+      "bytes": 30770,
+      "sha256": "4710b026696d5c76967575373ea446eed79956817af5de7f4f4823619431ddee"
+    },
+    {
+      "path": ".scratch/starry-blog/evidence-v20/text-200-compact-map.png",
+      "bytes": 15987,
+      "sha256": "aa8277f702c6b3b56557d4aa388e1f0b914f62b7df7f756bbf71a3141b4e363a"
+    },
+    {
+      "path": ".scratch/starry-blog/evidence-v20/text-200-preview.png",
+      "bytes": 31700,
+      "sha256": "24ed1a38c74c98726dcfbe518f0471a548e90a70b798acd91a284addeca61d49"
+    },
+    {
+      "path": ".scratch/starry-blog/evidence-v20/text-200-reader.png",
+      "bytes": 20508,
+      "sha256": "8ab01d6aeb5f34eefcfd2c3fd2a2fdc7c866898ac7723dc6bdd71d883836b971"
+    },
+    {
+      "path": ".scratch/starry-blog/evidence-v20/text-zoom.json",
+      "bytes": 14469,
+      "sha256": "b5f85a3709d7813798a72c5dd5b50609b5e077d05cf7cc8d7aa1a2b8ebd0ac65"
+    },
+    {
+      "path": ".scratch/starry-blog/evidence-v20/time-cue-layout.json",
+      "bytes": 2320,
+      "sha256": "a670123d2a06450b305eb03e42aa92a4e58d34354673b0f8b24f97ee67b334a3"
+    },
+    {
+      "path": ".scratch/starry-blog/evidence-v20/two-pointer-clicks.json",
+      "bytes": 305,
+      "sha256": "f99f955eebdfd22615968cc1f9648987ff9172183b937c20898341199c8b24af"
+    },
+    {
+      "path": ".scratch/starry-blog/evidence-v20/v20-1123x631.png",
+      "bytes": 26766,
+      "sha256": "c64375d72880190f8a58b73ec6df3c55016dd01799fbcd4fef01cb25fcf4aa85"
+    },
+    {
+      "path": ".scratch/starry-blog/evidence-v20/v20-1440x900.png",
+      "bytes": 31713,
+      "sha256": "f021ed292f9d210d5c51c47ca4ddc03d6b84c46d6086d55f494321e4dd627c7d"
+    },
+    {
+      "path": ".scratch/starry-blog/evidence-v20/v20-320x568.png",
+      "bytes": 6104,
+      "sha256": "2b056b2629a55e1bec226829e8529988415ff6d16ebf3a1e44a4d2b8761fc550"
+    },
+    {
+      "path": ".scratch/starry-blog/evidence-v20/v20-342x740.png",
+      "bytes": 7381,
+      "sha256": "d2817fef10b6e28c3647f759f4927cf26db1fb5180fbbab32ffd62e46884577d"
+    },
+    {
+      "path": ".scratch/starry-blog/evidence-v20/v20-390x844.png",
+      "bytes": 38835,
+      "sha256": "0359ccd8448bc0c9632fbbca4f63fe8d89dbf5afe6b0fd71c27102040ba6041a"
+    },
+    {
+      "path": ".scratch/starry-blog/evidence-v20/v20-430x931.png",
+      "bytes": 46382,
+      "sha256": "c6664fb1137d212ccc7df54180dd8677ab756d9a74d092b0c720518d0b531a4f"
+    },
+    {
+      "path": ".scratch/starry-blog/evidence-v20/v20-430x932.png",
+      "bytes": 47403,
+      "sha256": "7c8f7bc3b920d8c5f18c9071c1227f14aa103634d3e4d5f2e2936046b86d811b"
+    },
+    {
+      "path": ".scratch/starry-blog/evidence-v20/v20-430x933.png",
+      "bytes": 43614,
+      "sha256": "f9bbe4cae39ae7cec9adaea4f04500db82fbaf8bb07fdecbf77dfea6a33a354d"
+    },
+    {
+      "path": ".scratch/starry-blog/evidence-v20/v20-568x320.png",
+      "bytes": 21246,
+      "sha256": "d8535801cf3e9e38bfc701758d216928b16ba7059d094289135dd78efe16ca82"
+    },
+    {
+      "path": ".scratch/starry-blog/evidence-v20/v20-844x390.png",
+      "bytes": 21405,
+      "sha256": "b26e5ad544af8e4f340037614bbd4cf647ccaf34160b61ff231960b91ee02250"
+    },
+    {
+      "path": ".scratch/starry-blog/evidence-v20/v20-compact-long-end.png",
+      "bytes": 20535,
+      "sha256": "3cdb03f38561a25f253742e33dec8e1a84323ebeafd1972a8c6e32eacb528f79"
+    },
+    {
+      "path": ".scratch/starry-blog/evidence-v20/v20-compact-preview.png",
+      "bytes": 20242,
+      "sha256": "6e70882f604c4106e4e785546d9a1c2b55eab7b8c1fc127ac031875fd736a132"
+    },
+    {
+      "path": ".scratch/starry-blog/evidence-v20/v20-compact-reader.png",
+      "bytes": 19405,
+      "sha256": "b3a2a608d62dc67d63e7cebb54969635246a43f50cc5a88cd8b1cbc136eeb14b"
+    },
+    {
+      "path": ".scratch/starry-blog/evidence-v20/v20-long-reasons.png",
+      "bytes": 19726,
+      "sha256": "36a36d86a3fd31a6f35754a2ee580b49662400d7f8f9dc627e54355eb3561c7d"
+    },
+    {
+      "path": ".scratch/starry-blog/evidence-v20/validation-command-results.json",
+      "bytes": 3208,
+      "sha256": "99c9c114c96d79e5243315c8105563a7c7fc3c1a5167ae623577258852a66580"
+    },
+    {
+      "path": ".scratch/starry-blog/evidence-v20/wordmark-mobile-full.png",
+      "bytes": 18752,
+      "sha256": "058df734d643708d117df03de16d38449f89c362ea88dee4984063d99fe1aa25"
+    },
+    {
+      "path": ".scratch/starry-blog/evidence-v20/wordmark-mobile-simple.png",
+      "bytes": 18828,
+      "sha256": "ea214e3d7ab56d9d4d507cc1183865e43900cd4b61043a596dbef237d3902bb1"
+    }
+  ],
+  "finalAudit": {
+    "verifiedAt": "2026-09-15T08:53:04.914Z",
+    "baselineFiles": 46,
+    "sourceFiles": 49,
+    "hashErrors": [],
+    "localLinks": 76,
+    "missingLinks": [],
+    "uncheckedTasks": [],
+    "commandExitCodes": [
+      0,
+      0,
+      0
+    ],
+    "normalEntry": {
+      "qaAbsent": true,
+      "monitorAbsent": true,
+      "readEnabled": true,
+      "veils": 0,
+      "consoleErrors": []
+    }
+  },
+  "scopeNotes": [
+    "Checks completed within the original plan; unavailable device checks and inconclusive performance measurements remain explicitly unverified in Q3/Q4.",
+    "Hashes prove file identity, not visual quality or device performance."
+  ]
+}

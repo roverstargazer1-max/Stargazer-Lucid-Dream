@@ -1,0 +1,47 @@
+{
+  "initialHeading": {
+    "discTransform": "none",
+    "heading": "1.0471975511965976rad",
+    "images": [
+      {
+        "loaded": true,
+        "src": "/images/search/entry-blue-purple.png"
+      },
+      {
+        "loaded": true,
+        "src": "/images/search/entry-disc-repair.png"
+      },
+      {
+        "loaded": true,
+        "src": "/images/search/entry-blue-purple.png"
+      },
+      {
+        "loaded": true,
+        "src": "/images/search/entry-blue-purple.png"
+      }
+    ],
+    "pivot": "49.0829px 51.3955px",
+    "transform": "matrix(0.860143, 0.510054, -0.510054, 0.860143, 0, 0)"
+  },
+  "afterRight": {
+    "discTransform": "none",
+    "heading": "3.2071975511965967rad"
+  },
+  "afterPitchZoom": "3.2071975511965967rad",
+  "afterDrag": "2.8259306658973475rad",
+  "automaticEarly": "2.746255429495951rad",
+  "automaticEnd": "-0.2999999999999998rad",
+  "finalEntry": {
+    "discTransform": "none",
+    "heading": "1.0471975511965976rad",
+    "images": [
+      true,
+      true,
+      true,
+      true
+    ],
+    "nativeClip": "polygon(evenodd, 0% 0%, 100% 0%, 100% 100%, 0% 100%, 0% 0%, 49.0431% 48.6443%, 56.8581% 33.3333%, 57.496% 31.4195%, 57.9745% 29.3461%, 59.0909% 28.6284%, 59.3301% 27.5917%, 59.0909% 26.555%, 59.0909% 25.2791%, 59.5694% 24.0032%, 60.5263% 22.807%, 61.8022% 21.5311%, 72.488% 7.5758%, 73.0463% 7.3365%, 73.764% 7.3365%, 74.3222% 7.8947%, 74.3222% 8.6922%, 73.445% 10.2073%, 65.949% 28.1499%, 65.2313% 28.9474%, 63.7959% 29.5853%, 62.5199% 30.2233%, 61.882% 31.1802%, 61.0845% 33.7321%, 51.1164% 48.8038%, 49.0431% 48.6443%, 0% 0%)"
+  },
+  "restoredHeading": "1.0471975511965976rad",
+  "checks": "Horizontal keyboard and drag, pitch/zoom invariance, automatic mode rotation, native fixed-hand cutout, artwork loaded, search open/close and heading restore passed."
+}

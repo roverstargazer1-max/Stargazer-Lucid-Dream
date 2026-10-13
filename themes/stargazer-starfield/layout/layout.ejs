@@ -1,0 +1,115 @@
+<%
+  const audioConfig = config.aplayer || {};
+  const themeSwitch = blog_theme_switch(page);
+  const audioPath = (directory, filename) => `${String(directory || '').replace(/\/+$/, '')}/${filename}`;
+  const audioAssets = {
+    stylesheet: audioConfig.style_cdn || url_for(audioPath(audioConfig.style_dir || 'assets/css', 'APlayer.min.css')),
+    aplayer: audioConfig.cdn || audioConfig.externalLink || url_for(audioPath(audioConfig.script_dir || 'assets/js', 'APlayer.min.js')),
+    meting: audioConfig.meting_cdn || url_for(audioPath(audioConfig.script_dir || 'assets/js', 'Meting.min.js')),
+  };
+  const isPost = page.layout === 'post' && page.title;
+  const isStarryArticle = isPost && page.starry_id;
+  const collectionKind = page.archive || page.layout === 'archives' ? 'archive' : page.tag ? 'tag' : page.category ? 'category' : '';
+  const isStarryCollection = Boolean(collectionKind);
+  const collectionRoute = isStarryCollection
+    ? String(page.current_url || page.path || '').replace(/\/index\.html$/, '/')
+    : '';
+  const collectionUrl = collectionRoute.startsWith('/') ? collectionRoute : `/${collectionRoute}`;
+  let collectionTitle = '文章归档';
+  if (page.tag) collectionTitle = `标签 · ${page.tag}`;
+  else if (page.category) collectionTitle = `分类 · ${page.category}`;
+  else if (page.year) collectionTitle = page.month
+    ? `${page.year} 年 ${String(page.month).padStart(2, '0')} 月`
+    : `${page.year} 年`;
+  const title = isPost ? page.title : isStarryCollection ? collectionTitle : config.title;
+  const description = isPost
+    ? String(page.starry_excerpt || config.description || '')
+    : isStarryCollection ? `${collectionTitle} · 文章清单` : String(config.description || '');
+  const canonical = config.dual_theme ? blog_canonical(page) : isPost
+    ? page.permalink
+    : isStarryCollection ? new URL(url_for(collectionUrl), config.url).href : new URL(url_for('/'), config.url).href;
+  const image = isPost && page.cover
+    ? (String(page.cover).startsWith('http') ? page.cover : new URL(url_for(page.cover), config.url).href)
+    : '';
+%>
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="dark light">
+  <title><%= title %> · <%= config.title %></title>
+  <% if (description) { %><meta name="description" content="<%= description %>"><% } %>
+  <% if (canonical) { %><link rel="canonical" href="<%= canonical %>"><% } %>
+  <meta property="og:type" content="<%= isPost ? 'article' : 'website' %>">
+  <meta property="og:title" content="<%= title %>">
+  <% if (description) { %><meta property="og:description" content="<%= description %>"><% } %>
+  <% if (canonical) { %><meta property="og:url" content="<%= canonical %>"><% } %>
+  <% if (image) { %><meta property="og:image" content="<%= image %>"><% } %>
+  <meta name="twitter:card" content="<%= image ? 'summary_large_image' : 'summary' %>">
+  <meta name="twitter:title" content="<%= title %>">
+  <% if (description) { %><meta name="twitter:description" content="<%= description %>"><% } %>
+  <% if (isStarryArticle) { %>
+  <link rel="preload" as="font" type="font/woff2" href="<%= url_for('fonts/lxgw-marker-gothic-v1.003.woff2') %>" crossorigin>
+  <% } %>
+  <% if (is_home()) { %>
+  <link rel="preload" as="image" type="image/svg+xml" href="<%= url_for(theme.scene.window_mask_desktop) %>" media="(min-width: 761px)" fetchpriority="high">
+  <link rel="preload" as="image" type="image/svg+xml" href="<%= url_for(theme.scene.window_mask_mobile) %>" media="(max-width: 760px)" fetchpriority="high">
+  <link rel="preload" as="image" href="<%= url_for(theme.scene.room_desktop) %>" media="(min-width: 761px)" fetchpriority="high">
+  <link rel="preload" as="image" href="<%= url_for(theme.scene.room_mobile) %>" media="(max-width: 760px)" fetchpriority="high">
+  <style>
+    html.starry-loading,html.starry-loading body{margin:0;background:#031a87;overflow:hidden}
+    .starry-loading #home-fallback{display:none}
+    .starry-loading #world{visibility:visible;background:#031a87}
+    .starry-loading #world>:not(#sky){visibility:hidden}
+    #sky{opacity:1;transition:opacity .45s ease}
+    .starry-loading #sky{opacity:0}
+    .starry-loading #room:not([hidden]){display:block;position:fixed;inset:0;z-index:40;overflow:clip}
+    .starry-loading .room-stage{position:absolute;width:max(100vw,177.683vh);height:max(56.28vw,100vh);left:50%;top:50%;margin-left:min(-50vw,-88.8415vh);margin-top:min(-28.14vw,-50vh)}
+    .starry-loading .room-image{display:block;width:100%;height:100%;object-fit:cover;mask-image:var(--window-mask-desktop);mask-mode:alpha;mask-size:100% 100%;mask-repeat:no-repeat}
+    @media(max-width:760px){.starry-loading .room-stage{width:max(100vw,56.28vh);height:max(177.683vw,100vh);margin-left:min(-50vw,-28.14vh);margin-top:min(-88.8415vw,-50vh)}.starry-loading .room-image{mask-image:var(--window-mask-mobile)}}
+    @media(prefers-reduced-motion:reduce){#sky{transition:none}}
+  </style>
+  <script>
+    document.documentElement.classList.add('starry-loading');
+    window.starfieldStartup={fail:function(){document.documentElement.classList.remove('starry-loading');document.getElementById('room')?.setAttribute('hidden','');}};
+  </script>
+  <% } %>
+  <link rel="stylesheet" href="<%= url_for('css/starry/tokens.css') %>">
+  <link rel="stylesheet" href="<%= url_for('css/starry/motion-tokens.css') %>">
+  <link rel="stylesheet" href="<%= url_for('css/starry/site.css') %>">
+  <link rel="stylesheet" href="<%= url_for('css/starry/scene.css') %>">
+  <link rel="stylesheet" href="<%= url_for('css/starry/motion.css') %>">
+  <link rel="stylesheet" href="<%= url_for('css/starry/reader.css') %>">
+  <link rel="stylesheet" href="<%= url_for('css/starry/observation.css') %>">
+  <link rel="stylesheet" href="<%= url_for('css/starry/search.css') %>">
+  <link rel="stylesheet" href="<%= url_for('css/starry/collection.css') %>">
+  <% if (themeSwitch) { %><link rel="stylesheet" href="<%= url_for('css/blog-theme-switch.css') %>"><% } %>
+</head>
+<body class="<%= isStarryArticle || isStarryCollection ? 'has-starry-experience' : '' %><%= isStarryArticle ? ' article-page' : '' %>"
+      data-blog-current-root="<%= config.dual_theme?.current_root || '' %>"
+      data-blog-target-root="<%= config.dual_theme?.target_root || '' %>"
+      data-scene="painted"
+      data-default-motion="<%= theme.scene.motion === 'soft' ? 'soft' : 'full' %>"
+      data-passage-blur="<%= theme.scene.passage_blur === true ? 'on' : 'off' %>"
+      data-starry-article-id="<%= isStarryArticle ? page.starry_id : '' %>"
+      data-starry-collection-kind="<%= collectionKind %>"
+      data-starry-collection-path="<%= isStarryCollection ? url_for(collectionUrl) : '' %>"
+      data-starry-featured-id="<%= theme.featured_article_id %>"
+      data-starry-index="<%= url_for('starry/index.json') %>"
+      data-starry-root="<%= url_for('/') %>"
+      data-sky-image="<%= url_for(theme.scene.painted_sky) %>"
+      data-window-mask-desktop="<%= url_for(theme.scene.window_mask_desktop) %>"
+      data-window-mask-mobile="<%= url_for(theme.scene.window_mask_mobile) %>"
+      data-starry-aplayer-style="<%= audioAssets.stylesheet %>"
+      data-starry-aplayer-script="<%= audioAssets.aplayer %>"
+      data-starry-meting-script="<%= audioAssets.meting %>"
+      style="--window-mask-desktop:url('<%= url_for(theme.scene.window_mask_desktop) %>');--window-mask-mobile:url('<%= url_for(theme.scene.window_mask_mobile) %>')">
+  <%- body %>
+  <% if (themeSwitch) { %>
+  <a class="blog-theme-switch blog-theme-switch-fixed" data-blog-theme-switch href="<%= themeSwitch.href %>"><%= themeSwitch.label %></a>
+  <script src="<%= url_for('js/blog-theme-switch.js') %>"></script>
+  <% } %>
+  <script type="module" src="<%= url_for('js/starfield/static-page.js') %>"></script>
+</body>
+</html>
