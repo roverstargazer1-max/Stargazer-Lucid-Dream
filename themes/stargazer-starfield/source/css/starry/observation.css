@@ -9,14 +9,6 @@ body[data-scene=painted] #preview.observation-panel {
   border: 0; background: none; box-shadow: none; backdrop-filter: none;
   text-shadow: none;
 }
-/* The panel's line art is drawn straight onto the sky. Clouds drift behind it and
-   break the thin white rules at random, so give it the faintest field of its own —
-   enough to hold the lines together, not enough to read as a card. */
-body[data-scene=painted] #preview.observation-panel .observation-artboard::before {
-  content: ''; position: absolute; inset: -3% -2%; z-index: -1;
-  border-radius: 50% 46% 50% 48% / 54% 50% 52% 50%;
-  background: radial-gradient(58% 62% at 52% 46%, rgb(2 20 74 / .5), rgb(2 20 74 / .26) 62%, rgb(2 20 74 / 0) 100%);
-}
 body[data-scene=painted] #preview.observation-panel::before,
 body[data-scene=painted] #preview.observation-panel::after { content: none; }
 .observation-panel, .observation-panel *, .sky-polyhedron, .sky-polyhedron * {
@@ -98,8 +90,8 @@ body[data-motion=full] .sky-polyhedron { animation: polyhedron-hop 4.8s ease-in-
 body[data-motion=soft] .sky-polyhedron { animation: none !important; }
 @keyframes polyhedron-hop { 0%, 38%, 100% { translate: 0 0; } 48% { translate: 0 -9px; } 59% { translate: 0 1px; } 67% { translate: 0 -3px; } 75% { translate: 0 0; } }
 @media (max-width: 760px) {
-  /* Full-width band above the mode switch. The astrolabe entry is lifted clear
-     by --entry-lift in search.css, so nothing overlaps the panel's silhouette. */
+  /* Full-width band above the mode switch; the astrolabe sits in its lower-left
+     wave area, below the silhouette (see search.css). */
   body[data-scene=painted] #preview.observation-panel { width: auto; max-width: none; top: auto; right: 8px; left: 8px; bottom: max(82px, calc(env(safe-area-inset-bottom) + 68px)); transform: none; max-height: none; }
   .observation-silhouette { opacity: .92; }
   .year-row { font-size: max(8px, 1.52cqw); }

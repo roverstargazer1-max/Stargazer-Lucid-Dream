@@ -53,8 +53,8 @@ body[data-arrival] #world .star-label { opacity: 0 !important; }
 body[data-arrival] .masthead, body[data-arrival] .navigation { animation: none; }
 @keyframes sky-arrival { from { opacity: 0; translate: 0 5px; } }
 @media (max-width:760px) {
-  /* Full-width band: the panel and the mode switch share the bottom of the screen,
-     so the astrolabe entry is the only thing that needs moving (see search.css). */
+  /* The observation panel and the astrolabe share the band above the mode switch;
+     the artwork layout and the entry position are defined in their own styles. */
   body[data-scene=painted] #preview { --footer-space: max(72px, calc(2.3375rem + 24px), env(safe-area-inset-bottom)); width: min(290px, calc(100% - 28px)); top: auto; right: 12px; left: auto; transform: none; bottom: var(--footer-space); max-height: min(44dvh, calc(100dvh - var(--footer-space) - 240px)); }
   body[data-scene=painted] #preview h2 { font-size: 1.125rem; }
   body[data-scene=painted] .preview-body p { line-height: 1.95; }

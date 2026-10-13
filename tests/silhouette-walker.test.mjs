@@ -15,7 +15,7 @@ function fixture({ still = true } = {}) {
   return { image, frames, canvas, element, context, draws };
 }
 
-test('reading walker keeps its last pose, size and baseline when scrolling stops and resumes', () => {
+test('reading walker keeps its last pose, size and baseline when paused and resumed', () => {
   globalThis.devicePixelRatio = 1;
   const view = fixture();
   const walker = createSilhouetteWalker(view.element, { compact: true, white: true, freezeWhenIdle: true });
@@ -23,8 +23,8 @@ test('reading walker keeps its last pose, size and baseline when scrolling stops
   walker.render(80, true);
   const moving = view.draws.at(-1);
   walker.render(260, false);
-  assert.equal(view.canvas.hidden, false, 'stopping must keep the same rendered character visible');
-  assert.equal(view.image.hidden, true, 'stopping must not switch to the unrelated static silhouette');
+  assert.equal(view.canvas.hidden, false, 'pausing must keep the same rendered character visible');
+  assert.equal(view.image.hidden, true, 'pausing must not switch to the unrelated static silhouette');
   walker.render(4000, false);
   assert.deepEqual(view.draws.at(-1), moving);
   assert.equal(view.draws.length, 2, 'a paused pose does not redraw every animation frame');

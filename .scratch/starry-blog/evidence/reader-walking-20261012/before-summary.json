@@ -1,0 +1,70 @@
+[
+  {
+    "name": "desktop",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "idle": [
+      {
+        "hash": "4aa0fe3cda43fa1eb37f68d31e1eef68c24f59bc3d40e238575d3fd8be3b7e90",
+        "left": 327.296875,
+        "top": 862.578125,
+        "fraction": "0",
+        "hidden": false,
+        "motion": "full"
+      },
+      {
+        "hash": "4aa0fe3cda43fa1eb37f68d31e1eef68c24f59bc3d40e238575d3fd8be3b7e90",
+        "left": 327.296875,
+        "top": 862.578125,
+        "fraction": "0",
+        "hidden": false,
+        "motion": "full"
+      },
+      {
+        "hash": "4aa0fe3cda43fa1eb37f68d31e1eef68c24f59bc3d40e238575d3fd8be3b7e90",
+        "left": 327.296875,
+        "top": 862.578125,
+        "fraction": "0",
+        "hidden": false,
+        "motion": "full"
+      },
+      {
+        "hash": "4aa0fe3cda43fa1eb37f68d31e1eef68c24f59bc3d40e238575d3fd8be3b7e90",
+        "left": 327.296875,
+        "top": 862.578125,
+        "fraction": "0",
+        "hidden": false,
+        "motion": "full"
+      }
+    ],
+    "scrolling": [
+      {
+        "hash": "dfcea04a98c0903d32bdeb30ddf43686a19faee17c004c0cbcedba5518149128",
+        "left": 487.84375,
+        "top": 862.578125,
+        "fraction": "0.20337836205021628",
+        "hidden": false,
+        "motion": "full"
+      },
+      {
+        "hash": "d7fabbb55362ac136663637fe386054dc82ad5f701686ac0f282573cc607f4f6",
+        "left": 648.1875,
+        "top": 862.578125,
+        "fraction": "0.4064989568481509",
+        "hidden": false,
+        "motion": "full"
+      },
+      {
+        "hash": "aed84b8d5ab29404135a9c9af767d7036382210c5892dc74d8a7484d28487dc1",
+        "left": 848.8125,
+        "top": 862.578125,
+        "fraction": "0.6606574675978508",
+        "hidden": false,
+        "motion": "full"
+      }
+    ],
+    "errors": []
+  }
+]

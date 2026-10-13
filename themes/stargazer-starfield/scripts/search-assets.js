@@ -14,5 +14,6 @@ hexo.extend.generator.register('starry-search-assets', function () {
   ].map(([name, source]) => [name, path.join(root, '检索页', source)]);
   files.push(['entry-blue-purple.png', path.join(root, '蓝紫星盘.png')]);
   files.push(['entry-disc-repair.png', path.join(root, '检索页/entry-heading/disc-repair.png')]);
+  files.push(['result-arrow.png', path.join(root, '补充素材', '补充', '箭头.png')]);
   return files.map(([name, source]) => ({ path: `images/search/${name}`, data: fs.readFileSync(source) }));
 });

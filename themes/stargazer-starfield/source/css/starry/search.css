@@ -80,7 +80,8 @@
 .search-index-columns { position:absolute; inset:0 0 auto; height:calc(var(--chart-width) * 37 / 1440); }
 .search-name-heading { position:absolute; left:0; top:calc(var(--chart-width) * 16 / 1440); width:calc(var(--chart-width) * 74 / 1440); height:auto; }
 .search-id-heading { position:absolute; right:0; top:0; width:calc(var(--chart-width) * 30 / 1440); height:auto; }
-#search-results { position:absolute; inset:calc(var(--chart-width) * 65 / 1440) 0 48px; overflow-y:auto; overscroll-behavior:contain; scrollbar-width:thin; scrollbar-color:#4480de transparent; }
+/* Keep the titles aligned with NAME, with an unclipped gutter for the selection mark. */
+#search-results { position:absolute; inset:calc(var(--chart-width) * 65 / 1440) 0 48px -28px; padding-left:28px; overflow-y:auto; overscroll-behavior:contain; scrollbar-width:thin; scrollbar-color:#4480de transparent; }
 .search-result { position:relative; display:flex; align-items:center; justify-content:space-between; gap:12px; min-height:64px; padding:12px 2px; color:var(--ink); border-bottom:1px solid rgb(157 201 255 / .12); text-decoration:none; font-size:clamp(14px,1.05vw,17px); line-height:1.6; transition:color var(--dur-hover) var(--ease-enter); }
 .search-result-name { flex:1; min-width:0; overflow-wrap:anywhere; }
 .search-result-name > span { font-family:var(--display); font-weight:400; font-synthesis:none; }
@@ -88,7 +89,7 @@
 .search-result-id { flex-shrink:0; display:block; text-align:right; font:var(--step-caption)/1.5 Consolas,monospace; white-space:pre-line; width:86px; overflow-wrap:anywhere; }
 #search-feedback { position:absolute; bottom:8px; left:0; right:0; margin:0; color:var(--ink-soft); font-size:var(--step-small); line-height:1.7; }
 #search-clear { position:absolute; right:0; bottom:0; padding:4px 0; min-height:32px; color:#d7eaff; font-size:var(--step-small); }
-#search-entry { position:fixed; z-index:9; left:28px; bottom:calc(50px + var(--entry-lift, 0px)); width:100px; height:100px; padding:0; }
+#search-entry { position:fixed; z-index:9; left:28px; bottom:50px; width:100px; height:100px; padding:0; }
 /* The astrolabe artwork is a near-white wireframe; at full contrast it reads as a
    UI panel floating over the painting. Ease it back so it feels like an instrument
    catching the same light as the sky. Size, pivot and needle rotation are untouched. */
@@ -126,10 +127,9 @@ body:not(.starry-ready) #search-entry { display:none; }
   .search-name-heading { top:8px; width:55px; }
   .search-id-heading { width:22px; }
   #search-results { top:86px; }
-  #search-entry { left:14px; bottom:calc(86px + var(--entry-lift, 0px)); width:72px; height:72px; }
-  /* With the observation panel spanning the bottom band, the astrolabe steps up beside
-     it rather than sitting inside the panel's silhouette. */
-  body[data-scene=painted]:has(#preview:not([hidden])) #search-entry { --entry-lift:216px; }
+  /* Keep the astrolabe in the lower-left wave area above the mode switch,
+     at the same position whether an article is selected or not. */
+  #search-entry { left:max(14px,env(safe-area-inset-left)); bottom:max(86px,calc(env(safe-area-inset-bottom) + 72px)); width:72px; height:72px; }
 }
 @media(max-height:650px) and (orientation:landscape) {
   #star-search { --chart-width:min(66vw,680px); --chart-height:calc(var(--chart-width) * 1284 / 1440); }
@@ -242,27 +242,34 @@ body:not(.starry-ready) #search-entry { display:none; }
 .search-filter-seam.is-flash::after { content:''; position:absolute; left:50%; top:50%; width:6px; height:6px; margin:-3px; border-radius:50%; background:#fff; box-shadow:0 0 10px 3px #92e0f3; animation:search-seam-flash var(--dur-panel) var(--ease-exit) 140ms both; }
 @keyframes search-seam-flash { from { opacity:1; transform:scale(.4); } to { opacity:0; transform:scale(2.4); } }
 
-/* Index rows: a sighting mark slides in, the title leans toward it and a light
-   wash sweeps the row once. No static block of shade. */
+/* Index rows: a small, slow hop keeps the active choice alive while hovering.
+   The artwork moves independently of the slide-in and the fixed click area. */
 .search-result::before { content:''; position:absolute; left:0; right:0; bottom:-1px; height:1px; background:linear-gradient(90deg,#92e0f3,rgb(146 224 243 / .4) 60%,transparent); transform:scaleX(0); transform-origin:left; transition:transform var(--dur-quick) var(--ease-exit); pointer-events:none; }
 .search-result::after { content:''; position:absolute; inset:0; pointer-events:none; background:linear-gradient(100deg,transparent 30%,rgb(167 234 255 / .09) 48%,rgb(167 234 255 / .03) 60%,transparent 72%) no-repeat; background-size:260% 100%; background-position:110% 0; opacity:0; }
-.search-result-mark { position:absolute; left:-2px; top:50%; width:7px; height:7px; margin-top:-3.5px; border:1px solid #a7eaff; transform:rotate(45deg) scale(0); opacity:0; transition:transform var(--dur-quick) var(--ease-exit), opacity var(--dur-hover) var(--ease-exit); }
+.search-result-mark { position:absolute; left:-22px; top:50%; width:18px; height:13.5px; margin-top:-6.75px; transform:translateX(-2px) scale(.75); opacity:0; pointer-events:none; transition:transform var(--dur-quick) var(--ease-exit), opacity var(--dur-hover) var(--ease-exit); }
+.search-result-mark::before { content:''; position:absolute; inset:0; background:url('../../images/search/result-arrow.png') center/contain no-repeat; filter:drop-shadow(0 0 2px rgb(214 255 0 / .28)); transition:filter var(--dur-hover) var(--ease-enter), transform var(--dur-press) var(--ease-enter); }
 .search-result-name, .search-result-id { transition:transform var(--dur-quick) var(--ease-exit), color var(--dur-hover) var(--ease-enter); }
 .search-result:is(:hover,:focus-visible,.is-highlighted) { color:#c4f1ff; }
 .search-result:is(:hover,:focus-visible,.is-highlighted)::before { transform:scaleX(1); transition:transform var(--dur-panel) var(--ease-settle); }
 .search-result:is(:hover,:focus-visible,.is-highlighted)::after { opacity:1; background-position:-60% 0; transition:background-position 640ms var(--ease-settle), opacity var(--dur-hover) var(--ease-enter); }
-.search-result:is(:hover,:focus-visible,.is-highlighted) .search-result-mark { opacity:1; transform:rotate(45deg) scale(1); transition:transform var(--dur-quick) var(--ease-enter), opacity var(--dur-hover) var(--ease-enter); }
+.search-result:is(:hover,:focus-visible,.is-highlighted) .search-result-mark { opacity:1; transform:none; transition:transform var(--dur-quick) var(--ease-enter), opacity var(--dur-hover) var(--ease-enter); }
+.search-result:is(:hover,:focus-visible,.is-highlighted) .search-result-mark::before { animation:search-result-arrow-hover calc(var(--dur-panel) * 3.5) var(--ease-drift) infinite; filter:brightness(1.1) drop-shadow(0 0 3px rgb(214 255 0 / .45)); }
+@keyframes search-result-arrow-hover {
+  0%, 100% { transform:translate(0, 0) rotate(0deg) scale(1); }
+  50% { transform:translate(1px, -2px) rotate(-1.2deg) scale(1.035); }
+}
 .search-result:is(:hover,:focus-visible,.is-highlighted) .search-result-name { transform:translateX(14px); transition:transform var(--dur-panel) var(--ease-settle); }
 .search-result:is(:hover,:focus-visible,.is-highlighted) .search-result-id { color:#92e0f3; }
 .search-result:focus-visible { outline:none; }
-.search-result:focus-visible .search-result-mark { background:#a7eaff; }
+.search-result:focus-visible .search-result-mark::before { filter:brightness(1.18) drop-shadow(0 0 4px rgb(214 255 0 / .55)); }
+.search-result:active .search-result-mark::before { animation:none; transform:translateX(2px) scale(.9); filter:brightness(1.18); }
 .search-result:active .search-result-name { transform:translateX(10px); transition-duration:var(--dur-press); }
 .search-result.is-entering { animation:search-row-in var(--dur-panel) var(--ease-settle) var(--row-delay,0ms) both; }
 @keyframes search-row-in { from { opacity:0; transform:translateY(10px); filter:blur(1.5px); } to { opacity:1; transform:none; filter:none; } }
 
 /* Index panel: unrolls from the chart's edge instead of fading as a block. */
 #search-index { clip-path:inset(0 100% 0 0); transform:none; transition:clip-path var(--dur-quick) var(--ease-exit), opacity var(--dur-quick) var(--ease-exit), visibility 0s var(--dur-quick); }
-[data-index-open=true] #search-index { clip-path:inset(0 0 0 0); transform:none; transition:clip-path var(--dur-scene) var(--ease-settle) 60ms, opacity var(--dur-quick) var(--ease-enter) 60ms, visibility 0s; }
+[data-index-open=true] #search-index { clip-path:inset(0 0 0 -28px); transform:none; transition:clip-path var(--dur-scene) var(--ease-settle) 60ms, opacity var(--dur-quick) var(--ease-enter) 60ms, visibility 0s; }
 #star-search { transition:width var(--dur-panel) var(--ease-settle); }
 .search-toggle-arrow { transition:transform var(--dur-panel) var(--ease-settle); }
 
@@ -296,7 +303,8 @@ body:not(.starry-ready) #search-entry { display:none; }
 @media(prefers-reduced-motion:reduce) {
   #star-search .search-artboard, #star-search .search-map, #star-search .search-heading, #star-search .search-bar, #star-search .search-filters, #star-search #search-index-toggle { transform:none !important; }
   #star-search::after, .search-filter-seam.is-flash::after { display:none; }
-  .search-map-reticle, .search-map-reticle::before, .search-map-title, .search-map-title::after, .search-filter-seam, .search-result::before, .search-result::after, .search-result-mark, .search-result-name, #search-index, #search-entry, #search-entry::before, #search-index-toggle::before, #close-search img { transition:none !important; animation:none !important; }
+  .search-map-reticle, .search-map-reticle::before, .search-map-title, .search-map-title::after, .search-filter-seam, .search-result::before, .search-result::after, .search-result-mark, .search-result-mark::before, .search-result-name, #search-index, #search-entry, #search-entry::before, #search-index-toggle::before, #close-search img { transition:none !important; animation:none !important; }
+  .search-result-mark::before { transform:none !important; }
   .search-result.is-entering, #search-entry:not([hidden]) { animation:none; }
   .search-result:is(:hover,:focus-visible,.is-highlighted) .search-result-name { transform:none; }
   #search-entry:hover, #search-entry:active { transform:none; }

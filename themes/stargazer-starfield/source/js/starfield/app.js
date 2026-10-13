@@ -45,8 +45,6 @@ async function start() {
   const journey = document.getElementById('reading-journey');
   const readingFooter = reader.querySelector('.reading-footer');
   const readingMotionPreference = matchMedia('(prefers-reduced-motion: reduce)');
-  let readingWalkUntil = 0;
-  let lastReadingFraction = 0;
   const status = document.getElementById('approach-status');
   const readButton = document.getElementById('read-button');
   const controls = document.getElementById('exploration-controls');
@@ -668,8 +666,6 @@ async function start() {
     document.getElementById('reading-window-title').textContent = `${article.title} · 观星者的清醒梦`;
     if (!reader.open) reader.showModal();
     scroller.scrollTop = 0;
-    lastReadingFraction = 0;
-    readingWalkUntil = 0;
     journey.style.setProperty('--reading-fraction', 0);
     journey.setAttribute('aria-valuenow', '0');
     setText(document.getElementById('reading-progress'), '0%');
@@ -1114,8 +1110,9 @@ async function start() {
       // The low sky budget must not freeze the selected article's walking and frequency artwork.
       observationPanel.render(now, !preview.hidden && !reducedMotion &&
         !document.hidden && !roomScene?.active && !reader.open && !egg.open && !collectionOpen && !arrival);
-      readingWalker.render(now, reader.open && phase === 'reading' && now < readingWalkUntil &&
-        !reducedMotion && !readingMotionPreference.matches && !document.hidden);
+      // Keep the gait alive while reading; scrolling controls its position separately.
+      readingWalker.render(now, reader.open && phase === 'reading' &&
+        !readingMotionPreference.matches && !document.hidden);
       for (let i = meteors.length - 1; i >= 0; i--) {
         const meteor = meteors[i], age = (now - meteor.start) / 1800;
         if (age > 1) { meteors.splice(i, 1); continue; }
@@ -1164,8 +1161,6 @@ async function start() {
     const revealed = Boolean(articleId && readArticleIds.has(articleId));
     const hasReasons = (relationsByArticle.get(articleId) || []).some((relation) => relation.reason);
     renderReadingRelations(articleNode, revealed);
-    if (Math.abs(fraction - lastReadingFraction) > .00001) readingWalkUntil = performance.now() + 180;
-    lastReadingFraction = fraction;
     journey.style.setProperty('--reading-fraction', fraction);
     journey.setAttribute('aria-valuenow', String(percent));
     journey.setAttribute('aria-valuetext', complete ? '已到文末，100%' : `已阅读 ${percent}%`);

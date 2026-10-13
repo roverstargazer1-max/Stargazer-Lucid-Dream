@@ -21,7 +21,7 @@ export function createSilhouetteWalker(element, { compact = false, white = false
       if (frames.naturalWidth !== FRAME_WIDTH * FRAME_COLUMNS || frames.naturalHeight !== FRAME_HEIGHT * Math.ceil(FRAME_COUNT / FRAME_COLUMNS)) {
         failed = true; showStill(); return;
       }
-      // Reading pauses the same pose instead of swapping to a differently sized character.
+      // Pausing keeps the same pose instead of swapping to a differently sized character.
       if (enabled && previousTime !== null) walkTime += Math.min(100, now - previousTime);
       previousTime = enabled ? now : null;
       const ratio = Math.min(devicePixelRatio || 1, 2);
