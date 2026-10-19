@@ -64,6 +64,7 @@ export function createArticleSearch({ articles, getScene, onRead, onOpen, onClos
   let composing = false, reading = false, closing = false, dialogAnimation = null;
   let openingTrigger = entry, readingTrigger = null, session = false;
   let lastMapKey = '', entryOrigin = null;
+  let highlightedId = null;
   const filterButtons = new Map();
   const filterSeams = new Map();
   const starButtons = new Map();
@@ -138,9 +139,9 @@ export function createArticleSearch({ articles, getScene, onRead, onOpen, onClos
     const reticle = document.createElement('span'); reticle.className = 'search-map-reticle';
     reticle.setAttribute('aria-hidden', 'true'); star.append(reticle);
     star.setAttribute('aria-label', `阅读：${article.title}，${article.displayId}`);
-    star.addEventListener('mouseenter', () => highlight(article.id));
+    star.addEventListener('mouseenter', () => highlight(article.id, true));
     star.addEventListener('mouseleave', () => highlight(null));
-    star.addEventListener('focus', () => highlight(article.id));
+    star.addEventListener('focus', () => highlight(article.id, true));
     star.addEventListener('blur', () => highlight(null));
     star.addEventListener('click', () => void read(article.id, star));
     starLayer.append(star); starButtons.set(article.id, star);
@@ -356,7 +357,47 @@ export function createArticleSearch({ articles, getScene, onRead, onOpen, onClos
     }
   }
 
-  function highlight(id) {
+  // Only the index itself moves. Scrolling an ancestor into view would pull the
+  // chart away from the pointer, especially with the stacked mobile layout.
+  function revealIndexRow(id) {
+    const row = rowLinks.get(id);
+    if (artboard.dataset.indexOpen !== 'true' || row?.parentElement !== results || !results.clientHeight) return;
+    // A new star supersedes any unfinished smooth scroll, even if its row is
+    // already visible at this instant.
+    results.scrollTo({ top: results.scrollTop, behavior: 'instant' });
+    const top = row.offsetTop, bottom = top + row.offsetHeight;
+    const start = results.scrollTop, end = start + results.clientHeight;
+    if (top >= start && bottom <= end) return;
+    const target = top < start || row.offsetHeight > results.clientHeight
+      ? top - 8 : bottom - results.clientHeight + 8;
+    results.scrollTo({ top: target, behavior: isSoft() ? 'instant' : 'smooth' });
+  }
+
+  function placeTitle(star) {
+    const width = map.clientWidth, height = map.clientHeight;
+    if (!star || !width || !height) return;
+    const x = parseFloat(star.style.left) * width / 100, y = parseFloat(star.style.top) * height / 100;
+    const inset = 8, gap = 48, labelWidth = title.offsetWidth, labelHeight = title.offsetHeight;
+    const below = y - gap - inset < labelHeight && height - y > y;
+    title.dataset.below = String(below);
+    const left = clamp(x - labelWidth / 2 - 16, inset, Math.max(inset, width - labelWidth - inset));
+    const top = clamp(below ? y + gap : y - gap - labelHeight, inset, Math.max(inset, height - labelHeight - inset));
+    title.style.left = `${left}px`; title.style.top = `${top}px`;
+    // Meet the rule off-centre, reversing the slant near the map's left edge.
+    // Start just outside the reticle so the line never cuts through the star.
+    const joinX = left + clamp(x - left + (x - 36 >= left + 12 ? -36 : 36), 12, labelWidth - 12);
+    const joinY = top + (below ? 0 : labelHeight);
+    const dx = joinX - x, dy = joinY - y, distance = Math.hypot(dx, dy);
+    const clearance = Math.min(17, distance);
+    const startX = x + dx / distance * clearance, startY = y + dy / distance * clearance;
+    title.style.setProperty('--leader-x', `${startX - left}px`);
+    title.style.setProperty('--leader-y', `${startY - top}px`);
+    title.style.setProperty('--leader-length', `${Math.max(0, distance - clearance)}px`);
+    title.style.setProperty('--leader-angle', `${Math.atan2(dy, dx)}rad`);
+  }
+
+  function highlight(id, followIndex = false) {
+    highlightedId = id;
     for (const [key, star] of starButtons) star.classList.toggle('is-highlighted', id === key);
     for (const [key, row] of rowLinks) row.classList.toggle('is-highlighted', id === key);
     const article = articles.find(article => article.id === id);
@@ -368,12 +409,13 @@ export function createArticleSearch({ articles, getScene, onRead, onOpen, onClos
       const star = starButtons.get(id);
       title.textContent = '';
       const name = document.createElement('span'); name.className = 'search-map-title-name'; name.textContent = article.title;
-      const meta = document.createElement('span'); meta.className = 'search-map-title-meta'; meta.textContent = `${article.date} · ${article.displayId}`;
+      const meta = document.createElement('span'); meta.className = 'search-map-title-meta';
+      const date = document.createElement('time'); date.dateTime = article.date; date.textContent = article.date.replaceAll('-', '.');
+      const displayId = document.createElement('span'); displayId.textContent = article.displayId;
+      meta.append(date, displayId);
       title.append(name, meta);
-      // Keep the label near its star and inside the map, including after a resize.
-      title.style.left = `${clamp(parseFloat(star.style.left), 26, 74)}%`;
-      title.style.top = star.style.top;
-      title.dataset.below = String(parseFloat(star.style.top) < 18);
+      placeTitle(star);
+      if (followIndex) revealIndexRow(id);
     }
   }
 
@@ -410,11 +452,14 @@ export function createArticleSearch({ articles, getScene, onRead, onOpen, onClos
     drawView(mapCanvas, scene);
     for (const article of articles) {
       const point = atlasPoint(scene.positionOf(article)), star = starButtons.get(article.id);
-      star.style.left = `${point.x * 100}%`; star.style.top = `${point.y * 100}%`;
+      const left = `${point.x * 100}%`, top = `${point.y * 100}%`;
+      const moved = star.style.left !== left || star.style.top !== top;
+      star.style.left = left; star.style.top = top;
       star.style.setProperty('--ring', (Math.hypot(point.x - .5, point.y - .5) * 2).toFixed(3));
       star.classList.toggle('is-selected', scene.selected === article.id);
       star.classList.toggle('is-muted', !matched.has(article.id));
       star.style.setProperty('--star-size', article.magnitude === 1 ? '9px' : article.magnitude === 2.5 ? '7px' : '5px');
+      if (moved && highlightedId === article.id) placeTitle(star);
     }
   }
 
@@ -446,7 +491,11 @@ export function createArticleSearch({ articles, getScene, onRead, onOpen, onClos
     lastMapKey = ''; paintMap();
     for (const state of filterSeams.values()) state.value = '';
     if (dialog.open) placeSeams();
+    if (highlightedId) placeTitle(starButtons.get(highlightedId));
   }).observe(artboard);
+  new ResizeObserver(() => {
+    if (highlightedId) placeTitle(starButtons.get(highlightedId));
+  }).observe(title);
 
   return {
     get isOpen() { return dialog.open; },

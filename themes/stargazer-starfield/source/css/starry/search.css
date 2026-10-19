@@ -212,19 +212,17 @@ body:not(.starry-ready) #search-entry { display:none; }
 .search-map-star:active .search-map-reticle { transform:rotate(45deg) scale(.82); transition-duration:var(--dur-press); }
 .search-map-star.is-departing .search-map-reticle { opacity:0; transform:rotate(135deg) scale(.4); transition:opacity var(--dur-quick) var(--ease-exit) 120ms, transform var(--dur-quick) var(--ease-exit); }
 
-/* Star label: a hairline leader drops from the star, then the caption draws open. */
-.search-map-title { position:absolute; z-index:2; max-width:48%; width:max-content; display:grid; gap:2px; padding:7px 12px 8px; color:#e5f5ff; text-align:center; pointer-events:none;
-  transform:translate(-50%,calc(-100% - 22px)); background:linear-gradient(180deg,rgb(9 27 98 / .92),rgb(6 18 70 / .86)); border:1px solid rgb(146 224 243 / .28); border-radius:2px;
-  box-shadow:0 8px 24px rgb(2 8 36 / .45); clip-path:inset(0 50% -20px 50%); opacity:0;
-  transition:clip-path var(--dur-quick) var(--ease-exit), opacity var(--dur-hover) var(--ease-exit); }
-.search-map-title[data-below=true] { transform:translate(-50%,22px); clip-path:inset(-20px 50% 0 50%); }
-.search-map-title::after { content:''; position:absolute; left:50%; top:100%; width:1px; height:14px; background:linear-gradient(#b9efff,transparent); transform-origin:top; transform:scaleY(0); transition:transform var(--dur-hover) var(--ease-exit); }
-.search-map-title[data-below=true]::after { top:auto; bottom:100%; background:linear-gradient(transparent,#b9efff); transform-origin:bottom; }
-.search-map-title[data-on=true] { clip-path:inset(0 0 -20px 0); opacity:1; transition:clip-path var(--dur-panel) var(--ease-settle) 70ms, opacity var(--dur-hover) var(--ease-enter) 40ms; }
-.search-map-title[data-on=true][data-below=true] { clip-path:inset(-20px 0 0 0); }
-.search-map-title[data-on=true]::after { transform:scaleY(1); transition:transform var(--dur-quick) var(--ease-enter); }
-.search-map-title-name { font:400 13px/1.45 var(--display); overflow-wrap:anywhere; }
-.search-map-title-meta { color:#8fbfe6; font:10px/1.3 Consolas,monospace; letter-spacing:.8px; white-space:nowrap; }
+/* Star-chart marginalia: an unboxed caption and a diagonal drawn out of the star. */
+.search-map-title { --annotation-line:rgb(182 210 237 / .54); position:absolute; z-index:2; width:min(274px,calc(100% - 24px)); display:grid; gap:6px; padding:0 0 8px; color:var(--ink); text-align:left; pointer-events:none;
+  border:0; border-bottom:1px solid var(--annotation-line); text-shadow:var(--text-on-sky); opacity:0;
+  transition:opacity var(--dur-hover) var(--ease-exit); }
+.search-map-title[data-below=true] { border-bottom:0; border-top:1px solid var(--annotation-line); padding:8px 0 0; }
+.search-map-title::after { content:''; position:absolute; left:var(--leader-x); top:var(--leader-y); width:var(--leader-length); height:1px; background:var(--annotation-line); transform-origin:0 50%; transform:rotate(var(--leader-angle)) scaleX(0); transition:transform var(--dur-hover) var(--ease-exit); }
+.search-map-title[data-on=true] { opacity:1; transition:opacity var(--dur-hover) var(--ease-enter); }
+.search-map-title[data-on=true]::after { transform:rotate(var(--leader-angle)) scaleX(1); transition:transform var(--dur-quick) var(--ease-enter); }
+.search-map-title-name { font:400 var(--step-h2)/1.5 var(--display); letter-spacing:1px; overflow-wrap:anywhere; }
+.search-map-title-meta { display:flex; flex-wrap:wrap; gap:4px 14px; color:var(--ink-soft); font:var(--step-caption)/1.5 Consolas,monospace; letter-spacing:.5px; }
+.search-map-title-meta > span { margin-left:auto; white-space:nowrap; }
 
 /* Filters: one seam of light per rail travels between choices like a slide rule. */
 .search-filter-options button .search-filter-art { transition:filter var(--dur-hover) var(--ease-enter), transform var(--dur-press) var(--ease-enter); }
