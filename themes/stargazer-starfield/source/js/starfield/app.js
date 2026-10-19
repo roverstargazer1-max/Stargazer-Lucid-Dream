@@ -16,6 +16,7 @@ import { createSilhouetteWalker } from './silhouette-walker.js';
 import { readingProgress } from './reading-progress.js';
 import { constrainSkyCamera, skyProjection } from './camera-bounds.js';
 import { createArticleSearch } from './search.js';
+import { prepareReaderArt } from './reader-art.js';
 
 const body = document.body;
 const world = document.getElementById('world');
@@ -58,6 +59,7 @@ async function start() {
   const isDirectEntry = Boolean(directId);
   const collectionKind = body.dataset.starryCollectionKind || '';
   const isDirectCollection = Boolean(collectionKind);
+  if (isDirectEntry || isDirectCollection) void prepareReaderArt();
   const collectionMode = collectionKind === 'archive' ? 'time' : 'relation';
   const collectionPath = body.dataset.starryCollectionPath || location.pathname;
   const staticCollection = document.getElementById('static-collection-fallback');
@@ -174,7 +176,7 @@ async function start() {
   }
 
   resize();
-  await Promise.all([preparePaintedScene(), prepareInteractiveClouds()]);
+  await Promise.all([preparePaintedScene(), prepareInteractiveClouds(), ...(isDirectEntry ? [prepareReaderArt()] : [])]);
   await waitForImage(document.querySelector('.room-image'));
   clouds = createInteractiveClouds(world, () => reducedMotion || !renderBudget.current.ambientMotion);
   starMotion = createStarMotion({ preview, reader, scroller, isSoft: () => reducedMotion });
@@ -263,6 +265,7 @@ async function start() {
     articleUrl: localArticleUrl,
     onRead: openReaderFromSearch,
     onOpen() {
+      void prepareReaderArt();
       interrupt(); pointers.clear(); press = null; labelPointer = null;
       restingFrameDrawn = false; updateUI();
     },
@@ -516,6 +519,7 @@ async function start() {
   }
 
   function beginApproach(id, kind = 'selection', previousContext = null) {
+    void prepareReaderArt();
     selected = id;
     phase = 'moving';
     starMotion.interrupt();
@@ -1406,6 +1410,7 @@ async function start() {
   }
 
   async function loadArticleNode(item) {
+    void prepareReaderArt();
     const url = localArticleUrl(item);
     const pageResponse = await fetch(url, { credentials: 'same-origin', cache: 'no-cache' });
     if (!pageResponse.ok) throw new Error(`Article request failed: ${pageResponse.status}`);
