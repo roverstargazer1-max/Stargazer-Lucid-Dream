@@ -225,6 +225,7 @@ export function createArticleSearch({ articles, getScene, onRead, onOpen, onClos
     const failed = Boolean(conditions.query.trim() && loadError);
     const found = findArticles(articles, documents, conditions);
     matched = new Set(found.map(article => article.id));
+    if (highlightedId && !matched.has(highlightedId)) highlight(null);
     const rows = waiting || failed ? [] : found.map(article => rowLinks.get(article.id));
     const same = rows.length === results.children.length && rows.every((row, i) => results.children[i] === row);
     results.replaceChildren(...rows);
@@ -339,7 +340,7 @@ export function createArticleSearch({ articles, getScene, onRead, onOpen, onClos
   }
 
   async function read(id, trigger) {
-    if (reading || closing || !dialog.open) return;
+    if (reading || closing || !dialog.open || !matched.has(id)) return;
     reading = true; readingTrigger = trigger;
     feedback.textContent = '正在准备正文…';
     dialog.setAttribute('aria-busy', 'true');
@@ -349,6 +350,7 @@ export function createArticleSearch({ articles, getScene, onRead, onOpen, onClos
     star?.classList.add('is-departing'); dialog.dataset.departing = 'true';
     try {
       if (!isSoft()) await new Promise(resolve => setTimeout(resolve, 280));
+      if (!matched.has(id)) return;
       const opened = dialog.open && await onRead(id, star?.isConnected ? star : trigger);
       if (!opened && dialog.open) feedback.textContent = '这篇文章暂时无法加载，请重试。';
     } finally {
@@ -397,6 +399,7 @@ export function createArticleSearch({ articles, getScene, onRead, onOpen, onClos
   }
 
   function highlight(id, followIndex = false) {
+    if (id && !matched.has(id)) return;
     highlightedId = id;
     for (const [key, star] of starButtons) star.classList.toggle('is-highlighted', id === key);
     for (const [key, row] of rowLinks) row.classList.toggle('is-highlighted', id === key);
@@ -456,8 +459,10 @@ export function createArticleSearch({ articles, getScene, onRead, onOpen, onClos
       const moved = star.style.left !== left || star.style.top !== top;
       star.style.left = left; star.style.top = top;
       star.style.setProperty('--ring', (Math.hypot(point.x - .5, point.y - .5) * 2).toFixed(3));
-      star.classList.toggle('is-selected', scene.selected === article.id);
-      star.classList.toggle('is-muted', !matched.has(article.id));
+      const enabled = matched.has(article.id);
+      star.disabled = !enabled;
+      star.classList.toggle('is-selected', enabled && scene.selected === article.id);
+      star.classList.toggle('is-muted', !enabled);
       star.style.setProperty('--star-size', article.magnitude === 1 ? '9px' : article.magnitude === 2.5 ? '7px' : '5px');
       if (moved && highlightedId === article.id) placeTitle(star);
     }

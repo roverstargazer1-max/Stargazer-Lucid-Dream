@@ -193,6 +193,8 @@ body:not(.starry-ready) #search-entry { display:none; }
 /* Stars ------------------------------------------------------------------- */
 .search-map-star::before { opacity:var(--star-alpha); transition:--star-alpha var(--dur-quick) var(--ease-settle), background-color var(--dur-hover) var(--ease-enter), box-shadow var(--dur-hover) var(--ease-enter), transform var(--dur-quick) var(--ease-enter); }
 .search-map-star.is-muted { --star-alpha:.22; }
+/* Dimming comes from the star's ink, rather than the generic disabled-button fade. */
+.search-map-star:disabled { opacity:1; }
 #star-search[data-focusing=true] .search-map-star:not(.is-highlighted,.is-muted) { --star-alpha:.5; }
 #star-search[data-focusing=true] .search-map canvas { opacity:.42; transition:opacity var(--dur-quick) var(--ease-settle); }
 .search-map-star.is-highlighted { --star-alpha:1; z-index:1; }
