@@ -1,0 +1,300 @@
+{
+  "browser": "149.0.7827.55",
+  "baseline": "c4b80be",
+  "implementation": [
+    "5849cb7",
+    "277b001"
+  ],
+  "devices": [
+    {
+      "device": "desktop",
+      "coldLoad": {
+        "baselineBytes": 7090364,
+        "finalBytes": 4951493,
+        "savedBytes": 2138871
+      },
+      "readerOpen": {
+        "baseline": {
+          "p95Ms": 33.5,
+          "maxMs": 183.3,
+          "longTasksMs": [
+            170
+          ],
+          "busyMs": 247.2
+        },
+        "final": {
+          "p95Ms": 50.2,
+          "maxMs": 50.4,
+          "longTasksMs": [],
+          "busyMs": 65.8
+        },
+        "cpu4x": {
+          "p95Ms": 67.5,
+          "maxMs": 67.5,
+          "longTasksMs": [
+            60
+          ],
+          "busyMs": 241.6
+        }
+      },
+      "remainingSearch": [
+        {
+          "name": "search-open",
+          "final": {
+            "p95Ms": 33.4,
+            "maxMs": 50,
+            "longTasksMs": [],
+            "busyMs": 355.1
+          },
+          "cpu4x": {
+            "p95Ms": 49.8,
+            "maxMs": 116.2,
+            "longTasksMs": [
+              116
+            ],
+            "busyMs": 1007.9
+          }
+        },
+        {
+          "name": "search-input",
+          "final": {
+            "p95Ms": 50.1,
+            "maxMs": 66.6,
+            "longTasksMs": [],
+            "busyMs": 71.4
+          },
+          "cpu4x": {
+            "p95Ms": 34.2,
+            "maxMs": 66.6,
+            "longTasksMs": [],
+            "busyMs": 378.7
+          }
+        },
+        {
+          "name": "search-hover",
+          "final": {
+            "p95Ms": 33.4,
+            "maxMs": 34.3,
+            "longTasksMs": [],
+            "busyMs": 108.6
+          },
+          "cpu4x": {
+            "p95Ms": 50,
+            "maxMs": 66.7,
+            "longTasksMs": [],
+            "busyMs": 310.7
+          }
+        },
+        {
+          "name": "search-close",
+          "final": {
+            "p95Ms": 83.4,
+            "maxMs": 83.4,
+            "longTasksMs": [],
+            "busyMs": 109.7
+          },
+          "cpu4x": {
+            "p95Ms": 66.5,
+            "maxMs": 133.4,
+            "longTasksMs": [
+              53
+            ],
+            "busyMs": 433
+          }
+        }
+      ]
+    },
+    {
+      "device": "mobile",
+      "coldLoad": {
+        "baselineBytes": 6997243,
+        "finalBytes": 4858372,
+        "savedBytes": 2138871
+      },
+      "readerOpen": {
+        "baseline": {
+          "p95Ms": 17.7,
+          "maxMs": 133.3,
+          "longTasksMs": [
+            131
+          ],
+          "busyMs": 222.5
+        },
+        "final": {
+          "p95Ms": 17.8,
+          "maxMs": 17.8,
+          "longTasksMs": [],
+          "busyMs": 102.5
+        },
+        "cpu4x": {
+          "p95Ms": 32.7,
+          "maxMs": 66.6,
+          "longTasksMs": [
+            74
+          ],
+          "busyMs": 325.7
+        }
+      },
+      "remainingSearch": [
+        {
+          "name": "search-open",
+          "final": {
+            "p95Ms": 17.6,
+            "maxMs": 17.7,
+            "longTasksMs": [],
+            "busyMs": 328.8
+          },
+          "cpu4x": {
+            "p95Ms": 33.6,
+            "maxMs": 117.1,
+            "longTasksMs": [
+              109
+            ],
+            "busyMs": 1018.9
+          }
+        },
+        {
+          "name": "search-input",
+          "final": {
+            "p95Ms": 17.7,
+            "maxMs": 17.8,
+            "longTasksMs": [],
+            "busyMs": 111.1
+          },
+          "cpu4x": {
+            "p95Ms": 17.6,
+            "maxMs": 17.6,
+            "longTasksMs": [],
+            "busyMs": 364.9
+          }
+        },
+        {
+          "name": "search-hover",
+          "final": {
+            "p95Ms": 17.6,
+            "maxMs": 17.7,
+            "longTasksMs": [],
+            "busyMs": 113.4
+          },
+          "cpu4x": {
+            "p95Ms": 17.7,
+            "maxMs": 17.7,
+            "longTasksMs": [],
+            "busyMs": 526.2
+          }
+        },
+        {
+          "name": "search-close",
+          "final": {
+            "p95Ms": 17,
+            "maxMs": 17.6,
+            "longTasksMs": [],
+            "busyMs": 170.6
+          },
+          "cpu4x": {
+            "p95Ms": 33.9,
+            "maxMs": 67.4,
+            "longTasksMs": [
+              73
+            ],
+            "busyMs": 619.3
+          }
+        }
+      ]
+    }
+  ],
+  "completedSamples": {
+    "baseline": 44,
+    "final": 44,
+    "cpu4x": 44
+  },
+  "finalOperationLongTasks": [],
+  "pageErrors": [],
+  "networkFailures": [],
+  "lifecycle": [
+    {
+      "scenario": "desktop",
+      "readerBlur": "blur(2.4px)",
+      "searchBlur": "blur(1.2px)",
+      "operations": "enter, select, read, scroll, close, search, filter, read, restore search, close, return",
+      "errors": []
+    },
+    {
+      "scenario": "mobile",
+      "readerBlur": "blur(2.4px)",
+      "searchBlur": "blur(1.2px)",
+      "operations": "enter, select, read, scroll, close, search, filter, read, restore search, close, return",
+      "errors": []
+    },
+    {
+      "scenario": "landscape",
+      "readerBlur": "blur(2.4px)",
+      "searchBlur": "blur(1.2px)",
+      "operations": "enter, select, read, scroll, close, search, filter, read, restore search, close, return",
+      "errors": []
+    },
+    {
+      "scenario": "soft",
+      "readerBlur": "blur(0px)",
+      "searchBlur": "blur(0px)",
+      "operations": "enter, select, read, scroll, close, search, filter, read, restore search, close, return",
+      "errors": []
+    },
+    {
+      "scenario": "resize",
+      "readerBlur": "blur(2.4px)",
+      "searchBlur": "blur(1.2px)",
+      "operations": "enter, select, read, scroll, close, search, filter, read, restore search, close, return",
+      "errors": []
+    },
+    {
+      "scenario": "memory",
+      "warmupCycles": 3,
+      "repeatedCycles": 12,
+      "forcedGC": true,
+      "samples": [
+        {
+          "cycle": 0,
+          "heapBytes": 3487008,
+          "nodes": 1657,
+          "elements": 518,
+          "styles": 3,
+          "animations": 0
+        },
+        {
+          "cycle": 4,
+          "heapBytes": 3480680,
+          "nodes": 1802,
+          "elements": 566,
+          "styles": 3,
+          "animations": 0
+        },
+        {
+          "cycle": 8,
+          "heapBytes": 3635348,
+          "nodes": 1802,
+          "elements": 566,
+          "styles": 3,
+          "animations": 0
+        },
+        {
+          "cycle": 12,
+          "heapBytes": 3652696,
+          "nodes": 1802,
+          "elements": 566,
+          "styles": 3,
+          "animations": 0
+        }
+      ],
+      "growthBytes": 165688,
+      "errors": []
+    }
+  ],
+  "limits": [
+    "Chromium on one Mac; mobile is emulated, not a physical phone",
+    "RAF is a scheduling measure, not presented frames",
+    "Low power mode enabled; CPU throttling does not throttle the GPU",
+    "Operation long tasks exclude navigation/load tasks",
+    "Repeated-cycle heap measurements use forced GC and do not measure total GPU memory"
+  ]
+}
