@@ -21,7 +21,7 @@ try{
  await page.waitForFunction(()=>document.body.dataset.room==='outside'&&!document.body.dataset.arrival);
  await page.locator('#search-entry').click();
  await page.waitForFunction(()=>document.querySelector('#star-search').open&&!document.querySelector('#star-search').dataset.motion);
- await page.locator('#search-index-toggle').click();await page.waitForTimeout(700);
+ await page.waitForFunction(()=>document.querySelector('#search-index-toggle').getAttribute('aria-expanded')==='true');await page.waitForTimeout(700);
  await page.locator('#search-results').evaluate(el=>{el.scrollTop=0;});
  const before=await metrics(page,'随笔1');assert.equal(before.fullyVisible,false);
  await page.getByRole('button',{name:/^阅读：随笔1，/}).hover();await page.waitForTimeout(700);

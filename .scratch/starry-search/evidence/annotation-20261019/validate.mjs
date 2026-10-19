@@ -28,7 +28,7 @@ try{
   await page.waitForFunction(()=>document.body.dataset.room==='outside'&&!document.body.dataset.arrival);
   await page.locator('#search-entry').evaluate(el=>el.click());
   await page.waitForFunction(()=>document.querySelector('#star-search').open&&!document.querySelector('#star-search').dataset.motion);
-  await page.locator('#search-index-toggle').evaluate(el=>el.click());await sleep(1050);
+  await page.waitForFunction(()=>document.querySelector('#search-index-toggle').getAttribute('aria-expanded')==='true');await sleep(1050);
   await page.evaluate(()=>document.fonts.ready);
   const stars=await page.locator('.search-map-star').evaluateAll(els=>els.map(el=>({id:el.dataset.articleId,title:el.getAttribute('aria-label')})));
   const labels=[];

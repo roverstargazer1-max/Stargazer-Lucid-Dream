@@ -185,9 +185,10 @@ export function createArticleSearch({ articles, getScene, onRead, onOpen, onClos
     const rows = [...results.children];
     for (const row of rows) row.classList.remove('is-entering');
     if (isSoft() || !rows.length) return;
+    const arriving = dialog.dataset.motion === 'opening';
     void results.offsetWidth;
     rows.forEach((row, order) => {
-      row.style.setProperty('--row-delay', `${Math.min(order, STAGGER_MAX + 2) * STAGGER_STEP + 60}ms`);
+      row.style.setProperty('--row-delay', `${Math.min(order, STAGGER_MAX + 2) * STAGGER_STEP * (arriving ? .5 : 1) + (arriving ? 0 : 60)}ms`);
       row.classList.add('is-entering');
     });
   }
@@ -267,7 +268,7 @@ export function createArticleSearch({ articles, getScene, onRead, onOpen, onClos
     entryOrigin = origin.width ? { x: origin.left + origin.width / 2, y: origin.top + origin.height / 2 } : null;
     conditions = { query: '', year: '', magnitude: '' }; input.value = '';
     setIndex(false); hydrate(dialog);
-    void showDialog(entryOrigin).then(() => {
+    void showDialog(entryOrigin, true).then(() => {
       if (session && !closing && dialog.open) input.focus({ preventScroll: true });
     });
     onOpen();
@@ -283,7 +284,7 @@ export function createArticleSearch({ articles, getScene, onRead, onOpen, onClos
     unfold = value;
     dialog.style.setProperty('--unfold', value.toFixed(4));
   }
-  function aperture(origin) {
+  function aperture(origin, expandIndex = false) {
     const rect = dialog.getBoundingClientRect();
     const x = origin ? origin.x - rect.left : rect.width * .08;
     const y = origin ? origin.y - rect.top : rect.height * .92;
@@ -294,18 +295,21 @@ export function createArticleSearch({ articles, getScene, onRead, onOpen, onClos
     // Start at the dialog's nearest edge so the iris is visible from the first frame.
     const near = Math.hypot(Math.max(0, -x, x - rect.width), Math.max(0, -y, y - rect.height));
     dialog.style.setProperty('--iris-r0', `${Math.max(0, near - 8).toFixed(1)}px`);
-    dialog.style.setProperty('--iris-r', `${Math.ceil(reach + 24)}px`);
+    // Cover the eventual panel width before its sidebar starts moving, so the
+    // larger surface never pops out of the original, smaller aperture at rest.
+    const extra = expandIndex ? Math.max(0, dialog.querySelector('.search-base').offsetWidth - rect.width) : 0;
+    dialog.style.setProperty('--iris-r', `${Math.ceil(reach + extra + 24)}px`);
   }
-  function animateDialog(out = false, origin = entryOrigin) {
+  function animateDialog(out = false, origin = entryOrigin, expandIndex = false) {
     const soft = isSoft(), fromFocus = backdropFocus, fromUnfold = dialogAnimation || out ? unfold : 0;
     cancelDialogAnimation();
-    aperture(origin);
+    aperture(origin, expandIndex);
     dialog.dataset.motion = out ? 'closing' : 'opening'; dialog.dataset.soft = String(soft); artboard.inert = true;
     const span = out ? fromUnfold : 1 - fromUnfold;
     const full = soft ? (out ? DUR.hover - 60 : DUR.press + 70) : out ? DUR.panel + 60 : DUR.scene + 120;
     const finished = new Promise(resolve => {
       dialogAnimation = { start:performance.now(), duration:Math.max(1, full * Math.max(span, .35)),
-        fromFocus, toFocus:out ? 0 : 1, fromUnfold, toUnfold:out ? 0 : 1, out, soft, resolve };
+        fromFocus, toFocus:out ? 0 : 1, fromUnfold, toUnfold:out ? 0 : 1, out, soft, expandIndex, resolve };
     });
     tickDialog(performance.now());
     return finished;
@@ -323,11 +327,16 @@ export function createArticleSearch({ articles, getScene, onRead, onOpen, onClos
     const curve = current.out ? exit : enter;
     setUnfold(current.fromUnfold + (current.toUnfold - current.fromUnfold) * curve(progress));
     setBackdrop(current.fromFocus + (current.toFocus - current.fromFocus) * curve(progress), current.soft);
+    // Start the sidebar while the chart is still moving, before its long ease-out.
+    if (current.expandIndex && progress >= .4) {
+      current.expandIndex = false;
+      setIndex(true);
+    }
     if (progress === 1) cancelDialogAnimation();
   }
 
-  function showDialog(origin) {
-    closing = false; dialog.showModal(); setUnfold(0); return animateDialog(false, origin);
+  function showDialog(origin, expandIndex = false) {
+    closing = false; dialog.showModal(); setUnfold(0); return animateDialog(false, origin, expandIndex);
   }
 
   async function close() {

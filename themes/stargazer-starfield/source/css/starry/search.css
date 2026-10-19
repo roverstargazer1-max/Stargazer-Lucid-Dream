@@ -270,6 +270,8 @@ body:not(.starry-ready) #search-entry { display:none; }
 /* Index panel: unrolls from the chart's edge instead of fading as a block. */
 #search-index { clip-path:inset(0 100% 0 0); transform:none; transition:clip-path var(--dur-quick) var(--ease-exit), opacity var(--dur-quick) var(--ease-exit), visibility 0s var(--dur-quick); }
 [data-index-open=true] #search-index { clip-path:inset(0 0 0 -28px); transform:none; transition:clip-path var(--dur-scene) var(--ease-settle) 60ms, opacity var(--dur-quick) var(--ease-enter) 60ms, visibility 0s; }
+/* The initial sidebar joins the moving chart, without its own delayed settle. */
+#star-search[data-motion=opening][data-index-open=true] #search-index { transition:clip-path var(--dur-panel) var(--ease-enter), opacity var(--dur-hover) var(--ease-enter), visibility 0s; }
 #star-search { transition:width var(--dur-panel) var(--ease-settle); }
 .search-toggle-arrow { transition:transform var(--dur-panel) var(--ease-settle); }
 
