@@ -287,13 +287,10 @@ body:not(.starry-ready) #search-entry { display:none; }
 /* As the chart folds away the close mark rewinds against the turn. */
 #star-search[data-motion=closing] #close-search img { transform:rotate(-90deg) scale(.8); transition:transform var(--dur-panel) var(--ease-exit); }
 
-/* Astrolabe entry: hover lifts a halo ring around the instrument; press seats it. */
+/* Astrolabe entry: hover gently turns the instrument; press seats it. */
 #search-entry { transition:transform var(--dur-quick) var(--ease-settle); }
-#search-entry::before { content:''; position:absolute; inset:-8%; border-radius:50%; pointer-events:none; border:1px solid rgb(185 239 255 / .4); box-shadow:0 0 22px rgb(98 213 255 / .18), inset 0 0 14px rgb(98 213 255 / .12); opacity:0; transform:scale(.86); transition:opacity var(--dur-hover) var(--ease-exit), transform var(--dur-panel) var(--ease-exit); }
-#search-entry:focus-visible::before { opacity:1; transform:scale(1); transition:opacity var(--dur-hover) var(--ease-enter), transform var(--dur-panel) var(--ease-settle); }
 @media(hover:hover) and (pointer:fine) {
   #search-entry:hover { transform:translateY(-2px) rotate(-4deg); }
-  #search-entry:hover::before { opacity:1; transform:scale(1); transition:opacity var(--dur-hover) var(--ease-enter), transform var(--dur-panel) var(--ease-settle); }
 }
 #search-entry:active { transform:scale(.94); transition-duration:var(--dur-press); }
 /* The chart folds back into the astrolabe, so the astrolabe re-seats as it lands. */
@@ -303,7 +300,7 @@ body:not(.starry-ready) #search-entry { display:none; }
 @media(prefers-reduced-motion:reduce) {
   #star-search .search-artboard, #star-search .search-map, #star-search .search-heading, #star-search .search-bar, #star-search .search-filters, #star-search #search-index-toggle { transform:none !important; }
   #star-search::after, .search-filter-seam.is-flash::after { display:none; }
-  .search-map-reticle, .search-map-reticle::before, .search-map-title, .search-map-title::after, .search-filter-seam, .search-result::before, .search-result::after, .search-result-mark, .search-result-mark::before, .search-result-name, #search-index, #search-entry, #search-entry::before, #search-index-toggle::before, #close-search img { transition:none !important; animation:none !important; }
+  .search-map-reticle, .search-map-reticle::before, .search-map-title, .search-map-title::after, .search-filter-seam, .search-result::before, .search-result::after, .search-result-mark, .search-result-mark::before, .search-result-name, #search-index, #search-entry, #search-index-toggle::before, #close-search img { transition:none !important; animation:none !important; }
   .search-result-mark::before { transform:none !important; }
   .search-result.is-entering, #search-entry:not([hidden]) { animation:none; }
   .search-result:is(:hover,:focus-visible,.is-highlighted) .search-result-name { transform:none; }

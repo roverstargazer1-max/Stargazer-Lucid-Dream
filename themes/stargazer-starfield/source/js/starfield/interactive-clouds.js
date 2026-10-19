@@ -42,15 +42,32 @@ function projectCloud(cloud, shift, project, w, h) {
   const center = at(az, el), left = at(az - cw / 2, el), right = at(az + cw / 2, el);
   const top = at(az, el + ch / 2), bottom = at(az, el - ch / 2);
   if (!center || !left || !right || !top || !bottom) return null;
+  // Cull against the cloud's actual dome footprint before fitting a flat sprite.
+  // Near the camera plane, extrapolating that fit can pull an offscreen cloud
+  // back across the sky as a very long strip. Edge midpoints retain the curve.
+  const footprint = [[-.5, -.5], [0, -.5], [.5, -.5], [.5, 0], [.5, .5], [0, .5], [-.5, .5], [-.5, 0]]
+    .map(([u, v]) => at(az + cw * u, el + ch * v));
+  if (footprint.some(p => !p) || footprint.every(p => p.x < 0) || footprint.every(p => p.x > w) ||
+    footprint.every(p => p.y < 0) || footprint.every(p => p.y > h)) return null;
   const a = (right.x - left.x) / 512, b = (right.y - left.y) / 512;
   const c = (bottom.x - top.x) / 224, d = (bottom.y - top.y) / 224;
   const tx = center.x - a * 256 - c * 112, ty = center.y - b * 256 - d * 112;
-  if (Math.abs(a * d - b * c) < .0001 || Math.hypot(a, b) * 512 > w * 2) return null;
+  if (![a, b, c, d, tx, ty].every(Number.isFinite) || Math.abs(a * d - b * c) < .0001 ||
+    Math.hypot(a, b) * 512 > w * 2 || Math.hypot(c, d) * 224 > h * 2) return null;
   const corners = [[0, 0], [512, 0], [0, 224], [512, 224]]
     .map(([x, y]) => ({ x: a * x + c * y + tx, y: b * x + d * y + ty }));
   if (corners.every(p => p.x < 0) || corners.every(p => p.x > w) ||
     corners.every(p => p.y < 0) || corners.every(p => p.y > h)) return null;
-  return { center, a, b, c, d, tx, ty };
+  return { center, a, b, c, d, tx, ty, footprint };
+}
+
+function insideFootprint(x, y, points) {
+  let inside = false;
+  for (let i = 0, j = points.length - 1; i < points.length; j = i++) {
+    const a = points[i], b = points[j];
+    if ((a.y > y) !== (b.y > y) && x < (b.x - a.x) * (y - a.y) / (b.y - a.y) + a.x) inside = !inside;
+  }
+  return inside;
 }
 
 function sameProjection(previous, camera, settings, w, h) {
@@ -83,7 +100,8 @@ export function createInteractiveClouds(world, isSoft = () => matchMedia('(prefe
   function hit(x, y) {
     if (blocked) return null;
     for (const frame of [...frames].reverse()) {
-      const { a, b, c, d, tx, ty, cloud, opacity } = frame, det = a * d - b * c;
+      const { a, b, c, d, tx, ty, cloud, opacity, footprint } = frame, det = a * d - b * c;
+      if (!insideFootprint(x, y, footprint)) continue;
       const u = (d * (x - tx) - c * (y - ty)) / det, v = (-b * (x - tx) + a * (y - ty)) / det;
       if (u < 0 || u >= 512 || v < 0 || v >= 224) continue;
       if (cloud.sprite.alpha[Math.floor(v) * 512 + Math.floor(u)] * opacity > 55) return cloud;
@@ -138,10 +156,15 @@ export function createInteractiveClouds(world, isSoft = () => matchMedia('(prefe
           cloud.lastShift = shift;
         }
         if (!cloud.geometry) continue;
-        const { center, a, b, c, d, tx, ty } = cloud.geometry;
+        const { center, a, b, c, d, tx, ty, footprint } = cloud.geometry;
         const opacity = 1 - strength * (isSoft() ? .25 : .65);
-        frames.push({ a, b, c, d, tx, ty, cloud, opacity });
+        frames.push({ a, b, c, d, tx, ty, cloud, opacity, footprint });
         ctx.save();
+        ctx.beginPath();
+        ctx.moveTo(footprint[0].x, footprint[0].y);
+        for (const point of footprint.slice(1)) ctx.lineTo(point.x, point.y);
+        ctx.closePath();
+        ctx.clip();
         ctx.transform(a, b, c, d, tx, ty);
         ctx.globalAlpha = opacity;
         ctx.drawImage(cloud.sprite.canvas, 0, 0);
