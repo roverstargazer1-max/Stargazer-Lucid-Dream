@@ -1,5 +1,6 @@
 const { normalizeArticleRelations } = require('../lib/relations');
 const { normalizeStar } = require('../lib/star');
+const { articleTimeOrder } = require('../lib/article-order');
 const { readCatalogueNumbers, makeDisplayId } = require('../lib/catalogue');
 const pathUtil = require('node:path');
 const { load } = require(require.resolve('cheerio', { paths: [pathUtil.dirname(require.resolve('hexo'))] }));
@@ -42,7 +43,6 @@ hexo.extend.generator.register('starry-article-index', function (locals) {
     if (duplicatePath) throw new Error(`Duplicate article permalink "${path}" in ${duplicatePath} and ${post.source}.`);
     paths.set(path, post.source);
 
-    const dateKey = post.date.format('YYYY-MM-DDTHH:mm:ss');
     const catalogNumber = catalogue.get(id);
     if (!catalogNumber) {
       throw new Error(`Missing catalogNumber for "${id}" in source/_data/starry-layout.json. Run \`npm run prepare:starfield\` locally and commit the prepared layout.`);
@@ -59,7 +59,7 @@ hexo.extend.generator.register('starry-article-index', function (locals) {
       tags,
       categories,
       date: post.date.format('YYYY-MM-DD'),
-      timeOrder: `${dateKey}|${id}`,
+      timeOrder: articleTimeOrder(post),
       path,
       url: String(post.permalink),
       position: saved.position,

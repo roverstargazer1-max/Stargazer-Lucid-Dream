@@ -684,6 +684,7 @@ async function start() {
 
   function closeReaderFromDirect() {
     if (!reader.open || directCloseInProgress) return;
+    historyNavigationVersion += 1;
     stopEmbeddedAudio();
     directCloseInProgress = true;
     phase = 'closing';
@@ -702,7 +703,12 @@ async function start() {
 
   function closeReaderThroughHistory() {
     if (!reader.open || !internalArticleHistory) return;
-    history.back();
+    historyNavigationVersion += 1;
+    if (isDirectEntry && !readingSnapshot) {
+      closeReaderFromDirect();
+      return;
+    }
+    history.go(-(history.state?.starryReaderDepth || 1));
   }
 
   function closeReaderAfterPop() {
@@ -785,7 +791,7 @@ async function start() {
       selected = id;
       phase = 'reading';
       readerSlot.replaceChildren(node);
-      internalArticleHistory = true;
+      internalArticleHistory = history.state?.starryReaderDepth !== 0;
       showReader(project(positionOf(targetArticle)));
       void prepareEmbeddedPlayer(node);
     } catch (error) {
@@ -793,6 +799,31 @@ async function start() {
       restoreAddressForDisplayedContent();
       announce('这篇文章暂时无法加载；仍保留当前可读内容与对应地址。');
       console.warn(`History article "${id}" could not be opened.`, error);
+    }
+  }
+
+  async function openAdjacentArticle(id, navigation) {
+    const targetArticle = articleById.get(id);
+    if (!reader.open || phase !== 'reading' || !targetArticle || article.id === id || navigation.getAttribute('aria-busy') === 'true') return;
+    const requestVersion = ++historyNavigationVersion;
+    navigation.setAttribute('aria-busy', 'true');
+    announce(`正在打开《${targetArticle.title}》。`);
+    try {
+      const node = articleNodes.get(id) || await articleLoads.get(id) || await loadArticleNode(targetArticle);
+      if (!node || requestVersion !== historyNavigationVersion || !reader.open || phase !== 'reading') return;
+      articleNodes.set(id, node);
+      // Keep the current entry readable through Back, including direct article entry.
+      const depth = history.state?.starryReaderDepth ?? (internalArticleHistory ? 1 : 0);
+      history.replaceState({ ...history.state, starryView: 'reader', starryArticleId: article.id, mode, starryReaderDepth: depth }, '', location.href);
+      history.pushState({ starryView: 'reader', starryArticleId: id, mode, starryReaderDepth: depth + 1 }, '', localArticleUrl(targetArticle).pathname);
+      window.blogThemeSwitch?.refresh();
+      await openReaderFromHistory(id);
+    } catch (error) {
+      if (requestVersion !== historyNavigationVersion) return;
+      announce('这篇文章暂时无法加载；仍保留当前文章，可以再次点击重试。');
+      console.warn(`Adjacent article "${id}" could not be opened.`, error);
+    } finally {
+      navigation.removeAttribute('aria-busy');
     }
   }
 
@@ -1255,6 +1286,13 @@ async function start() {
     readingResize.observe(readerSlot);
     readingResize.observe(scroller);
     scroller.addEventListener('click', event => {
+      const adjacent = event.target.closest('.article-pagination-link[data-starry-article-id]');
+      if (adjacent && reader.open && articleById.has(adjacent.dataset.starryArticleId)
+        && event.button === 0 && !event.ctrlKey && !event.metaKey && !event.shiftKey && !event.altKey) {
+        event.preventDefault();
+        void openAdjacentArticle(adjacent.dataset.starryArticleId, adjacent.closest('.article-pagination'));
+        return;
+      }
       const link = event.target.closest('.reading-relation-link[data-starry-article-id]');
       const target = link && articleById.get(link.dataset.starryArticleId);
       if (!reader.open || !target || event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
