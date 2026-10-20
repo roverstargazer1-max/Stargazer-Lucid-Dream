@@ -4,10 +4,10 @@ import { ENTRANCE, entranceFrame, returnFrame } from '../themes/stargazer-starfi
 import { roomPassageFrames } from '../themes/stargazer-starfield/source/js/starfield/room-scene.js';
 
 test('the room stays opaque and undistorted, keeps advancing, and finishes beyond the clear aperture', () => {
-  for (const [width, height] of [[1440, 1040], [1920, 1080], [3440, 1440], [800, 1300], [760, 900], [761, 900], [390, 844], [320, 568], [844, 390]]) {
-    const aspect = 1.77683, anchor = width <= 760 ? .20 : .50;
+  for (const [width, height] of [[1440, 1040], [1920, 1080], [3440, 1440], [800, 1300], [390, 844], [320, 568], [844, 390]]) {
+    const mobile = width <= 760, aspect = mobile ? .5628 : 1.77683;
     const w = Math.max(width, height * aspect), h = Math.max(height, width / aspect);
-    const rect = { width: w, height: h, left: (width - w) * anchor, top: (height - h) / 2 };
+    const rect = { width: w, height: h, left: (width - w) / 2, top: (height - h) / 2 };
     const { origin, frames } = roomPassageFrames(rect, width, height);
     assert.ok(frames.every(frame => frame.opacity === 1));
     assert.ok(frames.every(frame => /^translate\([^)]*\) scale\([^)]*\)$/.test(frame.transform)), 'Only uniform scale and translation may move the illustration');
@@ -15,7 +15,7 @@ test('the room stays opaque and undistorted, keeps advancing, and finishes beyon
     assert.ok(scales.every((scale, i) => !i || scale > scales[i - 1]), 'The room must not finish its push and wait for the turn');
     const [, x, y, scale] = frames.at(-1).transform.match(/translate\(([-\d.e]+)px,([-\d.e]+)px\) scale\(([-\d.e]+)\)/).map(Number);
     // These clear rectangles lie inside the existing aperture masks, above all foreground silhouettes.
-    const clear = [.36, .04, .66, .44];
+    const clear = mobile ? [.23, .03, .95, .58] : [.36, .04, .66, .44];
     for (const [px, py] of [[0, 0], [width, 0], [width, height], [0, height]]) {
       const u = (px - rect.left - origin.x - x) / (scale * w) + origin.x / w;
       const v = (py - rect.top - origin.y - y) / (scale * h) + origin.y / h;

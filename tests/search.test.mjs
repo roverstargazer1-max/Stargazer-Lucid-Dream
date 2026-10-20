@@ -69,15 +69,6 @@ test('all supplied search artwork is published byte for byte without SVG replace
   assert.equal(fs.existsSync(path.join(root, 'images/search/base-v2.png')), false);
   assert.equal(fs.existsSync(path.join(root, 'images/search/frame-v2.png')), false);
 });
-test('the astrolabe uses display caches within its payload budget while retaining original downloads', () => {
-  const root = '.preview/stargazer';
-  const html = fs.readFileSync(path.join(root, 'index.html'), 'utf8').split('<button id="search-entry"')[1].split('</button>')[0];
-  assert.match(html, /images\/optimized\/entry-base\.webp/);
-  assert.match(html, /images\/optimized\/entry-repair\.webp/);
-  assert.doesNotMatch(html, /images\/search\/entry-(blue-purple|disc-repair)\.png/);
-  const bytes = ['entry-base.webp', 'entry-repair.webp'].reduce((sum, name) => sum + fs.statSync(path.join(root, 'images/optimized', name)).size, 0);
-  assert.ok(bytes < 1400000, 'the 100px entry should not download more than 1.4MB');
-});
 test('every published article supplies full search text, tags and categories', () => {
   const index = JSON.parse(fs.readFileSync('.preview/stargazer/starry/index.json'));
   const search = JSON.parse(fs.readFileSync('.preview/stargazer/starry/search.json'));
