@@ -6,6 +6,11 @@ const resolveHexo = name => require.resolve(name, { paths: [path.dirname(require
 const { load } = require(resolveHexo('cheerio'));
 const yaml = require(resolveHexo('js-yaml'));
 const { normalizeArticleRelations } = require('../lib/relations');
+const { adjacentArticles } = require('../lib/article-order');
+
+hexo.extend.helper.register('starry_adjacent_articles', function (page) {
+  return adjacentArticles(hexo.locals.get('posts').toArray(), page.starry_id);
+});
 
 hexo.extend.helper.register('starry_content', function (page) {
   const scope = crypto.createHash('sha256').update(String(page.source || page.path)).digest('hex').slice(0, 12);

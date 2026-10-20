@@ -5,8 +5,8 @@ export { createRoom } from './room-scene.js';
 // The final room leads into one painted, navigable sky.
 export const painted = true;
 const plate = new Image();
-// Load both aperture masks before revealing the live sky, including across a resize.
-const windowMasks = painted ? [document.body.dataset.windowMaskDesktop, document.body.dataset.windowMaskMobile].map(src => {
+// The same illustration and aperture serve every viewport.
+const windowMasks = painted ? [document.body.dataset.windowMask].map(src => {
   const mask = new Image();
   mask.src = src;
   return mask;

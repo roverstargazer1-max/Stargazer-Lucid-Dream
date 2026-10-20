@@ -193,6 +193,8 @@ body:not(.starry-ready) #search-entry { display:none; }
 /* Stars ------------------------------------------------------------------- */
 .search-map-star::before { opacity:var(--star-alpha); transition:--star-alpha var(--dur-quick) var(--ease-settle), background-color var(--dur-hover) var(--ease-enter), box-shadow var(--dur-hover) var(--ease-enter), transform var(--dur-quick) var(--ease-enter); }
 .search-map-star.is-muted { --star-alpha:.22; }
+/* Dimming comes from the star's ink, rather than the generic disabled-button fade. */
+.search-map-star:disabled { opacity:1; }
 #star-search[data-focusing=true] .search-map-star:not(.is-highlighted,.is-muted) { --star-alpha:.5; }
 #star-search[data-focusing=true] .search-map canvas { opacity:.42; transition:opacity var(--dur-quick) var(--ease-settle); }
 .search-map-star.is-highlighted { --star-alpha:1; z-index:1; }
@@ -212,19 +214,17 @@ body:not(.starry-ready) #search-entry { display:none; }
 .search-map-star:active .search-map-reticle { transform:rotate(45deg) scale(.82); transition-duration:var(--dur-press); }
 .search-map-star.is-departing .search-map-reticle { opacity:0; transform:rotate(135deg) scale(.4); transition:opacity var(--dur-quick) var(--ease-exit) 120ms, transform var(--dur-quick) var(--ease-exit); }
 
-/* Star label: a hairline leader drops from the star, then the caption draws open. */
-.search-map-title { position:absolute; z-index:2; max-width:48%; width:max-content; display:grid; gap:2px; padding:7px 12px 8px; color:#e5f5ff; text-align:center; pointer-events:none;
-  transform:translate(-50%,calc(-100% - 22px)); background:linear-gradient(180deg,rgb(9 27 98 / .92),rgb(6 18 70 / .86)); border:1px solid rgb(146 224 243 / .28); border-radius:2px;
-  box-shadow:0 8px 24px rgb(2 8 36 / .45); clip-path:inset(0 50% -20px 50%); opacity:0;
-  transition:clip-path var(--dur-quick) var(--ease-exit), opacity var(--dur-hover) var(--ease-exit); }
-.search-map-title[data-below=true] { transform:translate(-50%,22px); clip-path:inset(-20px 50% 0 50%); }
-.search-map-title::after { content:''; position:absolute; left:50%; top:100%; width:1px; height:14px; background:linear-gradient(#b9efff,transparent); transform-origin:top; transform:scaleY(0); transition:transform var(--dur-hover) var(--ease-exit); }
-.search-map-title[data-below=true]::after { top:auto; bottom:100%; background:linear-gradient(transparent,#b9efff); transform-origin:bottom; }
-.search-map-title[data-on=true] { clip-path:inset(0 0 -20px 0); opacity:1; transition:clip-path var(--dur-panel) var(--ease-settle) 70ms, opacity var(--dur-hover) var(--ease-enter) 40ms; }
-.search-map-title[data-on=true][data-below=true] { clip-path:inset(-20px 0 0 0); }
-.search-map-title[data-on=true]::after { transform:scaleY(1); transition:transform var(--dur-quick) var(--ease-enter); }
-.search-map-title-name { font:400 13px/1.45 var(--display); overflow-wrap:anywhere; }
-.search-map-title-meta { color:#8fbfe6; font:10px/1.3 Consolas,monospace; letter-spacing:.8px; white-space:nowrap; }
+/* Star-chart marginalia: an unboxed caption and a diagonal drawn out of the star. */
+.search-map-title { --annotation-line:rgb(182 210 237 / .54); position:absolute; z-index:2; width:min(274px,calc(100% - 24px)); display:grid; gap:6px; padding:0 0 8px; color:var(--ink); text-align:left; pointer-events:none;
+  border:0; border-bottom:1px solid var(--annotation-line); text-shadow:var(--text-on-sky); opacity:0;
+  transition:opacity var(--dur-hover) var(--ease-exit); }
+.search-map-title[data-below=true] { border-bottom:0; border-top:1px solid var(--annotation-line); padding:8px 0 0; }
+.search-map-title::after { content:''; position:absolute; left:var(--leader-x); top:var(--leader-y); width:var(--leader-length); height:1px; background:var(--annotation-line); transform-origin:0 50%; transform:rotate(var(--leader-angle)) scaleX(0); transition:transform var(--dur-hover) var(--ease-exit); }
+.search-map-title[data-on=true] { opacity:1; transition:opacity var(--dur-hover) var(--ease-enter); }
+.search-map-title[data-on=true]::after { transform:rotate(var(--leader-angle)) scaleX(1); transition:transform var(--dur-quick) var(--ease-enter); }
+.search-map-title-name { font:400 var(--step-h2)/1.5 var(--display); letter-spacing:1px; overflow-wrap:anywhere; }
+.search-map-title-meta { display:flex; flex-wrap:wrap; gap:4px 14px; color:var(--ink-soft); font:var(--step-caption)/1.5 Consolas,monospace; letter-spacing:.5px; }
+.search-map-title-meta > span { margin-left:auto; white-space:nowrap; }
 
 /* Filters: one seam of light per rail travels between choices like a slide rule. */
 .search-filter-options button .search-filter-art { transition:filter var(--dur-hover) var(--ease-enter), transform var(--dur-press) var(--ease-enter); }
@@ -270,6 +270,8 @@ body:not(.starry-ready) #search-entry { display:none; }
 /* Index panel: unrolls from the chart's edge instead of fading as a block. */
 #search-index { clip-path:inset(0 100% 0 0); transform:none; transition:clip-path var(--dur-quick) var(--ease-exit), opacity var(--dur-quick) var(--ease-exit), visibility 0s var(--dur-quick); }
 [data-index-open=true] #search-index { clip-path:inset(0 0 0 -28px); transform:none; transition:clip-path var(--dur-scene) var(--ease-settle) 60ms, opacity var(--dur-quick) var(--ease-enter) 60ms, visibility 0s; }
+/* The initial sidebar joins the moving chart, without its own delayed settle. */
+#star-search[data-motion=opening][data-index-open=true] #search-index { transition:clip-path var(--dur-panel) var(--ease-enter), opacity var(--dur-hover) var(--ease-enter), visibility 0s; }
 #star-search { transition:width var(--dur-panel) var(--ease-settle); }
 .search-toggle-arrow { transition:transform var(--dur-panel) var(--ease-settle); }
 
@@ -287,13 +289,10 @@ body:not(.starry-ready) #search-entry { display:none; }
 /* As the chart folds away the close mark rewinds against the turn. */
 #star-search[data-motion=closing] #close-search img { transform:rotate(-90deg) scale(.8); transition:transform var(--dur-panel) var(--ease-exit); }
 
-/* Astrolabe entry: hover lifts a halo ring around the instrument; press seats it. */
+/* Astrolabe entry: hover gently turns the instrument; press seats it. */
 #search-entry { transition:transform var(--dur-quick) var(--ease-settle); }
-#search-entry::before { content:''; position:absolute; inset:-8%; border-radius:50%; pointer-events:none; border:1px solid rgb(185 239 255 / .4); box-shadow:0 0 22px rgb(98 213 255 / .18), inset 0 0 14px rgb(98 213 255 / .12); opacity:0; transform:scale(.86); transition:opacity var(--dur-hover) var(--ease-exit), transform var(--dur-panel) var(--ease-exit); }
-#search-entry:focus-visible::before { opacity:1; transform:scale(1); transition:opacity var(--dur-hover) var(--ease-enter), transform var(--dur-panel) var(--ease-settle); }
 @media(hover:hover) and (pointer:fine) {
   #search-entry:hover { transform:translateY(-2px) rotate(-4deg); }
-  #search-entry:hover::before { opacity:1; transform:scale(1); transition:opacity var(--dur-hover) var(--ease-enter), transform var(--dur-panel) var(--ease-settle); }
 }
 #search-entry:active { transform:scale(.94); transition-duration:var(--dur-press); }
 /* The chart folds back into the astrolabe, so the astrolabe re-seats as it lands. */
@@ -303,7 +302,7 @@ body:not(.starry-ready) #search-entry { display:none; }
 @media(prefers-reduced-motion:reduce) {
   #star-search .search-artboard, #star-search .search-map, #star-search .search-heading, #star-search .search-bar, #star-search .search-filters, #star-search #search-index-toggle { transform:none !important; }
   #star-search::after, .search-filter-seam.is-flash::after { display:none; }
-  .search-map-reticle, .search-map-reticle::before, .search-map-title, .search-map-title::after, .search-filter-seam, .search-result::before, .search-result::after, .search-result-mark, .search-result-mark::before, .search-result-name, #search-index, #search-entry, #search-entry::before, #search-index-toggle::before, #close-search img { transition:none !important; animation:none !important; }
+  .search-map-reticle, .search-map-reticle::before, .search-map-title, .search-map-title::after, .search-filter-seam, .search-result::before, .search-result::after, .search-result-mark, .search-result-mark::before, .search-result-name, #search-index, #search-entry, #search-index-toggle::before, #close-search img { transition:none !important; animation:none !important; }
   .search-result-mark::before { transform:none !important; }
   .search-result.is-entering, #search-entry:not([hidden]) { animation:none; }
   .search-result:is(:hover,:focus-visible,.is-highlighted) .search-result-name { transform:none; }

@@ -2,10 +2,9 @@ import { createTimeline, unit, smooth, ENTRANCE } from './motion.js';
 
 // A flat illustration can dolly without distortion; the sky supplies the turn.
 export function roomPassageFrames(rect, width, height) {
-  const mobile = width <= 760;
-  const origin = { x: rect.width * (mobile ? .55 : .50), y: rect.height * (mobile ? .29 : .28) };
+  const origin = { x: rect.width * .50, y: rect.height * .28 };
   const dx = width / 2 - (rect.left + origin.x), dy = height / 2 - (rect.top + origin.y);
-  const endScale = mobile ? 3.4 : 4;
+  const endScale = 4;
   const frames = Array.from({ length: 97 }, (_, i) => {
     const offset = i / 96, progress = smooth(offset * ENTRANCE.duration / ENTRANCE.passage);
     // Perspective growth along a forward dolly, with no skew or rotation of the artwork.

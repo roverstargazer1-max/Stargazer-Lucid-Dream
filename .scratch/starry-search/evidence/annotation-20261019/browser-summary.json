@@ -1,0 +1,1822 @@
+[
+  {
+    "name": "desktop",
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "labels": [
+      {
+        "name": "梦开始的地方[置顶]",
+        "date": "2025-10-20",
+        "meta": "2025.10.20SLD-0001 · 4.0",
+        "left": 234,
+        "right": 7.5625,
+        "top": 74.296875,
+        "bottom": 379.765625,
+        "overflow": 0,
+        "background": "rgba(0, 0, 0, 0)",
+        "boxShadow": "none",
+        "diagonal": true,
+        "length": 43,
+        "start": {
+          "x": 399.047856,
+          "y": 170.696875
+        },
+        "end": {
+          "x": 373.247856,
+          "y": 136.296875
+        },
+        "below": false,
+        "labelHeight": 61.5
+      },
+      {
+        "name": "活在真实天空下，做半个君子",
+        "date": "2025-10-21",
+        "meta": "2025.10.21SLD-0002 · 4.0",
+        "left": 234,
+        "right": 7.5625,
+        "top": 211.90625,
+        "bottom": 242.15625,
+        "overflow": 0,
+        "background": "rgba(0, 0, 0, 0)",
+        "boxShadow": "none",
+        "diagonal": true,
+        "length": 43,
+        "start": {
+          "x": 393.849156,
+          "y": 308.30625
+        },
+        "end": {
+          "x": 368.049156,
+          "y": 273.90625
+        },
+        "below": false,
+        "labelHeight": 61.5
+      },
+      {
+        "name": "咏史有感",
+        "date": "2025-10-22",
+        "meta": "2025.10.22SLD-0003 · 4.0",
+        "left": 8,
+        "right": 233.5625,
+        "top": 16.046875,
+        "bottom": 438.015625,
+        "overflow": 0,
+        "background": "rgba(0, 0, 0, 0)",
+        "boxShadow": "none",
+        "diagonal": true,
+        "length": 43,
+        "start": {
+          "x": 102.24878399999999,
+          "y": 112.44687499999999
+        },
+        "end": {
+          "x": 76.44878399999999,
+          "y": 78.04687499999999
+        },
+        "below": false,
+        "labelHeight": 61.5
+      },
+      {
+        "name": "言论·生活·小品",
+        "date": "2025-11-12",
+        "meta": "2025.11.12SLD-0004 · 4.0",
+        "left": 11.71875,
+        "right": 229.84375,
+        "top": 238.40625,
+        "bottom": 215.65625,
+        "overflow": 0,
+        "background": "rgba(0, 0, 0, 0)",
+        "boxShadow": "none",
+        "diagonal": true,
+        "length": 43,
+        "start": {
+          "x": 154.51875,
+          "y": 334.80625
+        },
+        "end": {
+          "x": 128.71875000000003,
+          "y": 300.40625
+        },
+        "below": false,
+        "labelHeight": 61.5
+      },
+      {
+        "name": "随笔1",
+        "date": "2025-11-17",
+        "meta": "2025.11.17SLD-0005 · 4.0",
+        "left": 167.640625,
+        "right": 73.921875,
+        "top": 286.984375,
+        "bottom": 167.078125,
+        "overflow": 0,
+        "background": "rgba(0, 0, 0, 0)",
+        "boxShadow": "none",
+        "diagonal": true,
+        "length": 43,
+        "start": {
+          "x": 310.440625,
+          "y": 383.384375
+        },
+        "end": {
+          "x": 284.640625,
+          "y": 348.984375
+        },
+        "below": false,
+        "labelHeight": 61.5
+      },
+      {
+        "name": "慢",
+        "date": "2026-05-14",
+        "meta": "2026.05.14SLD-0006 · 4.0",
+        "left": 77.125,
+        "right": 164.4375,
+        "top": 87.125,
+        "bottom": 366.9375,
+        "overflow": 0,
+        "background": "rgba(0, 0, 0, 0)",
+        "boxShadow": "none",
+        "diagonal": true,
+        "length": 43.00000000000001,
+        "start": {
+          "x": 219.925,
+          "y": 52.724999999999994
+        },
+        "end": {
+          "x": 194.125,
+          "y": 87.125
+        },
+        "below": true,
+        "labelHeight": 61.5
+      },
+      {
+        "name": "随笔2",
+        "date": "2026-05-15",
+        "meta": "2026.05.15SLD-0007 · 4.0",
+        "left": 8,
+        "right": 233.5625,
+        "top": 34.140625,
+        "bottom": 419.921875,
+        "overflow": 0,
+        "background": "rgba(0, 0, 0, 0)",
+        "boxShadow": "none",
+        "diagonal": true,
+        "length": 43,
+        "start": {
+          "x": 134.603532,
+          "y": 130.540625
+        },
+        "end": {
+          "x": 108.803532,
+          "y": 96.140625
+        },
+        "below": false,
+        "labelHeight": 61.5
+      },
+      {
+        "name": "AI时代，我们究竟需要什么？",
+        "date": "2026-06-15",
+        "meta": "2026.06.15SLD-0008 · 4.0",
+        "left": 8,
+        "right": 233.5625,
+        "top": 116.046875,
+        "bottom": 308.015625,
+        "overflow": 0,
+        "background": "rgba(0, 0, 0, 0)",
+        "boxShadow": "none",
+        "diagonal": true,
+        "length": 43,
+        "start": {
+          "x": 131.693808,
+          "y": 242.446875
+        },
+        "end": {
+          "x": 105.89380799999999,
+          "y": 208.046875
+        },
+        "below": false,
+        "labelHeight": 91.5
+      },
+      {
+        "name": "随笔3",
+        "date": "2026-07-05",
+        "meta": "2026.07.05SLD-0009 · 4.0",
+        "left": 174.40625,
+        "right": 67.15625,
+        "top": 160.015625,
+        "bottom": 294.046875,
+        "overflow": 0,
+        "background": "rgba(0, 0, 0, 0)",
+        "boxShadow": "none",
+        "diagonal": true,
+        "length": 43,
+        "start": {
+          "x": 317.20625,
+          "y": 125.615625
+        },
+        "end": {
+          "x": 291.40625,
+          "y": 160.015625
+        },
+        "below": true,
+        "labelHeight": 61.5
+      },
+      {
+        "name": "做一个有有趣灵魂的人",
+        "date": "2026-07-17",
+        "meta": "2026.07.17SLD-0010 · 4.0",
+        "left": 59.859375,
+        "right": 181.703125,
+        "top": 272.125,
+        "bottom": 181.9375,
+        "overflow": 0,
+        "background": "rgba(0, 0, 0, 0)",
+        "boxShadow": "none",
+        "diagonal": true,
+        "length": 43,
+        "start": {
+          "x": 202.659375,
+          "y": 368.525
+        },
+        "end": {
+          "x": 176.85937500000003,
+          "y": 334.125
+        },
+        "below": false,
+        "labelHeight": 61.5
+      }
+    ],
+    "followed": {
+      "top": 236,
+      "visible": true,
+      "highlighted": true
+    },
+    "visibleRowStable": true,
+    "rapidSwitch": true,
+    "collapsedStable": true,
+    "filteredStable": true,
+    "outerScrollStable": true,
+    "errors": []
+  },
+  {
+    "name": "short",
+    "viewport": {
+      "width": 1440,
+      "height": 700
+    },
+    "labels": [
+      {
+        "name": "梦开始的地方[置顶]",
+        "date": "2025-10-20",
+        "meta": "2025.10.20SLD-0001 · 4.0",
+        "left": 119,
+        "right": 7.984375,
+        "top": 33.21875,
+        "bottom": 306.265625,
+        "overflow": 0,
+        "background": "rgba(0, 0, 0, 0)",
+        "boxShadow": "none",
+        "diagonal": true,
+        "length": 43,
+        "start": {
+          "x": 307.839516,
+          "y": 129.61875
+        },
+        "end": {
+          "x": 282.039516,
+          "y": 95.21875
+        },
+        "below": false,
+        "labelHeight": 61.5
+      },
+      {
+        "name": "活在真实天空下，做半个君子",
+        "date": "2025-10-21",
+        "meta": "2025.10.21SLD-0002 · 4.0",
+        "left": 119,
+        "right": 7.984375,
+        "top": 140.15625,
+        "bottom": 199.328125,
+        "overflow": 0,
+        "background": "rgba(0, 0, 0, 0)",
+        "boxShadow": "none",
+        "diagonal": true,
+        "length": 43,
+        "start": {
+          "x": 303.799441,
+          "y": 236.55625
+        },
+        "end": {
+          "x": 277.999441,
+          "y": 202.15625
+        },
+        "below": false,
+        "labelHeight": 61.5
+      },
+      {
+        "name": "咏史有感",
+        "date": "2025-10-22",
+        "meta": "2025.10.22SLD-0003 · 4.0",
+        "left": 8,
+        "right": 118.984375,
+        "top": 145.953125,
+        "bottom": 193.53125,
+        "overflow": 0,
+        "background": "rgba(0, 0, 0, 0)",
+        "boxShadow": "none",
+        "diagonal": true,
+        "length": 42.99999999999999,
+        "start": {
+          "x": 77.187524,
+          "y": 111.55312500000001
+        },
+        "end": {
+          "x": 51.38752399999999,
+          "y": 145.953125
+        },
+        "below": true,
+        "labelHeight": 61.5
+      },
+      {
+        "name": "言论·生活·小品",
+        "date": "2025-11-12",
+        "meta": "2025.11.12SLD-0004 · 4.0",
+        "left": 8,
+        "right": 118.984375,
+        "top": 160.75,
+        "bottom": 178.734375,
+        "overflow": 0,
+        "background": "rgba(0, 0, 0, 0)",
+        "boxShadow": "none",
+        "diagonal": true,
+        "length": 43,
+        "start": {
+          "x": 117.81243299999998,
+          "y": 257.15
+        },
+        "end": {
+          "x": 92.01243299999999,
+          "y": 222.74999999999997
+        },
+        "below": false,
+        "labelHeight": 61.5
+      },
+      {
+        "name": "随笔1",
+        "date": "2025-11-17",
+        "meta": "2025.11.17SLD-0005 · 4.0",
+        "left": 96.171875,
+        "right": 30.8125,
+        "top": 198.5,
+        "bottom": 140.984375,
+        "overflow": 0,
+        "background": "rgba(0, 0, 0, 0)",
+        "boxShadow": "none",
+        "diagonal": true,
+        "length": 43,
+        "start": {
+          "x": 238.971875,
+          "y": 294.9
+        },
+        "end": {
+          "x": 213.17187500000003,
+          "y": 260.5
+        },
+        "below": false,
+        "labelHeight": 61.5
+      },
+      {
+        "name": "慢",
+        "date": "2026-05-14",
+        "meta": "2026.05.14SLD-0006 · 4.0",
+        "left": 25.84375,
+        "right": 101.140625,
+        "top": 78.40625,
+        "bottom": 261.078125,
+        "overflow": 0,
+        "background": "rgba(0, 0, 0, 0)",
+        "boxShadow": "none",
+        "diagonal": true,
+        "length": 43,
+        "start": {
+          "x": 168.64375,
+          "y": 44.00625000000001
+        },
+        "end": {
+          "x": 142.84375000000003,
+          "y": 78.40625000000001
+        },
+        "below": true,
+        "labelHeight": 61.5
+      },
+      {
+        "name": "随笔2",
+        "date": "2026-05-15",
+        "meta": "2026.05.15SLD-0007 · 4.0",
+        "left": 8,
+        "right": 118.984375,
+        "top": 160.015625,
+        "bottom": 179.46875,
+        "overflow": 0,
+        "background": "rgba(0, 0, 0, 0)",
+        "boxShadow": "none",
+        "diagonal": true,
+        "length": 42.99999999999999,
+        "start": {
+          "x": 102.331427,
+          "y": 125.61562500000001
+        },
+        "end": {
+          "x": 76.53142700000001,
+          "y": 160.015625
+        },
+        "below": true,
+        "labelHeight": 61.5
+      },
+      {
+        "name": "AI时代，我们究竟需要什么？",
+        "date": "2026-06-15",
+        "meta": "2026.06.15SLD-0008 · 4.0",
+        "left": 8,
+        "right": 118.984375,
+        "top": 58.984375,
+        "bottom": 250.5,
+        "overflow": 0,
+        "background": "rgba(0, 0, 0, 0)",
+        "boxShadow": "none",
+        "diagonal": true,
+        "length": 43,
+        "start": {
+          "x": 100.070188,
+          "y": 185.384375
+        },
+        "end": {
+          "x": 74.270188,
+          "y": 150.984375
+        },
+        "below": false,
+        "labelHeight": 91.5
+      },
+      {
+        "name": "随笔3",
+        "date": "2026-07-05",
+        "meta": "2026.07.05SLD-0009 · 4.0",
+        "left": 101.4375,
+        "right": 25.546875,
+        "top": 135.046875,
+        "bottom": 204.4375,
+        "overflow": 0,
+        "background": "rgba(0, 0, 0, 0)",
+        "boxShadow": "none",
+        "diagonal": true,
+        "length": 43,
+        "start": {
+          "x": 244.2375,
+          "y": 100.646875
+        },
+        "end": {
+          "x": 218.43750000000003,
+          "y": 135.046875
+        },
+        "below": true,
+        "labelHeight": 61.5
+      },
+      {
+        "name": "做一个有有趣灵魂的人",
+        "date": "2026-07-17",
+        "meta": "2026.07.17SLD-0010 · 4.0",
+        "left": 12.421875,
+        "right": 114.5625,
+        "top": 186.96875,
+        "bottom": 152.515625,
+        "overflow": 0,
+        "background": "rgba(0, 0, 0, 0)",
+        "boxShadow": "none",
+        "diagonal": true,
+        "length": 43,
+        "start": {
+          "x": 155.221875,
+          "y": 283.36875
+        },
+        "end": {
+          "x": 129.42187500000003,
+          "y": 248.96874999999997
+        },
+        "below": false,
+        "labelHeight": 61.5
+      }
+    ],
+    "followed": {
+      "top": 481,
+      "visible": true,
+      "highlighted": true
+    },
+    "visibleRowStable": true,
+    "rapidSwitch": true,
+    "collapsedStable": true,
+    "filteredStable": true,
+    "outerScrollStable": true,
+    "errors": []
+  },
+  {
+    "name": "mobile",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "labels": [
+      {
+        "name": "梦开始的地方[置顶]",
+        "date": "2025-10-20",
+        "meta": "2025.10.20SLD-0001 · 4.0",
+        "left": 16,
+        "right": 8,
+        "top": 147.640625,
+        "bottom": 70.09375,
+        "overflow": 0,
+        "background": "rgba(0, 0, 0, 0)",
+        "boxShadow": "none",
+        "diagonal": true,
+        "length": 43,
+        "start": {
+          "x": 211.079364,
+          "y": 113.240625
+        },
+        "end": {
+          "x": 185.27936400000002,
+          "y": 147.640625
+        },
+        "below": true,
+        "labelHeight": 61.5
+      },
+      {
+        "name": "活在真实天空下，做半个君子",
+        "date": "2025-10-21",
+        "meta": "2025.10.21SLD-0002 · 4.0",
+        "left": 16,
+        "right": 8,
+        "top": 34.046875,
+        "bottom": 153.6875,
+        "overflow": 0,
+        "background": "rgba(0, 0, 0, 0)",
+        "boxShadow": "none",
+        "diagonal": true,
+        "length": 43,
+        "start": {
+          "x": 208.268439,
+          "y": 160.446875
+        },
+        "end": {
+          "x": 182.46843900000002,
+          "y": 126.046875
+        },
+        "below": false,
+        "labelHeight": 91.5
+      },
+      {
+        "name": "咏史有感",
+        "date": "2025-10-22",
+        "meta": "2025.10.22SLD-0003 · 4.0",
+        "left": 8,
+        "right": 16,
+        "top": 116.15625,
+        "bottom": 101.578125,
+        "overflow": 0,
+        "background": "rgba(0, 0, 0, 0)",
+        "boxShadow": "none",
+        "diagonal": true,
+        "length": 43,
+        "start": {
+          "x": 50.600796,
+          "y": 81.75625000000001
+        },
+        "end": {
+          "x": 24.80079600000001,
+          "y": 116.15625000000001
+        },
+        "below": true,
+        "labelHeight": 61.5
+      },
+      {
+        "name": "言论·生活·小品",
+        "date": "2025-11-12",
+        "meta": "2025.11.12SLD-0004 · 4.0",
+        "left": 8,
+        "right": 16,
+        "top": 78.375,
+        "bottom": 139.359375,
+        "overflow": 0,
+        "background": "rgba(0, 0, 0, 0)",
+        "boxShadow": "none",
+        "diagonal": true,
+        "length": 43,
+        "start": {
+          "x": 78.86600700000001,
+          "y": 174.775
+        },
+        "end": {
+          "x": 53.06600700000001,
+          "y": 140.375
+        },
+        "below": false,
+        "labelHeight": 61.5
+      },
+      {
+        "name": "随笔1",
+        "date": "2025-11-17",
+        "meta": "2025.11.17SLD-0005 · 4.0",
+        "left": 16,
+        "right": 8,
+        "top": 104.640625,
+        "bottom": 113.09375,
+        "overflow": 0,
+        "background": "rgba(0, 0, 0, 0)",
+        "boxShadow": "none",
+        "diagonal": true,
+        "length": 43,
+        "start": {
+          "x": 163.17339,
+          "y": 201.040625
+        },
+        "end": {
+          "x": 137.37339000000003,
+          "y": 166.640625
+        },
+        "below": false,
+        "labelHeight": 61.5
+      },
+      {
+        "name": "慢",
+        "date": "2026-05-14",
+        "meta": "2026.05.14SLD-0006 · 4.0",
+        "left": 8,
+        "right": 16,
+        "top": 69.15625,
+        "bottom": 148.578125,
+        "overflow": 0,
+        "background": "rgba(0, 0, 0, 0)",
+        "boxShadow": "none",
+        "diagonal": true,
+        "length": 43.00000000000001,
+        "start": {
+          "x": 114.233163,
+          "y": 34.756249999999994
+        },
+        "end": {
+          "x": 88.43316300000001,
+          "y": 69.15625
+        },
+        "below": true,
+        "labelHeight": 61.5
+      },
+      {
+        "name": "随笔2",
+        "date": "2026-05-15",
+        "meta": "2026.05.15SLD-0007 · 4.0",
+        "left": 8,
+        "right": 16,
+        "top": 125.9375,
+        "bottom": 91.796875,
+        "overflow": 0,
+        "background": "rgba(0, 0, 0, 0)",
+        "boxShadow": "none",
+        "diagonal": true,
+        "length": 43,
+        "start": {
+          "x": 68.094933,
+          "y": 91.5375
+        },
+        "end": {
+          "x": 42.294933,
+          "y": 125.9375
+        },
+        "below": true,
+        "labelHeight": 61.5
+      },
+      {
+        "name": "AI时代，我们究竟需要什么？",
+        "date": "2026-06-15",
+        "meta": "2026.06.15SLD-0008 · 4.0",
+        "left": 8,
+        "right": 16,
+        "top": 179,
+        "bottom": 8.734375,
+        "overflow": 0,
+        "background": "rgba(0, 0, 0, 0)",
+        "boxShadow": "none",
+        "diagonal": true,
+        "length": 37.227176643063544,
+        "start": {
+          "x": 65.43579797097073,
+          "y": 151.15985506971262
+        },
+        "end": {
+          "x": 40.72165199999999,
+          "y": 179
+        },
+        "below": true,
+        "labelHeight": 91.5
+      },
+      {
+        "name": "随笔3",
+        "date": "2026-07-05",
+        "meta": "2026.07.05SLD-0009 · 4.0",
+        "left": 16,
+        "right": 8,
+        "top": 108.5625,
+        "bottom": 109.171875,
+        "overflow": 0,
+        "background": "rgba(0, 0, 0, 0)",
+        "boxShadow": "none",
+        "diagonal": true,
+        "length": 43,
+        "start": {
+          "x": 166.834149,
+          "y": 74.1625
+        },
+        "end": {
+          "x": 141.034149,
+          "y": 108.5625
+        },
+        "below": true,
+        "labelHeight": 61.5
+      },
+      {
+        "name": "做一个有有趣灵魂的人",
+        "date": "2026-07-17",
+        "meta": "2026.07.17SLD-0010 · 4.0",
+        "left": 8,
+        "right": 16,
+        "top": 96.609375,
+        "bottom": 121.125,
+        "overflow": 0,
+        "background": "rgba(0, 0, 0, 0)",
+        "boxShadow": "none",
+        "diagonal": true,
+        "length": 43,
+        "start": {
+          "x": 104.89503299999998,
+          "y": 193.009375
+        },
+        "end": {
+          "x": 79.09503299999999,
+          "y": 158.609375
+        },
+        "below": false,
+        "labelHeight": 61.5
+      }
+    ],
+    "followed": {
+      "top": 474,
+      "visible": true,
+      "highlighted": true
+    },
+    "visibleRowStable": true,
+    "rapidSwitch": true,
+    "collapsedStable": true,
+    "filteredStable": true,
+    "outerScrollStable": true,
+    "errors": []
+  },
+  {
+    "name": "narrow",
+    "viewport": {
+      "width": 320,
+      "height": 568
+    },
+    "labels": [
+      {
+        "name": "梦开始的地方[置顶]",
+        "date": "2025-10-20",
+        "meta": "2025.10.20SLD-0001 · 4.0",
+        "left": 16,
+        "right": 8,
+        "top": 128.359375,
+        "bottom": 34.765625,
+        "overflow": 0,
+        "background": "rgba(0, 0, 0, 0)",
+        "boxShadow": "none",
+        "diagonal": true,
+        "length": 43,
+        "start": {
+          "x": 168.2511,
+          "y": 93.959375
+        },
+        "end": {
+          "x": 142.45110000000003,
+          "y": 128.359375
+        },
+        "below": true,
+        "labelHeight": 61.5
+      },
+      {
+        "name": "活在真实天空下，做半个君子",
+        "date": "2025-10-21",
+        "meta": "2025.10.21SLD-0002 · 4.0",
+        "left": 16,
+        "right": 8,
+        "top": 8,
+        "bottom": 125.125,
+        "overflow": 0,
+        "background": "rgba(0, 0, 0, 0)",
+        "boxShadow": "none",
+        "diagonal": true,
+        "length": 37.08795428857058,
+        "start": {
+          "x": 164.86932119101414,
+          "y": 127.67963835297492
+        },
+        "end": {
+          "x": 140.184225,
+          "y": 100
+        },
+        "below": false,
+        "labelHeight": 91.5
+      },
+      {
+        "name": "咏史有感",
+        "date": "2025-10-22",
+        "meta": "2025.10.22SLD-0003 · 4.0",
+        "left": 8,
+        "right": 16,
+        "top": 102.953125,
+        "bottom": 60.171875,
+        "overflow": 0,
+        "background": "rgba(0, 0, 0, 0)",
+        "boxShadow": "none",
+        "diagonal": true,
+        "length": 43,
+        "start": {
+          "x": 59.2329,
+          "y": 68.553125
+        },
+        "end": {
+          "x": 85.03290000000001,
+          "y": 102.953125
+        },
+        "below": true,
+        "labelHeight": 61.5
+      },
+      {
+        "name": "言论·生活·小品",
+        "date": "2025-11-12",
+        "meta": "2025.11.12SLD-0004 · 4.0",
+        "left": 8,
+        "right": 16,
+        "top": 41.921875,
+        "bottom": 121.203125,
+        "overflow": 0,
+        "background": "rgba(0, 0, 0, 0)",
+        "boxShadow": "none",
+        "diagonal": true,
+        "length": 43,
+        "start": {
+          "x": 61.627425,
+          "y": 138.321875
+        },
+        "end": {
+          "x": 35.827425000000005,
+          "y": 103.921875
+        },
+        "below": false,
+        "labelHeight": 61.5
+      },
+      {
+        "name": "随笔1",
+        "date": "2025-11-17",
+        "meta": "2025.11.17SLD-0005 · 4.0",
+        "left": 16,
+        "right": 8,
+        "top": 63.09375,
+        "bottom": 100.03125,
+        "overflow": 0,
+        "background": "rgba(0, 0, 0, 0)",
+        "boxShadow": "none",
+        "diagonal": true,
+        "length": 43,
+        "start": {
+          "x": 129.61725,
+          "y": 159.49375
+        },
+        "end": {
+          "x": 103.81725000000002,
+          "y": 125.09375
+        },
+        "below": false,
+        "labelHeight": 61.5
+      },
+      {
+        "name": "慢",
+        "date": "2026-05-14",
+        "meta": "2026.05.14SLD-0006 · 4.0",
+        "left": 8,
+        "right": 16,
+        "top": 65.0625,
+        "bottom": 98.0625,
+        "overflow": 0,
+        "background": "rgba(0, 0, 0, 0)",
+        "boxShadow": "none",
+        "diagonal": true,
+        "length": 42.99999999999999,
+        "start": {
+          "x": 90.14932499999999,
+          "y": 30.66250000000001
+        },
+        "end": {
+          "x": 64.349325,
+          "y": 65.0625
+        },
+        "below": true,
+        "labelHeight": 61.5
+      },
+      {
+        "name": "随笔2",
+        "date": "2026-05-15",
+        "meta": "2026.05.15SLD-0007 · 4.0",
+        "left": 8,
+        "right": 16,
+        "top": 110.84375,
+        "bottom": 52.28125,
+        "overflow": 0,
+        "background": "rgba(0, 0, 0, 0)",
+        "boxShadow": "none",
+        "diagonal": true,
+        "length": 42.99999999999999,
+        "start": {
+          "x": 52.941075,
+          "y": 76.44375000000001
+        },
+        "end": {
+          "x": 27.141074999999994,
+          "y": 110.84375
+        },
+        "below": true,
+        "labelHeight": 61.5
+      },
+      {
+        "name": "AI时代，我们究竟需要什么？",
+        "date": "2026-06-15",
+        "meta": "2026.06.15SLD-0008 · 4.0",
+        "left": 8,
+        "right": 16,
+        "top": 125,
+        "bottom": 8.125,
+        "overflow": 0,
+        "background": "rgba(0, 0, 0, 0)",
+        "boxShadow": "none",
+        "diagonal": true,
+        "length": 21.39546614067865,
+        "start": {
+          "x": 45.932918049077216,
+          "y": 117.56107703588997
+        },
+        "end": {
+          "x": 25.872299999999992,
+          "y": 125.00000000000001
+        },
+        "below": true,
+        "labelHeight": 91.5
+      },
+      {
+        "name": "随笔3",
+        "date": "2026-07-05",
+        "meta": "2026.07.05SLD-0009 · 4.0",
+        "left": 16,
+        "right": 8,
+        "top": 96.84375,
+        "bottom": 66.28125,
+        "overflow": 0,
+        "background": "rgba(0, 0, 0, 0)",
+        "boxShadow": "none",
+        "diagonal": true,
+        "length": 43.00000000000001,
+        "start": {
+          "x": 132.569475,
+          "y": 62.443749999999994
+        },
+        "end": {
+          "x": 106.76947500000001,
+          "y": 96.84375
+        },
+        "below": true,
+        "labelHeight": 61.5
+      },
+      {
+        "name": "做一个有有趣灵魂的人",
+        "date": "2026-07-17",
+        "meta": "2026.07.17SLD-0010 · 4.0",
+        "left": 8,
+        "right": 16,
+        "top": 26.625,
+        "bottom": 106.5,
+        "overflow": 0,
+        "background": "rgba(0, 0, 0, 0)",
+        "boxShadow": "none",
+        "diagonal": true,
+        "length": 43,
+        "start": {
+          "x": 82.61857499999999,
+          "y": 153.025
+        },
+        "end": {
+          "x": 56.818574999999996,
+          "y": 118.625
+        },
+        "below": false,
+        "labelHeight": 91.5
+      }
+    ],
+    "followed": {
+      "top": 541,
+      "visible": true,
+      "highlighted": true
+    },
+    "visibleRowStable": true,
+    "rapidSwitch": true,
+    "collapsedStable": true,
+    "filteredStable": true,
+    "outerScrollStable": true,
+    "errors": []
+  },
+  {
+    "name": "landscape",
+    "viewport": {
+      "width": 844,
+      "height": 390
+    },
+    "labels": [
+      {
+        "name": "梦开始的地方[置顶]",
+        "date": "2025-10-20",
+        "meta": "2025.10.20SLD-0001 · 4.0",
+        "left": 65,
+        "right": 7.984375,
+        "top": 13.9375,
+        "bottom": 271.546875,
+        "overflow": 0,
+        "background": "rgba(0, 0, 0, 0)",
+        "boxShadow": "none",
+        "diagonal": true,
+        "length": 43,
+        "start": {
+          "x": 265.011252,
+          "y": 110.33749999999999
+        },
+        "end": {
+          "x": 239.21125200000003,
+          "y": 75.93749999999999
+        },
+        "below": false,
+        "labelHeight": 61.5
+      },
+      {
+        "name": "活在真实天空下，做半个君子",
+        "date": "2025-10-21",
+        "meta": "2025.10.21SLD-0002 · 4.0",
+        "left": 65,
+        "right": 7.984375,
+        "top": 106.46875,
+        "bottom": 179.015625,
+        "overflow": 0,
+        "background": "rgba(0, 0, 0, 0)",
+        "boxShadow": "none",
+        "diagonal": true,
+        "length": 43,
+        "start": {
+          "x": 261.51522700000004,
+          "y": 202.86875
+        },
+        "end": {
+          "x": 235.71522700000006,
+          "y": 168.46875
+        },
+        "below": false,
+        "labelHeight": 61.5
+      },
+      {
+        "name": "咏史有感",
+        "date": "2025-10-22",
+        "meta": "2025.10.22SLD-0003 · 4.0",
+        "left": 8,
+        "right": 64.984375,
+        "top": 132.765625,
+        "bottom": 152.71875,
+        "overflow": 0,
+        "background": "rgba(0, 0, 0, 0)",
+        "boxShadow": "none",
+        "diagonal": true,
+        "length": 43,
+        "start": {
+          "x": 65.419628,
+          "y": 98.365625
+        },
+        "end": {
+          "x": 39.619628000000006,
+          "y": 132.765625
+        },
+        "below": true,
+        "labelHeight": 61.5
+      },
+      {
+        "name": "言论·生活·小品",
+        "date": "2025-11-12",
+        "meta": "2025.11.12SLD-0004 · 4.0",
+        "left": 8,
+        "right": 64.984375,
+        "top": 124.296875,
+        "bottom": 161.1875,
+        "overflow": 0,
+        "background": "rgba(0, 0, 0, 0)",
+        "boxShadow": "none",
+        "diagonal": true,
+        "length": 43,
+        "start": {
+          "x": 100.57385099999999,
+          "y": 220.696875
+        },
+        "end": {
+          "x": 74.773851,
+          "y": 186.296875
+        },
+        "below": false,
+        "labelHeight": 61.5
+      },
+      {
+        "name": "随笔1",
+        "date": "2025-11-17",
+        "meta": "2025.11.17SLD-0005 · 4.0",
+        "left": 62.625,
+        "right": 10.359375,
+        "top": 156.953125,
+        "bottom": 128.53125,
+        "overflow": 0,
+        "background": "rgba(0, 0, 0, 0)",
+        "boxShadow": "none",
+        "diagonal": true,
+        "length": 43,
+        "start": {
+          "x": 205.425,
+          "y": 253.353125
+        },
+        "end": {
+          "x": 179.62500000000003,
+          "y": 218.953125
+        },
+        "below": false,
+        "labelHeight": 61.5
+      },
+      {
+        "name": "慢",
+        "date": "2026-05-14",
+        "meta": "2026.05.14SLD-0006 · 4.0",
+        "left": 8,
+        "right": 64.984375,
+        "top": 74.3125,
+        "bottom": 211.171875,
+        "overflow": 0,
+        "background": "rgba(0, 0, 0, 0)",
+        "boxShadow": "none",
+        "diagonal": true,
+        "length": 43,
+        "start": {
+          "x": 144.56095900000003,
+          "y": 39.9125
+        },
+        "end": {
+          "x": 118.76095900000003,
+          "y": 74.3125
+        },
+        "below": true,
+        "labelHeight": 61.5
+      },
+      {
+        "name": "随笔2",
+        "date": "2026-05-15",
+        "meta": "2026.05.15SLD-0007 · 4.0",
+        "left": 8,
+        "right": 64.984375,
+        "top": 144.921875,
+        "bottom": 140.5625,
+        "overflow": 0,
+        "background": "rgba(0, 0, 0, 0)",
+        "boxShadow": "none",
+        "diagonal": true,
+        "length": 43,
+        "start": {
+          "x": 87.177569,
+          "y": 110.521875
+        },
+        "end": {
+          "x": 61.37756900000001,
+          "y": 144.921875
+        },
+        "below": true,
+        "labelHeight": 61.5
+      },
+      {
+        "name": "AI时代，我们究竟需要什么？",
+        "date": "2026-06-15",
+        "meta": "2026.06.15SLD-0008 · 4.0",
+        "left": 8,
+        "right": 64.984375,
+        "top": 32.1875,
+        "bottom": 223.296875,
+        "overflow": 0,
+        "background": "rgba(0, 0, 0, 0)",
+        "boxShadow": "none",
+        "diagonal": true,
+        "length": 43,
+        "start": {
+          "x": 85.22083599999999,
+          "y": 158.5875
+        },
+        "end": {
+          "x": 59.420835999999994,
+          "y": 124.1875
+        },
+        "below": false,
+        "labelHeight": 91.5
+      },
+      {
+        "name": "随笔3",
+        "date": "2026-07-05",
+        "meta": "2026.07.05SLD-0009 · 4.0",
+        "left": 65,
+        "right": 7.984375,
+        "top": 123.328125,
+        "bottom": 162.15625,
+        "overflow": 0,
+        "background": "rgba(0, 0, 0, 0)",
+        "boxShadow": "none",
+        "diagonal": true,
+        "length": 43,
+        "start": {
+          "x": 209.982257,
+          "y": 88.92812500000001
+        },
+        "end": {
+          "x": 184.18225700000002,
+          "y": 123.32812500000001
+        },
+        "below": true,
+        "labelHeight": 61.5
+      },
+      {
+        "name": "做一个有有趣灵魂的人",
+        "date": "2026-07-17",
+        "meta": "2026.07.17SLD-0010 · 4.0",
+        "left": 8,
+        "right": 64.984375,
+        "top": 146.96875,
+        "bottom": 138.515625,
+        "overflow": 0,
+        "background": "rgba(0, 0, 0, 0)",
+        "boxShadow": "none",
+        "diagonal": true,
+        "length": 43,
+        "start": {
+          "x": 132.946869,
+          "y": 243.36875
+        },
+        "end": {
+          "x": 107.146869,
+          "y": 208.96875
+        },
+        "below": false,
+        "labelHeight": 61.5
+      }
+    ],
+    "followed": {
+      "top": 512,
+      "visible": true,
+      "highlighted": true
+    },
+    "visibleRowStable": true,
+    "rapidSwitch": true,
+    "collapsedStable": true,
+    "filteredStable": true,
+    "outerScrollStable": true,
+    "errors": []
+  },
+  {
+    "name": "reduced",
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "labels": [
+      {
+        "name": "梦开始的地方[置顶]",
+        "date": "2025-10-20",
+        "meta": "2025.10.20SLD-0001 · 4.0",
+        "left": 234,
+        "right": 7.5625,
+        "top": 74.296875,
+        "bottom": 379.765625,
+        "overflow": 0,
+        "background": "rgba(0, 0, 0, 0)",
+        "boxShadow": "none",
+        "diagonal": true,
+        "length": 43,
+        "start": {
+          "x": 399.047856,
+          "y": 170.696875
+        },
+        "end": {
+          "x": 373.247856,
+          "y": 136.296875
+        },
+        "below": false,
+        "labelHeight": 61.5
+      },
+      {
+        "name": "活在真实天空下，做半个君子",
+        "date": "2025-10-21",
+        "meta": "2025.10.21SLD-0002 · 4.0",
+        "left": 234,
+        "right": 7.5625,
+        "top": 211.90625,
+        "bottom": 242.15625,
+        "overflow": 0,
+        "background": "rgba(0, 0, 0, 0)",
+        "boxShadow": "none",
+        "diagonal": true,
+        "length": 43,
+        "start": {
+          "x": 393.849156,
+          "y": 308.30625
+        },
+        "end": {
+          "x": 368.049156,
+          "y": 273.90625
+        },
+        "below": false,
+        "labelHeight": 61.5
+      },
+      {
+        "name": "咏史有感",
+        "date": "2025-10-22",
+        "meta": "2025.10.22SLD-0003 · 4.0",
+        "left": 8,
+        "right": 233.5625,
+        "top": 16.046875,
+        "bottom": 438.015625,
+        "overflow": 0,
+        "background": "rgba(0, 0, 0, 0)",
+        "boxShadow": "none",
+        "diagonal": true,
+        "length": 43,
+        "start": {
+          "x": 102.24878399999999,
+          "y": 112.44687499999999
+        },
+        "end": {
+          "x": 76.44878399999999,
+          "y": 78.04687499999999
+        },
+        "below": false,
+        "labelHeight": 61.5
+      },
+      {
+        "name": "言论·生活·小品",
+        "date": "2025-11-12",
+        "meta": "2025.11.12SLD-0004 · 4.0",
+        "left": 11.71875,
+        "right": 229.84375,
+        "top": 238.40625,
+        "bottom": 215.65625,
+        "overflow": 0,
+        "background": "rgba(0, 0, 0, 0)",
+        "boxShadow": "none",
+        "diagonal": true,
+        "length": 43,
+        "start": {
+          "x": 154.51875,
+          "y": 334.80625
+        },
+        "end": {
+          "x": 128.71875000000003,
+          "y": 300.40625
+        },
+        "below": false,
+        "labelHeight": 61.5
+      },
+      {
+        "name": "随笔1",
+        "date": "2025-11-17",
+        "meta": "2025.11.17SLD-0005 · 4.0",
+        "left": 167.640625,
+        "right": 73.921875,
+        "top": 286.984375,
+        "bottom": 167.078125,
+        "overflow": 0,
+        "background": "rgba(0, 0, 0, 0)",
+        "boxShadow": "none",
+        "diagonal": true,
+        "length": 43,
+        "start": {
+          "x": 310.440625,
+          "y": 383.384375
+        },
+        "end": {
+          "x": 284.640625,
+          "y": 348.984375
+        },
+        "below": false,
+        "labelHeight": 61.5
+      },
+      {
+        "name": "慢",
+        "date": "2026-05-14",
+        "meta": "2026.05.14SLD-0006 · 4.0",
+        "left": 77.125,
+        "right": 164.4375,
+        "top": 87.125,
+        "bottom": 366.9375,
+        "overflow": 0,
+        "background": "rgba(0, 0, 0, 0)",
+        "boxShadow": "none",
+        "diagonal": true,
+        "length": 43.00000000000001,
+        "start": {
+          "x": 219.925,
+          "y": 52.724999999999994
+        },
+        "end": {
+          "x": 194.125,
+          "y": 87.125
+        },
+        "below": true,
+        "labelHeight": 61.5
+      },
+      {
+        "name": "随笔2",
+        "date": "2026-05-15",
+        "meta": "2026.05.15SLD-0007 · 4.0",
+        "left": 8,
+        "right": 233.5625,
+        "top": 34.140625,
+        "bottom": 419.921875,
+        "overflow": 0,
+        "background": "rgba(0, 0, 0, 0)",
+        "boxShadow": "none",
+        "diagonal": true,
+        "length": 43,
+        "start": {
+          "x": 134.603532,
+          "y": 130.540625
+        },
+        "end": {
+          "x": 108.803532,
+          "y": 96.140625
+        },
+        "below": false,
+        "labelHeight": 61.5
+      },
+      {
+        "name": "AI时代，我们究竟需要什么？",
+        "date": "2026-06-15",
+        "meta": "2026.06.15SLD-0008 · 4.0",
+        "left": 8,
+        "right": 233.5625,
+        "top": 116.046875,
+        "bottom": 308.015625,
+        "overflow": 0,
+        "background": "rgba(0, 0, 0, 0)",
+        "boxShadow": "none",
+        "diagonal": true,
+        "length": 43,
+        "start": {
+          "x": 131.693808,
+          "y": 242.446875
+        },
+        "end": {
+          "x": 105.89380799999999,
+          "y": 208.046875
+        },
+        "below": false,
+        "labelHeight": 91.5
+      },
+      {
+        "name": "随笔3",
+        "date": "2026-07-05",
+        "meta": "2026.07.05SLD-0009 · 4.0",
+        "left": 174.40625,
+        "right": 67.15625,
+        "top": 160.015625,
+        "bottom": 294.046875,
+        "overflow": 0,
+        "background": "rgba(0, 0, 0, 0)",
+        "boxShadow": "none",
+        "diagonal": true,
+        "length": 43,
+        "start": {
+          "x": 317.20625,
+          "y": 125.615625
+        },
+        "end": {
+          "x": 291.40625,
+          "y": 160.015625
+        },
+        "below": true,
+        "labelHeight": 61.5
+      },
+      {
+        "name": "做一个有有趣灵魂的人",
+        "date": "2026-07-17",
+        "meta": "2026.07.17SLD-0010 · 4.0",
+        "left": 59.859375,
+        "right": 181.703125,
+        "top": 272.125,
+        "bottom": 181.9375,
+        "overflow": 0,
+        "background": "rgba(0, 0, 0, 0)",
+        "boxShadow": "none",
+        "diagonal": true,
+        "length": 43,
+        "start": {
+          "x": 202.659375,
+          "y": 368.525
+        },
+        "end": {
+          "x": 176.85937500000003,
+          "y": 334.125
+        },
+        "below": false,
+        "labelHeight": 61.5
+      }
+    ],
+    "followed": {
+      "top": 236,
+      "visible": true,
+      "highlighted": true
+    },
+    "visibleRowStable": true,
+    "rapidSwitch": true,
+    "collapsedStable": true,
+    "filteredStable": true,
+    "outerScrollStable": true,
+    "errors": []
+  },
+  {
+    "name": "soft",
+    "viewport": {
+      "width": 1440,
+      "height": 700
+    },
+    "labels": [
+      {
+        "name": "梦开始的地方[置顶]",
+        "date": "2025-10-20",
+        "meta": "2025.10.20SLD-0001 · 4.0",
+        "left": 119,
+        "right": 7.984375,
+        "top": 33.21875,
+        "bottom": 306.265625,
+        "overflow": 0,
+        "background": "rgba(0, 0, 0, 0)",
+        "boxShadow": "none",
+        "diagonal": true,
+        "length": 43,
+        "start": {
+          "x": 307.839516,
+          "y": 129.61875
+        },
+        "end": {
+          "x": 282.039516,
+          "y": 95.21875
+        },
+        "below": false,
+        "labelHeight": 61.5
+      },
+      {
+        "name": "活在真实天空下，做半个君子",
+        "date": "2025-10-21",
+        "meta": "2025.10.21SLD-0002 · 4.0",
+        "left": 119,
+        "right": 7.984375,
+        "top": 140.15625,
+        "bottom": 199.328125,
+        "overflow": 0,
+        "background": "rgba(0, 0, 0, 0)",
+        "boxShadow": "none",
+        "diagonal": true,
+        "length": 43,
+        "start": {
+          "x": 303.799441,
+          "y": 236.55625
+        },
+        "end": {
+          "x": 277.999441,
+          "y": 202.15625
+        },
+        "below": false,
+        "labelHeight": 61.5
+      },
+      {
+        "name": "咏史有感",
+        "date": "2025-10-22",
+        "meta": "2025.10.22SLD-0003 · 4.0",
+        "left": 8,
+        "right": 118.984375,
+        "top": 145.953125,
+        "bottom": 193.53125,
+        "overflow": 0,
+        "background": "rgba(0, 0, 0, 0)",
+        "boxShadow": "none",
+        "diagonal": true,
+        "length": 42.99999999999999,
+        "start": {
+          "x": 77.187524,
+          "y": 111.55312500000001
+        },
+        "end": {
+          "x": 51.38752399999999,
+          "y": 145.953125
+        },
+        "below": true,
+        "labelHeight": 61.5
+      },
+      {
+        "name": "言论·生活·小品",
+        "date": "2025-11-12",
+        "meta": "2025.11.12SLD-0004 · 4.0",
+        "left": 8,
+        "right": 118.984375,
+        "top": 160.75,
+        "bottom": 178.734375,
+        "overflow": 0,
+        "background": "rgba(0, 0, 0, 0)",
+        "boxShadow": "none",
+        "diagonal": true,
+        "length": 43,
+        "start": {
+          "x": 117.81243299999998,
+          "y": 257.15
+        },
+        "end": {
+          "x": 92.01243299999999,
+          "y": 222.74999999999997
+        },
+        "below": false,
+        "labelHeight": 61.5
+      },
+      {
+        "name": "随笔1",
+        "date": "2025-11-17",
+        "meta": "2025.11.17SLD-0005 · 4.0",
+        "left": 96.171875,
+        "right": 30.8125,
+        "top": 198.5,
+        "bottom": 140.984375,
+        "overflow": 0,
+        "background": "rgba(0, 0, 0, 0)",
+        "boxShadow": "none",
+        "diagonal": true,
+        "length": 43,
+        "start": {
+          "x": 238.971875,
+          "y": 294.9
+        },
+        "end": {
+          "x": 213.17187500000003,
+          "y": 260.5
+        },
+        "below": false,
+        "labelHeight": 61.5
+      },
+      {
+        "name": "慢",
+        "date": "2026-05-14",
+        "meta": "2026.05.14SLD-0006 · 4.0",
+        "left": 25.84375,
+        "right": 101.140625,
+        "top": 78.40625,
+        "bottom": 261.078125,
+        "overflow": 0,
+        "background": "rgba(0, 0, 0, 0)",
+        "boxShadow": "none",
+        "diagonal": true,
+        "length": 43,
+        "start": {
+          "x": 168.64375,
+          "y": 44.00625000000001
+        },
+        "end": {
+          "x": 142.84375000000003,
+          "y": 78.40625000000001
+        },
+        "below": true,
+        "labelHeight": 61.5
+      },
+      {
+        "name": "随笔2",
+        "date": "2026-05-15",
+        "meta": "2026.05.15SLD-0007 · 4.0",
+        "left": 8,
+        "right": 118.984375,
+        "top": 160.015625,
+        "bottom": 179.46875,
+        "overflow": 0,
+        "background": "rgba(0, 0, 0, 0)",
+        "boxShadow": "none",
+        "diagonal": true,
+        "length": 42.99999999999999,
+        "start": {
+          "x": 102.331427,
+          "y": 125.61562500000001
+        },
+        "end": {
+          "x": 76.53142700000001,
+          "y": 160.015625
+        },
+        "below": true,
+        "labelHeight": 61.5
+      },
+      {
+        "name": "AI时代，我们究竟需要什么？",
+        "date": "2026-06-15",
+        "meta": "2026.06.15SLD-0008 · 4.0",
+        "left": 8,
+        "right": 118.984375,
+        "top": 58.984375,
+        "bottom": 250.5,
+        "overflow": 0,
+        "background": "rgba(0, 0, 0, 0)",
+        "boxShadow": "none",
+        "diagonal": true,
+        "length": 43,
+        "start": {
+          "x": 100.070188,
+          "y": 185.384375
+        },
+        "end": {
+          "x": 74.270188,
+          "y": 150.984375
+        },
+        "below": false,
+        "labelHeight": 91.5
+      },
+      {
+        "name": "随笔3",
+        "date": "2026-07-05",
+        "meta": "2026.07.05SLD-0009 · 4.0",
+        "left": 101.4375,
+        "right": 25.546875,
+        "top": 135.046875,
+        "bottom": 204.4375,
+        "overflow": 0,
+        "background": "rgba(0, 0, 0, 0)",
+        "boxShadow": "none",
+        "diagonal": true,
+        "length": 43,
+        "start": {
+          "x": 244.2375,
+          "y": 100.646875
+        },
+        "end": {
+          "x": 218.43750000000003,
+          "y": 135.046875
+        },
+        "below": true,
+        "labelHeight": 61.5
+      },
+      {
+        "name": "做一个有有趣灵魂的人",
+        "date": "2026-07-17",
+        "meta": "2026.07.17SLD-0010 · 4.0",
+        "left": 12.421875,
+        "right": 114.5625,
+        "top": 186.96875,
+        "bottom": 152.515625,
+        "overflow": 0,
+        "background": "rgba(0, 0, 0, 0)",
+        "boxShadow": "none",
+        "diagonal": true,
+        "length": 43,
+        "start": {
+          "x": 155.221875,
+          "y": 283.36875
+        },
+        "end": {
+          "x": 129.42187500000003,
+          "y": 248.96874999999997
+        },
+        "below": false,
+        "labelHeight": 61.5
+      }
+    ],
+    "followed": {
+      "top": 481,
+      "visible": true,
+      "highlighted": true
+    },
+    "visibleRowStable": true,
+    "rapidSwitch": true,
+    "collapsedStable": true,
+    "filteredStable": true,
+    "outerScrollStable": true,
+    "errors": []
+  }
+]

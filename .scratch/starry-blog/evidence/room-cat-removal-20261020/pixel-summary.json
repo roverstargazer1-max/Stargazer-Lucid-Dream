@@ -1,0 +1,19 @@
+{
+  "dimensions": [
+    1672,
+    941
+  ],
+  "changedPixels": 13047,
+  "unchangedPercent": 99.17075136396687,
+  "changedBounds": [
+    23,
+    417,
+    115,
+    645
+  ],
+  "changedOutsideMask": 0,
+  "sourceBytes": 1052364,
+  "resultBytes": 1048394,
+  "blendIterations": 438,
+  "finalDelta": 0.0004985785176526791
+}
