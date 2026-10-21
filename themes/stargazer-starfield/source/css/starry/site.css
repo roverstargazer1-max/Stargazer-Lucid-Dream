@@ -61,9 +61,9 @@ button:focus-visible, a:focus-visible { outline: 2px solid #72dbff; outline-offs
 #room { position: fixed; z-index: 40; inset: 0; display: none; overflow: clip; background: transparent; }
 .starry-ready #room:not([hidden]) { display: block; }
 .room-stage { position: absolute; width: max(100vw, 177.683vh); height: max(56.28vw, 100vh); left: 50%; top: 50%; margin-left: min(-50vw, -88.8415vh); margin-top: min(-28.14vw, -50vh); transform-origin: 52% 29%; will-change: transform, opacity; }
-.room-stage picture, .room-image { display: block; width: 100%; height: 100%; }
+.room-image { display: block; width: 100%; height: 100%; }
 .room-image { object-fit: cover; }
-body[data-live-window="ready"] .room-image { mask-image: var(--window-mask-desktop); mask-mode: alpha; mask-size: 100% 100%; mask-repeat: no-repeat; }
+body[data-live-window="ready"] .room-image { mask-image: var(--window-mask); mask-mode: alpha; mask-size: 100% 100%; mask-repeat: no-repeat; }
 body[data-live-window="ready"][data-room="inside"] #world { visibility: visible; }
 body[data-live-window="ready"][data-room="inside"] #world > :not(#sky) { visibility: hidden; }
 #window-entry { position: absolute; left: 31.3%; top: 1%; width: 68%; height: 79%; padding: 0; clip-path: polygon(0 0, 100% 0, 100% 100%, 59% 100%, 52% 78%, 52% 55%, 41% 53%, 31% 76%, 24% 100%, 11% 100%, 0 49%); cursor: zoom-in; border-radius: 0; }
@@ -162,11 +162,7 @@ body:has(#home-fallback):not(.starry-ready) > .blog-theme-switch-fixed { display
 .archive-list a { font: 400 16px/1.7 'LXGW Marker Gothic', var(--sans); font-synthesis: none; }
 
 @media (max-width: 760px) {
-  body[data-live-window="ready"] .room-image { mask-image: var(--window-mask-mobile); }
-  .room-stage { width: max(56.28vh, 100vw); height: max(177.683vw, 100vh); margin-left: min(-28.14vh, -50vw); margin-top: min(-88.8415vw, -50vh); }
-  #window-entry { left: 10%; top: 7%; width: 81%; height: 67%; clip-path: polygon(9% 0, 92% 0, 100% 85%, 75% 94%, 69% 74%, 53% 69%, 44% 79%, 39% 97%, 18% 93%, 0 78%); }
-  .window-invitation { display: none; }
-  #room-journal { left: 7%; top: 84%; width: 30%; height: 8%; }
+  .room-stage { left: 20%; margin-left: min(-20vw, -35.5366vh); }
   #exploration-controls { top: max(12px, env(safe-area-inset-top)); right: 14px; gap: 6px; }
   .mode-switch { gap: 4px; }
   .mode-switch button { min-width: 36px; font-size: 11px; }

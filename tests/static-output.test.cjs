@@ -40,6 +40,25 @@ test('preparing twice preserves all existing metadata, bodies and star coordinat
   files.forEach((file, i) => assert.deepEqual(fs.readFileSync(file), before[i], `${file} changed on repeated preview preparation`));
 });
 
+test('every static article has exactly its chronological neighbours after the body and authored relations', () => {
+  const ordered = [...index.articles].sort((a, b) => a.timeOrder < b.timeOrder ? -1 : a.timeOrder > b.timeOrder ? 1 : 0);
+  ordered.forEach((article, position) => {
+    const $ = load(fs.readFileSync(path.join(root, article.path, 'index.html'), 'utf8'));
+    const navigation = $('#static-article-fallback .article-pagination');
+    for (const [direction, neighbour] of [['previous', ordered[position - 1]], ['next', ordered[position + 1]]]) {
+      const link = navigation.find(`.article-pagination-${direction}`);
+      assert.equal(link.length, neighbour ? 1 : 0);
+      if (!neighbour) continue;
+      assert.equal(link.attr('data-starry-article-id'), neighbour.id);
+      assert.equal(decodeURI(link.attr('href')), `/${neighbour.path}`);
+      assert.equal(link.find('.article-pagination-title').text(), neighbour.title);
+      assert.equal(link.find('time').attr('datetime'), neighbour.date);
+    }
+    assert.equal(navigation.prev().hasClass('reading-relations'), true);
+    assert.equal($('#reader-content .article-pagination').length, 0, 'navigation must not count towards reading progress');
+  });
+});
+
 test('legacy collections retain scope, friends retain source data, music keeps its player configuration', () => {
   const archive = load(fs.readFileSync(path.join(root, 'archives/2025/11/index.html'), 'utf8'));
   assert.equal(archive('#static-collection-fallback a[data-starry-article-id]').length, index.articles.filter(item => item.date.startsWith('2025-11')).length);
