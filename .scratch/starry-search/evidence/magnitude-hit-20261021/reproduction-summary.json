@@ -1,0 +1,11 @@
+{
+  "beforeFix": {
+    "fullMotion": {
+      "1.0": { "clickable": true },
+      "2.5": { "clickable": false, "interceptedBy": "search-map canvas" },
+      "4.0": { "clickable": false, "interceptedBy": "search-map canvas" }
+    },
+    "softMotion": { "allMagnitudesClickable": true }
+  },
+  "cause": "Full-motion transforms create separate stacking contexts. The later map canvas intercepted the overlapping filter controls."
+}

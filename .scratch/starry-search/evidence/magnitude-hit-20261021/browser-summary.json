@@ -1,0 +1,324 @@
+[
+  {
+    "name": "desktop-full",
+    "checks": [
+      {
+        "year": "",
+        "magnitude": "1.0",
+        "count": 0,
+        "realPointer": true
+      },
+      {
+        "year": "",
+        "magnitude": "2.5",
+        "count": 0,
+        "realPointer": true
+      },
+      {
+        "year": "",
+        "magnitude": "4.0",
+        "count": 10,
+        "realPointer": true
+      },
+      {
+        "year": "2025",
+        "magnitude": "1.0",
+        "count": 0,
+        "realPointer": true
+      },
+      {
+        "year": "2025",
+        "magnitude": "2.5",
+        "count": 0,
+        "realPointer": true
+      },
+      {
+        "year": "2025",
+        "magnitude": "4.0",
+        "count": 5,
+        "realPointer": true
+      }
+    ],
+    "keywordIntersection": true,
+    "repeatClickClears": true,
+    "keyboard": true,
+    "mapStarStillClickable": true,
+    "errors": []
+  },
+  {
+    "name": "desktop-soft",
+    "checks": [
+      {
+        "year": "",
+        "magnitude": "1.0",
+        "count": 0,
+        "realPointer": true
+      },
+      {
+        "year": "",
+        "magnitude": "2.5",
+        "count": 0,
+        "realPointer": true
+      },
+      {
+        "year": "",
+        "magnitude": "4.0",
+        "count": 10,
+        "realPointer": true
+      },
+      {
+        "year": "2025",
+        "magnitude": "1.0",
+        "count": 0,
+        "realPointer": true
+      },
+      {
+        "year": "2025",
+        "magnitude": "2.5",
+        "count": 0,
+        "realPointer": true
+      },
+      {
+        "year": "2025",
+        "magnitude": "4.0",
+        "count": 5,
+        "realPointer": true
+      }
+    ],
+    "keywordIntersection": true,
+    "repeatClickClears": true,
+    "keyboard": true,
+    "mapStarStillClickable": true,
+    "errors": []
+  },
+  {
+    "name": "small-desktop",
+    "checks": [
+      {
+        "year": "",
+        "magnitude": "1.0",
+        "count": 0,
+        "realPointer": true
+      },
+      {
+        "year": "",
+        "magnitude": "2.5",
+        "count": 0,
+        "realPointer": true
+      },
+      {
+        "year": "",
+        "magnitude": "4.0",
+        "count": 10,
+        "realPointer": true
+      },
+      {
+        "year": "2025",
+        "magnitude": "1.0",
+        "count": 0,
+        "realPointer": true
+      },
+      {
+        "year": "2025",
+        "magnitude": "2.5",
+        "count": 0,
+        "realPointer": true
+      },
+      {
+        "year": "2025",
+        "magnitude": "4.0",
+        "count": 5,
+        "realPointer": true
+      }
+    ],
+    "keywordIntersection": true,
+    "repeatClickClears": true,
+    "keyboard": true,
+    "mapStarStillClickable": true,
+    "errors": []
+  },
+  {
+    "name": "mobile",
+    "checks": [
+      {
+        "year": "",
+        "magnitude": "1.0",
+        "count": 0,
+        "realPointer": true
+      },
+      {
+        "year": "",
+        "magnitude": "2.5",
+        "count": 0,
+        "realPointer": true
+      },
+      {
+        "year": "",
+        "magnitude": "4.0",
+        "count": 10,
+        "realPointer": true
+      },
+      {
+        "year": "2025",
+        "magnitude": "1.0",
+        "count": 0,
+        "realPointer": true
+      },
+      {
+        "year": "2025",
+        "magnitude": "2.5",
+        "count": 0,
+        "realPointer": true
+      },
+      {
+        "year": "2025",
+        "magnitude": "4.0",
+        "count": 5,
+        "realPointer": true
+      }
+    ],
+    "keywordIntersection": true,
+    "repeatClickClears": true,
+    "keyboard": true,
+    "mapStarStillClickable": true,
+    "errors": []
+  },
+  {
+    "name": "narrow",
+    "checks": [
+      {
+        "year": "",
+        "magnitude": "1.0",
+        "count": 0,
+        "realPointer": true
+      },
+      {
+        "year": "",
+        "magnitude": "2.5",
+        "count": 0,
+        "realPointer": true
+      },
+      {
+        "year": "",
+        "magnitude": "4.0",
+        "count": 10,
+        "realPointer": true
+      },
+      {
+        "year": "2025",
+        "magnitude": "1.0",
+        "count": 0,
+        "realPointer": true
+      },
+      {
+        "year": "2025",
+        "magnitude": "2.5",
+        "count": 0,
+        "realPointer": true
+      },
+      {
+        "year": "2025",
+        "magnitude": "4.0",
+        "count": 5,
+        "realPointer": true
+      }
+    ],
+    "keywordIntersection": true,
+    "repeatClickClears": true,
+    "keyboard": true,
+    "mapStarStillClickable": true,
+    "errors": []
+  },
+  {
+    "name": "landscape",
+    "checks": [
+      {
+        "year": "",
+        "magnitude": "1.0",
+        "count": 0,
+        "realPointer": true
+      },
+      {
+        "year": "",
+        "magnitude": "2.5",
+        "count": 0,
+        "realPointer": true
+      },
+      {
+        "year": "",
+        "magnitude": "4.0",
+        "count": 10,
+        "realPointer": true
+      },
+      {
+        "year": "2025",
+        "magnitude": "1.0",
+        "count": 0,
+        "realPointer": true
+      },
+      {
+        "year": "2025",
+        "magnitude": "2.5",
+        "count": 0,
+        "realPointer": true
+      },
+      {
+        "year": "2025",
+        "magnitude": "4.0",
+        "count": 5,
+        "realPointer": true
+      }
+    ],
+    "keywordIntersection": true,
+    "repeatClickClears": true,
+    "keyboard": true,
+    "mapStarStillClickable": true,
+    "errors": []
+  },
+  {
+    "name": "reduced",
+    "checks": [
+      {
+        "year": "",
+        "magnitude": "1.0",
+        "count": 0,
+        "realPointer": true
+      },
+      {
+        "year": "",
+        "magnitude": "2.5",
+        "count": 0,
+        "realPointer": true
+      },
+      {
+        "year": "",
+        "magnitude": "4.0",
+        "count": 10,
+        "realPointer": true
+      },
+      {
+        "year": "2025",
+        "magnitude": "1.0",
+        "count": 0,
+        "realPointer": true
+      },
+      {
+        "year": "2025",
+        "magnitude": "2.5",
+        "count": 0,
+        "realPointer": true
+      },
+      {
+        "year": "2025",
+        "magnitude": "4.0",
+        "count": 5,
+        "realPointer": true
+      }
+    ],
+    "keywordIntersection": true,
+    "repeatClickClears": true,
+    "keyboard": true,
+    "mapStarStillClickable": true,
+    "errors": []
+  }
+]
