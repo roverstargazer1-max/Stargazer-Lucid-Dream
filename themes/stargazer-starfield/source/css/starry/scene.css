@@ -118,7 +118,7 @@ body[data-scene=painted] #egg-dialog p{font-size:.875rem;line-height:2}
 }
 @media(max-width:760px){
   /* Crop the shared landscape around the writer and the adjacent window. */
-  .room-stage{left:20%;margin-left:min(-20vw,-35.5366vh)}
+  .room-stage{left:28%;margin-left:min(-28vw,-49.75124vh)}
   .window-invitation .window-dust{transform:translate(-210px,-70px)}
   body[data-scene=painted] .masthead{left:20px;top:20px}
   body[data-scene=painted] .wordmark{width:min(270px,calc(100vw - 40px))}

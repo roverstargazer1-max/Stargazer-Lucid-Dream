@@ -5,7 +5,7 @@ import { roomPassageFrames } from '../themes/stargazer-starfield/source/js/starf
 
 test('the room stays opaque and undistorted, keeps advancing, and finishes beyond the clear aperture', () => {
   for (const [width, height] of [[1440, 1040], [1920, 1080], [3440, 1440], [800, 1300], [760, 900], [761, 900], [390, 844], [320, 568], [844, 390]]) {
-    const aspect = 1.77683, anchor = width <= 760 ? .20 : .50;
+    const aspect = 1.77683, anchor = width <= 760 ? .28 : .50;
     const w = Math.max(width, height * aspect), h = Math.max(height, width / aspect);
     const rect = { width: w, height: h, left: (width - w) * anchor, top: (height - h) / 2 };
     const { origin, frames } = roomPassageFrames(rect, width, height);
