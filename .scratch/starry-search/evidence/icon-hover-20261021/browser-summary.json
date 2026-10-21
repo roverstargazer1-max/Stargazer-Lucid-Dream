@@ -1,0 +1,115 @@
+[
+  {
+    "name": "desktop",
+    "states": [
+      {
+        "state": "hover",
+        "samples": 319,
+        "changed": 0,
+        "maxDelta": 0,
+        "transform": "matrix(1.08, 0, 0, 1.08, 0, 0)",
+        "filter": "brightness(1.16) drop-shadow(rgba(138, 230, 255, 0.4) 0px 0px 3px)"
+      },
+      {
+        "state": "press",
+        "samples": 319,
+        "changed": 0,
+        "maxDelta": 0
+      },
+      {
+        "state": "focus",
+        "samples": 319,
+        "changed": 0,
+        "maxDelta": 0,
+        "transform": "matrix(1.08, 0, 0, 1.08, 0, 0)",
+        "filter": "brightness(1.16) drop-shadow(rgba(138, 230, 255, 0.4) 0px 0px 3px)"
+      }
+    ],
+    "hitAreaStable": true,
+    "restUsesOriginalPNG": true,
+    "searchAndRead": true,
+    "errors": []
+  },
+  {
+    "name": "mobile",
+    "states": [
+      {
+        "state": "focus",
+        "samples": 52,
+        "changed": 0,
+        "maxDelta": 1,
+        "transform": "matrix(1.08, 0, 0, 1.08, 0, 0)",
+        "filter": "brightness(1.16) drop-shadow(rgba(138, 230, 255, 0.4) 0px 0px 3px)"
+      }
+    ],
+    "hitAreaStable": true,
+    "restUsesOriginalPNG": true,
+    "searchAndRead": true,
+    "errors": []
+  },
+  {
+    "name": "narrow",
+    "states": [
+      {
+        "state": "focus",
+        "samples": 30,
+        "changed": 0,
+        "maxDelta": 1,
+        "transform": "matrix(1.08, 0, 0, 1.08, 0, 0)",
+        "filter": "brightness(1.16) drop-shadow(rgba(138, 230, 255, 0.4) 0px 0px 3px)"
+      }
+    ],
+    "hitAreaStable": true,
+    "restUsesOriginalPNG": true,
+    "searchAndRead": true,
+    "errors": []
+  },
+  {
+    "name": "landscape",
+    "states": [
+      {
+        "state": "focus",
+        "samples": 108,
+        "changed": 0,
+        "maxDelta": 0,
+        "transform": "matrix(1.08, 0, 0, 1.08, 0, 0)",
+        "filter": "brightness(1.16) drop-shadow(rgba(138, 230, 255, 0.4) 0px 0px 3px)"
+      }
+    ],
+    "hitAreaStable": true,
+    "restUsesOriginalPNG": true,
+    "searchAndRead": true,
+    "errors": []
+  },
+  {
+    "name": "reduced",
+    "states": [
+      {
+        "state": "hover",
+        "samples": 319,
+        "changed": 0,
+        "maxDelta": 1,
+        "transform": "none",
+        "filter": "brightness(1.16) drop-shadow(rgba(138, 230, 255, 0.4) 0px 0px 3px)"
+      },
+      {
+        "state": "press",
+        "samples": 319,
+        "changed": 0,
+        "maxDelta": 1
+      },
+      {
+        "state": "focus",
+        "samples": 319,
+        "changed": 0,
+        "maxDelta": 1,
+        "transform": "none",
+        "filter": "brightness(1.16) drop-shadow(rgba(138, 230, 255, 0.4) 0px 0px 3px)"
+      }
+    ],
+    "hitAreaStable": true,
+    "restUsesOriginalPNG": true,
+    "searchAndRead": true,
+    "errors": []
+  }
+]

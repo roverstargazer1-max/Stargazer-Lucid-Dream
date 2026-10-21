@@ -58,7 +58,7 @@ test('current view boundary uses the actual camera origin, zoom and inverse proj
 });
 test('all supplied search artwork is published byte for byte without SVG replacements', () => {
   const root = '.preview/stargazer';
-  for (const name of ['base', 'frame', 'filters', 'arrow', 'star-chart', 'index', 'name', 'id', 'close']) {
+  for (const name of ['base', 'frame', 'frame-background', 'magnifier', 'filters', 'arrow', 'star-chart', 'index', 'name', 'id', 'close']) {
     assert.deepEqual(fs.readFileSync(path.join(root, `images/search/${name}-v3.png`)), fs.readFileSync(`assets/检索页/v3/${name}-v3.png`));
   }
   assert.deepEqual(fs.readFileSync(path.join(root, 'images/search/entry-blue-purple.png')), fs.readFileSync('assets/蓝紫星盘.png'));
