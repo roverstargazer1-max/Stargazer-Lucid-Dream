@@ -1,0 +1,85 @@
+{
+  "origin": "http://127.0.0.1:4175",
+  "reports": [
+    {
+      "name": "desktop",
+      "room": "/image/starfield/room-poster-detail-v20.webp?v=d79d9a54cf3480c0",
+      "catRemoved": true,
+      "expanded": {
+        "left": 949.21875,
+        "top": 0,
+        "width": 44.828125,
+        "height": 44,
+        "right": 0,
+        "hit": "close-search",
+        "overlapsTitle": false
+      },
+      "closeAfterToggle": true,
+      "errors": []
+    },
+    {
+      "name": "mobile",
+      "room": "/image/starfield/room-poster-detail-v20.webp?v=d79d9a54cf3480c0",
+      "catRemoved": true,
+      "expanded": {
+        "left": 12,
+        "top": 12,
+        "width": 44,
+        "height": 44,
+        "right": 302,
+        "hit": "close-search",
+        "overlapsTitle": false
+      },
+      "closeAfterToggle": true,
+      "errors": []
+    },
+    {
+      "name": "narrow",
+      "room": "/image/starfield/room-poster-detail-v20.webp?v=d79d9a54cf3480c0",
+      "catRemoved": true,
+      "expanded": {
+        "left": 12,
+        "top": 12,
+        "width": 44,
+        "height": 44,
+        "right": 232,
+        "hit": "close-search",
+        "overlapsTitle": false
+      },
+      "closeAfterToggle": true,
+      "errors": []
+    },
+    {
+      "name": "mobile-landscape",
+      "room": "/image/starfield/room-poster-detail-v20.webp?v=d79d9a54cf3480c0",
+      "catRemoved": true,
+      "expanded": {
+        "left": 12,
+        "top": 12,
+        "width": 44,
+        "height": 44,
+        "right": 530.640625,
+        "hit": "close-search",
+        "overlapsTitle": false
+      },
+      "closeAfterToggle": true,
+      "errors": []
+    },
+    {
+      "name": "reduced",
+      "room": "/image/starfield/room-poster-detail-v20.webp?v=d79d9a54cf3480c0",
+      "catRemoved": true,
+      "expanded": {
+        "left": 12,
+        "top": 12,
+        "width": 44,
+        "height": 44,
+        "right": 302,
+        "hit": "close-search",
+        "overlapsTitle": false
+      },
+      "closeAfterToggle": true,
+      "errors": []
+    }
+  ]
+}

@@ -1,0 +1,118 @@
+{
+  "release": "5360482",
+  "featureTip": "31bc881",
+  "commits": [
+    "c4b80be fix(starfield): clip cloud projections and simplify search hover",
+    "5849cb7 perf(starfield): cache astrolabe artwork without pixel changes",
+    "277b001 perf(starfield): prepare reader artwork before its first reveal",
+    "b9d221e docs(starfield): record performance audit and regression evidence",
+    "d7c5bc7 feat(starfield): add diagonal star annotations and index following",
+    "3704ab0 fix(starfield): disable stars excluded by search filters",
+    "7f2912b feat(starfield): overlap chart and default index entry",
+    "ae5e0f4 fix(starfield): remove cat charm from room illustration",
+    "40e8ad6 feat(starfield): share room artwork across desktop and mobile",
+    "31bc881 feat(starfield): add chronological article navigation"
+  ],
+  "expectedFallbackDelta": [
+    "docs/design/starry-blog.md",
+    "docs/operations/starfield-blog.md",
+    "tests/static-output.test.cjs",
+    "themes/stargazer-starfield/layout/index.ejs",
+    "themes/stargazer-starfield/source/css/starry/site.css",
+    "themes/stargazer-starfield/source/images/fallback-sky.webp"
+  ],
+  "changedRuntimeAssets": [
+    {
+      "source": "source/image/starfield/room-poster-detail-v20.webp",
+      "route": "/image/starfield/room-poster-detail-v20.webp",
+      "expected": "d79d9a54cf3480c095e6e0eb8ffdcde320b89a9e6359d8d4b267a5a5d2d77268",
+      "live": "19d3e7a1451398d37deca4ecd11e3f1a382d130cb906ff6bfff491c45a3d7cf3",
+      "matches": false
+    },
+    {
+      "source": "themes/stargazer-starfield/source/css/starry/reader.css",
+      "route": "/css/starry/reader.css",
+      "expected": "ab69f74830d67a0a64a3ee46043a48ece3acf7eeb91582e88b8f995764a8eaba",
+      "live": "ab69f74830d67a0a64a3ee46043a48ece3acf7eeb91582e88b8f995764a8eaba",
+      "matches": true
+    },
+    {
+      "source": "themes/stargazer-starfield/source/css/starry/scene.css",
+      "route": "/css/starry/scene.css",
+      "expected": "5fbe1d697d533f937b6872cbdd3aeb276d66305c24e275dd0da10fd87c525bd5",
+      "live": "5fbe1d697d533f937b6872cbdd3aeb276d66305c24e275dd0da10fd87c525bd5",
+      "matches": true
+    },
+    {
+      "source": "themes/stargazer-starfield/source/css/starry/search.css",
+      "route": "/css/starry/search.css",
+      "expected": "97b7d868614943aa6132a4069f24ed37bf4293984a8501863a62001944afdd5f",
+      "live": "97b7d868614943aa6132a4069f24ed37bf4293984a8501863a62001944afdd5f",
+      "matches": true
+    },
+    {
+      "source": "themes/stargazer-starfield/source/css/starry/site.css",
+      "route": "/css/starry/site.css",
+      "expected": "60168877a09e30d715cc165762585aefd0933a6167aa5e76806a1c88343b06b9",
+      "live": "60168877a09e30d715cc165762585aefd0933a6167aa5e76806a1c88343b06b9",
+      "matches": true
+    },
+    {
+      "source": "themes/stargazer-starfield/source/images/optimized/entry-base.webp",
+      "route": "/images/optimized/entry-base.webp",
+      "expected": "c9d464e914ee6a07030a54154d89fa68949cc24b0ac75c7979b736a1a429efd0",
+      "live": "c9d464e914ee6a07030a54154d89fa68949cc24b0ac75c7979b736a1a429efd0",
+      "matches": true
+    },
+    {
+      "source": "themes/stargazer-starfield/source/images/optimized/entry-repair.webp",
+      "route": "/images/optimized/entry-repair.webp",
+      "expected": "d7f9fac91c66fc117286727f63502a28a05c815e60313aceaf62aebb6769ad22",
+      "live": "d7f9fac91c66fc117286727f63502a28a05c815e60313aceaf62aebb6769ad22",
+      "matches": true
+    },
+    {
+      "source": "themes/stargazer-starfield/source/js/starfield/app.js",
+      "route": "/js/starfield/app.js",
+      "expected": "99273cc6a60fc546317f50557844a3f3d6ceb5a170c773a2605a44965fc2b5fa",
+      "live": "99273cc6a60fc546317f50557844a3f3d6ceb5a170c773a2605a44965fc2b5fa",
+      "matches": true
+    },
+    {
+      "source": "themes/stargazer-starfield/source/js/starfield/interactive-clouds.js",
+      "route": "/js/starfield/interactive-clouds.js",
+      "expected": "28c9f4e6f8bf7698e619734a82ccfcf8a561b9fd9ab3ca83d6a7b4ab1b167bca",
+      "live": "28c9f4e6f8bf7698e619734a82ccfcf8a561b9fd9ab3ca83d6a7b4ab1b167bca",
+      "matches": true
+    },
+    {
+      "source": "themes/stargazer-starfield/source/js/starfield/painted.js",
+      "route": "/js/starfield/painted.js",
+      "expected": "219686facb7f1f740966235ea2689ded664a3eb75378333e03d8cfc0e7d7642d",
+      "live": "219686facb7f1f740966235ea2689ded664a3eb75378333e03d8cfc0e7d7642d",
+      "matches": true
+    },
+    {
+      "source": "themes/stargazer-starfield/source/js/starfield/reader-art.js",
+      "route": "/js/starfield/reader-art.js",
+      "expected": "94ff5b11fe15c4c530db3623a5382a8f8842bba5cbf368fc73d310d449ce7d2b",
+      "live": "94ff5b11fe15c4c530db3623a5382a8f8842bba5cbf368fc73d310d449ce7d2b",
+      "matches": true
+    },
+    {
+      "source": "themes/stargazer-starfield/source/js/starfield/room-scene.js",
+      "route": "/js/starfield/room-scene.js",
+      "expected": "88a2e0b365ec4dc1a66dfbd4045d54f431702188461ddbd3776c535df58e8c6a",
+      "live": "88a2e0b365ec4dc1a66dfbd4045d54f431702188461ddbd3776c535df58e8c6a",
+      "matches": true
+    },
+    {
+      "source": "themes/stargazer-starfield/source/js/starfield/search.js",
+      "route": "/js/starfield/search.js",
+      "expected": "fabd98aca1f2b5c161180a57c8c3cefe90bb48101d591f1bf3b7c109f5cac426",
+      "live": "fabd98aca1f2b5c161180a57c8c3cefe90bb48101d591f1bf3b7c109f5cac426",
+      "matches": true
+    }
+  ],
+  "versionedRoomMatchesRemoval": true
+}

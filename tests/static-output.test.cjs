@@ -11,6 +11,15 @@ const sourceFiles = fs.readdirSync('source/_posts').filter(name => name.endsWith
 const posts = sourceFiles.map(name => parse(fs.readFileSync(path.join('source/_posts', name), 'utf8').replace(/\r\n/g, '\n'))).filter(post => post.published !== false);
 const index = JSON.parse(fs.readFileSync(path.join(root, 'starry/index.json'), 'utf8'));
 
+test('the homepage requests and preloads a room URL versioned by its actual image content', () => {
+  const imagePath = 'image/starfield/room-poster-detail-v20.webp';
+  const version = require('node:crypto').createHash('sha256').update(fs.readFileSync(path.join('source', imagePath))).digest('hex').slice(0, 16);
+  const home = load(fs.readFileSync(path.join(root, 'index.html'), 'utf8'));
+  const src = home('.room-image').attr('src');
+  assert.equal(new URL(src, 'https://local/').searchParams.get('v'), version, 'Replacing the room illustration must bypass cached previous bytes');
+  assert.equal(home('link[rel="preload"][as="image"]').toArray().filter(link => home(link).attr('href') === src).length, 1);
+});
+
 test('every published real article has its original address, readable body and saved star', () => {
   const layout = JSON.parse(fs.readFileSync('source/_data/starry-layout.json', 'utf8'));
   assert.equal(index.articles.length, posts.length);

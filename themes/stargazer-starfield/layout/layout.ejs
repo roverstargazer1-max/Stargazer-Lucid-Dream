@@ -54,7 +54,7 @@
   <% } %>
   <% if (is_home()) { %>
   <link rel="preload" as="image" type="image/svg+xml" href="<%= url_for(theme.scene.window_mask) %>" fetchpriority="high">
-  <link rel="preload" as="image" href="<%= url_for(theme.scene.room) %>" fetchpriority="high">
+  <link rel="preload" as="image" href="<%= starry_room_url() %>" fetchpriority="high">
   <style>
     html.starry-loading,html.starry-loading body{margin:0;background:#031a87;overflow:hidden}
     .starry-loading #home-fallback{display:none}
