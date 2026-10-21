@@ -98,10 +98,7 @@
 #reader .article-pagination-link { color: var(--paper-ink); text-decoration: none; }
 #reader .article-pagination-link:is(:hover, :focus-visible) .article-pagination-title { color: var(--accent-cyan); }
 @media (max-width: 520px) {
-  .article-pagination { grid-template-columns: minmax(0, 1fr); gap: var(--space-2); margin-top: var(--space-5); }
-  .article-pagination-next { grid-column: 1; }
-  .article-pagination-link + .article-pagination-link { padding-top: var(--space-5); border-top: 1px solid var(--paper-line); }
-  #reader .article-pagination-link + .article-pagination-link { border-color: var(--panel-line); }
+  .article-pagination { gap: var(--space-4); margin-top: var(--space-5); }
 }
 @media (prefers-reduced-motion: reduce) {
   .article-pagination-arrow, .article-pagination-title { transition: none; }
