@@ -66,7 +66,7 @@ button:focus-visible, a:focus-visible { outline: 2px solid #72dbff; outline-offs
 body[data-live-window="ready"] .room-image { mask-image: var(--window-mask); mask-mode: alpha; mask-size: 100% 100%; mask-repeat: no-repeat; }
 body[data-live-window="ready"][data-room="inside"] #world { visibility: visible; }
 body[data-live-window="ready"][data-room="inside"] #world > :not(#sky) { visibility: hidden; }
-#window-entry { position: absolute; left: 31.3%; top: 1%; width: 68%; height: 79%; padding: 0; clip-path: polygon(0 0, 100% 0, 100% 100%, 59% 100%, 52% 78%, 52% 55%, 41% 53%, 31% 76%, 24% 100%, 11% 100%, 0 49%); cursor: zoom-in; border-radius: 0; }
+#window-entry { position: absolute; left: 31.3%; top: 1%; width: 68%; height: 79%; padding: 0; clip-path: polygon(0 0, 100% 0, 100% 100%, 59% 100%, 52% 78%, 52% 55%, 41% 53%, 31% 76%, 24% 100%, 11% 100%, 0 49%); cursor: pointer; border-radius: 0; }
 #window-entry:focus-visible { outline: 2px solid #dbe8ec; outline-offset: -8px; background: #dcecff08; }
 .window-invitation { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; opacity: 0; transition: opacity .2s; }
 body[data-room="inside"] .window-invitation { opacity: 1; transition-duration: .7s; }
