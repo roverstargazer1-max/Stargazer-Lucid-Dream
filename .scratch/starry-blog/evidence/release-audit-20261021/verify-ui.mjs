@@ -21,6 +21,8 @@ try{
   if(name==='desktop')await page.screenshot({path:path.join(output,prefix+'room-without-cat.png')});
   await page.locator('#window-entry').click();await page.waitForFunction(()=>document.body.dataset.room==='outside');
   await page.locator('#search-entry').click();await page.waitForFunction(()=>document.getElementById('star-search').open&&document.getElementById('star-search').dataset.indexOpen==='true'&&!document.getElementById('star-search').dataset.motion);
+  await page.waitForFunction(()=>[...document.querySelectorAll('#star-search img[src]')].every(image=>image.complete&&image.naturalWidth>0),{},{timeout:30000});
+  await page.evaluate(()=>document.fonts.ready);
   const inspect=()=>page.locator('#close-search').evaluate(button=>{const panel=document.querySelector('.search-artboard').getBoundingClientRect(),r=button.getBoundingClientRect(),title=document.querySelector('.search-heading').getBoundingClientRect();return{left:r.left-panel.left,top:r.top-panel.top,width:r.width,height:r.height,right:panel.right-r.right,hit:document.elementFromPoint(r.x+r.width/2,r.y+r.height/2)?.closest('button')?.id,overlapsTitle:r.left<title.right&&r.right>title.left&&r.top<title.bottom&&r.bottom>title.top};});
   const expanded=await inspect();assert.ok(expanded.width>=44&&expanded.height>=44);assert.equal(expanded.hit,'close-search');assert.equal(expanded.overlapsTitle,false);
   if(width<=760){assert.ok(expanded.left<60&&expanded.top<60);}else{assert.ok(expanded.right<10&&expanded.top<10);}
