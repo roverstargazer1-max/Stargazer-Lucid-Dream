@@ -1,0 +1,243 @@
+{
+  "origin": "http://127.0.0.1:4175",
+  "reports": [
+    {
+      "name": "desktop",
+      "viewport": [
+        1440,
+        900
+      ],
+      "mode": "full",
+      "reducedMotion": false,
+      "stage": {
+        "x": -79.5625,
+        "y": 0,
+        "width": 1599.140625,
+        "height": 900
+      },
+      "thought": {
+        "x": 483.77813720703125,
+        "y": 541,
+        "width": 142,
+        "height": 80
+      },
+      "quiet": {
+        "transition": "0.7s, 0s",
+        "animations": 1
+      },
+      "interaction": "thought entry, return, original window entry passed",
+      "errors": []
+    },
+    {
+      "name": "mobile",
+      "viewport": [
+        390,
+        844
+      ],
+      "mode": "full",
+      "reducedMotion": false,
+      "stage": {
+        "x": -310.703125,
+        "y": 0,
+        "width": 1499.640625,
+        "height": 844
+      },
+      "thought": {
+        "x": 233.984375,
+        "y": 502.359375,
+        "width": 142,
+        "height": 80
+      },
+      "startup": {
+        "x": -310.703125,
+        "y": 0,
+        "width": 1499.640625,
+        "height": 844
+      },
+      "quiet": {
+        "transition": "0.7s, 0s",
+        "animations": 1
+      },
+      "interaction": "thought entry, return, original window entry passed",
+      "errors": []
+    },
+    {
+      "name": "narrow",
+      "viewport": [
+        320,
+        568
+      ],
+      "mode": "soft",
+      "reducedMotion": false,
+      "stage": {
+        "x": -192.984375,
+        "y": 0,
+        "width": 1009.234375,
+        "height": 568
+      },
+      "thought": {
+        "x": 129.25,
+        "y": 311.90625,
+        "width": 142,
+        "height": 80
+      },
+      "quiet": {
+        "transition": "0s",
+        "animations": 0
+      },
+      "interaction": "thought entry, return, original window entry passed",
+      "errors": []
+    },
+    {
+      "name": "tablet",
+      "viewport": [
+        760,
+        900
+      ],
+      "mode": "soft",
+      "reducedMotion": false,
+      "stage": {
+        "x": -234.953125,
+        "y": 0,
+        "width": 1599.140625,
+        "height": 900
+      },
+      "thought": {
+        "x": 358.640625,
+        "y": 541,
+        "width": 142,
+        "height": 80
+      },
+      "quiet": {
+        "transition": "0s",
+        "animations": 0
+      },
+      "interaction": "thought entry, return, original window entry passed",
+      "errors": []
+    },
+    {
+      "name": "boundary-desktop",
+      "viewport": [
+        761,
+        900
+      ],
+      "mode": "soft",
+      "reducedMotion": false,
+      "stage": {
+        "x": -419.0625,
+        "y": 0,
+        "width": 1599.140625,
+        "height": 900
+      },
+      "thought": {
+        "x": 144.27813720703125,
+        "y": 541,
+        "width": 142,
+        "height": 80
+      },
+      "quiet": {
+        "transition": "0s",
+        "animations": 0
+      },
+      "interaction": "thought entry, return, original window entry passed",
+      "errors": []
+    },
+    {
+      "name": "landscape",
+      "viewport": [
+        740,
+        390
+      ],
+      "mode": "soft",
+      "reducedMotion": false,
+      "stage": {
+        "x": 0,
+        "y": -13.234375,
+        "width": 740,
+        "height": 416.46875
+      },
+      "thought": {
+        "x": 222.390625,
+        "y": 206.125,
+        "width": 118,
+        "height": 68
+      },
+      "quiet": {
+        "transition": "0s",
+        "animations": 0
+      },
+      "interaction": "thought entry, return, original window entry passed",
+      "errors": []
+    },
+    {
+      "name": "wide",
+      "viewport": [
+        2560,
+        1080
+      ],
+      "mode": "soft",
+      "reducedMotion": false,
+      "stage": {
+        "x": 0,
+        "y": -180.375,
+        "width": 2560,
+        "height": 1440.765625
+      },
+      "thought": {
+        "x": 957.2937622070312,
+        "y": 733.75,
+        "width": 141.99993896484375,
+        "height": 80
+      },
+      "quiet": {
+        "transition": "0s",
+        "animations": 0
+      },
+      "interaction": "thought entry, return, original window entry passed",
+      "errors": []
+    },
+    {
+      "name": "reduced",
+      "viewport": [
+        390,
+        844
+      ],
+      "mode": "soft",
+      "reducedMotion": true,
+      "stage": {
+        "x": -310.703125,
+        "y": 0,
+        "width": 1499.640625,
+        "height": 844
+      },
+      "thought": {
+        "x": 233.984375,
+        "y": 502.359375,
+        "width": 142,
+        "height": 80
+      },
+      "quiet": {
+        "transition": "0s",
+        "animations": 0
+      },
+      "interaction": "thought entry, return, original window entry passed",
+      "errors": []
+    },
+    {
+      "name": "desktop-landscape",
+      "viewport": [
+        844,
+        390
+      ],
+      "thought": {
+        "x": 269.33123779296875,
+        "y": 217.25,
+        "width": 118,
+        "height": 68
+      },
+      "interaction": "thought entry and return passed"
+    }
+  ],
+  "resize": true,
+  "noScriptFallback": true
+}

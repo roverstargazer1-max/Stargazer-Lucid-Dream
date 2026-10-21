@@ -23,6 +23,7 @@ export function createRoom({
 }) {
   const room = document.getElementById('room'), stage = document.getElementById('room-stage');
   const entry = document.getElementById('window-entry'), world = document.getElementById('world');
+  const thought = document.getElementById('room-thought');
   const choice = new URLSearchParams(location.search).get('motion');
   const mode = choice === 'full' || choice === 'soft' ? choice : document.body.dataset.defaultMotion;
   let flight = null, short = mode === 'soft';
@@ -45,6 +46,7 @@ export function createRoom({
     world.inert = true;
     document.body.dataset.room = 'inside';
     entry.disabled = false;
+    if (thought) thought.disabled = false;
     stage.style.transform = '';
     room.style.opacity = '';
     if (restoreFocus) entry.focus({ preventScroll: true });
@@ -66,6 +68,7 @@ export function createRoom({
     // a synchronous style/layout pass over the newly hidden interface.
     const timeline = passageTimeline();
     entry.disabled = true;
+    if (thought) thought.disabled = true;
     room.inert = true;
     document.body.dataset.room = 'entering';
     const duration = short ? 220 : ENTRANCE.duration;
@@ -89,6 +92,7 @@ export function createRoom({
     advance(current.start);
   }
   entry.onclick = enterSky;
+  if (thought) thought.onclick = enterSky;
   const journal = document.getElementById('room-journal');
   if (journal) journal.onclick = onJournal;
 
@@ -98,6 +102,7 @@ export function createRoom({
     room.inert = true;
     world.inert = true;
     entry.disabled = true;
+    if (thought) thought.disabled = true;
     document.body.dataset.room = 'returning';
     const duration = short ? 220 : ENTRANCE.retreat;
     const current = { timeline: passageTimeline(), raf: 0, start: performance.now(), duration, direction: -1, progress: 0 };

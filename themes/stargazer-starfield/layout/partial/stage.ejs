@@ -78,7 +78,7 @@
 <section id="room" aria-label="窗边">
   <div id="room-stage" class="room-stage">
     <img class="room-image" src="<%= starry_room_url() %>" alt="夜色里的窗边，窗外是深蓝天空" fetchpriority="high">
-    <button id="window-entry" type="button" aria-label="穿过窗户，进入星空" disabled></button>
+    <button id="window-entry" type="button" aria-label="穿过窗户，进入星空" aria-describedby="room-thought-note" disabled></button>
       <svg class="window-invitation" viewBox="0 0 1672 941" aria-hidden="true" focusable="false">
         <defs><linearGradient id="window-light-wide" gradientUnits="userSpaceOnUse" x1="0" y1="700" x2="0" y2="90"><stop offset="0" stop-color="#c8dfec" stop-opacity="0"/><stop offset=".48" stop-color="#d4e5eb" stop-opacity=".75"/><stop offset="1" stop-color="#c8dfec" stop-opacity="0"/></linearGradient></defs>
         <g class="window-edge" fill="none" stroke="url(#window-light-wide)"><path d="M524 90V700 M1144 90V700"/></g>
@@ -90,7 +90,16 @@
           <path d="M805 349l1.3 4.7 3.7 1.3-3.7 1.3-1.3 4.7-1.3-4.7-3.7-1.3 3.7-1.3Z"/>
         </g>
       </svg>
-      
+    <button id="room-thought" class="room-thought" type="button" aria-label="试着点点窗外，进入星空" aria-describedby="room-thought-note" disabled>
+      <svg class="room-thought-outline" viewBox="0 0 220 108" aria-hidden="true" focusable="false">
+        <path d="M207 41C210 64 174 79 115 79C58 80 13 69 12 45C10 21 49 8 108 9C165 7 205 19 207 41Z"/>
+        <ellipse cx="167" cy="89" rx="5" ry="3.5"/>
+        <ellipse cx="177" cy="102" rx="2.5" ry="2"/>
+      </svg>
+      <span class="room-thought-copy" lang="en" aria-hidden="true">try to click…</span>
+      <span id="room-thought-note" class="sr-only">每颗星，都是一篇文章</span>
+    </button>
+
     <button id="room-journal" type="button" aria-label="翻开桌上的手记" title="桌上的手记"></button>
   </div>
 </section>
