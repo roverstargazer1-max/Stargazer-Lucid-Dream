@@ -1,15 +1,25 @@
 ---
+# title：文章标题，可随时修改。
 title: AI时代，我们究竟需要什么？
+# date：发表时间，例如 2026-10-21 12:00:00；影响显示和时间排序。
 date: 2026-06-15 19:00:28
+# cover：旧版封面及新版分享图片，例如 /image/covers/sky.webp；不改变新版正文底图。
 cover: /image/covers/miku01.webp
+# subheading：旧版列表副标题，可写文字或 HTML；留空不显示。
 subheading:
+# tags：标签，例如 [随笔, 生活]；不填保留 []。
 tags: 
 - Essay 随笔
 - Thinking 思考
+# starry_id：内部文章身份，首次预览或构建时自动生成；已有值不要修改。
 starry_id: "article-fc75fabe-73f2-437a-958f-6c7baf226fbb"
+# starry_original_permalink：程序保存的文章原地址，用于保持旧链接；无需手改。
 starry_original_permalink: "2026/06/15/AI时代，我们究竟需要什么？/"
+# permalink：固定文章地址，由程序与原地址保持一致；无需手改。
 permalink: "2026/06/15/AI时代，我们究竟需要什么？/"
+# starry_excerpt：新版描述摘要：留空自动提取正文，手写优先，清空恢复自动；不控制旧版列表摘要。
 starry_excerpt: "当前的ai在以一种无语伦比的速度发展着。至少在我认为，这个速度在短时间内还会越来越快。 当ai能生成足够优秀的内容并且自己能够加以筛选，算力硬件设施投入完全建成，辅以具身智能等智能体连接现实自然世界对相关内容进行验证时，这个闭环会让ai以爆炸式的速度进行自我升级和迭代。 这个速度可能无法保持，也不一定有指数级那么恐怖，但一定远超线性。我对此一直保持乐观的态…"
+# starry_excerpt_generated：程序维护的摘要状态，无需手改；true 自动提取，false 手写。
 starry_excerpt_generated: true
 ---
 当前的ai在以一种无语伦比的速度发展着。至少在我认为，这个速度在短时间内还会越来越快。
