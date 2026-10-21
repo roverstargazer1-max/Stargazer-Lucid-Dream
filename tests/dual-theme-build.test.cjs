@@ -9,6 +9,7 @@ const { load } = require(resolveHexo('cheerio'));
 const { parse } = require(resolveHexo('hexo-front-matter'));
 const yaml = require(resolveHexo('js-yaml'));
 const project = path.resolve(__dirname, '..');
+const { FIELD_COMMENTS } = require('../tools/article-authoring.cjs');
 
 test('an ordinary post builds in both themes, survives a fresh checkout, and supports reversing the home theme', () => {
   const fixture = fs.mkdtempSync(path.join(os.tmpdir(), 'stargazer-dual-'));
@@ -65,6 +66,8 @@ test('an ordinary post builds in both themes, survives a fresh checkout, and sup
     for (const route of [article.path, `legacy/${article.path}`]) {
       const $ = page(route);
       assert.ok($('body').text().includes('只写一份 Markdown，两种主题都能阅读。'));
+      for (const hint of Object.values(FIELD_COMMENTS)) assert.ok(!$('body').text().includes(hint), 'Author comments must not appear in either published theme');
+      assert.ok(!$('body').text().includes('starry_excerpt_generated'), 'Internal field guidance must not leak into the article');
       assert.equal($('.CodePenLink').attr('href'), 'https://codepen.io/example/pen/test');
       assert.ok($('iframe[src^="https://player.bilibili.com/"]').length);
       assert.equal($('.kira-aplayer-container meting-js').attr('id'), '14457276201');

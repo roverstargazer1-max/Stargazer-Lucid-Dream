@@ -1,0 +1,18 @@
+/* Field notes in the preview of article front-matter. */
+pre.frontmatter .hljs-comment {
+  color: #a6b8cc;
+  font-style: normal;
+  opacity: 1;
+}
+
+body.vscode-light pre.frontmatter .hljs-comment {
+  color: #52657a;
+}
+
+body.vscode-high-contrast pre.frontmatter .hljs-comment {
+  color: #dce6f2;
+}
+
+body.vscode-high-contrast-light pre.frontmatter .hljs-comment {
+  color: #334155;
+}

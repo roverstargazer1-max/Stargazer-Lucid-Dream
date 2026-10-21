@@ -1,0 +1,20 @@
+{
+  "markdown.preview.frontMatter": "codeBlock",
+  "editor.tokenColorCustomizations": {
+    "textMateRules": [
+      {
+        "scope": [
+          "comment.line.number-sign.yaml",
+          "punctuation.definition.comment.yaml"
+        ],
+        "settings": {
+          "foreground": "#A6B8CC",
+          "fontStyle": ""
+        }
+      }
+    ]
+  },
+  "markdown.styles": [
+    ".vscode/markdown-preview.css"
+  ]
+}

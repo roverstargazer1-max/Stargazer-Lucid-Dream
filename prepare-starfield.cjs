@@ -3,6 +3,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const Hexo = require('hexo');
 const { assignCatalogueNumbers } = require('./themes/stargazer-starfield/lib/catalogue');
+const { annotateFrontMatter, excerptHash, resolveExcerpt, upsertFrontMatter } = require('./tools/article-authoring.cjs');
 
 const frontMatterPath = require.resolve('hexo-front-matter', {
   paths: [path.dirname(require.resolve('hexo'))],
@@ -75,10 +76,8 @@ async function main() {
       frontMatter.permalink = originalPermalink;
     }
 
-    const hasManualExcerpt = typeof frontMatter.starry_excerpt === 'string' && !frontMatter.starry_excerpt_generated;
-    const excerpt = hasManualExcerpt
-      ? frontMatter.starry_excerpt.trim()
-      : makeExcerpt(frontMatter._content, String(post.title || ''));
+    const automaticExcerpt = makeExcerpt(frontMatter._content, String(post.title || ''));
+    const { excerpt, generated } = resolveExcerpt(frontMatter, record, automaticExcerpt);
 
     active.push({
       id,
@@ -88,6 +87,7 @@ async function main() {
       frontMatter,
       originalPermalink,
       excerpt,
+      generated,
       existingRecord: record,
     });
   }
@@ -109,15 +109,12 @@ async function main() {
       starry_id: entry.id,
       starry_original_permalink: entry.originalPermalink,
       permalink: entry.originalPermalink,
-      starry_excerpt: entry.excerpt,
+      starry_excerpt_generated: entry.generated,
     };
-    if (!entry.frontMatter.starry_excerpt_generated && typeof entry.frontMatter.starry_excerpt === 'string') {
-      delete fields.starry_excerpt;
-    } else {
-      fields.starry_excerpt_generated = true;
-    }
+    // Preserve a manual scalar's formatting; only generated values need rewriting.
+    if (entry.generated) fields.starry_excerpt = entry.excerpt;
 
-    const updatedText = upsertFrontMatter(entry.originalText, fields, entry.post.source);
+    const updatedText = annotateFrontMatter(upsertFrontMatter(entry.originalText, fields, entry.post.source), entry.post.source);
     if (updatedText !== entry.originalText) pendingFiles.push([entry.absolutePath, updatedText]);
 
     savedArticles[entry.id] = {
@@ -127,6 +124,8 @@ async function main() {
       originalPermalink: entry.originalPermalink,
       importance: entry.existingRecord?.importance || 'ordinary',
     };
+    if (entry.generated) savedArticles[entry.id].generatedExcerptHash = excerptHash(entry.excerpt);
+    else delete savedArticles[entry.id].generatedExcerptHash;
   }
 
   const nextLayout = {
@@ -251,30 +250,6 @@ function makeExcerpt(markdown, title) {
   if (title && text.startsWith(title)) text = text.slice(title.length).trim();
   if (text.length > 180) text = `${text.slice(0, 179).trimEnd()}…`;
   return text;
-}
-
-function upsertFrontMatter(source, fields, postSource) {
-  const normalizedSource = source.replace(/\r+\n/g, '\r\n');
-  const hasBom = normalizedSource.charCodeAt(0) === 0xfeff;
-  const eol = normalizedSource.includes('\r\n') ? '\r\n' : '\n';
-  const lines = (hasBom ? normalizedSource.slice(1) : normalizedSource).split(/\r+\n|\n/);
-  if (lines[0]?.trim() !== '---') throw new Error(`Expected YAML front-matter in ${postSource}.`);
-  const closingIndex = lines.findIndex((line, index) => index > 0 && line.trim() === '---');
-  if (closingIndex < 0) throw new Error(`Could not find the end of YAML front-matter in ${postSource}.`);
-
-  const existing = parse(normalizedSource.replace(/\r\n/g, '\n'));
-  let frontMatterLines = lines.slice(1, closingIndex);
-  const bodyLines = lines.slice(closingIndex + 1);
-  const additions = [];
-  for (const [key, value] of Object.entries(fields)) {
-    if (existing[key] === value) continue;
-    const line = `${key}: ${JSON.stringify(value)}`;
-    const keyPattern = new RegExp(`^\\s*${key}\\s*:`);
-    frontMatterLines = frontMatterLines.filter((item) => !keyPattern.test(item));
-    additions.push(line);
-  }
-  if (!additions.length) return normalizedSource;
-  return `${hasBom ? '\uFEFF' : ''}${['---', ...frontMatterLines, ...additions, '---', ...bodyLines].join(eol)}`;
 }
 
 function writeAtomically(filePath, contents) {

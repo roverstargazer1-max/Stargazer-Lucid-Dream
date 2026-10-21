@@ -36,7 +36,7 @@ related:
     reason: 两篇文章的关联理由
 ```
 
-`starry_excerpt` 用于描述元信息，点星后不展示长摘要。新文章默认 `starry_excerpt_generated: true`，从正文提取描述；要手写，改为 `false` 再填写摘要。封面用于旧版列表/文章页及新版分享图片元信息，不替换新版正文底图。已有自动身份与星位由准备流程维护，不需要作者填写编号。完整字段、静态地址与旧版切回步骤见 [使用指南](../../docs/operations/starfield-blog.md)。当前文章视觉以 [原图文章页](../../.scratch/starry-blog/evidence/article-page-20261009/README.md)、[标题字体](../../.scratch/starry-blog/evidence/article-title-font-20261010/README.md)及[日期署名位置](../../.scratch/starry-blog/evidence/article-meta-under-title-20261009/README.md)为准；[2026-10-02 阅读开合](../../.scratch/starry-blog/archive/implementation/reader-rollout-20261002.md)和[2026-10-08 窗口配色](../../.scratch/starry-blog/evidence/reader-palette-20261008/README.md)保留阶段记录。
+`starry_excerpt` 用于描述元信息，点星后不展示长摘要。留空时从正文自动提取描述；直接填写则采用手写内容；清空恢复自动，`starry_excerpt_generated` 由程序维护。各字段上方的 YAML 注释说明用途与写法，不改变字段取值，也不进入发布的文章。VS Code 的本项目预览用 YAML 代码块保留这些注释，已有文章与新建模板使用同一套说明。封面用于旧版列表/文章页及新版分享图片元信息，不替换新版正文底图。已有自动身份与星位由准备流程维护，不需要作者填写编号。完整字段、静态地址与旧版切回步骤见 [使用指南](../../docs/operations/starfield-blog.md)。当前文章视觉以 [原图文章页](../../.scratch/starry-blog/evidence/article-page-20261009/README.md)、[标题字体](../../.scratch/starry-blog/evidence/article-title-font-20261010/README.md)及[日期署名位置](../../.scratch/starry-blog/evidence/article-meta-under-title-20261009/README.md)为准；[2026-10-02 阅读开合](../../.scratch/starry-blog/archive/implementation/reader-rollout-20261002.md)和[2026-10-08 窗口配色](../../.scratch/starry-blog/evidence/reader-palette-20261008/README.md)保留阶段记录。
 
 ## 代码职责与验证
 
