@@ -88,18 +88,7 @@
     })();
   </script>
   <% } %>
-  <link rel="stylesheet" href="<%= url_for('css/starry/font-chunks.css') %>">
-  <link rel="stylesheet" href="<%= url_for('css/starry/ui-font.css') %>">
-  <link rel="stylesheet" href="<%= url_for('css/starry/tokens.css') %>">
-  <link rel="stylesheet" href="<%= url_for('css/starry/motion-tokens.css') %>">
-  <link rel="stylesheet" href="<%= url_for('css/starry/site.css') %>">
-  <link rel="stylesheet" href="<%= url_for('css/starry/scene.css') %>">
-  <link rel="stylesheet" href="<%= url_for('css/starry/motion.css') %>">
-  <link rel="stylesheet" href="<%= url_for('css/starry/reader.css') %>">
-  <link rel="stylesheet" href="<%= url_for('css/starry/observation.css') %>">
-  <link rel="stylesheet" href="<%= url_for('css/starry/search.css') %>">
-  <link rel="stylesheet" href="<%= url_for('css/starry/collection.css') %>">
-  <link rel="stylesheet" href="<%= url_for('css/starry/journal.css') %>">
+  <link rel="stylesheet" href="<%= starry_styles_url(isJournalPage) %>">
   <% if (themeSwitch) { %><link rel="stylesheet" href="<%= url_for('css/blog-theme-switch.css') %>"><% } %>
 </head>
 <body class="<%= isStarryArticle || isStarryCollection ? 'has-starry-experience' : '' %><%= isStarryArticle ? ' article-page' : '' %><%= isJournalPage ? ' journal-page' : '' %>"
@@ -129,7 +118,7 @@
   <a class="blog-theme-switch blog-theme-switch-fixed" data-blog-theme-switch href="<%= themeSwitch.href %>"><%= themeSwitch.label %></a>
   <script src="<%= url_for('js/blog-theme-switch.js') %>"></script>
   <% } %>
-  <script type="module" src="<%= url_for('js/starfield/static-page.js') %>"></script>
-  <% if (hasStarfield || isJournalPage) { %><script type="module" src="<%= url_for('js/starfield/journal.js') %>"></script><% } %>
+  <% if (!hasStarfield) { %><script type="module" src="<%= starry_script_url('static-page') %>"></script><% } %>
+  <% if (hasStarfield || isJournalPage) { %><script type="module" src="<%= starry_script_url('journal') %>"></script><% } %>
 </body>
 </html>

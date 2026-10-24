@@ -146,4 +146,4 @@
 <dialog id="window-journal" aria-labelledby="journal-title" data-journal-url="<%= url_for('journal/') %>"><%- partial('partial/journal', { journal: null, standalone: false }) %></dialog>
 <div id="announcement" class="sr-only" role="status" aria-live="polite"></div>
 
-<script type="module" src="<%= url_for('js/starfield/app.js') %>" onerror="window.starfieldStartup?.fail()"></script>
+<script type="module" src="<%= starry_script_url('app') %>" onerror="window.starfieldStartup?.fail()"></script>
