@@ -24,8 +24,10 @@ const world = document.getElementById('world');
 if (world) start().catch(fallback);
 
 async function start() {
+  if (window.starfieldStartup?.failed) return;
   // Let the original room paint before the hidden sky interface competes for bandwidth.
   await waitForImage(document.querySelector('.room-image'));
+  if (window.starfieldStartup?.failed) return;
   await new Promise(resolve => requestAnimationFrame(() => setTimeout(resolve, 0)));
   const canvas = document.getElementById('sky');
   const ctx = canvas.getContext('2d');
@@ -132,6 +134,7 @@ async function start() {
   const response = await fetch(indexUrl, { credentials: 'same-origin', cache: 'no-cache' });
   if (!response.ok) throw new Error(`Starfield index request failed: ${response.status}`);
   const index = await response.json();
+  if (window.starfieldStartup?.failed) return;
   if (index.version !== 2 || !Array.isArray(index.articles)) throw new Error('The starfield index has an unsupported format.');
   articles = index.articles.map((item) => {
     if (!item.id || !item.title || !Array.isArray(item.position) || item.position.length !== 3 || !item.position.every(Number.isFinite)) {
@@ -179,6 +182,7 @@ async function start() {
   resize();
   await Promise.all([preparePaintedScene(), prepareInteractiveClouds(), furnitureReady,
     ...(isDirectEntry ? [waitForReaderArt(article?.title)] : [])]);
+  if (window.starfieldStartup?.failed) return;
   await waitForImage(document.querySelector('.room-image'));
   clouds = createInteractiveClouds(world, () => reducedMotion || !renderBudget.current.ambientMotion);
   starMotion = createStarMotion({ preview, reader, scroller, isSoft: () => reducedMotion });
@@ -283,6 +287,7 @@ async function start() {
   updateUI();
   preflightRenderer();
 
+  if (window.starfieldStartup?.ready() === false) return;
   body.classList.add('starry-ready');
   document.documentElement.classList.remove('starry-loading');
   if (isDirectEntry) openDirectArticle();

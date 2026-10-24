@@ -73,7 +73,19 @@
   </style>
   <script>
     document.documentElement.classList.add('starry-loading');
-    window.starfieldStartup={fail:function(){document.documentElement.classList.remove('starry-loading');document.getElementById('room')?.setAttribute('hidden','');}};
+    (function(){
+      var deadline;
+      var startup=window.starfieldStartup={failed:false,
+        fail:function(){
+          clearTimeout(deadline);startup.failed=true;
+          document.documentElement.classList.remove('starry-loading');
+          document.getElementById('room')?.setAttribute('hidden','');
+          document.getElementById('world')?.setAttribute('hidden','');
+        },
+        ready:function(){clearTimeout(deadline);return !startup.failed;}
+      };
+      deadline=setTimeout(startup.fail,15000);
+    })();
   </script>
   <% } %>
   <link rel="stylesheet" href="<%= url_for('css/starry/font-chunks.css') %>">
