@@ -51,9 +51,10 @@
   <meta name="twitter:card" content="<%= image ? 'summary_large_image' : 'summary' %>">
   <meta name="twitter:title" content="<%= title %>">
   <% if (description) { %><meta name="twitter:description" content="<%= description %>"><% } %>
-  <% if (isStarryArticle) { %>
-  <link rel="preload" as="font" type="font/woff2" href="<%= url_for('fonts/lxgw-marker-gothic-v1.003.woff2') %>" crossorigin>
-  <% } %>
+  <link rel="preload" as="font" type="font/woff2" href="<%= starry_ui_font_url() %>" crossorigin>
+  <% if (isStarryArticle) { for (const font of starry_title_fonts(page.title)) { %>
+  <link rel="preload" as="font" type="font/woff2" href="<%= font %>" crossorigin>
+  <% } } %>
   <% if (is_home()) { %>
   <link rel="preload" as="image" type="image/svg+xml" href="<%= url_for(theme.scene.window_mask) %>" fetchpriority="high">
   <link rel="preload" as="image" href="<%= starry_room_url() %>" fetchpriority="high">
@@ -75,6 +76,8 @@
     window.starfieldStartup={fail:function(){document.documentElement.classList.remove('starry-loading');document.getElementById('room')?.setAttribute('hidden','');}};
   </script>
   <% } %>
+  <link rel="stylesheet" href="<%= url_for('css/starry/font-chunks.css') %>">
+  <link rel="stylesheet" href="<%= url_for('css/starry/ui-font.css') %>">
   <link rel="stylesheet" href="<%= url_for('css/starry/tokens.css') %>">
   <link rel="stylesheet" href="<%= url_for('css/starry/motion-tokens.css') %>">
   <link rel="stylesheet" href="<%= url_for('css/starry/site.css') %>">

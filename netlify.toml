@@ -50,3 +50,9 @@
   for = "/starfield/*"
   [headers.values]
     Cache-Control = "public, max-age=0, must-revalidate"
+
+# These filenames contain their font content hash, so updates use a new URL.
+[[headers]]
+  for = "/fonts/lxgw-marker-chunks/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"

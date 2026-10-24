@@ -38,7 +38,7 @@
   /* Type. The site has no serif; headings step up in size and colour, not family. */
   --sans: "Microsoft YaHei", "PingFang SC", "Noto Sans CJK SC", system-ui, sans-serif;
   --serif: var(--sans);
-  --display: 'LXGW Marker Gothic', var(--sans);
+  --display: 'LXGW Marker Gothic UI', 'LXGW Marker Gothic', var(--sans);
 
   --step-caption: .6875rem;  /*  11px — meta, ids, footnotes   */
   --step-small:   .8125rem;  /*  13px — controls, labels        */

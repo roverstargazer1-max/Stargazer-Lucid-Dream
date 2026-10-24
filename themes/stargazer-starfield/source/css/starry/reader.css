@@ -1,10 +1,4 @@
 /* The author's layered PNG sheet, with a fixed reading journey underneath. */
-@font-face {
-  font-family: 'LXGW Marker Gothic';
-  src: url('../../fonts/lxgw-marker-gothic-v1.003.woff2') format('woff2');
-  font-style: normal; font-weight: 400; font-display: swap;
-}
-
 #reader {
   --paper-ink: #f0f8ff; --paper-muted: #c5e5ff;
   color-scheme: dark; position: fixed; z-index: 60; inset: 0;
