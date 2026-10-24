@@ -1,0 +1,27 @@
+{
+  "originalAndImportedBodyByteCheck": "passed",
+  "outputs": [
+    {
+      "output": ".preview/stargazer",
+      "entries": 13,
+      "months": 4,
+      "days": 10,
+      "timestamps": 11,
+      "dateOnly": 2,
+      "attachments": 2,
+      "renderedCharacterComparison": "passed"
+    },
+    {
+      "output": "public",
+      "entries": 13,
+      "months": 4,
+      "days": 10,
+      "timestamps": 11,
+      "dateOnly": 2,
+      "attachments": 2,
+      "renderedCharacterComparison": "passed"
+    }
+  ],
+  "attachmentBytes": "passed",
+  "excludedBodyRead": false
+}

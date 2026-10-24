@@ -85,6 +85,8 @@ date: 2026-10-23
 
 阅读底图取自当前星空截图的云层，桌面和手机分别裁切，随正文滚动并纵向无缝重复；没有自动漂移动画。每则记录旁的独立链接箭头已移除，已分享的锚点地址继续有效。两张显示素材保存在主题的 `source/images/journal/`；更换星空截图后可用 `python3 themes/stargazer-starfield/tools/prepare-journal-sky.py` 重建。该维护脚本需要 Pillow，生成的 WebP 已保存，平常写作、预览和生产构建不需要 Python。
 
+已从作者 Obsidian 的“日记？小记？”迁入 13 则真实手记，日期范围为 2026-06-02 至 2026-10-09；标有“留存不发”的一篇未迁入。正文原字保留，两张内嵌图片原样复制到 `source/image/journal/`；文件名中的 `·` 识别为时间分隔符，10 月 9 日正文开头的 `00:47` 移到时间栏，只显示一次，没有时间的记录只显示日期。Obsidian 原文件未修改。逐篇来源与一致性核对见[迁入记录](../../.scratch/starry-blog/evidence/obsidian-journal-import-20261023/README.md)。
+
 只有在没有已公开手记时，**统一本地预览**才会使用标明“本地体验 · 以下文字为虚构示例”的演示记录，便于体验年月与同日多则。存在真实记录时自动使用真实内容；正式 `npm run build` / `npm run netlify` 始终排除示例，尚无内容时显示等待第一句话的空白页。演示数据位于独立模块的 `components/journal/preview.json`，不在可直接发布的 `source/` 中。程序化写入与读取的接口见[手记模块说明](../../components/journal/README.md)。
 
 ## 可选文章配置

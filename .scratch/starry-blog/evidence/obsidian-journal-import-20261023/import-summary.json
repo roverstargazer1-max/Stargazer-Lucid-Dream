@@ -1,0 +1,168 @@
+{
+  "imported": 13,
+  "excluded": [
+    "2026.09.17 （留存不发）.md"
+  ],
+  "originalVaultFilesModified": false,
+  "characterChanges": 0,
+  "permittedPresentationChanges": [
+    "Two Obsidian image embeds use web image URLs.",
+    "The standalone 00:47 line is displayed once in the timestamp field."
+  ],
+  "entries": [
+    {
+      "original": "2026.06.2 22·02.md",
+      "target": "source/_journal/2026-06-02-2202.md",
+      "date": "2026-06-02 22:02",
+      "originalSha256": "ddfddbedadccff7c1eac804323c3727b8f40be16b645446404c052ef9e6aaeec",
+      "importedSha256": "21f1484f29c92d1040acab72233760e892ab418b9c8bd83ce30c1c0e98f95de2",
+      "reversibleBodyVerified": true,
+      "timeMovedFromBody": null,
+      "imageEmbedsConverted": []
+    },
+    {
+      "original": "2026.08.25 02·40.md",
+      "target": "source/_journal/2026-08-25-0240.md",
+      "date": "2026-08-25 02:40",
+      "originalSha256": "22fba2ea6534ffe6f715af220bd949475f689460aa368fef66e9e6bec787ac35",
+      "importedSha256": "c9d8efc16161d108a0158c661fb20842d1b2def90805ddb2c23c6d78e5b5938c",
+      "reversibleBodyVerified": true,
+      "timeMovedFromBody": null,
+      "imageEmbedsConverted": []
+    },
+    {
+      "original": "2026.08.25 13·58.md",
+      "target": "source/_journal/2026-08-25-1358.md",
+      "date": "2026-08-25 13:58",
+      "originalSha256": "1d8cd0a21d1aaa15811c3db86c7b686ca2d5895bd55456085545ed5771fa5553",
+      "importedSha256": "206ff30867bca6a2f9248fef4b660a8e70afb7b35799500e1f693f6985d65272",
+      "reversibleBodyVerified": true,
+      "timeMovedFromBody": null,
+      "imageEmbedsConverted": []
+    },
+    {
+      "original": "2026.08.28 19·40.md",
+      "target": "source/_journal/2026-08-28-1940.md",
+      "date": "2026-08-28 19:40",
+      "originalSha256": "0bac018f688924c34ddc07fb18f77c9d502c68a56b037849bd04e4e36d91a6f5",
+      "importedSha256": "838b5e8a00bcfeff3447ccf5fd52a76c1f330f7be5cf62b534a89bff3c76f98f",
+      "reversibleBodyVerified": true,
+      "timeMovedFromBody": null,
+      "imageEmbedsConverted": [
+        {
+          "original": "![[3861.jpeg]]",
+          "replacement": "![](/image/journal/3861.jpeg)"
+        }
+      ]
+    },
+    {
+      "original": "2026.08.5 00·14.md",
+      "target": "source/_journal/2026-08-05-0014.md",
+      "date": "2026-08-05 00:14",
+      "originalSha256": "9a60fc92ae512ea5182b74f300bf46a9ca147c6f9216d53d85c55a5479a80cd1",
+      "importedSha256": "8d388a6057fdccae758e7cc101def6a664abf8634a14508ce7a1832d1a973c6a",
+      "reversibleBodyVerified": true,
+      "timeMovedFromBody": null,
+      "imageEmbedsConverted": []
+    },
+    {
+      "original": "2026.08.5 00·35.md",
+      "target": "source/_journal/2026-08-05-0035.md",
+      "date": "2026-08-05 00:35",
+      "originalSha256": "c39d28ebb6adf6466469cf0e79f313b5790aff123335127102b771eb82b90a57",
+      "importedSha256": "e0c67d24bf9eb196b0134b584b1e2d47b24bd11234a1edb489c8aaf7c2f46c98",
+      "reversibleBodyVerified": true,
+      "timeMovedFromBody": null,
+      "imageEmbedsConverted": [
+        {
+          "original": "![[C3923FC340084D1CE0338AE8424C4E4D.jpeg]]",
+          "replacement": "![](/image/journal/C3923FC340084D1CE0338AE8424C4E4D.jpeg)"
+        }
+      ]
+    },
+    {
+      "original": "2026.08.8 16·41.md",
+      "target": "source/_journal/2026-08-08-1641.md",
+      "date": "2026-08-08 16:41",
+      "originalSha256": "6675eed7febe6db0fbe6f19b8c8b60206bbd6ca770fb285a1c5b15d76c1a1e9d",
+      "importedSha256": "6a47d73af774d3f225371d5d5628ea63d4b224345b4bf09e0dae4c0127893bbe",
+      "reversibleBodyVerified": true,
+      "timeMovedFromBody": null,
+      "imageEmbedsConverted": []
+    },
+    {
+      "original": "2026.09.12 01·40.md",
+      "target": "source/_journal/2026-09-12-0140.md",
+      "date": "2026-09-12 01:40",
+      "originalSha256": "6765e5b00f2f13aa44f24f6c60ad573a99b12b676fd475826fc3781e0e86d61c",
+      "importedSha256": "da5925b14c1bc18fe8e264031261ada06fdfe8b5b46661adde50c3990e168eb4",
+      "reversibleBodyVerified": true,
+      "timeMovedFromBody": null,
+      "imageEmbedsConverted": []
+    },
+    {
+      "original": "2026.09.16 01·04.md",
+      "target": "source/_journal/2026-09-16-0104.md",
+      "date": "2026-09-16 01:04",
+      "originalSha256": "2fc4eaf077f58a7870b8cfcd190c512ff00bb94642141e774189b8870cebc732",
+      "importedSha256": "8dcd00eabd209136b19fadada9752de53d41b75ab296eb2db38441cf488185a8",
+      "reversibleBodyVerified": true,
+      "timeMovedFromBody": null,
+      "imageEmbedsConverted": []
+    },
+    {
+      "original": "2026.09.17 17·22.md",
+      "target": "source/_journal/2026-09-17-1722.md",
+      "date": "2026-09-17 17:22",
+      "originalSha256": "3144934427bbaedd496b6b40fdf75631ecddeb6d34c45a063f93fdd5b7af960e",
+      "importedSha256": "fbf9b5cb77bc10b5230d6e9aac63b31375cdf311e793bc6efaa361425e98f187",
+      "reversibleBodyVerified": true,
+      "timeMovedFromBody": null,
+      "imageEmbedsConverted": []
+    },
+    {
+      "original": "2026.09.17.md",
+      "target": "source/_journal/2026-09-17.md",
+      "date": "2026-09-17",
+      "originalSha256": "ecdd91dfa609ab9e5e8903001dc503938f25e66b22173b13fee945931d51c11e",
+      "importedSha256": "1f4185c4d92405010a16cd2f78951b5b8e03458dcaed234700aa0a8951ee6e18",
+      "reversibleBodyVerified": true,
+      "timeMovedFromBody": null,
+      "imageEmbedsConverted": []
+    },
+    {
+      "original": "2026.09.22.md",
+      "target": "source/_journal/2026-09-22.md",
+      "date": "2026-09-22",
+      "originalSha256": "27e7e26dacac056d7607e871a178b63a72dbcf385ad807b5ce958dcd7622f88b",
+      "importedSha256": "ddd9c345bf7d32aabf7206bffa1a1d083574a1cb8750d670abbfb5f0bc77962d",
+      "reversibleBodyVerified": true,
+      "timeMovedFromBody": null,
+      "imageEmbedsConverted": []
+    },
+    {
+      "original": "2026.10.9.md",
+      "target": "source/_journal/2026-10-09-0047.md",
+      "date": "2026-10-09 00:47",
+      "originalSha256": "f89e60da847340dcbb62275136c4942f449177848a7ecfa8f8dbdee2c2a6309c",
+      "importedSha256": "2041788f58c8bf04a947a4fbb06a4bfa25ef4ee69f09f2ba3840fb5b46d3803f",
+      "reversibleBodyVerified": true,
+      "timeMovedFromBody": "00:47",
+      "imageEmbedsConverted": []
+    }
+  ],
+  "attachments": [
+    {
+      "target": "source/image/journal/3861.jpeg",
+      "bytes": 224486,
+      "sha256": "b6e4ecdb6e5f8b3b498426544a86728e280abe229449fe512eee6bbf04b90f3a",
+      "byteIdentical": true
+    },
+    {
+      "target": "source/image/journal/C3923FC340084D1CE0338AE8424C4E4D.jpeg",
+      "bytes": 106983,
+      "sha256": "76b51eb580eb499b6becfbb9a185b8daebe9bd48b761ec326db3ebd95bed9716",
+      "byteIdentical": true
+    }
+  ]
+}
