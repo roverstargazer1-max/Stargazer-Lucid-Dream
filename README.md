@@ -1,6 +1,6 @@
 # Stargazer's LucidDream
 
-基于 **Hexo 8.1.2** 的个人静态博客。只维护 `source/_posts/` 中的一份 Markdown，统一构建将它同时渲染为新版星空博客和旧 Kira 博客。
+基于 **Hexo 8.1.2** 的个人静态博客。文章只维护 `source/_posts/` 中的一份 Markdown，统一构建将它同时渲染为新版星空博客和旧 Kira 博客；简短日常记录单独收在 `source/_journal/` 的窗边手记中。
 
 更新日期：2026-10-11。当前分支 `codex/starfield-personal` 的默认首页为新版星空，旧版位于 `/legacy/`。两边都有切换入口，文章和归档切换后仍停留在对应内容。作者已于 2026-10-10 确认 Netlify 生产分支为 `master`；当前更新已完成本地验证，未执行远程发布，线上状态仍需部署后核验。
 
@@ -26,6 +26,18 @@ npx hexo new post "文章标题"
 写完执行 `npm run preview:starfield`，统一流程自动保存文章身份、原链接、摘要与星位，并生成两个主题。摘要默认从正文提取；要手写，填写 `starry_excerpt` 并将 `starry_excerpt_generated` 改为 `false`。静态服务不监听文件变化；已有服务时重新生成并刷新即可，停止服务按 `Ctrl+C`。本地生成与正式网站发布是两个步骤。
 
 自动保存的文章 Front-matter 和 `source/_data/starry-layout.json` 随正文一并提交，已有文章地址和星位因此保持稳定。即使 Netlify 收到的新增文章只有普通字段，构建也能自动补全；相同源文件与已保存布局会得到相同结果。后续重命名新文章之前，先提交一次本地构建保存的元信息。草稿正常排除，发布仍使用 `npx hexo publish "草稿文件名"`。
+
+## 写手记或日记
+
+```bash
+npm run diary
+# 也可以新建时就写入正文
+npm run diary -- --content "今天想留下的几句话。"
+# 和新建文章一样的写法
+npx hexo new journal "散步之后"
+```
+
+自动创建日期与字段注释齐全的 Markdown，打开输出的文件即可写作；可选 `--draft` 留作草稿，`--date "2026-09-22"` 补写某一天。手记独立收纳，不生成文章星。写完照常执行 `npm run preview:starfield` 并刷新博客。详见[手记写作说明](docs/operations/starfield-blog.md#窗边手记)。
 
 ## 生成与发布
 
@@ -86,6 +98,7 @@ blog:
 ## 目录与文档
 
 - `scaffolds/post.md`、`scripts/post-scaffold.js`：新文章默认字段与创建后保留的中文注释。
+- `components/journal/`、`scripts/journal.js`、`scaffolds/journal.md`：手记内容读写模块、新建命令和写作模板。
 - `prepare-starfield.cjs`、`build-blog.cjs`：自动文章元信息与双主题构建入口。
 - `tools/install-build-output.cjs`、`tools/preview-http.mjs`：输出安装/回滚与本地流式文件服务。
 - `scripts/blog.js`、`scripts/kira-tags.js`、`blog-assets/`：共享内容兼容、原标签语法及版本切换。

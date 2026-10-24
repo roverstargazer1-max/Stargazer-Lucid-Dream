@@ -6,6 +6,7 @@
     "build": "node build-blog.cjs",
     "clean": "hexo clean",
     "deploy": "hexo deploy",
+    "diary": "hexo journal",
     "start": "npm run preview:starfield && npm run serve:starfield",
     "server": "npm start",
     "server:legacy": "hexo server --config _config.yml,_config.legacy-preview.yml",

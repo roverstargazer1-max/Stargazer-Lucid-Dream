@@ -16,7 +16,7 @@ function withPost(source, run) {
     for (const name of ['prepare-starfield.cjs', 'package.json', '_config.yml', '_config.legacy-preview.yml', '_config.hexo-theme-kira.yml']) {
       fs.copyFileSync(path.join(project, name), path.join(root, name));
     }
-    for (const name of ['node_modules', 'themes', 'scripts', 'tools']) fs.symlinkSync(path.join(project, name), path.join(root, name), 'dir');
+    for (const name of ['node_modules', 'themes', 'scripts', 'tools', 'components']) fs.symlinkSync(path.join(project, name), path.join(root, name), 'dir');
     fs.cpSync(path.join(project, 'scaffolds'), path.join(root, 'scaffolds'), { recursive: true });
     fs.mkdirSync(path.join(root, 'source/_posts'), { recursive: true });
     const file = path.join(root, 'source/_posts/写作验证.md');
