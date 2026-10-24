@@ -1,0 +1,30 @@
+{
+  "outputs": [
+    {
+      "output": ".preview/stargazer",
+      "initialActiveImages": 0,
+      "inertImages": 2,
+      "imageUrls": [
+        "/image/journal/3861.jpeg",
+        "/image/journal/C3923FC340084D1CE0338AE8424C4E4D.jpeg"
+      ],
+      "imageButtons": 2,
+      "topButtons": 1
+    },
+    {
+      "output": "public",
+      "initialActiveImages": 0,
+      "inertImages": 2,
+      "imageUrls": [
+        "/image/journal/3861.jpeg",
+        "/image/journal/C3923FC340084D1CE0338AE8424C4E4D.jpeg"
+      ],
+      "imageButtons": 2,
+      "topButtons": 1
+    }
+  ],
+  "tests": 111,
+  "previewBuild": "passed",
+  "productionBuild": "passed",
+  "sourceFidelity": "passed"
+}

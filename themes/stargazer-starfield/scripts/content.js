@@ -7,6 +7,7 @@ const { load } = require(resolveHexo('cheerio'));
 const yaml = require(resolveHexo('js-yaml'));
 const { normalizeArticleRelations } = require('../lib/relations');
 const { adjacentArticles } = require('../lib/article-order');
+const { deferJournalImages } = require('../lib/journal-images');
 
 hexo.extend.helper.register('starry_adjacent_articles', function (page) {
   return adjacentArticles(hexo.locals.get('posts').toArray(), page.starry_id);
@@ -28,6 +29,7 @@ hexo.extend.helper.register('starry_content', function (page) {
       if (fs.existsSync(path.join(hexo.source_dir, relative.split(/[?#]/)[0]))) $(element).attr(attribute, this.url_for(relative));
     }
   });
+  if (page.journal) deferJournalImages($, scope);
   return `<div class="article-content" data-content-scope="${scope}">${$.html()}</div>`;
 });
 

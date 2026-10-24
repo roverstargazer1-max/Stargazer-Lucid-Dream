@@ -23,9 +23,113 @@ function cancelAnimations(animations, freeze = false) {
   animations.clear();
 }
 
+function createReadingTools(sheet, standalone) {
+  const scroller = sheet.querySelector('[data-journal-scroll]');
+  const scrollTarget = standalone ? window : scroller;
+  const top = sheet.querySelector('[data-journal-top]');
+  const images = [];
+  const updateTop = () => {
+    const visible = (standalone ? window.scrollY : scroller.scrollTop) > 180;
+    top.dataset.visible = String(visible);
+    top.disabled = !visible;
+  };
+  top.hidden = false;
+  top.addEventListener('click', () => {
+    scroller.focus({ preventScroll: true });
+    scrollTarget.scrollTo({ top: 0, behavior: softMotion() ? 'instant' : 'smooth' });
+  });
+  scrollTarget.addEventListener('scroll', updateTop, { passive: true });
+  updateTop();
+
+  sheet.querySelectorAll('[data-journal-image]').forEach(wrapper => {
+    const button = wrapper.querySelector('[data-journal-image-toggle]');
+    const label = wrapper.querySelector('[data-journal-image-label]');
+    const panel = wrapper.querySelector('[data-journal-image-panel]');
+    const feedback = wrapper.querySelector('[data-journal-image-feedback]');
+    const template = panel.querySelector('template');
+    const animations = new Set();
+    let expanded = false, state = 'idle', revision = 0, content;
+    button.hidden = false;
+    function updateLabel() {
+      label.textContent = state === 'error' ? '重试图片' : expanded ? '收起图片' : '查看图片';
+      button.setAttribute('aria-label', label.textContent);
+      button.setAttribute('aria-expanded', String(expanded));
+    }
+    function resize(from, to) {
+      if (!panel.getClientRects().length) return Promise.resolve();
+      return motion(panel, softMotion()
+        ? [{ opacity: .65 }, { opacity: 1 }]
+        : [{ height: `${from}px`, opacity: .45 }, { height: `${to}px`, opacity: 1 }], softMotion() ? 100 : 260, animations);
+    }
+    async function setExpanded(value) {
+      const ticket = ++revision;
+      const height = panel.getBoundingClientRect().height;
+      cancelAnimations(animations);
+      expanded = value;
+      updateLabel();
+      if (value) {
+        panel.hidden = false;
+        await resize(height, panel.getBoundingClientRect().height);
+      } else {
+        if (!softMotion()) await motion(panel, [{ height: `${height}px`, opacity: 1 }, { height: '0px', opacity: 0 }], 180, animations);
+        if (ticket === revision) panel.hidden = true;
+      }
+    }
+    function load() {
+      state = wrapper.dataset.state = 'loading';
+      panel.setAttribute('aria-busy', 'true');
+      feedback.hidden = false;
+      feedback.textContent = '图片加载中…';
+      content?.remove();
+      content = document.createElement('span');
+      content.className = 'journal-image-content';
+      const fragment = template.content.cloneNode(true);
+      const image = fragment.querySelector('img');
+      image.decoding = 'async';
+      image.loading = 'eager';
+      image.addEventListener('load', () => {
+        const height = panel.getBoundingClientRect().height;
+        cancelAnimations(animations);
+        state = wrapper.dataset.state = 'loaded';
+        panel.removeAttribute('aria-busy');
+        feedback.hidden = true;
+        updateLabel();
+        if (expanded) void resize(height, panel.getBoundingClientRect().height);
+      }, { once: true });
+      image.addEventListener('error', () => {
+        cancelAnimations(animations);
+        state = wrapper.dataset.state = 'error';
+        panel.removeAttribute('aria-busy');
+        content.remove();
+        feedback.hidden = false;
+        feedback.textContent = '图片暂时没能打开。';
+        updateLabel();
+      }, { once: true });
+      content.append(fragment);
+      panel.append(content);
+    }
+    button.addEventListener('click', event => {
+      event.preventDefault();
+      if (state === 'idle' || state === 'error') {
+        load();
+        void setExpanded(true);
+      } else void setExpanded(!expanded);
+    });
+    images.push(() => {
+      revision++;
+      cancelAnimations(animations);
+      panel.hidden = !expanded;
+    });
+  });
+  const settle = () => { images.forEach(finish => finish()); updateTop(); };
+  preference.addEventListener('change', () => { if (preference.matches) settle(); });
+  return { settle, updateTop };
+}
+
 function createMonthBrowser(sheet, standalone = false) {
+  const readingTools = createReadingTools(sheet, standalone);
   const months = [...sheet.querySelectorAll('[data-month]')];
-  if (!months.length) return { settle() {} };
+  if (!months.length) return readingTools;
   const scroller = sheet.querySelector('[data-journal-scroll]');
   const archive = sheet.querySelector('.journal-archive');
   const older = sheet.querySelector('[data-journal-older]');
@@ -53,12 +157,14 @@ function createMonthBrowser(sheet, standalone = false) {
     });
     older.disabled = index === months.length - 1;
     newer.disabled = index === 0;
+    readingTools.updateTop();
   }
   function settle() {
     revision++;
     cancelAnimations(animations);
     container.removeAttribute('aria-busy');
     select(requested);
+    readingTools.settle();
   }
   async function change(index) {
     index = clamp(index, 0, months.length - 1);
