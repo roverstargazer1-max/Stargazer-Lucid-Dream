@@ -16,7 +16,8 @@ import { createSilhouetteWalker } from './silhouette-walker.js';
 import { readingProgress } from './reading-progress.js';
 import { constrainSkyCamera, skyProjection } from './camera-bounds.js';
 import { createArticleSearch } from './search.js';
-import { prepareReaderArt } from './reader-art.js';
+import { prepareReaderArt, waitForReaderArt } from './reader-art.js';
+import { prepareImages, settleWithin } from './image-readiness.js';
 
 const body = document.body;
 const world = document.getElementById('world');
@@ -26,12 +27,6 @@ async function start() {
   // Let the original room paint before the hidden sky interface competes for bandwidth.
   await waitForImage(document.querySelector('.room-image'));
   await new Promise(resolve => requestAnimationFrame(() => setTimeout(resolve, 0)));
-  for (const image of document.querySelectorAll('img[data-src]')) {
-    image.fetchPriority = 'low';
-    image.decoding = 'async';
-    image.src = image.dataset.src;
-    delete image.dataset.src;
-  }
   const canvas = document.getElementById('sky');
   const ctx = canvas.getContext('2d');
   if (!ctx) throw new Error('Canvas 2D is unavailable.');
@@ -49,6 +44,12 @@ async function start() {
   const status = document.getElementById('approach-status');
   const readButton = document.getElementById('read-button');
   const controls = document.getElementById('exploration-controls');
+  const prepareSkyFurniture = () => Promise.all([
+    '.masthead', '.sky-polyhedron', '#exploration-controls', '#search-entry',
+  ].map(selector => prepareImages(document.querySelector(selector))));
+  // The room has already painted. Prepare the next scene concurrently with its
+  // sky rather than starting a new download only after the first window click.
+  const furnitureReady = settleWithin(prepareSkyFurniture());
   const relationModeButton = document.getElementById('relation-mode');
   const timeModeButton = document.getElementById('time-mode');
   const backDockButton = document.getElementById('back-dock');
@@ -59,7 +60,7 @@ async function start() {
   const isDirectEntry = Boolean(directId);
   const collectionKind = body.dataset.starryCollectionKind || '';
   const isDirectCollection = Boolean(collectionKind);
-  if (isDirectEntry || isDirectCollection) void prepareReaderArt();
+  if (isDirectEntry) void prepareReaderArt(document.getElementById('reader-title')?.textContent || '');
   const collectionMode = collectionKind === 'archive' ? 'time' : 'relation';
   const collectionPath = body.dataset.starryCollectionPath || location.pathname;
   const staticCollection = document.getElementById('static-collection-fallback');
@@ -176,7 +177,8 @@ async function start() {
   }
 
   resize();
-  await Promise.all([preparePaintedScene(), prepareInteractiveClouds(), ...(isDirectEntry ? [prepareReaderArt()] : [])]);
+  await Promise.all([preparePaintedScene(), prepareInteractiveClouds(), furnitureReady,
+    ...(isDirectEntry ? [waitForReaderArt(article?.title)] : [])]);
   await waitForImage(document.querySelector('.room-image'));
   clouds = createInteractiveClouds(world, () => reducedMotion || !renderBudget.current.ambientMotion);
   starMotion = createStarMotion({ preview, reader, scroller, isSoft: () => reducedMotion });
@@ -191,8 +193,14 @@ async function start() {
   }
 
   roomScene = createRoom({
+    prepareEnter: () => settleWithin(prepareSkyFurniture(), 800),
     startOutside: isDirectEntry || isDirectCollection,
     onEnter(startTime) {
+      // Explicitly leaving the room is the first intent to explore/read. Use
+      // the existing passage to warm its two next surfaces, without adding
+      // either surface (or any journal photos) to the initial room download.
+      void prepareReaderArt();
+      void articleSearch?.prepare();
       const first = entryFrame(0);
       camera = { ...first };
       if (reducedMotion) arrival = null;
@@ -262,7 +270,6 @@ async function start() {
     articleUrl: localArticleUrl,
     onRead: openReaderFromSearch,
     onOpen() {
-      void prepareReaderArt();
       interrupt(); pointers.clear(); press = null; labelPointer = null;
       restingFrameDrawn = false; updateUI();
     },
@@ -476,14 +483,16 @@ async function start() {
 
   function updateUI() {
     const isSelected = Boolean(article && selected === article.id);
-    preview.hidden = !isSelected || reader.open || Boolean(articleSearch?.isOpen);
+    preview.hidden = !isSelected || reader.open || collectionOpen || Boolean(articleSearch?.isOpen);
     controls.hidden = Boolean(roomScene?.active) || reader.open || collectionOpen || Boolean(articleSearch?.isOpen);
     relationModeButton.setAttribute('aria-pressed', String(mode === 'relation'));
     timeModeButton.setAttribute('aria-pressed', String(mode === 'time'));
     relationModeButton.disabled = Boolean(arrival || phase === 'loading');
     timeModeButton.disabled = Boolean(arrival || phase === 'loading');
     backDockButton.disabled = !canReturnToDock();
-    if (isSelected) {
+    if (isSelected && !preview.hidden && (animationStarted || !isDirectEntry)) {
+      void prepareImages(readButton, 'high');
+      void prepareImages(preview);
       observationPanel.update(article);
       document.getElementById('preview-title').textContent = article.title;
       readButton.setAttribute('aria-label', `进入阅读：${article.title}`);
@@ -520,7 +529,8 @@ async function start() {
   }
 
   function beginApproach(id, kind = 'selection', previousContext = null) {
-    void prepareReaderArt();
+    void prepareImages(reader);
+    void prepareReaderArt(article?.title);
     selected = id;
     phase = 'moving';
     starMotion.interrupt();
@@ -579,6 +589,7 @@ async function start() {
     try {
       const node = articleNodes.get(targetArticle.id) || await articleLoads.get(targetArticle.id) || await loadArticleNode(targetArticle);
       if (!node) return;
+      await waitForReaderArt(targetArticle.title);
       articleNodes.set(targetArticle.id, node);
       if (selected !== targetArticle.id || reader.open) return;
       readingSnapshot = { camera: { ...camera }, selected, articleId: article?.id, phase: 'settled', mode };
@@ -603,6 +614,7 @@ async function start() {
     if (!targetArticle) return;
     try {
       const node = articleNodes.get(id) || await articleLoads.get(id) || await loadArticleNode(targetArticle);
+      await waitForReaderArt(targetArticle.title);
       if (!collectionOpen || reader.open || !node) return;
       articleNodes.set(id, node);
       readingSnapshot = {
@@ -641,6 +653,7 @@ async function start() {
     if (!targetArticle) return false;
     try {
       const node = articleNodes.get(id) || await articleLoads.get(id) || await loadArticleNode(targetArticle);
+      await waitForReaderArt(targetArticle.title);
       if (!articleSearch.isOpen || reader.open || !node) return false;
       articleNodes.set(id, node);
       readingSnapshot = { camera: { ...camera }, selected, articleId: article?.id, phase, mode, searchOpen: true };
@@ -764,6 +777,7 @@ async function start() {
       : null;
     try {
       const node = articleNodes.get(id) || await articleLoads.get(id) || await loadArticleNode(targetArticle);
+      await waitForReaderArt(targetArticle.title);
       if (requestVersion !== historyNavigationVersion || history.state?.starryArticleId !== id) return;
       articleNodes.set(id, node);
       if (!readingSnapshot && !wasOpen) readingSnapshot = {
@@ -811,6 +825,7 @@ async function start() {
     announce(`正在打开《${targetArticle.title}》。`);
     try {
       const node = articleNodes.get(id) || await articleLoads.get(id) || await loadArticleNode(targetArticle);
+      await waitForReaderArt(targetArticle.title);
       if (!node || requestVersion !== historyNavigationVersion || !reader.open || phase !== 'reading') return;
       articleNodes.set(id, node);
       // Keep the current entry readable through Back, including direct article entry.
@@ -1450,7 +1465,7 @@ async function start() {
   }
 
   async function loadArticleNode(item) {
-    void prepareReaderArt();
+    void prepareReaderArt(item.title);
     const url = localArticleUrl(item);
     const pageResponse = await fetch(url, { credentials: 'same-origin', cache: 'no-cache' });
     if (!pageResponse.ok) throw new Error(`Article request failed: ${pageResponse.status}`);

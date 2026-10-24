@@ -3,6 +3,7 @@ import { renderGlyphs } from './observation.js';
 import { unit, dialogBackdrop } from './motion.js';
 import { enter, exit, DUR, STAGGER_STEP, STAGGER_MAX } from './tokens.js';
 import { createAstrolabe } from './astrolabe.js';
+import { prepareImages, settleWithin } from './image-readiness.js';
 
 const normalize = value => String(value || '').normalize('NFKC').trim().toLocaleLowerCase();
 
@@ -81,11 +82,12 @@ export function createArticleSearch({ articles, getScene, onRead, onOpen, onClos
   };
   setBackdrop(0, isSoft());
 
-  const hydrate = root => {
+  const hydrate = (root, priority = 'high') => {
     for (const image of root.querySelectorAll('img[data-search-src]')) {
-      image.src = image.dataset.searchSrc;
+      image.dataset.src = image.dataset.searchSrc;
       delete image.dataset.searchSrc;
     }
+    return prepareImages(root, priority);
   };
 
   for (const [kind, options] of [
@@ -267,8 +269,15 @@ export function createArticleSearch({ articles, getScene, onRead, onOpen, onClos
     const origin = entry.getBoundingClientRect();
     entryOrigin = origin.width ? { x: origin.left + origin.width / 2, y: origin.top + origin.height / 2 } : null;
     conditions = { query: '', year: '', magnitude: '' }; input.value = '';
-    setIndex(false); hydrate(dialog);
-    void showDialog(entryOrigin, true).then(() => {
+    setIndex(false);
+    closing = false; dialog.showModal(); setUnfold(0);
+    dialog.dataset.motion = 'preparing';
+    dialog.setAttribute('aria-busy', 'true');
+    void settleWithin(hydrate(dialog)).then(() => {
+      dialog.removeAttribute('aria-busy');
+      if (!session || closing || !dialog.open) return;
+      return animateDialog(false, entryOrigin, true);
+    }).then(() => {
       if (session && !closing && dialog.open) input.focus({ preventScroll: true });
     });
     onOpen();
@@ -478,6 +487,9 @@ export function createArticleSearch({ articles, getScene, onRead, onOpen, onClos
   }
 
   entry.addEventListener('click', () => open(entry));
+  for (const event of ['pointerenter', 'focus', 'touchstart']) {
+    entry.addEventListener(event, () => { void hydrate(dialog); }, { passive: true });
+  }
   document.getElementById('close-search').addEventListener('click', close);
   dialog.addEventListener('cancel', event => { event.preventDefault(); close(); });
   const outside = event => {
@@ -512,6 +524,7 @@ export function createArticleSearch({ articles, getScene, onRead, onOpen, onClos
   }).observe(title);
 
   return {
+    prepare() { return hydrate(dialog, 'low'); },
     get isOpen() { return dialog.open; },
     suspend() { closing = false; cancelDialogAnimation(); dialog.close(); setUnfold(0); setBackdrop(0, isSoft()); },
     resume() {

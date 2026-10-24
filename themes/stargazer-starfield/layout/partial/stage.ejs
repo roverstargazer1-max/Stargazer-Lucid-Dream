@@ -3,14 +3,14 @@
   <div class="grain" aria-hidden="true"></div>
   <div id="star-targets"></div>
   <header class="masthead"><a id="brand" href="<%= url_for('/') %>" aria-label="观星者的清醒梦，回到窗边">
-      <img class="wordmark" data-src="<%= url_for('images/branding/logo2.png') %>" width="1081" height="452" alt="" aria-hidden="true" draggable="false">
+      <img class="wordmark" data-src="<%= starry_interface_url('images/branding/logo2.png') %>" width="1081" height="452" alt="" aria-hidden="true" draggable="false">
     </a></header>
   <section id="preview" class="preview observation-panel" aria-labelledby="preview-title" data-asset-root="<%= url_for('images/observation/') %>" hidden>
     <h2 id="preview-title" class="sr-only"></h2>
     <div class="observation-artboard">
-      <img class="observation-waves" data-src="<%= url_for('images/observation/waves.png') %>" alt="" aria-hidden="true" draggable="false">
+      <img class="observation-waves" data-src="<%= starry_interface_url('images/observation/waves.png') %>" alt="" aria-hidden="true" draggable="false">
       <div class="observation-silhouette" aria-hidden="true">
-        <img class="silhouette-still" data-src="<%= url_for('images/observation/silhouette.png') %>" alt="" draggable="false">
+        <img class="silhouette-still" data-src="<%= starry_interface_url('images/observation/silhouette.png') %>" alt="" draggable="false">
         <img class="silhouette-frames" data-src="<%= url_for('images/optimized/silhouette-walk-frames.webp') %>" alt="" draggable="false" decoding="async" hidden>
         <canvas hidden></canvas>
       </div>
@@ -18,39 +18,39 @@
         <% for (let offset = -2; offset <= 2; offset++) { %>
         <div class="year-row<%= offset === 0 ? ' is-current' : '' %>">
           <span class="year-number asset-glyphs" aria-hidden="true"></span>
-          <% if (offset === 0) { %><img class="year-arrow" data-src="<%= url_for('images/observation/year-pointer.png') %>" alt="" aria-hidden="true" draggable="false"><span class="year-unit asset-glyphs" data-glyph-text="YE" aria-hidden="true"></span><% } %>
+          <% if (offset === 0) { %><img class="year-arrow" data-src="<%= starry_interface_url('images/observation/year-pointer.png') %>" alt="" aria-hidden="true" draggable="false"><span class="year-unit asset-glyphs" data-glyph-text="YE" aria-hidden="true"></span><% } %>
         </div>
         <% } %>
       </div>
-      <img class="observation-diamond" data-src="<%= url_for('images/observation/diamond.png') %>" alt="" aria-hidden="true" draggable="false">
-      <img class="observation-ticks" data-src="<%= url_for('images/observation/dial-ticks.png') %>" alt="" aria-hidden="true" draggable="false">
-      <img class="observation-bracket" data-src="<%= url_for('images/observation/dial-bracket.png') %>" alt="" aria-hidden="true" draggable="false">
+      <img class="observation-diamond" data-src="<%= starry_interface_url('images/observation/diamond.png') %>" alt="" aria-hidden="true" draggable="false">
+      <img class="observation-ticks" data-src="<%= starry_interface_url('images/observation/dial-ticks.png') %>" alt="" aria-hidden="true" draggable="false">
+      <img class="observation-bracket" data-src="<%= starry_interface_url('images/observation/dial-bracket.png') %>" alt="" aria-hidden="true" draggable="false">
       <div class="observation-waveform" aria-hidden="true">
-        <img data-src="<%= url_for('images/observation/waveform.png') %>" alt="" draggable="false">
+        <img data-src="<%= starry_interface_url('images/observation/waveform.png') %>" alt="" draggable="false">
         <canvas hidden></canvas>
       </div>
       <div class="observation-call" aria-hidden="true">
-        <img data-src="<%= url_for('images/observation/starlink.png') %>" alt="" draggable="false">
-        <span class="call-label"><img data-src="<%= url_for('images/observation/call-word.png') %>" alt="" draggable="false"><img class="call-underline" data-src="<%= url_for('images/observation/call-underline.png') %>" alt="" draggable="false"></span>
+        <img data-src="<%= starry_interface_url('images/observation/starlink.png') %>" alt="" draggable="false">
+        <span class="call-label"><img data-src="<%= starry_interface_url('images/observation/call-word.png') %>" alt="" draggable="false"><img class="call-underline" data-src="<%= starry_interface_url('images/observation/call-underline.png') %>" alt="" draggable="false"></span>
       </div>
       <div class="observation-labels" aria-hidden="true">
         <span class="asset-glyphs" data-glyph-text="Y-E"></span><span class="asset-glyphs" data-glyph-text="MO"></span>
-        <span class="asset-glyphs" data-glyph-text="DAY"></span><img class="hour-label" data-src="<%= url_for('images/observation/hour-label.png') %>" alt="" draggable="false">
+        <span class="asset-glyphs" data-glyph-text="DAY"></span><img class="hour-label" data-src="<%= starry_interface_url('images/observation/hour-label.png') %>" alt="" draggable="false">
       </div>
-      <img class="observation-slashes" data-src="<%= url_for('images/observation/date-boxes.png') %>" alt="" aria-hidden="true" draggable="false">
+      <img class="observation-slashes" data-src="<%= starry_interface_url('images/observation/date-boxes.png') %>" alt="" aria-hidden="true" draggable="false">
       <time id="preview-date" class="asset-glyphs observation-date"></time>
-      <img class="observation-id" data-src="<%= url_for('images/observation/observation-id.png') %>" alt="" aria-hidden="true" draggable="false">
+      <img class="observation-id" data-src="<%= starry_interface_url('images/observation/observation-id.png') %>" alt="" aria-hidden="true" draggable="false">
       <span id="preview-id" class="asset-glyphs observation-id-value" role="img" aria-label="文章 ID" hidden></span>
-      <button id="deselect" type="button" aria-label="取消选择" title="取消选择"><img data-src="<%= url_for('images/observation/close.png') %>" alt="" draggable="false"></button>
+      <button id="deselect" type="button" aria-label="取消选择" title="取消选择"><img data-src="<%= starry_interface_url('images/observation/close.png') %>" alt="" draggable="false"></button>
       <div class="preview-bottom">
         <button id="read-button" type="button" disabled aria-label="进入阅读" aria-describedby="approach-status">
-          <span class="read-rule" aria-hidden="true"><% for (const part of ['start', 'middle', 'end']) { %><span class="read-rule-<%= part %>"><img data-src="<%= url_for('images/observation/read-rule.png') %>" alt="" draggable="false"></span><% } %></span><img class="read-label" data-src="<%= url_for('images/observation/read.png') %>" width="273" height="128" alt="Read Me" draggable="false">
+          <span class="read-rule" aria-hidden="true"><% for (const part of ['start', 'middle', 'end']) { %><span class="read-rule-<%= part %>"><img data-src="<%= starry_interface_url('images/observation/read-rule.png') %>" alt="" draggable="false"></span><% } %></span><img class="read-label" data-src="<%= starry_interface_url('images/observation/read.png') %>" width="273" height="128" alt="Read Me" draggable="false">
         </button>
         <span id="approach-status" class="sr-only" aria-live="polite">再点星，阅读</span>
       </div>
     </div>
   </section>
-  <div class="sky-polyhedron" aria-hidden="true"><img data-src="<%= url_for('images/observation/polyhedron.png') %>" alt="" draggable="false"><canvas hidden></canvas></div>
+  <div class="sky-polyhedron" aria-hidden="true"><img data-src="<%= starry_interface_url('images/observation/polyhedron.png') %>" alt="" draggable="false"><canvas hidden></canvas></div>
   <nav id="exploration-controls" class="exploration-controls navigation" aria-label="星空探索控制">
     <div class="mode-switch" role="group" aria-label="星空模式">
       <button id="relation-mode" type="button" aria-pressed="true">关联</button>
@@ -114,7 +114,7 @@
       <a class="blog-theme-switch" data-blog-theme-switch href="<%= readerThemeSwitch.href %>"><%= readerThemeSwitch.label %></a>
       <% } %>
       <button id="close-reader" type="button" aria-label="关闭文章，返回星空" title="关闭文章，返回星空">
-        <img data-src="<%= url_for('images/observation/close.png') %>" alt="" draggable="false">
+        <img data-src="<%= starry_interface_url('images/observation/close.png') %>" alt="" draggable="false">
       </button>
     </header>
     <div id="reading-scroll" tabindex="0"><div id="reading-content-slot"></div></div>

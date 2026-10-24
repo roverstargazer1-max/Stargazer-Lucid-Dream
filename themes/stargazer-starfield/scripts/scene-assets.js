@@ -1,11 +1,16 @@
-const fs = require('node:fs');
 const path = require('node:path');
-const { createHash } = require('node:crypto');
+const { resolveSceneArt } = require('../lib/scene-art');
+let resolved = new Map();
+hexo.extend.filter.register('before_generate', () => { resolved = new Map(); });
+
+function sceneUrl(helper, source) {
+  if (!resolved.has(source)) resolved.set(source, resolveSceneArt(hexo.source_dir, path.join(hexo.base_dir, 'themes/stargazer-starfield/source'), source));
+  const asset = resolved.get(source);
+  return `${helper.url_for(asset.path)}?v=${asset.version}${asset.cacheVersion ? `&cache=${asset.cacheVersion}` : ''}`;
+}
 
 // A replacement illustration must not reuse a browser/CDN cache entry for the old bytes.
 hexo.extend.helper.register('starry_room_url', function () {
-  const source = hexo.theme.config.scene.room;
-  const image = fs.readFileSync(path.join(hexo.source_dir, source));
-  const version = createHash('sha256').update(image).digest('hex').slice(0, 16);
-  return `${this.url_for(source)}?v=${version}`;
+  return sceneUrl(this, hexo.theme.config.scene.room);
 });
+hexo.extend.helper.register('starry_sky_url', function () { return sceneUrl(this, hexo.theme.config.scene.painted_sky); });

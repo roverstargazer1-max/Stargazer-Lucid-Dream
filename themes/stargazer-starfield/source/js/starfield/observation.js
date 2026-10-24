@@ -1,5 +1,6 @@
 import { createCallWaveform } from './call-waveform.js';
 import { createSilhouetteWalker } from './silhouette-walker.js';
+const glyphSources = new WeakMap();
 
 // Calendar dates are already formatted in the blog's timezone by the index generator.
 // Do not parse them as UTC instants: that can shift the displayed day for visitors.
@@ -20,10 +21,13 @@ export function observationDate(date) {
 
 export function renderGlyphs(element, value, assetRoot) {
   const document = element.ownerDocument;
+  if (!glyphSources.has(document)) glyphSources.set(document, JSON.parse(document.body?.dataset.glyphSources || '{}'));
   const glyphs = [...value].map(character => {
     if (/^[A-Z0-9]$/.test(character)) {
       const glyph = document.createElement('img');
-      glyph.src = `${assetRoot}glyphs/${character}.png`;
+      glyph.fetchPriority = 'low';
+      glyph.decoding = 'async';
+      glyph.src = glyphSources.get(document)[character] || `${assetRoot}glyphs/${character}.png`;
       glyph.alt = '';
       glyph.draggable = false;
       return glyph;
@@ -40,9 +44,7 @@ export function createObservationPanel(preview) {
   const waveform = createCallWaveform(preview.querySelector('.observation-waveform'));
   const walker = createSilhouetteWalker(preview.querySelector('.observation-silhouette'));
   const assetRoot = preview.dataset.assetRoot;
-  for (const element of preview.querySelectorAll('[data-glyph-text]')) {
-    renderGlyphs(element, element.dataset.glyphText, assetRoot);
-  }
+  let fixedGlyphsReady = false;
   const yearRows = [...preview.querySelectorAll('.year-row')];
   const dateElement = preview.querySelector('#preview-date');
   const idElement = preview.querySelector('#preview-id');
@@ -50,6 +52,10 @@ export function createObservationPanel(preview) {
   return {
     render(now, enabled) { waveform.render(now, enabled); walker.render(now, enabled); },
     update(article) {
+      if (!fixedGlyphsReady) {
+        for (const element of preview.querySelectorAll('[data-glyph-text]')) renderGlyphs(element, element.dataset.glyphText, assetRoot);
+        fixedGlyphsReady = true;
+      }
       const displayId = String(article.displayId || '');
       if (displayId !== currentDisplayId) {
         renderGlyphs(idElement, displayId, assetRoot);

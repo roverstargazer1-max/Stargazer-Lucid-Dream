@@ -20,13 +20,14 @@ export function roomPassageFrames(rect, width, height) {
 export function createRoom({
   onEnter, onProgress, onEntered, onReturnStart, onReturnProgress, onReturned,
   onMotion, startOutside = false,
+  prepareEnter = () => Promise.resolve(),
 }) {
   const room = document.getElementById('room'), stage = document.getElementById('room-stage');
   const entry = document.getElementById('window-entry'), world = document.getElementById('world');
   const thought = document.getElementById('room-thought');
   const choice = new URLSearchParams(location.search).get('motion');
   const mode = choice === 'full' || choice === 'soft' ? choice : document.body.dataset.defaultMotion;
-  let flight = null, short = mode === 'soft';
+  let flight = null, preparing = false, short = mode === 'soft';
 
   function setMotion() {
     document.body.dataset.motion = short ? 'soft' : 'full';
@@ -61,9 +62,16 @@ export function createRoom({
     return timeline;
   }
 
-  function enterSky() {
-    if (flight) return;
+  async function enterSky() {
+    if (flight || preparing) return;
     if (room.hidden) return;
+    preparing = true;
+    entry.disabled = true;
+    if (thought) thought.disabled = true;
+    room.inert = true;
+    room.setAttribute('aria-busy', 'true');
+    try { await prepareEnter(); }
+    finally { preparing = false; room.removeAttribute('aria-busy'); }
     // Read the room geometry before changing state, so entering does not force
     // a synchronous style/layout pass over the newly hidden interface.
     const timeline = passageTimeline();
@@ -93,6 +101,9 @@ export function createRoom({
   }
   entry.onclick = enterSky;
   if (thought) thought.onclick = enterSky;
+  for (const target of [entry, thought].filter(Boolean)) {
+    for (const name of ['pointerenter', 'focus', 'touchstart']) target.addEventListener(name, () => { void prepareEnter(); }, { passive: true });
+  }
 
   function returnHome() {
     if (flight || !room.hidden) return;

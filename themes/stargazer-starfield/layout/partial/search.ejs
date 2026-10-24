@@ -1,22 +1,22 @@
 <% const entryGeometry = starry_search_entry_geometry(); %>
 <button id="search-entry" type="button" aria-label="展开星图检索" title="星图检索" aria-controls="star-search" style="--entry-pivot-x:<%= entryGeometry.pivot[0] / entryGeometry.size[0] * 100 %>%;--entry-pivot-y:<%= entryGeometry.pivot[1] / entryGeometry.size[1] * 100 %>%;--entry-native-angle:<%= entryGeometry.nativeAzimuth %>rad" hidden>
   <span class="search-entry-disc" style="clip-path:<%= entryGeometry.discClip %>" aria-hidden="true">
-    <img style="clip-path:<%= entryGeometry.discWithoutNeedleClip %>" data-src="<%= url_for('images/optimized/entry-base.webp') %>" alt="" draggable="false">
-    <img class="search-entry-repair" style="clip-path:<%= entryGeometry.repairClip %>" data-src="<%= url_for('images/optimized/entry-repair.webp') %>" alt="" draggable="false">
+    <img style="clip-path:<%= entryGeometry.discWithoutNeedleClip %>" data-src="<%= starry_interface_url('images/optimized/entry-base.webp') %>" data-srcset="<%= starry_interface_srcset('images/optimized/entry-base.webp') %>" data-sizes="(max-height:650px) and (orientation:landscape) 60px, (max-width:760px) and (orientation:portrait) 72px, 100px" alt="" draggable="false">
+    <img class="search-entry-repair" style="clip-path:<%= entryGeometry.repairClip %>" data-src="<%= starry_interface_url('images/optimized/entry-repair.webp') %>" data-srcset="<%= starry_interface_srcset('images/optimized/entry-repair.webp') %>" data-sizes="(max-height:650px) and (orientation:landscape) 60px, (max-width:760px) and (orientation:portrait) 72px, 100px" alt="" draggable="false">
   </span>
-  <img class="search-entry-needle" style="clip-path:<%= entryGeometry.needleClip %>" data-src="<%= url_for('images/optimized/entry-base.webp') %>" alt="" draggable="false">
-  <img class="search-entry-pivot" data-src="<%= url_for('images/optimized/entry-base.webp') %>" alt="" draggable="false">
+  <img class="search-entry-needle" style="clip-path:<%= entryGeometry.needleClip %>" data-src="<%= starry_interface_url('images/optimized/entry-base.webp') %>" data-srcset="<%= starry_interface_srcset('images/optimized/entry-base.webp') %>" data-sizes="(max-height:650px) and (orientation:landscape) 60px, (max-width:760px) and (orientation:portrait) 72px, 100px" alt="" draggable="false">
+  <img class="search-entry-pivot" data-src="<%= starry_interface_url('images/optimized/entry-base.webp') %>" data-srcset="<%= starry_interface_srcset('images/optimized/entry-base.webp') %>" data-sizes="(max-height:650px) and (orientation:landscape) 60px, (max-width:760px) and (orientation:portrait) 72px, 100px" alt="" draggable="false">
 </button>
 <dialog id="star-search" aria-label="星图与文章检索" data-index-open="false" data-search-url="<%= url_for('starry/search.json') %>" data-glyph-root="<%= url_for('images/observation/') %>" data-filter-src="<%= url_for('images/search/filters-v3.png') %>">
   <div class="search-artboard" data-index-open="false">
     <div class="search-background" aria-hidden="true">
-      <img class="search-base" data-search-src="<%= url_for('images/search/base-v3.png') %>" alt="" draggable="false">
+      <img class="search-base" data-search-src="<%= starry_interface_url('images/search/base-v3.png') %>" alt="" draggable="false">
     </div>
     <div class="search-primary">
     <h2 class="search-heading"><span class="sr-only">STAR CHART · 星图</span><img data-search-src="<%= url_for('images/search/star-chart-v3.png') %>" alt="" draggable="false"></h2>
     <form class="search-bar" role="search">
-      <img class="search-frame" data-search-src="<%= url_for('images/search/frame-v3.png') %>" alt="" draggable="false">
-      <img class="search-frame-background" data-search-src="<%= url_for('images/search/frame-background-v3.png') %>" alt="" draggable="false">
+      <img class="search-frame" data-search-src="<%= starry_interface_url('images/search/frame-v3.png') %>" alt="" draggable="false">
+      <img class="search-frame-background" data-search-src="<%= starry_interface_url('images/search/frame-background-v3.png') %>" alt="" draggable="false">
       <span class="search-submit-art" aria-hidden="true"><img data-search-src="<%= url_for('images/search/magnifier-v3.png') %>" alt="" draggable="false"></span>
       <label class="sr-only" for="search-query">检索文章标题、标签、正文或星表号</label>
       <input id="search-query" type="search" autocomplete="off" placeholder="" spellcheck="false">

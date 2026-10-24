@@ -1,0 +1,31 @@
+const test = require('node:test');
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const os = require('node:os');
+const path = require('node:path');
+const { createHash } = require('node:crypto');
+const { resolveSceneArt } = require('../themes/stargazer-starfield/lib/scene-art');
+const hash = text => createHash('sha256').update(text).digest('hex');
+
+test('a matching scene cache is versioned by both inputs and stale or missing caches fall back to the current original', t => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'stargazer-scene-art-'));
+  t.after(() => fs.rmSync(root, { recursive: true, force: true }));
+  const source = path.join(root, 'source'), theme = path.join(root, 'theme');
+  fs.mkdirSync(source);
+  fs.mkdirSync(path.join(theme, 'images/optimized'), { recursive: true });
+  fs.writeFileSync(path.join(source, 'room.webp'), 'original');
+  fs.writeFileSync(path.join(theme, 'images/optimized/room.webp'), 'display cache');
+  const manifest = path.join(theme, 'images/optimized/scene-cache.json');
+  fs.writeFileSync(manifest, JSON.stringify({ entries: [{ source: 'room.webp', sourceSha256: hash('original'), cache: 'images/optimized/room.webp', cacheSha256: hash('display cache') }] }));
+  assert.deepEqual(resolveSceneArt(source, theme, 'room.webp'), { path: 'images/optimized/room.webp', version: hash('original').slice(0, 16), cacheVersion: hash('display cache').slice(0, 16) });
+  fs.writeFileSync(path.join(source, 'room.webp'), 'new original');
+  const fallback = { path: 'room.webp', version: hash('new original').slice(0, 16), cacheVersion: '' };
+  assert.deepEqual(resolveSceneArt(source, theme, 'room.webp'), fallback, 'Replacing art must not keep showing its previous cache');
+  fs.writeFileSync(path.join(source, 'room.webp'), 'original');
+  fs.writeFileSync(path.join(theme, 'images/optimized/room.webp'), 'incorrect cache');
+  assert.equal(resolveSceneArt(source, theme, 'room.webp').path, 'room.webp');
+  fs.unlinkSync(path.join(theme, 'images/optimized/room.webp'));
+  assert.equal(resolveSceneArt(source, theme, 'room.webp').path, 'room.webp');
+  fs.writeFileSync(manifest, 'invalid manifest');
+  assert.equal(resolveSceneArt(source, theme, 'room.webp').path, 'room.webp');
+});

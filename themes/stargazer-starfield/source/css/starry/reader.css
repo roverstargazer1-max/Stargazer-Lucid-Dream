@@ -27,7 +27,7 @@
   max-width: none; min-height: calc(100dvh - 48px); margin: 0; padding: 0 0 var(--space-7);
   display: grid; grid-template-columns: 14% minmax(0, 1fr) 14%; align-content: start;
   background-color: #0862c5;
-  background-image: url('../../images/reader/sheet.webp'), url('../../images/reader/continuation.webp');
+  background-image: var(--reader-sheet, url('../../images/reader/sheet.webp')), var(--reader-continuation, url('../../images/reader/continuation.webp'));
   background-size: 100% auto, 100% auto;
   background-position: center top, center calc(100cqw * 5432 / 1347); background-repeat: no-repeat, repeat-y;
 }
@@ -103,7 +103,7 @@
   margin: 0; padding: 0 calc(2.8% + 9px) max(8px, env(safe-area-inset-bottom)); border: 0;
   /* Continue the same sheet at the visible text's lower edge, including its side bands. */
   background-color: #0862c5;
-  background-image: url('../../images/reader/sheet.webp'), url('../../images/reader/continuation.webp');
+  background-image: var(--reader-sheet, url('../../images/reader/sheet.webp')), var(--reader-continuation, url('../../images/reader/continuation.webp'));
   background-size: var(--reading-paper-width, 100%) auto;
   background-position: left var(--reading-paper-offset, 0px), left calc(var(--reading-paper-offset, 0px) + var(--reading-paper-width, 100cqw) * 5432 / 1347);
   background-repeat: no-repeat, repeat-y;
@@ -121,7 +121,7 @@
   content: ''; position: absolute; inset: 0; pointer-events: none;
   background-image:
     linear-gradient(100deg, rgb(20 66 168 / .62), rgb(28 88 196 / .44)),
-    url('../../images/reader/progress-track.webp');
+    var(--reader-track, url('../../images/reader/progress-track.webp'));
   background-size: 100% 100%, 100% 100%;
   background-repeat: no-repeat, no-repeat;
   background-position: center, center;

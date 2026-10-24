@@ -102,12 +102,16 @@
       data-starry-featured-id="<%= theme.featured_article_id %>"
       data-starry-index="<%= url_for('starry/index.json') %>"
       data-starry-root="<%= url_for('/') %>"
-      data-sky-image="<%= url_for(theme.scene.painted_sky) %>"
+      data-glyph-sources="<%= hasStarfield ? JSON.stringify(starry_glyph_sources()) : '{}' %>"
+      data-sky-image="<%= starry_sky_url() %>"
+      data-reader-sheet="<%= starry_interface_url('images/reader/sheet.webp') %>"
+      data-reader-continuation="<%= starry_interface_url('images/reader/continuation.webp') %>"
+      data-reader-track="<%= starry_interface_url('images/reader/progress-track.webp') %>"
       data-window-mask="<%= url_for(theme.scene.window_mask) %>"
       data-starry-aplayer-style="<%= audioAssets.stylesheet %>"
       data-starry-aplayer-script="<%= audioAssets.aplayer %>"
       data-starry-meting-script="<%= audioAssets.meting %>"
-      style="--window-mask:url('<%= url_for(theme.scene.window_mask) %>')">
+      style="--window-mask:url('<%= url_for(theme.scene.window_mask) %>');--reader-sheet:url('<%= starry_interface_url('images/reader/sheet.webp') %>');--reader-continuation:url('<%= starry_interface_url('images/reader/continuation.webp') %>');--reader-track:url('<%= starry_interface_url('images/reader/progress-track.webp') %>')">
   <%- body %>
   <% if (themeSwitch) { %>
   <a class="blog-theme-switch blog-theme-switch-fixed" data-blog-theme-switch href="<%= themeSwitch.href %>"><%= themeSwitch.label %></a>

@@ -1,0 +1,1262 @@
+[
+  {
+    "source": "images/search/base-v3.png",
+    "sourceFile": "assets/检索页/v3/base-v3.png",
+    "sourceSha256": "c8b1a3b0c81d44df4e615517c33bde49d5ea3bd4788879ef5ff6169e95721225",
+    "cache": "images/optimized/interface-search-base-v1.webp",
+    "cacheSha256": "6f8cee442798f8b7dc838de8ed303187670c0cdd1e7cc7f517f2d0603c0df8d6",
+    "sourceBytes": 7389507,
+    "cacheBytes": 291396,
+    "sourceDimensions": [
+      1917,
+      1284
+    ],
+    "cacheDimensions": [
+      1917,
+      1284
+    ],
+    "lossless": false,
+    "resampled": false,
+    "meanVisibleChannelErrorAfterResampling": 0.8270732815801777
+  },
+  {
+    "source": "images/optimized/entry-base.webp",
+    "sourceFile": "themes/stargazer-starfield/source/images/optimized/entry-base.webp",
+    "sourceSha256": "c9d464e914ee6a07030a54154d89fa68949cc24b0ac75c7979b736a1a429efd0",
+    "cache": "images/optimized/interface-entry-base-v1.webp",
+    "cacheSha256": "4222bd9b3d5925d6d90427a5d09e5ad32a3518cdaf64891926156747fcbe7d5c",
+    "sourceBytes": 1077910,
+    "cacheBytes": 139834,
+    "sourceDimensions": [
+      1254,
+      1254
+    ],
+    "cacheDimensions": [
+      384,
+      384
+    ],
+    "lossless": true,
+    "resampled": true,
+    "meanVisibleChannelErrorAfterResampling": 0.0
+  },
+  {
+    "source": "images/optimized/entry-repair.webp",
+    "sourceFile": "themes/stargazer-starfield/source/images/optimized/entry-repair.webp",
+    "sourceSha256": "d7f9fac91c66fc117286727f63502a28a05c815e60313aceaf62aebb6769ad22",
+    "cache": "images/optimized/interface-entry-repair-v1.webp",
+    "cacheSha256": "caab5b8370065a3ebea6f350055fa380404c614a377581b15dcfac01dc06a46c",
+    "sourceBytes": 100350,
+    "cacheBytes": 18748,
+    "sourceDimensions": [
+      1254,
+      1254
+    ],
+    "cacheDimensions": [
+      384,
+      384
+    ],
+    "lossless": true,
+    "resampled": true,
+    "meanVisibleChannelErrorAfterResampling": 0.0
+  },
+  {
+    "source": "images/branding/logo2.png",
+    "sourceFile": "assets/代码程序素材/Logo/Logo2/Logo2.png",
+    "sourceSha256": "5dac43515fe5d183d029bc275e69ebc7396d6e667f0f71c003f8f23129d77aea",
+    "cache": "images/optimized/interface-logo-v1.webp",
+    "cacheSha256": "1ea89d257ed38fad75af3e132a0935a6c08e2de8effd164219f6e4f5a3fd65d8",
+    "sourceBytes": 364153,
+    "cacheBytes": 278076,
+    "sourceDimensions": [
+      1081,
+      452
+    ],
+    "cacheDimensions": [
+      1081,
+      452
+    ],
+    "lossless": true,
+    "resampled": false,
+    "meanVisibleChannelErrorAfterResampling": 0.0
+  },
+  {
+    "source": "images/observation/polyhedron.png",
+    "sourceFile": "assets/详情弹窗/详细工程文件/右下角跳动几何块.png",
+    "sourceSha256": "a101068238c7cb5e4bfba58fed1e3057a8d000fe5c160aca5c4082342c5bd508",
+    "cache": "images/optimized/interface-polyhedron-v1.webp",
+    "cacheSha256": "00abdb588f467662d168f5fa520258dff1993a7cad782042f3d29e429bddd85a",
+    "sourceBytes": 220772,
+    "cacheBytes": 108886,
+    "sourceDimensions": [
+      1254,
+      1254
+    ],
+    "cacheDimensions": [
+      1254,
+      1254
+    ],
+    "lossless": true,
+    "resampled": false,
+    "meanVisibleChannelErrorAfterResampling": 0.0
+  },
+  {
+    "source": "images/observation/silhouette.png",
+    "sourceFile": "themes/stargazer-starfield/source/images/observation/silhouette.png",
+    "sourceSha256": "6f88d14ee82204b3b6b7c343ebd4c0119714d5ea00ac1deeb68f7030f103131f",
+    "cache": "images/optimized/interface-silhouette-v1.webp",
+    "cacheSha256": "c96b1ef271b58f13e28113bee2a36fd6fc7117bc02e712c16ae4319f69d305ca",
+    "sourceBytes": 248138,
+    "cacheBytes": 148762,
+    "sourceDimensions": [
+      1024,
+      1536
+    ],
+    "cacheDimensions": [
+      1024,
+      1536
+    ],
+    "lossless": true,
+    "resampled": false,
+    "meanVisibleChannelErrorAfterResampling": 0.0
+  },
+  {
+    "source": "images/search/frame-v3.png",
+    "sourceFile": "assets/检索页/v3/frame-v3.png",
+    "sourceSha256": "d68553d2db532740e563b173d19b0fa31d1e1e5e1c2eee3acca0d61b501d4a88",
+    "cache": "images/optimized/interface-search-frame-v1.webp",
+    "cacheSha256": "108d3e314a7239be435cac612be1972e17f696049c1436d3ada3e99009b4dac4",
+    "sourceBytes": 185263,
+    "cacheBytes": 149550,
+    "sourceDimensions": [
+      1194,
+      140
+    ],
+    "cacheDimensions": [
+      1194,
+      140
+    ],
+    "lossless": true,
+    "resampled": false,
+    "meanVisibleChannelErrorAfterResampling": 0.0
+  },
+  {
+    "source": "images/search/frame-background-v3.png",
+    "sourceFile": "assets/检索页/v3/frame-background-v3.png",
+    "sourceSha256": "2ca2703b3b90121399ebc3324a040ac70adbf7fe08f5cdac7a4cce6ba10d791a",
+    "cache": "images/optimized/interface-search-frame-background-v1.webp",
+    "cacheSha256": "da048a7b1b844853833857c57b41607dcdf579ffe43c5f3924b512a6dabe95a4",
+    "sourceBytes": 193922,
+    "cacheBytes": 149472,
+    "sourceDimensions": [
+      1194,
+      140
+    ],
+    "cacheDimensions": [
+      1194,
+      140
+    ],
+    "lossless": true,
+    "resampled": false,
+    "meanVisibleChannelErrorAfterResampling": 0.0
+  },
+  {
+    "source": "images/reader/sheet.webp",
+    "sourceFile": "themes/stargazer-starfield/source/images/reader/sheet.webp",
+    "sourceSha256": "95116740273a2bfe5b75f9b00d35b82ecb88159e440f25f1d4b080f98eab46e2",
+    "cache": "images/optimized/interface-reader-sheet-v1.webp",
+    "cacheSha256": "79369bd7b69d8073adb4c6ed9344b582c03259a1ec2745b03cbe2f3d04064220",
+    "sourceBytes": 2468552,
+    "cacheBytes": 324442,
+    "sourceDimensions": [
+      1347,
+      5432
+    ],
+    "cacheDimensions": [
+      1347,
+      5432
+    ],
+    "lossless": false,
+    "resampled": false,
+    "meanVisibleChannelErrorAfterResampling": 0.6025116178463824
+  },
+  {
+    "source": "images/reader/continuation.webp",
+    "sourceFile": "themes/stargazer-starfield/source/images/reader/continuation.webp",
+    "sourceSha256": "130f7a2df9b48cdb9c21c6fbed53877cfa086a6c56296377b99bed3bb21600fc",
+    "cache": "images/optimized/interface-reader-continuation-v1.webp",
+    "cacheSha256": "22748d3f4d009d6f04023d0342b8a0b6e54b2058e25a58fa6968406d3f1c9371",
+    "sourceBytes": 574440,
+    "cacheBytes": 77872,
+    "sourceDimensions": [
+      1347,
+      1515
+    ],
+    "cacheDimensions": [
+      1347,
+      1515
+    ],
+    "lossless": false,
+    "resampled": false,
+    "meanVisibleChannelErrorAfterResampling": 0.576288096515665
+  },
+  {
+    "source": "images/reader/progress-track.webp",
+    "sourceFile": "themes/stargazer-starfield/source/images/reader/progress-track.webp",
+    "sourceSha256": "c8117fdb0fe14f01b72af7bacc58c125365a53d38562fa2a2ec450415f02e3bb",
+    "cache": "images/optimized/interface-reader-track-v1.webp",
+    "cacheSha256": "cff77cfff75cdcf936ce92aeb8619ea6fe0030fe50f5c967ae178f6eeffe4ddf",
+    "sourceBytes": 149332,
+    "cacheBytes": 53374,
+    "sourceDimensions": [
+      2172,
+      140
+    ],
+    "cacheDimensions": [
+      2172,
+      140
+    ],
+    "lossless": false,
+    "resampled": false,
+    "meanVisibleChannelErrorAfterResampling": 0.6313503025519601
+  },
+  {
+    "source": "images/observation/waveform.png",
+    "sourceFile": "assets/详情弹窗/详细工程文件/声音频率.png",
+    "sourceSha256": "77fa5faf0a31d846635c647720a31e88b6a4846d59a92c39db765590cb68bb70",
+    "cache": "images/optimized/interface-observation-waveform-v1.webp",
+    "cacheSha256": "409fa2d53c82b4de3d91b66ec69d0a08c26d64db259ca6e862a6c5f40a0c8692",
+    "sourceBytes": 52269,
+    "cacheBytes": 45122,
+    "sourceDimensions": [
+      423,
+      93
+    ],
+    "cacheDimensions": [
+      423,
+      93
+    ],
+    "lossless": true,
+    "resampled": false,
+    "meanVisibleChannelErrorAfterResampling": 0.0
+  },
+  {
+    "source": "images/observation/waves.png",
+    "sourceFile": "assets/详情弹窗/详细工程文件/波浪纹理.png",
+    "sourceSha256": "fe67e1bff07f75c6bd46243dc7f635a9e21116d7c125304a9d774e57e57212be",
+    "cache": "images/optimized/interface-observation-waves-v1.webp",
+    "cacheSha256": "72671ca5e80c24d1da22edc8bb05931b4bbda966aabfd7753d44663d0514ce4e",
+    "sourceBytes": 57383,
+    "cacheBytes": 37536,
+    "sourceDimensions": [
+      1069,
+      306
+    ],
+    "cacheDimensions": [
+      1069,
+      306
+    ],
+    "lossless": true,
+    "resampled": false,
+    "meanVisibleChannelErrorAfterResampling": 0.0
+  },
+  {
+    "source": "images/observation/starlink.png",
+    "sourceFile": "assets/详情弹窗/详细工程文件/STARLINK.png",
+    "sourceSha256": "2720e9742f19b3eff8bbddfe4cb5d8599d2e40751f03faae2353adcf0cee9390",
+    "cache": "images/optimized/interface-observation-starlink-v1.webp",
+    "cacheSha256": "4879fd53d32a5e07f2a53eb1aa9019951165c0c78078faa9f7987e74a7bd33a2",
+    "sourceBytes": 4106,
+    "cacheBytes": 4116,
+    "sourceDimensions": [
+      87,
+      14
+    ],
+    "cacheDimensions": [
+      87,
+      14
+    ],
+    "lossless": true,
+    "resampled": false,
+    "meanVisibleChannelErrorAfterResampling": 0.0
+  },
+  {
+    "source": "images/observation/observation-id.png",
+    "sourceFile": "assets/详情弹窗/详细工程文件/OBS&ID.png",
+    "sourceSha256": "4a455b32b0e35f823fc218f7d38994c7323b0ff28940afaf28a8d9d0aa5f62ed",
+    "cache": "images/optimized/interface-observation-observation-id-v1.webp",
+    "cacheSha256": "799f0d41e508c156665e5241de8c2de81ea6c9ce123c69138089e843fa05cbbb",
+    "sourceBytes": 3200,
+    "cacheBytes": 3430,
+    "sourceDimensions": [
+      30,
+      37
+    ],
+    "cacheDimensions": [
+      30,
+      37
+    ],
+    "lossless": true,
+    "resampled": false,
+    "meanVisibleChannelErrorAfterResampling": 0.0
+  },
+  {
+    "source": "images/observation/close.png",
+    "sourceFile": "assets/详情弹窗/详细工程文件/退出按钮.png",
+    "sourceSha256": "b77118a6efbdfcbceb6c47d9237d6f92e42e67456bed27490129a3995475eb23",
+    "cache": "images/optimized/interface-observation-close-v1.webp",
+    "cacheSha256": "7cc39d35f4961f9b35e18c6d94a0bb17fad31901a95c439f411beea83b0aeec1",
+    "sourceBytes": 4386,
+    "cacheBytes": 4470,
+    "sourceDimensions": [
+      28,
+      27
+    ],
+    "cacheDimensions": [
+      28,
+      27
+    ],
+    "lossless": true,
+    "resampled": false,
+    "meanVisibleChannelErrorAfterResampling": 0.0
+  },
+  {
+    "source": "images/observation/year-pointer.png",
+    "sourceFile": "assets/详情弹窗/详细工程文件/supplement-crops/year-pointer.png",
+    "sourceSha256": "4cd872a090e22257d8084fd8348370d38711422806424a70054aecaef72b6a3c",
+    "cache": "images/optimized/interface-observation-year-pointer-v1.webp",
+    "cacheSha256": "7763b32166d3ef999d986dbe6f2fff40e2cbd1f0a737871845a5c80939f6ec09",
+    "sourceBytes": 10710,
+    "cacheBytes": 9024,
+    "sourceDimensions": [
+      119,
+      43
+    ],
+    "cacheDimensions": [
+      119,
+      43
+    ],
+    "lossless": true,
+    "resampled": false,
+    "meanVisibleChannelErrorAfterResampling": 0.0
+  },
+  {
+    "source": "images/observation/diamond.png",
+    "sourceFile": "assets/详情弹窗/详细工程文件/supplement-crops/diamond.png",
+    "sourceSha256": "21ef4041a5a5e10c9a552031e5da9c22fb960ca5e26184921f352994df00db54",
+    "cache": "images/optimized/interface-observation-diamond-v1.webp",
+    "cacheSha256": "9a221da855e0d87c51d21c6c4cf617f3e554b7a898b4fc2d8b3eba11ff59e074",
+    "sourceBytes": 4341,
+    "cacheBytes": 4278,
+    "sourceDimensions": [
+      22,
+      23
+    ],
+    "cacheDimensions": [
+      22,
+      23
+    ],
+    "lossless": true,
+    "resampled": false,
+    "meanVisibleChannelErrorAfterResampling": 0.0
+  },
+  {
+    "source": "images/observation/dial-ticks.png",
+    "sourceFile": "assets/详情弹窗/详细工程文件/supplement-crops/dial-ticks.png",
+    "sourceSha256": "dcf9b549dcb871aea22e1445f0d95e658c6de799cbe1e220fb9f10bc6fa3cda3",
+    "cache": "images/optimized/interface-observation-dial-ticks-v1.webp",
+    "cacheSha256": "55b6987745ba9d3d71246b097884ef75a04a51d09e9a475cf7571d65e171dddd",
+    "sourceBytes": 7310,
+    "cacheBytes": 6160,
+    "sourceDimensions": [
+      63,
+      62
+    ],
+    "cacheDimensions": [
+      63,
+      62
+    ],
+    "lossless": true,
+    "resampled": false,
+    "meanVisibleChannelErrorAfterResampling": 0.0
+  },
+  {
+    "source": "images/observation/dial-bracket.png",
+    "sourceFile": "assets/详情弹窗/详细工程文件/supplement-crops/dial-bracket.png",
+    "sourceSha256": "b79e9425535eb45ea83f6745f9603276b60bcffee8569e987cd0d775d18e9e05",
+    "cache": "images/optimized/interface-observation-dial-bracket-v1.webp",
+    "cacheSha256": "44a0b0dca2175d480b77be37fddcfc42f463d1455a3a82c246c0b443cad013a1",
+    "sourceBytes": 5454,
+    "cacheBytes": 5690,
+    "sourceDimensions": [
+      19,
+      81
+    ],
+    "cacheDimensions": [
+      19,
+      81
+    ],
+    "lossless": true,
+    "resampled": false,
+    "meanVisibleChannelErrorAfterResampling": 0.0
+  },
+  {
+    "source": "images/observation/date-boxes.png",
+    "sourceFile": "assets/详情弹窗/详细工程文件/supplement-crops/date-boxes.png",
+    "sourceSha256": "1534980e1b6afaa832f5f2d29f9df36daae037e72de1e21bae47d40aea4565f7",
+    "cache": "images/optimized/interface-observation-date-boxes-v1.webp",
+    "cacheSha256": "fb5253e4b65b5e7bbd25d22d15ca7128698c1f75101f0ade134fe5c369a0c67e",
+    "sourceBytes": 22759,
+    "cacheBytes": 20100,
+    "sourceDimensions": [
+      162,
+      93
+    ],
+    "cacheDimensions": [
+      162,
+      93
+    ],
+    "lossless": true,
+    "resampled": false,
+    "meanVisibleChannelErrorAfterResampling": 0.0
+  },
+  {
+    "source": "images/observation/call-label.png",
+    "sourceFile": "assets/详情弹窗/详细工程文件/supplement-crops/call-label.png",
+    "sourceSha256": "30a60731fc81daa8949ee6a38140913cdcefa70acac1cc9c707d4ef3ef9359d1",
+    "cache": "images/optimized/interface-observation-call-label-v1.webp",
+    "cacheSha256": "a4dbe773b517fb89a1008403d5cfcd46fd4482b83e212d7f4df3b39afd038fb7",
+    "sourceBytes": 7080,
+    "cacheBytes": 6580,
+    "sourceDimensions": [
+      64,
+      37
+    ],
+    "cacheDimensions": [
+      64,
+      37
+    ],
+    "lossless": true,
+    "resampled": false,
+    "meanVisibleChannelErrorAfterResampling": 0.0
+  },
+  {
+    "source": "images/observation/call-word.png",
+    "sourceFile": "assets/详情弹窗/详细工程文件/supplement-crops/call-word.png",
+    "sourceSha256": "332d6b86ac8db4c13c0cb3f9d66589aca9d5dc8778e20138b981d972a40ad399",
+    "cache": "images/optimized/interface-observation-call-word-v1.webp",
+    "cacheSha256": "32a501f650c91a28242da3c03685254049a64bf337b8109916e064c61db7d835",
+    "sourceBytes": 5893,
+    "cacheBytes": 5722,
+    "sourceDimensions": [
+      64,
+      24
+    ],
+    "cacheDimensions": [
+      64,
+      24
+    ],
+    "lossless": true,
+    "resampled": false,
+    "meanVisibleChannelErrorAfterResampling": 0.0
+  },
+  {
+    "source": "images/observation/call-underline.png",
+    "sourceFile": "assets/详情弹窗/详细工程文件/supplement-crops/call-underline.png",
+    "sourceSha256": "7f1cfd9fc19882713980bf9fa57ed0080ef90abea4b78e42acab3d0ca96dec67",
+    "cache": "images/optimized/interface-observation-call-underline-v1.webp",
+    "cacheSha256": "837c7e2d07d11b4e4c6714f68be03a53fd184e209e4b11968fc75b859c5da459",
+    "sourceBytes": 4047,
+    "cacheBytes": 4184,
+    "sourceDimensions": [
+      64,
+      13
+    ],
+    "cacheDimensions": [
+      64,
+      13
+    ],
+    "lossless": true,
+    "resampled": false,
+    "meanVisibleChannelErrorAfterResampling": 0.0
+  },
+  {
+    "source": "images/observation/hour-label.png",
+    "sourceFile": "assets/详情弹窗/详细工程文件/supplement-crops/hour-label.png",
+    "sourceSha256": "664390d615a413ea748e0c1cd84f61170f8afe8f28f916a2f0287f079833e5e8",
+    "cache": "images/optimized/interface-observation-hour-label-v1.webp",
+    "cacheSha256": "af8955e00a4eb899b7926eb760620e0e6f4fda8fd30884a03058604564ba241a",
+    "sourceBytes": 4432,
+    "cacheBytes": 4426,
+    "sourceDimensions": [
+      33,
+      26
+    ],
+    "cacheDimensions": [
+      33,
+      26
+    ],
+    "lossless": true,
+    "resampled": false,
+    "meanVisibleChannelErrorAfterResampling": 0.0
+  },
+  {
+    "source": "images/observation/read-rule.png",
+    "sourceFile": "assets/详情弹窗/详细工程文件/supplement-crops/read-rule.png",
+    "sourceSha256": "467474872477e8e8ab4a20fd7f939e45be2b4025402cc16656203ab2be59364a",
+    "cache": "images/optimized/interface-observation-read-rule-v1.webp",
+    "cacheSha256": "aa73e46853c4ca2cc7d6f626101c50a8ef71720cf0790e02b9bae360bc6323ed",
+    "sourceBytes": 11171,
+    "cacheBytes": 9072,
+    "sourceDimensions": [
+      218,
+      42
+    ],
+    "cacheDimensions": [
+      218,
+      42
+    ],
+    "lossless": true,
+    "resampled": false,
+    "meanVisibleChannelErrorAfterResampling": 0.0
+  },
+  {
+    "source": "images/observation/read.png",
+    "sourceFile": "assets/补充素材/补充/READ重设计.png",
+    "sourceSha256": "29a6d4812ea831b03a2e440540f2f6476f0fd757c3c2be31e1dd71f0561360c3",
+    "cache": "images/optimized/interface-observation-read-v1.webp",
+    "cacheSha256": "2fd26ac8a0d775424d8e768fa3b11c2574518bfc4d9f237478bde057dddfed3c",
+    "sourceBytes": 33191,
+    "cacheBytes": 26600,
+    "sourceDimensions": [
+      273,
+      128
+    ],
+    "cacheDimensions": [
+      273,
+      128
+    ],
+    "lossless": true,
+    "resampled": false,
+    "meanVisibleChannelErrorAfterResampling": 0.0
+  },
+  {
+    "source": "images/observation/glyphs/0.png",
+    "sourceFile": "assets/科技小字-修订版7-透明字形/透明PNG/数字/0.png",
+    "sourceSha256": "fcd47c9c9538ab13f840e1b9788e1169da81ccf05efa449d5481ddac8c1296a3",
+    "cache": "images/optimized/interface-glyph-0-v1.webp",
+    "cacheSha256": "fbd7dceb53679f370965894f92077bead6d946b62b64285387b24eab513084f0",
+    "sourceBytes": 7565,
+    "cacheBytes": 2572,
+    "sourceDimensions": [
+      502,
+      560
+    ],
+    "cacheDimensions": [
+      502,
+      560
+    ],
+    "lossless": true,
+    "resampled": false,
+    "meanVisibleChannelErrorAfterResampling": 0.0
+  },
+  {
+    "source": "images/observation/glyphs/1.png",
+    "sourceFile": "assets/科技小字-修订版7-透明字形/透明PNG/数字/1.png",
+    "sourceSha256": "e76687ca555edbc3b369bcb58d5cacd2e19fe4aed541e5b81a9699b408a6bbe5",
+    "cache": "images/optimized/interface-glyph-1-v1.webp",
+    "cacheSha256": "9b5959751879e491b58092f78101074b00085fa3deecbd55931d242b6b08cfc0",
+    "sourceBytes": 6587,
+    "cacheBytes": 2078,
+    "sourceDimensions": [
+      444,
+      561
+    ],
+    "cacheDimensions": [
+      444,
+      561
+    ],
+    "lossless": true,
+    "resampled": false,
+    "meanVisibleChannelErrorAfterResampling": 0.0
+  },
+  {
+    "source": "images/observation/glyphs/2.png",
+    "sourceFile": "assets/科技小字-修订版7-透明字形/透明PNG/数字/2.png",
+    "sourceSha256": "3527579f73b03ba7b863ebeb3cf465f427cab925095d5cce65864cb28d9c4681",
+    "cache": "images/optimized/interface-glyph-2-v1.webp",
+    "cacheSha256": "a54fd33687704e3828dc9f2fc0b517078e2375dbb15dac5a138d082edc7f7eef",
+    "sourceBytes": 11344,
+    "cacheBytes": 4530,
+    "sourceDimensions": [
+      463,
+      560
+    ],
+    "cacheDimensions": [
+      463,
+      560
+    ],
+    "lossless": true,
+    "resampled": false,
+    "meanVisibleChannelErrorAfterResampling": 0.0
+  },
+  {
+    "source": "images/observation/glyphs/3.png",
+    "sourceFile": "assets/科技小字-修订版7-透明字形/透明PNG/数字/3.png",
+    "sourceSha256": "6a9707a733d81d28ab75b2e9d2dce2cc46d0ba341e37dd2801f5dfca7f839529",
+    "cache": "images/optimized/interface-glyph-3-v1.webp",
+    "cacheSha256": "a7e6489b622367213c341c4536404694f709c305a8dbc9f6b83bcd7670714ed4",
+    "sourceBytes": 16098,
+    "cacheBytes": 6972,
+    "sourceDimensions": [
+      502,
+      560
+    ],
+    "cacheDimensions": [
+      502,
+      560
+    ],
+    "lossless": true,
+    "resampled": false,
+    "meanVisibleChannelErrorAfterResampling": 0.0
+  },
+  {
+    "source": "images/observation/glyphs/4.png",
+    "sourceFile": "assets/科技小字-修订版7-透明字形/透明PNG/数字/4.png",
+    "sourceSha256": "53a43371be44f70162285e4073d83f3f8c9e56125cec4ed3023f78e414777103",
+    "cache": "images/optimized/interface-glyph-4-v1.webp",
+    "cacheSha256": "68ae9136a64bbf4b0f9f9fca0cc22ff1d7e767b46d3efad1ff43acc502c84dea",
+    "sourceBytes": 8939,
+    "cacheBytes": 3156,
+    "sourceDimensions": [
+      521,
+      560
+    ],
+    "cacheDimensions": [
+      521,
+      560
+    ],
+    "lossless": true,
+    "resampled": false,
+    "meanVisibleChannelErrorAfterResampling": 0.0
+  },
+  {
+    "source": "images/observation/glyphs/5.png",
+    "sourceFile": "assets/科技小字-修订版7-透明字形/透明PNG/数字/5.png",
+    "sourceSha256": "f1870c9e7e9c10e27e6a100960334d30a84e85593e23cf18d20db5cba9e8a3fd",
+    "cache": "images/optimized/interface-glyph-5-v1.webp",
+    "cacheSha256": "9ec78630c1582e8e0bff4d4ac10c2ba2643cea4424ebe0b39bd91022505e05ca",
+    "sourceBytes": 10800,
+    "cacheBytes": 4248,
+    "sourceDimensions": [
+      502,
+      560
+    ],
+    "cacheDimensions": [
+      502,
+      560
+    ],
+    "lossless": true,
+    "resampled": false,
+    "meanVisibleChannelErrorAfterResampling": 0.0
+  },
+  {
+    "source": "images/observation/glyphs/6.png",
+    "sourceFile": "assets/科技小字-修订版7-透明字形/透明PNG/数字/6.png",
+    "sourceSha256": "f07cae377d1f9b202dc68e834e608c5b424c11c8983c379d16ce82eff5391b1b",
+    "cache": "images/optimized/interface-glyph-6-v1.webp",
+    "cacheSha256": "974631f35b4f41345e5044c3566765cff9d8e8d28f3097be8d928345b5d0b305",
+    "sourceBytes": 8017,
+    "cacheBytes": 2860,
+    "sourceDimensions": [
+      502,
+      560
+    ],
+    "cacheDimensions": [
+      502,
+      560
+    ],
+    "lossless": true,
+    "resampled": false,
+    "meanVisibleChannelErrorAfterResampling": 0.0
+  },
+  {
+    "source": "images/observation/glyphs/7.png",
+    "sourceFile": "assets/科技小字-修订版7-透明字形/透明PNG/数字/7.png",
+    "sourceSha256": "07dcb9d7fad960e3a962d97a3391256d4014a737c19fa2c1f5e41a5a184a1482",
+    "cache": "images/optimized/interface-glyph-7-v1.webp",
+    "cacheSha256": "8e6af23c530587f4a9775b197edae235d7012538b078d7c633d711f1d45c645f",
+    "sourceBytes": 12221,
+    "cacheBytes": 3298,
+    "sourceDimensions": [
+      503,
+      560
+    ],
+    "cacheDimensions": [
+      503,
+      560
+    ],
+    "lossless": true,
+    "resampled": false,
+    "meanVisibleChannelErrorAfterResampling": 0.0
+  },
+  {
+    "source": "images/observation/glyphs/8.png",
+    "sourceFile": "assets/科技小字-修订版7-透明字形/透明PNG/数字/8.png",
+    "sourceSha256": "87024987d977f76376de2daeb77da6f18a78a7856cc7c5b383bab76582d401de",
+    "cache": "images/optimized/interface-glyph-8-v1.webp",
+    "cacheSha256": "fbf25928b68e67e5b7f2b5504f271032e48fc9efe6b48c68f37caadfb77a7ff6",
+    "sourceBytes": 11158,
+    "cacheBytes": 2922,
+    "sourceDimensions": [
+      502,
+      560
+    ],
+    "cacheDimensions": [
+      502,
+      560
+    ],
+    "lossless": true,
+    "resampled": false,
+    "meanVisibleChannelErrorAfterResampling": 0.0
+  },
+  {
+    "source": "images/observation/glyphs/9.png",
+    "sourceFile": "assets/科技小字-修订版7-透明字形/透明PNG/数字/9.png",
+    "sourceSha256": "bc199d82119eac590db9f38d3d30f3be7ac866e9bb6ad6139d4353a043f69283",
+    "cache": "images/optimized/interface-glyph-9-v1.webp",
+    "cacheSha256": "dd8dc33fa8431ffffa616c76a21a6c0e04ad28a4775f80e13facd8c04ccf6431",
+    "sourceBytes": 8017,
+    "cacheBytes": 2860,
+    "sourceDimensions": [
+      502,
+      560
+    ],
+    "cacheDimensions": [
+      502,
+      560
+    ],
+    "lossless": true,
+    "resampled": false,
+    "meanVisibleChannelErrorAfterResampling": 0.0
+  },
+  {
+    "source": "images/observation/glyphs/A.png",
+    "sourceFile": "assets/科技小字-修订版7-透明字形/透明PNG/大写字母/A.png",
+    "sourceSha256": "050dd198da312951d1c5ea6e6051ea0daa8950accaeed0c61f1d90e2197bfb5d",
+    "cache": "images/optimized/interface-glyph-A-v1.webp",
+    "cacheSha256": "daff85e5757f13debe572512a98188cf1d5e93b716cadc70fb29919cc1904d7b",
+    "sourceBytes": 17010,
+    "cacheBytes": 7324,
+    "sourceDimensions": [
+      504,
+      560
+    ],
+    "cacheDimensions": [
+      504,
+      560
+    ],
+    "lossless": true,
+    "resampled": false,
+    "meanVisibleChannelErrorAfterResampling": 0.0
+  },
+  {
+    "source": "images/observation/glyphs/B.png",
+    "sourceFile": "assets/科技小字-修订版7-透明字形/透明PNG/大写字母/B.png",
+    "sourceSha256": "ff0961ccf5c1639cf7e305b0425a2666ad8bf7560d37dc8958f37448188911c7",
+    "cache": "images/optimized/interface-glyph-B-v1.webp",
+    "cacheSha256": "1349e424df90db2cef536e4613fc9e3fca1ca76702828cd4c5c3580e61fed651",
+    "sourceBytes": 8473,
+    "cacheBytes": 3438,
+    "sourceDimensions": [
+      484,
+      560
+    ],
+    "cacheDimensions": [
+      484,
+      560
+    ],
+    "lossless": true,
+    "resampled": false,
+    "meanVisibleChannelErrorAfterResampling": 0.0
+  },
+  {
+    "source": "images/observation/glyphs/C.png",
+    "sourceFile": "assets/科技小字-修订版7-透明字形/透明PNG/大写字母/C.png",
+    "sourceSha256": "456906728d0ba956b0c30dda1e92c7017fe2edb6fabc4d752ab2929ae7f30589",
+    "cache": "images/optimized/interface-glyph-C-v1.webp",
+    "cacheSha256": "8c9dc1096108441f4521a422ba8c911354545968c0cb42951f0de9e0d895dcc8",
+    "sourceBytes": 8962,
+    "cacheBytes": 3266,
+    "sourceDimensions": [
+      498,
+      560
+    ],
+    "cacheDimensions": [
+      498,
+      560
+    ],
+    "lossless": true,
+    "resampled": false,
+    "meanVisibleChannelErrorAfterResampling": 0.0
+  },
+  {
+    "source": "images/observation/glyphs/D.png",
+    "sourceFile": "assets/科技小字-修订版7-透明字形/透明PNG/大写字母/D.png",
+    "sourceSha256": "e6a14c3369f27aa39df7c339e95e67abe4f720d36e0861663c63c268e6927ce8",
+    "cache": "images/optimized/interface-glyph-D-v1.webp",
+    "cacheSha256": "d3df50c17fd7a75cac3544c8ff498fc35a1899056dfb41fe66fb3c429ff8d88f",
+    "sourceBytes": 6630,
+    "cacheBytes": 2130,
+    "sourceDimensions": [
+      498,
+      560
+    ],
+    "cacheDimensions": [
+      498,
+      560
+    ],
+    "lossless": true,
+    "resampled": false,
+    "meanVisibleChannelErrorAfterResampling": 0.0
+  },
+  {
+    "source": "images/observation/glyphs/E.png",
+    "sourceFile": "assets/科技小字-修订版7-透明字形/透明PNG/大写字母/E.png",
+    "sourceSha256": "2c884960cec6d78308d981f14df91ad26efdc88f9e449c995441bb37e7d364f2",
+    "cache": "images/optimized/interface-glyph-E-v1.webp",
+    "cacheSha256": "b076bc2e35509fd484c0c01d4419878f3aac27f11657e97851b01d9b560c648a",
+    "sourceBytes": 2770,
+    "cacheBytes": 444,
+    "sourceDimensions": [
+      477,
+      560
+    ],
+    "cacheDimensions": [
+      477,
+      560
+    ],
+    "lossless": true,
+    "resampled": false,
+    "meanVisibleChannelErrorAfterResampling": 0.0
+  },
+  {
+    "source": "images/observation/glyphs/F.png",
+    "sourceFile": "assets/科技小字-修订版7-透明字形/透明PNG/大写字母/F.png",
+    "sourceSha256": "6f611cd2465735ac88115b48987c92f8038da3ce70b30fd80e3b35b6f560fd76",
+    "cache": "images/optimized/interface-glyph-F-v1.webp",
+    "cacheSha256": "c7509cae23695e453f24cc3aed4e1dbe428b88d28878c3de3a1c945403a24204",
+    "sourceBytes": 2674,
+    "cacheBytes": 400,
+    "sourceDimensions": [
+      477,
+      560
+    ],
+    "cacheDimensions": [
+      477,
+      560
+    ],
+    "lossless": true,
+    "resampled": false,
+    "meanVisibleChannelErrorAfterResampling": 0.0
+  },
+  {
+    "source": "images/observation/glyphs/G.png",
+    "sourceFile": "assets/科技小字-修订版7-透明字形/透明PNG/大写字母/G.png",
+    "sourceSha256": "32cbf6324ccd687549f3c7a6d952e748f75cfd20c09c98c6b83feeb3c1a59db5",
+    "cache": "images/optimized/interface-glyph-G-v1.webp",
+    "cacheSha256": "44941286b96d404b6bbc5704b1ca1e6c68d9e3a913032aefcb9bde323dd62ef9",
+    "sourceBytes": 8981,
+    "cacheBytes": 3314,
+    "sourceDimensions": [
+      498,
+      560
+    ],
+    "cacheDimensions": [
+      498,
+      560
+    ],
+    "lossless": true,
+    "resampled": false,
+    "meanVisibleChannelErrorAfterResampling": 0.0
+  },
+  {
+    "source": "images/observation/glyphs/H.png",
+    "sourceFile": "assets/科技小字-修订版7-透明字形/透明PNG/大写字母/H.png",
+    "sourceSha256": "e4b142246236a892fe784cfe0b9096506a1400c2ebb007b3bacf1547407cbafc",
+    "cache": "images/optimized/interface-glyph-H-v1.webp",
+    "cacheSha256": "95acce5c57a1a3e47be1bca0792ce08838d1a8477ae7030d1baf01a3c340c2a2",
+    "sourceBytes": 2767,
+    "cacheBytes": 434,
+    "sourceDimensions": [
+      498,
+      560
+    ],
+    "cacheDimensions": [
+      498,
+      560
+    ],
+    "lossless": true,
+    "resampled": false,
+    "meanVisibleChannelErrorAfterResampling": 0.0
+  },
+  {
+    "source": "images/observation/glyphs/I.png",
+    "sourceFile": "assets/科技小字-修订版7-透明字形/透明PNG/大写字母/I.png",
+    "sourceSha256": "75d04187930ce20c3d3e4dc89bef3d39943cf0807fc182a1f39e44b1bc3b79f0",
+    "cache": "images/optimized/interface-glyph-I-v1.webp",
+    "cacheSha256": "1e166cd3cb42bc5b2ff91e7b44a26091a9d7bf839fb56d9853abfea94563c10d",
+    "sourceBytes": 1678,
+    "cacheBytes": 174,
+    "sourceDimensions": [
+      189,
+      560
+    ],
+    "cacheDimensions": [
+      189,
+      560
+    ],
+    "lossless": true,
+    "resampled": false,
+    "meanVisibleChannelErrorAfterResampling": 0.0
+  },
+  {
+    "source": "images/observation/glyphs/J.png",
+    "sourceFile": "assets/科技小字-修订版7-透明字形/透明PNG/大写字母/J.png",
+    "sourceSha256": "7b08f9bdca9373a8b23c53f372f71203582322cbe3f8bd3c5e8ee2a6380e63f7",
+    "cache": "images/optimized/interface-glyph-J-v1.webp",
+    "cacheSha256": "58a073cf7fe3e200204c90f403ca36a278a2209c826d5ecd033790b28b785ef9",
+    "sourceBytes": 5054,
+    "cacheBytes": 1522,
+    "sourceDimensions": [
+      477,
+      560
+    ],
+    "cacheDimensions": [
+      477,
+      560
+    ],
+    "lossless": true,
+    "resampled": false,
+    "meanVisibleChannelErrorAfterResampling": 0.0
+  },
+  {
+    "source": "images/observation/glyphs/K.png",
+    "sourceFile": "assets/科技小字-修订版7-透明字形/透明PNG/大写字母/K.png",
+    "sourceSha256": "5c5906ce9ec170af32bed2a143f5f7f8c3b0124f04d284834dda87cdf514c45d",
+    "cache": "images/optimized/interface-glyph-K-v1.webp",
+    "cacheSha256": "e70ac3c7885af3c56d0a4afd8af894180bbb315a1d1375eb883cc99973b4ad7f",
+    "sourceBytes": 14054,
+    "cacheBytes": 5766,
+    "sourceDimensions": [
+      519,
+      560
+    ],
+    "cacheDimensions": [
+      519,
+      560
+    ],
+    "lossless": true,
+    "resampled": false,
+    "meanVisibleChannelErrorAfterResampling": 0.0
+  },
+  {
+    "source": "images/observation/glyphs/L.png",
+    "sourceFile": "assets/科技小字-修订版7-透明字形/透明PNG/大写字母/L.png",
+    "sourceSha256": "46a4a69f705bcd011a678a80b4b7df5d251a2ef28f345e9a92741a885db77a7a",
+    "cache": "images/optimized/interface-glyph-L-v1.webp",
+    "cacheSha256": "71897bed71fecfdb3cafc6003fc06737367d080e4c34d8a55bbddae8eadf270d",
+    "sourceBytes": 2414,
+    "cacheBytes": 294,
+    "sourceDimensions": [
+      463,
+      560
+    ],
+    "cacheDimensions": [
+      463,
+      560
+    ],
+    "lossless": true,
+    "resampled": false,
+    "meanVisibleChannelErrorAfterResampling": 0.0
+  },
+  {
+    "source": "images/observation/glyphs/M.png",
+    "sourceFile": "assets/科技小字-修订版7-透明字形/透明PNG/大写字母/M.png",
+    "sourceSha256": "661dd130e918a8cc5b78c19b4272a5264222ea299603390c6fe6e64b971aee86",
+    "cache": "images/optimized/interface-glyph-M-v1.webp",
+    "cacheSha256": "67d086b1d2269af2c80964f387dcc9ccac1217809bed9ac6b31b43545ce8ccf3",
+    "sourceBytes": 11475,
+    "cacheBytes": 4646,
+    "sourceDimensions": [
+      555,
+      560
+    ],
+    "cacheDimensions": [
+      555,
+      560
+    ],
+    "lossless": true,
+    "resampled": false,
+    "meanVisibleChannelErrorAfterResampling": 0.0
+  },
+  {
+    "source": "images/observation/glyphs/N.png",
+    "sourceFile": "assets/科技小字-修订版7-透明字形/透明PNG/大写字母/N.png",
+    "sourceSha256": "d3194bb01c2873aef8ce45fff5c65b970a0fbfae3836896f5b6c4e15a252639f",
+    "cache": "images/optimized/interface-glyph-N-v1.webp",
+    "cacheSha256": "a5d175b2b4adab931dc6cb236204c4048bf7e7fac997823867a087426225ddd2",
+    "sourceBytes": 11513,
+    "cacheBytes": 4140,
+    "sourceDimensions": [
+      498,
+      560
+    ],
+    "cacheDimensions": [
+      498,
+      560
+    ],
+    "lossless": true,
+    "resampled": false,
+    "meanVisibleChannelErrorAfterResampling": 0.0
+  },
+  {
+    "source": "images/observation/glyphs/O.png",
+    "sourceFile": "assets/科技小字-修订版7-透明字形/透明PNG/大写字母/O.png",
+    "sourceSha256": "6eab6325720f71b371204f885df6526da6b0f6e4d0f241a48440663f58cc5c04",
+    "cache": "images/optimized/interface-glyph-O-v1.webp",
+    "cacheSha256": "9f52d0b24d9b7b25521c7b3516705beb5a0c8ab689366f3e6fb0d2e68e0481b6",
+    "sourceBytes": 8776,
+    "cacheBytes": 3170,
+    "sourceDimensions": [
+      498,
+      560
+    ],
+    "cacheDimensions": [
+      498,
+      560
+    ],
+    "lossless": true,
+    "resampled": false,
+    "meanVisibleChannelErrorAfterResampling": 0.0
+  },
+  {
+    "source": "images/observation/glyphs/P.png",
+    "sourceFile": "assets/科技小字-修订版7-透明字形/透明PNG/大写字母/P.png",
+    "sourceSha256": "699480e161255ac529c1f78346bc17d3d19bfbccabc6306ce0f482e67d9df627",
+    "cache": "images/optimized/interface-glyph-P-v1.webp",
+    "cacheSha256": "67b9ec9304bbe1d2775509d8e5e152e0715142ea420d22705734037b93e4633a",
+    "sourceBytes": 6238,
+    "cacheBytes": 2070,
+    "sourceDimensions": [
+      477,
+      560
+    ],
+    "cacheDimensions": [
+      477,
+      560
+    ],
+    "lossless": true,
+    "resampled": false,
+    "meanVisibleChannelErrorAfterResampling": 0.0
+  },
+  {
+    "source": "images/observation/glyphs/Q.png",
+    "sourceFile": "assets/科技小字-修订版7-透明字形/透明PNG/大写字母/Q.png",
+    "sourceSha256": "71199fe3693f1a136cab7f4bf3482bc6aba828debf8605584217e1310c84236a",
+    "cache": "images/optimized/interface-glyph-Q-v1.webp",
+    "cacheSha256": "ea950c117a2827890d9b88ee5034f090a847bb2e0fccbef573008ef40b5fa307",
+    "sourceBytes": 11081,
+    "cacheBytes": 3990,
+    "sourceDimensions": [
+      530,
+      611
+    ],
+    "cacheDimensions": [
+      530,
+      611
+    ],
+    "lossless": true,
+    "resampled": false,
+    "meanVisibleChannelErrorAfterResampling": 0.0
+  },
+  {
+    "source": "images/observation/glyphs/R.png",
+    "sourceFile": "assets/科技小字-修订版7-透明字形/透明PNG/大写字母/R.png",
+    "sourceSha256": "26555e63719c5e499d0a2bb32815ddf90fd37d2ec497b8db0cc4956285f239b1",
+    "cache": "images/optimized/interface-glyph-R-v1.webp",
+    "cacheSha256": "7ff5a1859db034e9523cf140655f7618a551ce5d6790da9c41b0f451a7bc094b",
+    "sourceBytes": 11004,
+    "cacheBytes": 4286,
+    "sourceDimensions": [
+      512,
+      560
+    ],
+    "cacheDimensions": [
+      512,
+      560
+    ],
+    "lossless": true,
+    "resampled": false,
+    "meanVisibleChannelErrorAfterResampling": 0.0
+  },
+  {
+    "source": "images/observation/glyphs/S.png",
+    "sourceFile": "assets/科技小字-修订版7-透明字形/透明PNG/大写字母/S.png",
+    "sourceSha256": "bf55afca73942c7f5f9beceb15e8f41edbad4bb758c953934bd8e727f5ff22d1",
+    "cache": "images/optimized/interface-glyph-S-v1.webp",
+    "cacheSha256": "2143413273b65587f6c288fba396597205e0e2706f01110d9b83fee96e026ecd",
+    "sourceBytes": 8806,
+    "cacheBytes": 3142,
+    "sourceDimensions": [
+      498,
+      560
+    ],
+    "cacheDimensions": [
+      498,
+      560
+    ],
+    "lossless": true,
+    "resampled": false,
+    "meanVisibleChannelErrorAfterResampling": 0.0
+  },
+  {
+    "source": "images/observation/glyphs/T.png",
+    "sourceFile": "assets/科技小字-修订版7-透明字形/透明PNG/大写字母/T.png",
+    "sourceSha256": "9446481a8a067bd6c6490264a3ad9d26a5c11442229d7609b70c09a25f30490c",
+    "cache": "images/optimized/interface-glyph-T-v1.webp",
+    "cacheSha256": "4482cd597d80ecef5f6027e0ed503bc1a16d2def37725926f564f1f78bfe4813",
+    "sourceBytes": 2618,
+    "cacheBytes": 336,
+    "sourceDimensions": [
+      505,
+      560
+    ],
+    "cacheDimensions": [
+      505,
+      560
+    ],
+    "lossless": true,
+    "resampled": false,
+    "meanVisibleChannelErrorAfterResampling": 0.0
+  },
+  {
+    "source": "images/observation/glyphs/U.png",
+    "sourceFile": "assets/科技小字-修订版7-透明字形/透明PNG/大写字母/U.png",
+    "sourceSha256": "c59aa67d9b4217a1e98b514dd63a9a02dcec432074bb7d284103fb5fd16d0a4c",
+    "cache": "images/optimized/interface-glyph-U-v1.webp",
+    "cacheSha256": "7aac1065b84794b0745d8003e2326f589b18bbc90016a26c6c4079c0aa90c97d",
+    "sourceBytes": 5769,
+    "cacheBytes": 1876,
+    "sourceDimensions": [
+      498,
+      560
+    ],
+    "cacheDimensions": [
+      498,
+      560
+    ],
+    "lossless": true,
+    "resampled": false,
+    "meanVisibleChannelErrorAfterResampling": 0.0
+  },
+  {
+    "source": "images/observation/glyphs/V.png",
+    "sourceFile": "assets/科技小字-修订版7-透明字形/透明PNG/大写字母/V.png",
+    "sourceSha256": "bdab86ddfb01ac79c727b2050e14dad26d91cec9f4ddee14df92cd2992128ce3",
+    "cache": "images/optimized/interface-glyph-V-v1.webp",
+    "cacheSha256": "9ae57dfd9e37d4d6e66f8e94c727fba5fecc862b3c6d42e11d9e0bb2879ca8f9",
+    "sourceBytes": 19413,
+    "cacheBytes": 8608,
+    "sourceDimensions": [
+      512,
+      560
+    ],
+    "cacheDimensions": [
+      512,
+      560
+    ],
+    "lossless": true,
+    "resampled": false,
+    "meanVisibleChannelErrorAfterResampling": 0.0
+  },
+  {
+    "source": "images/observation/glyphs/W.png",
+    "sourceFile": "assets/科技小字-修订版7-透明字形/透明PNG/大写字母/W.png",
+    "sourceSha256": "6dc5d865d843b123220f2b792ce52108e666b27c2bb09a2383d2a85670db5692",
+    "cache": "images/optimized/interface-glyph-W-v1.webp",
+    "cacheSha256": "ccb909de382917a348c9d11d963bd89e08f3dd490bf0fac3353762da90e3bffa",
+    "sourceBytes": 29679,
+    "cacheBytes": 13478,
+    "sourceDimensions": [
+      695,
+      560
+    ],
+    "cacheDimensions": [
+      695,
+      560
+    ],
+    "lossless": true,
+    "resampled": false,
+    "meanVisibleChannelErrorAfterResampling": 0.0
+  },
+  {
+    "source": "images/observation/glyphs/X.png",
+    "sourceFile": "assets/科技小字-修订版7-透明字形/透明PNG/大写字母/X.png",
+    "sourceSha256": "297c83ac3684973d2ccb0e99f1d7c65755290ce46c65b9e96bb885c1b9a85166",
+    "cache": "images/optimized/interface-glyph-X-v1.webp",
+    "cacheSha256": "0981312bf95f971099d68ea105d2b2b652fd71667cfe0b11e96de8f3158788ba",
+    "sourceBytes": 20468,
+    "cacheBytes": 6640,
+    "sourceDimensions": [
+      512,
+      560
+    ],
+    "cacheDimensions": [
+      512,
+      560
+    ],
+    "lossless": true,
+    "resampled": false,
+    "meanVisibleChannelErrorAfterResampling": 0.0
+  },
+  {
+    "source": "images/observation/glyphs/Y.png",
+    "sourceFile": "assets/科技小字-修订版7-透明字形/透明PNG/大写字母/Y.png",
+    "sourceSha256": "4ab8d9b71fba15b04f8bc627a952c5ebb4774cec9111a0137e27befb99c85f25",
+    "cache": "images/optimized/interface-glyph-Y-v1.webp",
+    "cacheSha256": "586729e99f46ba9b407791017d6e5a30c54bca323390a6900af2a1a8bfe0a7ad",
+    "sourceBytes": 13310,
+    "cacheBytes": 4544,
+    "sourceDimensions": [
+      512,
+      560
+    ],
+    "cacheDimensions": [
+      512,
+      560
+    ],
+    "lossless": true,
+    "resampled": false,
+    "meanVisibleChannelErrorAfterResampling": 0.0
+  },
+  {
+    "source": "images/observation/glyphs/Z.png",
+    "sourceFile": "assets/科技小字-修订版7-透明字形/透明PNG/大写字母/Z.png",
+    "sourceSha256": "c7e53d5f6b10f691ea061fd868a49f461a73aa038b6cbae179974dcfd9859e79",
+    "cache": "images/optimized/interface-glyph-Z-v1.webp",
+    "cacheSha256": "a93f232960e20cd8dac97cf24ed87253e8fcf92febcc85dd438a5f44b02d841e",
+    "sourceBytes": 10677,
+    "cacheBytes": 2002,
+    "sourceDimensions": [
+      498,
+      560
+    ],
+    "cacheDimensions": [
+      498,
+      560
+    ],
+    "lossless": true,
+    "resampled": false,
+    "meanVisibleChannelErrorAfterResampling": 0.0
+  }
+]
