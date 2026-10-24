@@ -1,0 +1,5882 @@
+{
+  "label": "baseline",
+  "base": "http://127.0.0.1:4175",
+  "results": [
+    {
+      "settings": {
+        "name": "desktop-cold",
+        "width": 1440,
+        "height": 900,
+        "cpu": 1
+      },
+      "browser": "155.0.8059.84",
+      "elapsedMs": 1077,
+      "tasks": [
+        {
+          "start": 225.89999997615814,
+          "duration": 93
+        }
+      ],
+      "lcp": [
+        {
+          "time": 348,
+          "size": 5580,
+          "element": "room-thought-copy",
+          "url": ""
+        }
+      ],
+      "shifts": [],
+      "readyMs": 316.1999999284744,
+      "now": 1064.6000000238419,
+      "fcp": 120,
+      "domMs": 130.79999995231628,
+      "loadMs": 170.89999997615814,
+      "resources": [
+        {
+          "url": "http://127.0.0.1:4175/image/starfield/room-window-mask-v17.svg",
+          "start": 17.799999952316284,
+          "end": 29,
+          "bytes": 1297,
+          "duration": 11.200000047683716,
+          "initiator": "link"
+        },
+        {
+          "url": "http://127.0.0.1:4175/css/starry/tokens.css",
+          "start": 18,
+          "end": 31,
+          "bytes": 2857,
+          "duration": 13,
+          "initiator": "link"
+        },
+        {
+          "url": "http://127.0.0.1:4175/css/starry/motion-tokens.css",
+          "start": 18,
+          "end": 31.5,
+          "bytes": 2714,
+          "duration": 13.5,
+          "initiator": "link"
+        },
+        {
+          "url": "http://127.0.0.1:4175/image/starfield/room-poster-detail-v20.webp?v=d79d9a54cf3480c0",
+          "start": 18,
+          "end": 49.699999928474426,
+          "bytes": 1048394,
+          "duration": 31.699999928474426,
+          "initiator": "link"
+        },
+        {
+          "url": "http://127.0.0.1:4175/css/starry/site.css",
+          "start": 18.100000023841858,
+          "end": 31.299999952316284,
+          "bytes": 18843,
+          "duration": 13.199999928474426,
+          "initiator": "link"
+        },
+        {
+          "url": "http://127.0.0.1:4175/css/starry/scene.css",
+          "start": 18.100000023841858,
+          "end": 34.199999928474426,
+          "bytes": 16858,
+          "duration": 16.09999990463257,
+          "initiator": "link"
+        },
+        {
+          "url": "http://127.0.0.1:4175/css/starry/motion.css",
+          "start": 18.199999928474426,
+          "end": 35.199999928474426,
+          "bytes": 4693,
+          "duration": 17,
+          "initiator": "link"
+        },
+        {
+          "url": "http://127.0.0.1:4175/css/starry/reader.css",
+          "start": 18.199999928474426,
+          "end": 37,
+          "bytes": 11986,
+          "duration": 18.800000071525574,
+          "initiator": "link"
+        },
+        {
+          "url": "http://127.0.0.1:4175/css/starry/observation.css",
+          "start": 18.199999928474426,
+          "end": 38.39999997615814,
+          "bytes": 8731,
+          "duration": 20.200000047683716,
+          "initiator": "link"
+        },
+        {
+          "url": "http://127.0.0.1:4175/css/starry/search.css",
+          "start": 18.199999928474426,
+          "end": 38.699999928474426,
+          "bytes": 33189,
+          "duration": 20.5,
+          "initiator": "link"
+        },
+        {
+          "url": "http://127.0.0.1:4175/css/starry/collection.css",
+          "start": 18.299999952316284,
+          "end": 39.10000002384186,
+          "bytes": 3714,
+          "duration": 20.800000071525574,
+          "initiator": "link"
+        },
+        {
+          "url": "http://127.0.0.1:4175/css/starry/journal.css",
+          "start": 18.299999952316284,
+          "end": 39.5,
+          "bytes": 15018,
+          "duration": 21.200000047683716,
+          "initiator": "link"
+        },
+        {
+          "url": "http://127.0.0.1:4175/css/blog-theme-switch.css",
+          "start": 18.299999952316284,
+          "end": 40.799999952316284,
+          "bytes": 2031,
+          "duration": 22.5,
+          "initiator": "link"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/app.js",
+          "start": 18.299999952316284,
+          "end": 48.60000002384186,
+          "bytes": 71683,
+          "duration": 30.300000071525574,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/blog-theme-switch.js",
+          "start": 18.399999976158142,
+          "end": 48.89999997615814,
+          "bytes": 1250,
+          "duration": 30.5,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/static-page.js",
+          "start": 18.399999976158142,
+          "end": 47.89999997615814,
+          "bytes": 234,
+          "duration": 29.5,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/journal.js",
+          "start": 18.399999976158142,
+          "end": 48.10000002384186,
+          "bytes": 17129,
+          "duration": 29.700000047683716,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/audio.js",
+          "start": 54.799999952316284,
+          "end": 57.199999928474426,
+          "bytes": 6787,
+          "duration": 2.399999976158142,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/interactive-clouds.js",
+          "start": 54.799999952316284,
+          "end": 57,
+          "bytes": 8278,
+          "duration": 2.200000047683716,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/dome.js",
+          "start": 54.89999997615814,
+          "end": 58.299999952316284,
+          "bytes": 5590,
+          "duration": 3.399999976158142,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/painted.js",
+          "start": 54.89999997615814,
+          "end": 56.89999997615814,
+          "bytes": 7508,
+          "duration": 2,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/tokens.js",
+          "start": 54.89999997615814,
+          "end": 59.699999928474426,
+          "bytes": 3930,
+          "duration": 4.799999952316284,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/motion.js",
+          "start": 54.89999997615814,
+          "end": 59.799999952316284,
+          "bytes": 11507,
+          "duration": 4.899999976158142,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/experience.js",
+          "start": 55,
+          "end": 60.699999928474426,
+          "bytes": 818,
+          "duration": 5.699999928474426,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/edge-guide.js",
+          "start": 55.10000002384186,
+          "end": 60.89999997615814,
+          "bytes": 750,
+          "duration": 5.799999952316284,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/navigation.js",
+          "start": 55.10000002384186,
+          "end": 59.60000002384186,
+          "bytes": 2470,
+          "duration": 4.5,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/star-targets.js",
+          "start": 55.10000002384186,
+          "end": 62,
+          "bytes": 1124,
+          "duration": 6.899999976158142,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/render-budget.js",
+          "start": 55.10000002384186,
+          "end": 61.10000002384186,
+          "bytes": 3628,
+          "duration": 6,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/observation.js",
+          "start": 55.10000002384186,
+          "end": 62.10000002384186,
+          "bytes": 3284,
+          "duration": 7,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/polyhedron.js",
+          "start": 55.10000002384186,
+          "end": 62.89999997615814,
+          "bytes": 4642,
+          "duration": 7.799999952316284,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/dome-renderer.js",
+          "start": 55.10000002384186,
+          "end": 62.39999997615814,
+          "bytes": 10957,
+          "duration": 7.299999952316284,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/silhouette-walker.js",
+          "start": 55.199999928474426,
+          "end": 62.799999952316284,
+          "bytes": 3100,
+          "duration": 7.600000023841858,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/camera-bounds.js",
+          "start": 55.299999952316284,
+          "end": 63.5,
+          "bytes": 2061,
+          "duration": 8.200000047683716,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/reading-progress.js",
+          "start": 55.299999952316284,
+          "end": 62.799999952316284,
+          "bytes": 584,
+          "duration": 7.5,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/reader-art.js",
+          "start": 55.299999952316284,
+          "end": 64.19999992847443,
+          "bytes": 819,
+          "duration": 8.899999976158142,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/search.js",
+          "start": 55.299999952316284,
+          "end": 64.29999995231628,
+          "bytes": 28530,
+          "duration": 9,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/image/starfield/room-window-mask-v17.svg",
+          "start": 75.19999992847443,
+          "end": 76.89999997615814,
+          "bytes": 1297,
+          "duration": 1.7000000476837158,
+          "initiator": "css"
+        },
+        {
+          "url": "http://127.0.0.1:4175/fonts/lxgw-marker-gothic-v1.003.woff2",
+          "start": 77.60000002384186,
+          "end": 113.60000002384186,
+          "bytes": 1236064,
+          "duration": 36,
+          "initiator": "css"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/room-scene.js",
+          "start": 103.69999992847443,
+          "end": 107.10000002384186,
+          "bytes": 5343,
+          "duration": 3.4000000953674316,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/astrolabe.js",
+          "start": 103.79999995231628,
+          "end": 107,
+          "bytes": 435,
+          "duration": 3.200000047683716,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/call-waveform.js",
+          "start": 103.79999995231628,
+          "end": 106.89999997615814,
+          "bytes": 3294,
+          "duration": 3.100000023841858,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/starry/index.json",
+          "start": 138,
+          "end": 141,
+          "bytes": 11097,
+          "duration": 3,
+          "initiator": "fetch"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/observation/waves.png",
+          "start": 138.10000002384186,
+          "end": 142.10000002384186,
+          "bytes": 57383,
+          "duration": 4,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/branding/logo2.png",
+          "start": 138.10000002384186,
+          "end": 144.29999995231628,
+          "bytes": 364153,
+          "duration": 6.199999928474426,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/observation/year-pointer.png",
+          "start": 138.19999992847443,
+          "end": 142.79999995231628,
+          "bytes": 10710,
+          "duration": 4.600000023841858,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/optimized/silhouette-walk-frames.webp",
+          "start": 138.19999992847443,
+          "end": 142.69999992847443,
+          "bytes": 75732,
+          "duration": 4.5,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/observation/silhouette.png",
+          "start": 138.19999992847443,
+          "end": 142.79999995231628,
+          "bytes": 248138,
+          "duration": 4.600000023841858,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/observation/diamond.png",
+          "start": 138.29999995231628,
+          "end": 143.79999995231628,
+          "bytes": 4341,
+          "duration": 5.5,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/observation/dial-ticks.png",
+          "start": 138.29999995231628,
+          "end": 145.39999997615814,
+          "bytes": 7310,
+          "duration": 7.100000023841858,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/observation/dial-bracket.png",
+          "start": 138.39999997615814,
+          "end": 145.60000002384186,
+          "bytes": 5454,
+          "duration": 7.200000047683716,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/observation/call-word.png",
+          "start": 138.39999997615814,
+          "end": 146.10000002384186,
+          "bytes": 5893,
+          "duration": 7.700000047683716,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/observation/starlink.png",
+          "start": 138.39999997615814,
+          "end": 146.29999995231628,
+          "bytes": 4106,
+          "duration": 7.899999976158142,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/observation/waveform.png",
+          "start": 138.39999997615814,
+          "end": 146.69999992847443,
+          "bytes": 52269,
+          "duration": 8.299999952316284,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/observation/call-underline.png",
+          "start": 138.5,
+          "end": 147.39999997615814,
+          "bytes": 4047,
+          "duration": 8.899999976158142,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/observation/hour-label.png",
+          "start": 138.5,
+          "end": 147.39999997615814,
+          "bytes": 4432,
+          "duration": 8.899999976158142,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/observation/date-boxes.png",
+          "start": 138.5,
+          "end": 148.39999997615814,
+          "bytes": 22759,
+          "duration": 9.899999976158142,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/observation/close.png",
+          "start": 138.60000002384186,
+          "end": 148,
+          "bytes": 4386,
+          "duration": 9.399999976158142,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/observation/observation-id.png",
+          "start": 138.60000002384186,
+          "end": 148.19999992847443,
+          "bytes": 3200,
+          "duration": 9.599999904632568,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/observation/read-rule.png",
+          "start": 138.60000002384186,
+          "end": 149.10000002384186,
+          "bytes": 11171,
+          "duration": 10.5,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/observation/read.png",
+          "start": 138.60000002384186,
+          "end": 150.5,
+          "bytes": 33191,
+          "duration": 11.899999976158142,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/observation/polyhedron.png",
+          "start": 138.60000002384186,
+          "end": 153.19999992847443,
+          "bytes": 220772,
+          "duration": 14.599999904632568,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/branding/right-icons.png",
+          "start": 138.69999992847443,
+          "end": 150.60000002384186,
+          "bytes": 11273,
+          "duration": 11.900000095367432,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/optimized/entry-repair.webp",
+          "start": 138.69999992847443,
+          "end": 152,
+          "bytes": 100350,
+          "duration": 13.300000071525574,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/optimized/entry-base.webp",
+          "start": 138.69999992847443,
+          "end": 160.29999995231628,
+          "bytes": 1077910,
+          "duration": 21.600000023841858,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/observation/glyphs/Y.png",
+          "start": 138.79999995231628,
+          "end": 151.79999995231628,
+          "bytes": 13310,
+          "duration": 13,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/observation/glyphs/M.png",
+          "start": 138.89999997615814,
+          "end": 157.29999995231628,
+          "bytes": 11475,
+          "duration": 18.399999976158142,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/observation/glyphs/E.png",
+          "start": 138.89999997615814,
+          "end": 157.19999992847443,
+          "bytes": 2770,
+          "duration": 18.299999952316284,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/observation/glyphs/O.png",
+          "start": 139,
+          "end": 156.60000002384186,
+          "bytes": 8776,
+          "duration": 17.600000023841858,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/observation/glyphs/D.png",
+          "start": 139,
+          "end": 157.89999997615814,
+          "bytes": 6630,
+          "duration": 18.899999976158142,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/observation/glyphs/A.png",
+          "start": 139,
+          "end": 158.29999995231628,
+          "bytes": 17010,
+          "duration": 19.299999952316284,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/image/starfield/painted-sky-v11.webp",
+          "start": 176.60000002384186,
+          "end": 180.19999992847443,
+          "bytes": 1090084,
+          "duration": 3.5999999046325684,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/optimized/cloud-1.png",
+          "start": 176.69999992847443,
+          "end": 178.19999992847443,
+          "bytes": 41460,
+          "duration": 1.5,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/optimized/cloud-2.png",
+          "start": 176.69999992847443,
+          "end": 178.5,
+          "bytes": 40123,
+          "duration": 1.8000000715255737,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/optimized/cloud-3.png",
+          "start": 176.69999992847443,
+          "end": 178.5,
+          "bytes": 41616,
+          "duration": 1.8000000715255737,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/favicon.ico",
+          "start": 216.60000002384186,
+          "end": 218.29999995231628,
+          "bytes": 9,
+          "duration": 1.6999999284744263,
+          "initiator": "other"
+        }
+      ],
+      "room": "inside",
+      "quality": "full",
+      "activeJournalImages": 0,
+      "errors": [],
+      "network": [
+        {
+          "type": "Document",
+          "start": 912243.33412,
+          "initiator": "other",
+          "status": 200,
+          "cache": false,
+          "mime": "text/html",
+          "end": 912243.338423,
+          "encodedBytes": 26391,
+          "path": "/"
+        },
+        {
+          "type": "Image",
+          "start": 912243.350266,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/svg+xml",
+          "end": 912243.362601,
+          "encodedBytes": 1509,
+          "path": "/image/starfield/room-window-mask-v17.svg"
+        },
+        {
+          "type": "Image",
+          "start": 912243.351575,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/webp",
+          "end": 912243.383295,
+          "encodedBytes": 1048606,
+          "path": "/image/starfield/room-poster-detail-v20.webp"
+        },
+        {
+          "type": "Stylesheet",
+          "start": 912243.351613,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "text/css",
+          "end": 912243.364614,
+          "encodedBytes": 3079,
+          "path": "/css/starry/tokens.css"
+        },
+        {
+          "type": "Stylesheet",
+          "start": 912243.351647,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "text/css",
+          "end": 912243.365135,
+          "encodedBytes": 2936,
+          "path": "/css/starry/motion-tokens.css"
+        },
+        {
+          "type": "Stylesheet",
+          "start": 912243.351675,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "text/css",
+          "end": 912243.364897,
+          "encodedBytes": 19066,
+          "path": "/css/starry/site.css"
+        },
+        {
+          "type": "Stylesheet",
+          "start": 912243.351703,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "text/css",
+          "end": 912243.367802,
+          "encodedBytes": 17081,
+          "path": "/css/starry/scene.css"
+        },
+        {
+          "type": "Stylesheet",
+          "start": 912243.351727,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "text/css",
+          "end": 912243.368788,
+          "encodedBytes": 4915,
+          "path": "/css/starry/motion.css"
+        },
+        {
+          "type": "Stylesheet",
+          "start": 912243.351752,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "text/css",
+          "end": 912243.370589,
+          "encodedBytes": 12209,
+          "path": "/css/starry/reader.css"
+        },
+        {
+          "type": "Stylesheet",
+          "start": 912243.351778,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "text/css",
+          "end": 912243.372072,
+          "encodedBytes": 8953,
+          "path": "/css/starry/observation.css"
+        },
+        {
+          "type": "Stylesheet",
+          "start": 912243.351799,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "text/css",
+          "end": 912243.372278,
+          "encodedBytes": 33412,
+          "path": "/css/starry/search.css"
+        },
+        {
+          "type": "Stylesheet",
+          "start": 912243.351817,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "text/css",
+          "end": 912243.372742,
+          "encodedBytes": 3936,
+          "path": "/css/starry/collection.css"
+        },
+        {
+          "type": "Stylesheet",
+          "start": 912243.351844,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "text/css",
+          "end": 912243.373055,
+          "encodedBytes": 15241,
+          "path": "/css/starry/journal.css"
+        },
+        {
+          "type": "Stylesheet",
+          "start": 912243.351875,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "text/css",
+          "end": 912243.374388,
+          "encodedBytes": 2253,
+          "path": "/css/blog-theme-switch.css"
+        },
+        {
+          "type": "Script",
+          "start": 912243.351915,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912243.382124,
+          "encodedBytes": 71913,
+          "path": "/js/starfield/app.js"
+        },
+        {
+          "type": "Script",
+          "start": 912243.351949,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912243.382518,
+          "encodedBytes": 1479,
+          "path": "/js/blog-theme-switch.js"
+        },
+        {
+          "type": "Script",
+          "start": 912243.35198,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912243.381484,
+          "encodedBytes": 462,
+          "path": "/js/starfield/static-page.js"
+        },
+        {
+          "type": "Script",
+          "start": 912243.352009,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912243.381684,
+          "encodedBytes": 17359,
+          "path": "/js/starfield/journal.js"
+        },
+        {
+          "type": "Script",
+          "start": 912243.388398,
+          "initiator": "script",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912243.390807,
+          "encodedBytes": 7016,
+          "path": "/js/starfield/audio.js"
+        },
+        {
+          "type": "Script",
+          "start": 912243.38845,
+          "initiator": "script",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912243.390573,
+          "encodedBytes": 8507,
+          "path": "/js/starfield/interactive-clouds.js"
+        },
+        {
+          "type": "Script",
+          "start": 912243.388477,
+          "initiator": "script",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912243.390527,
+          "encodedBytes": 7737,
+          "path": "/js/starfield/painted.js"
+        },
+        {
+          "type": "Script",
+          "start": 912243.388511,
+          "initiator": "script",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912243.391885,
+          "encodedBytes": 5819,
+          "path": "/js/starfield/dome.js"
+        },
+        {
+          "type": "Script",
+          "start": 912243.388535,
+          "initiator": "script",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912243.393425,
+          "encodedBytes": 11737,
+          "path": "/js/starfield/motion.js"
+        },
+        {
+          "type": "Script",
+          "start": 912243.388555,
+          "initiator": "script",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912243.393301,
+          "encodedBytes": 4159,
+          "path": "/js/starfield/tokens.js"
+        },
+        {
+          "type": "Script",
+          "start": 912243.388586,
+          "initiator": "script",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912243.394371,
+          "encodedBytes": 1046,
+          "path": "/js/starfield/experience.js"
+        },
+        {
+          "type": "Script",
+          "start": 912243.388612,
+          "initiator": "script",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912243.393151,
+          "encodedBytes": 2699,
+          "path": "/js/starfield/navigation.js"
+        },
+        {
+          "type": "Script",
+          "start": 912243.388637,
+          "initiator": "script",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912243.394523,
+          "encodedBytes": 978,
+          "path": "/js/starfield/edge-guide.js"
+        },
+        {
+          "type": "Script",
+          "start": 912243.388664,
+          "initiator": "script",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912243.394644,
+          "encodedBytes": 3857,
+          "path": "/js/starfield/render-budget.js"
+        },
+        {
+          "type": "Script",
+          "start": 912243.388686,
+          "initiator": "script",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912243.395934,
+          "encodedBytes": 11187,
+          "path": "/js/starfield/dome-renderer.js"
+        },
+        {
+          "type": "Script",
+          "start": 912243.388707,
+          "initiator": "script",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912243.395578,
+          "encodedBytes": 1353,
+          "path": "/js/starfield/star-targets.js"
+        },
+        {
+          "type": "Script",
+          "start": 912243.388735,
+          "initiator": "script",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912243.39578,
+          "encodedBytes": 3513,
+          "path": "/js/starfield/observation.js"
+        },
+        {
+          "type": "Script",
+          "start": 912243.388757,
+          "initiator": "script",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912243.39651,
+          "encodedBytes": 4871,
+          "path": "/js/starfield/polyhedron.js"
+        },
+        {
+          "type": "Script",
+          "start": 912243.388805,
+          "initiator": "script",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912243.39643,
+          "encodedBytes": 3329,
+          "path": "/js/starfield/silhouette-walker.js"
+        },
+        {
+          "type": "Script",
+          "start": 912243.388831,
+          "initiator": "script",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912243.39647,
+          "encodedBytes": 812,
+          "path": "/js/starfield/reading-progress.js"
+        },
+        {
+          "type": "Script",
+          "start": 912243.388855,
+          "initiator": "script",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912243.397096,
+          "encodedBytes": 2290,
+          "path": "/js/starfield/camera-bounds.js"
+        },
+        {
+          "type": "Script",
+          "start": 912243.388879,
+          "initiator": "script",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912243.397853,
+          "encodedBytes": 28760,
+          "path": "/js/starfield/search.js"
+        },
+        {
+          "type": "Script",
+          "start": 912243.388903,
+          "initiator": "script",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912243.397773,
+          "encodedBytes": 1047,
+          "path": "/js/starfield/reader-art.js"
+        },
+        {
+          "type": "Image",
+          "start": 912243.408857,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/svg+xml",
+          "end": 912243.410529,
+          "encodedBytes": 1509,
+          "path": "/image/starfield/room-window-mask-v17.svg"
+        },
+        {
+          "type": "Font",
+          "start": 912243.411172,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "font/woff2",
+          "end": 912243.447188,
+          "encodedBytes": 1236276,
+          "path": "/fonts/lxgw-marker-gothic-v1.003.woff2"
+        },
+        {
+          "type": "Script",
+          "start": 912243.437306,
+          "initiator": "script",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912243.440747,
+          "encodedBytes": 5572,
+          "path": "/js/starfield/room-scene.js"
+        },
+        {
+          "type": "Script",
+          "start": 912243.437395,
+          "initiator": "script",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912243.440413,
+          "encodedBytes": 3523,
+          "path": "/js/starfield/call-waveform.js"
+        },
+        {
+          "type": "Script",
+          "start": 912243.437442,
+          "initiator": "script",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912243.440617,
+          "encodedBytes": 663,
+          "path": "/js/starfield/astrolabe.js"
+        },
+        {
+          "type": "Fetch",
+          "start": 912243.471589,
+          "initiator": "script",
+          "status": 200,
+          "cache": false,
+          "mime": "application/json",
+          "end": 912243.474645,
+          "encodedBytes": 11328,
+          "path": "/starry/index.json"
+        },
+        {
+          "type": "Image",
+          "start": 912243.47169,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912243.47787,
+          "encodedBytes": 364363,
+          "path": "/images/branding/logo2.png"
+        },
+        {
+          "type": "Image",
+          "start": 912243.471737,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912243.475658,
+          "encodedBytes": 57592,
+          "path": "/images/observation/waves.png"
+        },
+        {
+          "type": "Image",
+          "start": 912243.471765,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912243.476473,
+          "encodedBytes": 248348,
+          "path": "/images/observation/silhouette.png"
+        },
+        {
+          "type": "Image",
+          "start": 912243.47179,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/webp",
+          "end": 912243.476286,
+          "encodedBytes": 75942,
+          "path": "/images/optimized/silhouette-walk-frames.webp"
+        },
+        {
+          "type": "Image",
+          "start": 912243.471823,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912243.476434,
+          "encodedBytes": 10919,
+          "path": "/images/observation/year-pointer.png"
+        },
+        {
+          "type": "Image",
+          "start": 912243.47185,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912243.477427,
+          "encodedBytes": 4549,
+          "path": "/images/observation/diamond.png"
+        },
+        {
+          "type": "Image",
+          "start": 912243.471877,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912243.479007,
+          "encodedBytes": 7518,
+          "path": "/images/observation/dial-ticks.png"
+        },
+        {
+          "type": "Image",
+          "start": 912243.471928,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912243.479271,
+          "encodedBytes": 5662,
+          "path": "/images/observation/dial-bracket.png"
+        },
+        {
+          "type": "Image",
+          "start": 912243.47196,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912243.480365,
+          "encodedBytes": 52478,
+          "path": "/images/observation/waveform.png"
+        },
+        {
+          "type": "Image",
+          "start": 912243.471985,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912243.479921,
+          "encodedBytes": 4314,
+          "path": "/images/observation/starlink.png"
+        },
+        {
+          "type": "Image",
+          "start": 912243.472014,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912243.479703,
+          "encodedBytes": 6101,
+          "path": "/images/observation/call-word.png"
+        },
+        {
+          "type": "Image",
+          "start": 912243.472039,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912243.481023,
+          "encodedBytes": 4255,
+          "path": "/images/observation/call-underline.png"
+        },
+        {
+          "type": "Image",
+          "start": 912243.472062,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912243.481083,
+          "encodedBytes": 4640,
+          "path": "/images/observation/hour-label.png"
+        },
+        {
+          "type": "Image",
+          "start": 912243.472091,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912243.481936,
+          "encodedBytes": 22968,
+          "path": "/images/observation/date-boxes.png"
+        },
+        {
+          "type": "Image",
+          "start": 912243.472135,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912243.481838,
+          "encodedBytes": 3408,
+          "path": "/images/observation/observation-id.png"
+        },
+        {
+          "type": "Image",
+          "start": 912243.472157,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912243.481595,
+          "encodedBytes": 4594,
+          "path": "/images/observation/close.png"
+        },
+        {
+          "type": "Image",
+          "start": 912243.472181,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912243.482732,
+          "encodedBytes": 11380,
+          "path": "/images/observation/read-rule.png"
+        },
+        {
+          "type": "Image",
+          "start": 912243.472215,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912243.484121,
+          "encodedBytes": 33400,
+          "path": "/images/observation/read.png"
+        },
+        {
+          "type": "Image",
+          "start": 912243.47224,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912243.486815,
+          "encodedBytes": 220982,
+          "path": "/images/observation/polyhedron.png"
+        },
+        {
+          "type": "Image",
+          "start": 912243.472263,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912243.484266,
+          "encodedBytes": 11482,
+          "path": "/images/branding/right-icons.png"
+        },
+        {
+          "type": "Image",
+          "start": 912243.472297,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/webp",
+          "end": 912243.493917,
+          "encodedBytes": 1078122,
+          "path": "/images/optimized/entry-base.webp"
+        },
+        {
+          "type": "Image",
+          "start": 912243.472324,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/webp",
+          "end": 912243.485594,
+          "encodedBytes": 100561,
+          "path": "/images/optimized/entry-repair.webp"
+        },
+        {
+          "type": "Image",
+          "start": 912243.472364,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912243.485404,
+          "encodedBytes": 13519,
+          "path": "/images/observation/glyphs/Y.png"
+        },
+        {
+          "type": "Image",
+          "start": 912243.472433,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912243.490758,
+          "encodedBytes": 2978,
+          "path": "/images/observation/glyphs/E.png"
+        },
+        {
+          "type": "Image",
+          "start": 912243.472481,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912243.490909,
+          "encodedBytes": 11684,
+          "path": "/images/observation/glyphs/M.png"
+        },
+        {
+          "type": "Image",
+          "start": 912243.472514,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912243.490179,
+          "encodedBytes": 8984,
+          "path": "/images/observation/glyphs/O.png"
+        },
+        {
+          "type": "Image",
+          "start": 912243.472539,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912243.491508,
+          "encodedBytes": 6838,
+          "path": "/images/observation/glyphs/D.png"
+        },
+        {
+          "type": "Image",
+          "start": 912243.472566,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912243.491896,
+          "encodedBytes": 17219,
+          "path": "/images/observation/glyphs/A.png"
+        },
+        {
+          "type": "Image",
+          "start": 912243.510169,
+          "initiator": "other",
+          "status": 200,
+          "cache": false,
+          "mime": "image/webp",
+          "end": 912243.513814,
+          "encodedBytes": 1090296,
+          "path": "/image/starfield/painted-sky-v11.webp"
+        },
+        {
+          "type": "Image",
+          "start": 912243.510234,
+          "initiator": "other",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912243.511862,
+          "encodedBytes": 41669,
+          "path": "/images/optimized/cloud-1.png"
+        },
+        {
+          "type": "Image",
+          "start": 912243.510262,
+          "initiator": "other",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912243.512018,
+          "encodedBytes": 40332,
+          "path": "/images/optimized/cloud-2.png"
+        },
+        {
+          "type": "Image",
+          "start": 912243.510285,
+          "initiator": "other",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912243.512134,
+          "encodedBytes": 41825,
+          "path": "/images/optimized/cloud-3.png"
+        },
+        {
+          "type": "Other",
+          "start": 912243.550142,
+          "initiator": "other",
+          "status": 404,
+          "cache": false,
+          "mime": "text/plain",
+          "end": 912243.551896,
+          "encodedBytes": 223,
+          "path": "/favicon.ico"
+        }
+      ]
+    },
+    {
+      "settings": {
+        "name": "mobile-cold",
+        "width": 390,
+        "height": 844,
+        "mobile": true,
+        "cpu": 1
+      },
+      "browser": "155.0.8059.84",
+      "elapsedMs": 900,
+      "tasks": [
+        {
+          "start": 132.29999995231628,
+          "duration": 50
+        }
+      ],
+      "lcp": [
+        {
+          "time": 52,
+          "size": 3612,
+          "element": "",
+          "url": ""
+        },
+        {
+          "time": 196,
+          "size": 5580,
+          "element": "room-thought-copy",
+          "url": ""
+        }
+      ],
+      "shifts": [],
+      "readyMs": 181.29999995231628,
+      "now": 886.3999999761581,
+      "fcp": 52,
+      "domMs": 65,
+      "loadMs": 103.5,
+      "resources": [
+        {
+          "url": "http://127.0.0.1:4175/image/starfield/room-window-mask-v17.svg",
+          "start": 9.200000047683716,
+          "end": 15.100000023841858,
+          "bytes": 1297,
+          "duration": 5.899999976158142,
+          "initiator": "link"
+        },
+        {
+          "url": "http://127.0.0.1:4175/image/starfield/room-poster-detail-v20.webp?v=d79d9a54cf3480c0",
+          "start": 9.299999952316284,
+          "end": 28.899999976158142,
+          "bytes": 1048394,
+          "duration": 19.600000023841858,
+          "initiator": "link"
+        },
+        {
+          "url": "http://127.0.0.1:4175/css/starry/tokens.css",
+          "start": 9.399999976158142,
+          "end": 18,
+          "bytes": 2857,
+          "duration": 8.600000023841858,
+          "initiator": "link"
+        },
+        {
+          "url": "http://127.0.0.1:4175/css/starry/motion-tokens.css",
+          "start": 9.399999976158142,
+          "end": 18.200000047683716,
+          "bytes": 2714,
+          "duration": 8.800000071525574,
+          "initiator": "link"
+        },
+        {
+          "url": "http://127.0.0.1:4175/css/starry/site.css",
+          "start": 9.399999976158142,
+          "end": 19.899999976158142,
+          "bytes": 18843,
+          "duration": 10.5,
+          "initiator": "link"
+        },
+        {
+          "url": "http://127.0.0.1:4175/css/starry/scene.css",
+          "start": 9.5,
+          "end": 21.200000047683716,
+          "bytes": 16858,
+          "duration": 11.700000047683716,
+          "initiator": "link"
+        },
+        {
+          "url": "http://127.0.0.1:4175/css/starry/motion.css",
+          "start": 9.5,
+          "end": 21.299999952316284,
+          "bytes": 4693,
+          "duration": 11.799999952316284,
+          "initiator": "link"
+        },
+        {
+          "url": "http://127.0.0.1:4175/css/starry/reader.css",
+          "start": 9.5,
+          "end": 22.299999952316284,
+          "bytes": 11986,
+          "duration": 12.799999952316284,
+          "initiator": "link"
+        },
+        {
+          "url": "http://127.0.0.1:4175/css/starry/observation.css",
+          "start": 9.600000023841858,
+          "end": 22.600000023841858,
+          "bytes": 8731,
+          "duration": 13,
+          "initiator": "link"
+        },
+        {
+          "url": "http://127.0.0.1:4175/css/starry/search.css",
+          "start": 9.600000023841858,
+          "end": 23.399999976158142,
+          "bytes": 33189,
+          "duration": 13.799999952316284,
+          "initiator": "link"
+        },
+        {
+          "url": "http://127.0.0.1:4175/css/starry/collection.css",
+          "start": 9.600000023841858,
+          "end": 24.5,
+          "bytes": 3714,
+          "duration": 14.899999976158142,
+          "initiator": "link"
+        },
+        {
+          "url": "http://127.0.0.1:4175/css/starry/journal.css",
+          "start": 9.700000047683716,
+          "end": 25.399999976158142,
+          "bytes": 15018,
+          "duration": 15.699999928474426,
+          "initiator": "link"
+        },
+        {
+          "url": "http://127.0.0.1:4175/css/blog-theme-switch.css",
+          "start": 9.700000047683716,
+          "end": 26.100000023841858,
+          "bytes": 2031,
+          "duration": 16.399999976158142,
+          "initiator": "link"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/app.js",
+          "start": 9.700000047683716,
+          "end": 26.600000023841858,
+          "bytes": 71683,
+          "duration": 16.899999976158142,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/blog-theme-switch.js",
+          "start": 9.700000047683716,
+          "end": 29.200000047683716,
+          "bytes": 1250,
+          "duration": 19.5,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/static-page.js",
+          "start": 9.799999952316284,
+          "end": 28.299999952316284,
+          "bytes": 234,
+          "duration": 18.5,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/journal.js",
+          "start": 9.799999952316284,
+          "end": 29.200000047683716,
+          "bytes": 17129,
+          "duration": 19.40000009536743,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/image/starfield/room-window-mask-v17.svg",
+          "start": 29,
+          "end": 30.600000023841858,
+          "bytes": 1297,
+          "duration": 1.600000023841858,
+          "initiator": "css"
+        },
+        {
+          "url": "http://127.0.0.1:4175/fonts/lxgw-marker-gothic-v1.003.woff2",
+          "start": 29.700000047683716,
+          "end": 50.60000002384186,
+          "bytes": 1236064,
+          "duration": 20.899999976158142,
+          "initiator": "css"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/audio.js",
+          "start": 45.60000002384186,
+          "end": 48.39999997615814,
+          "bytes": 6787,
+          "duration": 2.799999952316284,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/interactive-clouds.js",
+          "start": 45.60000002384186,
+          "end": 48.700000047683716,
+          "bytes": 8278,
+          "duration": 3.100000023841858,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/painted.js",
+          "start": 45.700000047683716,
+          "end": 49.299999952316284,
+          "bytes": 7508,
+          "duration": 3.5999999046325684,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/dome.js",
+          "start": 45.700000047683716,
+          "end": 49.39999997615814,
+          "bytes": 5590,
+          "duration": 3.6999999284744263,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/motion.js",
+          "start": 45.700000047683716,
+          "end": 50.10000002384186,
+          "bytes": 11507,
+          "duration": 4.399999976158142,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/tokens.js",
+          "start": 45.700000047683716,
+          "end": 51.200000047683716,
+          "bytes": 3930,
+          "duration": 5.5,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/experience.js",
+          "start": 45.799999952316284,
+          "end": 51.10000002384186,
+          "bytes": 818,
+          "duration": 5.300000071525574,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/navigation.js",
+          "start": 45.799999952316284,
+          "end": 51.89999997615814,
+          "bytes": 2470,
+          "duration": 6.100000023841858,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/edge-guide.js",
+          "start": 45.89999997615814,
+          "end": 52,
+          "bytes": 750,
+          "duration": 6.100000023841858,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/render-budget.js",
+          "start": 45.89999997615814,
+          "end": 52.299999952316284,
+          "bytes": 3628,
+          "duration": 6.399999976158142,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/dome-renderer.js",
+          "start": 45.89999997615814,
+          "end": 52.700000047683716,
+          "bytes": 10957,
+          "duration": 6.800000071525574,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/observation.js",
+          "start": 45.89999997615814,
+          "end": 54.10000002384186,
+          "bytes": 3284,
+          "duration": 8.200000047683716,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/star-targets.js",
+          "start": 45.89999997615814,
+          "end": 54.60000002384186,
+          "bytes": 1124,
+          "duration": 8.700000047683716,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/polyhedron.js",
+          "start": 46,
+          "end": 54.799999952316284,
+          "bytes": 4642,
+          "duration": 8.799999952316284,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/silhouette-walker.js",
+          "start": 46.10000002384186,
+          "end": 56.799999952316284,
+          "bytes": 3100,
+          "duration": 10.699999928474426,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/camera-bounds.js",
+          "start": 46.10000002384186,
+          "end": 59.200000047683716,
+          "bytes": 2061,
+          "duration": 13.100000023841858,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/reading-progress.js",
+          "start": 46.10000002384186,
+          "end": 59.299999952316284,
+          "bytes": 584,
+          "duration": 13.199999928474426,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/search.js",
+          "start": 46.10000002384186,
+          "end": 59.799999952316284,
+          "bytes": 28530,
+          "duration": 13.699999928474426,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/reader-art.js",
+          "start": 46.200000047683716,
+          "end": 60.10000002384186,
+          "bytes": 819,
+          "duration": 13.899999976158142,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/room-scene.js",
+          "start": 50.10000002384186,
+          "end": 60.10000002384186,
+          "bytes": 5343,
+          "duration": 10,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/call-waveform.js",
+          "start": 54.799999952316284,
+          "end": 60.60000002384186,
+          "bytes": 3294,
+          "duration": 5.800000071525574,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/astrolabe.js",
+          "start": 61,
+          "end": 62.200000047683716,
+          "bytes": 435,
+          "duration": 1.2000000476837158,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/branding/logo2.png",
+          "start": 68.29999995231628,
+          "end": 74,
+          "bytes": 364153,
+          "duration": 5.700000047683716,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/starry/index.json",
+          "start": 68.29999995231628,
+          "end": 70.70000004768372,
+          "bytes": 11097,
+          "duration": 2.4000000953674316,
+          "initiator": "fetch"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/observation/waves.png",
+          "start": 68.39999997615814,
+          "end": 70.20000004768372,
+          "bytes": 57383,
+          "duration": 1.8000000715255737,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/optimized/silhouette-walk-frames.webp",
+          "start": 68.39999997615814,
+          "end": 72.10000002384186,
+          "bytes": 75732,
+          "duration": 3.700000047683716,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/observation/silhouette.png",
+          "start": 68.39999997615814,
+          "end": 72.79999995231628,
+          "bytes": 248138,
+          "duration": 4.399999976158142,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/observation/year-pointer.png",
+          "start": 68.5,
+          "end": 72.89999997615814,
+          "bytes": 10710,
+          "duration": 4.399999976158142,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/observation/diamond.png",
+          "start": 68.5,
+          "end": 73.60000002384186,
+          "bytes": 4341,
+          "duration": 5.100000023841858,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/observation/dial-ticks.png",
+          "start": 68.5,
+          "end": 73.70000004768372,
+          "bytes": 7310,
+          "duration": 5.200000047683716,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/observation/dial-bracket.png",
+          "start": 68.5,
+          "end": 74.60000002384186,
+          "bytes": 5454,
+          "duration": 6.100000023841858,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/observation/waveform.png",
+          "start": 68.60000002384186,
+          "end": 75.60000002384186,
+          "bytes": 52269,
+          "duration": 7,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/observation/starlink.png",
+          "start": 68.60000002384186,
+          "end": 75.89999997615814,
+          "bytes": 4106,
+          "duration": 7.299999952316284,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/observation/call-word.png",
+          "start": 68.60000002384186,
+          "end": 77.20000004768372,
+          "bytes": 5893,
+          "duration": 8.600000023841858,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/observation/call-underline.png",
+          "start": 68.70000004768372,
+          "end": 76.20000004768372,
+          "bytes": 4047,
+          "duration": 7.5,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/observation/hour-label.png",
+          "start": 68.70000004768372,
+          "end": 76.39999997615814,
+          "bytes": 4432,
+          "duration": 7.699999928474426,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/observation/date-boxes.png",
+          "start": 68.70000004768372,
+          "end": 77.29999995231628,
+          "bytes": 22759,
+          "duration": 8.599999904632568,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/observation/observation-id.png",
+          "start": 68.70000004768372,
+          "end": 78.29999995231628,
+          "bytes": 3200,
+          "duration": 9.599999904632568,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/observation/close.png",
+          "start": 68.70000004768372,
+          "end": 78.5,
+          "bytes": 4386,
+          "duration": 9.799999952316284,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/observation/read.png",
+          "start": 68.70000004768372,
+          "end": 78.79999995231628,
+          "bytes": 33191,
+          "duration": 10.099999904632568,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/observation/read-rule.png",
+          "start": 68.70000004768372,
+          "end": 78.79999995231628,
+          "bytes": 11171,
+          "duration": 10.099999904632568,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/branding/right-icons.png",
+          "start": 68.79999995231628,
+          "end": 79.29999995231628,
+          "bytes": 11273,
+          "duration": 10.5,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/observation/polyhedron.png",
+          "start": 68.79999995231628,
+          "end": 79.79999995231628,
+          "bytes": 220772,
+          "duration": 11,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/optimized/entry-base.webp",
+          "start": 68.79999995231628,
+          "end": 83,
+          "bytes": 1077910,
+          "duration": 14.200000047683716,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/optimized/entry-repair.webp",
+          "start": 68.89999997615814,
+          "end": 80.20000004768372,
+          "bytes": 100350,
+          "duration": 11.300000071525574,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/observation/glyphs/E.png",
+          "start": 68.89999997615814,
+          "end": 80.5,
+          "bytes": 2770,
+          "duration": 11.600000023841858,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/observation/glyphs/Y.png",
+          "start": 68.89999997615814,
+          "end": 80.70000004768372,
+          "bytes": 13310,
+          "duration": 11.800000071525574,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/observation/glyphs/M.png",
+          "start": 68.89999997615814,
+          "end": 81.10000002384186,
+          "bytes": 11475,
+          "duration": 12.200000047683716,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/observation/glyphs/O.png",
+          "start": 69,
+          "end": 81.70000004768372,
+          "bytes": 8776,
+          "duration": 12.700000047683716,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/observation/glyphs/A.png",
+          "start": 69,
+          "end": 82.10000002384186,
+          "bytes": 17010,
+          "duration": 13.100000023841858,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/observation/glyphs/D.png",
+          "start": 69,
+          "end": 82.10000002384186,
+          "bytes": 6630,
+          "duration": 13.100000023841858,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/optimized/cloud-2.png",
+          "start": 90.60000002384186,
+          "end": 92.20000004768372,
+          "bytes": 40123,
+          "duration": 1.600000023841858,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/optimized/cloud-1.png",
+          "start": 90.60000002384186,
+          "end": 92.20000004768372,
+          "bytes": 41460,
+          "duration": 1.600000023841858,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/optimized/cloud-3.png",
+          "start": 90.60000002384186,
+          "end": 92.5,
+          "bytes": 41616,
+          "duration": 1.899999976158142,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/image/starfield/painted-sky-v11.webp",
+          "start": 90.60000002384186,
+          "end": 93.89999997615814,
+          "bytes": 1090084,
+          "duration": 3.299999952316284,
+          "initiator": "img"
+        }
+      ],
+      "room": "inside",
+      "quality": "full",
+      "activeJournalImages": 0,
+      "errors": [],
+      "network": [
+        {
+          "type": "Document",
+          "start": 912244.581331,
+          "initiator": "other",
+          "status": 200,
+          "cache": false,
+          "mime": "text/html",
+          "end": 912244.583253,
+          "encodedBytes": 26391,
+          "path": "/"
+        },
+        {
+          "type": "Image",
+          "start": 912244.590152,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/svg+xml",
+          "end": 912244.5961,
+          "encodedBytes": 1509,
+          "path": "/image/starfield/room-window-mask-v17.svg"
+        },
+        {
+          "type": "Image",
+          "start": 912244.590316,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/webp",
+          "end": 912244.609941,
+          "encodedBytes": 1048606,
+          "path": "/image/starfield/room-poster-detail-v20.webp"
+        },
+        {
+          "type": "Stylesheet",
+          "start": 912244.590352,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "text/css",
+          "end": 912244.598945,
+          "encodedBytes": 3079,
+          "path": "/css/starry/tokens.css"
+        },
+        {
+          "type": "Stylesheet",
+          "start": 912244.590388,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "text/css",
+          "end": 912244.599147,
+          "encodedBytes": 2936,
+          "path": "/css/starry/motion-tokens.css"
+        },
+        {
+          "type": "Stylesheet",
+          "start": 912244.590417,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "text/css",
+          "end": 912244.600836,
+          "encodedBytes": 19066,
+          "path": "/css/starry/site.css"
+        },
+        {
+          "type": "Stylesheet",
+          "start": 912244.590442,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "text/css",
+          "end": 912244.602157,
+          "encodedBytes": 17081,
+          "path": "/css/starry/scene.css"
+        },
+        {
+          "type": "Stylesheet",
+          "start": 912244.59047,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "text/css",
+          "end": 912244.602329,
+          "encodedBytes": 4915,
+          "path": "/css/starry/motion.css"
+        },
+        {
+          "type": "Stylesheet",
+          "start": 912244.590498,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "text/css",
+          "end": 912244.603372,
+          "encodedBytes": 12209,
+          "path": "/css/starry/reader.css"
+        },
+        {
+          "type": "Stylesheet",
+          "start": 912244.590534,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "text/css",
+          "end": 912244.603532,
+          "encodedBytes": 8953,
+          "path": "/css/starry/observation.css"
+        },
+        {
+          "type": "Stylesheet",
+          "start": 912244.590554,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "text/css",
+          "end": 912244.604463,
+          "encodedBytes": 33412,
+          "path": "/css/starry/search.css"
+        },
+        {
+          "type": "Stylesheet",
+          "start": 912244.590579,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "text/css",
+          "end": 912244.605432,
+          "encodedBytes": 3936,
+          "path": "/css/starry/collection.css"
+        },
+        {
+          "type": "Stylesheet",
+          "start": 912244.5906,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "text/css",
+          "end": 912244.606368,
+          "encodedBytes": 15241,
+          "path": "/css/starry/journal.css"
+        },
+        {
+          "type": "Stylesheet",
+          "start": 912244.59062,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "text/css",
+          "end": 912244.607146,
+          "encodedBytes": 2253,
+          "path": "/css/blog-theme-switch.css"
+        },
+        {
+          "type": "Script",
+          "start": 912244.590655,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912244.607572,
+          "encodedBytes": 71913,
+          "path": "/js/starfield/app.js"
+        },
+        {
+          "type": "Script",
+          "start": 912244.590692,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912244.610169,
+          "encodedBytes": 1479,
+          "path": "/js/blog-theme-switch.js"
+        },
+        {
+          "type": "Script",
+          "start": 912244.590722,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912244.60931,
+          "encodedBytes": 462,
+          "path": "/js/starfield/static-page.js"
+        },
+        {
+          "type": "Script",
+          "start": 912244.590752,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912244.610245,
+          "encodedBytes": 17359,
+          "path": "/js/starfield/journal.js"
+        },
+        {
+          "type": "Image",
+          "start": 912244.60993,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/svg+xml",
+          "end": 912244.611627,
+          "encodedBytes": 1509,
+          "path": "/image/starfield/room-window-mask-v17.svg"
+        },
+        {
+          "type": "Font",
+          "start": 912244.610682,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "font/woff2",
+          "end": 912244.631621,
+          "encodedBytes": 1236276,
+          "path": "/fonts/lxgw-marker-gothic-v1.003.woff2"
+        },
+        {
+          "type": "Script",
+          "start": 912244.626582,
+          "initiator": "script",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912244.629466,
+          "encodedBytes": 7016,
+          "path": "/js/starfield/audio.js"
+        },
+        {
+          "type": "Script",
+          "start": 912244.626635,
+          "initiator": "script",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912244.629627,
+          "encodedBytes": 8507,
+          "path": "/js/starfield/interactive-clouds.js"
+        },
+        {
+          "type": "Script",
+          "start": 912244.626664,
+          "initiator": "script",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912244.630315,
+          "encodedBytes": 7737,
+          "path": "/js/starfield/painted.js"
+        },
+        {
+          "type": "Script",
+          "start": 912244.626686,
+          "initiator": "script",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912244.630363,
+          "encodedBytes": 5819,
+          "path": "/js/starfield/dome.js"
+        },
+        {
+          "type": "Script",
+          "start": 912244.626706,
+          "initiator": "script",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912244.631117,
+          "encodedBytes": 11737,
+          "path": "/js/starfield/motion.js"
+        },
+        {
+          "type": "Script",
+          "start": 912244.626738,
+          "initiator": "script",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912244.632229,
+          "encodedBytes": 4159,
+          "path": "/js/starfield/tokens.js"
+        },
+        {
+          "type": "Script",
+          "start": 912244.626763,
+          "initiator": "script",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912244.632113,
+          "encodedBytes": 1046,
+          "path": "/js/starfield/experience.js"
+        },
+        {
+          "type": "Script",
+          "start": 912244.626789,
+          "initiator": "script",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912244.632869,
+          "encodedBytes": 2699,
+          "path": "/js/starfield/navigation.js"
+        },
+        {
+          "type": "Script",
+          "start": 912244.626818,
+          "initiator": "script",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912244.632909,
+          "encodedBytes": 978,
+          "path": "/js/starfield/edge-guide.js"
+        },
+        {
+          "type": "Script",
+          "start": 912244.626842,
+          "initiator": "script",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912244.633336,
+          "encodedBytes": 3857,
+          "path": "/js/starfield/render-budget.js"
+        },
+        {
+          "type": "Script",
+          "start": 912244.626867,
+          "initiator": "script",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912244.633749,
+          "encodedBytes": 11187,
+          "path": "/js/starfield/dome-renderer.js"
+        },
+        {
+          "type": "Script",
+          "start": 912244.626896,
+          "initiator": "script",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912244.635629,
+          "encodedBytes": 1353,
+          "path": "/js/starfield/star-targets.js"
+        },
+        {
+          "type": "Script",
+          "start": 912244.626917,
+          "initiator": "script",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912244.635163,
+          "encodedBytes": 3513,
+          "path": "/js/starfield/observation.js"
+        },
+        {
+          "type": "Script",
+          "start": 912244.626943,
+          "initiator": "script",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912244.635792,
+          "encodedBytes": 4871,
+          "path": "/js/starfield/polyhedron.js"
+        },
+        {
+          "type": "Script",
+          "start": 912244.627021,
+          "initiator": "script",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912244.637849,
+          "encodedBytes": 3329,
+          "path": "/js/starfield/silhouette-walker.js"
+        },
+        {
+          "type": "Script",
+          "start": 912244.627058,
+          "initiator": "script",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912244.640271,
+          "encodedBytes": 812,
+          "path": "/js/starfield/reading-progress.js"
+        },
+        {
+          "type": "Script",
+          "start": 912244.62708,
+          "initiator": "script",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912244.640214,
+          "encodedBytes": 2290,
+          "path": "/js/starfield/camera-bounds.js"
+        },
+        {
+          "type": "Script",
+          "start": 912244.6271,
+          "initiator": "script",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912244.640858,
+          "encodedBytes": 28760,
+          "path": "/js/starfield/search.js"
+        },
+        {
+          "type": "Script",
+          "start": 912244.627123,
+          "initiator": "script",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912244.641077,
+          "encodedBytes": 1047,
+          "path": "/js/starfield/reader-art.js"
+        },
+        {
+          "type": "Script",
+          "start": 912244.631072,
+          "initiator": "script",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912244.641136,
+          "encodedBytes": 5572,
+          "path": "/js/starfield/room-scene.js"
+        },
+        {
+          "type": "Script",
+          "start": 912244.635714,
+          "initiator": "script",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912244.64157,
+          "encodedBytes": 3523,
+          "path": "/js/starfield/call-waveform.js"
+        },
+        {
+          "type": "Script",
+          "start": 912244.642022,
+          "initiator": "script",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912244.643232,
+          "encodedBytes": 663,
+          "path": "/js/starfield/astrolabe.js"
+        },
+        {
+          "type": "Fetch",
+          "start": 912244.649245,
+          "initiator": "script",
+          "status": 200,
+          "cache": false,
+          "mime": "application/json",
+          "end": 912244.651691,
+          "encodedBytes": 11328,
+          "path": "/starry/index.json"
+        },
+        {
+          "type": "Image",
+          "start": 912244.649322,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912244.655005,
+          "encodedBytes": 364363,
+          "path": "/images/branding/logo2.png"
+        },
+        {
+          "type": "Image",
+          "start": 912244.649358,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912244.651201,
+          "encodedBytes": 57592,
+          "path": "/images/observation/waves.png"
+        },
+        {
+          "type": "Image",
+          "start": 912244.649384,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912244.653754,
+          "encodedBytes": 248348,
+          "path": "/images/observation/silhouette.png"
+        },
+        {
+          "type": "Image",
+          "start": 912244.64941,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/webp",
+          "end": 912244.653045,
+          "encodedBytes": 75942,
+          "path": "/images/optimized/silhouette-walk-frames.webp"
+        },
+        {
+          "type": "Image",
+          "start": 912244.649434,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912244.653918,
+          "encodedBytes": 10919,
+          "path": "/images/observation/year-pointer.png"
+        },
+        {
+          "type": "Image",
+          "start": 912244.649466,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912244.654678,
+          "encodedBytes": 4549,
+          "path": "/images/observation/diamond.png"
+        },
+        {
+          "type": "Image",
+          "start": 912244.649493,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912244.654748,
+          "encodedBytes": 7518,
+          "path": "/images/observation/dial-ticks.png"
+        },
+        {
+          "type": "Image",
+          "start": 912244.649514,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912244.655657,
+          "encodedBytes": 5662,
+          "path": "/images/observation/dial-bracket.png"
+        },
+        {
+          "type": "Image",
+          "start": 912244.649539,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912244.656654,
+          "encodedBytes": 52478,
+          "path": "/images/observation/waveform.png"
+        },
+        {
+          "type": "Image",
+          "start": 912244.64956,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912244.656901,
+          "encodedBytes": 4314,
+          "path": "/images/observation/starlink.png"
+        },
+        {
+          "type": "Image",
+          "start": 912244.64959,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912244.658204,
+          "encodedBytes": 6101,
+          "path": "/images/observation/call-word.png"
+        },
+        {
+          "type": "Image",
+          "start": 912244.649616,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912244.657182,
+          "encodedBytes": 4255,
+          "path": "/images/observation/call-underline.png"
+        },
+        {
+          "type": "Image",
+          "start": 912244.649638,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912244.657348,
+          "encodedBytes": 4640,
+          "path": "/images/observation/hour-label.png"
+        },
+        {
+          "type": "Image",
+          "start": 912244.649659,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912244.658269,
+          "encodedBytes": 22968,
+          "path": "/images/observation/date-boxes.png"
+        },
+        {
+          "type": "Image",
+          "start": 912244.649689,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912244.659314,
+          "encodedBytes": 3408,
+          "path": "/images/observation/observation-id.png"
+        },
+        {
+          "type": "Image",
+          "start": 912244.649715,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912244.659447,
+          "encodedBytes": 4594,
+          "path": "/images/observation/close.png"
+        },
+        {
+          "type": "Image",
+          "start": 912244.649737,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912244.659715,
+          "encodedBytes": 11380,
+          "path": "/images/observation/read-rule.png"
+        },
+        {
+          "type": "Image",
+          "start": 912244.649774,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912244.659757,
+          "encodedBytes": 33400,
+          "path": "/images/observation/read.png"
+        },
+        {
+          "type": "Image",
+          "start": 912244.649798,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912244.660812,
+          "encodedBytes": 220982,
+          "path": "/images/observation/polyhedron.png"
+        },
+        {
+          "type": "Image",
+          "start": 912244.64982,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912244.660355,
+          "encodedBytes": 11482,
+          "path": "/images/branding/right-icons.png"
+        },
+        {
+          "type": "Image",
+          "start": 912244.649854,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/webp",
+          "end": 912244.664005,
+          "encodedBytes": 1078122,
+          "path": "/images/optimized/entry-base.webp"
+        },
+        {
+          "type": "Image",
+          "start": 912244.649878,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/webp",
+          "end": 912244.661179,
+          "encodedBytes": 100561,
+          "path": "/images/optimized/entry-repair.webp"
+        },
+        {
+          "type": "Image",
+          "start": 912244.649921,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912244.661673,
+          "encodedBytes": 13519,
+          "path": "/images/observation/glyphs/Y.png"
+        },
+        {
+          "type": "Image",
+          "start": 912244.649942,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912244.661479,
+          "encodedBytes": 2978,
+          "path": "/images/observation/glyphs/E.png"
+        },
+        {
+          "type": "Image",
+          "start": 912244.649973,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912244.662178,
+          "encodedBytes": 11684,
+          "path": "/images/observation/glyphs/M.png"
+        },
+        {
+          "type": "Image",
+          "start": 912244.649998,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912244.66266,
+          "encodedBytes": 8984,
+          "path": "/images/observation/glyphs/O.png"
+        },
+        {
+          "type": "Image",
+          "start": 912244.650023,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912244.663068,
+          "encodedBytes": 6838,
+          "path": "/images/observation/glyphs/D.png"
+        },
+        {
+          "type": "Image",
+          "start": 912244.650052,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912244.663101,
+          "encodedBytes": 17219,
+          "path": "/images/observation/glyphs/A.png"
+        },
+        {
+          "type": "Image",
+          "start": 912244.671531,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/webp",
+          "end": 912244.674911,
+          "encodedBytes": 1090296,
+          "path": "/image/starfield/painted-sky-v11.webp"
+        },
+        {
+          "type": "Image",
+          "start": 912244.671592,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912244.673242,
+          "encodedBytes": 41669,
+          "path": "/images/optimized/cloud-1.png"
+        },
+        {
+          "type": "Image",
+          "start": 912244.671617,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912244.673192,
+          "encodedBytes": 40332,
+          "path": "/images/optimized/cloud-2.png"
+        },
+        {
+          "type": "Image",
+          "start": 912244.671639,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912244.673441,
+          "encodedBytes": 41825,
+          "path": "/images/optimized/cloud-3.png"
+        }
+      ]
+    },
+    {
+      "settings": {
+        "name": "mobile-fast4g",
+        "width": 390,
+        "height": 844,
+        "mobile": true,
+        "cpu": 4,
+        "mbps": 9,
+        "latency": 100
+      },
+      "browser": "155.0.8059.84",
+      "elapsedMs": 6859,
+      "tasks": [
+        {
+          "start": 5972.799999952316,
+          "duration": 171
+        },
+        {
+          "start": 6173.700000047684,
+          "duration": 74
+        }
+      ],
+      "lcp": [
+        {
+          "time": 468,
+          "size": 3612,
+          "element": "",
+          "url": ""
+        },
+        {
+          "time": 6180,
+          "size": 5580,
+          "element": "room-thought-copy",
+          "url": ""
+        }
+      ],
+      "shifts": [
+        0.0000146538452899496
+      ],
+      "readyMs": 6137.799999952316,
+      "now": 6849.299999952316,
+      "fcp": 468,
+      "domMs": 1423.1000000238419,
+      "loadMs": 5942.200000047684,
+      "resources": [
+        {
+          "url": "http://127.0.0.1:4175/image/starfield/room-window-mask-v17.svg",
+          "start": 123,
+          "end": 240,
+          "bytes": 1297,
+          "duration": 117,
+          "initiator": "link"
+        },
+        {
+          "url": "http://127.0.0.1:4175/image/starfield/room-poster-detail-v20.webp?v=d79d9a54cf3480c0",
+          "start": 123.5,
+          "end": 2489.7999999523163,
+          "bytes": 1048394,
+          "duration": 2366.2999999523163,
+          "initiator": "link"
+        },
+        {
+          "url": "http://127.0.0.1:4175/css/starry/motion-tokens.css",
+          "start": 123.60000002384186,
+          "end": 237.29999995231628,
+          "bytes": 2714,
+          "duration": 113.69999992847443,
+          "initiator": "link"
+        },
+        {
+          "url": "http://127.0.0.1:4175/css/starry/tokens.css",
+          "start": 123.60000002384186,
+          "end": 245.20000004768372,
+          "bytes": 2857,
+          "duration": 121.60000002384186,
+          "initiator": "link"
+        },
+        {
+          "url": "http://127.0.0.1:4175/css/starry/motion.css",
+          "start": 123.60000002384186,
+          "end": 253.29999995231628,
+          "bytes": 4693,
+          "duration": 129.69999992847443,
+          "initiator": "link"
+        },
+        {
+          "url": "http://127.0.0.1:4175/css/starry/scene.css",
+          "start": 123.60000002384186,
+          "end": 274.39999997615814,
+          "bytes": 16858,
+          "duration": 150.79999995231628,
+          "initiator": "link"
+        },
+        {
+          "url": "http://127.0.0.1:4175/css/starry/site.css",
+          "start": 123.60000002384186,
+          "end": 275.7999999523163,
+          "bytes": 18843,
+          "duration": 152.19999992847443,
+          "initiator": "link"
+        },
+        {
+          "url": "http://127.0.0.1:4175/css/starry/reader.css",
+          "start": 123.70000004768372,
+          "end": 365.2000000476837,
+          "bytes": 11986,
+          "duration": 241.5,
+          "initiator": "link"
+        },
+        {
+          "url": "http://127.0.0.1:4175/css/starry/observation.css",
+          "start": 124.39999997615814,
+          "end": 361.2000000476837,
+          "bytes": 8731,
+          "duration": 236.80000007152557,
+          "initiator": "link"
+        },
+        {
+          "url": "http://127.0.0.1:4175/css/starry/collection.css",
+          "start": 124.39999997615814,
+          "end": 367.89999997615814,
+          "bytes": 3714,
+          "duration": 243.5,
+          "initiator": "link"
+        },
+        {
+          "url": "http://127.0.0.1:4175/css/starry/journal.css",
+          "start": 124.39999997615814,
+          "end": 406.60000002384186,
+          "bytes": 15018,
+          "duration": 282.2000000476837,
+          "initiator": "link"
+        },
+        {
+          "url": "http://127.0.0.1:4175/css/starry/search.css",
+          "start": 124.39999997615814,
+          "end": 409.2000000476837,
+          "bytes": 33189,
+          "duration": 284.8000000715256,
+          "initiator": "link"
+        },
+        {
+          "url": "http://127.0.0.1:4175/css/blog-theme-switch.css",
+          "start": 124.79999995231628,
+          "end": 383.7999999523163,
+          "bytes": 2031,
+          "duration": 259,
+          "initiator": "link"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/app.js",
+          "start": 133,
+          "end": 641.2000000476837,
+          "bytes": 71683,
+          "duration": 508.2000000476837,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/blog-theme-switch.js",
+          "start": 135.79999995231628,
+          "end": 471.89999997615814,
+          "bytes": 1250,
+          "duration": 336.10000002384186,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/static-page.js",
+          "start": 136.20000004768372,
+          "end": 487.89999997615814,
+          "bytes": 234,
+          "duration": 351.6999999284744,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/journal.js",
+          "start": 136.20000004768372,
+          "end": 557.1000000238419,
+          "bytes": 17129,
+          "duration": 420.89999997615814,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/image/starfield/room-window-mask-v17.svg",
+          "start": 419.7000000476837,
+          "end": 530.3999999761581,
+          "bytes": 1297,
+          "duration": 110.69999992847443,
+          "initiator": "css"
+        },
+        {
+          "url": "http://127.0.0.1:4175/fonts/lxgw-marker-gothic-v1.003.woff2",
+          "start": 422,
+          "end": 3045.7000000476837,
+          "bytes": 1236064,
+          "duration": 2623.7000000476837,
+          "initiator": "css"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/audio.js",
+          "start": 489,
+          "end": 615.7999999523163,
+          "bytes": 6787,
+          "duration": 126.79999995231628,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/dome.js",
+          "start": 643.7999999523163,
+          "end": 771.6000000238419,
+          "bytes": 5590,
+          "duration": 127.80000007152557,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/interactive-clouds.js",
+          "start": 643.7999999523163,
+          "end": 786.2999999523163,
+          "bytes": 8278,
+          "duration": 142.5,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/painted.js",
+          "start": 643.7999999523163,
+          "end": 787.5,
+          "bytes": 7508,
+          "duration": 143.70000004768372,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/motion.js",
+          "start": 643.7999999523163,
+          "end": 797.1000000238419,
+          "bytes": 11507,
+          "duration": 153.30000007152557,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/tokens.js",
+          "start": 643.8999999761581,
+          "end": 883.7000000476837,
+          "bytes": 3930,
+          "duration": 239.80000007152557,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/experience.js",
+          "start": 643.8999999761581,
+          "end": 890.5,
+          "bytes": 818,
+          "duration": 246.60000002384186,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/navigation.js",
+          "start": 644.6000000238419,
+          "end": 895.7000000476837,
+          "bytes": 2470,
+          "duration": 251.10000002384186,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/edge-guide.js",
+          "start": 644.6000000238419,
+          "end": 901.1000000238419,
+          "bytes": 750,
+          "duration": 256.5,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/render-budget.js",
+          "start": 644.6000000238419,
+          "end": 996.8999999761581,
+          "bytes": 3628,
+          "duration": 352.2999999523163,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/star-targets.js",
+          "start": 645,
+          "end": 1002.2999999523163,
+          "bytes": 1124,
+          "duration": 357.2999999523163,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/dome-renderer.js",
+          "start": 645,
+          "end": 1030.3999999761581,
+          "bytes": 10957,
+          "duration": 385.39999997615814,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/observation.js",
+          "start": 645.1000000238419,
+          "end": 1018.3999999761581,
+          "bytes": 3284,
+          "duration": 373.2999999523163,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/polyhedron.js",
+          "start": 645.2000000476837,
+          "end": 1115.6000000238419,
+          "bytes": 4642,
+          "duration": 470.39999997615814,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/silhouette-walker.js",
+          "start": 645.2000000476837,
+          "end": 1118.3999999761581,
+          "bytes": 3100,
+          "duration": 473.1999999284744,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/reading-progress.js",
+          "start": 645.2000000476837,
+          "end": 1122.2999999523163,
+          "bytes": 584,
+          "duration": 477.09999990463257,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/camera-bounds.js",
+          "start": 645.2000000476837,
+          "end": 1138.3999999761581,
+          "bytes": 2061,
+          "duration": 493.1999999284744,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/reader-art.js",
+          "start": 645.6000000238419,
+          "end": 1223.6000000238419,
+          "bytes": 819,
+          "duration": 578,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/search.js",
+          "start": 645.6000000238419,
+          "end": 1306.2999999523163,
+          "bytes": 28530,
+          "duration": 660.6999999284744,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/room-scene.js",
+          "start": 788.6000000238419,
+          "end": 1246.2999999523163,
+          "bytes": 5343,
+          "duration": 457.6999999284744,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/call-waveform.js",
+          "start": 1019.1000000238419,
+          "end": 1257,
+          "bytes": 3294,
+          "duration": 237.89999997615814,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/astrolabe.js",
+          "start": 1307.2999999523163,
+          "end": 1411.7000000476837,
+          "bytes": 435,
+          "duration": 104.40000009536743,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/starry/index.json",
+          "start": 2505.7999999523163,
+          "end": 2664.600000023842,
+          "bytes": 11097,
+          "duration": 158.80000007152557,
+          "initiator": "fetch"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/observation/year-pointer.png",
+          "start": 2505.899999976158,
+          "end": 2828.7000000476837,
+          "bytes": 10710,
+          "duration": 322.8000000715256,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/observation/waves.png",
+          "start": 2505.899999976158,
+          "end": 2884.600000023842,
+          "bytes": 57383,
+          "duration": 378.7000000476837,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/optimized/silhouette-walk-frames.webp",
+          "start": 2505.899999976158,
+          "end": 2956.2000000476837,
+          "bytes": 75732,
+          "duration": 450.3000000715256,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/observation/silhouette.png",
+          "start": 2505.899999976158,
+          "end": 3413.7999999523163,
+          "bytes": 248138,
+          "duration": 907.8999999761581,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/branding/logo2.png",
+          "start": 2505.899999976158,
+          "end": 3829.7000000476837,
+          "bytes": 364153,
+          "duration": 1323.8000000715256,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/observation/diamond.png",
+          "start": 2506.7000000476837,
+          "end": 2955.100000023842,
+          "bytes": 4341,
+          "duration": 448.39999997615814,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/observation/dial-ticks.png",
+          "start": 2506.7000000476837,
+          "end": 3016.600000023842,
+          "bytes": 7310,
+          "duration": 509.89999997615814,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/observation/dial-bracket.png",
+          "start": 2506.7999999523163,
+          "end": 3075.2000000476837,
+          "bytes": 5454,
+          "duration": 568.4000000953674,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/observation/starlink.png",
+          "start": 2507.100000023842,
+          "end": 3132.399999976158,
+          "bytes": 4106,
+          "duration": 625.2999999523163,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/observation/call-word.png",
+          "start": 2507.100000023842,
+          "end": 3172.5,
+          "bytes": 5893,
+          "duration": 665.3999999761581,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/observation/call-underline.png",
+          "start": 2507.100000023842,
+          "end": 3191.100000023842,
+          "bytes": 4047,
+          "duration": 684,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/observation/waveform.png",
+          "start": 2507.100000023842,
+          "end": 3215.2999999523163,
+          "bytes": 52269,
+          "duration": 708.1999999284744,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/observation/hour-label.png",
+          "start": 2507.2000000476837,
+          "end": 3248.399999976158,
+          "bytes": 4432,
+          "duration": 741.1999999284744,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/observation/observation-id.png",
+          "start": 2507.2000000476837,
+          "end": 3307.100000023842,
+          "bytes": 3200,
+          "duration": 799.8999999761581,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/observation/close.png",
+          "start": 2507.2000000476837,
+          "end": 3336.399999976158,
+          "bytes": 4386,
+          "duration": 829.1999999284744,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/observation/date-boxes.png",
+          "start": 2507.2000000476837,
+          "end": 3345.7999999523163,
+          "bytes": 22759,
+          "duration": 838.5999999046326,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/observation/read-rule.png",
+          "start": 2507.899999976158,
+          "end": 3380.399999976158,
+          "bytes": 11171,
+          "duration": 872.5,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/observation/read.png",
+          "start": 2507.899999976158,
+          "end": 3501.7000000476837,
+          "bytes": 33191,
+          "duration": 993.8000000715256,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/observation/polyhedron.png",
+          "start": 2507.899999976158,
+          "end": 4269.5,
+          "bytes": 220772,
+          "duration": 1761.6000000238419,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/branding/right-icons.png",
+          "start": 2508,
+          "end": 3489.7000000476837,
+          "bytes": 11273,
+          "duration": 981.7000000476837,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/optimized/entry-repair.webp",
+          "start": 2508,
+          "end": 3896.399999976158,
+          "bytes": 100350,
+          "duration": 1388.3999999761581,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/optimized/entry-base.webp",
+          "start": 2508,
+          "end": 5818.5,
+          "bytes": 1077910,
+          "duration": 3310.5,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/observation/glyphs/Y.png",
+          "start": 2508.100000023842,
+          "end": 3659,
+          "bytes": 13310,
+          "duration": 1150.8999999761581,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/observation/glyphs/E.png",
+          "start": 2508.7000000476837,
+          "end": 3617.7000000476837,
+          "bytes": 2770,
+          "duration": 1109,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/observation/glyphs/M.png",
+          "start": 2508.7000000476837,
+          "end": 3772.2999999523163,
+          "bytes": 11475,
+          "duration": 1263.5999999046326,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/observation/glyphs/O.png",
+          "start": 2508.7000000476837,
+          "end": 3801.7000000476837,
+          "bytes": 8776,
+          "duration": 1293,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/observation/glyphs/D.png",
+          "start": 2508.7000000476837,
+          "end": 3898.899999976158,
+          "bytes": 6630,
+          "duration": 1390.1999999284744,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/observation/glyphs/A.png",
+          "start": 2508.7000000476837,
+          "end": 3955,
+          "bytes": 17010,
+          "duration": 1446.2999999523163,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/image/starfield/painted-sky-v11.webp",
+          "start": 2670.2000000476837,
+          "end": 5939.799999952316,
+          "bytes": 1090084,
+          "duration": 3269.5999999046326,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/optimized/cloud-1.png",
+          "start": 2670.2999999523163,
+          "end": 4205.600000023842,
+          "bytes": 41460,
+          "duration": 1535.3000000715256,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/optimized/cloud-2.png",
+          "start": 2670.399999976158,
+          "end": 4203,
+          "bytes": 40123,
+          "duration": 1532.6000000238419,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/optimized/cloud-3.png",
+          "start": 2670.399999976158,
+          "end": 4254.899999976158,
+          "bytes": 41616,
+          "duration": 1584.5,
+          "initiator": "img"
+        }
+      ],
+      "room": "inside",
+      "quality": "full",
+      "activeJournalImages": 0,
+      "errors": [],
+      "network": [
+        {
+          "type": "Document",
+          "start": 912245.645355,
+          "initiator": "other",
+          "status": 200,
+          "cache": false,
+          "mime": "text/html",
+          "end": 912245.772683,
+          "encodedBytes": 26391,
+          "path": "/"
+        },
+        {
+          "type": "Image",
+          "start": 912245.767609,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/svg+xml",
+          "end": 912245.884944,
+          "encodedBytes": 1509,
+          "path": "/image/starfield/room-window-mask-v17.svg"
+        },
+        {
+          "type": "Image",
+          "start": 912245.768468,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/webp",
+          "end": 912248.13476,
+          "encodedBytes": 1048606,
+          "path": "/image/starfield/room-poster-detail-v20.webp"
+        },
+        {
+          "type": "Stylesheet",
+          "start": 912245.768509,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "text/css",
+          "end": 912245.89019,
+          "encodedBytes": 3079,
+          "path": "/css/starry/tokens.css"
+        },
+        {
+          "type": "Stylesheet",
+          "start": 912245.768544,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "text/css",
+          "end": 912245.882272,
+          "encodedBytes": 2936,
+          "path": "/css/starry/motion-tokens.css"
+        },
+        {
+          "type": "Stylesheet",
+          "start": 912245.76857,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "text/css",
+          "end": 912245.920756,
+          "encodedBytes": 19066,
+          "path": "/css/starry/site.css"
+        },
+        {
+          "type": "Stylesheet",
+          "start": 912245.768595,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "text/css",
+          "end": 912245.919336,
+          "encodedBytes": 17081,
+          "path": "/css/starry/scene.css"
+        },
+        {
+          "type": "Stylesheet",
+          "start": 912245.768629,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "text/css",
+          "end": 912245.898263,
+          "encodedBytes": 4915,
+          "path": "/css/starry/motion.css"
+        },
+        {
+          "type": "Stylesheet",
+          "start": 912245.768656,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "text/css",
+          "end": 912246.010222,
+          "encodedBytes": 12209,
+          "path": "/css/starry/reader.css"
+        },
+        {
+          "type": "Stylesheet",
+          "start": 912245.769353,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "text/css",
+          "end": 912246.00617,
+          "encodedBytes": 8953,
+          "path": "/css/starry/observation.css"
+        },
+        {
+          "type": "Stylesheet",
+          "start": 912245.769375,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "text/css",
+          "end": 912246.054243,
+          "encodedBytes": 33412,
+          "path": "/css/starry/search.css"
+        },
+        {
+          "type": "Stylesheet",
+          "start": 912245.769396,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "text/css",
+          "end": 912246.012886,
+          "encodedBytes": 3936,
+          "path": "/css/starry/collection.css"
+        },
+        {
+          "type": "Stylesheet",
+          "start": 912245.769419,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "text/css",
+          "end": 912246.051532,
+          "encodedBytes": 15241,
+          "path": "/css/starry/journal.css"
+        },
+        {
+          "type": "Stylesheet",
+          "start": 912245.769442,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "text/css",
+          "end": 912246.028856,
+          "encodedBytes": 2253,
+          "path": "/css/blog-theme-switch.css"
+        },
+        {
+          "type": "Script",
+          "start": 912245.777689,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912246.286202,
+          "encodedBytes": 71913,
+          "path": "/js/starfield/app.js"
+        },
+        {
+          "type": "Script",
+          "start": 912245.780746,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912246.116856,
+          "encodedBytes": 1479,
+          "path": "/js/blog-theme-switch.js"
+        },
+        {
+          "type": "Script",
+          "start": 912245.781146,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912246.132941,
+          "encodedBytes": 462,
+          "path": "/js/starfield/static-page.js"
+        },
+        {
+          "type": "Script",
+          "start": 912245.781173,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912246.202145,
+          "encodedBytes": 17359,
+          "path": "/js/starfield/journal.js"
+        },
+        {
+          "type": "Image",
+          "start": 912246.064626,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/svg+xml",
+          "end": 912246.175483,
+          "encodedBytes": 1509,
+          "path": "/image/starfield/room-window-mask-v17.svg"
+        },
+        {
+          "type": "Font",
+          "start": 912246.066924,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "font/woff2",
+          "end": 912248.690693,
+          "encodedBytes": 1236276,
+          "path": "/fonts/lxgw-marker-gothic-v1.003.woff2"
+        },
+        {
+          "type": "Script",
+          "start": 912246.133952,
+          "initiator": "script",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912246.260841,
+          "encodedBytes": 7016,
+          "path": "/js/starfield/audio.js"
+        },
+        {
+          "type": "Script",
+          "start": 912246.28875,
+          "initiator": "script",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912246.431325,
+          "encodedBytes": 8507,
+          "path": "/js/starfield/interactive-clouds.js"
+        },
+        {
+          "type": "Script",
+          "start": 912246.288796,
+          "initiator": "script",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912246.432489,
+          "encodedBytes": 7737,
+          "path": "/js/starfield/painted.js"
+        },
+        {
+          "type": "Script",
+          "start": 912246.288834,
+          "initiator": "script",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912246.416606,
+          "encodedBytes": 5819,
+          "path": "/js/starfield/dome.js"
+        },
+        {
+          "type": "Script",
+          "start": 912246.288859,
+          "initiator": "script",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912246.442118,
+          "encodedBytes": 11737,
+          "path": "/js/starfield/motion.js"
+        },
+        {
+          "type": "Script",
+          "start": 912246.288881,
+          "initiator": "script",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912246.528708,
+          "encodedBytes": 4159,
+          "path": "/js/starfield/tokens.js"
+        },
+        {
+          "type": "Script",
+          "start": 912246.288903,
+          "initiator": "script",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912246.535465,
+          "encodedBytes": 1046,
+          "path": "/js/starfield/experience.js"
+        },
+        {
+          "type": "Script",
+          "start": 912246.289594,
+          "initiator": "script",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912246.540746,
+          "encodedBytes": 2699,
+          "path": "/js/starfield/navigation.js"
+        },
+        {
+          "type": "Script",
+          "start": 912246.289617,
+          "initiator": "script",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912246.546158,
+          "encodedBytes": 978,
+          "path": "/js/starfield/edge-guide.js"
+        },
+        {
+          "type": "Script",
+          "start": 912246.289638,
+          "initiator": "script",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912246.64192,
+          "encodedBytes": 3857,
+          "path": "/js/starfield/render-budget.js"
+        },
+        {
+          "type": "Script",
+          "start": 912246.289889,
+          "initiator": "script",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912246.675435,
+          "encodedBytes": 11187,
+          "path": "/js/starfield/dome-renderer.js"
+        },
+        {
+          "type": "Script",
+          "start": 912246.289914,
+          "initiator": "script",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912246.647297,
+          "encodedBytes": 1353,
+          "path": "/js/starfield/star-targets.js"
+        },
+        {
+          "type": "Script",
+          "start": 912246.290092,
+          "initiator": "script",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912246.663401,
+          "encodedBytes": 3513,
+          "path": "/js/starfield/observation.js"
+        },
+        {
+          "type": "Script",
+          "start": 912246.290123,
+          "initiator": "script",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912246.760629,
+          "encodedBytes": 4871,
+          "path": "/js/starfield/polyhedron.js"
+        },
+        {
+          "type": "Script",
+          "start": 912246.290143,
+          "initiator": "script",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912246.763414,
+          "encodedBytes": 3329,
+          "path": "/js/starfield/silhouette-walker.js"
+        },
+        {
+          "type": "Script",
+          "start": 912246.290163,
+          "initiator": "script",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912246.767288,
+          "encodedBytes": 812,
+          "path": "/js/starfield/reading-progress.js"
+        },
+        {
+          "type": "Script",
+          "start": 912246.290186,
+          "initiator": "script",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912246.783377,
+          "encodedBytes": 2290,
+          "path": "/js/starfield/camera-bounds.js"
+        },
+        {
+          "type": "Script",
+          "start": 912246.290597,
+          "initiator": "script",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912246.951289,
+          "encodedBytes": 28760,
+          "path": "/js/starfield/search.js"
+        },
+        {
+          "type": "Script",
+          "start": 912246.29062,
+          "initiator": "script",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912246.868642,
+          "encodedBytes": 1047,
+          "path": "/js/starfield/reader-art.js"
+        },
+        {
+          "type": "Script",
+          "start": 912246.433612,
+          "initiator": "script",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912246.891317,
+          "encodedBytes": 5572,
+          "path": "/js/starfield/room-scene.js"
+        },
+        {
+          "type": "Script",
+          "start": 912246.664113,
+          "initiator": "script",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912246.902002,
+          "encodedBytes": 3523,
+          "path": "/js/starfield/call-waveform.js"
+        },
+        {
+          "type": "Script",
+          "start": 912246.952363,
+          "initiator": "script",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912247.056683,
+          "encodedBytes": 663,
+          "path": "/js/starfield/astrolabe.js"
+        },
+        {
+          "type": "Fetch",
+          "start": 912248.150176,
+          "initiator": "script",
+          "status": 200,
+          "cache": false,
+          "mime": "application/json",
+          "end": 912248.309677,
+          "encodedBytes": 11328,
+          "path": "/starry/index.json"
+        },
+        {
+          "type": "Image",
+          "start": 912248.150842,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912249.474722,
+          "encodedBytes": 364363,
+          "path": "/images/branding/logo2.png"
+        },
+        {
+          "type": "Image",
+          "start": 912248.150876,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912248.529598,
+          "encodedBytes": 57592,
+          "path": "/images/observation/waves.png"
+        },
+        {
+          "type": "Image",
+          "start": 912248.150906,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912249.05881,
+          "encodedBytes": 248348,
+          "path": "/images/observation/silhouette.png"
+        },
+        {
+          "type": "Image",
+          "start": 912248.150936,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/webp",
+          "end": 912248.601254,
+          "encodedBytes": 75942,
+          "path": "/images/optimized/silhouette-walk-frames.webp"
+        },
+        {
+          "type": "Image",
+          "start": 912248.150963,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912248.473665,
+          "encodedBytes": 10919,
+          "path": "/images/observation/year-pointer.png"
+        },
+        {
+          "type": "Image",
+          "start": 912248.151675,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912248.600046,
+          "encodedBytes": 4549,
+          "path": "/images/observation/diamond.png"
+        },
+        {
+          "type": "Image",
+          "start": 912248.151704,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912248.661548,
+          "encodedBytes": 7518,
+          "path": "/images/observation/dial-ticks.png"
+        },
+        {
+          "type": "Image",
+          "start": 912248.151732,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912248.720189,
+          "encodedBytes": 5662,
+          "path": "/images/observation/dial-bracket.png"
+        },
+        {
+          "type": "Image",
+          "start": 912248.151756,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912248.860261,
+          "encodedBytes": 52478,
+          "path": "/images/observation/waveform.png"
+        },
+        {
+          "type": "Image",
+          "start": 912248.152111,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912248.777466,
+          "encodedBytes": 4314,
+          "path": "/images/observation/starlink.png"
+        },
+        {
+          "type": "Image",
+          "start": 912248.152133,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912248.817492,
+          "encodedBytes": 6101,
+          "path": "/images/observation/call-word.png"
+        },
+        {
+          "type": "Image",
+          "start": 912248.152157,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912248.836074,
+          "encodedBytes": 4255,
+          "path": "/images/observation/call-underline.png"
+        },
+        {
+          "type": "Image",
+          "start": 912248.15218,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912248.893386,
+          "encodedBytes": 4640,
+          "path": "/images/observation/hour-label.png"
+        },
+        {
+          "type": "Image",
+          "start": 912248.152207,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912248.990763,
+          "encodedBytes": 22968,
+          "path": "/images/observation/date-boxes.png"
+        },
+        {
+          "type": "Image",
+          "start": 912248.152231,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912248.952129,
+          "encodedBytes": 3408,
+          "path": "/images/observation/observation-id.png"
+        },
+        {
+          "type": "Image",
+          "start": 912248.152254,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912248.981438,
+          "encodedBytes": 4594,
+          "path": "/images/observation/close.png"
+        },
+        {
+          "type": "Image",
+          "start": 912248.152276,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912249.025472,
+          "encodedBytes": 11380,
+          "path": "/images/observation/read-rule.png"
+        },
+        {
+          "type": "Image",
+          "start": 912248.152874,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912249.146762,
+          "encodedBytes": 33400,
+          "path": "/images/observation/read.png"
+        },
+        {
+          "type": "Image",
+          "start": 912248.152901,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912249.914529,
+          "encodedBytes": 220982,
+          "path": "/images/observation/polyhedron.png"
+        },
+        {
+          "type": "Image",
+          "start": 912248.152928,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912249.134705,
+          "encodedBytes": 11482,
+          "path": "/images/branding/right-icons.png"
+        },
+        {
+          "type": "Image",
+          "start": 912248.152959,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/webp",
+          "end": 912251.46352,
+          "encodedBytes": 1078122,
+          "path": "/images/optimized/entry-base.webp"
+        },
+        {
+          "type": "Image",
+          "start": 912248.152984,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/webp",
+          "end": 912249.541323,
+          "encodedBytes": 100561,
+          "path": "/images/optimized/entry-repair.webp"
+        },
+        {
+          "type": "Image",
+          "start": 912248.153016,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912249.304082,
+          "encodedBytes": 13519,
+          "path": "/images/observation/glyphs/Y.png"
+        },
+        {
+          "type": "Image",
+          "start": 912248.153039,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912249.262641,
+          "encodedBytes": 2978,
+          "path": "/images/observation/glyphs/E.png"
+        },
+        {
+          "type": "Image",
+          "start": 912248.153698,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912249.417342,
+          "encodedBytes": 11684,
+          "path": "/images/observation/glyphs/M.png"
+        },
+        {
+          "type": "Image",
+          "start": 912248.153726,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912249.446696,
+          "encodedBytes": 8984,
+          "path": "/images/observation/glyphs/O.png"
+        },
+        {
+          "type": "Image",
+          "start": 912248.153748,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912249.54396,
+          "encodedBytes": 6838,
+          "path": "/images/observation/glyphs/D.png"
+        },
+        {
+          "type": "Image",
+          "start": 912248.153774,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912249.59996,
+          "encodedBytes": 17219,
+          "path": "/images/observation/glyphs/A.png"
+        },
+        {
+          "type": "Image",
+          "start": 912248.315271,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/webp",
+          "end": 912251.584833,
+          "encodedBytes": 1090296,
+          "path": "/image/starfield/painted-sky-v11.webp"
+        },
+        {
+          "type": "Image",
+          "start": 912248.315323,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912249.850594,
+          "encodedBytes": 41669,
+          "path": "/images/optimized/cloud-1.png"
+        },
+        {
+          "type": "Image",
+          "start": 912248.315352,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912249.847978,
+          "encodedBytes": 40332,
+          "path": "/images/optimized/cloud-2.png"
+        },
+        {
+          "type": "Image",
+          "start": 912248.315376,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912249.89992,
+          "encodedBytes": 41825,
+          "path": "/images/optimized/cloud-3.png"
+        }
+      ]
+    },
+    {
+      "settings": {
+        "name": "mobile-slow4g",
+        "width": 390,
+        "height": 844,
+        "mobile": true,
+        "cpu": 4,
+        "mbps": 1.6,
+        "latency": 150
+      },
+      "browser": "155.0.8059.84",
+      "elapsedMs": 32739,
+      "tasks": [
+        {
+          "start": 31839.299999952316,
+          "duration": 183
+        },
+        {
+          "start": 32053.199999928474,
+          "duration": 84
+        }
+      ],
+      "lcp": [
+        {
+          "time": 1532,
+          "size": 3612,
+          "element": "",
+          "url": ""
+        },
+        {
+          "time": 32092,
+          "size": 5580,
+          "element": "room-thought-copy",
+          "url": ""
+        }
+      ],
+      "shifts": [
+        0.0000146538452899496
+      ],
+      "readyMs": 32012,
+      "now": 32726.899999976158,
+      "fcp": 1532,
+      "domMs": 4120.899999976158,
+      "loadMs": 31809.599999904633,
+      "resources": [
+        {
+          "url": "http://127.0.0.1:4175/image/starfield/room-window-mask-v17.svg",
+          "start": 171.89999997615814,
+          "end": 374.6999999284744,
+          "bytes": 1297,
+          "duration": 202.79999995231628,
+          "initiator": "link"
+        },
+        {
+          "url": "http://127.0.0.1:4175/image/starfield/room-poster-detail-v20.webp?v=d79d9a54cf3480c0",
+          "start": 172.5,
+          "end": 12271,
+          "bytes": 1048394,
+          "duration": 12098.5,
+          "initiator": "link"
+        },
+        {
+          "url": "http://127.0.0.1:4175/css/starry/motion-tokens.css",
+          "start": 176.5,
+          "end": 397.2999999523163,
+          "bytes": 2714,
+          "duration": 220.79999995231628,
+          "initiator": "link"
+        },
+        {
+          "url": "http://127.0.0.1:4175/css/starry/tokens.css",
+          "start": 176.5,
+          "end": 419.59999990463257,
+          "bytes": 2857,
+          "duration": 243.09999990463257,
+          "initiator": "link"
+        },
+        {
+          "url": "http://127.0.0.1:4175/css/starry/site.css",
+          "start": 176.5,
+          "end": 728,
+          "bytes": 18843,
+          "duration": 551.5,
+          "initiator": "link"
+        },
+        {
+          "url": "http://127.0.0.1:4175/css/starry/motion.css",
+          "start": 176.59999990463257,
+          "end": 675.5,
+          "bytes": 4693,
+          "duration": 498.90000009536743,
+          "initiator": "link"
+        },
+        {
+          "url": "http://127.0.0.1:4175/css/starry/scene.css",
+          "start": 176.59999990463257,
+          "end": 817.5999999046326,
+          "bytes": 16858,
+          "duration": 641,
+          "initiator": "link"
+        },
+        {
+          "url": "http://127.0.0.1:4175/css/starry/observation.css",
+          "start": 177.39999997615814,
+          "end": 801.7999999523163,
+          "bytes": 8731,
+          "duration": 624.3999999761581,
+          "initiator": "link"
+        },
+        {
+          "url": "http://127.0.0.1:4175/css/starry/reader.css",
+          "start": 177.39999997615814,
+          "end": 855.6999999284744,
+          "bytes": 11986,
+          "duration": 678.2999999523163,
+          "initiator": "link"
+        },
+        {
+          "url": "http://127.0.0.1:4175/css/starry/search.css",
+          "start": 177.39999997615814,
+          "end": 1469.8999999761581,
+          "bytes": 33189,
+          "duration": 1292.5,
+          "initiator": "link"
+        },
+        {
+          "url": "http://127.0.0.1:4175/css/starry/collection.css",
+          "start": 177.5,
+          "end": 936.6999999284744,
+          "bytes": 3714,
+          "duration": 759.1999999284744,
+          "initiator": "link"
+        },
+        {
+          "url": "http://127.0.0.1:4175/css/blog-theme-switch.css",
+          "start": 177.59999990463257,
+          "end": 1027.5,
+          "bytes": 2031,
+          "duration": 849.9000000953674,
+          "initiator": "link"
+        },
+        {
+          "url": "http://127.0.0.1:4175/css/starry/journal.css",
+          "start": 177.59999990463257,
+          "end": 1289.5,
+          "bytes": 15018,
+          "duration": 1111.9000000953674,
+          "initiator": "link"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/app.js",
+          "start": 278.89999997615814,
+          "end": 2243,
+          "bytes": 71683,
+          "duration": 1964.1000000238419,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/blog-theme-switch.js",
+          "start": 285.89999997615814,
+          "end": 1124.7999999523163,
+          "bytes": 1250,
+          "duration": 838.8999999761581,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/static-page.js",
+          "start": 286.89999997615814,
+          "end": 1207.1999999284744,
+          "bytes": 234,
+          "duration": 920.2999999523163,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/journal.js",
+          "start": 286.89999997615814,
+          "end": 1597.2999999523163,
+          "bytes": 17129,
+          "duration": 1310.3999999761581,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/image/starfield/room-window-mask-v17.svg",
+          "start": 1481.3999999761581,
+          "end": 1672.7999999523163,
+          "bytes": 1297,
+          "duration": 191.39999997615814,
+          "initiator": "css"
+        },
+        {
+          "url": "http://127.0.0.1:4175/fonts/lxgw-marker-gothic-v1.003.woff2",
+          "start": 1483.6999999284744,
+          "end": 18749.299999952316,
+          "bytes": 1236064,
+          "duration": 17265.600000023842,
+          "initiator": "css"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/audio.js",
+          "start": 1528.5,
+          "end": 1822.8999999761581,
+          "bytes": 6787,
+          "duration": 294.39999997615814,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/interactive-clouds.js",
+          "start": 2245.1999999284744,
+          "end": 2647.399999976158,
+          "bytes": 8278,
+          "duration": 402.2000000476837,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/dome.js",
+          "start": 2245.5999999046326,
+          "end": 2572.7999999523163,
+          "bytes": 5590,
+          "duration": 327.2000000476837,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/painted.js",
+          "start": 2245.5999999046326,
+          "end": 2639.5999999046326,
+          "bytes": 7508,
+          "duration": 394,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/motion.js",
+          "start": 2245.6999999284744,
+          "end": 2691.6999999284744,
+          "bytes": 11507,
+          "duration": 446,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/tokens.js",
+          "start": 2245.6999999284744,
+          "end": 2789.5,
+          "bytes": 3930,
+          "duration": 543.8000000715256,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/experience.js",
+          "start": 2245.7999999523163,
+          "end": 2811.7999999523163,
+          "bytes": 818,
+          "duration": 566,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/navigation.js",
+          "start": 2245.7999999523163,
+          "end": 2850.399999976158,
+          "bytes": 2470,
+          "duration": 604.6000000238419,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/edge-guide.js",
+          "start": 2245.7999999523163,
+          "end": 2865.5999999046326,
+          "bytes": 750,
+          "duration": 619.7999999523163,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/render-budget.js",
+          "start": 2245.7999999523163,
+          "end": 3022.399999976158,
+          "bytes": 3628,
+          "duration": 776.6000000238419,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/dome-renderer.js",
+          "start": 2246.5,
+          "end": 3187.2999999523163,
+          "bytes": 10957,
+          "duration": 940.7999999523163,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/star-targets.js",
+          "start": 2246.5999999046326,
+          "end": 3036.6999999284744,
+          "bytes": 1124,
+          "duration": 790.1000000238419,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/observation.js",
+          "start": 2246.6999999284744,
+          "end": 3119.5,
+          "bytes": 3284,
+          "duration": 872.8000000715256,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/silhouette-walker.js",
+          "start": 2246.6999999284744,
+          "end": 3278.2999999523163,
+          "bytes": 3100,
+          "duration": 1031.6000000238419,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/polyhedron.js",
+          "start": 2246.6999999284744,
+          "end": 3293.0999999046326,
+          "bytes": 4642,
+          "duration": 1046.3999999761581,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/reading-progress.js",
+          "start": 2246.7999999523163,
+          "end": 3308.399999976158,
+          "bytes": 584,
+          "duration": 1061.6000000238419,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/camera-bounds.js",
+          "start": 2246.7999999523163,
+          "end": 3383,
+          "bytes": 2061,
+          "duration": 1136.2000000476837,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/reader-art.js",
+          "start": 2247.2999999523163,
+          "end": 3473,
+          "bytes": 819,
+          "duration": 1225.7000000476837,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/search.js",
+          "start": 2247.2999999523163,
+          "end": 3937.0999999046326,
+          "bytes": 28530,
+          "duration": 1689.7999999523163,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/room-scene.js",
+          "start": 2641.0999999046326,
+          "end": 3592.5999999046326,
+          "bytes": 5343,
+          "duration": 951.5,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/call-waveform.js",
+          "start": 3121,
+          "end": 3636.5999999046326,
+          "bytes": 3294,
+          "duration": 515.5999999046326,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/js/starfield/astrolabe.js",
+          "start": 3938.7999999523163,
+          "end": 4109.399999976158,
+          "bytes": 435,
+          "duration": 170.60000002384186,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4175/starry/index.json",
+          "start": 12288.099999904633,
+          "end": 12764.399999976158,
+          "bytes": 11097,
+          "duration": 476.3000000715256,
+          "initiator": "fetch"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/branding/logo2.png",
+          "start": 12288.599999904633,
+          "end": 22290.199999928474,
+          "bytes": 364153,
+          "duration": 10001.600000023842,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/observation/waves.png",
+          "start": 12288.699999928474,
+          "end": 14077.799999952316,
+          "bytes": 57383,
+          "duration": 1789.1000000238419,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/observation/silhouette.png",
+          "start": 12288.699999928474,
+          "end": 19274.199999928474,
+          "bytes": 248138,
+          "duration": 6985.5,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/observation/year-pointer.png",
+          "start": 12288.799999952316,
+          "end": 13274.199999928474,
+          "bytes": 10710,
+          "duration": 985.3999999761581,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/observation/diamond.png",
+          "start": 12288.799999952316,
+          "end": 13597.799999952316,
+          "bytes": 4341,
+          "duration": 1309,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/optimized/silhouette-walk-frames.webp",
+          "start": 12288.799999952316,
+          "end": 14543,
+          "bytes": 75732,
+          "duration": 2254.2000000476837,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/observation/dial-ticks.png",
+          "start": 12288.899999976158,
+          "end": 14018.299999952316,
+          "bytes": 7310,
+          "duration": 1729.3999999761581,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/observation/dial-bracket.png",
+          "start": 12289.599999904633,
+          "end": 14331.599999904633,
+          "bytes": 5454,
+          "duration": 2042,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/observation/starlink.png",
+          "start": 12289.699999928474,
+          "end": 14610.5,
+          "bytes": 4106,
+          "duration": 2320.8000000715256,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/observation/call-underline.png",
+          "start": 12289.699999928474,
+          "end": 14894.299999952316,
+          "bytes": 4047,
+          "duration": 2604.600000023842,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/observation/call-word.png",
+          "start": 12289.699999928474,
+          "end": 14901.599999904633,
+          "bytes": 5893,
+          "duration": 2611.899999976158,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/observation/hour-label.png",
+          "start": 12289.699999928474,
+          "end": 15210.699999928474,
+          "bytes": 4432,
+          "duration": 2921,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/observation/waveform.png",
+          "start": 12289.699999928474,
+          "end": 15584.699999928474,
+          "bytes": 52269,
+          "duration": 3295,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/observation/observation-id.png",
+          "start": 12289.799999952316,
+          "end": 15494.299999952316,
+          "bytes": 3200,
+          "duration": 3204.5,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/observation/date-boxes.png",
+          "start": 12289.799999952316,
+          "end": 15689.5,
+          "bytes": 22759,
+          "duration": 3399.7000000476837,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/observation/close.png",
+          "start": 12289.799999952316,
+          "end": 15787,
+          "bytes": 4386,
+          "duration": 3497.2000000476837,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/observation/read-rule.png",
+          "start": 12289.899999976158,
+          "end": 16041.699999928474,
+          "bytes": 11171,
+          "duration": 3751.7999999523163,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/observation/read.png",
+          "start": 12290.599999904633,
+          "end": 16793,
+          "bytes": 33191,
+          "duration": 4502.400000095367,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/observation/polyhedron.png",
+          "start": 12290.599999904633,
+          "end": 22133.399999976158,
+          "bytes": 220772,
+          "duration": 9842.800000071526,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/branding/right-icons.png",
+          "start": 12290.799999952316,
+          "end": 16544.399999976158,
+          "bytes": 11273,
+          "duration": 4253.600000023842,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/optimized/entry-base.webp",
+          "start": 12290.799999952316,
+          "end": 31140.5,
+          "bytes": 1077910,
+          "duration": 18849.700000047684,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/optimized/entry-repair.webp",
+          "start": 12290.899999976158,
+          "end": 19860.399999976158,
+          "bytes": 100350,
+          "duration": 7569.5,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/observation/glyphs/Y.png",
+          "start": 12291.199999928474,
+          "end": 19334.199999928474,
+          "bytes": 13310,
+          "duration": 7043,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/observation/glyphs/E.png",
+          "start": 12291.199999928474,
+          "end": 19499.899999976158,
+          "bytes": 2770,
+          "duration": 7208.700000047684,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/observation/glyphs/M.png",
+          "start": 12291.299999952316,
+          "end": 19806.799999952316,
+          "bytes": 11475,
+          "duration": 7515.5,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/observation/glyphs/O.png",
+          "start": 12291.299999952316,
+          "end": 19898,
+          "bytes": 8776,
+          "duration": 7606.700000047684,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/observation/glyphs/D.png",
+          "start": 12291.299999952316,
+          "end": 20144.299999952316,
+          "bytes": 6630,
+          "duration": 7853,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/observation/glyphs/A.png",
+          "start": 12291.299999952316,
+          "end": 20505.599999904633,
+          "bytes": 17010,
+          "duration": 8214.299999952316,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/optimized/cloud-1.png",
+          "start": 12770.799999952316,
+          "end": 21524.199999928474,
+          "bytes": 41460,
+          "duration": 8753.399999976158,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/optimized/cloud-2.png",
+          "start": 12770.799999952316,
+          "end": 21840.199999928474,
+          "bytes": 40123,
+          "duration": 9069.399999976158,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/image/starfield/painted-sky-v11.webp",
+          "start": 12770.799999952316,
+          "end": 31807.199999928474,
+          "bytes": 1090084,
+          "duration": 19036.399999976158,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4175/images/optimized/cloud-3.png",
+          "start": 12770.899999976158,
+          "end": 22544.099999904633,
+          "bytes": 41616,
+          "duration": 9773.199999928474,
+          "initiator": "img"
+        }
+      ],
+      "room": "inside",
+      "quality": "full",
+      "activeJournalImages": 0,
+      "errors": [],
+      "network": [
+        {
+          "type": "Document",
+          "start": 912252.660134,
+          "initiator": "other",
+          "status": 200,
+          "cache": false,
+          "mime": "text/html",
+          "end": 912252.943992,
+          "encodedBytes": 26391,
+          "path": "/"
+        },
+        {
+          "type": "Image",
+          "start": 912252.831512,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/svg+xml",
+          "end": 912253.034361,
+          "encodedBytes": 1509,
+          "path": "/image/starfield/room-window-mask-v17.svg"
+        },
+        {
+          "type": "Image",
+          "start": 912252.83219,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/webp",
+          "end": 912264.930731,
+          "encodedBytes": 1048606,
+          "path": "/image/starfield/room-poster-detail-v20.webp"
+        },
+        {
+          "type": "Stylesheet",
+          "start": 912252.836148,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "text/css",
+          "end": 912253.079255,
+          "encodedBytes": 3079,
+          "path": "/css/starry/tokens.css"
+        },
+        {
+          "type": "Stylesheet",
+          "start": 912252.836212,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "text/css",
+          "end": 912253.056983,
+          "encodedBytes": 2936,
+          "path": "/css/starry/motion-tokens.css"
+        },
+        {
+          "type": "Stylesheet",
+          "start": 912252.836238,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "text/css",
+          "end": 912253.387708,
+          "encodedBytes": 19066,
+          "path": "/css/starry/site.css"
+        },
+        {
+          "type": "Stylesheet",
+          "start": 912252.83627,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "text/css",
+          "end": 912253.47733,
+          "encodedBytes": 17081,
+          "path": "/css/starry/scene.css"
+        },
+        {
+          "type": "Stylesheet",
+          "start": 912252.836302,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "text/css",
+          "end": 912253.335175,
+          "encodedBytes": 4915,
+          "path": "/css/starry/motion.css"
+        },
+        {
+          "type": "Stylesheet",
+          "start": 912252.837116,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "text/css",
+          "end": 912253.515373,
+          "encodedBytes": 12209,
+          "path": "/css/starry/reader.css"
+        },
+        {
+          "type": "Stylesheet",
+          "start": 912252.837141,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "text/css",
+          "end": 912253.461492,
+          "encodedBytes": 8953,
+          "path": "/css/starry/observation.css"
+        },
+        {
+          "type": "Stylesheet",
+          "start": 912252.837166,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "text/css",
+          "end": 912254.129596,
+          "encodedBytes": 33412,
+          "path": "/css/starry/search.css"
+        },
+        {
+          "type": "Stylesheet",
+          "start": 912252.83719,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "text/css",
+          "end": 912253.596355,
+          "encodedBytes": 3936,
+          "path": "/css/starry/collection.css"
+        },
+        {
+          "type": "Stylesheet",
+          "start": 912252.837218,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "text/css",
+          "end": 912253.949194,
+          "encodedBytes": 15241,
+          "path": "/css/starry/journal.css"
+        },
+        {
+          "type": "Stylesheet",
+          "start": 912252.837245,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "text/css",
+          "end": 912253.687185,
+          "encodedBytes": 2253,
+          "path": "/css/blog-theme-switch.css"
+        },
+        {
+          "type": "Script",
+          "start": 912252.938147,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912254.902666,
+          "encodedBytes": 71913,
+          "path": "/js/starfield/app.js"
+        },
+        {
+          "type": "Script",
+          "start": 912252.945176,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912253.784449,
+          "encodedBytes": 1479,
+          "path": "/js/blog-theme-switch.js"
+        },
+        {
+          "type": "Script",
+          "start": 912252.946538,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912253.866838,
+          "encodedBytes": 462,
+          "path": "/js/starfield/static-page.js"
+        },
+        {
+          "type": "Script",
+          "start": 912252.946581,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912254.256985,
+          "encodedBytes": 17359,
+          "path": "/js/starfield/journal.js"
+        },
+        {
+          "type": "Image",
+          "start": 912254.141103,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/svg+xml",
+          "end": 912254.332498,
+          "encodedBytes": 1509,
+          "path": "/image/starfield/room-window-mask-v17.svg"
+        },
+        {
+          "type": "Font",
+          "start": 912254.143397,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "font/woff2",
+          "end": 912271.40906,
+          "encodedBytes": 1236276,
+          "path": "/fonts/lxgw-marker-gothic-v1.003.woff2"
+        },
+        {
+          "type": "Script",
+          "start": 912254.187846,
+          "initiator": "script",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912254.482507,
+          "encodedBytes": 7016,
+          "path": "/js/starfield/audio.js"
+        },
+        {
+          "type": "Script",
+          "start": 912254.904945,
+          "initiator": "script",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912255.307079,
+          "encodedBytes": 8507,
+          "path": "/js/starfield/interactive-clouds.js"
+        },
+        {
+          "type": "Script",
+          "start": 912254.905335,
+          "initiator": "script",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912255.299279,
+          "encodedBytes": 7737,
+          "path": "/js/starfield/painted.js"
+        },
+        {
+          "type": "Script",
+          "start": 912254.90536,
+          "initiator": "script",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912255.23255,
+          "encodedBytes": 5819,
+          "path": "/js/starfield/dome.js"
+        },
+        {
+          "type": "Script",
+          "start": 912254.905397,
+          "initiator": "script",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912255.351335,
+          "encodedBytes": 11737,
+          "path": "/js/starfield/motion.js"
+        },
+        {
+          "type": "Script",
+          "start": 912254.905419,
+          "initiator": "script",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912255.44926,
+          "encodedBytes": 4159,
+          "path": "/js/starfield/tokens.js"
+        },
+        {
+          "type": "Script",
+          "start": 912254.905441,
+          "initiator": "script",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912255.471456,
+          "encodedBytes": 1046,
+          "path": "/js/starfield/experience.js"
+        },
+        {
+          "type": "Script",
+          "start": 912254.905463,
+          "initiator": "script",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912255.510096,
+          "encodedBytes": 2699,
+          "path": "/js/starfield/navigation.js"
+        },
+        {
+          "type": "Script",
+          "start": 912254.905484,
+          "initiator": "script",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912255.525323,
+          "encodedBytes": 978,
+          "path": "/js/starfield/edge-guide.js"
+        },
+        {
+          "type": "Script",
+          "start": 912254.905505,
+          "initiator": "script",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912255.682104,
+          "encodedBytes": 3857,
+          "path": "/js/starfield/render-budget.js"
+        },
+        {
+          "type": "Script",
+          "start": 912254.90553,
+          "initiator": "script",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912255.846942,
+          "encodedBytes": 11187,
+          "path": "/js/starfield/dome-renderer.js"
+        },
+        {
+          "type": "Script",
+          "start": 912254.906264,
+          "initiator": "script",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912255.696403,
+          "encodedBytes": 1353,
+          "path": "/js/starfield/star-targets.js"
+        },
+        {
+          "type": "Script",
+          "start": 912254.906412,
+          "initiator": "script",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912255.77922,
+          "encodedBytes": 3513,
+          "path": "/js/starfield/observation.js"
+        },
+        {
+          "type": "Script",
+          "start": 912254.906437,
+          "initiator": "script",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912255.952827,
+          "encodedBytes": 4871,
+          "path": "/js/starfield/polyhedron.js"
+        },
+        {
+          "type": "Script",
+          "start": 912254.906459,
+          "initiator": "script",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912255.93794,
+          "encodedBytes": 3329,
+          "path": "/js/starfield/silhouette-walker.js"
+        },
+        {
+          "type": "Script",
+          "start": 912254.906487,
+          "initiator": "script",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912255.968129,
+          "encodedBytes": 812,
+          "path": "/js/starfield/reading-progress.js"
+        },
+        {
+          "type": "Script",
+          "start": 912254.90651,
+          "initiator": "script",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912256.042757,
+          "encodedBytes": 2290,
+          "path": "/js/starfield/camera-bounds.js"
+        },
+        {
+          "type": "Script",
+          "start": 912254.906964,
+          "initiator": "script",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912256.596771,
+          "encodedBytes": 28760,
+          "path": "/js/starfield/search.js"
+        },
+        {
+          "type": "Script",
+          "start": 912254.906986,
+          "initiator": "script",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912256.132662,
+          "encodedBytes": 1047,
+          "path": "/js/starfield/reader-art.js"
+        },
+        {
+          "type": "Script",
+          "start": 912255.300821,
+          "initiator": "script",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912256.25233,
+          "encodedBytes": 5572,
+          "path": "/js/starfield/room-scene.js"
+        },
+        {
+          "type": "Script",
+          "start": 912255.780761,
+          "initiator": "script",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912256.296341,
+          "encodedBytes": 3523,
+          "path": "/js/starfield/call-waveform.js"
+        },
+        {
+          "type": "Script",
+          "start": 912256.59823,
+          "initiator": "script",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 912256.769097,
+          "encodedBytes": 663,
+          "path": "/js/starfield/astrolabe.js"
+        },
+        {
+          "type": "Fetch",
+          "start": 912264.947716,
+          "initiator": "script",
+          "status": 200,
+          "cache": false,
+          "mime": "application/json",
+          "end": 912265.424089,
+          "encodedBytes": 11328,
+          "path": "/starry/index.json"
+        },
+        {
+          "type": "Image",
+          "start": 912264.948355,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912274.949925,
+          "encodedBytes": 364363,
+          "path": "/images/branding/logo2.png"
+        },
+        {
+          "type": "Image",
+          "start": 912264.948391,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912266.737484,
+          "encodedBytes": 57592,
+          "path": "/images/observation/waves.png"
+        },
+        {
+          "type": "Image",
+          "start": 912264.948415,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912271.933924,
+          "encodedBytes": 248348,
+          "path": "/images/observation/silhouette.png"
+        },
+        {
+          "type": "Image",
+          "start": 912264.948445,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/webp",
+          "end": 912267.202681,
+          "encodedBytes": 75942,
+          "path": "/images/optimized/silhouette-walk-frames.webp"
+        },
+        {
+          "type": "Image",
+          "start": 912264.948485,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912265.933903,
+          "encodedBytes": 10919,
+          "path": "/images/observation/year-pointer.png"
+        },
+        {
+          "type": "Image",
+          "start": 912264.94851,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912266.257429,
+          "encodedBytes": 4549,
+          "path": "/images/observation/diamond.png"
+        },
+        {
+          "type": "Image",
+          "start": 912264.948541,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912266.678036,
+          "encodedBytes": 7518,
+          "path": "/images/observation/dial-ticks.png"
+        },
+        {
+          "type": "Image",
+          "start": 912264.948569,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912266.99128,
+          "encodedBytes": 5662,
+          "path": "/images/observation/dial-bracket.png"
+        },
+        {
+          "type": "Image",
+          "start": 912264.949383,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912268.244384,
+          "encodedBytes": 52478,
+          "path": "/images/observation/waveform.png"
+        },
+        {
+          "type": "Image",
+          "start": 912264.949403,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912267.270136,
+          "encodedBytes": 4314,
+          "path": "/images/observation/starlink.png"
+        },
+        {
+          "type": "Image",
+          "start": 912264.949425,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912267.561272,
+          "encodedBytes": 6101,
+          "path": "/images/observation/call-word.png"
+        },
+        {
+          "type": "Image",
+          "start": 912264.949449,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912267.554026,
+          "encodedBytes": 4255,
+          "path": "/images/observation/call-underline.png"
+        },
+        {
+          "type": "Image",
+          "start": 912264.949474,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912267.870337,
+          "encodedBytes": 4640,
+          "path": "/images/observation/hour-label.png"
+        },
+        {
+          "type": "Image",
+          "start": 912264.949496,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912268.349169,
+          "encodedBytes": 22968,
+          "path": "/images/observation/date-boxes.png"
+        },
+        {
+          "type": "Image",
+          "start": 912264.949529,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912268.153981,
+          "encodedBytes": 3408,
+          "path": "/images/observation/observation-id.png"
+        },
+        {
+          "type": "Image",
+          "start": 912264.949554,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912268.446679,
+          "encodedBytes": 4594,
+          "path": "/images/observation/close.png"
+        },
+        {
+          "type": "Image",
+          "start": 912264.949578,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912268.701317,
+          "encodedBytes": 11380,
+          "path": "/images/observation/read-rule.png"
+        },
+        {
+          "type": "Image",
+          "start": 912264.95033,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912269.45271,
+          "encodedBytes": 33400,
+          "path": "/images/observation/read.png"
+        },
+        {
+          "type": "Image",
+          "start": 912264.950354,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912274.793112,
+          "encodedBytes": 220982,
+          "path": "/images/observation/polyhedron.png"
+        },
+        {
+          "type": "Image",
+          "start": 912264.950536,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912269.204066,
+          "encodedBytes": 11482,
+          "path": "/images/branding/right-icons.png"
+        },
+        {
+          "type": "Image",
+          "start": 912264.950571,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/webp",
+          "end": 912283.800194,
+          "encodedBytes": 1078122,
+          "path": "/images/optimized/entry-base.webp"
+        },
+        {
+          "type": "Image",
+          "start": 912264.950593,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/webp",
+          "end": 912272.520182,
+          "encodedBytes": 100561,
+          "path": "/images/optimized/entry-repair.webp"
+        },
+        {
+          "type": "Image",
+          "start": 912264.950628,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912271.993953,
+          "encodedBytes": 13519,
+          "path": "/images/observation/glyphs/Y.png"
+        },
+        {
+          "type": "Image",
+          "start": 912264.950961,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912272.159647,
+          "encodedBytes": 2978,
+          "path": "/images/observation/glyphs/E.png"
+        },
+        {
+          "type": "Image",
+          "start": 912264.950985,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912272.4665,
+          "encodedBytes": 11684,
+          "path": "/images/observation/glyphs/M.png"
+        },
+        {
+          "type": "Image",
+          "start": 912264.951007,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912272.557713,
+          "encodedBytes": 8984,
+          "path": "/images/observation/glyphs/O.png"
+        },
+        {
+          "type": "Image",
+          "start": 912264.951034,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912272.803953,
+          "encodedBytes": 6838,
+          "path": "/images/observation/glyphs/D.png"
+        },
+        {
+          "type": "Image",
+          "start": 912264.951065,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912273.165235,
+          "encodedBytes": 17219,
+          "path": "/images/observation/glyphs/A.png"
+        },
+        {
+          "type": "Image",
+          "start": 912265.430457,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/webp",
+          "end": 912284.46691,
+          "encodedBytes": 1090296,
+          "path": "/image/starfield/painted-sky-v11.webp"
+        },
+        {
+          "type": "Image",
+          "start": 912265.430532,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912274.18394,
+          "encodedBytes": 41669,
+          "path": "/images/optimized/cloud-1.png"
+        },
+        {
+          "type": "Image",
+          "start": 912265.430568,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912274.499871,
+          "encodedBytes": 40332,
+          "path": "/images/optimized/cloud-2.png"
+        },
+        {
+          "type": "Image",
+          "start": 912265.430599,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 912275.203792,
+          "encodedBytes": 41825,
+          "path": "/images/optimized/cloud-3.png"
+        }
+      ]
+    }
+  ]
+}

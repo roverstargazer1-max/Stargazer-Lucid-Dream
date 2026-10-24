@@ -1,0 +1,88 @@
+{
+  "label": "interface-cache",
+  "base": "http://127.0.0.1:4175",
+  "results": [
+    {
+      "network": "fast4g",
+      "browser": "155.0.8059.84",
+      "ready": {
+        "time": 1316.8999999761581,
+        "activeOptionalImages": 0
+      },
+      "enteringDelayMs": 720.7999999523163,
+      "enterTotalMs": 3620,
+      "entered": {
+        "time": 4945.899999976158,
+        "transitions": [
+          {
+            "room": "inside",
+            "time": 1295.1000000238419
+          },
+          {
+            "room": "entering",
+            "time": 2046.6999999284744
+          },
+          {
+            "room": "outside",
+            "time": 4926.5
+          }
+        ],
+        "shellComplete": true
+      },
+      "firstSelectionToReadMs": 1658.5,
+      "read": {
+        "time": 6609.600000023842,
+        "text": 815,
+        "readerControlsComplete": true
+      },
+      "searchOpenMs": 1004.8000000715256,
+      "search": {
+        "time": 7936,
+        "loadedImages": 15,
+        "totalImages": 18
+      },
+      "errors": []
+    },
+    {
+      "network": "slow4g",
+      "browser": "155.0.8059.84",
+      "ready": {
+        "time": 4452,
+        "activeOptionalImages": 0
+      },
+      "enteringDelayMs": 3046.2000000476837,
+      "enterTotalMs": 5933.700000047684,
+      "entered": {
+        "time": 10389,
+        "transitions": [
+          {
+            "room": "inside",
+            "time": 4431.199999928474
+          },
+          {
+            "room": "entering",
+            "time": 7501.5
+          },
+          {
+            "room": "outside",
+            "time": 10370.699999928474
+          }
+        ],
+        "shellComplete": true
+      },
+      "firstSelectionToReadMs": 1629.3999999761581,
+      "read": {
+        "time": 12020.899999976158,
+        "text": 815,
+        "readerControlsComplete": true
+      },
+      "searchOpenMs": 1899.2999999523163,
+      "search": {
+        "time": 14209.299999952316,
+        "loadedImages": 0,
+        "totalImages": 18
+      },
+      "errors": []
+    }
+  ]
+}

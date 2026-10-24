@@ -1,0 +1,65 @@
+{
+  "adopted": false,
+  "candidates": [
+    {
+      "name": "room-poster-detail-v20",
+      "quality": 95,
+      "bytes": 117362,
+      "sourceBytes": 1048394,
+      "meanAbsChannelError": 1.039276864511777,
+      "p99AbsChannelError": 9.0,
+      "maxAbsChannelError": 86.0,
+      "psnrDb": 41.07535605076939
+    },
+    {
+      "name": "room-poster-detail-v20",
+      "quality": 98,
+      "bytes": 160162,
+      "sourceBytes": 1048394,
+      "meanAbsChannelError": 0.9870749414837451,
+      "p99AbsChannelError": 9.0,
+      "maxAbsChannelError": 84.0,
+      "psnrDb": 41.24124273435985
+    },
+    {
+      "name": "room-poster-detail-v20",
+      "quality": 100,
+      "bytes": 178378,
+      "sourceBytes": 1048394,
+      "meanAbsChannelError": 0.9933818581813436,
+      "p99AbsChannelError": 9.0,
+      "maxAbsChannelError": 84.0,
+      "psnrDb": 41.204428966801544
+    },
+    {
+      "name": "painted-sky-v11",
+      "quality": 95,
+      "bytes": 72900,
+      "sourceBytes": 1090084,
+      "meanAbsChannelError": 0.7804318905609312,
+      "p99AbsChannelError": 4.0,
+      "maxAbsChannelError": 28.0,
+      "psnrDb": 46.98835033685582
+    },
+    {
+      "name": "painted-sky-v11",
+      "quality": 98,
+      "bytes": 110200,
+      "sourceBytes": 1090084,
+      "meanAbsChannelError": 0.7500353994756638,
+      "p99AbsChannelError": 3.0,
+      "maxAbsChannelError": 25.0,
+      "psnrDb": 47.44880673232001
+    },
+    {
+      "name": "painted-sky-v11",
+      "quality": 100,
+      "bytes": 126034,
+      "sourceBytes": 1090084,
+      "meanAbsChannelError": 0.756843333367249,
+      "p99AbsChannelError": 3.0,
+      "maxAbsChannelError": 26.0,
+      "psnrDb": 47.39524642206395
+    }
+  ]
+}

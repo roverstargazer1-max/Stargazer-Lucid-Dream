@@ -1,0 +1,38 @@
+{
+  "browser": "155.0.8059.84",
+  "network": "9Mbps / 100ms, CPU 4x, mobile 390x844 DPR2",
+  "results": [
+    {
+      "version": "final",
+      "kind": "article",
+      "path": "/2025/10/20/%E6%A2%A6%E5%BC%80%E5%A7%8B%E7%9A%84%E5%9C%B0%E6%96%B9%5B%E7%BD%AE%E9%A1%B6%5D/",
+      "cache": "cold",
+      "readyMs": 2814.5999999046326,
+      "fcpMs": 600,
+      "bytes": 1831847,
+      "requests": 36,
+      "cls": 0.06165111364904721,
+      "images": 11,
+      "journalImages": 0,
+      "text": 3836,
+      "errors": []
+    },
+    {
+      "version": "final",
+      "kind": "article",
+      "path": "/2025/10/20/%E6%A2%A6%E5%BC%80%E5%A7%8B%E7%9A%84%E5%9C%B0%E6%96%B9%5B%E7%BD%AE%E9%A1%B6%5D/",
+      "cache": "warm",
+      "readyMs": 1284.9000000953674,
+      "fcpMs": 280,
+      "bytes": 8400,
+      "requests": 38,
+      "cls": 0.06165111364904721,
+      "images": 11,
+      "journalImages": 0,
+      "text": 5264,
+      "errors": []
+    }
+  ],
+  "valid": false,
+  "reason": "The cold sample overlapped a production build. Excluded; rerun after build completion."
+}

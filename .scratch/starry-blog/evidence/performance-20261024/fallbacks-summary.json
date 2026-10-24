@@ -1,0 +1,99 @@
+{
+  "preFixStalledModuleAt16s": {
+    "loading": true,
+    "fallbackVisible": false,
+    "windowDisabled": true
+  },
+  "results": [
+    {
+      "kind": "no-js-home",
+      "ready": false,
+      "loading": false,
+      "activePhotos": 0,
+      "links": 13,
+      "prose": 0,
+      "entries": 0,
+      "rawImageLinks": 0
+    },
+    {
+      "kind": "no-js-article",
+      "ready": false,
+      "loading": false,
+      "activePhotos": 0,
+      "links": 0,
+      "prose": 814,
+      "entries": 0,
+      "rawImageLinks": 0
+    },
+    {
+      "kind": "no-js-journal",
+      "ready": false,
+      "loading": false,
+      "activePhotos": 0,
+      "links": 0,
+      "prose": 0,
+      "entries": 13,
+      "rawImageLinks": 2
+    },
+    {
+      "kind": "module-failure",
+      "ready": false,
+      "loading": false,
+      "activePhotos": 0,
+      "links": 13,
+      "prose": 0,
+      "entries": 0,
+      "rawImageLinks": 0
+    },
+    {
+      "kind": "room-failure",
+      "ready": false,
+      "loading": false,
+      "activePhotos": 0,
+      "links": 13,
+      "prose": 0,
+      "entries": 0,
+      "rawImageLinks": 0
+    },
+    {
+      "kind": "mask-failure",
+      "ready": false,
+      "loading": false,
+      "activePhotos": 0,
+      "links": 13,
+      "prose": 0,
+      "entries": 0,
+      "rawImageLinks": 0
+    },
+    {
+      "kind": "index-stalled",
+      "ready": false,
+      "loading": false,
+      "activePhotos": 0,
+      "links": 13,
+      "prose": 0,
+      "entries": 0,
+      "rawImageLinks": 0
+    },
+    {
+      "kind": "module-late",
+      "ready": false,
+      "loading": false,
+      "activePhotos": 0,
+      "links": 13,
+      "prose": 0,
+      "entries": 0,
+      "rawImageLinks": 0
+    },
+    {
+      "kind": "renderer-failure",
+      "ready": false,
+      "loading": false,
+      "activePhotos": 0,
+      "links": 13,
+      "prose": 0,
+      "entries": 0,
+      "rawImageLinks": 0
+    }
+  ]
+}

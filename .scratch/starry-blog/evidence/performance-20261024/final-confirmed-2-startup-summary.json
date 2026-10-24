@@ -1,0 +1,865 @@
+{
+  "label": "final-confirmed-2",
+  "base": "http://127.0.0.1:4194",
+  "results": [
+    {
+      "settings": {
+        "name": "mobile-fast4g",
+        "width": 390,
+        "height": 844,
+        "mobile": true,
+        "cpu": 4,
+        "mbps": 9,
+        "latency": 100
+      },
+      "browser": "155.0.8059.84",
+      "elapsedMs": 2213,
+      "tasks": [
+        {
+          "start": 1389.2000000476837,
+          "duration": 108
+        }
+      ],
+      "lcp": [
+        {
+          "time": 408,
+          "size": 3570,
+          "element": "",
+          "url": ""
+        },
+        {
+          "time": 1556,
+          "size": 5580,
+          "element": "room-thought-copy",
+          "url": ""
+        }
+      ],
+      "shifts": [],
+      "readyMs": 1493.2000000476837,
+      "roomDecodedMs": 557.7999999523163,
+      "now": 2202.2000000476837,
+      "fcp": 408,
+      "domMs": 423.89999997615814,
+      "loadMs": 512.2000000476837,
+      "resources": [
+        {
+          "url": "http://127.0.0.1:4194/fonts/lxgw-marker-ui-v1.woff2?v=5f18a86f7c63",
+          "start": 132.60000002384186,
+          "end": 341.7000000476837,
+          "bytes": 28512,
+          "duration": 209.10000002384186,
+          "initiator": "link"
+        },
+        {
+          "url": "http://127.0.0.1:4194/image/starfield/room-window-mask-v17.svg",
+          "start": 133.60000002384186,
+          "end": 243.20000004768372,
+          "bytes": 782,
+          "duration": 109.60000002384186,
+          "initiator": "link"
+        },
+        {
+          "url": "http://127.0.0.1:4194/images/optimized/scene-room-v1.webp?v=d79d9a54cf3480c0&cache=8b0cc69730c3c56c",
+          "start": 133.70000004768372,
+          "end": 511,
+          "bytes": 200710,
+          "duration": 377.2999999523163,
+          "initiator": "link"
+        },
+        {
+          "url": "http://127.0.0.1:4194/css/starry/world.bundle.css?v=8a7d2401df08e928",
+          "start": 134.20000004768372,
+          "end": 333.7999999523163,
+          "bytes": 25979,
+          "duration": 199.59999990463257,
+          "initiator": "link"
+        },
+        {
+          "url": "http://127.0.0.1:4194/css/blog-theme-switch.css",
+          "start": 134.29999995231628,
+          "end": 242.10000002384186,
+          "bytes": 835,
+          "duration": 107.80000007152557,
+          "initiator": "link"
+        },
+        {
+          "url": "http://127.0.0.1:4194/js/blog-theme-switch.js",
+          "start": 134.39999997615814,
+          "end": 348.5,
+          "bytes": 538,
+          "duration": 214.10000002384186,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4194/js/starfield/app.bundle.js?v=9c089e5526e2d1e1",
+          "start": 134.39999997615814,
+          "end": 362.7000000476837,
+          "bytes": 36285,
+          "duration": 228.30000007152557,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4194/js/starfield/journal.bundle.js?v=df69b01137ce7447",
+          "start": 135.10000002384186,
+          "end": 354.89999997615814,
+          "bytes": 3695,
+          "duration": 219.79999995231628,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4194/image/starfield/room-window-mask-v17.svg",
+          "start": 361.2000000476837,
+          "end": 464.7000000476837,
+          "bytes": 782,
+          "duration": 103.5,
+          "initiator": "css"
+        },
+        {
+          "url": "http://127.0.0.1:4194/favicon.ico",
+          "start": 514.3999999761581,
+          "end": 625.5,
+          "bytes": 9,
+          "duration": 111.10000002384186,
+          "initiator": "other"
+        },
+        {
+          "url": "http://127.0.0.1:4194/starry/index.json",
+          "start": 533.6000000238419,
+          "end": 659,
+          "bytes": 4844,
+          "duration": 125.39999997615814,
+          "initiator": "fetch"
+        },
+        {
+          "url": "http://127.0.0.1:4194/images/optimized/interface-polyhedron-v1.webp?v=a101068238c7cb5e&cache=00abdb588f467662",
+          "start": 533.6000000238419,
+          "end": 1096,
+          "bytes": 108886,
+          "duration": 562.3999999761581,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4194/images/optimized/interface-logo-v1.webp?v=5dac43515fe5d183&cache=1ea89d257ed38fad",
+          "start": 533.6000000238419,
+          "end": 1382.7000000476837,
+          "bytes": 278076,
+          "duration": 849.1000000238419,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4194/images/branding/right-icons.png",
+          "start": 533.7000000476837,
+          "end": 684.3999999761581,
+          "bytes": 11273,
+          "duration": 150.69999992847443,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4194/images/optimized/interface-entry-base-v1.webp?v=c9d464e914ee6a07&cache=4222bd9b3d5925d6",
+          "start": 533.7000000476837,
+          "end": 1212,
+          "bytes": 139834,
+          "duration": 678.2999999523163,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4194/images/optimized/interface-entry-repair-v1.webp?v=d7f9fac91c66fc11&cache=caab5b8370065a3e",
+          "start": 533.7999999523163,
+          "end": 804.2999999523163,
+          "bytes": 18748,
+          "duration": 270.5,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4194/images/optimized/cloud-1.png",
+          "start": 665.5,
+          "end": 987.8999999761581,
+          "bytes": 41460,
+          "duration": 322.39999997615814,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4194/images/optimized/cloud-2.png",
+          "start": 665.5,
+          "end": 1100,
+          "bytes": 40123,
+          "duration": 434.5,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4194/images/optimized/scene-sky-v1.webp?v=b50571d6f8af2503&cache=fe257d5e1f81cc53",
+          "start": 665.5,
+          "end": 1300.1000000238419,
+          "bytes": 146054,
+          "duration": 634.6000000238419,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4194/images/optimized/cloud-3.png",
+          "start": 666,
+          "end": 1234.6000000238419,
+          "bytes": 41616,
+          "duration": 568.6000000238419,
+          "initiator": "img"
+        }
+      ],
+      "room": "inside",
+      "quality": "full",
+      "activeJournalImages": 0,
+      "errors": [],
+      "network": [
+        {
+          "type": "Document",
+          "start": 919345.020822,
+          "initiator": "other",
+          "status": 200,
+          "cache": false,
+          "mime": "text/html",
+          "end": 919345.139213,
+          "encodedBytes": 10343,
+          "path": "/"
+        },
+        {
+          "type": "Font",
+          "start": 919345.152553,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "font/woff2",
+          "end": 919345.3617,
+          "encodedBytes": 28847,
+          "path": "/fonts/lxgw-marker-ui-v1.woff2"
+        },
+        {
+          "type": "Image",
+          "start": 919345.15359,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/svg+xml",
+          "end": 919345.263202,
+          "encodedBytes": 1142,
+          "path": "/image/starfield/room-window-mask-v17.svg"
+        },
+        {
+          "type": "Image",
+          "start": 919345.153641,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/webp",
+          "end": 919345.531014,
+          "encodedBytes": 201046,
+          "path": "/images/optimized/scene-room-v1.webp"
+        },
+        {
+          "type": "Stylesheet",
+          "start": 919345.154251,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "text/css",
+          "end": 919345.353719,
+          "encodedBytes": 26351,
+          "path": "/css/starry/world.bundle.css"
+        },
+        {
+          "type": "Stylesheet",
+          "start": 919345.1543,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "text/css",
+          "end": 919345.26215,
+          "encodedBytes": 1205,
+          "path": "/css/blog-theme-switch.css"
+        },
+        {
+          "type": "Script",
+          "start": 919345.154348,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 919345.382648,
+          "encodedBytes": 36664,
+          "path": "/js/starfield/app.bundle.js"
+        },
+        {
+          "type": "Script",
+          "start": 919345.15439,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 919345.36853,
+          "encodedBytes": 915,
+          "path": "/js/blog-theme-switch.js"
+        },
+        {
+          "type": "Script",
+          "start": 919345.154427,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 919345.374942,
+          "encodedBytes": 4073,
+          "path": "/js/starfield/journal.bundle.js"
+        },
+        {
+          "type": "Image",
+          "start": 919345.381222,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/svg+xml",
+          "end": 919345.484693,
+          "encodedBytes": 325,
+          "path": "/image/starfield/room-window-mask-v17.svg"
+        },
+        {
+          "type": "Other",
+          "start": 919345.534327,
+          "initiator": "other",
+          "status": 404,
+          "cache": false,
+          "mime": "text/plain",
+          "end": 919345.645545,
+          "encodedBytes": 182,
+          "path": "/favicon.ico"
+        },
+        {
+          "type": "Fetch",
+          "start": 919345.55297,
+          "initiator": "script",
+          "status": 200,
+          "cache": false,
+          "mime": "application/json",
+          "end": 919345.67902,
+          "encodedBytes": 5223,
+          "path": "/starry/index.json"
+        },
+        {
+          "type": "Image",
+          "start": 919345.553567,
+          "initiator": "other",
+          "status": 200,
+          "cache": false,
+          "mime": "image/webp",
+          "end": 919346.402716,
+          "encodedBytes": 278412,
+          "path": "/images/optimized/interface-logo-v1.webp"
+        },
+        {
+          "type": "Image",
+          "start": 919345.553615,
+          "initiator": "other",
+          "status": 200,
+          "cache": false,
+          "mime": "image/webp",
+          "end": 919346.116004,
+          "encodedBytes": 109222,
+          "path": "/images/optimized/interface-polyhedron-v1.webp"
+        },
+        {
+          "type": "Image",
+          "start": 919345.553642,
+          "initiator": "other",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 919345.704368,
+          "encodedBytes": 11607,
+          "path": "/images/branding/right-icons.png"
+        },
+        {
+          "type": "Image",
+          "start": 919345.553675,
+          "initiator": "other",
+          "status": 200,
+          "cache": false,
+          "mime": "image/webp",
+          "end": 919346.231979,
+          "encodedBytes": 140170,
+          "path": "/images/optimized/interface-entry-base-v1.webp"
+        },
+        {
+          "type": "Image",
+          "start": 919345.553702,
+          "initiator": "other",
+          "status": 200,
+          "cache": false,
+          "mime": "image/webp",
+          "end": 919345.824361,
+          "encodedBytes": 19083,
+          "path": "/images/optimized/interface-entry-repair-v1.webp"
+        },
+        {
+          "type": "Image",
+          "start": 919345.685427,
+          "initiator": "other",
+          "status": 200,
+          "cache": false,
+          "mime": "image/webp",
+          "end": 919346.320051,
+          "encodedBytes": 146390,
+          "path": "/images/optimized/scene-sky-v1.webp"
+        },
+        {
+          "type": "Image",
+          "start": 919345.685492,
+          "initiator": "other",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 919346.00791,
+          "encodedBytes": 41794,
+          "path": "/images/optimized/cloud-1.png"
+        },
+        {
+          "type": "Image",
+          "start": 919345.685522,
+          "initiator": "other",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 919346.120061,
+          "encodedBytes": 40457,
+          "path": "/images/optimized/cloud-2.png"
+        },
+        {
+          "type": "Image",
+          "start": 919345.685988,
+          "initiator": "other",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 919346.254578,
+          "encodedBytes": 41950,
+          "path": "/images/optimized/cloud-3.png"
+        }
+      ]
+    },
+    {
+      "settings": {
+        "name": "mobile-slow4g",
+        "width": 390,
+        "height": 844,
+        "mobile": true,
+        "cpu": 4,
+        "mbps": 1.6,
+        "latency": 150
+      },
+      "browser": "155.0.8059.84",
+      "elapsedMs": 6474,
+      "tasks": [
+        {
+          "start": 5652.800000071526,
+          "duration": 109
+        }
+      ],
+      "lcp": [
+        {
+          "time": 1012,
+          "size": 3570,
+          "element": "",
+          "url": ""
+        },
+        {
+          "time": 5808,
+          "size": 5580,
+          "element": "room-thought-copy",
+          "url": ""
+        }
+      ],
+      "shifts": [],
+      "readyMs": 5752.700000047684,
+      "roomDecodedMs": 1907.7000000476837,
+      "now": 6467.400000095367,
+      "fcp": 1012,
+      "domMs": 1059.7000000476837,
+      "loadMs": 1883.4000000953674,
+      "resources": [
+        {
+          "url": "http://127.0.0.1:4194/fonts/lxgw-marker-ui-v1.woff2?v=5f18a86f7c63",
+          "start": 183.40000009536743,
+          "end": 950.8000000715256,
+          "bytes": 28512,
+          "duration": 767.3999999761581,
+          "initiator": "link"
+        },
+        {
+          "url": "http://127.0.0.1:4194/image/starfield/room-window-mask-v17.svg",
+          "start": 183.90000009536743,
+          "end": 360,
+          "bytes": 782,
+          "duration": 176.09999990463257,
+          "initiator": "link"
+        },
+        {
+          "url": "http://127.0.0.1:4194/css/blog-theme-switch.css",
+          "start": 184,
+          "end": 381.7000000476837,
+          "bytes": 835,
+          "duration": 197.70000004768372,
+          "initiator": "link"
+        },
+        {
+          "url": "http://127.0.0.1:4194/css/starry/world.bundle.css?v=8a7d2401df08e928",
+          "start": 184,
+          "end": 922.7000000476837,
+          "bytes": 25979,
+          "duration": 738.7000000476837,
+          "initiator": "link"
+        },
+        {
+          "url": "http://127.0.0.1:4194/images/optimized/scene-room-v1.webp?v=d79d9a54cf3480c0&cache=8b0cc69730c3c56c",
+          "start": 184,
+          "end": 1881.6000000238419,
+          "bytes": 200710,
+          "duration": 1697.6000000238419,
+          "initiator": "link"
+        },
+        {
+          "url": "http://127.0.0.1:4194/js/starfield/app.bundle.js?v=9c089e5526e2d1e1",
+          "start": 212,
+          "end": 1048.2000000476837,
+          "bytes": 36285,
+          "duration": 836.2000000476837,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4194/js/blog-theme-switch.js",
+          "start": 216.70000004768372,
+          "end": 548.4000000953674,
+          "bytes": 538,
+          "duration": 331.7000000476837,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4194/js/starfield/journal.bundle.js?v=df69b01137ce7447",
+          "start": 218,
+          "end": 651.2000000476837,
+          "bytes": 3695,
+          "duration": 433.2000000476837,
+          "initiator": "script"
+        },
+        {
+          "url": "http://127.0.0.1:4194/image/starfield/room-window-mask-v17.svg",
+          "start": 969.2000000476837,
+          "end": 1131.7000000476837,
+          "bytes": 782,
+          "duration": 162.5,
+          "initiator": "css"
+        },
+        {
+          "url": "http://127.0.0.1:4194/starry/index.json",
+          "start": 1900.6000000238419,
+          "end": 2198.2000000476837,
+          "bytes": 4844,
+          "duration": 297.60000002384186,
+          "initiator": "fetch"
+        },
+        {
+          "url": "http://127.0.0.1:4194/images/optimized/interface-logo-v1.webp?v=5dac43515fe5d183&cache=1ea89d257ed38fad",
+          "start": 1900.7000000476837,
+          "end": 6248.300000071526,
+          "bytes": 278076,
+          "duration": 4347.600000023842,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4194/images/branding/right-icons.png",
+          "start": 1901.7000000476837,
+          "end": 2360.5,
+          "bytes": 11273,
+          "duration": 458.7999999523163,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4194/images/optimized/interface-polyhedron-v1.webp?v=a101068238c7cb5e&cache=00abdb588f467662",
+          "start": 1901.7000000476837,
+          "end": 4985.5,
+          "bytes": 108886,
+          "duration": 3083.7999999523163,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4194/images/optimized/interface-entry-repair-v1.webp?v=d7f9fac91c66fc11&cache=caab5b8370065a3e",
+          "start": 1901.8000000715256,
+          "end": 2578.8000000715256,
+          "bytes": 18748,
+          "duration": 677,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4194/images/optimized/interface-entry-base-v1.webp?v=c9d464e914ee6a07&cache=4222bd9b3d5925d6",
+          "start": 1901.8000000715256,
+          "end": 5468.200000047684,
+          "bytes": 139834,
+          "duration": 3566.399999976158,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4194/images/optimized/cloud-1.png",
+          "start": 2203.9000000953674,
+          "end": 3732.9000000953674,
+          "bytes": 41460,
+          "duration": 1529,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4194/images/optimized/cloud-2.png",
+          "start": 2203.9000000953674,
+          "end": 3914.9000000953674,
+          "bytes": 40123,
+          "duration": 1711,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4194/images/optimized/scene-sky-v1.webp?v=b50571d6f8af2503&cache=fe257d5e1f81cc53",
+          "start": 2203.9000000953674,
+          "end": 5639.800000071526,
+          "bytes": 146054,
+          "duration": 3435.899999976158,
+          "initiator": "img"
+        },
+        {
+          "url": "http://127.0.0.1:4194/images/optimized/cloud-3.png",
+          "start": 2204,
+          "end": 4933.600000023842,
+          "bytes": 41616,
+          "duration": 2729.600000023842,
+          "initiator": "img"
+        }
+      ],
+      "room": "inside",
+      "quality": "full",
+      "activeJournalImages": 0,
+      "errors": [],
+      "network": [
+        {
+          "type": "Document",
+          "start": 919347.421654,
+          "initiator": "other",
+          "status": 200,
+          "cache": false,
+          "mime": "text/html",
+          "end": 919347.630571,
+          "encodedBytes": 10343,
+          "path": "/"
+        },
+        {
+          "type": "Font",
+          "start": 919347.603805,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "font/woff2",
+          "end": 919348.372067,
+          "encodedBytes": 28847,
+          "path": "/fonts/lxgw-marker-ui-v1.woff2"
+        },
+        {
+          "type": "Image",
+          "start": 919347.605182,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/svg+xml",
+          "end": 919347.781294,
+          "encodedBytes": 1142,
+          "path": "/image/starfield/room-window-mask-v17.svg"
+        },
+        {
+          "type": "Image",
+          "start": 919347.605218,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/webp",
+          "end": 919349.3029,
+          "encodedBytes": 201046,
+          "path": "/images/optimized/scene-room-v1.webp"
+        },
+        {
+          "type": "Stylesheet",
+          "start": 919347.605253,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "text/css",
+          "end": 919348.344063,
+          "encodedBytes": 26351,
+          "path": "/css/starry/world.bundle.css"
+        },
+        {
+          "type": "Stylesheet",
+          "start": 919347.605284,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "text/css",
+          "end": 919347.803026,
+          "encodedBytes": 1205,
+          "path": "/css/blog-theme-switch.css"
+        },
+        {
+          "type": "Script",
+          "start": 919347.633215,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 919348.469539,
+          "encodedBytes": 36664,
+          "path": "/js/starfield/app.bundle.js"
+        },
+        {
+          "type": "Script",
+          "start": 919347.637667,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 919347.969667,
+          "encodedBytes": 915,
+          "path": "/js/blog-theme-switch.js"
+        },
+        {
+          "type": "Script",
+          "start": 919347.639229,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "text/javascript",
+          "end": 919348.072506,
+          "encodedBytes": 4073,
+          "path": "/js/starfield/journal.bundle.js"
+        },
+        {
+          "type": "Image",
+          "start": 919348.390423,
+          "initiator": "parser",
+          "status": 200,
+          "cache": false,
+          "mime": "image/svg+xml",
+          "end": 919348.553027,
+          "encodedBytes": 325,
+          "path": "/image/starfield/room-window-mask-v17.svg"
+        },
+        {
+          "type": "Fetch",
+          "start": 919349.321799,
+          "initiator": "script",
+          "status": 200,
+          "cache": false,
+          "mime": "application/json",
+          "end": 919349.619534,
+          "encodedBytes": 5223,
+          "path": "/starry/index.json"
+        },
+        {
+          "type": "Image",
+          "start": 919349.321977,
+          "initiator": "other",
+          "status": 200,
+          "cache": false,
+          "mime": "image/webp",
+          "end": 919353.669547,
+          "encodedBytes": 278412,
+          "path": "/images/optimized/interface-logo-v1.webp"
+        },
+        {
+          "type": "Image",
+          "start": 919349.322841,
+          "initiator": "other",
+          "status": 200,
+          "cache": false,
+          "mime": "image/webp",
+          "end": 919352.40676,
+          "encodedBytes": 109222,
+          "path": "/images/optimized/interface-polyhedron-v1.webp"
+        },
+        {
+          "type": "Image",
+          "start": 919349.323019,
+          "initiator": "other",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 919349.781862,
+          "encodedBytes": 11607,
+          "path": "/images/branding/right-icons.png"
+        },
+        {
+          "type": "Image",
+          "start": 919349.323048,
+          "initiator": "other",
+          "status": 200,
+          "cache": false,
+          "mime": "image/webp",
+          "end": 919352.889421,
+          "encodedBytes": 140170,
+          "path": "/images/optimized/interface-entry-base-v1.webp"
+        },
+        {
+          "type": "Image",
+          "start": 919349.323085,
+          "initiator": "other",
+          "status": 200,
+          "cache": false,
+          "mime": "image/webp",
+          "end": 919350.000109,
+          "encodedBytes": 19083,
+          "path": "/images/optimized/interface-entry-repair-v1.webp"
+        },
+        {
+          "type": "Image",
+          "start": 919349.625146,
+          "initiator": "other",
+          "status": 200,
+          "cache": false,
+          "mime": "image/webp",
+          "end": 919353.061112,
+          "encodedBytes": 146390,
+          "path": "/images/optimized/scene-sky-v1.webp"
+        },
+        {
+          "type": "Image",
+          "start": 919349.625204,
+          "initiator": "other",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 919351.154253,
+          "encodedBytes": 41794,
+          "path": "/images/optimized/cloud-1.png"
+        },
+        {
+          "type": "Image",
+          "start": 919349.625234,
+          "initiator": "other",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 919351.336227,
+          "encodedBytes": 40457,
+          "path": "/images/optimized/cloud-2.png"
+        },
+        {
+          "type": "Image",
+          "start": 919349.625261,
+          "initiator": "other",
+          "status": 200,
+          "cache": false,
+          "mime": "image/png",
+          "end": 919352.354848,
+          "encodedBytes": 41950,
+          "path": "/images/optimized/cloud-3.png"
+        }
+      ]
+    }
+  ]
+}

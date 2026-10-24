@@ -1,0 +1,59 @@
+{
+  "adopted": false,
+  "candidates": [
+    {
+      "name": "room-poster-detail-v20",
+      "quality": 95,
+      "bytes": 119232,
+      "meanError": 0.9815955573408451,
+      "p99Error": 7.0,
+      "maxError": 58.0,
+      "psnr": 42.54798417928987
+    },
+    {
+      "name": "room-poster-detail-v20",
+      "quality": 98,
+      "bytes": 180080,
+      "meanError": 0.9238670049677377,
+      "p99Error": 7.0,
+      "maxError": 56.0,
+      "psnr": 42.848971314234404
+    },
+    {
+      "name": "room-poster-detail-v20",
+      "quality": 100,
+      "bytes": 200710,
+      "meanError": 0.9200359063536534,
+      "p99Error": 7.0,
+      "maxError": 55.0,
+      "psnr": 42.87379304020022
+    },
+    {
+      "name": "painted-sky-v11",
+      "quality": 95,
+      "bytes": 84860,
+      "meanError": 0.77168694823452,
+      "p99Error": 3.0,
+      "maxError": 16.0,
+      "psnr": 47.21293575077664
+    },
+    {
+      "name": "painted-sky-v11",
+      "quality": 98,
+      "bytes": 128634,
+      "meanError": 0.7370164474018904,
+      "p99Error": 3.0,
+      "maxError": 18.0,
+      "psnr": 47.738449714775754
+    },
+    {
+      "name": "painted-sky-v11",
+      "quality": 100,
+      "bytes": 146054,
+      "meanError": 0.7400226471855085,
+      "p99Error": 3.0,
+      "maxError": 17.0,
+      "psnr": 47.74237421205121
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "browser": "155.0.8059.84",
+  "network": "9Mbps / 100ms, CPU 4x, mobile 390x844 DPR2",
+  "results": [
+    {
+      "version": "baseline",
+      "kind": "home",
+      "path": "/",
+      "cache": "cold",
+      "readyMs": 6183.5,
+      "fcpMs": 428,
+      "bytes": 6021877,
+      "requests": 76,
+      "cls": 0.0000146538452899496,
+      "images": 39,
+      "journalImages": 0,
+      "text": 1945,
+      "errors": []
+    },
+    {
+      "version": "baseline",
+      "kind": "home",
+      "path": "/",
+      "cache": "warm",
+      "readyMs": 1906,
+      "fcpMs": 480,
+      "bytes": 22200,
+      "requests": 75,
+      "cls": 0,
+      "images": 39,
+      "journalImages": 0,
+      "text": 1945,
+      "errors": []
+    }
+  ]
+}

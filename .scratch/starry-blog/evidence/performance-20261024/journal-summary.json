@@ -1,0 +1,66 @@
+[
+  {
+    "name": "desktop-modal",
+    "width": 1440,
+    "height": 900,
+    "initialPhotoRequests": 0,
+    "photoRequestsAfterExplicitClick": 1,
+    "reopenAddsRequests": false,
+    "keyboard": true,
+    "backToTop": true,
+    "layout": {
+      "viewport": 1440,
+      "page": 1440,
+      "top": 44
+    },
+    "errors": []
+  },
+  {
+    "name": "mobile-modal",
+    "width": 390,
+    "height": 650,
+    "initialPhotoRequests": 0,
+    "photoRequestsAfterExplicitClick": 1,
+    "reopenAddsRequests": false,
+    "keyboard": true,
+    "backToTop": true,
+    "layout": {
+      "viewport": 390,
+      "page": 390,
+      "top": 44
+    },
+    "errors": []
+  },
+  {
+    "name": "narrow-page",
+    "width": 320,
+    "height": 568,
+    "initialPhotoRequests": 0,
+    "photoRequestsAfterExplicitClick": 1,
+    "reopenAddsRequests": false,
+    "keyboard": true,
+    "backToTop": true,
+    "layout": {
+      "viewport": 320,
+      "page": 320,
+      "top": 44
+    },
+    "errors": []
+  },
+  {
+    "name": "retry",
+    "width": 390,
+    "height": 650,
+    "initialPhotoRequests": 0,
+    "photoRequestsAfterExplicitClick": 2,
+    "reopenAddsRequests": false,
+    "keyboard": true,
+    "backToTop": true,
+    "layout": {
+      "viewport": 390,
+      "page": 390,
+      "top": 44
+    },
+    "errors": []
+  }
+]

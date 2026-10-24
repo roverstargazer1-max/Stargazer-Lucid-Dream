@@ -1,0 +1,278 @@
+{
+  "browser": "155.0.8059.84",
+  "compressed": true,
+  "results": [
+    {
+      "round": 1,
+      "version": "baseline",
+      "case": "desktop-cold",
+      "readyMs": 344.2999999523163,
+      "fcpMs": 120,
+      "bytes": 6025948,
+      "requests": 76,
+      "cls": 0,
+      "longTasks": [
+        93
+      ],
+      "unfinished": [],
+      "errors": []
+    },
+    {
+      "round": 1,
+      "version": "baseline",
+      "case": "mobile-fast4g",
+      "readyMs": 6011.100000023842,
+      "fcpMs": 420,
+      "bytes": 6025766,
+      "requests": 75,
+      "cls": 0.0000146538452899496,
+      "longTasks": [
+        175,
+        73
+      ],
+      "unfinished": [],
+      "errors": []
+    },
+    {
+      "round": 1,
+      "version": "baseline",
+      "case": "mobile-slow4g",
+      "readyMs": 30916.899999976158,
+      "fcpMs": 804,
+      "bytes": 6025766,
+      "requests": 75,
+      "cls": 0.0000146538452899496,
+      "longTasks": [
+        183,
+        95
+      ],
+      "unfinished": [],
+      "errors": []
+    },
+    {
+      "round": 1,
+      "version": "final",
+      "case": "desktop-cold",
+      "readyMs": 137.5,
+      "fcpMs": 68,
+      "bytes": 1143671,
+      "requests": 21,
+      "cls": 0,
+      "longTasks": [
+        60
+      ],
+      "unfinished": [],
+      "errors": []
+    },
+    {
+      "round": 1,
+      "version": "final",
+      "case": "mobile-fast4g",
+      "readyMs": 1483.1000000238419,
+      "fcpMs": 392,
+      "bytes": 1143489,
+      "requests": 20,
+      "cls": 0,
+      "longTasks": [
+        103
+      ],
+      "unfinished": [],
+      "errors": []
+    },
+    {
+      "round": 1,
+      "version": "final",
+      "case": "mobile-slow4g",
+      "readyMs": 5740.600000023842,
+      "fcpMs": 1004,
+      "bytes": 1143489,
+      "requests": 20,
+      "cls": 0,
+      "longTasks": [
+        98
+      ],
+      "unfinished": [],
+      "errors": []
+    },
+    {
+      "round": 2,
+      "version": "baseline",
+      "case": "desktop-cold",
+      "readyMs": 227.59999990463257,
+      "fcpMs": 104,
+      "bytes": 6025948,
+      "requests": 76,
+      "cls": 0,
+      "longTasks": [
+        78
+      ],
+      "unfinished": [],
+      "errors": []
+    },
+    {
+      "round": 2,
+      "version": "baseline",
+      "case": "mobile-fast4g",
+      "readyMs": 6012.800000071526,
+      "fcpMs": 428,
+      "bytes": 6025766,
+      "requests": 75,
+      "cls": 0.0000146538452899496,
+      "longTasks": [
+        173,
+        62
+      ],
+      "unfinished": [],
+      "errors": []
+    },
+    {
+      "round": 2,
+      "version": "baseline",
+      "case": "mobile-slow4g",
+      "readyMs": 31038.600000023842,
+      "fcpMs": 708,
+      "bytes": 6025766,
+      "requests": 75,
+      "cls": 0.0000146538452899496,
+      "longTasks": [
+        174,
+        65
+      ],
+      "unfinished": [],
+      "errors": []
+    },
+    {
+      "round": 2,
+      "version": "final",
+      "case": "desktop-cold",
+      "readyMs": 134.29999995231628,
+      "fcpMs": 72,
+      "bytes": 1143671,
+      "requests": 21,
+      "cls": 0,
+      "longTasks": [],
+      "unfinished": [],
+      "errors": []
+    },
+    {
+      "round": 2,
+      "version": "final",
+      "case": "mobile-fast4g",
+      "readyMs": 1469,
+      "fcpMs": 392,
+      "bytes": 1143489,
+      "requests": 20,
+      "cls": 0,
+      "longTasks": [
+        101
+      ],
+      "unfinished": [],
+      "errors": []
+    },
+    {
+      "round": 2,
+      "version": "final",
+      "case": "mobile-slow4g",
+      "readyMs": 5742,
+      "fcpMs": 996,
+      "bytes": 1143489,
+      "requests": 20,
+      "cls": 0,
+      "longTasks": [
+        103
+      ],
+      "unfinished": [],
+      "errors": []
+    },
+    {
+      "round": 3,
+      "version": "baseline",
+      "case": "desktop-cold",
+      "readyMs": 265.10000002384186,
+      "fcpMs": 124,
+      "bytes": 6025948,
+      "requests": 76,
+      "cls": 0,
+      "longTasks": [
+        75
+      ],
+      "unfinished": [],
+      "errors": []
+    },
+    {
+      "round": 3,
+      "version": "baseline",
+      "case": "mobile-fast4g",
+      "readyMs": 6007.899999976158,
+      "fcpMs": 428,
+      "bytes": 6025766,
+      "requests": 75,
+      "cls": 0.0000146538452899496,
+      "longTasks": [
+        169,
+        66
+      ],
+      "unfinished": [],
+      "errors": []
+    },
+    {
+      "round": 3,
+      "version": "baseline",
+      "case": "mobile-slow4g",
+      "readyMs": 31046.199999928474,
+      "fcpMs": 704,
+      "bytes": 6025766,
+      "requests": 75,
+      "cls": 0.0000146538452899496,
+      "longTasks": [
+        181,
+        75
+      ],
+      "unfinished": [],
+      "errors": []
+    },
+    {
+      "round": 3,
+      "version": "final",
+      "case": "desktop-cold",
+      "readyMs": 127.20000004768372,
+      "fcpMs": 84,
+      "bytes": 1143671,
+      "requests": 21,
+      "cls": 0,
+      "longTasks": [],
+      "unfinished": [],
+      "errors": []
+    },
+    {
+      "round": 3,
+      "version": "final",
+      "case": "mobile-fast4g",
+      "readyMs": 1480.2000000476837,
+      "fcpMs": 388,
+      "bytes": 1143489,
+      "requests": 20,
+      "cls": 0,
+      "longTasks": [
+        100
+      ],
+      "unfinished": [],
+      "errors": []
+    },
+    {
+      "round": 3,
+      "version": "final",
+      "case": "mobile-slow4g",
+      "readyMs": 5750.200000047684,
+      "fcpMs": 1004,
+      "bytes": 1143489,
+      "requests": 20,
+      "cls": 0,
+      "longTasks": [
+        101
+      ],
+      "unfinished": [],
+      "errors": []
+    }
+  ]
+}

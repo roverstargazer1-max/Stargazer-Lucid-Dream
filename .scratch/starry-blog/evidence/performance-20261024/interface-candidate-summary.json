@@ -1,0 +1,104 @@
+{
+  "adopted": false,
+  "candidates": [
+    {
+      "name": "search-base",
+      "mode": "lossless",
+      "source": "assets/\u68c0\u7d22\u9875/v3/base-v3.png",
+      "sourceBytes": 7389507,
+      "cacheBytes": 1182878,
+      "meanVisibleChannelError": 0.0,
+      "maxVisibleChannelError": 0
+    },
+    {
+      "name": "search-base",
+      "mode": "sharp",
+      "source": "assets/\u68c0\u7d22\u9875/v3/base-v3.png",
+      "sourceBytes": 7389507,
+      "cacheBytes": 291396,
+      "meanVisibleChannelError": 0.8270732815801777,
+      "maxVisibleChannelError": 50
+    },
+    {
+      "name": "entry-base",
+      "mode": "lossless",
+      "source": "themes/stargazer-starfield/source/images/optimized/entry-base.webp",
+      "sourceBytes": 1077910,
+      "cacheBytes": 1080722,
+      "meanVisibleChannelError": 0.0,
+      "maxVisibleChannelError": 0
+    },
+    {
+      "name": "entry-base",
+      "mode": "sharp",
+      "source": "themes/stargazer-starfield/source/images/optimized/entry-base.webp",
+      "sourceBytes": 1077910,
+      "cacheBytes": 316112,
+      "meanVisibleChannelError": 1.057093642714393,
+      "maxVisibleChannelError": 40
+    },
+    {
+      "name": "entry-repair",
+      "mode": "lossless",
+      "source": "themes/stargazer-starfield/source/images/optimized/entry-repair.webp",
+      "sourceBytes": 100350,
+      "cacheBytes": 100394,
+      "meanVisibleChannelError": 0.0,
+      "maxVisibleChannelError": 0
+    },
+    {
+      "name": "entry-repair",
+      "mode": "sharp",
+      "source": "themes/stargazer-starfield/source/images/optimized/entry-repair.webp",
+      "sourceBytes": 100350,
+      "cacheBytes": 42250,
+      "meanVisibleChannelError": 0.10538673904324874,
+      "maxVisibleChannelError": 49
+    },
+    {
+      "name": "logo",
+      "mode": "lossless",
+      "source": "assets/\u4ee3\u7801\u7a0b\u5e8f\u7d20\u6750/Logo/Logo2/Logo2.png",
+      "sourceBytes": 364153,
+      "cacheBytes": 278076,
+      "meanVisibleChannelError": 0.0,
+      "maxVisibleChannelError": 0
+    },
+    {
+      "name": "polyhedron",
+      "mode": "lossless",
+      "source": "assets/\u8be6\u60c5\u5f39\u7a97/\u8be6\u7ec6\u5de5\u7a0b\u6587\u4ef6/\u53f3\u4e0b\u89d2\u8df3\u52a8\u51e0\u4f55\u5757.png",
+      "sourceBytes": 220772,
+      "cacheBytes": 108886,
+      "meanVisibleChannelError": 0.0,
+      "maxVisibleChannelError": 0
+    },
+    {
+      "name": "silhouette",
+      "mode": "lossless",
+      "source": "themes/stargazer-starfield/source/images/observation/silhouette.png",
+      "sourceBytes": 248138,
+      "cacheBytes": 148762,
+      "meanVisibleChannelError": 0.0,
+      "maxVisibleChannelError": 0
+    },
+    {
+      "name": "search-frame",
+      "mode": "lossless",
+      "source": "assets/\u68c0\u7d22\u9875/v3/frame-v3.png",
+      "sourceBytes": 185263,
+      "cacheBytes": 149550,
+      "meanVisibleChannelError": 0.0,
+      "maxVisibleChannelError": 0
+    },
+    {
+      "name": "search-frame-background",
+      "mode": "lossless",
+      "source": "assets/\u68c0\u7d22\u9875/v3/frame-background-v3.png",
+      "sourceBytes": 193922,
+      "cacheBytes": 149472,
+      "meanVisibleChannelError": 0.0,
+      "maxVisibleChannelError": 0
+    }
+  ]
+}

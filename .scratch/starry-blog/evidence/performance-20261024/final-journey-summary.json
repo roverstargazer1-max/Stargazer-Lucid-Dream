@@ -1,0 +1,122 @@
+{
+  "label": "final",
+  "base": "http://127.0.0.1:4194",
+  "results": [
+    {
+      "network": "fast4g",
+      "browser": "155.0.8059.84",
+      "ready": {
+        "time": 1580.1999999284744,
+        "activeOptionalImages": 4
+      },
+      "enteringDelayMs": 94.09999990463257,
+      "enterTotalMs": 2968.5,
+      "entered": {
+        "time": 4553.100000023842,
+        "transitions": [
+          {
+            "room": "inside",
+            "time": 1535.5
+          },
+          {
+            "room": "entering",
+            "time": 1678.6999999284744
+          },
+          {
+            "room": "outside",
+            "time": 4549.5
+          }
+        ],
+        "shellComplete": true
+      },
+      "firstSelectionToReadMs": 1695.3999999761581,
+      "read": {
+        "time": 6251.699999928474,
+        "text": 815,
+        "artDecoded": 3,
+        "fontsLoaded": true,
+        "readerControlsComplete": true,
+        "artDecodedAt": [
+          [
+            "http://127.0.0.1:4194/images/optimized/interface-reader-track-v1.webp?v=c8117fdb0fe14f01&cache=cff77cfff75cdcf9",
+            5772.100000023842
+          ],
+          [
+            "http://127.0.0.1:4194/images/optimized/interface-reader-continuation-v1.webp?v=130f7a2df9b48cdb&cache=22748d3f4d009d6f",
+            5772.100000023842
+          ],
+          [
+            "http://127.0.0.1:4194/images/optimized/interface-reader-sheet-v1.webp?v=95116740273a2bfe&cache=79369bd7b69d8073",
+            5772.100000023842
+          ]
+        ]
+      },
+      "searchOpenMs": 1034.7999999523163,
+      "search": {
+        "time": 7605.199999928474,
+        "loadedImages": 18,
+        "totalImages": 18,
+        "fullyStyledMs": 1055.6000000238419
+      },
+      "errors": []
+    },
+    {
+      "network": "slow4g",
+      "browser": "155.0.8059.84",
+      "ready": {
+        "time": 5792.700000047684,
+        "activeOptionalImages": 4
+      },
+      "enteringDelayMs": 463,
+      "enterTotalMs": 3354.899999976158,
+      "entered": {
+        "time": 9152.899999976158,
+        "transitions": [
+          {
+            "room": "inside",
+            "time": 5750.100000023842
+          },
+          {
+            "room": "entering",
+            "time": 6261
+          },
+          {
+            "room": "outside",
+            "time": 9131.899999976158
+          }
+        ],
+        "shellComplete": true
+      },
+      "firstSelectionToReadMs": 4664.600000023842,
+      "read": {
+        "time": 13818.5,
+        "text": 815,
+        "artDecoded": 2,
+        "fontsLoaded": true,
+        "readerControlsComplete": true,
+        "artDecodedAt": [
+          [
+            "http://127.0.0.1:4194/images/optimized/interface-reader-track-v1.webp?v=c8117fdb0fe14f01&cache=cff77cfff75cdcf9",
+            7966.5
+          ],
+          [
+            "http://127.0.0.1:4194/images/optimized/interface-reader-continuation-v1.webp?v=130f7a2df9b48cdb&cache=22748d3f4d009d6f",
+            8702.200000047684
+          ],
+          [
+            "http://127.0.0.1:4194/images/optimized/interface-reader-sheet-v1.webp?v=95116740273a2bfe&cache=79369bd7b69d8073",
+            14903.399999976158
+          ]
+        ]
+      },
+      "searchOpenMs": 1952.5,
+      "search": {
+        "time": 16087.600000023842,
+        "loadedImages": 18,
+        "totalImages": 18,
+        "fullyStyledMs": 1954.2999999523163
+      },
+      "errors": []
+    }
+  ]
+}

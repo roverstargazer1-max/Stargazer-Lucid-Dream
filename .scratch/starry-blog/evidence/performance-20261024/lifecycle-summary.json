@@ -1,0 +1,82 @@
+{
+  "browser": "155.0.8059.84",
+  "results": [
+    {
+      "scenario": "desktop",
+      "readerBlur": "blur(2.4px)",
+      "searchBlur": "blur(1.2px)",
+      "operations": "enter, select, read, scroll, close, search, filter, read, restore search, close, return",
+      "errors": []
+    },
+    {
+      "scenario": "mobile",
+      "readerBlur": "blur(2.4px)",
+      "searchBlur": "blur(1.2px)",
+      "operations": "enter, select, read, scroll, close, search, filter, read, restore search, close, return",
+      "errors": []
+    },
+    {
+      "scenario": "landscape",
+      "readerBlur": "blur(2.4px)",
+      "searchBlur": "blur(1.2px)",
+      "operations": "enter, select, read, scroll, close, search, filter, read, restore search, close, return",
+      "errors": []
+    },
+    {
+      "scenario": "soft",
+      "readerBlur": "blur(0px)",
+      "searchBlur": "blur(0px)",
+      "operations": "enter, select, read, scroll, close, search, filter, read, restore search, close, return",
+      "errors": []
+    },
+    {
+      "scenario": "resize",
+      "readerBlur": "blur(2.4px)",
+      "searchBlur": "blur(1.2px)",
+      "operations": "enter, select, read, scroll, close, search, filter, read, restore search, close, return",
+      "errors": []
+    },
+    {
+      "scenario": "memory",
+      "warmupCycles": 3,
+      "repeatedCycles": 12,
+      "forcedGC": true,
+      "samples": [
+        {
+          "cycle": 0,
+          "heapBytes": 3548480,
+          "nodes": 2395,
+          "elements": 798,
+          "styles": 3,
+          "animations": 0
+        },
+        {
+          "cycle": 4,
+          "heapBytes": 3731424,
+          "nodes": 2395,
+          "elements": 798,
+          "styles": 3,
+          "animations": 0
+        },
+        {
+          "cycle": 8,
+          "heapBytes": 3791412,
+          "nodes": 2395,
+          "elements": 798,
+          "styles": 3,
+          "animations": 0
+        },
+        {
+          "cycle": 12,
+          "heapBytes": 3824452,
+          "nodes": 2395,
+          "elements": 798,
+          "styles": 3,
+          "animations": 0
+        }
+      ],
+      "growthBytes": 275972,
+      "errors": []
+    }
+  ]
+}

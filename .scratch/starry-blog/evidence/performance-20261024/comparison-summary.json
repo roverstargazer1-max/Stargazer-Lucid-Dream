@@ -1,0 +1,167 @@
+{
+  "browser": "155.0.8059.84",
+  "network": "compressed HTTP/1.1 local server, CPU 4x, DPR2",
+  "startup": [
+    {
+      "case": "mobile-fast4g",
+      "baselineReadyMedianMs": 6011.100000023842,
+      "finalReadyMs": 1480.8000000715256,
+      "finalRoomDecodedMs": 548.8000000715256,
+      "finalFcpMs": 396,
+      "finalBytes": 1145403,
+      "finalRequests": 21
+    },
+    {
+      "case": "mobile-slow4g",
+      "baselineReadyMedianMs": 31038.600000023842,
+      "finalReadyMs": 5752.200000047684,
+      "finalRoomDecodedMs": 1923.7999999523163,
+      "finalFcpMs": 1000,
+      "finalBytes": 1145221,
+      "finalRequests": 20
+    }
+  ],
+  "runtime": {
+    "baseline": {
+      "segments": 44,
+      "errors": 0,
+      "maxLongTaskMs": 0,
+      "maxRafMs": 33.30000000000109
+    },
+    "final": {
+      "segments": 44,
+      "errors": 0,
+      "maxLongTaskMs": 0,
+      "maxRafMs": 50.09999999999991
+    },
+    "pressure": {
+      "segments": 18,
+      "errors": 0,
+      "maxLongTaskMs": 73,
+      "maxRafMs": 83.29999999999927
+    }
+  },
+  "fullTests": {
+    "pass": 116,
+    "fail": 0
+  },
+  "previewAndProductionBundlesMatch": true,
+  "scope": "local builds; no deployment or real-device claim",
+  "responsiveEntryCases": [
+    {
+      "viewportWidth": 1440,
+      "height": 900,
+      "dpr": 2,
+      "src": "/images/optimized/interface-entry-base-v1.webp",
+      "width": 100,
+      "complete": true,
+      "slot": 103.32601928710938,
+      "requests": [
+        "/images/optimized/interface-entry-base-v1.webp"
+      ]
+    },
+    {
+      "viewportWidth": 1440,
+      "height": 900,
+      "dpr": 4,
+      "src": "/images/optimized/entry-base.webp",
+      "width": 100,
+      "complete": true,
+      "slot": 103.32601928710938,
+      "requests": [
+        "/images/optimized/entry-base.webp"
+      ]
+    },
+    {
+      "viewportWidth": 390,
+      "height": 844,
+      "dpr": 3,
+      "src": "/images/optimized/interface-entry-base-v1.webp",
+      "width": 72,
+      "complete": true,
+      "slot": 74.39474487304688,
+      "requests": [
+        "/images/optimized/interface-entry-base-v1.webp"
+      ]
+    },
+    {
+      "viewportWidth": 390,
+      "height": 844,
+      "dpr": 6,
+      "src": "/images/optimized/entry-base.webp",
+      "width": 72,
+      "complete": true,
+      "slot": 74.39474487304688,
+      "requests": [
+        "/images/optimized/entry-base.webp"
+      ]
+    }
+  ],
+  "directArticle": [
+    {
+      "version": "final",
+      "kind": "article",
+      "path": "/2025/10/20/%E6%A2%A6%E5%BC%80%E5%A7%8B%E7%9A%84%E5%9C%B0%E6%96%B9%5B%E7%BD%AE%E9%A1%B6%5D/",
+      "cache": "cold",
+      "readyMs": 2575.7999999523163,
+      "fcpMs": 440,
+      "bytes": 1831847,
+      "requests": 36,
+      "cls": 0.06165111364904721,
+      "images": 11,
+      "journalImages": 0,
+      "text": 3836,
+      "errors": []
+    },
+    {
+      "version": "final",
+      "kind": "article",
+      "path": "/2025/10/20/%E6%A2%A6%E5%BC%80%E5%A7%8B%E7%9A%84%E5%9C%B0%E6%96%B9%5B%E7%BD%AE%E9%A1%B6%5D/",
+      "cache": "warm",
+      "readyMs": 1279.6999999284744,
+      "fcpMs": 268,
+      "bytes": 8400,
+      "requests": 38,
+      "cls": 0.06165111364904721,
+      "images": 11,
+      "journalImages": 0,
+      "text": 5264,
+      "errors": []
+    }
+  ],
+  "sourceFidelity": {
+    "originalAndImportedBodyByteCheck": "passed",
+    "outputs": [
+      {
+        "output": ".preview/stargazer",
+        "entries": 13,
+        "months": 4,
+        "days": 10,
+        "timestamps": 11,
+        "dateOnly": 2,
+        "attachments": 2,
+        "renderedCharacterComparison": "passed"
+      },
+      {
+        "output": "public",
+        "entries": 13,
+        "months": 4,
+        "days": 10,
+        "timestamps": 11,
+        "dateOnly": 2,
+        "attachments": 2,
+        "renderedCharacterComparison": "passed"
+      }
+    ],
+    "attachmentBytes": "passed",
+    "excludedBodyRead": false
+  },
+  "buildAssets": {
+    "js/starfield/app.bundle.js": "59fe7b68ad63f39a8ed18f58c592352fef0acba1e51369c12ac2de2f1fe131b8",
+    "js/starfield/journal.bundle.js": "df69b01137ce7447742a3dba44d0e95456d58974cfb38dff47552c09898f616d",
+    "js/starfield/static-page.bundle.js": "4ad018f6e365b2026138e0d33d60a630da2a51ca8edc5e579edb5986542bc682",
+    "css/starry/world.bundle.css": "8a7d2401df08e928bb4e83ac1d5c8f8440a5968bfb4b03a127fa4c1e68df9616",
+    "css/starry/journal.bundle.css": "aa4d2200b9ca8b8ace4e7360d322542149892056e8cb525326a2c869ad1c847b"
+  },
+  "finalAudit": "covered scope complete; remaining cost and network/visual tradeoffs documented in README"
+}

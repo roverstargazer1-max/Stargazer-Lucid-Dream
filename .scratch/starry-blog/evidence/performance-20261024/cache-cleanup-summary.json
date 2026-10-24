@@ -1,0 +1,5 @@
+{
+  "removed": "/Users/Stargazer/Library/Caches/ms-playwright/chromium_headless_shell-1228",
+  "bytes": 201473747,
+  "reason": "Unused downloadable Playwright headless-shell cache; no active process references it. Tests use the installed Chrome channel. Full Chromium and WebKit caches preserved."
+}
