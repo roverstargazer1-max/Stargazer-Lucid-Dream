@@ -1,0 +1,43 @@
+{
+  "source": "source/images/fallback-sky.webp",
+  "textures": {
+    "sky-repeat-desktop-v1.webp": {
+      "crop": [
+        1350,
+        0,
+        2450,
+        1220
+      ],
+      "size": [
+        1100,
+        1000
+      ],
+      "overlap": 220,
+      "seam_mean_rgb_difference": [
+        0.17,
+        0.16090909090909092,
+        0.27636363636363637
+      ],
+      "bytes": 212734
+    },
+    "sky-repeat-mobile-v1.webp": {
+      "crop": [
+        1740,
+        0,
+        2380,
+        1220
+      ],
+      "size": [
+        640,
+        1000
+      ],
+      "overlap": 220,
+      "seam_mean_rgb_difference": [
+        0.1109375,
+        0.1078125,
+        0.1984375
+      ],
+      "bytes": 120570
+    }
+  }
+}

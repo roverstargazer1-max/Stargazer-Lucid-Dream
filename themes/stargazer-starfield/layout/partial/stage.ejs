@@ -68,7 +68,8 @@
     <% } %>
   </nav>
   <span id="time-cue" class="time-cue" role="status" hidden></span>
-  <button id="journal-egg" class="scene-egg" type="button" aria-label="翻开屋顶手记" title="翻开屋顶手记">⌑<span>屋顶手记</span></button>
+  <button id="journal-egg" class="scene-egg" type="button" aria-label="翻开屋顶手记" hidden>⌑<span>屋顶手记</span></button>
+  <a class="journal-sky-entry" data-journal-open href="<%= url_for('journal/') %>" aria-label="翻开窗边手记"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h14v17H5zM8 4v17M5 8H3m2 5H3m2 5H3m9-10h4m-4 4h4"/></svg><span>手记</span></a>
   <button id="signal-egg" class="signal-egg" type="button" aria-label="触碰远方信号" title="远方传来一点微光" hidden>⌁<span>远方信号</span></button>
   <button id="edge-guide" class="edge-guide" type="button" hidden aria-label="寻找附近的文章星">›</button>
 </main>
@@ -100,8 +101,9 @@
       <span id="room-thought-note" class="sr-only">每颗星，都是一篇文章</span>
     </button>
 
-    <button id="room-journal" type="button" aria-label="翻开桌上的手记" title="桌上的手记"></button>
+    <a id="room-journal" data-journal-open href="<%= url_for('journal/') %>" aria-label="翻开桌上的手记"><span>翻开手记</span></a>
   </div>
+  <a id="room-journal-shortcut" data-journal-open href="<%= url_for('journal/') %>" aria-label="翻开窗边手记"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h14v17H5zM8 4v17M5 8H3m2 5H3m2 5H3m9-10h4m-4 4h4"/></svg><span>窗边手记</span></a>
 </section>
 
 <dialog id="reader" aria-labelledby="reader-title">
@@ -141,6 +143,7 @@
   </div>
 </dialog>
 <dialog id="egg-dialog"><button id="close-egg" class="egg-close" type="button" aria-label="关闭">×</button><span class="eyebrow">A NOTE FROM THE ROOFTOP</span><h2 id="egg-title"></h2><p id="egg-copy"></p><span class="egg-signature">来自这片天空的主人</span></dialog>
+<dialog id="window-journal" aria-labelledby="journal-title" data-journal-url="<%= url_for('journal/') %>"><%- partial('partial/journal', { journal: null, standalone: false }) %></dialog>
 <div id="announcement" class="sr-only" role="status" aria-live="polite"></div>
 
 <script type="module" src="<%= url_for('js/starfield/app.js') %>" onerror="window.starfieldStartup?.fail()"></script>

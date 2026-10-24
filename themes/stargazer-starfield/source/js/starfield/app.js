@@ -240,9 +240,6 @@ async function start() {
       replaceViewState(mode);
       updateUI();
     },
-    onJournal() {
-      openNote('灯还亮着。', '这一页还没有写完。\n\n窗外的星星里，放着一些日常、念头和未眠时写下的文字。');
-    },
     onMotion(value) {
       restingFrameDrawn = false;
       reducedMotion = value;
@@ -272,6 +269,10 @@ async function start() {
     onClose() { restingFrameDrawn = false; updateUI(); },
   });
   wireControls();
+  document.addEventListener('starry:journal', event => {
+    if (event.detail.open) { interrupt(); pointers.clear(); press = null; labelPointer = null; }
+    restingFrameDrawn = false;
+  });
   updateUI();
   preflightRenderer();
 
@@ -1131,20 +1132,21 @@ async function start() {
       const moving = lastCamera && (Math.abs(camera.yaw - lastCamera.yaw) + Math.abs(camera.pitch - lastCamera.pitch) + Math.abs(camera.zoom - lastCamera.zoom) > .01);
       lineOpacity += ((moving || travel || pointers.size ? 0 : 1) - lineOpacity) * Math.min(1, delta / (moving ? 100 : 380));
       lastCamera = { ...camera };
-      if (!reader.open && !egg.open && !roomScene?.active && !articleSearch?.isOpen && !reducedMotion) ambient.seconds += delta / 1000;
+      const journalOpen = body.dataset.journalOpen === 'true';
+      if (!reader.open && !egg.open && !journalOpen && !roomScene?.active && !articleSearch?.isOpen && !reducedMotion) ambient.seconds += delta / 1000;
       ambient.x += (ambient.targetX - ambient.x) * .035;
       ambient.y += (ambient.targetY - ambient.y) * .035;
       // Sky/cloud motion already pauses at the window and while reading. Keep
       // that frame until a resize, transition or meteor changes it. CSS micro-motion continues.
       const staticScene = !travel && !arrival && !meteors.length &&
-        (articleSearch?.isOpen || (reader.open && body.dataset.reading === 'open') || (roomScene?.active && body.dataset.room === 'inside'));
+        (journalOpen || articleSearch?.isOpen || (reader.open && body.dataset.reading === 'open') || (roomScene?.active && body.dataset.room === 'inside'));
       if (!staticScene || !restingFrameDrawn) drawScene(now);
       restingFrameDrawn = Boolean(staticScene);
-      polyhedron.render(now, !reducedMotion && !document.hidden && !roomScene?.active && !reader.open && !articleSearch?.isOpen);
-      articleSearch?.update(now, !roomScene?.active && !arrival && !reader.open && !collectionOpen && !egg.open);
+      polyhedron.render(now, !reducedMotion && !document.hidden && !journalOpen && !roomScene?.active && !reader.open && !articleSearch?.isOpen);
+      articleSearch?.update(now, !journalOpen && !roomScene?.active && !arrival && !reader.open && !collectionOpen && !egg.open);
       // The low sky budget must not freeze the selected article's walking and frequency artwork.
       observationPanel.render(now, !preview.hidden && !reducedMotion &&
-        !document.hidden && !roomScene?.active && !reader.open && !egg.open && !collectionOpen && !arrival);
+        !document.hidden && !journalOpen && !roomScene?.active && !reader.open && !egg.open && !collectionOpen && !arrival);
       // Keep the gait alive while reading; scrolling controls its position separately.
       readingWalker.render(now, reader.open && phase === 'reading' &&
         !readingMotionPreference.matches && !document.hidden);
@@ -1408,7 +1410,7 @@ async function start() {
       moveForward(Math.max(-600, Math.min(600, -event.deltaY * .8)));
     }, { passive: false });
     document.addEventListener('keydown', (event) => {
-      if (reader.open || egg.open || roomScene?.active || collectionOpen || articleSearch?.isOpen || event.target.closest('input, textarea, select, [contenteditable], #preview')) return;
+      if (body.dataset.journalOpen === 'true' || reader.open || egg.open || roomScene?.active || collectionOpen || articleSearch?.isOpen || event.target.closest('input, textarea, select, [contenteditable], #preview')) return;
       if (['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(event.key)) {
         event.preventDefault(); interrupt();
         camera.yaw += event.key === 'ArrowLeft' ? -.09 : event.key === 'ArrowRight' ? .09 : 0;

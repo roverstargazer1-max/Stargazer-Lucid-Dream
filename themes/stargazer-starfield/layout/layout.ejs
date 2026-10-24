@@ -1,6 +1,7 @@
 <%
   const audioConfig = config.aplayer || {};
-  const themeSwitch = blog_theme_switch(page);
+  const isJournalPage = page.layout === 'journal';
+  const themeSwitch = isJournalPage ? null : blog_theme_switch(page);
   const audioPath = (directory, filename) => `${String(directory || '').replace(/\/+$/, '')}/${filename}`;
   const audioAssets = {
     stylesheet: audioConfig.style_cdn || url_for(audioPath(audioConfig.style_dir || 'assets/css', 'APlayer.min.css')),
@@ -11,6 +12,7 @@
   const isStarryArticle = isPost && page.starry_id;
   const collectionKind = page.archive || page.layout === 'archives' ? 'archive' : page.tag ? 'tag' : page.category ? 'category' : '';
   const isStarryCollection = Boolean(collectionKind);
+  const hasStarfield = is_home() || isStarryArticle || isStarryCollection;
   const collectionRoute = isStarryCollection
     ? String(page.current_url || page.path || '').replace(/\/index\.html$/, '/')
     : '';
@@ -21,11 +23,11 @@
   else if (page.year) collectionTitle = page.month
     ? `${page.year} 年 ${String(page.month).padStart(2, '0')} 月`
     : `${page.year} 年`;
-  const title = isPost ? page.title : isStarryCollection ? collectionTitle : config.title;
+  const title = isJournalPage ? '窗边手记' : isPost ? page.title : isStarryCollection ? collectionTitle : config.title;
   const description = isPost
     ? String(page.starry_excerpt || config.description || '')
-    : isStarryCollection ? `${collectionTitle} · 文章清单` : String(config.description || '');
-  const canonical = config.dual_theme ? blog_canonical(page) : isPost
+    : isJournalPage ? '日常的片刻，写在窗边的几句话。' : isStarryCollection ? `${collectionTitle} · 文章清单` : String(config.description || '');
+  const canonical = isJournalPage ? new URL(url_for('journal/'), config.url).href : config.dual_theme ? blog_canonical(page) : isPost
     ? page.permalink
     : isStarryCollection ? new URL(url_for(collectionUrl), config.url).href : new URL(url_for('/'), config.url).href;
   const image = isPost && page.cover
@@ -82,9 +84,10 @@
   <link rel="stylesheet" href="<%= url_for('css/starry/observation.css') %>">
   <link rel="stylesheet" href="<%= url_for('css/starry/search.css') %>">
   <link rel="stylesheet" href="<%= url_for('css/starry/collection.css') %>">
+  <link rel="stylesheet" href="<%= url_for('css/starry/journal.css') %>">
   <% if (themeSwitch) { %><link rel="stylesheet" href="<%= url_for('css/blog-theme-switch.css') %>"><% } %>
 </head>
-<body class="<%= isStarryArticle || isStarryCollection ? 'has-starry-experience' : '' %><%= isStarryArticle ? ' article-page' : '' %>"
+<body class="<%= isStarryArticle || isStarryCollection ? 'has-starry-experience' : '' %><%= isStarryArticle ? ' article-page' : '' %><%= isJournalPage ? ' journal-page' : '' %>"
       data-blog-current-root="<%= config.dual_theme?.current_root || '' %>"
       data-blog-target-root="<%= config.dual_theme?.target_root || '' %>"
       data-scene="painted"
@@ -108,5 +111,6 @@
   <script src="<%= url_for('js/blog-theme-switch.js') %>"></script>
   <% } %>
   <script type="module" src="<%= url_for('js/starfield/static-page.js') %>"></script>
+  <% if (hasStarfield || isJournalPage) { %><script type="module" src="<%= url_for('js/starfield/journal.js') %>"></script><% } %>
 </body>
 </html>

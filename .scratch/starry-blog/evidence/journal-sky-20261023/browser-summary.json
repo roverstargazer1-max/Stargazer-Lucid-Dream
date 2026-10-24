@@ -1,0 +1,127 @@
+{
+  "results": [
+    {
+      "name": "desktop",
+      "geometry": {
+        "left": 290,
+        "top": 90,
+        "right": 1150,
+        "bottom": 910,
+        "scrollOverflow": false,
+        "pageOverflow": false,
+        "months": 4
+      },
+      "texture": {
+        "image": "linear-gradient(90deg, rgba(2, 9, 60, 0.08), rgba(2, 9, 60, 0.18) 45%, rgba(2, 9, 60, 0.08)), url(\"http://127.0.0.1:4175/images/journal/sky-repeat-desktop-v1.webp\")",
+        "attachment": "local, local",
+        "repeat": "repeat-y, repeat-y"
+      },
+      "errors": [],
+      "rapidOpenClose": "passed",
+      "rapidMonthChanges": "passed"
+    },
+    {
+      "name": "mobile",
+      "geometry": {
+        "left": 12,
+        "top": 20,
+        "right": 378,
+        "bottom": 824,
+        "scrollOverflow": false,
+        "pageOverflow": false,
+        "months": 4
+      },
+      "texture": {
+        "image": "linear-gradient(90deg, rgba(2, 9, 60, 0.08), rgba(2, 9, 60, 0.18) 45%, rgba(2, 9, 60, 0.08)), url(\"http://127.0.0.1:4175/images/journal/sky-repeat-mobile-v1.webp\")",
+        "attachment": "local, local",
+        "repeat": "repeat-y, repeat-y"
+      },
+      "errors": [],
+      "rapidOpenClose": "passed",
+      "rapidMonthChanges": "passed"
+    },
+    {
+      "name": "narrow",
+      "geometry": {
+        "left": 12,
+        "top": 20,
+        "right": 308,
+        "bottom": 548,
+        "scrollOverflow": false,
+        "pageOverflow": false,
+        "months": 4
+      },
+      "texture": {
+        "image": "linear-gradient(90deg, rgba(2, 9, 60, 0.08), rgba(2, 9, 60, 0.18) 45%, rgba(2, 9, 60, 0.08)), url(\"http://127.0.0.1:4175/images/journal/sky-repeat-mobile-v1.webp\")",
+        "attachment": "local, local",
+        "repeat": "repeat-y, repeat-y"
+      },
+      "errors": [],
+      "rapidOpenClose": "passed",
+      "rapidMonthChanges": "passed"
+    },
+    {
+      "name": "landscape",
+      "geometry": {
+        "left": 36,
+        "top": 40,
+        "right": 808,
+        "bottom": 350,
+        "scrollOverflow": false,
+        "pageOverflow": false,
+        "months": 4
+      },
+      "texture": {
+        "image": "linear-gradient(90deg, rgba(2, 9, 60, 0.08), rgba(2, 9, 60, 0.18) 45%, rgba(2, 9, 60, 0.08)), url(\"http://127.0.0.1:4175/images/journal/sky-repeat-desktop-v1.webp\")",
+        "attachment": "local, local",
+        "repeat": "repeat-y, repeat-y"
+      },
+      "errors": [],
+      "rapidOpenClose": "passed",
+      "rapidMonthChanges": "passed"
+    },
+    {
+      "name": "reduced",
+      "geometry": {
+        "left": 12,
+        "top": 20,
+        "right": 378,
+        "bottom": 824,
+        "scrollOverflow": false,
+        "pageOverflow": false,
+        "months": 4
+      },
+      "texture": {
+        "image": "linear-gradient(90deg, rgba(2, 9, 60, 0.08), rgba(2, 9, 60, 0.18) 45%, rgba(2, 9, 60, 0.08)), url(\"http://127.0.0.1:4175/images/journal/sky-repeat-mobile-v1.webp\")",
+        "attachment": "local, local",
+        "repeat": "repeat-y, repeat-y"
+      },
+      "errors": [],
+      "rapidOpenClose": "passed",
+      "rapidMonthChanges": "passed"
+    },
+    {
+      "name": "soft",
+      "geometry": {
+        "left": 290,
+        "top": 40,
+        "right": 1150,
+        "bottom": 860,
+        "scrollOverflow": false,
+        "pageOverflow": false,
+        "months": 4
+      },
+      "texture": {
+        "image": "linear-gradient(90deg, rgba(2, 9, 60, 0.08), rgba(2, 9, 60, 0.18) 45%, rgba(2, 9, 60, 0.08)), url(\"http://127.0.0.1:4175/images/journal/sky-repeat-desktop-v1.webp\")",
+        "attachment": "local, local",
+        "repeat": "repeat-y, repeat-y"
+      },
+      "errors": [],
+      "rapidOpenClose": "passed",
+      "rapidMonthChanges": "passed"
+    }
+  ],
+  "independentLinks": "passed",
+  "noJavaScript": "passed",
+  "fetchFailureAndRetry": "passed"
+}

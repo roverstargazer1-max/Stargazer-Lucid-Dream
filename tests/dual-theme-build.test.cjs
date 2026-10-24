@@ -17,7 +17,7 @@ test('an ordinary post builds in both themes, survives a fresh checkout, and sup
     for (const name of ['build-blog.cjs', 'prepare-starfield.cjs', 'package.json', '_config.yml', '_config.legacy-preview.yml', '_config.hexo-theme-kira.yml']) {
       fs.copyFileSync(path.join(project, name), path.join(fixture, name));
     }
-    for (const name of ['node_modules', 'themes', 'assets', 'blog-assets', 'scripts', 'tools']) {
+    for (const name of ['node_modules', 'themes', 'assets', 'blog-assets', 'scripts', 'tools', 'components']) {
       fs.symlinkSync(path.join(project, name), path.join(fixture, name), process.platform === 'win32' ? 'junction' : 'dir');
     }
     fs.mkdirSync(path.join(fixture, 'source'));
@@ -35,6 +35,9 @@ test('an ordinary post builds in both themes, survives a fresh checkout, and sup
     fs.writeFileSync(postFile, mediaPost);
     fs.mkdirSync(path.join(fixture, 'source/_drafts'));
     fs.writeFileSync(path.join(fixture, 'source/_drafts/未发布.md'), '---\ntitle: 未发布\ndate: 2026-10-10\n---\n草稿不发布。\n');
+    fs.mkdirSync(path.join(fixture, 'source/_journal'));
+    fs.writeFileSync(path.join(fixture, 'source/_journal/2026-10-23.md'), '---\ndate: 2026-10-23\n---\n手记独立于文章星，保留 **Markdown**。\n');
+    fs.writeFileSync(path.join(fixture, 'source/_journal/private.md'), '---\ndate: 2026-10-23 21:01\npublished: false\n---\n未公开的手记正文。\n');
     function build() {
       try {
         execFileSync(process.execPath, ['build-blog.cjs'], { cwd: fixture, stdio: 'pipe' });
@@ -63,6 +66,15 @@ test('an ordinary post builds in both themes, survives a fresh checkout, and sup
     assert.equal(prepared._content, parse(mediaPost)._content);
     assert.ok(page('')('#room').length);
     assert.ok(page('legacy')('.kira-posts').length);
+    const journal = page('journal');
+    assert.equal(journal('.journal-entry').length, 1);
+    assert.equal(journal('.journal-entry strong').text(), 'Markdown');
+    assert.equal(journal('.journal-entry-meta time').length, 0, 'A date-only note must not gain an invented timestamp');
+    assert.equal(journal('.journal-demo').length, 0, 'Production must never include illustrative preview writing');
+    assert.ok(!journal('body').text().includes('未公开的手记正文'));
+    assert.equal(journal('[data-blog-theme-switch]').length, 0, 'The journal has no nonexistent legacy counterpart');
+    assert.equal(fs.existsSync(path.join(fixture, 'public/_journal')), false, 'Raw and unpublished writing must not be copied');
+    assertResources(journal, 'journal/');
     for (const route of [article.path, `legacy/${article.path}`]) {
       const $ = page(route);
       assert.ok($('body').text().includes('只写一份 Markdown，两种主题都能阅读。'));
@@ -104,6 +116,10 @@ test('an ordinary post builds in both themes, survives a fresh checkout, and sup
     assert.equal(decodeURI(page(article.path)('[data-blog-theme-switch]').first().attr('href')), `/starfield/${article.path}`);
     assert.equal(decodeURI(page(`starfield/${article.path}`)('[data-blog-theme-switch]').first().attr('href')), `/${article.path}`);
     assertResources(page(`starfield/${article.path}`), `starfield/${article.path}`);
+    assertResources(page('starfield/journal'), 'starfield/journal/');
+    assert.equal(page('starfield/journal')('.journal-entry').length, 1);
+    assert.equal(new URL(page('starfield/journal')('link[rel="canonical"]').attr('href')).pathname, '/starfield/journal/');
+    assert.equal(page('starfield')('#room-journal').attr('href'), '/starfield/journal/');
     const previous = page(`starfield/${article.path}`)('.article-pagination-previous');
     assert.equal(previous.length, 1);
     assert.ok(decodeURI(previous.attr('href')).startsWith('/starfield/'), 'Article navigation must respect the alternate theme root');

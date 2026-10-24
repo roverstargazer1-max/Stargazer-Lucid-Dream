@@ -1,0 +1,25 @@
+{
+  "method": "Per-pixel relative luminance; minimum scrim alpha; no text-shadow credit. Desktop excludes the far-left star outside every text column.",
+  "results": [
+    {
+      "variant": "desktop",
+      "excludedLeftSourcePixels": 32,
+      "minimumScrimOpacity": 0.08,
+      "brightestBackgroundLuminance": 0.07244601527212063,
+      "contrast": {
+        "body": 7.865399049176046,
+        "muted": 4.58097046497037
+      }
+    },
+    {
+      "variant": "mobile",
+      "excludedLeftSourcePixels": 0,
+      "minimumScrimOpacity": 0.08,
+      "brightestBackgroundLuminance": 0.07244601527212063,
+      "contrast": {
+        "body": 7.865399049176046,
+        "muted": 4.58097046497037
+      }
+    }
+  ]
+}

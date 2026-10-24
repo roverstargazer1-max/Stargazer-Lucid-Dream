@@ -19,7 +19,7 @@ export function roomPassageFrames(rect, width, height) {
 // Room transitions keep their own timeline and hand camera progress to the app.
 export function createRoom({
   onEnter, onProgress, onEntered, onReturnStart, onReturnProgress, onReturned,
-  onJournal, onMotion, startOutside = false,
+  onMotion, startOutside = false,
 }) {
   const room = document.getElementById('room'), stage = document.getElementById('room-stage');
   const entry = document.getElementById('window-entry'), world = document.getElementById('world');
@@ -93,8 +93,6 @@ export function createRoom({
   }
   entry.onclick = enterSky;
   if (thought) thought.onclick = enterSky;
-  const journal = document.getElementById('room-journal');
-  if (journal) journal.onclick = onJournal;
 
   function returnHome() {
     if (flight || !room.hidden) return;
