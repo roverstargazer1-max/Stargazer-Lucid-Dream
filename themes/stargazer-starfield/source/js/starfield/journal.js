@@ -1,3 +1,5 @@
+import { requestText } from './request.js';
+
 const preference = matchMedia('(prefers-reduced-motion: reduce)');
 const softMotion = () => preference.matches || document.body.dataset.motion === 'soft' ||
   new URLSearchParams(location.search).get('motion') === 'soft' || document.body.dataset.defaultMotion === 'soft';
@@ -238,16 +240,12 @@ if (dialog) {
 
   function load() {
     if (loadPromise) return loadPromise;
-    loadPromise = fetch(dialog.dataset.journalUrl, { credentials: 'same-origin', cache: 'no-cache' })
-      .then(response => {
-        if (!response.ok) throw new Error(`Journal request failed: ${response.status}`);
-        return response.text();
-      }).then(html => {
-        const page = new DOMParser().parseFromString(html, 'text/html');
-        const content = page.querySelector('.journal-standalone [data-journal-surface]');
-        if (!content) throw new Error('Journal page is missing its reading sheet.');
-        return content;
-      }).catch(error => { loadPromise = null; throw error; });
+    loadPromise = requestText(dialog.dataset.journalUrl).then(html => {
+      const page = new DOMParser().parseFromString(html, 'text/html');
+      const content = page.querySelector('.journal-standalone [data-journal-surface]');
+      if (!content) throw new Error('Journal page is missing its reading sheet.');
+      return content;
+    }).catch(error => { loadPromise = null; throw error; });
     return loadPromise;
   }
 
