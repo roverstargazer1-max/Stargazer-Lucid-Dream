@@ -41,7 +41,7 @@
       <time id="preview-date" class="asset-glyphs observation-date"></time>
       <img class="observation-id" data-src="<%= starry_interface_url('images/observation/observation-id.png') %>" alt="" aria-hidden="true" draggable="false">
       <span id="preview-id" class="asset-glyphs observation-id-value" role="img" aria-label="文章 ID" hidden></span>
-      <button id="deselect" type="button" aria-label="取消选择" title="取消选择"><img data-src="<%= starry_interface_url('images/observation/close.png') %>" alt="" draggable="false"></button>
+      <button id="deselect" class="exit-control" type="button" aria-label="取消选择" title="取消选择"><img data-src="<%= starry_interface_url('images/observation/close.png') %>" alt="" draggable="false"></button>
       <div class="preview-bottom">
         <button id="read-button" type="button" disabled aria-label="进入阅读" aria-describedby="approach-status">
           <span class="read-rule" aria-hidden="true"><% for (const part of ['start', 'middle', 'end']) { %><span class="read-rule-<%= part %>"><img data-src="<%= starry_interface_url('images/observation/read-rule.png') %>" alt="" draggable="false"></span><% } %></span><img class="read-label" data-src="<%= starry_interface_url('images/observation/read.png') %>" width="273" height="128" alt="Read Me" draggable="false">
@@ -114,7 +114,7 @@
       <% const readerThemeSwitch = blog_theme_switch(page); if (readerThemeSwitch) { %>
       <a class="blog-theme-switch" data-blog-theme-switch href="<%= readerThemeSwitch.href %>"><%= readerThemeSwitch.label %></a>
       <% } %>
-      <button id="close-reader" type="button" aria-label="关闭文章，返回星空" title="关闭文章，返回星空">
+      <button id="close-reader" class="exit-control" type="button" aria-label="关闭文章，返回星空" title="关闭文章，返回星空">
         <img data-src="<%= starry_interface_url('images/observation/close.png') %>" alt="" draggable="false">
       </button>
     </header>

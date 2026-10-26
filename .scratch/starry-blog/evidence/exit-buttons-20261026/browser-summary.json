@@ -1,0 +1,24 @@
+{
+  "reader": {
+    "background": "rgba(0, 0, 0, 0)",
+    "buttonTransform": "none",
+    "height": 44,
+    "id": "close-reader",
+    "imageFilter": "brightness(1.2) drop-shadow(rgba(138, 230, 255, 0.4) 0px 0px 3px)",
+    "imageTransform": "matrix(0, 1, -1, 0, 0, 0)",
+    "keyboardFocus": true,
+    "outline": "none",
+    "width": 44
+  },
+  "preview": {
+    "background": "rgba(0, 0, 0, 0)",
+    "buttonTransform": "matrix(1, 0, 0, 1, -22, -8.36)",
+    "height": 44,
+    "id": "deselect",
+    "imageFilter": "brightness(1.2) drop-shadow(rgba(138, 230, 255, 0.4) 0px 0px 3px)",
+    "imageTransform": "matrix(0, 1, -1, 0, 0, 0)",
+    "keyboardFocus": true,
+    "outline": "none",
+    "width": 44
+  }
+}

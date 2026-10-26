@@ -1,0 +1,63 @@
+{
+  "date": "2026-10-26",
+  "sharedControls": [
+    "deselect",
+    "close-reader",
+    "close-search"
+  ],
+  "focusAndHover": {
+    "rotationDegrees": 90,
+    "brightness": 1.2
+  },
+  "pressedScale": 0.86,
+  "movingPart": "icon only",
+  "outsideFocusRingRemoved": true,
+  "readerCircularBackgroundRemoved": true,
+  "hitTargetPixels": 44,
+  "reducedMotionDisablesRotationAndScaling": true,
+  "readerGradientAndOtherStylesPreserved": true,
+  "starArtworkAndLayoutUnchanged": true,
+  "baselineFilesUnchanged": 15,
+  "concurrentArticleEditPreserved": [
+    "source/_posts/梦开始的地方[置顶].md"
+  ],
+  "outputs": [
+    {
+      "root": ".preview/stargazer",
+      "sharedExitControls": 3
+    },
+    {
+      "root": "public",
+      "sharedExitControls": 3
+    }
+  ],
+  "browser": {
+    "reader": {
+      "background": "rgba(0, 0, 0, 0)",
+      "buttonTransform": "none",
+      "height": 44,
+      "id": "close-reader",
+      "imageFilter": "brightness(1.2) drop-shadow(rgba(138, 230, 255, 0.4) 0px 0px 3px)",
+      "imageTransform": "matrix(0, 1, -1, 0, 0, 0)",
+      "keyboardFocus": true,
+      "outline": "none",
+      "width": 44
+    },
+    "preview": {
+      "background": "rgba(0, 0, 0, 0)",
+      "buttonTransform": "matrix(1, 0, 0, 1, -22, -8.36)",
+      "height": 44,
+      "id": "deselect",
+      "imageFilter": "brightness(1.2) drop-shadow(rgba(138, 230, 255, 0.4) 0px 0px 3px)",
+      "imageTransform": "matrix(0, 1, -1, 0, 0, 0)",
+      "keyboardFocus": true,
+      "outline": "none",
+      "width": 44
+    }
+  },
+  "existingTestsPassed": 19,
+  "previewBuildPassed": true,
+  "productionBuildPassed": true,
+  "committed": false,
+  "deployed": false
+}

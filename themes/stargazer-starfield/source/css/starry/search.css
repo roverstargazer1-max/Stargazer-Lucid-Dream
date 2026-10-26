@@ -65,7 +65,7 @@
 [data-index-open=true] #search-index-toggle { --toggle-nudge-x:2px; }
 #close-search { position:absolute; z-index:2; right:0; top:0; width:max(44px,calc(var(--chart-width) * 78 / 1440)); height:max(44px,calc(var(--chart-width) * 61 / 1440)); padding:0; display:flex; align-items:center; justify-content:center; visibility:hidden; }
 [data-index-open=true] #close-search { visibility:visible; }
-#close-search img { position:absolute; right:calc(var(--chart-width) * 19 / 1440); top:calc(var(--chart-width) * 11 / 1440); width:calc(var(--chart-width) * 40 / 1440); height:auto; transition:transform .22s cubic-bezier(.22,.68,.2,1),filter .22s ease; }
+#close-search img { position:absolute; right:calc(var(--chart-width) * 19 / 1440); top:calc(var(--chart-width) * 11 / 1440); width:calc(var(--chart-width) * 40 / 1440); height:auto; }
 
 /* Only the artwork moves; hit areas and the index's 90-degree turn stay independent. */
 .search-bar:has(.search-submit:is(:focus-visible,:active)) .search-frame { visibility:hidden; transition:none; }
@@ -79,7 +79,7 @@
   #search-index-toggle:hover .search-toggle-feedback { transform:translate(var(--toggle-nudge-x),2px) scale(1.09); filter:brightness(1.18) drop-shadow(0 0 3px #8ae6ff66); }
 }
 .search-bar:has(.search-submit:active) .search-submit-art { transform:scale(1.02); }
-#search-index-toggle:active .search-toggle-feedback, #close-search:active img { transform:scale(.94); }
+#search-index-toggle:active .search-toggle-feedback { transform:scale(.94); }
 #search-index { position:absolute; left:calc(var(--chart-width) * 1428 / 1440); top:calc(var(--chart-width) * 169 / 1440); width:calc(var(--chart-width) * 461 / 1440); bottom:calc(var(--chart-width) * 80 / 1440); opacity:0; visibility:hidden; transform:translateX(16px); transition:opacity .24s ease,transform .36s ease,visibility 0s .36s; }
 [data-index-open=true] #search-index { opacity:1; visibility:visible; transform:none; transition-delay:.08s,.08s,0s; }
 .search-index-columns { position:absolute; inset:0 0 auto; height:calc(var(--chart-width) * 37 / 1440); }
@@ -282,16 +282,12 @@ body:not(.starry-ready) #search-entry { display:none; }
 #star-search { transition:width var(--dur-panel) var(--ease-settle); }
 .search-toggle-arrow { transition:transform var(--dur-panel) var(--ease-settle); }
 
-/* Index toggle and close read as small dial movements, not generic zooms. */
+/* The index toggle turns like a small dial; close icons share motion.css. */
 #search-index-toggle::before { content:''; position:absolute; left:50%; top:50%; width:34px; height:34px; margin:-17px; border-radius:50%; border:1px solid rgb(185 239 255 / .55); border-top-color:transparent; border-bottom-color:transparent; opacity:0; transform:rotate(-40deg) scale(.7); transition:opacity var(--dur-hover) var(--ease-exit), transform var(--dur-quick) var(--ease-exit); pointer-events:none; }
 #search-index-toggle:focus-visible::before { opacity:1; transform:rotate(50deg) scale(1); transition:opacity var(--dur-hover) var(--ease-enter), transform var(--dur-panel) var(--ease-settle); }
-#close-search img { transition:transform var(--dur-panel) var(--ease-settle), filter var(--dur-hover) var(--ease-enter); }
-#close-search:focus-visible img { transform:rotate(90deg); filter:brightness(1.2) drop-shadow(0 0 3px #8ae6ff66); }
 @media(hover:hover) and (pointer:fine) {
   #search-index-toggle:hover::before { opacity:1; transform:rotate(50deg) scale(1); transition:opacity var(--dur-hover) var(--ease-enter), transform var(--dur-panel) var(--ease-settle); }
-  #close-search:hover img { transform:rotate(90deg); filter:brightness(1.2) drop-shadow(0 0 3px #8ae6ff66); }
 }
-#close-search:active img { transform:rotate(90deg) scale(.86); transition-duration:var(--dur-press); }
 #search-index-toggle:active::before { transform:rotate(50deg) scale(.86); transition-duration:var(--dur-press); }
 /* As the chart folds away the close mark rewinds against the turn. */
 #star-search[data-motion=closing] #close-search img { transform:rotate(-90deg) scale(.8); transition:transform var(--dur-panel) var(--ease-exit); }

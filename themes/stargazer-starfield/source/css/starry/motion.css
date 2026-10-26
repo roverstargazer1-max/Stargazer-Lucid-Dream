@@ -1,3 +1,17 @@
+/* Exit icons share the chart's quarter-turn; their hit areas stay still. */
+.exit-control > img { transition: transform var(--dur-panel) var(--ease-settle), filter var(--dur-hover) var(--ease-enter); }
+.exit-control:focus-visible,
+body[data-scene=painted] .exit-control:focus-visible { outline: none; }
+.exit-control:focus-visible > img { transform: rotate(90deg); filter: brightness(1.2) drop-shadow(0 0 3px #8ae6ff66); }
+@media (hover:hover) and (pointer:fine) {
+  .exit-control:hover > img { transform: rotate(90deg); filter: brightness(1.2) drop-shadow(0 0 3px #8ae6ff66); }
+}
+.exit-control:active > img { transform: rotate(90deg) scale(.86); transition-duration: var(--dur-press); }
+body[data-reading=closing] #close-reader > img { transform: rotate(-90deg) scale(.8); transition: transform var(--dur-panel) var(--ease-exit); }
+@media (prefers-reduced-motion:reduce) {
+  .exit-control > img { transition: none !important; transform: none !important; }
+}
+
 /* Observation note with the accepted quiet text reveal. */
 body[data-scene=painted] #preview {
   top: 50%; right: clamp(16px, 2.2vw, 40px); bottom: auto; left: auto;
