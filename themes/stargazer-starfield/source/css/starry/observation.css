@@ -64,9 +64,12 @@ body[data-scene=painted] #preview #deselect { position: absolute; left: 91.862%;
 /* The button covers both the original rule and the complete 273 × 128 Read Me artwork. */
 body[data-scene=painted] .observation-panel .preview-bottom { position: absolute; left: 69.13%; top: 68.702%; width: 26.38%; display: block; margin: 0; padding: 0; border: 0; }
 body[data-scene=painted] .observation-panel #read-button { position: relative; display: block; width: 100%; height: 14.688cqw; min-width: 44px; min-height: 44px; padding: 0; color: #fff; opacity: 1; cursor: pointer; }
+body[data-scene=painted] .observation-panel #read-button:disabled { opacity: .48; cursor: wait; }
+body[data-scene=painted] #preview #approach-status { display: block; margin: 2px 0 0; color: #d4edff; font: clamp(10px, 1.5cqw, 12px)/1.5 var(--sans); text-align: right; }
+#read-direct-link { position: absolute; right: calc(100% + 12px); bottom: 0; display: flex; align-items: center; min-height: 44px; padding: 0 6px; white-space: nowrap; color: #d4edff; font: clamp(11px, 1.6cqw, 13px)/1.5 var(--sans); text-underline-offset: 4px; }
 #read-button > img { pointer-events: none; }
 body[data-scene=painted] #read-button > .read-label { position: absolute; left: .842cqw; top: 2.713cqw; display: block; width: 25.538cqw; height: auto; transition: filter .25s; }
-#read-button:hover > .read-label, #read-button:focus-visible > .read-label { filter: drop-shadow(0 0 5px #72dbffaa); }
+#read-button:enabled:hover > .read-label, #read-button:focus-visible > .read-label { filter: drop-shadow(0 0 5px #72dbffaa); }
 /* Only the rule's straight middle grows by 22 source pixels; its corners retain their proportions. */
 body[data-scene=painted] #read-button .read-rule { position: absolute; left: .187cqw; top: .094cqw; width: 22.451cqw; height: 3.929cqw; pointer-events: none; }
 .read-rule > span { position: absolute; top: 0; height: 100%; overflow: hidden; }

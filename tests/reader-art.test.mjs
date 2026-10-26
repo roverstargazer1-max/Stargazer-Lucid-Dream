@@ -17,6 +17,9 @@ test('reader assets decode on demand, share in-flight work, and tolerate failure
   assert.equal(prepareReaderArt(), first);
   assert.equal(images.length, 3);
   assert.equal(fontLoads, 1);
+  assert.ok(images.every(image => image.fetchPriority === 'low'));
+  assert.equal(prepareReaderArt('', 'high'), first, 'READ promotes the existing background work without starting another request');
+  assert.ok(images.every(image => image.fetchPriority === 'high'));
   assert.ok(images.every(image => /\/images\/reader\/(sheet|continuation|progress-track)\.webp$/.test(image.src)));
   decodes.forEach(({ resolve }) => resolve());
   await first;

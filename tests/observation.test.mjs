@@ -5,7 +5,7 @@ import path from 'node:path';
 import { createObservationPanel, observationDate } from '../themes/stargazer-starfield/source/js/starfield/observation.js';
 
 function observationFixture() {
-  const document = { createElement: tagName => ({ tagName }) };
+  const document = { createElement: tagName => ({ tagName, decode: async () => {} }) };
   const element = () => ({
     ownerDocument: document, dataset: {}, attributes: {}, children: [],
     replaceChildren(...children) { this.children = children; },

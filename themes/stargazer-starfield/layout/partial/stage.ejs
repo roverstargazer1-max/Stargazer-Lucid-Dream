@@ -46,7 +46,8 @@
         <button id="read-button" type="button" disabled aria-label="进入阅读" aria-describedby="approach-status">
           <span class="read-rule" aria-hidden="true"><% for (const part of ['start', 'middle', 'end']) { %><span class="read-rule-<%= part %>"><img data-src="<%= starry_interface_url('images/observation/read-rule.png') %>" alt="" draggable="false"></span><% } %></span><img class="read-label" data-src="<%= starry_interface_url('images/observation/read.png') %>" width="273" height="128" alt="Read Me" draggable="false">
         </button>
-        <span id="approach-status" class="sr-only" aria-live="polite">再点星，阅读</span>
+        <span id="approach-status" aria-live="polite">正在靠近…</span>
+        <a id="read-direct-link" hidden>直接阅读 ↗</a>
       </div>
     </div>
   </section>

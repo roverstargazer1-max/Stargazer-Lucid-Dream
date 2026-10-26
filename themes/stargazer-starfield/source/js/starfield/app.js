@@ -1,4 +1,3 @@
-import { prepareEmbeddedPlayer } from './audio.js';
 import { createInteractiveClouds, prepareInteractiveClouds } from './interactive-clouds.js';
 import { createRoom, paintCloudVeil, paintPaintedSky, paintPaintedStar, preparePaintedScene } from './painted.js';
 import { HOME_ELEVATION, MIN_SKY_ZOOM, clamp, domeDestination, direction, domePosition, projectDome } from './dome.js';
@@ -16,7 +15,8 @@ import { createSilhouetteWalker } from './silhouette-walker.js';
 import { readingProgress } from './reading-progress.js';
 import { constrainSkyCamera, skyProjection } from './camera-bounds.js';
 import { createArticleSearch } from './search.js';
-import { prepareReaderArt, waitForReaderArt } from './reader-art.js';
+import { prepareReaderArt } from './reader-art.js';
+import { createArticleLoader } from './article-loader.js';
 import { prepareImages, settleWithin } from './image-readiness.js';
 import { createFriendsPanel } from './friends.js';
 import { createFriendsSatellite } from './friends-satellite.js';
@@ -50,6 +50,7 @@ async function start() {
   const readingMotionPreference = matchMedia('(prefers-reduced-motion: reduce)');
   const status = document.getElementById('approach-status');
   const readButton = document.getElementById('read-button');
+  const readDirect = document.getElementById('read-direct-link');
   const controls = document.getElementById('exploration-controls');
   const friendsSatellite = createFriendsSatellite(document.getElementById('friends-satellite'));
   const prepareSkyFurniture = () => Promise.all([
@@ -68,7 +69,7 @@ async function start() {
   const isDirectEntry = Boolean(directId);
   const collectionKind = body.dataset.starryCollectionKind || '';
   const isDirectCollection = Boolean(collectionKind);
-  if (isDirectEntry) void prepareReaderArt(document.getElementById('reader-title')?.textContent || '');
+  if (isDirectEntry) void prepareReaderArt(document.getElementById('reader-title')?.textContent || '', 'high');
   const collectionMode = collectionKind === 'archive' ? 'time' : 'relation';
   const collectionPath = body.dataset.starryCollectionPath || location.pathname;
   const staticCollection = document.getElementById('static-collection-fallback');
@@ -85,9 +86,13 @@ async function start() {
   let articleById = new Map();
   let relationsByArticle = new Map();
   let timePositionById = new Map();
-  let articleNodes = new Map();
+  const articleLoader = createArticleLoader({ urlFor: localArticleUrl });
   const readArticleIds = new Set();
   let article = null;
+  let observationArtWarmup = null;
+  const observationReadyIds = new Set();
+  const observationPendingIds = new Set();
+  let observationPreparationVersion = 0;
   let selected = null;
   let mode = isDirectCollection ? collectionMode : 'relation';
   let phase = 'idle';
@@ -104,7 +109,8 @@ async function start() {
   let visibleStars = new Map();
   const projectedStars = new Map();
   let layoutMorph = null;
-  let articleLoads = new Map();
+  let readerRequestVersion = 0;
+  let readError = '';
   let readingSnapshot = null;
   const dockHistoryByMode = new Map();
   const dockCursorByMode = new Map();
@@ -182,12 +188,11 @@ async function start() {
     if (!article || !fallbackArticle || fallbackArticle.dataset.starryId !== article.id) throw new Error('The static article does not match its starfield identity.');
     const heading = fallbackArticle.querySelector('#reader-title');
     if (!heading || heading.textContent.trim() !== article.title) throw new Error('The static article title does not match its index entry.');
-    articleNodes.set(article.id, fallbackArticle);
+    articleLoader.prime(article.id, fallbackArticle);
   }
 
   resize();
-  await Promise.all([preparePaintedScene(), prepareInteractiveClouds(), furnitureReady,
-    ...(isDirectEntry ? [waitForReaderArt(article?.title)] : [])]);
+  await Promise.all([preparePaintedScene(), prepareInteractiveClouds(), furnitureReady]);
   if (window.starfieldStartup?.failed) return;
   await waitForImage(document.querySelector('.room-image'));
   clouds = createInteractiveClouds(world, () => reducedMotion || !renderBudget.current.ambientMotion);
@@ -203,13 +208,18 @@ async function start() {
   }
 
   roomScene = createRoom({
-    prepareEnter: () => settleWithin(prepareSkyFurniture(), 800),
+    prepareEnter() {
+      // Warm article art only on an explicit intent to leave the room.
+      void prepareObservationArt();
+      return settleWithin(prepareSkyFurniture(), 800);
+    },
     startOutside: isDirectEntry || isDirectCollection,
     onEnter(startTime) {
       friendsSatellite.prepare();
       // Explicitly leaving the room is the first intent to explore/read. Use
       // the existing passage to warm its two next surfaces, without adding
       // either surface (or any journal photos) to the initial room download.
+      void prepareObservationArt();
       void prepareReaderArt();
       void articleSearch?.prepare();
       const first = entryFrame(0);
@@ -495,23 +505,56 @@ async function start() {
     }
   }
 
+  function prepareObservationArt() {
+    if (!observationArtWarmup) {
+      observationArtWarmup = Promise.allSettled([
+        prepareImages(preview),
+        observationPanel.prepare(articles),
+      ]);
+    }
+    return observationArtWarmup;
+  }
+
+  function prepareObservationArticle(targetArticle) {
+    const id = targetArticle.id;
+    if (observationReadyIds.has(id) || observationPendingIds.has(id)) return;
+    observationPendingIds.add(id);
+    const version = ++observationPreparationVersion;
+    const glyphsReady = observationPanel.update(targetArticle);
+    const preparation = Promise.allSettled([
+      prepareObservationArt(),
+      prepareImages(readButton, 'high'),
+      prepareImages(preview),
+      glyphsReady,
+    ]);
+    void settleWithin(preparation, 1200).then(() => {
+      observationPendingIds.delete(id);
+      observationReadyIds.add(id);
+      if (version === observationPreparationVersion && selected === id && article?.id === id && !reader.open && !collectionOpen && !articleSearch?.isOpen) updateUI();
+    });
+  }
+
   function updateUI() {
     const isSelected = Boolean(article && selected === article.id);
-    preview.hidden = !isSelected || reader.open || collectionOpen || Boolean(articleSearch?.isOpen);
+    const shouldPreparePreview = isSelected && (animationStarted || !isDirectEntry) && !reader.open && !collectionOpen && !articleSearch?.isOpen;
+    preview.hidden = !shouldPreparePreview || !observationReadyIds.has(article.id);
+    if (shouldPreparePreview) prepareObservationArticle(article);
     controls.hidden = Boolean(roomScene?.active) || reader.open || collectionOpen || Boolean(articleSearch?.isOpen);
     relationModeButton.setAttribute('aria-pressed', String(mode === 'relation'));
     timeModeButton.setAttribute('aria-pressed', String(mode === 'time'));
     relationModeButton.disabled = Boolean(arrival || phase === 'loading');
     timeModeButton.disabled = Boolean(arrival || phase === 'loading');
     backDockButton.disabled = !canReturnToDock();
-    if (isSelected && !preview.hidden && (animationStarted || !isDirectEntry)) {
+    if (shouldPreparePreview && !preview.hidden) {
       void prepareImages(readButton, 'high');
       void prepareImages(preview);
-      observationPanel.update(article);
       document.getElementById('preview-title').textContent = article.title;
-      readButton.setAttribute('aria-label', `进入阅读：${article.title}`);
-      status.textContent = phase === 'moving' || phase === 'arriving' ? '正在靠近 · · ·' : phase === 'loading' ? '正在准备正文 · · ·' : phase === 'settled' ? '再点星，阅读' : '点星，重新靠近';
+      readButton.setAttribute('aria-label', `${readError ? '重新加载并阅读' : '进入阅读'}：${article.title}`);
+      status.textContent = phase === 'moving' || phase === 'arriving' ? '正在靠近…' : phase === 'loading' ? '正在加载正文…' : phase === 'settled' ? readError || '点击阅读' : '点星，重新靠近';
+      readDirect.href = localArticleUrl(article).pathname;
     }
+    readButton.setAttribute('aria-busy', String(phase === 'loading'));
+    readDirect.hidden = !isSelected || phase !== 'settled' || !readError;
     readButton.disabled = !isSelected || phase !== 'settled' || reader.open;
     for (const [id, target] of starTargets) {
       const item = articleById.get(id);
@@ -537,14 +580,15 @@ async function start() {
       void openReaderFromStar();
       return;
     }
-    const previousContext = { article, selected, phase, camera: { ...camera } };
     article = targetArticle;
-    beginApproach(id, 'selection', previousContext);
+    beginApproach(id);
   }
 
-  function beginApproach(id, kind = 'selection', previousContext = null) {
+  function beginApproach(id, kind = 'selection') {
     void prepareImages(reader);
     void prepareReaderArt(article?.title);
+    readerRequestVersion++;
+    readError = '';
     selected = id;
     phase = 'moving';
     starMotion.interrupt();
@@ -555,41 +599,14 @@ async function start() {
     const duration = starMotion.beginApproach(start, id);
     travel = { from: { ...camera }, to, start, duration, kind, targetArticleId: id, layout: approachLayout };
     announce('正在靠近文章星。到位后再次点选这颗星即可阅读。');
-    if (!articleNodes.has(id) && !articleLoads.has(id)) {
-      const load = loadArticleNode(article).then((node) => {
-        articleNodes.set(id, node);
-        articleLoads.delete(id);
-        return node;
-      }).catch((error) => {
-        articleLoads.delete(id);
-        if (selected === id && mode === approachLayout && !reader.open) {
-          travel = null;
-          starMotion.clearSelection();
-          if (previousContext) {
-            article = previousContext.article;
-            selected = previousContext.selected;
-            camera = previousContext.camera;
-            phase = previousContext.selected
-              ? (previousContext.phase === 'settled' ? 'settled' : 'selected')
-              : 'idle';
-          } else {
-            phase = 'selected';
-          }
-          updateUI();
-          announce(previousContext?.selected
-            ? '这篇文章暂时无法加载；已恢复到此前可读文章，地址没有改变。'
-            : '这篇文章暂时无法加载；地址没有改变，可以继续浏览星空。');
-        }
-        console.warn(`Article "${id}" could not be prepared.`, error);
-        return null;
-      });
-      articleLoads.set(id, load);
-    }
+    void articleLoader.prefetch(article);
   }
 
   function interrupt() {
-    if (!travel) return;
+    if (!travel && phase !== 'loading') return;
     travel = null;
+    readerRequestVersion++;
+    readError = '';
     starMotion.interrupt();
     phase = selected ? 'selected' : 'idle';
     updateUI();
@@ -598,14 +615,14 @@ async function start() {
   async function openReaderFromStar() {
     if (!article || selected !== article.id || phase !== 'settled' || reader.open) return;
     const targetArticle = article;
+    const requestVersion = ++readerRequestVersion;
+    readError = '';
     phase = 'loading';
     updateUI();
+    void prepareReaderArt(targetArticle.title, 'high');
     try {
-      const node = articleNodes.get(targetArticle.id) || await articleLoads.get(targetArticle.id) || await loadArticleNode(targetArticle);
-      if (!node) return;
-      await waitForReaderArt(targetArticle.title);
-      articleNodes.set(targetArticle.id, node);
-      if (selected !== targetArticle.id || reader.open) return;
+      const node = await articleLoader.load(targetArticle);
+      if (requestVersion !== readerRequestVersion || selected !== targetArticle.id || phase !== 'loading' || reader.open) return;
       readingSnapshot = { camera: { ...camera }, selected, articleId: article?.id, phase: 'settled', mode };
       readerTrigger = starTargets.get(targetArticle.id) || document.activeElement;
       readerSlot.replaceChildren(node);
@@ -613,11 +630,12 @@ async function start() {
       history.pushState({ starryView: 'reader', starryArticleId: targetArticle.id, mode }, '', localArticleUrl(targetArticle).pathname);
       window.blogThemeSwitch?.refresh();
       showReader(project(positionOf(targetArticle)));
-      void prepareEmbeddedPlayer(node);
     } catch (error) {
+      if (requestVersion !== readerRequestVersion || selected !== targetArticle.id || phase !== 'loading' || reader.open) return;
       phase = 'settled';
+      readError = error.name === 'TimeoutError' ? '超时，点击重试' : '失败，点击重试';
       updateUI();
-      announce('这篇文章暂时无法加载；仍停留在当前文章与地址。');
+      announce(`${readError}，也可以使用直接阅读链接。`);
       console.warn(`Article "${targetArticle.id}" could not be opened.`, error);
     }
   }
@@ -626,11 +644,10 @@ async function start() {
     if (!collectionOpen || reader.open) return;
     const targetArticle = articleById.get(id);
     if (!targetArticle) return;
+    void prepareReaderArt(targetArticle.title, 'high');
     try {
-      const node = articleNodes.get(id) || await articleLoads.get(id) || await loadArticleNode(targetArticle);
-      await waitForReaderArt(targetArticle.title);
+      const node = await articleLoader.load(targetArticle);
       if (!collectionOpen || reader.open || !node) return;
-      articleNodes.set(id, node);
       readingSnapshot = {
         camera: { ...camera },
         selected,
@@ -654,7 +671,6 @@ async function start() {
       history.pushState({ starryView: 'reader', starryArticleId: id, mode }, '', localArticleUrl(targetArticle).pathname);
       window.blogThemeSwitch?.refresh();
       showReader(project(positionOf(targetArticle)));
-      void prepareEmbeddedPlayer(node);
     } catch (error) {
       announce('这篇文章暂时无法加载；仍停留在当前清单与地址。');
       console.warn(`Collection article "${id}" could not be opened.`, error);
@@ -665,11 +681,10 @@ async function start() {
     if (!articleSearch?.isOpen || reader.open) return false;
     const targetArticle = articleById.get(id);
     if (!targetArticle) return false;
+    void prepareReaderArt(targetArticle.title, 'high');
     try {
-      const node = articleNodes.get(id) || await articleLoads.get(id) || await loadArticleNode(targetArticle);
-      await waitForReaderArt(targetArticle.title);
+      const node = await articleLoader.load(targetArticle);
       if (!articleSearch.isOpen || reader.open || !node) return false;
-      articleNodes.set(id, node);
       readingSnapshot = { camera: { ...camera }, selected, articleId: article?.id, phase, mode, searchOpen: true };
       readerTrigger = trigger;
       const rect = trigger.getBoundingClientRect();
@@ -680,7 +695,6 @@ async function start() {
       history.pushState({ starryView: 'reader', starryArticleId: id, mode }, '', localArticleUrl(targetArticle).pathname);
       window.blogThemeSwitch?.refresh();
       showReader({ x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 });
-      void prepareEmbeddedPlayer(node);
       return true;
     } catch (error) {
       console.warn(`Search article "${id}" could not be opened.`, error);
@@ -691,7 +705,6 @@ async function start() {
   function openDirectArticle() {
     readerTrigger = document.getElementById('home');
     showReader(project(positionOf(article)));
-    void prepareEmbeddedPlayer(readerSlot.querySelector('.article'));
   }
 
   function showReader(origin) {
@@ -713,7 +726,7 @@ async function start() {
   function closeReaderFromDirect() {
     if (!reader.open || directCloseInProgress) return;
     historyNavigationVersion += 1;
-    stopEmbeddedAudio();
+    pauseEmbeddedMedia();
     directCloseInProgress = true;
     phase = 'closing';
     starMotion.close(() => {
@@ -742,7 +755,7 @@ async function start() {
   function closeReaderAfterPop() {
     if (!reader.open) return;
     historyNavigationVersion += 1;
-    stopEmbeddedAudio();
+    pauseEmbeddedMedia();
     const returnToCollection = Boolean(readingSnapshot?.collectionOpen);
     const returnToSearch = Boolean(readingSnapshot?.searchOpen);
     phase = 'closing';
@@ -789,11 +802,10 @@ async function start() {
     const activeCollectionTrigger = openingFromCollection
       ? document.activeElement.closest?.('a[data-starry-article-id]')
       : null;
+    void prepareReaderArt(targetArticle.title, 'high');
     try {
-      const node = articleNodes.get(id) || await articleLoads.get(id) || await loadArticleNode(targetArticle);
-      await waitForReaderArt(targetArticle.title);
+      const node = await articleLoader.load(targetArticle);
       if (requestVersion !== historyNavigationVersion || history.state?.starryArticleId !== id) return;
-      articleNodes.set(id, node);
       if (!readingSnapshot && !wasOpen) readingSnapshot = {
         camera: { ...camera },
         selected,
@@ -813,16 +825,14 @@ async function start() {
         collectionOpen = false;
         collectionDialog.close();
       }
-      // Cached players survive DOM replacement; pause the departing article only
-      // after this history request has succeeded and is still the current one.
-      if (reader.open) stopEmbeddedAudio();
+      // Pause embedded native media only after the history request succeeds and stays current.
+      if (reader.open) pauseEmbeddedMedia();
       article = targetArticle;
       selected = id;
       phase = 'reading';
       readerSlot.replaceChildren(node);
       internalArticleHistory = history.state?.starryReaderDepth !== 0;
       showReader(project(positionOf(targetArticle)));
-      void prepareEmbeddedPlayer(node);
     } catch (error) {
       if (requestVersion !== historyNavigationVersion || history.state?.starryArticleId !== id) return;
       restoreAddressForDisplayedContent();
@@ -837,11 +847,10 @@ async function start() {
     const requestVersion = ++historyNavigationVersion;
     navigation.setAttribute('aria-busy', 'true');
     announce(`正在打开《${targetArticle.title}》。`);
+    void prepareReaderArt(targetArticle.title, 'high');
     try {
-      const node = articleNodes.get(id) || await articleLoads.get(id) || await loadArticleNode(targetArticle);
-      await waitForReaderArt(targetArticle.title);
+      const node = await articleLoader.load(targetArticle);
       if (!node || requestVersion !== historyNavigationVersion || !reader.open || phase !== 'reading') return;
-      articleNodes.set(id, node);
       // Keep the current entry readable through Back, including direct article entry.
       const depth = history.state?.starryReaderDepth ?? (internalArticleHistory ? 1 : 0);
       history.replaceState({ ...history.state, starryView: 'reader', starryArticleId: article.id, mode, starryReaderDepth: depth }, '', location.href);
@@ -1329,7 +1338,7 @@ async function start() {
       const target = link && articleById.get(link.dataset.starryArticleId);
       if (!reader.open || !target || event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
       event.preventDefault();
-      stopEmbeddedAudio(); phase = 'closing';
+      pauseEmbeddedMedia(); phase = 'closing';
       starMotion.close(() => {
         reader.close(); collectionOpen = false; collectionDialog.close();
         articleSearch?.abandon();
@@ -1479,19 +1488,6 @@ async function start() {
     return new URL(siteRelativePath, root);
   }
 
-  async function loadArticleNode(item) {
-    void prepareReaderArt(item.title);
-    const url = localArticleUrl(item);
-    const pageResponse = await fetch(url, { credentials: 'same-origin', cache: 'no-cache' });
-    if (!pageResponse.ok) throw new Error(`Article request failed: ${pageResponse.status}`);
-    const html = await pageResponse.text();
-    const documentCopy = new DOMParser().parseFromString(html, 'text/html');
-    if (documentCopy.body.dataset.starryArticleId !== item.id) throw new Error('The article page did not match the starfield index.');
-    const node = documentCopy.querySelector(`#static-article-fallback .article[data-starry-id="${CSS.escape(item.id)}"]`);
-    if (!node) throw new Error('The static article body is missing.');
-    return document.importNode(node, true);
-  }
-
   function waitForImage(image) {
     if (!image) return Promise.reject(new Error('The room illustration is missing.'));
     if (image.complete) return image.naturalWidth > 0 ? Promise.resolve(image) : Promise.reject(new Error(`Could not load room image: ${image.currentSrc || image.src}`));
@@ -1517,7 +1513,7 @@ function setText(element, value) {
 function fallback(error) {
   window.starfieldStartup?.fail();
   if (error) console.error('Starfield enhancement stayed in the readable fallback.', error);
-  stopEmbeddedAudio();
+  pauseEmbeddedMedia();
   const articleNode = document.querySelector('#reader .article[data-starry-id], #static-article-fallback .article[data-starry-id]');
   let staticArticle = document.getElementById('static-article-fallback');
   if (articleNode) {
@@ -1528,7 +1524,6 @@ function fallback(error) {
     }
     staticArticle.replaceChildren(articleNode);
     document.getElementById('home-fallback')?.setAttribute('hidden', '');
-    void prepareEmbeddedPlayer(articleNode);
   }
   document.getElementById('reader')?.open && document.getElementById('reader').close();
   document.getElementById('star-search')?.open && document.getElementById('star-search').close();
@@ -1537,15 +1532,9 @@ function fallback(error) {
   document.getElementById('room').hidden = true;
 }
 
-function stopEmbeddedAudio() {
-  for (const player of window.aplayers || []) {
-    try { player.pause(); } catch {}
-  }
+function pauseEmbeddedMedia() {
   const reader = document.getElementById('reader');
   for (const media of reader?.querySelectorAll('audio, video') || []) {
     try { media.pause(); } catch {}
-  }
-  for (const button of reader?.querySelectorAll('.aplayer-button.aplayer-pause') || []) {
-    button.click();
   }
 }
