@@ -1,5 +1,6 @@
 import { DOME_RADIUS, direction, createDomeProjector } from './dome.js';
 import { paintDomeEnvironment } from './dome-renderer.js';
+import { ARTICLE_STAR_SCALE } from './star-targets.js';
 export { createRoom } from './room-scene.js';
 
 // The final room leads into one painted, navigable sky.
@@ -115,7 +116,7 @@ export function paintPaintedStar(ctx, x, y, id, {
   const pulse = seconds === null ? 1 : 1 + Math.sin(seconds * .9 + identity) * .025;
   ctx.save();
   ctx.translate(x, y);
-  ctx.scale(zoom * pulse, zoom * pulse);
+  ctx.scale(zoom * pulse * ARTICLE_STAR_SCALE, zoom * pulse * ARTICLE_STAR_SCALE);
   const cyan = identity % 3 !== 0;
   const halo = ctx.createRadialGradient(0, 0, 0, 0, 0, size * 3.1);
   halo.addColorStop(0, cyan ? '#5bd9ff25' : '#b7cfff20');

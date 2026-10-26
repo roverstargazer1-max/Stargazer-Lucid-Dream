@@ -4,6 +4,7 @@ import { unit, dialogBackdrop } from './motion.js';
 import { enter, exit, DUR, STAGGER_STEP, STAGGER_MAX } from './tokens.js';
 import { createAstrolabe } from './astrolabe.js';
 import { prepareImages, settleWithin } from './image-readiness.js';
+import { ARTICLE_STAR_SCALE } from './star-targets.js';
 
 const normalize = value => String(value || '').normalize('NFKC').trim().toLocaleLowerCase();
 
@@ -481,7 +482,8 @@ export function createArticleSearch({ articles, getScene, onRead, onOpen, onClos
       star.disabled = !enabled;
       star.classList.toggle('is-selected', enabled && scene.selected === article.id);
       star.classList.toggle('is-muted', !enabled);
-      star.style.setProperty('--star-size', article.magnitude === 1 ? '9px' : article.magnitude === 2.5 ? '7px' : '5px');
+      const starSize = article.magnitude === 1 ? 9 : article.magnitude === 2.5 ? 7 : 5;
+      star.style.setProperty('--star-size', `${(starSize * ARTICLE_STAR_SCALE).toFixed(2)}px`);
       if (moved && highlightedId === article.id) placeTitle(star);
     }
   }

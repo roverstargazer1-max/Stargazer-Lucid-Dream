@@ -1,3 +1,6 @@
+// Scale the article artwork independently of its pointer and keyboard targets.
+export const ARTICLE_STAR_SCALE = .65;
+
 // Article drawing and input must agree on which star can actually be reached.
 export function isStarReachable(point, width, height, obstacles = []) {
   if (!point || !Number.isFinite(point.x) || !Number.isFinite(point.y)) return false;

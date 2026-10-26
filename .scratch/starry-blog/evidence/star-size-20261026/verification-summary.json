@@ -1,0 +1,33 @@
+{
+  "date": "2026-10-26",
+  "articleArtworkScale": 0.65,
+  "reductionPercent": 35,
+  "appliesTo": [
+    "sky article bodies, cores and halos",
+    "search chart article dots"
+  ],
+  "starRanksAndRatiosUnchanged": true,
+  "articleFilesUnchanged": 12,
+  "layoutUnchanged": true,
+  "previewAndProductionIndexesUnchanged": true,
+  "existingReaderStyleUnchanged": true,
+  "skyHitTargetPixels": 48,
+  "searchHitTargetPixels": 44,
+  "searchDotPixels": {
+    "ordinary": 3.25,
+    "important": 4.55,
+    "treasured": 5.85
+  },
+  "browserVerified": {
+    "searchStarsMeasured": 12,
+    "allSearchHitTargetsPixels": 44,
+    "visibleSkyHitTargetsPixels": 48,
+    "searchDotOpenedArticle": true,
+    "readingClosedBackToSearch": true
+  },
+  "existingTestsPassed": 14,
+  "previewBuildPassed": true,
+  "productionBuildPassed": true,
+  "committed": false,
+  "deployed": false
+}
