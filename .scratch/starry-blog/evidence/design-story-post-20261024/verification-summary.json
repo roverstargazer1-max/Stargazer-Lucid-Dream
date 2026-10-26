@@ -1,0 +1,38 @@
+{
+  "title": "设计思路与灵感",
+  "path": "2026/10/24/设计思路与灵感/",
+  "catalogNumber": "SLD-0011",
+  "originalProseUnchanged": true,
+  "existingStarEntriesUnchanged": 10,
+  "images": 10,
+  "imageBytes": 5696770,
+  "outputs": [
+    {
+      "output": ".preview/stargazer",
+      "theme": "starfield",
+      "images": 10
+    },
+    {
+      "output": ".preview/stargazer",
+      "theme": "legacy",
+      "images": 10
+    },
+    {
+      "output": "public",
+      "theme": "starfield",
+      "images": 10
+    },
+    {
+      "output": "public",
+      "theme": "legacy",
+      "images": 10
+    }
+  ],
+  "localImageHttpChecks": 20,
+  "tests": {
+    "passed": 17,
+    "failed": 0
+  },
+  "productionBuild": true,
+  "deployed": false
+}

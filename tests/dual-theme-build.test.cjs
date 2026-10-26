@@ -123,7 +123,12 @@ test('an ordinary post builds in both themes, survives a fresh checkout, and sup
     const previous = page(`starfield/${article.path}`)('.article-pagination-previous');
     assert.equal(previous.length, 1);
     assert.ok(decodeURI(previous.attr('href')).startsWith('/starfield/'), 'Article navigation must respect the alternate theme root');
-    assert.equal(page(`starfield/${article.path}`)('.article-pagination-next').length, 0, 'The newest article has no later neighbour');
+    const chronological = [...index.articles].sort((a, b) => a.timeOrder.localeCompare(b.timeOrder));
+    const nextArticle = chronological[chronological.findIndex(item => item.id === article.id) + 1];
+    const next = page(`starfield/${article.path}`)('.article-pagination-next');
+    assert.equal(next.length, nextArticle ? 1 : 0);
+    if (nextArticle) assert.equal(decodeURI(next.attr('href')), `/starfield/${nextArticle.path}`);
+    assert.equal(page(`starfield/${chronological.at(-1).path}`)('.article-pagination-next').length, 0, 'The newest article has no later neighbour');
   } finally {
     fs.rmSync(fixture, { recursive: true, force: true });
   }
