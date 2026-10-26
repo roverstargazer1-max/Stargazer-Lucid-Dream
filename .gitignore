@@ -7,6 +7,21 @@ public/
 .preview/
 .deploy*/
 _multiconfig.yml
+# Local credentials; documented example environment files remain shareable.
+.env
+.env.*
+!.env.example
+!.env.*.example
+!.env.sample
+!.env.*.sample
+*.pem
+*.key
+*.p12
+*.pfx
+.netrc
+/.npmrc
+.netlify/
+
 # Local-only performance optimization notes and domain context
 CONTEXT.md
 docs/optimization/

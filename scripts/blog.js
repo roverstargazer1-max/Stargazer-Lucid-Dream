@@ -1,7 +1,6 @@
 const fs = require('node:fs');
 const path = require('node:path');
-const resolveHexo = name => require.resolve(name, { paths: [path.dirname(require.resolve('hexo'))] });
-const { load } = require(resolveHexo('cheerio'));
+const { load } = require('cheerio');
 const { url_for } = require('hexo-util');
 const pageRoute = page => String(page.current_url || page.path || '')
   .replace(/^\/+/, '').replace(/(?:^|\/)index\.html$/, '/').replace(/^\/+/, '');

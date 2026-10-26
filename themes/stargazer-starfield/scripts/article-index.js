@@ -2,8 +2,7 @@ const { normalizeArticleRelations } = require('../lib/relations');
 const { normalizeStar } = require('../lib/star');
 const { articleTimeOrder } = require('../lib/article-order');
 const { readCatalogueNumbers, makeDisplayId } = require('../lib/catalogue');
-const pathUtil = require('node:path');
-const { load } = require(require.resolve('cheerio', { paths: [pathUtil.dirname(require.resolve('hexo'))] }));
+const { load } = require('cheerio');
 
 hexo.extend.generator.register('starry-article-index', function (locals) {
   if (hexo.config.theme !== 'stargazer-starfield') return [];

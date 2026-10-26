@@ -1,0 +1,62 @@
+[
+  {
+    "name": "desktop",
+    "reading": true,
+    "search": true,
+    "journal": true,
+    "legacy": true,
+    "localAvatar": true,
+    "demoStatus": 404,
+    "baseInjectionBlocked": true,
+    "permissions": [
+      [
+        "camera",
+        false
+      ],
+      [
+        "microphone",
+        false
+      ],
+      [
+        "geolocation",
+        false
+      ]
+    ],
+    "errors": [],
+    "externalRequests": 0
+  },
+  {
+    "name": "mobile",
+    "reading": true,
+    "search": true,
+    "journal": true,
+    "legacy": true,
+    "localAvatar": true,
+    "demoStatus": 404,
+    "baseInjectionBlocked": true,
+    "permissions": [
+      [
+        "camera",
+        false
+      ],
+      [
+        "microphone",
+        false
+      ],
+      [
+        "geolocation",
+        false
+      ]
+    ],
+    "errors": [],
+    "externalRequests": 0
+  },
+  {
+    "target": "/",
+    "framingBlocked": true
+  },
+  {
+    "target": "/legacy/",
+    "framingBlocked": true
+  }
+]

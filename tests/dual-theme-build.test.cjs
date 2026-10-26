@@ -31,7 +31,7 @@ test('an ordinary post builds in both themes, survives a fresh checkout, and sup
       .filter(post => post.published !== false).length;
     const postFile = path.join(fixture, 'source/_posts/双主题文章.md');
     const originalPost = '---\ntitle: 双主题文章\ndate: 2026-10-10 12:00:00\ntags: 双主题验证\ncover: /image/covers/sky.webp\n---\n\n只写一份 Markdown，两种主题都能阅读。\n\n> 保留引用和 **加粗**。\n\n![本地图](../image/小记2/01.webp)\n';
-    const mediaPost = originalPost + '\n{% pen https://codepen.io/example/pen/test %}\n\n{% biliplayer BV1xx411c7mD %}\n\n{% krplayer %}\n{% meting "14457276201" "netease" "playlist" %}\n{% endkrplayer %}\n';
+    const mediaPost = originalPost + '\n{% pen https://codepen.io/example/pen/test %}\n\n{% biliplayer BV1xx411c7mD %}\n';
     fs.writeFileSync(postFile, mediaPost);
     fs.mkdirSync(path.join(fixture, 'source/_drafts'));
     fs.writeFileSync(path.join(fixture, 'source/_drafts/未发布.md'), '---\ntitle: 未发布\ndate: 2026-10-10\n---\n草稿不发布。\n');
@@ -46,6 +46,15 @@ test('an ordinary post builds in both themes, survives a fresh checkout, and sup
       }
     }
     function page(relative) { return load(fs.readFileSync(path.join(fixture, 'public', relative, 'index.html'), 'utf8')); }
+    function assertLegacyAssets(prefix) {
+      const icons = path.join(fixture, 'public', prefix, 'lib/iconfont');
+      for (const name of ['demo_index.html', 'demo.css', 'iconfont.js', 'iconfont.json']) {
+        assert.equal(fs.existsSync(path.join(icons, name)), false, `Development-only ${name} must not be published`);
+      }
+      for (const name of ['iconfont.css', 'iconfont.woff2', 'iconfont.woff', 'iconfont.ttf']) {
+        assert.ok(fs.existsSync(path.join(icons, name)), `Kira still needs ${name}`);
+      }
+    }
     function assertResources($, route) {
       $('[src], [data-src], link[rel="stylesheet"]').each((_, element) => {
         const value = $(element).attr('src') || $(element).attr('data-src') || $(element).attr('href');
@@ -66,6 +75,7 @@ test('an ordinary post builds in both themes, survives a fresh checkout, and sup
     assert.equal(prepared._content, parse(mediaPost)._content);
     assert.ok(page('')('#room').length);
     assert.ok(page('legacy')('.kira-posts').length);
+    assertLegacyAssets('legacy');
     const journal = page('journal');
     assert.equal(journal('.journal-entry').length, 1);
     assert.equal(journal('.journal-entry strong').text(), 'Markdown');
@@ -82,7 +92,7 @@ test('an ordinary post builds in both themes, survives a fresh checkout, and sup
       assert.ok(!$('body').text().includes('starry_excerpt_generated'), 'Internal field guidance must not leak into the article');
       assert.equal($('.CodePenLink').attr('href'), 'https://codepen.io/example/pen/test');
       assert.ok($('iframe[src^="https://player.bilibili.com/"]').length);
-      assert.equal($('.kira-aplayer-container meting-js').attr('id'), '14457276201');
+      assert.equal($('meting-js, .aplayer').length, 0);
       const target = route.startsWith('legacy/') ? `/${article.path}` : `/legacy/${article.path}`;
       assert.equal(decodeURI($('[data-blog-theme-switch]').first().attr('href')), target);
       assertResources($, route);
@@ -98,6 +108,7 @@ test('an ordinary post builds in both themes, survives a fresh checkout, and sup
     // Simulate Netlify receiving only the author's ordinary Markdown, without generated fields.
     fs.writeFileSync(postFile, mediaPost);
     fs.writeFileSync(layoutFile, JSON.stringify(originalLayout));
+    fs.rmSync(path.join(fixture, 'public'), { recursive: true, force: true });
     build();
     const fresh = JSON.parse(fs.readFileSync(path.join(fixture, 'public/starry/index.json'))).articles.find(item => item.title === '双主题文章');
     assert.equal(fresh.id, article.id);
@@ -110,9 +121,13 @@ test('an ordinary post builds in both themes, survives a fresh checkout, and sup
     const config = yaml.load(fs.readFileSync(configFile, 'utf8'));
     config.blog.default_theme = 'legacy';
     fs.writeFileSync(configFile, yaml.dump(config));
+    // These scenarios verify independent configurations; output replacement and
+    // rollback have dedicated coverage in build-output.test.cjs.
+    fs.rmSync(path.join(fixture, 'public'), { recursive: true, force: true });
     build();
     assert.ok(page('')('.kira-posts').length);
     assert.ok(page('starfield')('#room').length);
+    assertLegacyAssets('');
     assert.equal(decodeURI(page(article.path)('[data-blog-theme-switch]').first().attr('href')), `/starfield/${article.path}`);
     assert.equal(decodeURI(page(`starfield/${article.path}`)('[data-blog-theme-switch]').first().attr('href')), `/${article.path}`);
     assertResources(page(`starfield/${article.path}`), `starfield/${article.path}`);

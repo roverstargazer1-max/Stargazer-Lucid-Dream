@@ -1,9 +1,9 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const crypto = require('node:crypto');
-// These parsers are already owned and locked by Hexo's HTML/YAML pipeline.
+// The site owns its HTML parser; reuse Hexo's locked YAML parser.
 const resolveHexo = name => require.resolve(name, { paths: [path.dirname(require.resolve('hexo'))] });
-const { load } = require(resolveHexo('cheerio'));
+const { load } = require('cheerio');
 const yaml = require(resolveHexo('js-yaml'));
 const { normalizeArticleRelations } = require('../lib/relations');
 const { adjacentArticles } = require('../lib/article-order');
