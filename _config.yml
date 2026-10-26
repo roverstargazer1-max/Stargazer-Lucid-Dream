@@ -106,7 +106,3 @@ blog:
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: ''
-
-# APlayer music player settings
-aplayer:
-  meting: true

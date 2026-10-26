@@ -49,7 +49,6 @@ related:
 | `painted.js` / `dome-renderer.js` / `interactive-clouds.js` | 原像素素材绘制、背景缓存、云绘制与命中；`painted.js` 保留房间入口兼容导出 |
 | `room-scene.js` / `motion.js` | 房间过场、阅读开合及既有时间线 |
 | `edge-guide.js` / `observation.js` | 导向按钮和观测面板呈现；不重新定义文章关系 |
-| `audio.js` | 文章播放器的素材加载、容器初始化及失败恢复；按已安装 MetingJS 的选项契约保持界面 |
 | 根 `scaffolds/post.md` / `scripts/post-scaffold.js` | 新文章字段默认值、示例及创建时的注释恢复 |
 | 根 `prepare-starfield.cjs` | 保存文章身份、原链接、自动摘要、稳定星位与永久星表号 |
 | `lib/catalogue.js` / `lib/star.js` / `scripts/article-index.js` | 星表登记和唯一性校验、三档博客星等与文章索引输出 |
@@ -66,13 +65,13 @@ related:
 
 ## 性能与素材维护
 
-2026-10-11 已完成重复投影/固定几何复用、云 alpha 命中数据与投影缓存、导向按钮与主题链接更新去重，以及文章播放器的容器初始化重用。关闭阅读或历史换篇时会暂停离开的文章音乐。房间控制已分离到 `room-scene.js`，原像素、镜头轨迹与时长沿用。68 项自动检查、双主题构建、432 组背景和 96 组云像素对照通过；具体收益、串行压力复测与设备限制见 [工程与性能核查](../../.scratch/starry-blog/evidence/engineering-20261011/README.md)。
+2026-10-11 的工程优化曾包括文章播放器初始化重用；播放器已于 2026-10-26 从两个发布主题移除。关闭阅读时仍会暂停正文中的原生音视频。房间控制已分离到 `room-scene.js`，原像素、镜头轨迹与时长沿用。历史测量见 [工程与性能核查](../../.scratch/starry-blog/evidence/engineering-20261011/README.md)。
 
 首页从首屏开始使用最终窗口遮罩，先显示稳定房间前景，窗外以深蓝底承接，实时星空准备后在 0.45 秒内淡入；主模块加载失败、WebGL 不可用或关闭 JavaScript 时仍提供可读文章清单，见 [首屏窗景记录](../../.scratch/starry-blog/evidence/startup-window-20261010/README.md)。三朵互动云读取原算法的 PNG 像素缓存，完整步行动作图集使用像素一致的无损 WebP（源 PNG 保留）；Logo、图标与人物静图沿用。缓存生成与像素复测方法见 [2026-10-09 性能记录](../../.scratch/starry-blog/evidence/performance-20261009/README.md)。
 
 默认 `scene.motion: full`，房间过场额外模糊为 `scene.passage_blur: false`；可以在主题配置中设为 `true` 恢复。持续掉帧会触发现有画质预算，镜头停稳后再调整主画布精度。完整策略及省电环境的首次峰值见 [2026-10-10 过场记录](../../.scratch/starry-blog/evidence/power-transitions-20261010/README.md)。
 
-2026-10-08 已按本地真实页面测量进行优化，记录见 [性能对照](../../.scratch/starry-blog/evidence/performance-20261008/README.md)。窗边与正文阅读原本静止的 Canvas 保留已绘制帧，穿窗、推进、探索及 CSS 微动沿用原节奏；尺寸、过渡和可见性变化会重新绘制。阅读进度由滚动、窗口尺寸和正文布局变化更新，晚到图片、字体与播放器展开仍会重新计算。
+2026-10-08 已按本地真实页面测量进行优化，记录见 [性能对照](../../.scratch/starry-blog/evidence/performance-20261008/README.md)。窗边与正文阅读原本静止的 Canvas 保留已绘制帧，穿窗、推进、探索及 CSS 微动沿用原节奏；尺寸、过渡和可见性变化会重新绘制。阅读进度由滚动、窗口尺寸和正文布局变化更新，晚到图片与字体仍会重新计算。
 
 三张场景图发布无损 WebP，分辨率与浏览器绘制像素保持一致；原 PNG 留在 V20 原型素材目录。人物剪影继续用 PNG，清理完全透明区域的冗余 RGB 后保存在 `source/images/observation/silhouette.png`，由主题直接发布，原始工程素材仍在 `assets/`。若替换剪影，需同步重新准备此发布副本并做浏览器像素对照；其余观测素材和字形仍由原生成器原样发布。普通预览及托管构建直接使用已保存的优化图片，无需新增图像处理依赖。
 

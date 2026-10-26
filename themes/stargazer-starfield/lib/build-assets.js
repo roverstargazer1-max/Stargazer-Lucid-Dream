@@ -5,7 +5,7 @@ const { buildSync, transformSync } = require('esbuild');
 
 function buildAssets(themeSource) {
   const files = new Map();
-  const entryPoints = Object.fromEntries(['app', 'journal', 'static-page'].map(name => [`${name}.bundle`, path.join(themeSource, 'js/starfield', `${name}.js`)]));
+  const entryPoints = Object.fromEntries(['app', 'journal'].map(name => [`${name}.bundle`, path.join(themeSource, 'js/starfield', `${name}.js`)]));
   const result = buildSync({ entryPoints, outdir: path.join(themeSource, 'js/starfield'), write: false, bundle: true, splitting: false, format: 'esm', platform: 'browser', target: 'es2020', minify: true, charset: 'utf8', legalComments: 'inline' });
   for (const file of result.outputFiles) files.set(path.relative(themeSource, file.path).split(path.sep).join('/'), file.text);
   const core = ['font-chunks', 'ui-font', 'tokens', 'motion-tokens', 'site'];

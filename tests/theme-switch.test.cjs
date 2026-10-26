@@ -71,10 +71,10 @@ test('explicit refresh discovers inserted links without rewriting existing equal
 
 test('legacy and starfield prefixes still map to the corresponding root theme', () => {
   for (const currentRoot of ['/legacy/', '/starfield/']) {
-    const f = fixture({ currentRoot, targetRoot: '/', pathname: `${currentRoot}pages/mine/`, hash: '#music' });
-    assert.ok(f.links.every(link => link.value === '/pages/mine/#music'));
+    const f = fixture({ currentRoot, targetRoot: '/', pathname: `${currentRoot}pages/mine/`, hash: '#section' });
+    assert.ok(f.links.every(link => link.value === '/pages/mine/#section'));
     f.location.pathname = currentRoot; f.popstate();
-    assert.ok(f.links.every(link => link.value === '/#music'));
+    assert.ok(f.links.every(link => link.value === '/#section'));
   }
 });
 

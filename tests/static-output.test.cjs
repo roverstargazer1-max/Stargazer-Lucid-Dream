@@ -68,7 +68,7 @@ test('every static article has exactly its chronological neighbours after the bo
   });
 });
 
-test('legacy collections retain scope, friends retain source data, music keeps its player configuration', () => {
+test('legacy collections retain scope and friends retain source data without music-player resources', () => {
   const archive = load(fs.readFileSync(path.join(root, 'archives/2025/11/index.html'), 'utf8'));
   assert.equal(archive('#static-collection-fallback a[data-starry-article-id]').length, index.articles.filter(item => item.date.startsWith('2025-11')).length);
   const friends = load(fs.readFileSync(path.join(root, 'pages/friends/index.html'), 'utf8'));
@@ -76,8 +76,9 @@ test('legacy collections retain scope, friends retain source data, music keeps i
   const expected = yaml.load(fs.readFileSync('_config.hexo-theme-kira.yml', 'utf8')).friends;
   for (const friend of expected) assert.ok(friends('.legacy-friends a').toArray().some(el => friends(el).attr('href') === friend.link));
   const mine = load(fs.readFileSync(path.join(root, 'pages/mine/index.html'), 'utf8'));
-  assert.equal(mine('meting-js').attr('id') || mine('.aplayer').attr('data-id'), '14457276201');
-  assert.ok(mine('script[src]').toArray().some(node => new URL(mine(node).attr('src'), 'https://local/').pathname.endsWith('/static-page.bundle.js')));
+  assert.equal(mine('meting-js, .aplayer').length, 0);
+  assert.equal(mine('script[src]').toArray().filter(node => new URL(mine(node).attr('src'), 'https://local/').pathname.endsWith('/static-page.bundle.js')).length, 0);
+  assert.equal(archive('meting-js, .aplayer').length, 0);
   const home = load(fs.readFileSync(path.join(root, 'index.html'), 'utf8'));
   assert.equal(home('#home-fallback .fallback-article-list a').length, posts.length);
   assert.equal(home('.prototype-tools, .art-study-bar, .motion-study-bar, #grow-star, #export-sky').length, 0);

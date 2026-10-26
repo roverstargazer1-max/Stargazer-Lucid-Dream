@@ -20,7 +20,6 @@
 	"homepage": "https://kira.host/hexo/",
 	"dependencies": {
 		"hexo-kira-toc": "1.4.9",
-		"hexo-tag-aplayer": "^3.0.4",
 		"hexo-wordcount": "^6.0.1"
 	}
 }

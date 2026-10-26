@@ -90,7 +90,6 @@
 		<!-- 昼夜切换与透明度调节不阻塞 HTML 解析；脚本仍按文档顺序执行 -->
 		<script src="<%- url_for('/js/kira-theme.js') %>" defer></script>
 		<script src="<%- url_for('/js/kira-opacity.js') %>" defer></script>
-		<script src="<%- url_for('/js/kira-deferred.js') %>" defer></script>
 		<% if (themeSwitch) { %><link rel="stylesheet" href="<%= url_for('css/blog-theme-switch.css') %>"><% } %>
 	</head>
 

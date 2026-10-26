@@ -1,14 +1,7 @@
 <%
-  const audioConfig = config.aplayer || {};
   const isJournalPage = page.layout === 'journal';
   const isFriendsPage = page.layout === 'friends';
   const themeSwitch = isJournalPage ? null : blog_theme_switch(page);
-  const audioPath = (directory, filename) => `${String(directory || '').replace(/\/+$/, '')}/${filename}`;
-  const audioAssets = {
-    stylesheet: audioConfig.style_cdn || url_for(audioPath(audioConfig.style_dir || 'assets/css', 'APlayer.min.css')),
-    aplayer: audioConfig.cdn || audioConfig.externalLink || url_for(audioPath(audioConfig.script_dir || 'assets/js', 'APlayer.min.js')),
-    meting: audioConfig.meting_cdn || url_for(audioPath(audioConfig.script_dir || 'assets/js', 'Meting.min.js')),
-  };
   const isPost = page.layout === 'post' && page.title;
   const isStarryArticle = isPost && page.starry_id;
   const collectionKind = page.archive || page.layout === 'archives' ? 'archive' : page.tag ? 'tag' : page.category ? 'category' : '';
@@ -110,16 +103,12 @@
       data-reader-continuation="<%= starry_interface_url('images/reader/continuation.webp') %>"
       data-reader-track="<%= starry_interface_url('images/reader/progress-track.webp') %>"
       data-window-mask="<%= url_for(theme.scene.window_mask) %>"
-      data-starry-aplayer-style="<%= audioAssets.stylesheet %>"
-      data-starry-aplayer-script="<%= audioAssets.aplayer %>"
-      data-starry-meting-script="<%= audioAssets.meting %>"
       style="--window-mask:url('<%= url_for(theme.scene.window_mask) %>');--reader-sheet:url('<%= starry_interface_url('images/reader/sheet.webp') %>');--reader-continuation:url('<%= starry_interface_url('images/reader/continuation.webp') %>');--reader-track:url('<%= starry_interface_url('images/reader/progress-track.webp') %>')">
   <%- body %>
   <% if (themeSwitch) { %>
   <a class="blog-theme-switch blog-theme-switch-fixed" data-blog-theme-switch href="<%= themeSwitch.href %>"><%= themeSwitch.label %></a>
   <script src="<%= url_for('js/blog-theme-switch.js') %>"></script>
   <% } %>
-  <% if (!hasStarfield) { %><script type="module" src="<%= starry_script_url('static-page') %>"></script><% } %>
   <% if (hasStarfield || isJournalPage) { %><script type="module" src="<%= starry_script_url('journal') %>"></script><% } %>
 </body>
 </html>
