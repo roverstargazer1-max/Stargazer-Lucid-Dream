@@ -1,0 +1,51 @@
+<div class="journal-sheet" data-journal-surface>
+  <header class="journal-header">
+    <div class="journal-heading"><span class="journal-eyebrow" lang="en">BY THE WINDOW</span><h1 id="journal-title">窗边手记</h1></div>
+    <% if (standalone) { %>
+    <a class="journal-close" href="<%= url_for('/') %>"><span>回到窗边</span><span aria-hidden="true">↗</span></a>
+    <% } else { %>
+    <button class="journal-close" type="button" data-journal-close aria-label="合上手记"><span>合上手记</span><span class="journal-close-mark" aria-hidden="true">×</span></button>
+    <% } %>
+  </header>
+  <div class="journal-scroll" data-journal-scroll tabindex="0" aria-label="手记正文">
+    <% if (!journal) { %>
+    <div class="journal-loading" role="status">正在翻开手记…</div>
+    <% } else if (!journal.months.length) { %>
+    <div class="journal-empty"><p>这一页，还等着第一句话。</p><span>日常的片刻，以后慢慢写在这里。</span></div>
+    <% } else { %>
+    <% if (journal.demo) { %><p class="journal-demo">本地体验 · 以下文字为虚构示例</p><% } %>
+    <div class="journal-toolbar">
+      <div class="journal-current"><span data-journal-year><%= journal.months[0].year %></span><h2 data-journal-month-label><%= journal.months[0].name %></h2></div>
+      <div class="journal-browse">
+        <button type="button" data-journal-older aria-label="翻到上一个有记录的月份" hidden><span aria-hidden="true">←</span></button>
+        <details class="journal-archive"><summary>翻阅月份<span aria-hidden="true">⌄</span></summary><nav aria-label="手记年月"><% for (const month of journal.months) { %><a href="#journal-<%= month.key %>" data-journal-month="<%= month.key %>"><span><%= month.year %></span><%= month.name %></a><% } %></nav></details>
+        <button type="button" data-journal-newer aria-label="翻到下一个有记录的月份" hidden><span aria-hidden="true">→</span></button>
+      </div>
+    </div>
+    <div class="journal-months" data-journal-months>
+      <% for (const month of journal.months) { %>
+      <section id="journal-<%= month.key %>" class="journal-month" data-month="<%= month.key %>" data-year="<%= month.year %>" data-name="<%= month.name %>" aria-label="<%= month.year %> 年<%= month.name %>">
+        <h2 class="journal-static-month"><%= month.year %> · <%= month.name %></h2>
+        <% for (const day of month.days) { %>
+        <section class="journal-day" aria-label="<%= day.key %>">
+          <time class="journal-date" datetime="<%= day.key %>"><span><%= day.number %></span><small><%= month.number %> 月</small></time>
+          <div class="journal-day-entries">
+            <% for (const entry of day.entries) { %>
+            <article id="<%= entry.id %>" class="journal-entry" aria-label="<%= entry.date %><%= entry.time ? ' ' + entry.time : ' 的手记' %>">
+              <% if (entry.time) { %><div class="journal-entry-meta"><time datetime="<%= entry.date %>T<%= entry.time %>"><%= entry.time %></time></div><% } %>
+              <% if (entry.title) { %><h3><%= entry.title %></h3><% } %>
+              <%- starry_content({ source: entry.source, content: entry.html, path: 'journal/', journal: true }) %>
+            </article>
+            <% } %>
+          </div>
+        </section>
+        <% } %>
+        <p class="journal-month-end">这一月，记在这里。</p>
+      </section>
+      <% } %>
+    </div>
+    <% } %>
+  </div>
+  <button class="journal-top" type="button" data-journal-top aria-label="回到手记顶部" title="回到顶部" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4h12M12 20V8m-5 5 5-5 5 5"/></svg><span>回到顶部</span></button>
+  <div class="sr-only" data-journal-status role="status" aria-live="polite"></div>
+</div>

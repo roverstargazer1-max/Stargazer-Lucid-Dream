@@ -1,0 +1,11 @@
+# Override these settings in your site's _config.starfield.yml or theme_config.
+featured_article_id: ""
+branding:
+  logo: "" # Empty: show the site's title; otherwise use a local image path or URL.
+friends: [] # Entries: { name, link, desc, avatar }; no external requests by default.
+scene:
+  motion: full # full / soft; also respects prefers-reduced-motion
+  passage_blur: false
+  painted_sky: image/starfield/painted-sky-v11.webp
+  room: image/starfield/room-poster-detail-v20.webp
+  window_mask: image/starfield/room-window-mask-v17.svg

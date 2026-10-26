@@ -1,0 +1,94 @@
+{
+  "articles": [
+    {
+      "id": "sample-1",
+      "title": "Sample 1",
+      "date": "2026-01-01",
+      "timeOrder": "2026-01-01T12:00:00|sample-1",
+      "position": [
+        3000,
+        4000,
+        3500
+      ],
+      "magnitude": 4,
+      "importance": "ordinary",
+      "isolated": false,
+      "catalogNumber": "STAR-0001"
+    },
+    {
+      "id": "sample-2",
+      "title": "Sample 2",
+      "date": "2026-01-02",
+      "timeOrder": "2026-01-02T12:00:00|sample-2",
+      "position": [
+        -4000,
+        2800,
+        3200
+      ],
+      "magnitude": 4,
+      "importance": "ordinary",
+      "isolated": false,
+      "catalogNumber": "STAR-0002"
+    },
+    {
+      "id": "sample-3",
+      "title": "Sample 3",
+      "date": "2026-01-03",
+      "timeOrder": "2026-01-03T12:00:00|sample-3",
+      "position": [
+        1200,
+        5800,
+        -2400
+      ],
+      "magnitude": 4,
+      "importance": "ordinary",
+      "isolated": false,
+      "catalogNumber": "STAR-0003"
+    },
+    {
+      "id": "sample-4",
+      "title": "Sample 4",
+      "date": "2026-01-04",
+      "timeOrder": "2026-01-04T12:00:00|sample-4",
+      "position": [
+        -3200,
+        5200,
+        -2600
+      ],
+      "magnitude": 4,
+      "importance": "ordinary",
+      "isolated": false,
+      "catalogNumber": "STAR-0004"
+    },
+    {
+      "id": "sample-5",
+      "title": "Sample 5",
+      "date": "2026-01-05",
+      "timeOrder": "2026-01-05T12:00:00|sample-5",
+      "position": [
+        5100,
+        2500,
+        -1200
+      ],
+      "magnitude": 4,
+      "importance": "ordinary",
+      "isolated": false,
+      "catalogNumber": "STAR-0005"
+    },
+    {
+      "id": "sample-6",
+      "title": "Sample 6",
+      "date": "2026-01-06",
+      "timeOrder": "2026-01-06T12:00:00|sample-6",
+      "position": [
+        0,
+        6200,
+        2400
+      ],
+      "magnitude": 4,
+      "importance": "ordinary",
+      "isolated": false,
+      "catalogNumber": "STAR-0006"
+    }
+  ]
+}

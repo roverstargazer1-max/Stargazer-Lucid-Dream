@@ -1,0 +1,106 @@
+/* assets/补充素材/成品.png: 1069 × 633, with its 109px transparent top margin removed. */
+body[data-scene=painted] #preview.observation-panel {
+  container-type: inline-size;
+  display: block;
+  width: clamp(560px, 41vw, 900px);
+  top: 64%; right: 3.8%; bottom: auto; left: auto;
+  transform: translateY(-50%);
+  max-height: none; padding: 0; overflow: visible;
+  border: 0; background: none; box-shadow: none; backdrop-filter: none;
+  text-shadow: none;
+}
+body[data-scene=painted] #preview.observation-panel::before,
+body[data-scene=painted] #preview.observation-panel::after { content: none; }
+.observation-panel, .observation-panel *, .sky-polyhedron, .sky-polyhedron * {
+  -webkit-user-select: none;
+  user-select: none;
+}
+.observation-panel img, .sky-polyhedron img {
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
+}
+.observation-artboard { position: relative; width: 100%; aspect-ratio: 1069 / 524; }
+.observation-artboard > img { position: absolute; display: block; pointer-events: none; }
+.observation-waves { left: 0; top: 41.603%; width: 100%; height: auto; }
+.observation-silhouette { position: absolute; left: -.14%; top: 7.4%; width: 23%; height: 57.25%; pointer-events: none; }
+.observation-silhouette > img, .observation-silhouette > canvas { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: contain; }
+.asset-glyphs { display: inline-flex; align-items: center; gap: .3em; line-height: 1; white-space: nowrap; }
+.asset-glyphs img { display: block; width: auto; height: 1em; pointer-events: none; }
+.glyph-dot { display: block; flex: 0 0 .15em; width: .15em; height: .15em; align-self: flex-end; margin-bottom: .045em; background: #fff; }
+.glyph-dash { display: block; width: .45em; height: .1em; background: #fff; }
+.glyph-middle-dot { display: block; flex: 0 0 .15em; width: .15em; height: .15em; background: #fff; }
+.glyph-space { width: .35em; }
+.year-scale { position: absolute; left: 27.128%; top: 17.08%; width: 11.132%; height: 64.885%; display: grid; grid-template-rows: repeat(5, 1fr); }
+.year-row { position: relative; display: flex; align-items: center; padding-left: 10.9%; font-size: 1.52cqw; }
+.year-number { gap: .06em; z-index: 1; }
+.year-row.is-current .year-number { font-size: 1.52cqw; }
+.year-row:not(.is-current) { opacity: .86; }
+.year-unit { position: absolute; left: 48.7%; top: 50%; transform: translateY(-50%); gap: .05em; font-size: 2.7cqw; }
+.year-arrow { position: absolute; left: 0; top: 50%; width: 100%; height: auto; transform: translateY(-50%); pointer-events: none; }
+.observation-diamond { left: 38.821%; top: 41.031%; width: 2.058%; height: auto; }
+.observation-ticks { left: 40.879%; top: 50.191%; width: 5.893%; height: auto; }
+.observation-bracket { left: 35.547%; top: 58.015%; width: 1.777%; height: auto; }
+.observation-waveform { position: absolute; left: 43.873%; top: 13.168%; width: 39.57%; aspect-ratio: 423 / 93; opacity: .95; pointer-events: none; }
+.observation-waveform > img, .observation-waveform > canvas { display: block; width: 100%; height: 100%; }
+.observation-waveform > canvas { position: absolute; left: 0; top: -25%; height: 150%; }
+.observation-call { position: absolute; left: 83.442%; top: 20.802%; width: 8.138%; pointer-events: none; }
+.observation-call > img { display: block; width: 100%; height: auto; }
+.observation-call > .call-label { position: absolute; left: 1.964cqw; top: 1.309cqw; width: 5.987cqw; height: auto; }
+.call-label > img { display: block; width: 100%; height: auto; }
+.call-label > .call-underline { margin-top: 0; }
+.observation-labels { position: absolute; inset: 0; font-size: 1.59cqw; pointer-events: none; }
+.observation-labels > * { position: absolute; top: 34.351%; }
+.observation-labels > :nth-child(1) { left: 51.076%; }
+.observation-labels > :nth-child(2) { left: 61.833%; }
+.observation-labels > :nth-child(3) { left: 73.994%; }
+.observation-labels .asset-glyphs { gap: .06em; }
+.observation-labels .hour-label { display: block; left: 85.407%; top: 33.397%; width: 3.087%; height: auto; }
+.observation-slashes { left: 50.14%; top: 43.511%; width: 15.154%; height: auto; }
+body[data-scene=painted] #preview .observation-date { position: absolute; left: 70.533%; top: 51.145%; font-size: 4.4cqw; gap: .08em; color: #fff; }
+.observation-id { left: 50.608%; top: 68.702%; width: 2.806%; height: auto; }
+.observation-id-value { position: absolute; left: 54.5%; top: 70.4%; font-size: min(1.25cqw, 11px); gap: .06em; color: #fff; pointer-events: none; }
+body[data-scene=painted] #preview #deselect { position: absolute; left: 91.862%; top: 0; transform: translate(-50%, -19%); display: grid; place-items: center; width: 44px; height: 44px; min-width: 44px; min-height: 44px; padding: 10px; margin: 0; }
+#deselect img { display: block; width: 17px; height: auto; }
+/* The button covers both the original rule and the complete 273 × 128 Read Me artwork. */
+body[data-scene=painted] .observation-panel .preview-bottom { position: absolute; left: 69.13%; top: 68.702%; width: 26.38%; display: block; margin: 0; padding: 0; border: 0; }
+body[data-scene=painted] .observation-panel #read-button { position: relative; display: block; width: 100%; height: 14.688cqw; min-width: 44px; min-height: 44px; padding: 0; color: #fff; opacity: 1; cursor: pointer; }
+#read-button > img { pointer-events: none; }
+body[data-scene=painted] #read-button > .read-label { position: absolute; left: .842cqw; top: 2.713cqw; display: block; width: 25.538cqw; height: auto; transition: filter .25s; }
+#read-button:hover > .read-label, #read-button:focus-visible > .read-label { filter: drop-shadow(0 0 5px #72dbffaa); }
+/* Only the rule's straight middle grows by 22 source pixels; its corners retain their proportions. */
+body[data-scene=painted] #read-button .read-rule { position: absolute; left: .187cqw; top: .094cqw; width: 22.451cqw; height: 3.929cqw; pointer-events: none; }
+.read-rule > span { position: absolute; top: 0; height: 100%; overflow: hidden; }
+.read-rule img { position: absolute; top: 0; height: 100%; max-width: none; pointer-events: none; }
+.read-rule-start { left: 0; width: 54.167%; }
+.read-rule-start img { left: 0; width: 167.692%; }
+.read-rule-middle { left: 54.167%; width: 34.167%; }
+.read-rule-middle img { left: -216.667%; width: 363.333%; }
+.read-rule-end { right: 0; width: 11.667%; }
+.read-rule-end img { left: -678.571%; width: 778.571%; }
+/* Titles reveal near the pointer; touch selection and keyboard focus remain usable. */
+body[data-scene=painted] .star-target .star-label { color: #fff; opacity: 0; transform: translateX(-3px); pointer-events: none; text-shadow: 0 1px 6px #031a87; }
+body[data-scene=painted] .star-target.is-near-pointer .star-label,
+body[data-scene=painted] .star-target:focus-visible .star-label,
+body[data-scene=painted][data-star-input=touch] .star-target.is-selected .star-label { opacity: 1; transform: none; pointer-events: auto; }
+body[data-scene=painted] .star-target.is-read .star-label { color: #929bbb; }
+.sky-polyhedron { position: absolute; z-index: 4; right: 3%; bottom: 1.5%; width: clamp(48px, 3.5vw, 78px); aspect-ratio: 1; pointer-events: none; opacity: .65; }
+.sky-polyhedron img, .sky-polyhedron canvas { position: absolute; left: -10%; top: -25%; width: 125%; height: auto; }
+.sky-polyhedron canvas { height: 125%; }
+body[data-motion=full] .sky-polyhedron { animation: polyhedron-hop 4.8s ease-in-out infinite !important; }
+body[data-motion=soft] .sky-polyhedron { animation: none !important; }
+@keyframes polyhedron-hop { 0%, 38%, 100% { translate: 0 0; } 48% { translate: 0 -9px; } 59% { translate: 0 1px; } 67% { translate: 0 -3px; } 75% { translate: 0 0; } }
+@media (max-width: 760px) {
+  /* Full-width band above the mode switch; the astrolabe sits in its lower-left
+     wave area, below the silhouette (see search.css). */
+  body[data-scene=painted] #preview.observation-panel { width: auto; max-width: none; top: auto; right: 8px; left: 8px; bottom: max(82px, calc(env(safe-area-inset-bottom) + 68px)); transform: none; max-height: none; }
+  .observation-silhouette { opacity: .92; }
+  .year-row { font-size: max(8px, 1.52cqw); }
+  .year-row.is-current .year-number { font-size: max(7px, 1.52cqw); }
+  .year-unit { left: 52%; font-size: max(8px, 2.7cqw); }
+  .observation-labels { font-size: max(7px, 1.59cqw); }
+  .sky-polyhedron { bottom: max(18px, env(safe-area-inset-bottom)); right: 18px; width: 44px; }
+}
+@media (max-height: 500px) and (orientation: landscape) {
+  body[data-scene=painted] #preview.observation-panel { width: min(61vw, 560px, calc(160dvh - 48px)); top: 60%; bottom: auto; right: 20px; transform: translateY(-50%); }
+  .sky-polyhedron { bottom: 8px; right: 16px; width: 36px; }
+}

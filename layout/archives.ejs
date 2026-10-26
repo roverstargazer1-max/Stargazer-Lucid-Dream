@@ -1,0 +1,9 @@
+<%
+  const posts = site.posts.sort('-date');
+%>
+<%- partial('partial/collection-list', {
+  collectionKind: 'archive',
+  collectionTitle: '文章归档',
+  posts,
+  pagination: null,
+}) %>

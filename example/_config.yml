@@ -1,0 +1,28 @@
+title: 星空博客
+subtitle: ""
+description: ""
+author: ""
+language: zh-CN
+timezone: UTC
+url: https://example.com
+root: /
+permalink: :year/:month/:day/:title/
+theme: starfield
+source_dir: source
+public_dir: public
+default_layout: post
+future: true
+render_drafts: false
+post_asset_folder: false
+external_link:
+  enable: true
+  field: site
+index_generator:
+  path: ""
+  per_page: 0
+  order_by: -date
+per_page: 0
+syntax_highlighter: highlight.js
+highlight:
+  enable: true
+  line_number: false

@@ -1,0 +1,13 @@
+node_modules/
+public/
+.preview/
+*.tgz
+.DS_Store
+*.log
+example/db.json
+example/.cache/
+example/public/
+example/themes/
+example/source/_posts/*.md
+example/source/_journal/*.md
+example/source/_data/starry-layout.json

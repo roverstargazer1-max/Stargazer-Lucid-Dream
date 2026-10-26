@@ -1,0 +1,317 @@
+/* Native v3 panel: 1917 × 1284. All desktop positions share one scale.
+   The background includes the original circular grid; no tone filters or reconstructed grid. */
+#star-search {
+  --chart-width:min(960px,calc(88vw * 1440 / 1917),calc(82dvh * 1440 / 1284));
+  --chart-height:calc(var(--chart-width) * 1284 / 1440);
+  --index-width:calc(var(--chart-width) * 477 / 1440);
+  padding:0; margin:auto; width:var(--chart-width); max-width:calc(100vw - 32px);
+  max-height:calc(100dvh - 48px); border:0; background:transparent; color:#eef6ff;
+  overflow:hidden; overscroll-behavior:contain; transition:width .36s cubic-bezier(.22,.68,.2,1);
+}
+#star-search[data-index-open=true] { width:calc(var(--chart-width) + var(--index-width)); }
+#star-search::backdrop { background:rgb(6 13 48 / .15); backdrop-filter:blur(1.2px); }
+.search-artboard { position:relative; width:100%; height:var(--chart-height); overflow:hidden; isolation:isolate; }
+.search-artboard img { display:block; pointer-events:none; user-select:none; max-width:none; }
+.search-background { position:absolute; inset:0; z-index:-1; overflow:hidden; pointer-events:none; }
+.search-base { position:absolute; left:0; top:0; width:calc(var(--chart-width) * 1917 / 1440); height:auto; }
+.search-primary { position:relative; width:var(--chart-width); height:var(--chart-height); }
+.search-heading { position:absolute; left:calc(var(--chart-width) * 598 / 1440); top:calc(var(--chart-width) * 16 / 1440); width:calc(var(--chart-width) * 368 / 1440); margin:0; }
+.search-heading img { width:100%; height:auto; }
+.search-bar { position:absolute; left:calc(var(--chart-width) * 166 / 1440); top:calc(var(--chart-width) * 110 / 1440); width:calc(var(--chart-width) * 1194 / 1440); aspect-ratio:1194 / 140; margin:0; }
+/* Native pixels are split into a static blue frame and a transparent glyph. */
+.search-frame, .search-frame-background { position:absolute; inset:0; width:100%; height:auto; transition:visibility 0s .22s; }
+.search-frame-background { visibility:hidden; }
+.search-submit-art { position:absolute; inset:0; visibility:hidden; pointer-events:none; transform-origin:94.011725% 43.214286%; transition:transform .22s cubic-bezier(.22,.68,.2,1),filter .22s ease,visibility 0s .22s; }
+.search-submit-art img { width:100%; height:auto; }
+#search-query { position:absolute; left:11%; top:13%; width:77%; height:57%; padding:0 4px; border:0; border-radius:0; background:transparent; color:#f5f9ff; font:clamp(14px,1.25vw,18px)/1.3 var(--sans); outline:none; }
+#search-query::-webkit-search-cancel-button { cursor:pointer; }
+.search-submit { position:absolute; right:1%; top:5%; width:9%; min-width:44px; height:70%; min-height:44px; padding:0; }
+/* Full-motion transforms create sibling stacking contexts; keep the controls
+   above the transparent corner of the later star-map canvas. */
+.search-filters { position:absolute; z-index:1; left:calc(var(--chart-width) * 179 / 1440); top:calc(var(--chart-width) * 240 / 1440); width:calc(var(--chart-width) * 311 / 1440); aspect-ratio:311 / 97; }
+.search-filter-row { position:relative; width:100%; height:50%; }
+.search-filter-label { position:absolute; left:0; top:0; width:22.508039%; height:100%; overflow:hidden; }
+.search-filter-label img { position:absolute; left:-102.857143%; top:0; width:547.142857%; }
+.search-filter-label-magnitude img { top:-100%; }
+.search-filter-options { position:absolute; left:22.508039%; top:0; width:77.491961%; height:100%; display:flex; overflow-x:auto; overscroll-behavior:contain; scrollbar-width:none; z-index:1; }
+.search-filter-options::-webkit-scrollbar { display:none; }
+[data-filter=magnitude] .search-filter-options { width:71.70418%; }
+.search-filter-options button { position:relative; flex:0 0 33.3333%; height:100%; padding:0; min-width:0; color:#fff; }
+.search-filter-options button:focus-visible { outline-offset:-2px; }
+.search-filter-art { position:absolute; inset:0; overflow:hidden; }
+.search-filter-art img { position:absolute; }
+.search-filter-digits { position:absolute; z-index:1; inset:45.36% 0 auto; display:flex; align-items:center; justify-content:center; height:35%; gap:1px; }
+.search-filter-digits img { height:100%; width:auto; }
+.search-filter-digits .glyph-dot { width:2px; height:2px; margin-top:5px; background:#fff; }
+.search-map { position:absolute; left:calc(var(--chart-width) * 342 / 1440); top:calc(var(--chart-width) * 285 / 1440); width:calc(var(--chart-width) * 897 / 1440); aspect-ratio:1; }
+.search-map canvas, .search-map-stars { position:absolute; inset:0; width:100%; height:100%; }
+.search-map canvas { opacity:.7; }
+.search-map-stars { pointer-events:none; }
+.search-map-star { position:absolute; width:44px; height:44px; padding:0; transform:translate(-50%,-50%); pointer-events:auto; border-radius:50%; }
+.search-map-star::before { content:''; position:absolute; width:var(--star-size,5px); height:var(--star-size,5px); left:50%; top:50%; transform:translate(-50%,-50%); border-radius:50%; background:#f2f6ff; }
+.search-map-star::after { content:''; position:absolute; left:50%; top:50%; width:var(--star-size,5px); height:var(--star-size,5px); border-radius:50%; transform:translate(-50%,-50%) scale(1); background:radial-gradient(circle,#e8f9ff 0 18%,#92e0f388 38%,transparent 70%); opacity:0; pointer-events:none; }
+.search-map-star.is-departing::after { animation:search-star-depart 420ms cubic-bezier(.2,.7,.2,1) forwards; }
+.search-map-star.is-departing::before { background:#fff; outline-color:transparent; box-shadow:0 0 12px 3px #a7eaffcc; }
+#star-search[data-departing=true] .search-map-star:not(.is-departing), #star-search[data-departing=true] .search-map canvas { opacity:.18; transition:opacity 260ms ease; }
+#star-search[data-departing=true] .search-map-title { opacity:0; transition:opacity 160ms ease; }
+@keyframes search-star-depart { 0% { opacity:0; transform:translate(-50%,-50%) scale(1); } 35% { opacity:1; } 100% { opacity:0; transform:translate(-50%,-50%) scale(14); } }
+#search-index-toggle { --toggle-nudge-x:-2px; position:absolute; left:calc(var(--chart-width) * 1387.5 / 1440 - 22px); top:calc(var(--chart-width) * 38 / 1440 - 22px); width:44px; height:44px; padding:0; }
+.search-toggle-feedback { position:absolute; inset:0; pointer-events:none; transition:transform .22s cubic-bezier(.22,.68,.2,1),filter .22s ease; }
+.search-toggle-arrow { position:absolute; left:50%; top:50%; width:calc(var(--chart-width) * 55 / 1440); height:auto; transform:translate(-50%,-50%) rotate(90deg); transition:transform .36s cubic-bezier(.22,.68,.2,1); }
+.search-index-heading { position:absolute; left:calc(var(--chart-width) * 1583 / 1440); top:calc(var(--chart-width) * 46 / 1440); width:calc(var(--chart-width) * 175 / 1440); height:auto; visibility:hidden; opacity:0; transition:opacity .24s; }
+.search-artboard .search-index-mobile-heading { display:none; }
+[data-index-open=true] .search-index-heading { visibility:visible; opacity:1; }
+[data-index-open=true] .search-toggle-arrow { transform:translate(-50%,-50%) rotate(0deg); }
+[data-index-open=true] #search-index-toggle { --toggle-nudge-x:2px; }
+#close-search { position:absolute; z-index:2; right:0; top:0; width:max(44px,calc(var(--chart-width) * 78 / 1440)); height:max(44px,calc(var(--chart-width) * 61 / 1440)); padding:0; display:flex; align-items:center; justify-content:center; visibility:hidden; }
+[data-index-open=true] #close-search { visibility:visible; }
+#close-search img { position:absolute; right:calc(var(--chart-width) * 19 / 1440); top:calc(var(--chart-width) * 11 / 1440); width:calc(var(--chart-width) * 40 / 1440); height:auto; transition:transform .22s cubic-bezier(.22,.68,.2,1),filter .22s ease; }
+
+/* Only the artwork moves; hit areas and the index's 90-degree turn stay independent. */
+.search-bar:has(.search-submit:is(:focus-visible,:active)) .search-frame { visibility:hidden; transition:none; }
+.search-bar:has(.search-submit:is(:focus-visible,:active)) .search-frame-background { visibility:visible; transition-delay:0s; }
+.search-bar:has(.search-submit:is(:focus-visible,:active)) .search-submit-art { visibility:visible; transition-delay:0s; transform:scale(1.08); filter:brightness(1.16) drop-shadow(0 0 3px #8ae6ff66); }
+#search-index-toggle:focus-visible .search-toggle-feedback { transform:translate(var(--toggle-nudge-x),2px) scale(1.09); filter:brightness(1.18) drop-shadow(0 0 3px #8ae6ff66); }
+@media(hover:hover) and (pointer:fine) {
+  .search-bar:has(.search-submit:hover) .search-frame { visibility:hidden; transition:none; }
+  .search-bar:has(.search-submit:hover) .search-frame-background { visibility:visible; transition-delay:0s; }
+  .search-bar:has(.search-submit:hover) .search-submit-art { visibility:visible; transition-delay:0s; transform:scale(1.08); filter:brightness(1.16) drop-shadow(0 0 3px #8ae6ff66); }
+  #search-index-toggle:hover .search-toggle-feedback { transform:translate(var(--toggle-nudge-x),2px) scale(1.09); filter:brightness(1.18) drop-shadow(0 0 3px #8ae6ff66); }
+}
+.search-bar:has(.search-submit:active) .search-submit-art { transform:scale(1.02); }
+#search-index-toggle:active .search-toggle-feedback, #close-search:active img { transform:scale(.94); }
+#search-index { position:absolute; left:calc(var(--chart-width) * 1428 / 1440); top:calc(var(--chart-width) * 169 / 1440); width:calc(var(--chart-width) * 461 / 1440); bottom:calc(var(--chart-width) * 80 / 1440); opacity:0; visibility:hidden; transform:translateX(16px); transition:opacity .24s ease,transform .36s ease,visibility 0s .36s; }
+[data-index-open=true] #search-index { opacity:1; visibility:visible; transform:none; transition-delay:.08s,.08s,0s; }
+.search-index-columns { position:absolute; inset:0 0 auto; height:calc(var(--chart-width) * 37 / 1440); }
+.search-name-heading { position:absolute; left:0; top:calc(var(--chart-width) * 16 / 1440); width:calc(var(--chart-width) * 74 / 1440); height:auto; }
+.search-id-heading { position:absolute; right:0; top:0; width:calc(var(--chart-width) * 30 / 1440); height:auto; }
+/* Keep the titles aligned with NAME, with an unclipped gutter for the selection mark. */
+#search-results { position:absolute; inset:calc(var(--chart-width) * 65 / 1440) 0 48px -28px; padding-left:28px; overflow-y:auto; overscroll-behavior:contain; scrollbar-width:thin; scrollbar-color:#4480de transparent; }
+.search-result { position:relative; display:flex; align-items:center; justify-content:space-between; gap:12px; min-height:64px; padding:12px 2px; color:var(--ink); border-bottom:1px solid rgb(157 201 255 / .12); text-decoration:none; font-size:clamp(14px,1.05vw,17px); line-height:1.6; transition:color var(--dur-hover) var(--ease-enter); }
+.search-result-name { flex:1; min-width:0; overflow-wrap:anywhere; }
+.search-result-name > span { font-family:var(--display); font-weight:400; font-synthesis:none; }
+.search-result-name time { display:block; color:var(--ink-muted); font-size:var(--step-caption); letter-spacing:.6px; margin-top:3px; }
+.search-result-id { flex-shrink:0; display:block; text-align:right; font:var(--step-caption)/1.5 Consolas,monospace; white-space:pre-line; width:86px; overflow-wrap:anywhere; }
+#search-feedback { position:absolute; bottom:8px; left:0; right:0; margin:0; color:var(--ink-soft); font-size:var(--step-small); line-height:1.7; }
+#search-clear { position:absolute; right:0; bottom:0; padding:4px 0; min-height:32px; color:#d7eaff; font-size:var(--step-small); }
+#search-entry { position:fixed; z-index:9; left:28px; bottom:50px; width:100px; height:100px; padding:0; }
+/* The astrolabe artwork is a near-white wireframe; at full contrast it reads as a
+   UI panel floating over the painting. Ease it back so it feels like an instrument
+   catching the same light as the sky. Size, pivot and needle rotation are untouched. */
+#search-entry > img, #search-entry .search-entry-disc { filter: brightness(.86) saturate(.72) drop-shadow(0 2px 10px rgb(2 12 48 / .55)); opacity: .92; transition: filter .3s ease, opacity .3s ease, transform .3s ease; }
+#search-entry:is(:hover, :focus-visible) > img, #search-entry:is(:hover, :focus-visible) .search-entry-disc { filter: brightness(1) saturate(.9) drop-shadow(0 3px 14px rgb(2 12 48 / .6)); opacity: 1; }
+/* Only the native hand rotates. The narrow repair stencil hides its baked-in copy. */
+#search-entry img { position:absolute; inset:0; display:block; width:100%; height:100%; object-fit:contain; pointer-events:none; user-select:none; }
+.search-entry-disc { position:absolute; inset:0; pointer-events:none; }
+.search-entry-needle { transform-origin:var(--entry-pivot-x) var(--entry-pivot-y); transform:rotate(calc(var(--view-heading,0rad) - var(--entry-native-angle))); }
+.search-entry-pivot { clip-path:circle(3.5% at var(--entry-pivot-x) var(--entry-pivot-y)); }
+body:not(.starry-ready) #search-entry { display:none; }
+
+
+@media(max-width:760px) {
+  #close-search { top:12px; left:12px; right:auto; width:44px; height:44px; visibility:visible; }
+  #close-search img { position:static; width:28px; }
+}
+@media(max-width:760px) and (orientation:portrait) {
+  #star-search { --chart-width:calc(100vw - 32px); --mobile-map-top:calc(140px + var(--chart-width) * .48 * 97 / 368); --chart-height:calc(var(--mobile-map-top) + var(--chart-width) * .87); width:var(--chart-width); max-height:calc(100dvh - 64px); }
+  #star-search[data-index-open=true] { width:var(--chart-width); }
+  .search-artboard { max-height:calc(100dvh - 64px); overflow-y:auto; overscroll-behavior:contain; }
+  [data-index-open=true].search-artboard { height:calc(var(--chart-height) + 380px); }
+  .search-background { height:100%; background:#001b87; }
+  [data-index-open=true] .search-background { height:calc(var(--chart-height) + 380px); }
+  .search-base { width:calc(var(--chart-width) * .78 * 1917 / 897); left:calc(var(--chart-width) * (.11 - .78 * 342 / 897)); top:calc(var(--mobile-map-top) - var(--chart-width) * .78 * 285 / 897); }
+  .search-heading { left:26%; top:8px; width:48%; }
+  .search-bar { left:20px; top:74px; width:calc(100% - 40px); }
+  #search-query { top:8%; height:76%; }
+  .search-filters { left:24px; top:124px; width:calc(var(--chart-width) * .48 * 311 / 368); }
+  .search-map { left:11%; top:var(--mobile-map-top); width:78%; }
+  #search-index-toggle { left:auto; right:12px; top:20px; }
+  .search-toggle-arrow { width:30px; }
+  .search-artboard .search-index-heading { display:none; }
+  .search-artboard .search-index-mobile-heading { display:block; width:100px; height:auto; }
+  #search-index { left:24px; right:24px; width:auto; top:calc(var(--chart-height) + 16px); bottom:auto; height:340px; }
+  .search-index-columns { top:42px; height:32px; }
+  .search-name-heading { top:8px; width:55px; }
+  .search-id-heading { width:22px; }
+  #search-results { top:86px; }
+  /* Keep the astrolabe in the lower-left wave area above the mode switch,
+     at the same position whether an article is selected or not. */
+  #search-entry { left:max(14px,env(safe-area-inset-left)); bottom:max(86px,calc(env(safe-area-inset-bottom) + 72px)); width:72px; height:72px; }
+}
+@media(max-height:650px) and (orientation:landscape) {
+  #star-search { --chart-width:min(66vw,680px); --chart-height:calc(var(--chart-width) * 1284 / 1440); }
+  .search-artboard { height:var(--chart-height); max-height:calc(100dvh - 48px); overflow-y:auto; }
+  .search-background { height:var(--chart-height); }
+  #search-index { bottom:auto; height:calc(100dvh - 148px); min-height:160px; }
+  .search-result { font-size:13px; min-height:56px; padding:8px 0; }
+  .search-result-id { width:70px; font-size:10px; }
+  #search-entry { left:16px; bottom:24px; width:60px; height:60px; }
+}
+@media(prefers-reduced-motion:reduce) {
+  #star-search, .search-artboard, #search-index-toggle, #close-search, .search-toggle-arrow, #search-index { transition:none; }
+  #star-search::backdrop { animation:none; }
+  #search-entry:hover { transform:none; }
+  .search-submit-art, .search-toggle-feedback, #close-search img { transition:none; transform:none !important; }
+  .search-frame, .search-frame-background { transition:none; }
+  .search-map-star.is-departing::after { animation:none; }
+}
+
+/* ---------------------------------------------------------------------------
+   Motion redesign · the chart as an instrument, not a pop-up.
+   One `--unfold` value (0→1, set per frame by search.js) drives everything that
+   opens: an iris grows out of the astrolabe, the dial turns into register, the
+   furniture lands in order and stars ignite from the zenith outward. Closing
+   runs the same value backwards, so the chart folds back into the astrolabe.
+   --------------------------------------------------------------------------- */
+@property --star-alpha { syntax:'<number>'; inherits:true; initial-value:1; }
+#star-search {
+  --unfold:0;
+  --stage-a:clamp(0, calc((var(--unfold) - .18) / .42), 1);
+  --stage-b:clamp(0, calc((var(--unfold) - .34) / .42), 1);
+  --stage-c:clamp(0, calc((var(--unfold) - .5) / .4), 1);
+  clip-path:circle(calc(var(--iris-r0, 0px) + (var(--iris-r, 150vmax) - var(--iris-r0, 0px)) * var(--unfold)) at var(--iris-x, 8%) var(--iris-y, 92%));
+}
+#star-search:not([data-motion]) { clip-path:none; }
+#star-search[data-soft=true] { clip-path:none; opacity:var(--unfold); }
+/* A thin rim of light rides the iris edge and is gone by the time it settles. */
+#star-search::after {
+  content:''; position:absolute; inset:0; z-index:6; pointer-events:none;
+  --rim:calc(var(--iris-r0, 0px) + (var(--iris-r, 150vmax) - var(--iris-r0, 0px)) * var(--unfold));
+  background:radial-gradient(circle at var(--iris-x, 8%) var(--iris-y, 92%),
+    transparent calc(var(--rim) - 18px), rgb(146 224 243 / .18) calc(var(--rim) - 6px),
+    rgb(226 250 255 / .7) calc(var(--rim) - 1px), transparent var(--rim));
+  opacity:0;
+}
+#star-search[data-motion]:not([data-soft=true])::after { opacity:calc(var(--unfold) * (1 - var(--unfold)) * 3.6); }
+#star-search:not([data-soft=true]) .search-artboard { transform:scale(calc(.965 + .035 * var(--unfold))); transform-origin:var(--iris-x, 8%) var(--iris-y, 92%); }
+#star-search:not([data-soft=true]) .search-map { transform:rotate(calc((1 - var(--unfold)) * -38deg)) scale(calc(.9 + .1 * var(--stage-a))); }
+#star-search:not([data-soft=true]) .search-heading { opacity:var(--stage-a); transform:translateY(calc((1 - var(--stage-a)) * -10px)); }
+#star-search:not([data-soft=true]) .search-bar { opacity:var(--stage-b); transform:translateY(calc((1 - var(--stage-b)) * 12px)); }
+#star-search:not([data-soft=true]) .search-filters,
+#star-search:not([data-soft=true]) #search-index-toggle { opacity:var(--stage-c); transform:translateY(calc((1 - var(--stage-c)) * 10px)); }
+#star-search:not([data-soft=true]) .search-map canvas { opacity:calc(.7 * var(--stage-c)); }
+/* Each star waits for the iris to pass its ring before it lights. */
+#star-search:not([data-soft=true]) .search-map-star::before {
+  --lit:clamp(0, calc((var(--unfold) - .4 - var(--ring, .5) * .34) / .18), 1);
+  opacity:calc(var(--lit) * var(--star-alpha));
+  scale:calc(.2 + .8 * var(--lit));
+}
+
+/* Stars ------------------------------------------------------------------- */
+.search-map-star::before { opacity:var(--star-alpha); transition:--star-alpha var(--dur-quick) var(--ease-settle), background-color var(--dur-hover) var(--ease-enter), box-shadow var(--dur-hover) var(--ease-enter), transform var(--dur-quick) var(--ease-enter); }
+.search-map-star.is-muted { --star-alpha:.22; }
+/* Dimming comes from the star's ink, rather than the generic disabled-button fade. */
+.search-map-star:disabled { opacity:1; }
+#star-search[data-focusing=true] .search-map-star:not(.is-highlighted,.is-muted) { --star-alpha:.5; }
+#star-search[data-focusing=true] .search-map canvas { opacity:.42; transition:opacity var(--dur-quick) var(--ease-settle); }
+.search-map-star.is-highlighted { --star-alpha:1; z-index:1; }
+.search-map-star.is-highlighted::before { background:#fff; transform:translate(-50%,-50%) scale(1.45); box-shadow:0 0 6px 1px #c9f3ff, 0 0 18px 4px rgb(98 213 255 / .35); }
+.search-map-star.is-selected:not(.is-highlighted)::before { background:#bfeeff; box-shadow:0 0 8px 1px rgb(146 224 243 / .55); }
+/* Reticle: two arcs swing in and lock around the star, with four sighting ticks. */
+.search-map-reticle { position:absolute; left:50%; top:50%; width:24px; height:24px; margin:-12px 0 0 -12px; border-radius:50%; border:1px solid #b9efff; border-left-color:transparent; border-right-color:transparent; opacity:0; transform:rotate(-80deg) scale(1.9); transition:opacity var(--dur-hover) var(--ease-exit), transform var(--dur-quick) var(--ease-exit); pointer-events:none; }
+.search-map-reticle::before { content:''; position:absolute; inset:-6px; background:
+  linear-gradient(#d8f6ff,#d8f6ff) 50% 0/1px 4px no-repeat, linear-gradient(#d8f6ff,#d8f6ff) 50% 100%/1px 4px no-repeat,
+  linear-gradient(#d8f6ff,#d8f6ff) 0 50%/4px 1px no-repeat, linear-gradient(#d8f6ff,#d8f6ff) 100% 50%/4px 1px no-repeat;
+  opacity:0; transform:scale(1.35); transition:opacity var(--dur-quick) var(--ease-enter), transform var(--dur-panel) var(--ease-settle); }
+.search-map-star.is-highlighted .search-map-reticle { opacity:1; transform:rotate(45deg) scale(1); transition:opacity var(--dur-hover) var(--ease-enter), transform var(--dur-panel) var(--ease-settle); }
+.search-map-star.is-highlighted .search-map-reticle::before { opacity:.85; transform:rotate(-45deg) scale(1); transition-delay:60ms; }
+/* The camera's current star keeps a faint, slowly turning ring of its own. */
+.search-map-star.is-selected:not(.is-highlighted) .search-map-reticle { opacity:.4; transform:scale(.82); border-color:#92e0f3 transparent; animation:search-reticle-drift 9s linear infinite; }
+@keyframes search-reticle-drift { to { rotate:360deg; } }
+.search-map-star:active .search-map-reticle { transform:rotate(45deg) scale(.82); transition-duration:var(--dur-press); }
+.search-map-star.is-departing .search-map-reticle { opacity:0; transform:rotate(135deg) scale(.4); transition:opacity var(--dur-quick) var(--ease-exit) 120ms, transform var(--dur-quick) var(--ease-exit); }
+
+/* Star-chart marginalia: an unboxed caption and a diagonal drawn out of the star. */
+.search-map-title { --annotation-line:rgb(182 210 237 / .54); position:absolute; z-index:2; width:min(274px,calc(100% - 24px)); display:grid; gap:6px; padding:0 0 8px; color:var(--ink); text-align:left; pointer-events:none;
+  border:0; border-bottom:1px solid var(--annotation-line); text-shadow:var(--text-on-sky); opacity:0;
+  transition:opacity var(--dur-hover) var(--ease-exit); }
+.search-map-title[data-below=true] { border-bottom:0; border-top:1px solid var(--annotation-line); padding:8px 0 0; }
+.search-map-title::after { content:''; position:absolute; left:var(--leader-x); top:var(--leader-y); width:var(--leader-length); height:1px; background:var(--annotation-line); transform-origin:0 50%; transform:rotate(var(--leader-angle)) scaleX(0); transition:transform var(--dur-hover) var(--ease-exit); }
+.search-map-title[data-on=true] { opacity:1; transition:opacity var(--dur-hover) var(--ease-enter); }
+.search-map-title[data-on=true]::after { transform:rotate(var(--leader-angle)) scaleX(1); transition:transform var(--dur-quick) var(--ease-enter); }
+.search-map-title-name { font:400 var(--step-h2)/1.5 var(--display); letter-spacing:1px; overflow-wrap:anywhere; }
+.search-map-title-meta { display:flex; flex-wrap:wrap; gap:4px 14px; color:var(--ink-soft); font:var(--step-caption)/1.5 Consolas,monospace; letter-spacing:.5px; }
+.search-map-title-meta > span { margin-left:auto; white-space:nowrap; }
+
+/* Filters: one seam of light per rail travels between choices like a slide rule. */
+.search-filter-options button .search-filter-art { transition:filter var(--dur-hover) var(--ease-enter), transform var(--dur-press) var(--ease-enter); }
+.search-filter-options button[aria-pressed=false] .search-filter-art { filter:brightness(.82) saturate(.85); }
+.search-filter-options button[aria-pressed=true] .search-filter-art { filter:brightness(1.18) drop-shadow(0 0 4px rgb(138 230 255 / .45)); }
+@media(hover:hover) and (pointer:fine) {
+  .search-filter-options button[aria-pressed=false]:hover .search-filter-art { filter:brightness(1.02); }
+}
+.search-filter-options button:active .search-filter-art { transform:translateY(1px) scale(.97); }
+.search-filter-seam { position:absolute; left:0; top:81%; height:2px; width:var(--seam-w,0px); transform:translateX(var(--seam-x,0px)) scaleX(0); pointer-events:none; z-index:2;
+  background:linear-gradient(90deg,transparent,#e2faff 18%,#fff 50%,#e2faff 82%,transparent); box-shadow:0 0 8px rgb(146 224 243 / .7); opacity:0;
+  transition:transform var(--dur-panel) var(--ease-settle), width var(--dur-panel) var(--ease-settle), opacity var(--dur-hover) var(--ease-enter); }
+.search-filter-seam[data-on=true] { opacity:1; transform:translateX(var(--seam-x,0px)) scaleX(1); }
+.search-filter-seam[data-instant=true] { transition:none; transform:translateX(var(--seam-x,0px)) scaleX(0); }
+.search-filter-seam.is-flash::after { content:''; position:absolute; left:50%; top:50%; width:6px; height:6px; margin:-3px; border-radius:50%; background:#fff; box-shadow:0 0 10px 3px #92e0f3; animation:search-seam-flash var(--dur-panel) var(--ease-exit) 140ms both; }
+@keyframes search-seam-flash { from { opacity:1; transform:scale(.4); } to { opacity:0; transform:scale(2.4); } }
+
+/* Index rows: a small, slow hop keeps the active choice alive while hovering.
+   The artwork moves independently of the slide-in and the fixed click area. */
+.search-result::before { content:''; position:absolute; left:0; right:0; bottom:-1px; height:1px; background:linear-gradient(90deg,#92e0f3,rgb(146 224 243 / .4) 60%,transparent); transform:scaleX(0); transform-origin:left; transition:transform var(--dur-quick) var(--ease-exit); pointer-events:none; }
+.search-result::after { content:''; position:absolute; inset:0; pointer-events:none; background:linear-gradient(100deg,transparent 30%,rgb(167 234 255 / .09) 48%,rgb(167 234 255 / .03) 60%,transparent 72%) no-repeat; background-size:260% 100%; background-position:110% 0; opacity:0; }
+.search-result-mark { position:absolute; left:-22px; top:50%; width:18px; height:13.5px; margin-top:-6.75px; transform:translateX(-2px) scale(.75); opacity:0; pointer-events:none; transition:transform var(--dur-quick) var(--ease-exit), opacity var(--dur-hover) var(--ease-exit); }
+.search-result-mark::before { content:''; position:absolute; inset:0; background:url('../../images/search/result-arrow.png') center/contain no-repeat; filter:drop-shadow(0 0 2px rgb(214 255 0 / .28)); transition:filter var(--dur-hover) var(--ease-enter), transform var(--dur-press) var(--ease-enter); }
+.search-result-name, .search-result-id { transition:transform var(--dur-quick) var(--ease-exit), color var(--dur-hover) var(--ease-enter); }
+.search-result:is(:hover,:focus-visible,.is-highlighted) { color:#c4f1ff; }
+.search-result:is(:hover,:focus-visible,.is-highlighted)::before { transform:scaleX(1); transition:transform var(--dur-panel) var(--ease-settle); }
+.search-result:is(:hover,:focus-visible,.is-highlighted)::after { opacity:1; background-position:-60% 0; transition:background-position 640ms var(--ease-settle), opacity var(--dur-hover) var(--ease-enter); }
+.search-result:is(:hover,:focus-visible,.is-highlighted) .search-result-mark { opacity:1; transform:none; transition:transform var(--dur-quick) var(--ease-enter), opacity var(--dur-hover) var(--ease-enter); }
+.search-result:is(:hover,:focus-visible,.is-highlighted) .search-result-mark::before { animation:search-result-arrow-hover calc(var(--dur-panel) * 3.5) var(--ease-drift) infinite; filter:brightness(1.1) drop-shadow(0 0 3px rgb(214 255 0 / .45)); }
+@keyframes search-result-arrow-hover {
+  0%, 100% { transform:translate(0, 0) rotate(0deg) scale(1); }
+  50% { transform:translate(1px, -2px) rotate(-1.2deg) scale(1.035); }
+}
+.search-result:is(:hover,:focus-visible,.is-highlighted) .search-result-name { transform:translateX(14px); transition:transform var(--dur-panel) var(--ease-settle); }
+.search-result:is(:hover,:focus-visible,.is-highlighted) .search-result-id { color:#92e0f3; }
+.search-result:focus-visible { outline:none; }
+.search-result:focus-visible .search-result-mark::before { filter:brightness(1.18) drop-shadow(0 0 4px rgb(214 255 0 / .55)); }
+.search-result:active .search-result-mark::before { animation:none; transform:translateX(2px) scale(.9); filter:brightness(1.18); }
+.search-result:active .search-result-name { transform:translateX(10px); transition-duration:var(--dur-press); }
+.search-result.is-entering { animation:search-row-in var(--dur-panel) var(--ease-settle) var(--row-delay,0ms) both; }
+@keyframes search-row-in { from { opacity:0; transform:translateY(10px); filter:blur(1.5px); } to { opacity:1; transform:none; filter:none; } }
+
+/* Index panel: unrolls from the chart's edge instead of fading as a block. */
+#search-index { clip-path:inset(0 100% 0 0); transform:none; transition:clip-path var(--dur-quick) var(--ease-exit), opacity var(--dur-quick) var(--ease-exit), visibility 0s var(--dur-quick); }
+[data-index-open=true] #search-index { clip-path:inset(0 0 0 -28px); transform:none; transition:clip-path var(--dur-scene) var(--ease-settle) 60ms, opacity var(--dur-quick) var(--ease-enter) 60ms, visibility 0s; }
+/* The initial sidebar joins the moving chart, without its own delayed settle. */
+#star-search[data-motion=opening][data-index-open=true] #search-index { transition:clip-path var(--dur-panel) var(--ease-enter), opacity var(--dur-hover) var(--ease-enter), visibility 0s; }
+#star-search { transition:width var(--dur-panel) var(--ease-settle); }
+.search-toggle-arrow { transition:transform var(--dur-panel) var(--ease-settle); }
+
+/* Index toggle and close read as small dial movements, not generic zooms. */
+#search-index-toggle::before { content:''; position:absolute; left:50%; top:50%; width:34px; height:34px; margin:-17px; border-radius:50%; border:1px solid rgb(185 239 255 / .55); border-top-color:transparent; border-bottom-color:transparent; opacity:0; transform:rotate(-40deg) scale(.7); transition:opacity var(--dur-hover) var(--ease-exit), transform var(--dur-quick) var(--ease-exit); pointer-events:none; }
+#search-index-toggle:focus-visible::before { opacity:1; transform:rotate(50deg) scale(1); transition:opacity var(--dur-hover) var(--ease-enter), transform var(--dur-panel) var(--ease-settle); }
+#close-search img { transition:transform var(--dur-panel) var(--ease-settle), filter var(--dur-hover) var(--ease-enter); }
+#close-search:focus-visible img { transform:rotate(90deg); filter:brightness(1.2) drop-shadow(0 0 3px #8ae6ff66); }
+@media(hover:hover) and (pointer:fine) {
+  #search-index-toggle:hover::before { opacity:1; transform:rotate(50deg) scale(1); transition:opacity var(--dur-hover) var(--ease-enter), transform var(--dur-panel) var(--ease-settle); }
+  #close-search:hover img { transform:rotate(90deg); filter:brightness(1.2) drop-shadow(0 0 3px #8ae6ff66); }
+}
+#close-search:active img { transform:rotate(90deg) scale(.86); transition-duration:var(--dur-press); }
+#search-index-toggle:active::before { transform:rotate(50deg) scale(.86); transition-duration:var(--dur-press); }
+/* As the chart folds away the close mark rewinds against the turn. */
+#star-search[data-motion=closing] #close-search img { transform:rotate(-90deg) scale(.8); transition:transform var(--dur-panel) var(--ease-exit); }
+
+/* Astrolabe entry: hover gently turns the instrument; press seats it. */
+#search-entry { transition:transform var(--dur-quick) var(--ease-settle); }
+@media(hover:hover) and (pointer:fine) {
+  #search-entry:hover { transform:translateY(-2px) rotate(-4deg); }
+}
+#search-entry:active { transform:scale(.94); transition-duration:var(--dur-press); }
+/* The chart folds back into the astrolabe, so the astrolabe re-seats as it lands. */
+#search-entry:not([hidden]) { animation:search-entry-return var(--dur-panel) var(--ease-settle) backwards; }
+@keyframes search-entry-return { from { opacity:0; transform:scale(.82) rotate(18deg); } to { opacity:1; transform:none; } }
+
+@media(prefers-reduced-motion:reduce) {
+  #star-search .search-artboard, #star-search .search-map, #star-search .search-heading, #star-search .search-bar, #star-search .search-filters, #star-search #search-index-toggle { transform:none !important; }
+  #star-search::after, .search-filter-seam.is-flash::after { display:none; }
+  .search-map-reticle, .search-map-reticle::before, .search-map-title, .search-map-title::after, .search-filter-seam, .search-result::before, .search-result::after, .search-result-mark, .search-result-mark::before, .search-result-name, #search-index, #search-entry, #search-index-toggle::before, #close-search img { transition:none !important; animation:none !important; }
+  .search-result-mark::before { transform:none !important; }
+  .search-result.is-entering, #search-entry:not([hidden]) { animation:none; }
+  .search-result:is(:hover,:focus-visible,.is-highlighted) .search-result-name { transform:none; }
+  #search-entry:hover, #search-entry:active { transform:none; }
+}

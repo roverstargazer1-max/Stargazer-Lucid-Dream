@@ -1,0 +1,176 @@
+/* Visitor controls carried over from V20. */
+.masthead{position:absolute;pointer-events:none;z-index:5}
+.masthead a{display:flex;color:#d4deeb;text-decoration:none;pointer-events:auto}
+.wordmark{display:block;width:370px;height:auto;overflow:visible}
+.signal-egg{position:absolute;font-size:24px;animation:signal 6s ease-in-out infinite;z-index:4}
+.signal-egg span{font-size:11px;position:absolute;white-space:nowrap;right:100%;opacity:0;transition:opacity .3s}
+.signal-egg:hover span,.signal-egg:focus-visible span{opacity:1}
+body[data-render-quality=low] .signal-egg{animation:none}
+@keyframes signal{50%{opacity:.55}}
+#egg-dialog{padding:45px;max-width:420px;width:calc(100% - 40px);box-shadow:0 20px 100px #0008}
+#egg-dialog::backdrop{background:#04142b66;backdrop-filter:blur(2px)}
+#egg-dialog h2{font-family:var(--serif);font-weight:normal;letter-spacing:3px;line-height:1.8}
+#egg-dialog p{white-space:pre-line}
+.egg-close{position:absolute;min-width:44px;min-height:44px;font-size:24px}
+.egg-signature{letter-spacing:2px;display:block;margin-top:25px}
+.edge-guide{position:absolute;transform:translate(-50%,-50%);font-size:23px;z-index:4}
+.edge-guide:hover,.edge-guide:focus-visible{color:#e5eff6}
+/* Final painted scene from the accepted V20 prototype. */
+body[data-scene=painted]{background:#042b68;--type-main:#edf1ec;--type-soft:#d9e3eb;--type-muted:#c4d4e1;--type-line:#bbd0e433;--paper:#e4eaf5;--paper-ink:#34485e;--paper-muted:#4f6375}
+#room{position:fixed;inset:0;z-index:40;overflow:clip;background:transparent}
+.room-stage{position:absolute;width:max(100vw,177.683vh);height:max(56.28vw,100vh);left:50%;top:50%;margin-left:min(-50vw,-88.8415vh);margin-top:min(-28.14vw,-50vh);will-change:transform,opacity}
+/* Large filtered room surfaces compete with the moving sky on constrained GPUs.
+   Keep the camera passage; omit only its slight blur after measured overload. */
+body[data-room-blur=off] .room-stage{filter:none!important}
+.room-image{width:100%;height:100%;display:block;object-fit:cover}
+/* The illustration supplies only the near room; both sides of the window use #sky. */
+body[data-live-window=ready] .room-image{mask-image:var(--window-mask);mask-mode:alpha;mask-size:100% 100%;mask-repeat:no-repeat}
+body[data-live-window=ready][data-room=inside] #world{visibility:visible}
+body[data-live-window=ready][data-room=inside] #world>:not(#sky){visibility:hidden}
+#window-entry{position:absolute;left:31.3%;top:1%;width:68%;height:79%;padding:0;clip-path:polygon(0 0,100% 0,100% 100%,59% 100%,52% 78%,52% 55%,41% 53%,31% 76%,24% 100%,11% 100%,0 49%);cursor:pointer;border-radius:0}
+#window-entry:focus-visible{outline:none;background:none}
+/* Light follows the illustrated window; the hedgehog carries the quiet text cue. */
+.window-invitation{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:0;transition:opacity .2s}
+body[data-room=inside] .window-invitation{opacity:1;transition-duration:.7s}
+.window-edge{opacity:0;stroke-width:1.6;filter:drop-shadow(0 0 4px #cce4ee77);transition:opacity .65s}
+#window-entry:hover~.window-invitation .window-edge{opacity:.5}
+#window-entry:focus-visible~.window-invitation .window-edge{opacity:.85;stroke-width:2.2}
+.window-dust{opacity:.75;transition:opacity .65s}
+#window-entry:is(:hover,:focus-visible)~.window-invitation .window-dust{opacity:1}
+.window-dust>*{opacity:0;transform-box:fill-box;transform-origin:center}
+/* The configured Full/Soft mode is shared with createRoom. */
+body[data-motion=full][data-room=inside] .window-dust>*{animation:window-drift 7s ease-in-out var(--dust-delay,1s) infinite!important}
+.window-dust>:nth-child(2){--dust-delay:1.3s}
+.window-dust>:nth-child(3){--dust-delay:1.65s}
+.window-dust>:nth-child(4){--dust-delay:1.9s}
+.window-dust>:nth-child(5){--dust-delay:1.15s}
+@keyframes window-drift{
+  0%{opacity:0;transform:translate(-10px,12px) scale(1)}
+  16%{opacity:.75}
+  42%{opacity:0;transform:translate(44px,-46px) scale(.45)}
+  100%{opacity:0;transform:translate(44px,-46px) scale(.45)}
+}
+/* A quiet fixed glint retains the cue when motion is reduced. */
+body[data-motion=soft][data-room=inside] .window-dust>*{animation:none;opacity:.35;transform:none}
+/* A small thought above the painted hedgehog, anchored in the same artwork space.
+   Keep type at screen size while the scene is cropped; fade before the dolly grows it. */
+.room-thought{position:absolute;left:41%;top:69%;width:142px;height:80px;padding:10px 12px 30px;transform:translate(-65%,-100%);display:flex;align-items:center;justify-content:center;color:var(--ink-soft);font-family:var(--display);font-weight:400;font-synthesis:none;text-shadow:var(--text-on-sky);border-radius:50%;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .18s ease,visibility 0s .18s}
+.room-thought-outline{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none;fill:rgb(3 26 135 / .12);stroke:currentColor;stroke-opacity:.44;stroke-width:1.1;stroke-linecap:round;stroke-linejoin:round;transition:stroke-opacity .22s ease}
+.room-thought-copy{position:relative;white-space:nowrap;font-size:var(--step-body);line-height:1.35;letter-spacing:.5px}
+body[data-room=inside] .room-thought:not(:disabled){opacity:.82;visibility:visible;pointer-events:auto;transition:opacity .7s .65s ease,visibility 0s}
+body[data-room=inside] .room-thought:not(:disabled):is(:hover,:focus-visible){opacity:1;transition-delay:0s;transition-duration:.22s}
+.room-thought:is(:hover,:focus-visible) .room-thought-outline,#window-entry:focus-visible~.room-thought .room-thought-outline{stroke-opacity:.8}
+body[data-scene=painted] #room-thought:focus-visible{outline:1.5px solid var(--accent-cyan);outline-offset:3px}
+@media(prefers-reduced-motion:reduce){.room-thought{transition:none!important}}
+body[data-motion=soft] .room-thought{transition:none!important}
+#room-journal{position:absolute;left:6%;top:88%;width:13%;height:7%;border-radius:50%;transform:rotate(-4deg)}
+#room-journal:hover,#room-journal:focus-visible{box-shadow:0 0 25px #ffd68e44;outline:1px solid #f7d88c66}
+body[data-room=inside] #world{visibility:hidden}
+body[data-room=entering] #world>:not(#sky){visibility:hidden}
+body[data-room=returning] #world>:not(#sky){visibility:hidden}
+body[data-scene=painted] .grain{opacity:.013}
+body[data-scene=painted] .masthead{top:26px;left:3.8%;opacity:.87}
+body[data-scene=painted] .wordmark{width:370px}
+body[data-scene=painted] #exploration-controls{background:none;border:0;border-radius:0;backdrop-filter:none;box-shadow:none;opacity:1;padding:0;top:26px;right:max(24px,3.8%);gap:14px;z-index:10;isolation:isolate}
+body[data-scene=painted] #exploration-controls{text-shadow:0 1px 2px #081b57}
+/* One baseline for every nav control. The mode switch keeps its hairline; the icon
+   controls and the version switch get the same hairline at lower weight, so the row
+   reads as a single instrument strip instead of three unrelated treatments. */
+body[data-scene=painted] .mode-switch{gap:8px;margin-right:8px;font-size:.8125rem;letter-spacing:.5px;border-bottom:1px solid var(--panel-line-strong)}
+body[data-scene=painted] .mode-switch>span{display:none}
+body[data-scene=painted] .mode-switch button{color:var(--ink-muted);min-width:44px;min-height:44px;padding:8px 6px;transition:color .22s ease}
+body[data-scene=painted] #exploration-controls .mode-switch button:hover{color:var(--ink-soft)}
+body[data-scene=painted] .mode-switch button[aria-pressed=true]{color:var(--ink);text-decoration-color:var(--accent-cyan)}
+body[data-scene=painted] .icon-control{background:none;box-shadow:none;border-bottom:1px solid var(--panel-line);border-radius:0}
+body[data-scene=painted] .icon-control,body[data-scene=painted] .preview-meta button,body[data-scene=painted] .egg-close{display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;color:#d9e3eb;min-width:44px;width:44px;min-height:44px;padding:0;line-height:1}
+.ui-icon{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;pointer-events:none;vertical-align:middle}
+body[data-scene=painted] #exploration-controls .icon-control{width:56px;min-width:56px;height:56px;min-height:56px;border:0;border-bottom:1px solid var(--panel-line);border-radius:0}
+body[data-scene=painted] #exploration-controls .icon-control:not(:disabled):hover{border-bottom-color:var(--panel-line-strong)}
+/* Two 60 × 60 regions of the original 147 × 89 PNG, starting at (0,14) and (87,14). */
+.navigation-art{position:relative;display:block;width:40px;height:40px;overflow:hidden;pointer-events:none}
+.navigation-art img{position:absolute;left:0;top:-23.333333%;display:block;width:245%;max-width:none;height:auto}
+.navigation-art-home img{left:-145%}
+body[data-scene=painted] #exploration-controls .icon-control:not(:disabled):hover .navigation-art{filter:drop-shadow(0 0 4px #72dbff88)}
+.star-label.label-crowded{opacity:0!important}
+.star-label{overflow:hidden;text-overflow:ellipsis}
+body[data-scene=painted] :is(button,a,summary,[tabindex]):focus-visible{outline:1.5px solid #72dbff;outline-offset:2px}
+body[data-scene=painted] #egg-dialog :focus-visible{outline-color:#405976}
+.cloud-target{position:absolute;width:44px;height:44px;transform:translate(-50%,-50%);pointer-events:none;border-radius:50%;z-index:2}
+.cloud-target:focus-visible{outline:1px dotted #b9d0df99;outline-offset:4px}
+#sky.over-cloud{cursor:pointer}
+body[data-scene=painted] .star-label{font-family:var(--sans);font-size:.875rem;letter-spacing:.3px;text-shadow:0 2px 12px #00183c}
+body[data-scene=painted] .star-target:before,body[data-scene=painted] .star-target:after{display:none}
+body[data-scene=painted] .world-footer{color:#d9e3eb;font-size:.6875rem;line-height:1.7;opacity:1;text-shadow:0 1px 3px #060d30,0 0 8px #060d30,0 0 12px #060d30;letter-spacing:.5px}
+body[data-scene=painted] .world-footer{bottom:16px}
+body[data-scene=painted] #find-star{min-height:44px;font-size:.8125rem;padding:6px 0}
+body[data-scene=painted] .signal-egg{color:#8de5ff;left:50%;right:auto;top:110px;width:44px;height:44px;padding:0}
+body[data-scene=painted] .edge-guide{color:#e1e8ee;width:44px;height:44px;opacity:.95;text-shadow:0 0 8px #060d30;background:radial-gradient(ellipse,#060d3099,transparent 70%)}
+body[data-scene=painted] .preview h2{font-family:var(--sans);font-weight:400}
+body[data-scene=painted] .article{max-width:680px;padding:44px 32px 32px}
+body[data-scene=painted] .article-meta{font-size:.75rem;line-height:1.7;flex-wrap:wrap;gap:8px 16px}
+body[data-scene=painted] .article h1{font-size:2.125rem;line-height:1.5;letter-spacing:.5px;text-wrap:balance;overflow-wrap:anywhere;margin:20px 0}
+body[data-scene=painted] .article p{font-size:1rem;line-height:2.05;margin-bottom:24px;overflow-wrap:anywhere}
+body[data-scene=painted] .article-intro{font-size:.875rem!important;line-height:2!important}
+body[data-scene=painted] .article-rule{margin:24px 0}
+body[data-scene=painted] #egg-dialog{background:#e4eaf5;color:#30435a;border-radius:5px 9px 4px 7px;border:1px solid #bccbe4;max-height:calc(100dvh - 32px);padding:52px 28px 28px;overscroll-behavior:contain}
+body[data-scene=painted] #egg-dialog h2,body[data-scene=painted] #egg-dialog p{color:#34485e}
+body[data-scene=painted] #egg-dialog h2{font-size:1.5625rem}
+body[data-scene=painted] .signal-egg span{font-size:.6875rem}
+body[data-scene=painted] #egg-dialog .eyebrow,body[data-scene=painted] #egg-dialog .egg-signature{color:#4f6375;font-size:.6875rem}
+body[data-scene=painted] #egg-dialog .egg-close{color:#34485e;right:12px;top:8px}
+body[data-scene=painted] #egg-dialog p{font-size:.875rem;line-height:2}
+@media(max-width:760px){
+  body[data-scene=painted] .article{padding:32px 24px 24px}
+  body[data-scene=painted] .article h1{font-size:1.75rem}
+  body[data-scene=painted] .article p{line-height:2;letter-spacing:0}
+}
+@media(max-width:760px){
+  /* Crop the shared landscape around the writer and the adjacent window. */
+  .room-stage{left:28%;margin-left:min(-28vw,-49.75124vh)}
+  /* The right edge of the shared landscape can fall outside a narrow viewport. */
+  .room-thought{left:min(46%,calc(28% + 72vw - 14px));transform:translate(-100%,-100%)}
+  .window-invitation .window-dust{transform:translate(-210px,-70px)}
+  body[data-scene=painted] .masthead{left:20px;top:20px}
+  body[data-scene=painted] .wordmark{width:min(270px,calc(100vw - 40px))}
+  body[data-scene=painted] #exploration-controls{right:16px;left:16px;justify-content:flex-end;top:136px;gap:12px}
+  body[data-scene=painted] #exploration-controls .icon-control{width:52px;min-width:52px;height:52px;min-height:52px}
+  .navigation-art{width:36px;height:36px}
+  body[data-scene=painted] .star-label{font-size:.875rem;letter-spacing:.5px}
+  body[data-scene=painted] .signal-egg{left:auto;right:16px;top:218px}
+  body[data-scene=painted] .world-footer{bottom:16px;left:16px;right:140px}
+}
+.time-cue{position:absolute;left:40%;top:92px;transform:translateX(-50%);pointer-events:none;color:#d9ecff;font-size:.8125rem;letter-spacing:2px;text-shadow:0 1px 5px #060d30,0 0 10px #060d30;animation:time-cue 3s ease both}
+@keyframes time-cue{0%,100%{opacity:0}12%,80%{opacity:1}}
+@media(max-width:760px){.time-cue{top:218px;left:16px;right:auto;transform:none;font-size:.75rem}}
+@media(max-width:760px) and (orientation:portrait){
+  /* Reserve 116px for the two controls and 8px beside the logo artwork. */
+  #world{--mobile-logo-width:min(270px,calc((100vw - max(20px,env(safe-area-inset-left)) - max(16px,env(safe-area-inset-right)) - 124px) * 1081 / 900));--mobile-logo-height:calc(var(--mobile-logo-width) * 240 / 1081)}
+  body[data-scene=painted] .masthead{left:max(20px,env(safe-area-inset-left));top:max(20px,env(safe-area-inset-top))}
+  /* Lettering lies within the PNG's first 900 × 240px; keep all padding visible without enlarging its touch target. */
+  body[data-scene=painted] .masthead a{width:calc(var(--mobile-logo-width) * 900 / 1081);height:var(--mobile-logo-height);min-height:44px;align-items:flex-start}
+  body[data-scene=painted] .wordmark{width:var(--mobile-logo-width);flex-shrink:0;pointer-events:none}
+  body[data-scene=painted] #exploration-controls{display:grid;grid-template-columns:minmax(0,1fr) 52px 52px;grid-template-rows:max(52px,var(--mobile-logo-height));left:max(20px,env(safe-area-inset-left));right:max(16px,env(safe-area-inset-right));top:max(20px,env(safe-area-inset-top));gap:12px;pointer-events:none;animation:none}
+  body[data-scene=painted] #exploration-controls .mode-switch{position:fixed;left:max(20px,env(safe-area-inset-left));bottom:max(24px,calc(env(safe-area-inset-bottom) + 12px));margin-right:0;pointer-events:auto}
+  body[data-scene=painted] #back-dock{grid-column:2;grid-row:1;pointer-events:auto}
+  body[data-scene=painted] #home{grid-column:3;grid-row:1;pointer-events:auto}
+  /* Reserve the third 52px control and its 12px gap beside the logo. */
+}
+/* Translating the toolbar would anchor its fixed mode switch to the top; preserve arrival motion on the controls. */
+@media(max-width:760px) and (orientation:portrait) and (prefers-reduced-motion:no-preference){
+  body[data-room=outside]:not([data-arrival]) #exploration-controls>*{animation:sky-arrival .9s .1s ease both}
+}
+@media(max-height:500px) and (orientation:landscape){
+  .room-thought{width:118px;height:68px;padding:8px 8px 26px}
+  .room-thought-copy{font-size:var(--step-small)}
+  body[data-scene=painted] .masthead{top:10px;left:16px}body[data-scene=painted] .wordmark{width:214px}
+  body[data-scene=painted] #exploration-controls{top:8px;left:auto;right:16px}
+  body[data-scene=painted] #exploration-controls .icon-control{width:48px;min-width:48px;height:48px;min-height:48px}
+  .navigation-art{width:34px;height:34px}
+  body[data-scene=painted] .world-footer{display:none}
+  body[data-scene=painted] .signal-egg{left:152px;right:auto;top:auto;bottom:64px}
+  .time-cue{top:96px;left:20px;right:auto;transform:none}
+}
+@media(prefers-reduced-motion:reduce){.time-cue{animation:none}}
+
+/* Site titles remain editable text unless a custom logo is configured. */
+body[data-scene=painted] .wordmark-text{width:auto;max-width:min(370px,60vw);font-size:clamp(20px,3vw,32px);line-height:1.4;letter-spacing:.14em;overflow-wrap:anywhere}

@@ -1,0 +1,59 @@
+/* The archive, tag and category panels open over the sky. They shipped as a warm
+   paper sheet, which read as a different site dropped on top of the painting.
+   These rules move the frame into the night palette while keeping the article body
+   legible: dark chrome, cool ink, the same hairlines as the observation panel.
+   Loaded last so it can settle the paper defaults in site.css without rewriting them. */
+body[data-scene=painted] #collection-panel {
+  color: var(--ink);
+  background: linear-gradient(160deg, rgb(4 30 96 / .96), rgb(2 18 66 / .97));
+  border: 1px solid var(--panel-line);
+  box-shadow: var(--shadow-dialog);
+}
+body[data-scene=painted] #collection-panel::backdrop {
+  background: rgb(3 12 44 / .62); backdrop-filter: blur(5px);
+}
+body[data-scene=painted] .collection-frame {
+  background: none;
+}
+body[data-scene=painted] .collection-header {
+  border-bottom-color: var(--panel-line);
+}
+body[data-scene=painted] .collection-header h2 {
+  color: var(--ink); font: 400 var(--step-h2)/1.45 var(--sans); letter-spacing: .5px;
+}
+body[data-scene=painted] .collection-header .calendar-kicker { color: var(--ink-muted); }
+body[data-scene=painted] .collection-header button {
+  min-height: var(--tap); color: var(--ink-soft); font-size: var(--step-small);
+  border-bottom: 1px solid var(--panel-line); transition: color .22s ease, border-color .22s ease;
+}
+body[data-scene=painted] .collection-header button:hover {
+  color: var(--ink); border-bottom-color: var(--panel-line-strong);
+}
+body[data-scene=painted] #collection-scroll { scrollbar-color: rgb(114 191 232 / .53) transparent; }
+
+/* The archive list is the panel's main content: same date/title rhythm as before,
+   recoloured, with the index title face the author asked for. */
+body[data-scene=painted] .archive-list li { border-bottom-color: var(--panel-line); }
+body[data-scene=painted] .archive-list time { color: var(--ink-muted); }
+body[data-scene=painted] .archive-list a {
+  color: var(--ink); font: 400 var(--step-lead)/1.7 var(--display); font-synthesis: none;
+  text-decoration-color: rgb(114 219 255 / .4); text-underline-offset: 3px;
+  transition: color .2s ease;
+}
+body[data-scene=painted] .archive-list a:hover { color: #a7eaff; }
+body[data-scene=painted] .collection-pagination { color: var(--ink-muted); }
+body[data-scene=painted] .collection-pagination a { color: var(--ink-soft); }
+
+/* Collection pages also render a full article inside the slot (paginated archives). */
+body[data-scene=painted] #collection-content-slot .article h1 { color: var(--ink); }
+body[data-scene=painted] #collection-content-slot .article-meta,
+body[data-scene=painted] #collection-content-slot .article-intro { color: var(--ink-muted); }
+body[data-scene=painted] #collection-content-slot .article-rule { background: var(--panel-line-strong); }
+body[data-scene=painted] #collection-content-slot .article-content,
+body[data-scene=painted] #collection-content-slot .article-content p,
+body[data-scene=painted] #collection-content-slot .article-content :is(h2, h3, h4, h5, h6) { color: var(--ink-soft); }
+body[data-scene=painted] #collection-content-slot .article-content a { color: #b7f4ff; }
+body[data-scene=painted] #collection-content-slot .article-player-status { color: var(--ink-muted); }
+
+/* The standalone no-JavaScript fallbacks keep the light paper look: they are read
+   outside the scene, and a dark page with no sky behind it would be worse. */

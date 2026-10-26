@@ -1,0 +1,118 @@
+<%
+  const audioConfig = config.aplayer || {};
+  const isJournalPage = page.layout === 'journal';
+  const isFriendsPage = page.layout === 'friends';
+  const audioPath = (directory, filename) => `${String(directory || '').replace(/\/+$/, '')}/${filename}`;
+  const audioAssets = {
+    stylesheet: audioConfig.style_cdn || url_for(audioPath(audioConfig.style_dir || 'assets/css', 'APlayer.min.css')),
+    aplayer: audioConfig.cdn || audioConfig.externalLink || url_for(audioPath(audioConfig.script_dir || 'assets/js', 'APlayer.min.js')),
+    meting: audioConfig.meting_cdn || url_for(audioPath(audioConfig.script_dir || 'assets/js', 'Meting.min.js')),
+  };
+  const isPost = page.layout === 'post' && page.title;
+  const isStarryArticle = isPost && page.starry_id;
+  const collectionKind = page.archive || page.layout === 'archives' ? 'archive' : page.tag ? 'tag' : page.category ? 'category' : '';
+  const isStarryCollection = Boolean(collectionKind);
+  const hasStarfield = is_home() || isStarryArticle || isStarryCollection;
+  const collectionRoute = isStarryCollection
+    ? String(page.current_url || page.path || '').replace(/\/index\.html$/, '/')
+    : '';
+  const collectionUrl = collectionRoute.startsWith('/') ? collectionRoute : `/${collectionRoute}`;
+  let collectionTitle = '文章归档';
+  if (page.tag) collectionTitle = `标签 · ${page.tag}`;
+  else if (page.category) collectionTitle = `分类 · ${page.category}`;
+  else if (page.year) collectionTitle = page.month
+    ? `${page.year} 年 ${String(page.month).padStart(2, '0')} 月`
+    : `${page.year} 年`;
+  const title = isJournalPage ? '窗边手记' : isFriendsPage ? '友链' : isPost ? page.title : isStarryCollection ? collectionTitle : config.title;
+  const description = isPost
+    ? String(page.starry_excerpt || config.description || '')
+    : isJournalPage ? '日常的片刻，写在窗边的几句话。' : isStarryCollection ? `${collectionTitle} · 文章清单` : String(config.description || '');
+  const canonical = isJournalPage ? new URL(url_for('journal/'), config.url).href : isPost
+    ? page.permalink
+    : isStarryCollection ? new URL(url_for(collectionUrl), config.url).href : new URL(url_for(String(page.path || '/').replace(/index\.html$/, '')), config.url).href;
+  const image = isPost && page.cover
+    ? (String(page.cover).startsWith('http') ? page.cover : new URL(url_for(page.cover), config.url).href)
+    : '';
+%>
+<!doctype html>
+<html lang="<%= config.language || 'zh-CN' %>">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="dark light">
+  <title><%= title %> · <%= config.title %></title>
+  <% if (description) { %><meta name="description" content="<%= description %>"><% } %>
+  <% if (canonical) { %><link rel="canonical" href="<%= canonical %>"><% } %>
+  <meta property="og:type" content="<%= isPost ? 'article' : 'website' %>">
+  <meta property="og:title" content="<%= title %>">
+  <% if (description) { %><meta property="og:description" content="<%= description %>"><% } %>
+  <% if (canonical) { %><meta property="og:url" content="<%= canonical %>"><% } %>
+  <% if (image) { %><meta property="og:image" content="<%= image %>"><% } %>
+  <meta name="twitter:card" content="<%= image ? 'summary_large_image' : 'summary' %>">
+  <meta name="twitter:title" content="<%= title %>">
+  <% if (description) { %><meta name="twitter:description" content="<%= description %>"><% } %>
+  <link rel="preload" as="font" type="font/woff2" href="<%= starry_ui_font_url() %>" crossorigin>
+  <% if (isStarryArticle) { for (const font of starry_title_fonts(page.title)) { %>
+  <link rel="preload" as="font" type="font/woff2" href="<%= font %>" crossorigin>
+  <% } } %>
+  <% if (is_home()) { %>
+  <link rel="preload" as="image" type="image/svg+xml" href="<%= url_for(theme.scene.window_mask) %>" fetchpriority="high">
+  <link rel="preload" as="image" href="<%= starry_room_url() %>" fetchpriority="high">
+  <style>
+    html.starry-loading,html.starry-loading body{margin:0;background:#031a87;overflow:hidden}
+    .starry-loading #home-fallback{display:none}
+    .starry-loading #world{visibility:visible;background:#031a87}
+    .starry-loading #world>:not(#sky){visibility:hidden}
+    #sky{opacity:1;transition:opacity .45s ease}
+    .starry-loading #sky{opacity:0}
+    .starry-loading #room:not([hidden]){display:block;position:fixed;inset:0;z-index:40;overflow:clip}
+    .starry-loading .room-stage{position:absolute;width:max(100vw,177.683vh);height:max(56.28vw,100vh);left:50%;top:50%;margin-left:min(-50vw,-88.8415vh);margin-top:min(-28.14vw,-50vh)}
+    .starry-loading .room-image{display:block;width:100%;height:100%;object-fit:cover;mask-image:var(--window-mask);mask-mode:alpha;mask-size:100% 100%;mask-repeat:no-repeat}
+    @media(max-width:760px){.starry-loading .room-stage{left:28%;margin-left:min(-28vw,-49.75124vh)}}
+    @media(prefers-reduced-motion:reduce){#sky{transition:none}}
+  </style>
+  <script>
+    document.documentElement.classList.add('starry-loading');
+    (function(){
+      var deadline;
+      var startup=window.starfieldStartup={failed:false,
+        fail:function(){
+          clearTimeout(deadline);startup.failed=true;
+          document.documentElement.classList.remove('starry-loading');
+          document.getElementById('room')?.setAttribute('hidden','');
+          document.getElementById('world')?.setAttribute('hidden','');
+        },
+        ready:function(){clearTimeout(deadline);return !startup.failed;}
+      };
+      deadline=setTimeout(startup.fail,15000);
+    })();
+  </script>
+  <% } %>
+  <link rel="stylesheet" href="<%= starry_styles_url(isFriendsPage ? 'friends' : isJournalPage) %>">
+</head>
+<body class="<%= isStarryArticle || isStarryCollection ? 'has-starry-experience' : '' %><%= isStarryArticle ? ' article-page' : '' %><%= isJournalPage ? ' journal-page' : '' %><%= isFriendsPage ? ' friends-page' : '' %>"
+      data-site-title="<%= config.title %>"
+      data-scene="painted"
+      data-default-motion="<%= theme.scene.motion === 'soft' ? 'soft' : 'full' %>"
+      data-passage-blur="<%= theme.scene.passage_blur === true ? 'on' : 'off' %>"
+      data-starry-article-id="<%= isStarryArticle ? page.starry_id : '' %>"
+      data-starry-collection-kind="<%= collectionKind %>"
+      data-starry-collection-path="<%= isStarryCollection ? url_for(collectionUrl) : '' %>"
+      data-starry-featured-id="<%= theme.featured_article_id %>"
+      data-starry-index="<%= url_for('starry/index.json') %>"
+      data-starry-root="<%= url_for('/') %>"
+      data-glyph-sources="<%= hasStarfield ? JSON.stringify(starry_glyph_sources()) : '{}' %>"
+      data-sky-image="<%= starry_sky_url() %>"
+      data-reader-sheet="<%= starry_interface_url('images/reader/sheet.webp') %>"
+      data-reader-continuation="<%= starry_interface_url('images/reader/continuation.webp') %>"
+      data-reader-track="<%= starry_interface_url('images/reader/progress-track.webp') %>"
+      data-window-mask="<%= url_for(theme.scene.window_mask) %>"
+      data-starry-aplayer-style="<%= audioAssets.stylesheet %>"
+      data-starry-aplayer-script="<%= audioAssets.aplayer %>"
+      data-starry-meting-script="<%= audioAssets.meting %>"
+      style="--window-mask:url('<%= url_for(theme.scene.window_mask) %>');--reader-sheet:url('<%= starry_interface_url('images/reader/sheet.webp') %>');--reader-continuation:url('<%= starry_interface_url('images/reader/continuation.webp') %>');--reader-track:url('<%= starry_interface_url('images/reader/progress-track.webp') %>')">
+  <%- body %>
+  <% if (!hasStarfield) { %><script type="module" src="<%= starry_script_url('static-page') %>"></script><% } %>
+  <% if (hasStarfield || isJournalPage) { %><script type="module" src="<%= starry_script_url('journal') %>"></script><% } %>
+</body>
+</html>

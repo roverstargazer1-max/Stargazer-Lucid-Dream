@@ -1,0 +1,26 @@
+<% const friends = starry_friends(); %>
+<section class="friends-sheet" aria-labelledby="friends-title">
+  <header class="friends-header">
+    <div><span class="friends-eyebrow" lang="en">OTHER SKIES</span><h1 id="friends-title">友链<span aria-hidden="true"> / </span><small>另一片星空</small></h1></div>
+    <% if (standalone) { %>
+    <a class="friends-close" href="<%= url_for('/') %>"><span>回到窗边</span><span aria-hidden="true">↗</span></a>
+    <% } else { %>
+    <button class="friends-close" data-friends-close type="button" aria-label="关闭友链"><span data-friends-return>回到窗边</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
+    <% } %>
+  </header>
+  <div class="friends-scroll" tabindex="0" aria-label="朋友的博客">
+    <div class="friends-intro"><p>去朋友的世界坐坐。</p><span><%= String(friends.length).padStart(2, '0') %><small> 位朋友</small></span></div>
+    <ul class="friends-list">
+      <% friends.forEach((friend, index) => { %>
+      <li><a class="friends-link" href="<%= friend.link %>" target="_blank" rel="noopener noreferrer" tabindex="0" aria-describedby="friends-new-window">
+        <span class="friends-number" aria-hidden="true"><%= String(index + 1).padStart(2, '0') %></span>
+        <% if (friend.avatar) { %><img class="friends-avatar" src="<%= friend.avatar.startsWith('http') ? friend.avatar : url_for(friend.avatar) %>" alt="" width="44" height="44" loading="lazy" decoding="async" referrerpolicy="no-referrer"><% } else { %><span class="friends-avatar friends-avatar-empty" aria-hidden="true">◦</span><% } %>
+        <span class="friends-copy"><strong><%= friend.name %></strong><span><%= friend.desc || '' %></span></span>
+        <svg class="friends-visit" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19 19 5M7 5h12v12"/></svg>
+      </a></li>
+      <% }); %>
+    </ul>
+    <% if (!friends.length) { %><p class="friends-empty">期待遇见下一片星空。</p><% } %>
+    <p class="friends-footnote" id="friends-new-window">链接将在新窗口打开</p>
+  </div>
+</section>

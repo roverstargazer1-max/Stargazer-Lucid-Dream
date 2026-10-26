@@ -1,0 +1,54 @@
+{
+  "name": "hexo-theme-starfield",
+  "version": "1.0.0",
+  "description": "An illustrated starfield theme for Hexo with connected articles, search and a window-side journal.",
+  "license": "UNLICENSED",
+  "engines": {
+    "node": ">=22"
+  },
+  "files": [
+    "_config.yml",
+    "layout/",
+    "lib/",
+    "scripts/",
+    "source/",
+    "components/",
+    "scaffolds/",
+    "README.md",
+    "FONTS.md",
+    "ASSETS.md"
+  ],
+  "scripts": {
+    "build": "node tools/example.cjs build",
+    "start": "node tools/example.cjs server",
+    "new": "node tools/example.cjs new",
+    "diary": "node tools/example.cjs journal",
+    "clean": "node tools/example.cjs clean",
+    "test": "node --test tests/*.test.*",
+    "check": "npm run build && npm test",
+    "preview:starfield": "npm run build",
+    "prepare:starfield": "npm run build"
+  },
+  "dependencies": {
+    "esbuild": "0.28.2",
+    "cheerio": "1.2.0",
+    "js-yaml": "4.1.1",
+    "hexo-front-matter": "4.2.1"
+  },
+  "peerDependencies": {
+    "hexo": "^8.0.0",
+    "hexo-renderer-ejs": "^2.0.0",
+    "hexo-renderer-marked": "^7.0.0"
+  },
+  "devDependencies": {
+    "hexo": "8.1.2",
+    "hexo-renderer-ejs": "2.0.0",
+    "hexo-renderer-marked": "7.0.1",
+    "hexo-generator-index": "4.0.0",
+    "hexo-generator-archive": "2.0.0",
+    "hexo-generator-tag": "2.0.0",
+    "hexo-generator-category": "2.0.0",
+    "hexo-server": "3.0.0",
+    "meting": "1.2.0"
+  }
+}

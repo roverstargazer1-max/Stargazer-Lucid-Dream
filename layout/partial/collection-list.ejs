@@ -1,0 +1,22 @@
+<%- partial('partial/stage', { articlePath: '', articleTitle: '' }) %>
+<main id="static-collection-fallback" class="static-article-fallback generic-post">
+  <article class="article" data-collection-kind="<%= collectionKind %>">
+    <h1 id="collection-title"><%= collectionTitle %></h1>
+    <div class="article-rule" aria-hidden="true"></div>
+    <ol class="archive-list">
+      <% posts.each((post) => { %>
+        <li>
+          <time datetime="<%= date(post.date, 'YYYY-MM-DD') %>"><%= date(post.date, 'YYYY-MM-DD') %></time>
+          <a data-starry-article-id="<%= post.starry_id || '' %>" href="<%= url_for(post.path) %>"><%= post.title %></a>
+        </li>
+      <% }) %>
+    </ol>
+    <% if (pagination && pagination.total > 1) { %>
+      <nav class="collection-pagination" aria-label="文章清单分页">
+        <% if (pagination.prev_link) { %><a href="<%= url_for(pagination.prev_link) %>">较新的文章</a><% } %>
+        <span><%= pagination.current %> / <%= pagination.total %></span>
+        <% if (pagination.next_link) { %><a href="<%= url_for(pagination.next_link) %>">较早的文章</a><% } %>
+      </nav>
+    <% } %>
+  </article>
+</main>

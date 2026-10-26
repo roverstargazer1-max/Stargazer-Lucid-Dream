@@ -1,0 +1,144 @@
+<main id="world" aria-label="星空探索">
+  <canvas id="sky" aria-hidden="true"></canvas>
+  <div class="grain" aria-hidden="true"></div>
+  <div id="star-targets"></div>
+  <header class="masthead"><a id="brand" href="<%= url_for('/') %>" aria-label="<%= config.title %>，回到窗边">
+      <% if (theme.branding.logo) { %><img class="wordmark" data-src="<%= url_for(theme.branding.logo) %>" alt="<%= config.title %>" draggable="false"><% } else { %><span class="wordmark wordmark-text"><%= config.title %></span><% } %>
+    </a></header>
+  <section id="preview" class="preview observation-panel" aria-labelledby="preview-title" data-asset-root="<%= url_for('images/observation/') %>" hidden>
+    <h2 id="preview-title" class="sr-only"></h2>
+    <div class="observation-artboard">
+      <img class="observation-waves" data-src="<%= starry_interface_url('images/observation/waves.png') %>" alt="" aria-hidden="true" draggable="false">
+      <div class="observation-silhouette" aria-hidden="true">
+        <img class="silhouette-still" data-src="<%= starry_interface_url('images/observation/silhouette.png') %>" alt="" draggable="false">
+        <img class="silhouette-frames" data-src="<%= url_for('images/optimized/silhouette-walk-frames.webp') %>" alt="" draggable="false" decoding="async" hidden>
+        <canvas hidden></canvas>
+      </div>
+      <div class="year-scale" role="group" aria-label="文章发布年份">
+        <% for (let offset = -2; offset <= 2; offset++) { %>
+        <div class="year-row<%= offset === 0 ? ' is-current' : '' %>">
+          <span class="year-number asset-glyphs" aria-hidden="true"></span>
+          <% if (offset === 0) { %><img class="year-arrow" data-src="<%= starry_interface_url('images/observation/year-pointer.png') %>" alt="" aria-hidden="true" draggable="false"><span class="year-unit asset-glyphs" data-glyph-text="YE" aria-hidden="true"></span><% } %>
+        </div>
+        <% } %>
+      </div>
+      <img class="observation-diamond" data-src="<%= starry_interface_url('images/observation/diamond.png') %>" alt="" aria-hidden="true" draggable="false">
+      <img class="observation-ticks" data-src="<%= starry_interface_url('images/observation/dial-ticks.png') %>" alt="" aria-hidden="true" draggable="false">
+      <img class="observation-bracket" data-src="<%= starry_interface_url('images/observation/dial-bracket.png') %>" alt="" aria-hidden="true" draggable="false">
+      <div class="observation-waveform" aria-hidden="true">
+        <img data-src="<%= starry_interface_url('images/observation/waveform.png') %>" alt="" draggable="false">
+        <canvas hidden></canvas>
+      </div>
+      <div class="observation-call" aria-hidden="true">
+        <img data-src="<%= starry_interface_url('images/observation/starlink.png') %>" alt="" draggable="false">
+        <span class="call-label"><img data-src="<%= starry_interface_url('images/observation/call-word.png') %>" alt="" draggable="false"><img class="call-underline" data-src="<%= starry_interface_url('images/observation/call-underline.png') %>" alt="" draggable="false"></span>
+      </div>
+      <div class="observation-labels" aria-hidden="true">
+        <span class="asset-glyphs" data-glyph-text="Y-E"></span><span class="asset-glyphs" data-glyph-text="MO"></span>
+        <span class="asset-glyphs" data-glyph-text="DAY"></span><img class="hour-label" data-src="<%= starry_interface_url('images/observation/hour-label.png') %>" alt="" draggable="false">
+      </div>
+      <img class="observation-slashes" data-src="<%= starry_interface_url('images/observation/date-boxes.png') %>" alt="" aria-hidden="true" draggable="false">
+      <time id="preview-date" class="asset-glyphs observation-date"></time>
+      <img class="observation-id" data-src="<%= starry_interface_url('images/observation/observation-id.png') %>" alt="" aria-hidden="true" draggable="false">
+      <span id="preview-id" class="asset-glyphs observation-id-value" role="img" aria-label="文章 ID" hidden></span>
+      <button id="deselect" type="button" aria-label="取消选择" title="取消选择"><img data-src="<%= starry_interface_url('images/observation/close.png') %>" alt="" draggable="false"></button>
+      <div class="preview-bottom">
+        <button id="read-button" type="button" disabled aria-label="进入阅读" aria-describedby="approach-status">
+          <span class="read-rule" aria-hidden="true"><% for (const part of ['start', 'middle', 'end']) { %><span class="read-rule-<%= part %>"><img data-src="<%= starry_interface_url('images/observation/read-rule.png') %>" alt="" draggable="false"></span><% } %></span><img class="read-label" data-src="<%= starry_interface_url('images/observation/read.png') %>" width="273" height="128" alt="Read Me" draggable="false">
+        </button>
+        <span id="approach-status" class="sr-only" aria-live="polite">再点星，阅读</span>
+      </div>
+    </div>
+  </section>
+  <div class="sky-polyhedron" aria-hidden="true"><img data-src="<%= starry_interface_url('images/observation/polyhedron.png') %>" alt="" draggable="false"><canvas hidden></canvas></div>
+  <nav id="exploration-controls" class="exploration-controls navigation" aria-label="星空探索控制">
+    <div class="mode-switch" role="group" aria-label="星空模式">
+      <button id="relation-mode" type="button" aria-pressed="true">关联</button>
+      <span aria-hidden="true">/</span>
+      <button id="time-mode" type="button" aria-pressed="false">时间</button>
+    </div>
+    <button id="back-dock" class="icon-control" type="button" aria-label="返回上个停靠点" title="返回上个停靠点" disabled>
+      <span class="navigation-art navigation-art-back" aria-hidden="true"><img data-src="<%= url_for('images/branding/right-icons.png') %>" width="147" height="89" alt="" draggable="false"></span>
+    </button>
+    <button id="home" class="icon-control" type="button" aria-label="回到窗边" title="回到窗边" hidden>
+      <span class="navigation-art navigation-art-home" aria-hidden="true"><img data-src="<%= url_for('images/branding/right-icons.png') %>" width="147" height="89" alt="" draggable="false"></span>
+    </button>
+  </nav>
+  <span id="time-cue" class="time-cue" role="status" hidden></span>
+  <button id="journal-egg" class="scene-egg" type="button" aria-label="翻开屋顶手记" hidden>⌑<span>屋顶手记</span></button>
+  <a class="journal-sky-entry" data-journal-open href="<%= url_for('journal/') %>" aria-label="翻开窗边手记"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h14v17H5zM8 4v17M5 8H3m2 5H3m2 5H3m9-10h4m-4 4h4"/></svg><span>手记</span></a>
+  <%- partial('partial/friends-entry') %>
+  <button id="signal-egg" class="signal-egg" type="button" aria-label="触碰远方信号" title="远方传来一点微光" hidden>⌁<span>远方信号</span></button>
+  <button id="edge-guide" class="edge-guide" type="button" hidden aria-label="寻找附近的文章星">›</button>
+</main>
+
+<%- partial('partial/search') %>
+
+<section id="room" aria-label="窗边">
+  <div id="room-stage" class="room-stage">
+    <img class="room-image" src="<%= starry_room_url() %>" alt="夜色里的窗边，窗外是深蓝天空" fetchpriority="high">
+    <button id="window-entry" type="button" aria-label="穿过窗户，进入星空" aria-describedby="room-thought-note" disabled></button>
+      <svg class="window-invitation" viewBox="0 0 1672 941" aria-hidden="true" focusable="false">
+        <defs><linearGradient id="window-light-wide" gradientUnits="userSpaceOnUse" x1="0" y1="700" x2="0" y2="90"><stop offset="0" stop-color="#c8dfec" stop-opacity="0"/><stop offset=".48" stop-color="#d4e5eb" stop-opacity=".75"/><stop offset="1" stop-color="#c8dfec" stop-opacity="0"/></linearGradient></defs>
+        <g class="window-edge" fill="none" stroke="url(#window-light-wide)"><path d="M524 90V700 M1144 90V700"/></g>
+        <g class="window-dust" fill="#d7e3e7">
+          <circle cx="784" cy="363" r="1.8"/>
+          <circle cx="813" cy="391" r="1.2"/>
+          <circle cx="828" cy="347" r="1.5"/>
+          <circle cx="765" cy="403" r="1.1"/>
+          <path d="M805 349l1.3 4.7 3.7 1.3-3.7 1.3-1.3 4.7-1.3-4.7-3.7-1.3 3.7-1.3Z"/>
+        </g>
+      </svg>
+    <button id="room-thought" class="room-thought" type="button" aria-label="试着点点窗外，进入星空" aria-describedby="room-thought-note" disabled>
+      <svg class="room-thought-outline" viewBox="0 0 220 108" aria-hidden="true" focusable="false">
+        <path d="M207 41C210 64 174 79 115 79C58 80 13 69 12 45C10 21 49 8 108 9C165 7 205 19 207 41Z"/>
+        <ellipse cx="167" cy="89" rx="5" ry="3.5"/>
+        <ellipse cx="177" cy="102" rx="2.5" ry="2"/>
+      </svg>
+      <span class="room-thought-copy" lang="en" aria-hidden="true">try to click…</span>
+      <span id="room-thought-note" class="sr-only">每颗星，都是一篇文章</span>
+    </button>
+
+    <a id="room-journal" data-journal-open href="<%= url_for('journal/') %>" aria-label="翻开桌上的手记"><span>翻开手记</span></a>
+  </div>
+  <a id="room-journal-shortcut" data-journal-open href="<%= url_for('journal/') %>" aria-label="翻开窗边手记"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h14v17H5zM8 4v17M5 8H3m2 5H3m2 5H3m9-10h4m-4 4h4"/></svg><span>窗边手记</span></a>
+</section>
+
+<dialog id="reader" aria-labelledby="reader-title">
+  <div class="reading-frame">
+    <header class="reading-header">
+      <span id="reading-window-title" class="sr-only"><%= config.title %></span>
+      <button id="close-reader" type="button" aria-label="关闭文章，返回星空" title="关闭文章，返回星空">
+        <img data-src="<%= starry_interface_url('images/observation/close.png') %>" alt="" draggable="false">
+      </button>
+    </header>
+    <div id="reading-scroll" tabindex="0"><div id="reading-content-slot"></div></div>
+    <footer class="reading-footer">
+      <div id="reading-journey" role="progressbar" aria-label="文章阅读进度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <div class="reading-rail" aria-hidden="true"><span class="reading-rail-fill"></span></div>
+        <div class="reading-walker" aria-hidden="true">
+          <img class="silhouette-frames" data-src="<%= url_for('images/optimized/silhouette-walk-frames.webp') %>" alt="" hidden>
+          <canvas hidden></canvas>
+        </div>
+        <span id="reading-progress">0%</span>
+        <span class="reading-track-label" aria-hidden="true">阅读</span>
+      </div>
+      <span id="reading-state" class="sr-only">沿着文字，慢慢往下</span>
+    </footer>
+  </div>
+</dialog>
+<dialog id="collection-panel" aria-labelledby="collection-panel-title">
+  <div class="collection-frame">
+    <header class="collection-header">
+      <div><h2 id="collection-panel-title">文章清单</h2></div>
+      <button id="close-collection" type="button">回到星空</button>
+    </header>
+    <div id="collection-scroll" tabindex="0"><div id="collection-content-slot"></div></div>
+  </div>
+</dialog>
+<dialog id="egg-dialog"><button id="close-egg" class="egg-close" type="button" aria-label="关闭">×</button><span class="eyebrow">A NOTE FROM THE ROOFTOP</span><h2 id="egg-title"></h2><p id="egg-copy"></p><span class="egg-signature">来自这片天空的主人</span></dialog>
+<dialog id="window-journal" aria-labelledby="journal-title" data-journal-url="<%= url_for('journal/') %>"><%- partial('partial/journal', { journal: null, standalone: false }) %></dialog>
+<dialog id="friends-panel" aria-labelledby="friends-title"><%- partial('partial/friends', { standalone: false }) %></dialog>
+<div id="announcement" class="sr-only" role="status" aria-live="polite"></div>
+
+<script type="module" src="<%= starry_script_url('app') %>" onerror="window.starfieldStartup?.fail()"></script>

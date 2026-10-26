@@ -1,0 +1,16 @@
+<%
+  let collectionKind = 'archive';
+  let collectionTitle = '文章归档';
+  if (page.tag) {
+    collectionKind = 'tag';
+    collectionTitle = `标签 · ${page.tag}`;
+  } else if (page.category) {
+    collectionKind = 'category';
+    collectionTitle = `分类 · ${page.category}`;
+  } else if (page.year) {
+    collectionTitle = page.month
+      ? `${page.year} 年 ${String(page.month).padStart(2, '0')} 月`
+      : `${page.year} 年`;
+  }
+%>
+<%- partial('partial/collection-list', { collectionKind, collectionTitle, posts: page.posts, pagination: page }) %>

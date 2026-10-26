@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "source": "image/starfield/room-poster-detail-v20.webp",
+      "sourceSha256": "d79d9a54cf3480c095e6e0eb8ffdcde320b89a9e6359d8d4b267a5a5d2d77268",
+      "cache": "images/optimized/scene-room-v1.webp",
+      "cacheSha256": "8b0cc69730c3c56c42535ed436cc46219ad3fe21cad7c3a97be004128979e1bb",
+      "sourceBytes": 1048394,
+      "cacheBytes": 200710,
+      "dimensions": [
+        1672,
+        941
+      ],
+      "lossless": false,
+      "quality": 100,
+      "sharpYuv": true,
+      "meanAbsoluteChannelError": 0.9200359063536534,
+      "p99AbsoluteChannelError": 7,
+      "psnrDb": 42.87379304020022
+    },
+    {
+      "source": "image/starfield/painted-sky-v11.webp",
+      "sourceSha256": "b50571d6f8af2503c2be51c0f8be4acf8326adec72ffaa1a7cc244c19d1c59de",
+      "cache": "images/optimized/scene-sky-v1.webp",
+      "cacheSha256": "fe257d5e1f81cc532a942d7a7dfba128908091be9fe14d05cc373e74fd71a07e",
+      "sourceBytes": 1090084,
+      "cacheBytes": 146054,
+      "dimensions": [
+        2172,
+        724
+      ],
+      "lossless": false,
+      "quality": 100,
+      "sharpYuv": true,
+      "meanAbsoluteChannelError": 0.7400226471855085,
+      "p99AbsoluteChannelError": 3,
+      "psnrDb": 47.74237421205121
+    }
+  ]
+}
