@@ -30,6 +30,7 @@ body[data-scene=painted] .collection-header button:hover {
   color: var(--ink); border-bottom-color: var(--panel-line-strong);
 }
 body[data-scene=painted] .collection-header .blog-theme-switch { color: var(--ink-muted); }
+body[data-scene=painted] .collection-header .blog-theme-switch { flex-shrink: 0; white-space: nowrap; }
 body[data-scene=painted] .collection-header .blog-theme-switch:hover { color: var(--ink-soft); }
 body[data-scene=painted] #collection-scroll { scrollbar-color: rgb(114 191 232 / .53) transparent; }
 
@@ -45,6 +46,11 @@ body[data-scene=painted] .archive-list a {
 body[data-scene=painted] .archive-list a:hover { color: #a7eaff; }
 body[data-scene=painted] .collection-pagination { color: var(--ink-muted); }
 body[data-scene=painted] .collection-pagination a { color: var(--ink-soft); }
+
+@media (max-width: 760px), (max-height: 650px) and (orientation: landscape) {
+  /* Extend into the row's existing padding without changing the text rhythm. */
+  .archive-list a { display: flex; align-items: center; min-height: 44px; padding-block: 8px; margin-block: -8px; }
+}
 
 /* Collection pages also render a full article inside the slot (paginated archives). */
 body[data-scene=painted] #collection-content-slot .article h1 { color: var(--ink); }

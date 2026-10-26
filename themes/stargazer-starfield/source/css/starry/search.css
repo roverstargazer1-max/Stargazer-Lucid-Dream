@@ -92,8 +92,9 @@
 .search-result-name > span { font-family:var(--display); font-weight:400; font-synthesis:none; }
 .search-result-name time { display:block; color:var(--ink-muted); font-size:var(--step-caption); letter-spacing:.6px; margin-top:3px; }
 .search-result-id { flex-shrink:0; display:block; text-align:right; font:var(--step-caption)/1.5 Consolas,monospace; white-space:pre-line; width:86px; overflow-wrap:anywhere; }
-#search-feedback { position:absolute; bottom:8px; left:0; right:0; margin:0; color:var(--ink-soft); font-size:var(--step-small); line-height:1.7; }
-#search-clear { position:absolute; right:0; bottom:0; padding:4px 0; min-height:32px; color:#d7eaff; font-size:var(--step-small); }
+#search-feedback { position:absolute; bottom:8px; left:0; right:84px; margin:0; color:var(--ink-soft); font-size:var(--step-small); line-height:1.7; }
+#star-search[data-search-error=true] #search-results { bottom:80px; }
+#search-clear { position:absolute; right:0; bottom:0; padding:4px 0; min-height:44px; color:#d7eaff; font-size:var(--step-small); }
 #search-entry { position:fixed; z-index:9; left:28px; bottom:50px; width:100px; height:100px; padding:0; }
 /* The astrolabe artwork is a near-white wireframe; at full contrast it reads as a
    UI panel floating over the painting. Ease it back so it feels like an instrument
@@ -113,7 +114,7 @@ body:not(.starry-ready) #search-entry { display:none; }
   #close-search img { position:static; width:28px; }
 }
 @media(max-width:760px) and (orientation:portrait) {
-  #star-search { --chart-width:calc(100vw - 32px); --mobile-map-top:calc(140px + var(--chart-width) * .48 * 97 / 368); --chart-height:calc(var(--mobile-map-top) + var(--chart-width) * .87); width:var(--chart-width); max-height:calc(100dvh - 64px); }
+  #star-search { --chart-width:calc(100vw - 32px); --mobile-map-top:230px; --chart-height:calc(var(--mobile-map-top) + var(--chart-width) * .87); width:var(--chart-width); max-height:calc(100dvh - 64px); }
   #star-search[data-index-open=true] { width:var(--chart-width); }
   .search-artboard { max-height:calc(100dvh - 64px); overflow-y:auto; overscroll-behavior:contain; }
   [data-index-open=true].search-artboard { height:calc(var(--chart-height) + 380px); }
@@ -122,8 +123,10 @@ body:not(.starry-ready) #search-entry { display:none; }
   .search-base { width:calc(var(--chart-width) * .78 * 1917 / 897); left:calc(var(--chart-width) * (.11 - .78 * 342 / 897)); top:calc(var(--mobile-map-top) - var(--chart-width) * .78 * 285 / 897); }
   .search-heading { left:26%; top:8px; width:48%; }
   .search-bar { left:20px; top:74px; width:calc(100% - 40px); }
-  #search-query { top:8%; height:76%; }
-  .search-filters { left:24px; top:124px; width:calc(var(--chart-width) * .48 * 311 / 368); }
+  .search-bar { height:44px; aspect-ratio:auto; }
+  #search-query { top:0; width:calc(89% - 48px); height:44px; font-size:16px; }
+  .search-submit { top:0; height:44px; }
+  .search-filters { left:24px; top:126px; width:calc(100% - 48px); height:88px; aspect-ratio:auto; }
   .search-map { left:11%; top:var(--mobile-map-top); width:78%; }
   #search-index-toggle { left:auto; right:12px; top:20px; }
   .search-toggle-arrow { width:30px; }
@@ -139,10 +142,22 @@ body:not(.starry-ready) #search-entry { display:none; }
   #search-entry { left:max(14px,env(safe-area-inset-left)); bottom:max(86px,calc(env(safe-area-inset-bottom) + 72px)); width:72px; height:72px; }
 }
 @media(max-height:650px) and (orientation:landscape) {
-  #star-search { --chart-width:min(66vw,680px); --chart-height:calc(var(--chart-width) * 1284 / 1440); }
+  #star-search { --chart-width:min(54vw,560px); --index-width:min(240px,calc(100vw - var(--chart-width) - 64px)); --mobile-map-top:230px; --chart-height:calc(var(--mobile-map-top) + var(--chart-width) * .87); }
   .search-artboard { height:var(--chart-height); max-height:calc(100dvh - 48px); overflow-y:auto; }
-  .search-background { height:var(--chart-height); }
-  #search-index { bottom:auto; height:calc(100dvh - 148px); min-height:160px; }
+  .search-background { height:var(--chart-height); background:#001b87; }
+  .search-heading { left:calc(var(--chart-width) * .26); top:8px; width:calc(var(--chart-width) * .48); }
+  .search-base { width:calc(var(--chart-width) * .78 * 1917 / 897); left:calc(var(--chart-width) * (.11 - .78 * 342 / 897)); top:calc(var(--mobile-map-top) - var(--chart-width) * .78 * 285 / 897); }
+  .search-bar { left:20px; top:74px; width:calc(100% - 40px); height:44px; aspect-ratio:auto; }
+  #search-query { top:0; width:calc(89% - 48px); height:44px; font-size:16px; }
+  .search-submit { top:0; height:44px; }
+  .search-filters { left:24px; top:126px; width:calc(var(--chart-width) - 48px); height:88px; aspect-ratio:auto; }
+  .search-map { left:calc(var(--chart-width) * .11); top:var(--mobile-map-top); width:calc(var(--chart-width) * .78); }
+  .search-index-heading { left:calc(var(--chart-width) + 16px); top:12px; width:100px; }
+  #search-index { left:calc(var(--chart-width) + 16px); top:74px; width:calc(var(--index-width) - 32px); bottom:auto; height:calc(100dvh - 148px); min-height:160px; }
+  .search-name-heading { width:44px; }
+  .search-id-heading { width:18px; }
+  #search-results { top:40px; }
+  #close-search { visibility:visible; }
   .search-result { font-size:13px; min-height:56px; padding:8px 0; }
   .search-result-id { width:70px; font-size:10px; }
   #search-entry { left:16px; bottom:24px; width:60px; height:60px; }
@@ -201,7 +216,7 @@ body:not(.starry-ready) #search-entry { display:none; }
 .search-map-star::before { opacity:var(--star-alpha); transition:--star-alpha var(--dur-quick) var(--ease-settle), background-color var(--dur-hover) var(--ease-enter), box-shadow var(--dur-hover) var(--ease-enter), transform var(--dur-quick) var(--ease-enter); }
 .search-map-star.is-muted { --star-alpha:.22; }
 /* Dimming comes from the star's ink, rather than the generic disabled-button fade. */
-.search-map-star:disabled { opacity:1; }
+.search-map-star:disabled { opacity:1; pointer-events:none; }
 #star-search[data-focusing=true] .search-map-star:not(.is-highlighted,.is-muted) { --star-alpha:.5; }
 #star-search[data-focusing=true] .search-map canvas { opacity:.42; transition:opacity var(--dur-quick) var(--ease-settle); }
 .search-map-star.is-highlighted { --star-alpha:1; z-index:1; }
