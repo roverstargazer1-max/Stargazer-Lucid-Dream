@@ -1,0 +1,49 @@
+{
+  "date": "2026-10-26",
+  "source": "随笔/文章/功效主义下的分科，与AI时代的思维重建.md",
+  "post": "source/_posts/功效主义下的分科，与AI时代的思维重建.md",
+  "sourceSha256": "1f5f96695d0699178b74beef61fa797a1482bab53e76c9935605be3f74b4d745",
+  "sourceBytes": 14597,
+  "sourceCharacters": 4949,
+  "bodyByteForByteCopied": true,
+  "sourceUnchanged": true,
+  "metadataUnchangedExceptAutomaticExcerpt": true,
+  "automaticExcerptUpdated": true,
+  "originalDate": "2026-10-25 22:20:11",
+  "originalPath": "2026/10/25/功效主义下的分科，与AI时代的思维重建/",
+  "catalogNumber": "SLD-0012",
+  "positionUnchanged": [
+    5570,
+    2501,
+    3543
+  ],
+  "otherArticlesUnchanged": 11,
+  "otherLayoutEntriesUnchanged": true,
+  "publishedArticleCount": 12,
+  "variants": [
+    {
+      "root": ".preview/stargazer",
+      "theme": "starfield",
+      "revisedPassagesVerified": 7
+    },
+    {
+      "root": ".preview/stargazer",
+      "theme": "legacy",
+      "revisedPassagesVerified": 7
+    },
+    {
+      "root": "public",
+      "theme": "starfield",
+      "revisedPassagesVerified": 7
+    },
+    {
+      "root": "public",
+      "theme": "legacy",
+      "revisedPassagesVerified": 7
+    }
+  ],
+  "testsPassed": 17,
+  "previewBuildPassed": true,
+  "productionBuildPassed": true,
+  "deployed": false
+}
