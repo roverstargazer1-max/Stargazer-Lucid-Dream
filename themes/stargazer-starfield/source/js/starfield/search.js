@@ -5,6 +5,7 @@ import { enter, exit, DUR, STAGGER_STEP, STAGGER_MAX } from './tokens.js';
 import { createAstrolabe } from './astrolabe.js';
 import { prepareImages, settleWithin } from './image-readiness.js';
 import { ARTICLE_STAR_SCALE } from './star-targets.js';
+import { requestText } from './request.js';
 
 const normalize = value => String(value || '').normalize('NFKC').trim().toLocaleLowerCase();
 
@@ -146,7 +147,7 @@ export function createArticleSearch({ articles, getScene, onRead, onOpen, onClos
     star.addEventListener('mouseleave', () => highlight(null));
     star.addEventListener('focus', () => highlight(article.id, true));
     star.addEventListener('blur', () => highlight(null));
-    star.addEventListener('click', () => void read(article.id, star));
+    star.addEventListener('click', event => readMapStar(event, article.id));
     starLayer.append(star); starButtons.set(article.id, star);
     const row = document.createElement('a');
     row.className = 'search-result'; row.href = articleUrl(article).pathname;
@@ -169,6 +170,33 @@ export function createArticleSearch({ articles, getScene, onRead, onOpen, onClos
       event.preventDefault(); void read(article.id, row);
     });
     rowLinks.set(article.id, row);
+  }
+
+  function readMapStar(event, fallbackId) {
+    let id = fallbackId;
+    if (event.detail > 0) {
+      // Nearby 44px targets can overlap. Resolve the visible point the visitor
+      // tapped, rather than letting the last button in source order win.
+      let distance = Infinity;
+      for (const [key, button] of starButtons) {
+        if (!matched.has(key)) continue;
+        const rect = button.getBoundingClientRect();
+        const dx = event.clientX - rect.left - rect.width / 2;
+        const dy = event.clientY - rect.top - rect.height / 2;
+        const next = Math.hypot(dx, dy);
+        if (Math.abs(dx) <= rect.width / 2 && Math.abs(dy) <= rect.height / 2 && next < distance) {
+          id = key; distance = next;
+        }
+      }
+    }
+    highlight(id);
+    void read(id, starButtons.get(id));
+  }
+
+  function focusSearchControl() {
+    // Opening the chart or clearing a filter should not summon a phone keyboard.
+    const compact = matchMedia('(max-width: 760px), (pointer: coarse)').matches;
+    (compact ? document.getElementById('close-search') : input).focus({ preventScroll: true });
   }
 
   function setIndex(open) {
@@ -230,13 +258,16 @@ export function createArticleSearch({ articles, getScene, onRead, onOpen, onClos
     const found = findArticles(articles, documents, conditions);
     matched = new Set(found.map(article => article.id));
     if (highlightedId && !matched.has(highlightedId)) highlight(null);
-    const rows = waiting || failed ? [] : found.map(article => rowLinks.get(article.id));
+    // Titles, labels and catalogue numbers are already in the scene index.
+    // They remain useful while full text is loading or temporarily unavailable.
+    const rows = found.map(article => rowLinks.get(article.id));
     const same = rows.length === results.children.length && rows.every((row, i) => results.children[i] === row);
     results.replaceChildren(...rows);
     results.scrollTop = preserveScroll ? scrollTop : 0;
     if (!same && !preserveScroll && artboard.dataset.indexOpen === 'true') revealRows();
     placeSeams();
-    feedback.textContent = waiting ? '正在准备检索…' : failed ? '正文检索暂不可用，请清除关键词浏览文章。'
+    dialog.dataset.searchError = String(failed);
+    feedback.textContent = waiting ? '正在准备正文检索…' : failed ? '正文检索暂不可用，点放大镜重试'
       : found.length ? `${found.length} 篇文章` : '未找到匹配文章';
     clear.hidden = !(conditions.query || conditions.year || conditions.magnitude);
     lastMapKey = '';
@@ -247,10 +278,9 @@ export function createArticleSearch({ articles, getScene, onRead, onOpen, onClos
     if (loaded) return;
     if (loading) return loading;
     loadError = false;
-    loading = fetch(dialog.dataset.searchUrl, { credentials: 'same-origin', cache: 'no-cache' })
-      .then(async response => {
-        if (!response.ok) throw new Error(`Search request failed: ${response.status}`);
-        const data = await response.json();
+    loading = requestText(dialog.dataset.searchUrl)
+      .then(text => {
+        const data = JSON.parse(text);
         if (data.version !== 1 || !Array.isArray(data.documents)
           || data.documents.some(item => typeof item.id !== 'string' || typeof item.text !== 'string')
           || articles.some(article => !data.documents.some(item => item.id === article.id))) {
@@ -279,7 +309,7 @@ export function createArticleSearch({ articles, getScene, onRead, onOpen, onClos
       if (!session || closing || !dialog.open) return;
       return animateDialog(false, entryOrigin, true);
     }).then(() => {
-      if (session && !closing && dialog.open) input.focus({ preventScroll: true });
+      if (session && !closing && dialog.open) focusSearchControl();
     });
     onOpen();
     renderResults(); paintMap();
@@ -509,11 +539,14 @@ export function createArticleSearch({ articles, getScene, onRead, onOpen, onClos
   input.addEventListener('compositionend', () => { composing = false; changed(); });
   input.addEventListener('input', event => { if (!composing && !event.isComposing) changed(); });
   dialog.querySelector('form').addEventListener('submit', event => {
-    event.preventDefault(); if (composing) return; setIndex(true); changed();
+    event.preventDefault(); if (composing) return; setIndex(true);
+    if (loadError) void loadDocuments();
+    changed();
+    if (matchMedia('(pointer: coarse)').matches) input.blur();
   });
   clear.addEventListener('click', () => {
     conditions = { query: '', year: '', magnitude: '' }; input.value = '';
-    renderResults(); input.focus({ preventScroll: true });
+    renderResults(); focusSearchControl();
   });
   new ResizeObserver(() => {
     lastMapKey = ''; paintMap();

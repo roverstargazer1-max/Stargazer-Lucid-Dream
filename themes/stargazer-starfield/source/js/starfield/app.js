@@ -493,13 +493,16 @@ async function start() {
       const target = document.createElement('button');
       target.className = 'star-target';
       target.type = 'button';
+      target.dataset.articleId = item.id;
       target.hidden = true;
       target.setAttribute('aria-label', `选择文章：${item.title}`);
       const label = document.createElement('span');
       label.className = 'star-label';
       label.textContent = item.title;
       target.append(label);
-      target.addEventListener('click', () => activateStar(item.id));
+      // Pointer taps and drags share the world's gesture path. Native keyboard
+      // activation still addresses the focused star directly.
+      target.addEventListener('click', event => { if (event.detail === 0) activateStar(item.id); });
       targetLayer.append(target);
       starTargets.set(item.id, target);
     }
@@ -1399,13 +1402,15 @@ async function start() {
       }
     });
     world.addEventListener('pointerdown', (event) => {
+      if (event.button > 0) return;
       body.dataset.starInput = event.pointerType;
       if (event.pointerType === 'touch') labelPointer = null;
-      if (roomScene?.active || reader.open || articleSearch?.isOpen || event.target.closest('.star-target') || event.target !== canvas) return;
+      const target = event.target.closest('.star-target');
+      if (roomScene?.active || reader.open || articleSearch?.isOpen || (!target && event.target !== canvas)) return;
       pointers.set(event.pointerId, { x: event.clientX, y: event.clientY });
       world.setPointerCapture(event.pointerId);
       if (pointers.size === 1) {
-        press = { x: event.clientX, y: event.clientY, start: performance.now() };
+        press = { x: event.clientX, y: event.clientY, start: performance.now(), starId: target?.dataset.articleId };
         gestureMoved = false;
         multiTouch = false;
       } else {
@@ -1419,8 +1424,10 @@ async function start() {
       if (!pointers.has(event.pointerId)) return;
       pointers.delete(event.pointerId);
       if (!gestureMoved && !multiTouch && !roomScene?.active) {
-        const hit = [...visibleStars.entries()].find(([, point]) => Math.hypot(point.x - event.clientX, point.y - event.clientY) < 26);
-        if (hit) activateStar(hit[0]);
+        const hit = [...visibleStars.entries()].map(([id, point]) => [id, Math.hypot(point.x - event.clientX, point.y - event.clientY)])
+          .filter(([, distance]) => distance < 26).sort((left, right) => left[1] - right[1])[0];
+        const id = hit?.[0] || (visibleStars.has(press?.starId) ? press.starId : null);
+        if (id) activateStar(id);
         else if (!(press && performance.now() - press.start < 500 && clouds?.tap(event.clientX, event.clientY))) {
           interrupt();
           selected = null;
