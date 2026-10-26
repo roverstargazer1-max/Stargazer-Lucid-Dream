@@ -1,0 +1,19 @@
+{
+  "tool": "built-in image_gen",
+  "source": "assets/design/friends-satellite-v1/satellite-original.png",
+  "asset": "themes/stargazer-starfield/source/images/friends/satellite-v1.webp",
+  "dimensions": [
+    384,
+    256
+  ],
+  "alphaRange": [
+    0,
+    254
+  ],
+  "bytes": 74592,
+  "sha256": "404ab426562406ac370d90cb1d5d5f56ce27764bbd848df73426f5a22ebcb650",
+  "testsPassed": 120,
+  "testsFailed": 0,
+  "dualThemeBuild": true,
+  "deployed": false
+}

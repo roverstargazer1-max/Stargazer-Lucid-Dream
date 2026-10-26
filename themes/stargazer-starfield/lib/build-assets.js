@@ -10,8 +10,9 @@ function buildAssets(themeSource) {
   for (const file of result.outputFiles) files.set(path.relative(themeSource, file.path).split(path.sep).join('/'), file.text);
   const core = ['font-chunks', 'ui-font', 'tokens', 'motion-tokens', 'site'];
   const groups = {
-    world: [...core, 'scene', 'motion', 'reader', 'observation', 'search', 'collection', 'journal'],
+    world: [...core, 'scene', 'motion', 'reader', 'observation', 'search', 'collection', 'journal', 'friends'],
     journal: [...core, 'journal'],
+    friends: [...core, 'friends'],
   };
   for (const [name, styles] of Object.entries(groups)) {
     const text = styles.map(style => fs.readFileSync(path.join(themeSource, `css/starry/${style}.css`), 'utf8')).join('\n');

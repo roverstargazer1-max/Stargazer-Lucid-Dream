@@ -1,0 +1,138 @@
+{
+  "checks": [
+    {
+      "closeSize": [
+        44,
+        44
+      ],
+      "columns": "309px",
+      "contentOverflow": false,
+      "focus": "关闭友链",
+      "height": 812,
+      "open": true,
+      "pageOverflow": false,
+      "scrollable": true,
+      "state": "open",
+      "width": 375
+    },
+    {
+      "bodyFlag": "",
+      "focus": "friends-entry friends-entry-room",
+      "open": false,
+      "state": "closed",
+      "test": "rapid-close"
+    },
+    {
+      "closeSize": [
+        44,
+        44
+      ],
+      "columns": "254px",
+      "contentOverflow": false,
+      "height": 740,
+      "pageOverflow": false,
+      "panelInView": true,
+      "state": "open",
+      "width": 320
+    },
+    {
+      "closeSize": [
+        92,
+        44
+      ],
+      "columns": "299px 299px",
+      "contentOverflow": false,
+      "height": 1024,
+      "pageOverflow": false,
+      "panelInView": true,
+      "state": "open",
+      "width": 768
+    },
+    {
+      "closeSize": [
+        92,
+        44
+      ],
+      "columns": "382px 382px",
+      "contentOverflow": false,
+      "height": 768,
+      "pageOverflow": false,
+      "panelInView": true,
+      "state": "open",
+      "width": 1024
+    },
+    {
+      "closeSize": [
+        92,
+        44
+      ],
+      "columns": "382px 382px",
+      "contentOverflow": false,
+      "height": 900,
+      "pageOverflow": false,
+      "panelInView": true,
+      "state": "open",
+      "width": 1440
+    },
+    {
+      "closeSize": [
+        92,
+        44
+      ],
+      "columns": "337px 337px",
+      "contentOverflow": false,
+      "height": 390,
+      "pageOverflow": false,
+      "panelInView": true,
+      "state": "open",
+      "width": 844
+    },
+    {
+      "backdropBlur": "none",
+      "motion": "soft",
+      "open": true,
+      "orbitTransition": "0s",
+      "test": "soft-mode"
+    },
+    {
+      "test": "sky-return",
+      "before": {
+        "heading": "-0.30000000000000004rad",
+        "path": "/",
+        "timeMode": "true"
+      },
+      "after": {
+        "focus": "friends-entry friends-entry-sky",
+        "heading": "-0.30000000000000004rad",
+        "open": false,
+        "path": "/",
+        "returnLabel": "回到星空",
+        "timeMode": "true"
+      },
+      "headingUnchanged": true
+    },
+    {
+      "focus": "friends-entry friends-entry-sky",
+      "open": false,
+      "test": "backdrop-close"
+    },
+    {
+      "test": "keyboard-focus-wrap-final",
+      "backward": {
+        "href": "https://www.heavensdoor1.top/",
+        "inside": true
+      },
+      "forward": {
+        "inside": true,
+        "label": "关闭友链"
+      }
+    }
+  ],
+  "viewportOverrideReset": true,
+  "tests": {
+    "passed": 118,
+    "failed": 0
+  },
+  "dualThemeBuild": true,
+  "deployed": false
+}

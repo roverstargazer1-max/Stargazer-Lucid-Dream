@@ -120,6 +120,9 @@ test('an ordinary post builds in both themes, survives a fresh checkout, and sup
     assert.equal(page('starfield/journal')('.journal-entry').length, 1);
     assert.equal(new URL(page('starfield/journal')('link[rel="canonical"]').attr('href')).pathname, '/starfield/journal/');
     assert.equal(page('starfield')('#room-journal').attr('href'), '/starfield/journal/');
+    assert.equal(page('starfield')('[data-friends-open]').first().attr('href'), '/starfield/pages/friends/');
+    assert.equal(page('starfield/pages/friends')('.friends-close').attr('href'), '/starfield/');
+    assertResources(page('starfield/pages/friends'), 'starfield/pages/friends/');
     const previous = page(`starfield/${article.path}`)('.article-pagination-previous');
     assert.equal(previous.length, 1);
     assert.ok(decodeURI(previous.attr('href')).startsWith('/starfield/'), 'Article navigation must respect the alternate theme root');

@@ -1,0 +1,47 @@
+{
+  "checks": [
+    {
+      "test": "higher-position",
+      "width": 431,
+      "height": 853,
+      "hidden": false,
+      "left": 291.21875,
+      "top": 409.6875,
+      "right": 375.21875,
+      "bottom": 465.6875,
+      "heading": "1.0471975511965976rad"
+    },
+    {
+      "test": "partially-clipped",
+      "width": 431,
+      "height": 853,
+      "hidden": false,
+      "left": 367.7109375,
+      "top": 386.484375,
+      "right": 451.7109375,
+      "bottom": 442.484375
+    },
+    {
+      "test": "partial-area-click",
+      "open": true,
+      "worldScrollLeft": 0
+    },
+    {
+      "test": "fully-outside",
+      "hidden": true,
+      "worldScrollLeft": 0
+    },
+    {
+      "test": "restored",
+      "hidden": false,
+      "heading": "1.0471975511965976rad",
+      "worldScrollLeft": 0
+    }
+  ],
+  "tests": {
+    "passed": 122,
+    "failed": 0
+  },
+  "dualThemeBuild": true,
+  "deployed": false
+}

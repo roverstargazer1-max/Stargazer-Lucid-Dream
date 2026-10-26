@@ -1,0 +1,56 @@
+{
+  "checks": [
+    {
+      "test": "initial-view",
+      "h": 56,
+      "heading": "1.0471975511965976rad",
+      "height": 853,
+      "hidden": false,
+      "imageLoaded": true,
+      "w": 84,
+      "width": 431,
+      "x": 304.8125,
+      "y": 464.2734375
+    },
+    {
+      "test": "camera-motion-final",
+      "initialX": 304.8125,
+      "moved": {
+        "heading": "1.1371975511965977rad",
+        "x": 276.9765625
+      },
+      "away": {
+        "hidden": true
+      }
+    },
+    {
+      "test": "mobile-layout",
+      "width": 320,
+      "height": 740,
+      "hidden": false,
+      "hitWidth": 84,
+      "hitHeight": 56,
+      "inView": true
+    },
+    {
+      "test": "panel-return",
+      "before": "1.0471975511965976rad",
+      "open": false,
+      "focus": "friends-satellite",
+      "heading": "1.0471975511965976rad"
+    },
+    {
+      "test": "desktop-soft",
+      "width": 1280,
+      "height": 720,
+      "hidden": false,
+      "loaded": true,
+      "hitWidth": 103.125,
+      "hitHeight": 68.75,
+      "motion": "soft",
+      "signalAnimation": "none",
+      "artTransform": "none"
+    }
+  ],
+  "viewportOverrideReset": true
+}

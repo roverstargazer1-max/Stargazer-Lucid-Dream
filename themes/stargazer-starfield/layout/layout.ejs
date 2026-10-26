@@ -1,6 +1,7 @@
 <%
   const audioConfig = config.aplayer || {};
   const isJournalPage = page.layout === 'journal';
+  const isFriendsPage = page.layout === 'friends';
   const themeSwitch = isJournalPage ? null : blog_theme_switch(page);
   const audioPath = (directory, filename) => `${String(directory || '').replace(/\/+$/, '')}/${filename}`;
   const audioAssets = {
@@ -23,7 +24,7 @@
   else if (page.year) collectionTitle = page.month
     ? `${page.year} 年 ${String(page.month).padStart(2, '0')} 月`
     : `${page.year} 年`;
-  const title = isJournalPage ? '窗边手记' : isPost ? page.title : isStarryCollection ? collectionTitle : config.title;
+  const title = isJournalPage ? '窗边手记' : isFriendsPage ? '友链' : isPost ? page.title : isStarryCollection ? collectionTitle : config.title;
   const description = isPost
     ? String(page.starry_excerpt || config.description || '')
     : isJournalPage ? '日常的片刻，写在窗边的几句话。' : isStarryCollection ? `${collectionTitle} · 文章清单` : String(config.description || '');
@@ -88,10 +89,10 @@
     })();
   </script>
   <% } %>
-  <link rel="stylesheet" href="<%= starry_styles_url(isJournalPage) %>">
+  <link rel="stylesheet" href="<%= starry_styles_url(isFriendsPage ? 'friends' : isJournalPage) %>">
   <% if (themeSwitch) { %><link rel="stylesheet" href="<%= url_for('css/blog-theme-switch.css') %>"><% } %>
 </head>
-<body class="<%= isStarryArticle || isStarryCollection ? 'has-starry-experience' : '' %><%= isStarryArticle ? ' article-page' : '' %><%= isJournalPage ? ' journal-page' : '' %>"
+<body class="<%= isStarryArticle || isStarryCollection ? 'has-starry-experience' : '' %><%= isStarryArticle ? ' article-page' : '' %><%= isJournalPage ? ' journal-page' : '' %><%= isFriendsPage ? ' friends-page' : '' %>"
       data-blog-current-root="<%= config.dual_theme?.current_root || '' %>"
       data-blog-target-root="<%= config.dual_theme?.target_root || '' %>"
       data-scene="painted"

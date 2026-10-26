@@ -1,0 +1,47 @@
+{
+  "checks": [
+    {
+      "test": "initial",
+      "width": 431,
+      "height": 853,
+      "hidden": false,
+      "imageWidth": 65.1640625,
+      "imageHeight": 43.4375,
+      "hitWidth": 65.1640625,
+      "hitHeight": 44,
+      "naturalWidth": 768
+    },
+    {
+      "test": "zoom-in",
+      "hidden": false,
+      "imageWidth": 135.875,
+      "imageHeight": 90.578125,
+      "hitWidth": 135.875,
+      "hitHeight": 90.5859375
+    },
+    {
+      "test": "maximum-zoom",
+      "hidden": false,
+      "imageWidth": 323.44061279296875,
+      "imageHeight": 221.30264282226562
+    },
+    {
+      "test": "minimum-zoom",
+      "hidden": false,
+      "imageWidth": 32.578125,
+      "imageHeight": 21.71875,
+      "hitWidth": 44,
+      "hitHeight": 44
+    },
+    {
+      "test": "minimum-size-click",
+      "open": true
+    }
+  ],
+  "tests": {
+    "passed": 123,
+    "failed": 0
+  },
+  "dualThemeBuild": true,
+  "deployed": false
+}

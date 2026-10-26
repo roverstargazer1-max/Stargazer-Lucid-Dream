@@ -18,10 +18,15 @@ import { constrainSkyCamera, skyProjection } from './camera-bounds.js';
 import { createArticleSearch } from './search.js';
 import { prepareReaderArt, waitForReaderArt } from './reader-art.js';
 import { prepareImages, settleWithin } from './image-readiness.js';
+import { createFriendsPanel } from './friends.js';
+import { createFriendsSatellite } from './friends-satellite.js';
 
 const body = document.body;
 const world = document.getElementById('world');
-if (world) start().catch(fallback);
+if (world) {
+  createFriendsPanel();
+  start().catch(fallback);
+}
 
 async function start() {
   if (window.starfieldStartup?.failed) return;
@@ -46,6 +51,7 @@ async function start() {
   const status = document.getElementById('approach-status');
   const readButton = document.getElementById('read-button');
   const controls = document.getElementById('exploration-controls');
+  const friendsSatellite = createFriendsSatellite(document.getElementById('friends-satellite'));
   const prepareSkyFurniture = () => Promise.all([
     '.masthead', '.sky-polyhedron', '#exploration-controls', '#search-entry',
   ].map(selector => prepareImages(document.querySelector(selector))));
@@ -200,6 +206,7 @@ async function start() {
     prepareEnter: () => settleWithin(prepareSkyFurniture(), 800),
     startOutside: isDirectEntry || isDirectCollection,
     onEnter(startTime) {
+      friendsSatellite.prepare();
       // Explicitly leaving the room is the first intent to explore/read. Use
       // the existing passage to warm its two next surfaces, without adding
       // either surface (or any journal photos) to the initial room download.
@@ -280,10 +287,12 @@ async function start() {
     onClose() { restingFrameDrawn = false; updateUI(); },
   });
   wireControls();
-  document.addEventListener('starry:journal', event => {
-    if (event.detail.open) { interrupt(); pointers.clear(); press = null; labelPointer = null; }
-    restingFrameDrawn = false;
-  });
+  for (const name of ['starry:journal', 'starry:friends']) {
+    document.addEventListener(name, event => {
+      if (event.detail.open) { interrupt(); pointers.clear(); press = null; labelPointer = null; }
+      restingFrameDrawn = false;
+    });
+  }
   updateUI();
   preflightRenderer();
 
@@ -978,9 +987,10 @@ async function start() {
     visibleStars.clear();
     projectedStars.clear();
     const showStars = !roomScene?.active && !arrival;
+    friendsSatellite.update(camera, width, height, showStars && !selected && !reader.open && !articleSearch?.isOpen && !collectionOpen);
     // Titles and navigation are hidden for the whole passage. Measuring their
     // obstacles after camera style writes otherwise forces layout on every frame.
-    const obstacles = showStars ? [...document.querySelectorAll('.masthead a, #exploration-controls:not([hidden]), #exploration-controls:not([hidden]) .mode-switch, #preview:not([hidden]), #signal-egg:not([hidden]), #search-entry:not([hidden])')]
+    const obstacles = showStars ? [...document.querySelectorAll('.masthead a, #exploration-controls:not([hidden]), #exploration-controls:not([hidden]) .mode-switch, #preview:not([hidden]), #signal-egg:not([hidden]), #search-entry:not([hidden]), .friends-entry-sky, .journal-sky-entry')]
       .map(element => element.getBoundingClientRect()).filter(rect => rect.width && rect.height) : [];
     for (const item of articles) {
       const target = starTargets.get(item.id);
@@ -1082,7 +1092,7 @@ async function start() {
     }
     let guideState = null;
     if (hint && !selected) {
-      const obstacles = [...document.querySelectorAll('#world nav,#world nav .mode-switch,#world header,#preview,.signal-egg,#search-entry')].filter(el => !el.hidden).map(el => el.getBoundingClientRect());
+      const obstacles = [...document.querySelectorAll('#world nav,#world nav .mode-switch,#world header,#preview,.signal-egg,#search-entry,.friends-entry-sky,.journal-sky-entry')].filter(el => !el.hidden).map(el => el.getBoundingClientRect());
       if (!obstacles.some(rect => hint.point.x + 24 > rect.left && hint.point.x - 24 < rect.right && hint.point.y + 24 > rect.top && hint.point.y - 24 < rect.bottom)) {
         guideState = { left: hint.point.x + 'px', top: hint.point.y + 'px', text: '›', articleId: hint.id };
       }
@@ -1152,21 +1162,21 @@ async function start() {
       const moving = lastCamera && (Math.abs(camera.yaw - lastCamera.yaw) + Math.abs(camera.pitch - lastCamera.pitch) + Math.abs(camera.zoom - lastCamera.zoom) > .01);
       lineOpacity += ((moving || travel || pointers.size ? 0 : 1) - lineOpacity) * Math.min(1, delta / (moving ? 100 : 380));
       lastCamera = { ...camera };
-      const journalOpen = body.dataset.journalOpen === 'true';
-      if (!reader.open && !egg.open && !journalOpen && !roomScene?.active && !articleSearch?.isOpen && !reducedMotion) ambient.seconds += delta / 1000;
+      const surfaceOpen = body.dataset.journalOpen === 'true' || body.dataset.friendsOpen === 'true';
+      if (!reader.open && !egg.open && !surfaceOpen && !roomScene?.active && !articleSearch?.isOpen && !reducedMotion) ambient.seconds += delta / 1000;
       ambient.x += (ambient.targetX - ambient.x) * .035;
       ambient.y += (ambient.targetY - ambient.y) * .035;
       // Sky/cloud motion already pauses at the window and while reading. Keep
       // that frame until a resize, transition or meteor changes it. CSS micro-motion continues.
       const staticScene = !travel && !arrival && !meteors.length &&
-        (journalOpen || articleSearch?.isOpen || (reader.open && body.dataset.reading === 'open') || (roomScene?.active && body.dataset.room === 'inside'));
+        (surfaceOpen || articleSearch?.isOpen || (reader.open && body.dataset.reading === 'open') || (roomScene?.active && body.dataset.room === 'inside'));
       if (!staticScene || !restingFrameDrawn) drawScene(now);
       restingFrameDrawn = Boolean(staticScene);
-      polyhedron.render(now, !reducedMotion && !document.hidden && !journalOpen && !roomScene?.active && !reader.open && !articleSearch?.isOpen);
-      articleSearch?.update(now, !journalOpen && !roomScene?.active && !arrival && !reader.open && !collectionOpen && !egg.open);
+      polyhedron.render(now, !reducedMotion && !document.hidden && !surfaceOpen && !roomScene?.active && !reader.open && !articleSearch?.isOpen);
+      articleSearch?.update(now, !surfaceOpen && !roomScene?.active && !arrival && !reader.open && !collectionOpen && !egg.open);
       // The low sky budget must not freeze the selected article's walking and frequency artwork.
       observationPanel.render(now, !preview.hidden && !reducedMotion &&
-        !document.hidden && !journalOpen && !roomScene?.active && !reader.open && !egg.open && !collectionOpen && !arrival);
+        !document.hidden && !surfaceOpen && !roomScene?.active && !reader.open && !egg.open && !collectionOpen && !arrival);
       // Keep the gait alive while reading; scrolling controls its position separately.
       readingWalker.render(now, reader.open && phase === 'reading' &&
         !readingMotionPreference.matches && !document.hidden);
@@ -1430,7 +1440,7 @@ async function start() {
       moveForward(Math.max(-600, Math.min(600, -event.deltaY * .8)));
     }, { passive: false });
     document.addEventListener('keydown', (event) => {
-      if (body.dataset.journalOpen === 'true' || reader.open || egg.open || roomScene?.active || collectionOpen || articleSearch?.isOpen || event.target.closest('input, textarea, select, [contenteditable], #preview')) return;
+      if (body.dataset.journalOpen === 'true' || body.dataset.friendsOpen === 'true' || reader.open || egg.open || roomScene?.active || collectionOpen || articleSearch?.isOpen || event.target.closest('input, textarea, select, [contenteditable], #preview')) return;
       if (['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(event.key)) {
         event.preventDefault(); interrupt();
         camera.yaw += event.key === 'ArrowLeft' ? -.09 : event.key === 'ArrowRight' ? .09 : 0;

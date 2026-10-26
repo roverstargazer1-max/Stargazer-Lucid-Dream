@@ -19,6 +19,7 @@
         <a class="fallback-retry" href="<%= url_for('/') %>">刷新页面</a>
         <% if (fallbackThemeSwitch) { %><a class="fallback-legacy" href="<%= fallbackThemeSwitch.href %>">访问旧版</a><% } %>
         <a href="<%= url_for('journal/') %>">阅读手记</a>
+        <a href="<%= url_for('pages/friends/') %>">拜访友链</a>
       </div>
       <details class="fallback-articles">
         <summary>先阅读文章<span aria-hidden="true">⌄</span></summary>
