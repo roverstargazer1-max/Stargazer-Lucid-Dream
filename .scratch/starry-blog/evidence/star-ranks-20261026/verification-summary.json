@@ -1,0 +1,112 @@
+{
+  "date": "2026-10-26",
+  "settings": [
+    {
+      "catalogNumber": "SLD-0001",
+      "title": "梦开始的地方[置顶]",
+      "rank": "ordinary",
+      "magnitude": 4
+    },
+    {
+      "catalogNumber": "SLD-0002",
+      "title": "活在真实天空下，做半个君子",
+      "rank": "ordinary",
+      "magnitude": 4
+    },
+    {
+      "catalogNumber": "SLD-0003",
+      "title": "咏史有感",
+      "rank": "ordinary",
+      "magnitude": 4
+    },
+    {
+      "catalogNumber": "SLD-0004",
+      "title": "言论·生活·小品",
+      "rank": "important",
+      "magnitude": 2.5
+    },
+    {
+      "catalogNumber": "SLD-0005",
+      "title": "随笔1",
+      "rank": "ordinary",
+      "magnitude": 4
+    },
+    {
+      "catalogNumber": "SLD-0006",
+      "title": "慢",
+      "rank": "treasured",
+      "magnitude": 1
+    },
+    {
+      "catalogNumber": "SLD-0007",
+      "title": "随笔2",
+      "rank": "ordinary",
+      "magnitude": 4
+    },
+    {
+      "catalogNumber": "SLD-0008",
+      "title": "AI时代，我们究竟需要什么？",
+      "rank": "important",
+      "magnitude": 2.5
+    },
+    {
+      "catalogNumber": "SLD-0009",
+      "title": "随笔3",
+      "rank": "important",
+      "magnitude": 2.5
+    },
+    {
+      "catalogNumber": "SLD-0010",
+      "title": "做一个有有趣灵魂的人",
+      "rank": "treasured",
+      "magnitude": 1
+    },
+    {
+      "catalogNumber": "SLD-0011",
+      "title": "设计思路与灵感",
+      "rank": "treasured",
+      "magnitude": 1
+    },
+    {
+      "catalogNumber": "SLD-0012",
+      "title": "功效主义下的分科，与AI时代的思维重建",
+      "rank": "treasured",
+      "magnitude": 1
+    }
+  ],
+  "counts": {
+    "important": 3,
+    "treasured": 4,
+    "ordinary": 5
+  },
+  "bodyBytesUnchanged": 12,
+  "otherMetadataUnchanged": 12,
+  "identitiesPermalinksAndCatalogueNumbersUnchanged": true,
+  "positionsUnchanged": true,
+  "relationsUnchanged": true,
+  "layoutImportanceSynced": true,
+  "outputs": [
+    {
+      "root": ".preview/stargazer",
+      "articlesVerified": 12,
+      "important": 3,
+      "treasured": 4,
+      "ordinary": 5,
+      "bothThemesReadable": true
+    },
+    {
+      "root": "public",
+      "articlesVerified": 12,
+      "important": 3,
+      "treasured": 4,
+      "ordinary": 5,
+      "bothThemesReadable": true
+    }
+  ],
+  "existingTestsPassed": 10,
+  "previewBuildPassed": true,
+  "productionBuildPassed": true,
+  "browserVerified": "SLD-0012 · 1.0 in article observation panel",
+  "committed": false,
+  "deployed": false
+}

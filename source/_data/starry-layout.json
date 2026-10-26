@@ -19,7 +19,7 @@
         -3156
       ],
       "originalPermalink": "2025/11/12/言论·生活·小品/",
-      "importance": "ordinary",
+      "importance": "important",
       "catalogNumber": "SLD-0004",
       "generatedExcerptHash": "1e83c8f363a889476e25ae883703d8db48c21194019f24bfff1252a45642b0bd"
     },
@@ -31,7 +31,7 @@
         3543
       ],
       "originalPermalink": "2026/10/25/功效主义下的分科，与AI时代的思维重建/",
-      "importance": "ordinary",
+      "importance": "treasured",
       "generatedExcerptHash": "6b6a918620d54b10ccada5a7018a3ee1c0d0195a7b821bca0d649947aa65c07b"
     },
     "article-7d5cd5c7-b5d0-4c87-9d55-eaacac5dfd41": {
@@ -41,7 +41,7 @@
         -4725
       ],
       "originalPermalink": "2026/07/17/做一个有有趣灵魂的人/",
-      "importance": "ordinary",
+      "importance": "treasured",
       "catalogNumber": "SLD-0010",
       "generatedExcerptHash": "1801c5603c6c28472d47de6d3dbe3310ce0d01baa1fa598ccedf4620ff6f5869"
     },
@@ -53,7 +53,7 @@
         240
       ],
       "originalPermalink": "2026/10/24/设计思路与灵感/",
-      "importance": "ordinary",
+      "importance": "treasured",
       "generatedExcerptHash": "be6646def2f015549a1efc3e84845a2a905ce103338b613bf1667ef72b40e676"
     },
     "article-8f30a1f6-c913-45df-9ab0-58c2c40b01d2": {
@@ -85,7 +85,7 @@
         5553
       ],
       "originalPermalink": "2026/05/14/慢/",
-      "importance": "ordinary",
+      "importance": "treasured",
       "catalogNumber": "SLD-0006",
       "generatedExcerptHash": "4290b60ced1b703f5e2a24704bc77ff56fcfe00b7d5cb38baf8601c2465de853"
     },
@@ -96,7 +96,7 @@
         4828
       ],
       "originalPermalink": "2026/07/05/随笔3/",
-      "importance": "ordinary",
+      "importance": "important",
       "catalogNumber": "SLD-0009",
       "generatedExcerptHash": "7d4dbea9d0484b421ad5a1baad4b8fd2f2ee56b8122128970cbd137fc2563374"
     },
@@ -118,7 +118,7 @@
         64
       ],
       "originalPermalink": "2026/06/15/AI时代，我们究竟需要什么？/",
-      "importance": "ordinary",
+      "importance": "important",
       "catalogNumber": "SLD-0008",
       "generatedExcerptHash": "881803b3971d82b4545b78fd78aaa3b7ac4fecd9e5808adba8e2bffea7b5c5a5"
     },
@@ -128,7 +128,7 @@
         3180,
         2290
       ],
-      "importance": "important",
+      "importance": "ordinary",
       "originalPermalink": "2025/10/20/梦开始的地方[置顶]/",
       "catalogNumber": "SLD-0001"
     }

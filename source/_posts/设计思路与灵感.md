@@ -16,7 +16,7 @@ related: []
 # star：新版星空选项；不填写时为普通星，参与探索。
 star:
   # star.rank：博客星等：ordinary（普通）、important（重要）、treasured（珍藏）。
-  rank: ordinary
+  rank: treasured
   # star.isolated：true 不生成自动探索路径或时间连线，手填关联仍保留；默认 false。
   isolated: false
 # starry_excerpt：新版描述摘要：留空自动提取正文，手写优先，清空恢复自动；不控制旧版列表摘要。
