@@ -1,0 +1,32 @@
+{
+  "date": "2026-10-26",
+  "environment": "Local browser viewport simulation, coordinate input and real-handler unit tests",
+  "viewports": [[320, 568], [390, 844], [430, 932], [667, 375], [844, 390], [1280, 720]],
+  "automatedTests": { "passed": 131, "failed": 0, "finalFocusedPassed": 12 },
+  "previewBuild": "passed",
+  "productionDualThemeBuild": "passed",
+  "observations": {
+    "filterBeforeHeight390": 22.640625,
+    "filterAfterHeight320": 44,
+    "filterAfterMinWidth320": 57.359375,
+    "scrolledCloseBeforeY390": -53,
+    "scrolledCloseAfterY320": 44,
+    "scrolledArtboardAfter320": 356.5,
+    "wrongArticleBefore": { "tapped": "SLD-0001", "opened": "SLD-0012" },
+    "correctArticleAfter": "SLD-0001",
+    "filteredOutStarsDoNotBlock": true,
+    "dragFromStarMovesSkyWithoutReading": true,
+    "journalRetryLoadedEntries": 13,
+    "stalledFullTextMetadataSearchResults": 1,
+    "fullTextRetry": "passed",
+    "archiveShortTitleBeforeHeight": 27.1953125,
+    "archiveShortTitleAfterHeight": 44,
+    "themeSwitchAfterSize": [48, 44],
+    "standaloneJournalAndFriendsHorizontalOverflow": 0,
+    "friendExternalLinkPreservesOriginalTab": true,
+    "desktopSearchFocus": "search-query",
+    "mobileSearchFocus": "close-search"
+  },
+  "deployed": false,
+  "physicalTouchDeviceTested": false
+}
