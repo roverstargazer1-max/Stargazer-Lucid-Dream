@@ -118,7 +118,7 @@
    into the track's own background stack and blended there — background-blend-mode
    composites the layers of one element, which is what this needs. */
 #reading-journey::before {
-  content: ''; position: absolute; inset: 0; pointer-events: none;
+  content: ''; position: absolute; inset: 0; pointer-events: none; opacity: .68;
   background-image:
     linear-gradient(100deg, rgb(20 66 168 / .62), rgb(28 88 196 / .44)),
     var(--reader-track, url('../../images/reader/progress-track.webp'));
@@ -126,8 +126,11 @@
   background-repeat: no-repeat, no-repeat;
   background-position: center, center;
   background-blend-mode: screen, normal;
-  /* Hide the baked-in cyan/white edge, while leaving the live rail and walker unmasked. */
-  mask-image: linear-gradient(to right, transparent 1.8%, #000 2.1%, #000 98%, transparent 100%);
+  /* Feather only the artwork into the continuing sheet; keep the live UI crisp. */
+  mask-image:
+    linear-gradient(to right, transparent 1.8%, #000 9%, #000 91%, transparent 100%),
+    linear-gradient(to bottom, transparent, #000 30%, #000 64%, transparent);
+  mask-composite: intersect;
 }
 .reading-rail { position: absolute; top: 42.15%; left: 7.83%; width: 90.8%; height: max(2px, .414cqw); background: #fff; border-radius: 2px; }
 .reading-rail-fill { display: block; width: calc(var(--reading-fraction) * 100%); height: 100%; background: #00d5ff; border-radius: inherit; box-shadow: 0 0 5px #00bfff; }

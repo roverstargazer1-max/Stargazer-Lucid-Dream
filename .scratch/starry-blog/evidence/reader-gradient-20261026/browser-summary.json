@@ -1,0 +1,212 @@
+[
+  {
+    "name": "desktop",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "states": [
+      {
+        "percent": 0,
+        "overflow": false,
+        "walkerRight": 379.453125,
+        "railRight": 1142.765625
+      },
+      {
+        "percent": 50,
+        "overflow": false,
+        "walkerRight": 774.203125,
+        "railRight": 1142.765625
+      },
+      {
+        "percent": 99,
+        "overflow": false,
+        "walkerRight": 1140.765625,
+        "railRight": 1142.765625
+      },
+      {
+        "percent": 100,
+        "overflow": false,
+        "walkerRight": 1140.765625,
+        "railRight": 1142.765625
+      }
+    ],
+    "closed": true,
+    "errors": []
+  },
+  {
+    "name": "mobile",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "states": [
+      {
+        "percent": 0,
+        "overflow": false,
+        "walkerRight": 56.4375,
+        "railRight": 369.15625
+      },
+      {
+        "percent": 50,
+        "overflow": false,
+        "walkerRight": 219.0625,
+        "railRight": 369.15625
+      },
+      {
+        "percent": 99,
+        "overflow": false,
+        "walkerRight": 367.171875,
+        "railRight": 369.15625
+      },
+      {
+        "percent": 100,
+        "overflow": false,
+        "walkerRight": 367.171875,
+        "railRight": 369.15625
+      }
+    ],
+    "closed": true,
+    "errors": []
+  },
+  {
+    "name": "narrow",
+    "viewport": {
+      "width": 320,
+      "height": 740
+    },
+    "states": [
+      {
+        "percent": 0,
+        "overflow": false,
+        "walkerRight": 49.3125,
+        "railRight": 302.03125
+      },
+      {
+        "percent": 50,
+        "overflow": false,
+        "walkerRight": 181.9375,
+        "railRight": 302.03125
+      },
+      {
+        "percent": 99,
+        "overflow": false,
+        "walkerRight": 300.03125,
+        "railRight": 302.03125
+      },
+      {
+        "percent": 100,
+        "overflow": false,
+        "walkerRight": 300.03125,
+        "railRight": 302.03125
+      }
+    ],
+    "closed": true,
+    "errors": []
+  },
+  {
+    "name": "landscape",
+    "viewport": {
+      "width": 844,
+      "height": 390
+    },
+    "states": [
+      {
+        "percent": 0,
+        "overflow": false,
+        "walkerRight": 146.53125,
+        "railRight": 763.953125
+      },
+      {
+        "percent": 50,
+        "overflow": false,
+        "walkerRight": 465.75,
+        "railRight": 763.953125
+      },
+      {
+        "percent": 99,
+        "overflow": false,
+        "walkerRight": 761.96875,
+        "railRight": 763.953125
+      },
+      {
+        "percent": 100,
+        "overflow": false,
+        "walkerRight": 761.96875,
+        "railRight": 763.953125
+      }
+    ],
+    "closed": true,
+    "errors": []
+  },
+  {
+    "name": "reduced",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "states": [
+      {
+        "percent": 0,
+        "overflow": false,
+        "walkerRight": 379.453125,
+        "railRight": 1142.765625
+      },
+      {
+        "percent": 50,
+        "overflow": false,
+        "walkerRight": 774.203125,
+        "railRight": 1142.765625
+      },
+      {
+        "percent": 99,
+        "overflow": false,
+        "walkerRight": 1140.765625,
+        "railRight": 1142.765625
+      },
+      {
+        "percent": 100,
+        "overflow": false,
+        "walkerRight": 1140.765625,
+        "railRight": 1142.765625
+      }
+    ],
+    "closed": true,
+    "errors": []
+  },
+  {
+    "name": "soft",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "states": [
+      {
+        "percent": 0,
+        "overflow": false,
+        "walkerRight": 56.4375,
+        "railRight": 369.15625
+      },
+      {
+        "percent": 50,
+        "overflow": false,
+        "walkerRight": 219.0625,
+        "railRight": 369.15625
+      },
+      {
+        "percent": 99,
+        "overflow": false,
+        "walkerRight": 367.171875,
+        "railRight": 369.15625
+      },
+      {
+        "percent": 100,
+        "overflow": false,
+        "walkerRight": 367.171875,
+        "railRight": 369.15625
+      }
+    ],
+    "closed": true,
+    "errors": []
+  }
+]
