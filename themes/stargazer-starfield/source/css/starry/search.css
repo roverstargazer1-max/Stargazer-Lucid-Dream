@@ -191,7 +191,9 @@ body:not(.starry-ready) #search-entry { display:none; }
 #star-search {
   clip-path:circle(calc(var(--iris-r0, 0px) + (var(--iris-r, 150vmax) - var(--iris-r0, 0px)) * var(--unfold)) at var(--iris-x, 8%) var(--iris-y, 92%));
 }
-#star-search:not([data-motion]) { clip-path:none; }
+/* Keep a fully open clip between gestures, so closing does not recreate its
+   effect tree. The viewport-sized circle also covers the sheet after resizing. */
+#star-search:not([data-motion]) { clip-path:circle(200vmax at 50% 50%); }
 #star-search[data-soft=true] { clip-path:none; opacity:var(--unfold); }
 /* A thin rim of light rides the iris edge and is gone by the time it settles. */
 #star-search::after {

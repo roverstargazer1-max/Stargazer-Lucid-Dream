@@ -1,4 +1,4 @@
-"""Compare the nine matching screenshots produced by visual-check.mjs."""
+"""Compare the twelve matching screenshots produced by visual-check.mjs."""
 import json
 from pathlib import Path
 from PIL import Image, ImageChops
@@ -6,7 +6,7 @@ from PIL import Image, ImageChops
 root = Path(__file__).parent
 results = []
 for device in ['desktop', 'mobile', 'landscape']:
-    for pose in ['0.25', '0.6', '1']:
+    for pose in ['0.25', '0.6', '1', 'rest']:
         before = Image.open(root / f'visual-{device}-before-{pose}.png').convert('RGB')
         after = Image.open(root / f'visual-{device}-after-{pose}.png').convert('RGB')
         assert before.size == after.size
