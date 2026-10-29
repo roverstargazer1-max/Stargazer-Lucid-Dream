@@ -173,23 +173,29 @@ body:not(.starry-ready) #search-entry { display:none; }
 
 /* ---------------------------------------------------------------------------
    Motion redesign · the chart as an instrument, not a pop-up.
-   One `--unfold` value (0→1, set per frame by search.js) drives everything that
+   One `--unfold` value (0→1, scoped to moving layers by search.js) drives everything that
    opens: an iris grows out of the astrolabe, the dial turns into register, the
    furniture lands in order and stars ignite from the zenith outward. Closing
    runs the same value backwards, so the chart folds back into the astrolabe.
    --------------------------------------------------------------------------- */
 @property --star-alpha { syntax:'<number>'; inherits:true; initial-value:1; }
-#star-search {
-  --unfold:0;
+@property --unfold { syntax:'<number>'; inherits:false; initial-value:0; }
+@property --stage-a { syntax:'<number>'; inherits:false; initial-value:0; }
+@property --stage-b { syntax:'<number>'; inherits:false; initial-value:0; }
+@property --stage-c { syntax:'<number>'; inherits:false; initial-value:0; }
+#star-search, .search-map, .search-heading, .search-bar, .search-filters, #search-index-toggle, .search-map canvas {
   --stage-a:clamp(0, calc((var(--unfold) - .18) / .42), 1);
   --stage-b:clamp(0, calc((var(--unfold) - .34) / .42), 1);
   --stage-c:clamp(0, calc((var(--unfold) - .5) / .4), 1);
+}
+#star-search {
   clip-path:circle(calc(var(--iris-r0, 0px) + (var(--iris-r, 150vmax) - var(--iris-r0, 0px)) * var(--unfold)) at var(--iris-x, 8%) var(--iris-y, 92%));
 }
 #star-search:not([data-motion]) { clip-path:none; }
 #star-search[data-soft=true] { clip-path:none; opacity:var(--unfold); }
 /* A thin rim of light rides the iris edge and is gone by the time it settles. */
 #star-search::after {
+  --unfold:inherit;
   content:''; position:absolute; inset:0; z-index:6; pointer-events:none;
   --rim:calc(var(--iris-r0, 0px) + (var(--iris-r, 150vmax) - var(--iris-r0, 0px)) * var(--unfold));
   background:radial-gradient(circle at var(--iris-x, 8%) var(--iris-y, 92%),
@@ -207,6 +213,7 @@ body:not(.starry-ready) #search-entry { display:none; }
 #star-search:not([data-soft=true]) .search-map canvas { opacity:calc(.7 * var(--stage-c)); }
 /* Each star waits for the iris to pass its ring before it lights. */
 #star-search:not([data-soft=true]) .search-map-star::before {
+  --unfold:inherit;
   --lit:clamp(0, calc((var(--unfold) - .4 - var(--ring, .5) * .34) / .18), 1);
   opacity:calc(var(--lit) * var(--star-alpha));
   scale:calc(.2 + .8 * var(--lit));

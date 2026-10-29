@@ -1,0 +1,20 @@
+[
+  {
+    "name": "desktop",
+    "poses": 3,
+    "styleTolerance": 0.0001,
+    "equivalent": true
+  },
+  {
+    "name": "mobile",
+    "poses": 3,
+    "styleTolerance": 0.0001,
+    "equivalent": true
+  },
+  {
+    "name": "landscape",
+    "poses": 3,
+    "styleTolerance": 0.0001,
+    "equivalent": true
+  }
+]

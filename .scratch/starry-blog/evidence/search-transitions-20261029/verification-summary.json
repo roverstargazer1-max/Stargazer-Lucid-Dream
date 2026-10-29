@@ -1,0 +1,109 @@
+[
+  {
+    "name": "desktop",
+    "count": 12,
+    "pose": {
+      "width": 1101.8125,
+      "left": 169.09375,
+      "right": 1270.90625,
+      "heading": "1",
+      "star": "1",
+      "backdrop": "blur(1.2px)",
+      "autofocus": "search-query"
+    },
+    "filters": true,
+    "readingReturn": true,
+    "interruptedOpen": true,
+    "errors": []
+  },
+  {
+    "name": "mobile",
+    "count": 12,
+    "pose": {
+      "width": 358,
+      "left": 16,
+      "right": 374,
+      "heading": "1",
+      "star": "1",
+      "backdrop": "blur(1.2px)",
+      "autofocus": "close-search"
+    },
+    "filters": true,
+    "readingReturn": true,
+    "interruptedOpen": true,
+    "errors": []
+  },
+  {
+    "name": "narrow",
+    "count": 12,
+    "pose": {
+      "width": 288,
+      "left": 16,
+      "right": 304,
+      "heading": "1",
+      "star": "1",
+      "backdrop": "blur(1.2px)",
+      "autofocus": "close-search"
+    },
+    "filters": true,
+    "readingReturn": true,
+    "interruptedOpen": true,
+    "errors": []
+  },
+  {
+    "name": "landscape",
+    "count": 12,
+    "pose": {
+      "width": 695.75,
+      "left": 74.125,
+      "right": 769.875,
+      "heading": "1",
+      "star": "1",
+      "backdrop": "blur(1.2px)",
+      "autofocus": "close-search"
+    },
+    "filters": true,
+    "readingReturn": true,
+    "interruptedOpen": true,
+    "errors": []
+  },
+  {
+    "name": "soft",
+    "count": 12,
+    "pose": {
+      "width": 934.3125,
+      "left": 252.84375,
+      "right": 1187.15625,
+      "heading": "1",
+      "star": "1",
+      "backdrop": "blur(0px)",
+      "autofocus": "search-query"
+    },
+    "filters": true,
+    "readingReturn": true,
+    "interruptedOpen": true,
+    "errors": []
+  },
+  {
+    "name": "reduced",
+    "count": 12,
+    "pose": {
+      "width": 1101.8125,
+      "left": 169.09375,
+      "right": 1270.90625,
+      "heading": "1",
+      "star": "1",
+      "backdrop": "blur(1.2px)",
+      "autofocus": "search-query"
+    },
+    "filters": true,
+    "readingReturn": true,
+    "interruptedOpen": true,
+    "errors": []
+  },
+  {
+    "name": "stalled-fonts",
+    "bounded": true,
+    "staleCallback": false
+  }
+]

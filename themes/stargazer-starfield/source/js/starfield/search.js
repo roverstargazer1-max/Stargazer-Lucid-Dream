@@ -6,6 +6,7 @@ import { createAstrolabe } from './astrolabe.js';
 import { prepareImages, settleWithin } from './image-readiness.js';
 import { ARTICLE_STAR_SCALE } from './star-targets.js';
 import { requestText } from './request.js';
+import { uiCodepoints } from './font-coverage.js';
 
 const normalize = value => String(value || '').normalize('NFKC').trim().toLocaleLowerCase();
 
@@ -68,6 +69,7 @@ export function createArticleSearch({ articles, getScene, onRead, onOpen, onClos
   let openingTrigger = entry, readingTrigger = null, session = false;
   let lastMapKey = '', entryOrigin = null;
   let highlightedId = null;
+  let titlePreparation = null, openingVersion = 0, preparedRows = false;
   const filterButtons = new Map();
   const filterSeams = new Map();
   const starButtons = new Map();
@@ -84,6 +86,20 @@ export function createArticleSearch({ articles, getScene, onRead, onOpen, onClos
   };
   setBackdrop(0, isSoft());
 
+  function animateBackdrop(current) {
+    // Changing a stylesheet rule on every RAF invalidates unrelated page styles.
+    // Let the browser interpolate this rule, using the same duration and curve
+    // as the iris. Only retargeting/settling writes to the stylesheet.
+    backdrop.transition = 'none';
+    setBackdrop(current.fromFocus, current.soft);
+    void getComputedStyle(dialog, '::backdrop').backgroundColor;
+    const curve = getComputedStyle(dialog).getPropertyValue(current.out ? '--ease-exit' : '--ease-enter');
+    backdrop.transition = `background-color ${current.duration}ms ${curve}, backdrop-filter ${current.duration}ms ${curve}`;
+    Object.assign(backdrop, dialogBackdrop(current.toFocus, current.soft), {
+      backdropFilter: `blur(${current.soft ? 0 : (1.2 * current.toFocus).toFixed(2)}px)`,
+    });
+  }
+
   const hydrate = (root, priority = 'high') => {
     for (const image of root.querySelectorAll('img[data-search-src]')) {
       image.dataset.src = image.dataset.searchSrc;
@@ -91,6 +107,24 @@ export function createArticleSearch({ articles, getScene, onRead, onOpen, onClos
     }
     return prepareImages(root, priority);
   };
+
+  function prepare(priority = 'low') {
+    if (!preparedRows && !session) {
+      renderResults();
+      preparedRows = true;
+    }
+    if (!titlePreparation && document.fonts) {
+      // Hidden dialog rows do not request their fonts. Prepare only the glyphs
+      // used by real titles during the existing passage, before they animate.
+      const text = articles.map(article => article.title).join('');
+      const uncovered = [...text].filter(character => !uiCodepoints.has(character.codePointAt(0))).join('');
+      titlePreparation = Promise.all([
+        document.fonts.load('16px "LXGW Marker Gothic UI"', text || ' '),
+        ...(uncovered ? [document.fonts.load('16px "LXGW Marker Gothic"', uncovered)] : []),
+      ]).catch(() => { titlePreparation = null; });
+    }
+    return Promise.allSettled([hydrate(dialog, priority), titlePreparation]);
+  }
 
   for (const [kind, options] of [
     ['year', [...new Set(articles.map(article => article.date.slice(0, 4)))].sort().reverse()],
@@ -262,7 +296,7 @@ export function createArticleSearch({ articles, getScene, onRead, onOpen, onClos
     // They remain useful while full text is loading or temporarily unavailable.
     const rows = found.map(article => rowLinks.get(article.id));
     const same = rows.length === results.children.length && rows.every((row, i) => results.children[i] === row);
-    results.replaceChildren(...rows);
+    if (!same) results.replaceChildren(...rows);
     results.scrollTop = preserveScroll ? scrollTop : 0;
     if (!same && !preserveScroll && artboard.dataset.indexOpen === 'true') revealRows();
     placeSeams();
@@ -297,32 +331,50 @@ export function createArticleSearch({ articles, getScene, onRead, onOpen, onClos
     if (dialog.open || session) return;
     openingTrigger = trigger;
     session = true;
+    const version = ++openingVersion;
     const origin = entry.getBoundingClientRect();
     entryOrigin = origin.width ? { x: origin.left + origin.width / 2, y: origin.top + origin.height / 2 } : null;
     conditions = { query: '', year: '', magnitude: '' }; input.value = '';
     setIndex(false);
-    closing = false; dialog.showModal(); setUnfold(0);
+    closing = false; setUnfold(0);
     dialog.dataset.motion = 'preparing';
     dialog.setAttribute('aria-busy', 'true');
-    void settleWithin(hydrate(dialog)).then(() => {
+    artboard.inert = true;
+    dialog.showModal();
+    // Give the native modal its own layout frame before updating the title list
+    // and map. The iris stays closed during these bounded preparation steps.
+    const layout = new Promise(resolve => requestAnimationFrame(() => {
+      if (version === openingVersion && session && !closing && dialog.open) {
+        renderResults();
+        void loadDocuments();
+      }
+      requestAnimationFrame(resolve);
+    }));
+    void settleWithin(Promise.all([prepare('high'), layout])).then(() => {
+      if (version !== openingVersion) return;
       dialog.removeAttribute('aria-busy');
       if (!session || closing || !dialog.open) return;
       return animateDialog(false, entryOrigin, true);
     }).then(() => {
-      if (session && !closing && dialog.open) focusSearchControl();
+      if (version === openingVersion && session && !closing && dialog.open) focusSearchControl();
     });
     onOpen();
-    renderResults(); paintMap();
-    void loadDocuments();
   }
 
   // The chart unfolds out of the astrolabe as an iris and folds back into it on close.
   // One progress value drives the aperture, the sheet, the staged furniture and the
   // star ignition, so an interrupted open closes from exactly where it was.
   let unfold = 0;
+  const unfoldLayers = [dialog, ...dialog.querySelectorAll('.search-artboard, .search-map, .search-heading, .search-bar, .search-filters, #search-index-toggle, .search-map canvas, .search-map-star')];
+  let unfoldValue = '';
   function setUnfold(value) {
     unfold = value;
-    dialog.style.setProperty('--unfold', value.toFixed(4));
+    const next = value.toFixed(4);
+    if (next === unfoldValue) return;
+    unfoldValue = next;
+    // This registered property does not inherit: update only the moving layers,
+    // rather than invalidating all title, image and reticle descendants per frame.
+    for (const layer of unfoldLayers) layer.style.setProperty('--unfold', next);
   }
   function aperture(origin, expandIndex = false) {
     const rect = dialog.getBoundingClientRect();
@@ -330,6 +382,7 @@ export function createArticleSearch({ articles, getScene, onRead, onOpen, onClos
     const y = origin ? origin.y - rect.top : rect.height * .92;
     const reach = Math.max(...[[0, 0], [rect.width, 0], [0, rect.height], [rect.width, rect.height]]
       .map(([cx, cy]) => Math.hypot(cx - x, cy - y)));
+    const extra = expandIndex ? Math.max(0, dialog.querySelector('.search-base').offsetWidth - rect.width) : 0;
     dialog.style.setProperty('--iris-x', `${x.toFixed(1)}px`);
     dialog.style.setProperty('--iris-y', `${y.toFixed(1)}px`);
     // Start at the dialog's nearest edge so the iris is visible from the first frame.
@@ -337,7 +390,6 @@ export function createArticleSearch({ articles, getScene, onRead, onOpen, onClos
     dialog.style.setProperty('--iris-r0', `${Math.max(0, near - 8).toFixed(1)}px`);
     // Cover the eventual panel width before its sidebar starts moving, so the
     // larger surface never pops out of the original, smaller aperture at rest.
-    const extra = expandIndex ? Math.max(0, dialog.querySelector('.search-base').offsetWidth - rect.width) : 0;
     dialog.style.setProperty('--iris-r', `${Math.ceil(reach + extra + 24)}px`);
   }
   function animateDialog(out = false, origin = entryOrigin, expandIndex = false) {
@@ -351,12 +403,17 @@ export function createArticleSearch({ articles, getScene, onRead, onOpen, onClos
       dialogAnimation = { start:performance.now(), duration:Math.max(1, full * Math.max(span, .35)),
         fromFocus, toFocus:out ? 0 : 1, fromUnfold, toUnfold:out ? 0 : 1, out, soft, expandIndex, resolve };
     });
+    animateBackdrop(dialogAnimation);
     tickDialog(performance.now());
     return finished;
   }
 
   function cancelDialogAnimation() {
     const current = dialogAnimation; dialogAnimation = null;
+    if (current) {
+      backdrop.transition = 'none';
+      setBackdrop(backdropFocus, current.soft);
+    }
     current?.resolve();
     artboard.inert = false; delete dialog.dataset.motion;
   }
@@ -366,7 +423,7 @@ export function createArticleSearch({ articles, getScene, onRead, onOpen, onClos
     const current = dialogAnimation, progress = unit((now - current.start) / current.duration);
     const curve = current.out ? exit : enter;
     setUnfold(current.fromUnfold + (current.toUnfold - current.fromUnfold) * curve(progress));
-    setBackdrop(current.fromFocus + (current.toFocus - current.fromFocus) * curve(progress), current.soft);
+    backdropFocus = current.fromFocus + (current.toFocus - current.fromFocus) * curve(progress);
     // Start the sidebar while the chart is still moving, before its long ease-out.
     if (current.expandIndex && progress >= .4) {
       current.expandIndex = false;
@@ -381,6 +438,8 @@ export function createArticleSearch({ articles, getScene, onRead, onOpen, onClos
 
   async function close() {
     if (!dialog.open || reading || closing) return;
+    openingVersion++;
+    dialog.removeAttribute('aria-busy');
     closing = true;
     await animateDialog(true);
     if (!closing) return;
@@ -520,7 +579,7 @@ export function createArticleSearch({ articles, getScene, onRead, onOpen, onClos
 
   entry.addEventListener('click', () => open(entry));
   for (const event of ['pointerenter', 'focus', 'touchstart']) {
-    entry.addEventListener(event, () => { void hydrate(dialog); }, { passive: true });
+    entry.addEventListener(event, () => { void prepare('high'); }, { passive: true });
   }
   document.getElementById('close-search').addEventListener('click', close);
   dialog.addEventListener('cancel', event => { event.preventDefault(); close(); });
@@ -559,9 +618,9 @@ export function createArticleSearch({ articles, getScene, onRead, onOpen, onClos
   }).observe(title);
 
   return {
-    prepare() { return hydrate(dialog, 'low'); },
+    prepare,
     get isOpen() { return dialog.open; },
-    suspend() { closing = false; cancelDialogAnimation(); dialog.close(); setUnfold(0); setBackdrop(0, isSoft()); },
+    suspend() { openingVersion++; dialog.removeAttribute('aria-busy'); closing = false; cancelDialogAnimation(); dialog.close(); setUnfold(0); setBackdrop(0, isSoft()); },
     resume() {
       if (!session || dialog.open) return;
       const anchor = readingTrigger?.isConnected ? readingTrigger.getBoundingClientRect() : null;
@@ -572,7 +631,7 @@ export function createArticleSearch({ articles, getScene, onRead, onOpen, onClos
       if (conditions.query.trim()) renderResults(true);
       feedback.textContent = `${results.children.length} 篇文章`;
     },
-    abandon() { session = false; closing = false; cancelDialogAnimation(); if (dialog.open) dialog.close(); setUnfold(0); setBackdrop(0, isSoft()); },
+    abandon() { openingVersion++; dialog.removeAttribute('aria-busy'); session = false; closing = false; cancelDialogAnimation(); if (dialog.open) dialog.close(); setUnfold(0); setBackdrop(0, isSoft()); },
     update(now, active) {
       tickDialog(now);
       entry.hidden = !active || dialog.open;
