@@ -1,0 +1,286 @@
+{
+  "conditions": "Chrome 156 / CPU 4x / 9Mbps / 100ms",
+  "finding": "Intermittent presentation stalls without matching script long tasks; repeated unmodified production measurements also pass. Keeping the full clip removes an unnecessary effect-state switch; timings do not prove a unique cause or universal elimination.",
+  "samples": {
+    "production": [
+      {
+        "device": "desktop",
+        "round": 1,
+        "action": "open",
+        "maxGapMs": 66.7,
+        "styleMs": 357.55,
+        "busyMs": 847.59,
+        "pass": true,
+        "longTasksMs": [
+          55
+        ],
+        "errors": []
+      },
+      {
+        "device": "desktop",
+        "round": 1,
+        "action": "close",
+        "maxGapMs": 16.8,
+        "styleMs": 140.66,
+        "busyMs": 250.53,
+        "pass": true,
+        "longTasksMs": [],
+        "errors": []
+      },
+      {
+        "device": "desktop",
+        "round": 2,
+        "action": "open",
+        "maxGapMs": 16.8,
+        "styleMs": 331.05,
+        "busyMs": 675.4,
+        "pass": true,
+        "longTasksMs": [],
+        "errors": []
+      },
+      {
+        "device": "desktop",
+        "round": 2,
+        "action": "close",
+        "maxGapMs": 16.8,
+        "styleMs": 129.33,
+        "busyMs": 238.46,
+        "pass": true,
+        "longTasksMs": [],
+        "errors": []
+      },
+      {
+        "device": "mobile",
+        "round": 1,
+        "action": "open",
+        "maxGapMs": 66.6,
+        "styleMs": 305.18,
+        "busyMs": 733.63,
+        "pass": true,
+        "longTasksMs": [
+          75
+        ],
+        "errors": []
+      },
+      {
+        "device": "mobile",
+        "round": 1,
+        "action": "close",
+        "maxGapMs": 183.3,
+        "styleMs": 99.37,
+        "busyMs": 216.49,
+        "pass": false,
+        "longTasksMs": [],
+        "errors": []
+      },
+      {
+        "device": "mobile",
+        "round": 2,
+        "action": "open",
+        "maxGapMs": 16.8,
+        "styleMs": 318.15,
+        "busyMs": 627.36,
+        "pass": true,
+        "longTasksMs": [],
+        "errors": []
+      },
+      {
+        "device": "mobile",
+        "round": 2,
+        "action": "close",
+        "maxGapMs": 116.6,
+        "styleMs": 154.67,
+        "busyMs": 269.42,
+        "pass": false,
+        "longTasksMs": [],
+        "errors": []
+      }
+    ],
+    "production-control-repeat": [
+      {
+        "device": "mobile",
+        "round": 1,
+        "action": "open",
+        "maxGapMs": 66.7,
+        "styleMs": 413.68,
+        "busyMs": 1190.18,
+        "pass": true,
+        "longTasksMs": [
+          54
+        ],
+        "errors": []
+      },
+      {
+        "device": "mobile",
+        "round": 1,
+        "action": "close",
+        "maxGapMs": 33.3,
+        "styleMs": 212.08,
+        "busyMs": 403.78,
+        "pass": true,
+        "longTasksMs": [],
+        "errors": []
+      },
+      {
+        "device": "mobile",
+        "round": 2,
+        "action": "open",
+        "maxGapMs": 33.3,
+        "styleMs": 351.64,
+        "busyMs": 724.52,
+        "pass": true,
+        "longTasksMs": [],
+        "errors": []
+      },
+      {
+        "device": "mobile",
+        "round": 2,
+        "action": "close",
+        "maxGapMs": 33.4,
+        "styleMs": 211.09,
+        "busyMs": 422.68,
+        "pass": true,
+        "longTasksMs": [],
+        "errors": []
+      }
+    ],
+    "production-keep-clip": [
+      {
+        "device": "mobile",
+        "round": 1,
+        "action": "open",
+        "maxGapMs": 33.3,
+        "styleMs": 316.08,
+        "busyMs": 741.42,
+        "pass": true,
+        "longTasksMs": [],
+        "errors": []
+      },
+      {
+        "device": "mobile",
+        "round": 1,
+        "action": "close",
+        "maxGapMs": 33.3,
+        "styleMs": 211.94,
+        "busyMs": 413.0,
+        "pass": true,
+        "longTasksMs": [],
+        "errors": []
+      },
+      {
+        "device": "mobile",
+        "round": 2,
+        "action": "open",
+        "maxGapMs": 16.8,
+        "styleMs": 296.22,
+        "busyMs": 597.63,
+        "pass": true,
+        "longTasksMs": [],
+        "errors": []
+      },
+      {
+        "device": "mobile",
+        "round": 2,
+        "action": "close",
+        "maxGapMs": 16.8,
+        "styleMs": 183.58,
+        "busyMs": 346.52,
+        "pass": true,
+        "longTasksMs": [],
+        "errors": []
+      }
+    ],
+    "clip-candidate": [
+      {
+        "device": "desktop",
+        "round": 1,
+        "action": "open",
+        "maxGapMs": 50,
+        "styleMs": 383.22,
+        "busyMs": 960.12,
+        "pass": true,
+        "longTasksMs": [
+          50
+        ],
+        "errors": []
+      },
+      {
+        "device": "desktop",
+        "round": 1,
+        "action": "close",
+        "maxGapMs": 16.8,
+        "styleMs": 192.14,
+        "busyMs": 370.98,
+        "pass": true,
+        "longTasksMs": [],
+        "errors": []
+      },
+      {
+        "device": "desktop",
+        "round": 2,
+        "action": "open",
+        "maxGapMs": 33.4,
+        "styleMs": 400.9,
+        "busyMs": 834.98,
+        "pass": true,
+        "longTasksMs": [],
+        "errors": []
+      },
+      {
+        "device": "desktop",
+        "round": 2,
+        "action": "close",
+        "maxGapMs": 16.8,
+        "styleMs": 181.21,
+        "busyMs": 324.94,
+        "pass": true,
+        "longTasksMs": [],
+        "errors": []
+      },
+      {
+        "device": "mobile",
+        "round": 1,
+        "action": "open",
+        "maxGapMs": 50,
+        "styleMs": 427.49,
+        "busyMs": 1082.18,
+        "pass": true,
+        "longTasksMs": [],
+        "errors": []
+      },
+      {
+        "device": "mobile",
+        "round": 1,
+        "action": "close",
+        "maxGapMs": 99.9,
+        "styleMs": 192.84,
+        "busyMs": 387.16,
+        "pass": true,
+        "longTasksMs": [],
+        "errors": []
+      },
+      {
+        "device": "mobile",
+        "round": 2,
+        "action": "open",
+        "maxGapMs": 33.4,
+        "styleMs": 369.45,
+        "busyMs": 760.89,
+        "pass": true,
+        "longTasksMs": [],
+        "errors": []
+      },
+      {
+        "device": "mobile",
+        "round": 2,
+        "action": "close",
+        "maxGapMs": 16.8,
+        "styleMs": 222.18,
+        "busyMs": 408.9,
+        "pass": true,
+        "longTasksMs": [],
+        "errors": []
+      }
+    ]
+  }
+}

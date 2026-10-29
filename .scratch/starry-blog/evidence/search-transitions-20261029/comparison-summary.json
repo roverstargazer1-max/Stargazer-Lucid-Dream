@@ -432,7 +432,7 @@
     "dualThemePreview": true,
     "dualThemeProductionBuild": true,
     "bundleBytesMatchPreviewAndProduction": true,
-    "visualPoses": 9,
+    "visualPoses": 12,
     "functionalScenarios": 7
   }
 }

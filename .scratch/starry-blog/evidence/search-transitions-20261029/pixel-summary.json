@@ -27,6 +27,15 @@
     "meanChannelDifference": 0.0
   },
   {
+    "device": "desktop",
+    "pose": "rest",
+    "size": [
+      2204,
+      1476
+    ],
+    "meanChannelDifference": 0.0
+  },
+  {
     "device": "mobile",
     "pose": "0.25",
     "size": [
@@ -54,6 +63,15 @@
     "meanChannelDifference": 0.0
   },
   {
+    "device": "mobile",
+    "pose": "rest",
+    "size": [
+      716,
+      1560
+    ],
+    "meanChannelDifference": 0.0
+  },
+  {
     "device": "landscape",
     "pose": "0.25",
     "size": [
@@ -74,6 +92,15 @@
   {
     "device": "landscape",
     "pose": "1",
+    "size": [
+      1392,
+      684
+    ],
+    "meanChannelDifference": 0.0
+  },
+  {
+    "device": "landscape",
+    "pose": "rest",
     "size": [
       1392,
       684

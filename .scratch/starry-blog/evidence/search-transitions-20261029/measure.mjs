@@ -56,6 +56,7 @@ try {
     const assets = await page.locator('script[src],link[rel="stylesheet"]').evaluateAll(nodes => nodes.map(node => node.src || node.href));
     await page.locator('#window-entry').click();
     await page.waitForFunction(() => document.body.dataset.room === 'outside' && !document.body.dataset.arrival);
+    if (process.env.PERF_PROBE === 'keep-clip') await page.addStyleTag({ content: '#star-search:not([data-motion]):not([data-soft=true]) { clip-path:circle(200vmax at 50% 50%); }' });
     if (process.env.PERF_PROBE === 'freeze-backdrop') await page.evaluate(() => {
       const rule = [...document.querySelectorAll('style')].find(sheet => sheet.textContent === '#star-search::backdrop {}')?.sheet.cssRules[0];
       if (!rule) throw Error('Dynamic backdrop rule missing');
