@@ -2,7 +2,6 @@
   "name": "hexo-theme-starfield",
   "version": "1.0.0",
   "description": "An illustrated starfield theme for Hexo with connected articles, search and a window-side journal.",
-  "license": "UNLICENSED",
   "engines": {
     "node": ">=22"
   },
