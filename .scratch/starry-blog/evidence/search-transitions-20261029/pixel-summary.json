@@ -1,0 +1,83 @@
+[
+  {
+    "device": "desktop",
+    "pose": "0.25",
+    "size": [
+      2204,
+      1476
+    ],
+    "meanChannelDifference": 0.0
+  },
+  {
+    "device": "desktop",
+    "pose": "0.6",
+    "size": [
+      2204,
+      1476
+    ],
+    "meanChannelDifference": 2e-06
+  },
+  {
+    "device": "desktop",
+    "pose": "1",
+    "size": [
+      2204,
+      1476
+    ],
+    "meanChannelDifference": 0.0
+  },
+  {
+    "device": "mobile",
+    "pose": "0.25",
+    "size": [
+      716,
+      1560
+    ],
+    "meanChannelDifference": 0.0
+  },
+  {
+    "device": "mobile",
+    "pose": "0.6",
+    "size": [
+      716,
+      1560
+    ],
+    "meanChannelDifference": 1e-06
+  },
+  {
+    "device": "mobile",
+    "pose": "1",
+    "size": [
+      716,
+      1560
+    ],
+    "meanChannelDifference": 0.0
+  },
+  {
+    "device": "landscape",
+    "pose": "0.25",
+    "size": [
+      1392,
+      684
+    ],
+    "meanChannelDifference": 0.0
+  },
+  {
+    "device": "landscape",
+    "pose": "0.6",
+    "size": [
+      1392,
+      684
+    ],
+    "meanChannelDifference": 4e-06
+  },
+  {
+    "device": "landscape",
+    "pose": "1",
+    "size": [
+      1392,
+      684
+    ],
+    "meanChannelDifference": 0.0
+  }
+]
