@@ -23,7 +23,7 @@ test('a stalled full-text index finishes with recoverable search feedback', asyn
   const source = fs.readFileSync('themes/stargazer-starfield/source/js/starfield/search.js', 'utf8');
   let renders = 0;
   const context = vm.createContext({
-    loaded: false, loading: null, loadError: false, dialog: { open: true, dataset: { searchUrl: '/search.json' } },
+    loaded: false, loading: null, loadError: false, conditions: { query: '梦' }, dialog: { open: true, dataset: { searchUrl: '/search.json' } },
     fetch: () => new Promise(() => {}), requestText: timeout,
     renderResults: () => renders++, console: { warn() {} },
   });
