@@ -1,0 +1,22 @@
+name: Starfield performance verification
+on:
+  push:
+    branches: [qa/starfield-performance-20261114]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.19.0'
+      - run: npm ci
+      - run: npm test
+      - run: npm install --prefix "$RUNNER_TEMP/starfield-browser" playwright@1.55.1
+      - name: Check live and preview interactions
+        run: node .scratch/starry-blog/perf-qa-20261114.mjs
