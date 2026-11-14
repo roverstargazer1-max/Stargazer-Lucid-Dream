@@ -16,7 +16,19 @@ jobs:
         with:
           node-version: '22.19.0'
       - run: npm ci
-      - run: npm test
+      - run: npm run preview:starfield
       - run: npm install --prefix "$RUNNER_TEMP/starfield-browser" playwright@1.55.1
-      - name: Check live and preview interactions
-        run: node .scratch/starry-blog/perf-qa-20261114.mjs
+      - name: Compare the same chart artwork and animations
+        run: |
+          cp -a .preview/stargazer "$RUNNER_TEMP/starfield-before"
+          git fetch --depth=1 origin 4ce6121fdfad4f3d94da91eda6c5b0c5776ed754
+          git checkout FETCH_HEAD -- themes/stargazer-starfield/source/js/starfield
+          node --input-type=commonjs -e "const fs = require('node:fs'), path = require('node:path'); const {buildAssets} = require('./themes/stargazer-starfield/lib/build-assets.js'); for (const [f,s] of buildAssets(path.resolve('themes/stargazer-starfield/source')).files) fs.writeFileSync(path.join(process.env.RUNNER_TEMP, 'starfield-before', f),s)"
+          node .scratch/starry-blog/evidence/performance-20261024/serve-production.mjs 4187 .preview/stargazer 4188 "$RUNNER_TEMP/starfield-before" &
+          export PLAYWRIGHT_MODULE="$RUNNER_TEMP/starfield-browser/node_modules/playwright/index.mjs"
+          evidence=.scratch/starry-blog/evidence/search-transitions-20261029
+          node "$evidence/visual-check.mjs"
+          python3 -m venv "$RUNNER_TEMP/pixel-check"
+          "$RUNNER_TEMP/pixel-check/bin/pip" install -q Pillow
+          "$RUNNER_TEMP/pixel-check/bin/python" "$evidence/pixels.py"
+          node .scratch/starry-blog/article-timing-qa-20261114.mjs
