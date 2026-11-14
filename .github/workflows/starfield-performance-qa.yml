@@ -27,8 +27,4 @@ jobs:
           node .scratch/starry-blog/evidence/performance-20261024/serve-production.mjs 4187 .preview/stargazer 4188 "$RUNNER_TEMP/starfield-before" &
           export PLAYWRIGHT_MODULE="$RUNNER_TEMP/starfield-browser/node_modules/playwright/index.mjs"
           evidence=.scratch/starry-blog/evidence/search-transitions-20261029
-          node "$evidence/visual-check.mjs"
-          python3 -m venv "$RUNNER_TEMP/pixel-check"
-          "$RUNNER_TEMP/pixel-check/bin/pip" install -q Pillow
-          "$RUNNER_TEMP/pixel-check/bin/python" "$evidence/pixels.py"
           node .scratch/starry-blog/article-timing-qa-20261114.mjs

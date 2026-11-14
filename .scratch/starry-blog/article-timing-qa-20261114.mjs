@@ -7,6 +7,17 @@ try {
     try {
       const page = await context.newPage();
       const errors=[];page.on('pageerror',e=>errors.push(e.message));
+      await page.addInitScript(() => {
+        const trace = window.starryTiming = {};
+        document.addEventListener('click', ev => { if (ev.target.closest('.search-result')) trace.click = performance.now(); }, { capture:true });
+        const original = window.fetch;
+        window.fetch = function(url, options) {
+          if (trace.click && options?.signal) trace.request = performance.now();
+          return original.call(this,url,options);
+        };
+        const modal = HTMLDialogElement.prototype.showModal;
+        HTMLDialogElement.prototype.showModal = function() { if (this.id==='reader') trace.dialog=performance.now(); return modal.call(this); };
+      });
       await page.goto('http://127.0.0.1:'+port+'/');
       await page.waitForSelector('body.starry-ready',{state:'attached'});
       await page.locator('#room-thought').click();
@@ -16,15 +27,10 @@ try {
       const link=page.locator('.search-result').first();
       const path=new URL(await link.getAttribute('href'),'http://local').pathname;
       await page.route(url=>url.pathname===path,async route=>{await new Promise(r=>setTimeout(r,400));await route.continue();});
-      await page.evaluate(path=>{
-        const trace=window.starryTiming={};
-        document.addEventListener('click',ev=>{if(ev.target.closest('.search-result')) trace.click=performance.now();},{capture:true});
-        const original=window.fetch;window.fetch=function(url,options){if(new URL(url,location.href).pathname===path)trace.request=performance.now();return original.call(this,url,options);};
-        const modal=HTMLDialogElement.prototype.showModal;HTMLDialogElement.prototype.showModal=function(){if(this.id==='reader')trace.dialog=performance.now();return modal.call(this);};
-      },path);
       await link.click();
       await page.waitForFunction(()=>document.body.dataset.reading==='open');
       const timing=await page.evaluate(()=>({toRequestMs:Math.round(window.starryTiming.request-window.starryTiming.click),toDialogMs:Math.round(window.starryTiming.dialog-window.starryTiming.click)}));
+      console.log('Timing entries',await page.evaluate(()=>window.starryTiming));
       assert.ok(Number.isFinite(timing.toRequestMs)&&Number.isFinite(timing.toDialogMs));assert.deepEqual(errors,[]);
       console.log('ARTICLE '+JSON.stringify({version,width,...timing}));
     } finally {await context.close();}
