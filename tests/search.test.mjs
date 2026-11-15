@@ -29,6 +29,17 @@ test('years and magnitudes intersect with keywords, and zero matches remain empt
   assert.deepEqual(findArticles(articles, documents, { query: '不存在的内容' }), []);
   assert.deepEqual(findArticles(articles, documents, { query: '思考 OpenAI' }).map(article => article.id), ['b']);
 });
+test('chart filters and metadata-only matches avoid reading full article bodies', () => {
+  const reads = [];
+  const bodyText = { get(id) { reads.push(id); return documents.get(id); } };
+  assert.deepEqual(findArticles(articles, bodyText, { year: '2026' }).map(item => item.id), ['b', 'c']);
+  assert.deepEqual(reads, []);
+  assert.deepEqual(findArticles(articles, bodyText, { year: '2025', query: '清醒梦 梦境' }).map(item => item.id), ['a']);
+  assert.deepEqual(reads, []);
+  assert.deepEqual(findArticles(articles, bodyText, { year: '2025', query: '梦想 开始' }).map(item => item.id), ['a']);
+  assert.deepEqual(reads, ['a']);
+});
+
 test('filtering does not mutate article identities, coordinates or metadata', () => {
   const snapshot = JSON.stringify(articles);
   findArticles(articles, documents, { year: '2025' });

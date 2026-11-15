@@ -1,6 +1,6 @@
 import { createInteractiveClouds, prepareInteractiveClouds } from './interactive-clouds.js';
 import { createRoom, paintCloudVeil, paintPaintedSky, paintPaintedStar, preparePaintedScene } from './painted.js';
-import { HOME_ELEVATION, MIN_SKY_ZOOM, clamp, domeDestination, direction, domePosition, projectDome } from './dome.js';
+import { HOME_ELEVATION, MIN_SKY_ZOOM, clamp, domeDestination, direction, domePosition, projectDome, createDomeProjector } from './dome.js';
 import { createStarMotion, ENTRANCE, entranceFrame, returnFrame, smooth } from './motion.js';
 import { approach } from './tokens.js';
 import { dockTarget } from './experience.js';
@@ -31,7 +31,9 @@ if (world) {
 async function start() {
   if (window.starfieldStartup?.failed) return;
   // Let the original room paint before the hidden sky interface competes for bandwidth.
-  await waitForImage(document.querySelector('.room-image'));
+  const roomImage = document.querySelector('.room-image');
+  const startsOutside = Boolean(body.dataset.starryArticleId || body.dataset.starryCollectionKind);
+  if (!startsOutside) await waitForImage(roomImage);
   if (window.starfieldStartup?.failed) return;
   await new Promise(resolve => requestAnimationFrame(() => setTimeout(resolve, 0)));
   const canvas = document.getElementById('sky');
@@ -123,12 +125,16 @@ async function start() {
   let articleSearch = null;
   let animationStarted = false;
   let navigationEdges = [];
-  let timeCueUntil = 0;
+  let timeCueTimer;
   let lineOpacity = 1;
   let lastCamera = null;
   let labelPointer = null;
   let lastFrame = 0;
+  let frameRequest = null;
+  // Give the adaptive budget its 16 resting intervals before the first flight.
+  let roomCalibrationFrames = 17;
   let restingFrameDrawn = false;
+  let readerWasOpen = false;
   let renderQualityPending = false;
   let foregroundQualityPending = false;
   const meteors = [];
@@ -143,9 +149,12 @@ async function start() {
   let ambient = { x: 0, y: 0, targetX: 0, targetY: 0, seconds: 0 };
 
   const indexUrl = new URL(body.dataset.starryIndex, location.origin);
-  const response = await fetch(indexUrl, { credentials: 'same-origin', cache: 'no-cache' });
-  if (!response.ok) throw new Error(`Starfield index request failed: ${response.status}`);
-  const index = await response.json();
+  // All three resources are needed for the first sky frame and are independent.
+  const indexReady = fetch(indexUrl, { credentials: 'same-origin', cache: 'no-cache' }).then(response => {
+    if (!response.ok) throw new Error(`Starfield index request failed: ${response.status}`);
+    return response.json();
+  });
+  const [index] = await Promise.all([indexReady, preparePaintedScene(), prepareInteractiveClouds()]);
   if (window.starfieldStartup?.failed) return;
   if (index.version !== 2 || !Array.isArray(index.articles)) throw new Error('The starfield index has an unsupported format.');
   articles = index.articles.map((item) => {
@@ -192,9 +201,9 @@ async function start() {
   }
 
   resize();
-  await Promise.all([preparePaintedScene(), prepareInteractiveClouds(), furnitureReady]);
+  await furnitureReady;
+  if (startsOutside) await waitForImage(roomImage);
   if (window.starfieldStartup?.failed) return;
-  await waitForImage(document.querySelector('.room-image'));
   clouds = createInteractiveClouds(world, () => reducedMotion || !renderBudget.current.ambientMotion);
   starMotion = createStarMotion({ preview, reader, scroller, isSoft: () => reducedMotion });
 
@@ -215,6 +224,7 @@ async function start() {
     },
     startOutside: isDirectEntry || isDirectCollection,
     onEnter(startTime) {
+      scheduleFrame();
       friendsSatellite.prepare();
       // Explicitly leaving the room is the first intent to explore/read. Use
       // the existing passage to warm its two next surfaces, without adding
@@ -241,6 +251,7 @@ async function start() {
       updateUI();
     },
     onReturnStart() {
+      scheduleFrame();
       retreatCamera = { ...camera };
       travel = null;
       arrival = null;
@@ -271,6 +282,7 @@ async function start() {
     },
     onMotion(value) {
       restingFrameDrawn = false;
+      scheduleFrame();
       reducedMotion = value;
     },
   });
@@ -290,6 +302,7 @@ async function start() {
     getScene: () => ({ camera, mode, selected, width, height, settings: projectionSettings(), positionOf }),
     articleUrl: localArticleUrl,
     onRead: openReaderFromSearch,
+    onAnimate: scheduleFrame,
     onOpen() {
       interrupt(); pointers.clear(); press = null; labelPointer = null;
       restingFrameDrawn = false; updateUI();
@@ -301,6 +314,7 @@ async function start() {
     document.addEventListener(name, event => {
       if (event.detail.open) { interrupt(); pointers.clear(); press = null; labelPointer = null; }
       restingFrameDrawn = false;
+      scheduleFrame();
     });
   }
   updateUI();
@@ -312,10 +326,15 @@ async function start() {
   if (isDirectEntry) openDirectArticle();
   else if (isDirectCollection) openCollectionPanel();
   animationStarted = true;
-  requestAnimationFrame(animate);
+  scheduleFrame();
+
+  function scheduleFrame() {
+    if (animationStarted && !document.hidden && frameRequest === null) frameRequest = requestAnimationFrame(animate);
+  }
 
   function resize() {
     restingFrameDrawn = false;
+    scheduleFrame();
     width = innerWidth;
     height = innerHeight;
     applyRenderQuality();
@@ -538,6 +557,7 @@ async function start() {
   }
 
   function updateUI() {
+    scheduleFrame();
     const isSelected = Boolean(article && selected === article.id);
     const shouldPreparePreview = isSelected && (animationStarted || !isDirectEntry) && !reader.open && !collectionOpen && !articleSearch?.isOpen;
     preview.hidden = !shouldPreparePreview || !observationReadyIds.has(article.id);
@@ -680,14 +700,14 @@ async function start() {
     }
   }
 
-  async function openReaderFromSearch(id, trigger) {
+  async function openReaderFromSearch(id, trigger, departure, canOpen) {
     if (!articleSearch?.isOpen || reader.open) return false;
     const targetArticle = articleById.get(id);
     if (!targetArticle) return false;
     void prepareReaderArt(targetArticle.title, 'high');
     try {
-      const node = await articleLoader.load(targetArticle);
-      if (!articleSearch.isOpen || reader.open || !node) return false;
+      const [node] = await Promise.all([articleLoader.load(targetArticle), departure]);
+      if (!canOpen() || !articleSearch.isOpen || reader.open || !node) return false;
       readingSnapshot = { camera: { ...camera }, selected, articleId: article?.id, phase, mode, searchOpen: true };
       readerTrigger = trigger;
       const rect = trigger.getBoundingClientRect();
@@ -700,6 +720,7 @@ async function start() {
       showReader({ x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 });
       return true;
     } catch (error) {
+      await departure;
       console.warn(`Search article "${id}" could not be opened.`, error);
       return false;
     }
@@ -994,7 +1015,9 @@ async function start() {
   function drawScene(now) {
     ctx.clearRect(0, 0, width, height);
     const seconds = reducedMotion || !renderBudget.current.ambientMotion ? null : ambient.seconds;
-    paintPaintedSky(ctx, width, height, camera, projectionSettings(), { x: ambient.x, y: ambient.y, seconds, clarity: 1, backgroundStride: renderBudget.current.backgroundStride });
+    const settings = projectionSettings();
+    const projectStar = createDomeProjector(camera, settings);
+    paintPaintedSky(ctx, width, height, camera, settings, { x: ambient.x, y: ambient.y, seconds, clarity: 1, backgroundStride: renderBudget.current.backgroundStride });
     if (animationStarted && body.dataset.domeRenderer !== 'webgl') throw new Error('The starfield renderer stopped being available.');
     visibleStars.clear();
     projectedStars.clear();
@@ -1006,7 +1029,7 @@ async function start() {
       .map(element => element.getBoundingClientRect()).filter(rect => rect.width && rect.height) : [];
     for (const item of articles) {
       const target = starTargets.get(item.id);
-      const projected = project(positionOf(item));
+      const projected = projectStar(positionOf(item));
       const point = projected && Number.isFinite(projected.x) && Number.isFinite(projected.y) ? projected : null;
       if (point) projectedStars.set(item.id, point);
       if (!showStars) {
@@ -1057,9 +1080,9 @@ async function start() {
       });
       if (selected === item.id) starMotion.paintFocus(ctx, point);
     }
-    paintCloudVeil(ctx, width, height, camera, projectionSettings());
+    paintCloudVeil(ctx, width, height, camera, settings);
     clouds?.update(Math.min(.05, (now - lastFrame) / 1000 || 0), Boolean(reader.open || arrival || roomScene?.active || egg.open));
-    clouds?.paint(ctx, width, height, camera, projectionSettings());
+    clouds?.paint(ctx, width, height, camera, settings);
   }
 
   function drawNavigationGuides() {
@@ -1134,11 +1157,23 @@ async function start() {
     const [year, month] = item.date.split('-');
     cue.textContent = year + ' 年 ' + Number(month) + ' 月';
     cue.hidden = false; cue.style.animation = 'none'; void cue.offsetWidth; cue.style.animation = '';
-    timeCueUntil = performance.now() + 3000;
+    clearTimeout(timeCueTimer);
+    timeCueTimer = setTimeout(() => { cue.hidden = true; }, 3000);
   }
 
   function animate(now) {
+    frameRequest = null;
+    if (document.hidden) return;
     try {
+      // The background already has its final frame. Only the reading figure
+      // moves here; a close, resize or navigation leaves this branch.
+      if (restingFrameDrawn && reader.open && body.dataset.reading === 'open' &&
+          !arrival && !travel && !meteors.length && !foregroundQualityPending && !renderQualityPending) {
+        readingWalker.render(now, phase === 'reading' && !readingMotionPreference.matches);
+        lastFrame = now;
+        scheduleFrame();
+        return;
+      }
       const renderStart = performance.now();
       if (renderQualityPending) {
         applyRenderQuality();
@@ -1190,8 +1225,10 @@ async function start() {
       observationPanel.render(now, !preview.hidden && !reducedMotion &&
         !document.hidden && !surfaceOpen && !roomScene?.active && !reader.open && !egg.open && !collectionOpen && !arrival);
       // Keep the gait alive while reading; scrolling controls its position separately.
-      readingWalker.render(now, reader.open && phase === 'reading' &&
-        !readingMotionPreference.matches && !document.hidden);
+      if (reader.open || readerWasOpen) {
+        readingWalker.render(now, reader.open && phase === 'reading' && !readingMotionPreference.matches);
+      }
+      readerWasOpen = reader.open;
       for (let i = meteors.length - 1; i >= 0; i--) {
         const meteor = meteors[i], age = (now - meteor.start) / 1800;
         if (age > 1) { meteors.splice(i, 1); continue; }
@@ -1200,7 +1237,6 @@ async function start() {
         ctx.moveTo(meteor.x + age * width * .22, meteor.y + age * height * .16);
         ctx.lineTo(meteor.x + age * width * .22 - 55, meteor.y + age * height * .16 - 30); ctx.stroke();
       }
-      if (timeCueUntil && now > timeCueUntil) document.getElementById('time-cue').hidden = true;
       starMotion.tick(now);
       const canSample = !reader.open && !egg.open && !articleSearch?.isOpen && !document.hidden;
       const movingScene = cameraIsMoving();
@@ -1209,8 +1245,14 @@ async function start() {
       // Resize at the beginning of the next draw. Clearing the canvas after this
       // frame was painted would expose an empty sky until the following RAF.
       if (drawingOverloaded || presentationOverloaded) renderQualityPending = true;
-      lastFrame = now;
-      requestAnimationFrame(animate);
+      // Native CSS continues independently. Wake the scene from its owning
+      // events when the window or an overlay holds a still sky.
+      if (roomCalibrationFrames && body.dataset.room === 'inside') roomCalibrationFrames--;
+      const calibrating = roomCalibrationFrames > 0 && body.dataset.room === 'inside';
+      const paused = staticScene && !calibrating && !reader.open && !articleSearch?.animating &&
+        !renderQualityPending && !foregroundQualityPending;
+      lastFrame = paused ? 0 : now;
+      if (!paused) scheduleFrame();
     } catch (error) {
       fallback(error);
     }
@@ -1285,11 +1327,19 @@ async function start() {
   }
 
   function wireControls() {
-    document.addEventListener('visibilitychange', () => { restingFrameDrawn = false; });
+    document.addEventListener('visibilitychange', () => {
+      restingFrameDrawn = false;
+      lastFrame = 0;
+      if (document.hidden) {
+        cancelAnimationFrame(frameRequest);
+        frameRequest = null;
+      } else scheduleFrame();
+    });
     document.getElementById('brand').addEventListener('click', event => { event.preventDefault(); enterHome(); });
     document.getElementById('close-egg').addEventListener('click', () => egg.close());
     document.getElementById('signal-egg').addEventListener('click', () => {
       meteors.push({ x: width * .58, y: height * .17, start: performance.now() });
+      scheduleFrame();
       announce('远方划过一点微光。');
     });
     document.getElementById('deselect').addEventListener('click', () => {

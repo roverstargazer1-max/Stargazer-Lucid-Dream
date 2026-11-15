@@ -16,10 +16,15 @@ export function findArticles(articles, documents, { query = '', year = '', magni
   return articles.flatMap(article => {
     if (year && article.date.slice(0, 4) !== String(year)) return [];
     if (magnitude !== '' && Number(article.magnitude) !== Number(magnitude)) return [];
+    if (!tokens.length) return [{ article, score: 0 }];
     const title = normalize(article.title), number = normalize(article.catalogNumber);
     const metadata = normalize([article.displayId, ...(article.tags || []), ...(article.categories || [])].join(' '));
-    const text = normalize(documents.get(article.id));
-    if (!tokens.every(token => [title, number, metadata, text].some(field => field.includes(token)))) return [];
+    let body;
+    if (!tokens.every(token => {
+      if (title.includes(token) || number.includes(token) || metadata.includes(token)) return true;
+      body ??= normalize(documents.get(article.id));
+      return body.includes(token);
+    })) return [];
     const score = tokens.reduce((total, token) => total + (number === token ? 100 : number.includes(token) ? 40
       : title === token ? 80 : title.includes(token) ? 30 : metadata.includes(token) ? 15 : 1), 0);
     return [{ article, score }];
@@ -46,7 +51,7 @@ export function viewFootprint(camera, settings, width, height) {
   return points;
 }
 
-export function createArticleSearch({ articles, getScene, onRead, onOpen, onClose, articleUrl, isSoft }) {
+export function createArticleSearch({ articles, getScene, onRead, onOpen, onClose, onAnimate, articleUrl, isSoft }) {
   const dialog = document.getElementById('star-search');
   const artboard = dialog.querySelector('.search-artboard');
   const entry = document.getElementById('search-entry');
@@ -278,6 +283,7 @@ export function createArticleSearch({ articles, getScene, onRead, onOpen, onClos
 
   function changed() {
     conditions.query = input.value;
+    if (conditions.query.trim() && !loaded && !loading && !loadError) void loadDocuments();
     if (conditions.query.trim() || conditions.year || conditions.magnitude) setIndex(true);
     renderResults();
   }
@@ -316,14 +322,15 @@ export function createArticleSearch({ articles, getScene, onRead, onOpen, onClos
       .then(text => {
         const data = JSON.parse(text);
         if (data.version !== 1 || !Array.isArray(data.documents)
-          || data.documents.some(item => typeof item.id !== 'string' || typeof item.text !== 'string')
-          || articles.some(article => !data.documents.some(item => item.id === article.id))) {
+          || data.documents.some(item => typeof item.id !== 'string' || typeof item.text !== 'string')) {
           throw new Error('The search documents do not match the published articles.');
         }
-        documents = new Map(data.documents.map(item => [item.id, item.text]));
+        const byId = new Map(data.documents.map(item => [item.id, item.text]));
+        if (articles.some(article => !byId.has(article.id))) throw new Error('The search documents do not match the published articles.');
+        documents = byId;
         loaded = true;
       }).catch(error => { loadError = true; console.warn('Article search could not be loaded.', error); })
-      .finally(() => { loading = null; if (dialog.open) renderResults(); });
+      .finally(() => { loading = null; if (dialog.open && conditions.query.trim()) renderResults(); });
     return loading;
   }
 
@@ -346,7 +353,6 @@ export function createArticleSearch({ articles, getScene, onRead, onOpen, onClos
     const layout = new Promise(resolve => requestAnimationFrame(() => {
       if (version === openingVersion && session && !closing && dialog.open) {
         renderResults();
-        void loadDocuments();
       }
       requestAnimationFrame(resolve);
     }));
@@ -405,6 +411,7 @@ export function createArticleSearch({ articles, getScene, onRead, onOpen, onClos
     });
     animateBackdrop(dialogAnimation);
     tickDialog(performance.now());
+    onAnimate();
     return finished;
   }
 
@@ -457,10 +464,13 @@ export function createArticleSearch({ articles, getScene, onRead, onOpen, onClos
     const star = starButtons.get(id);
     star?.classList.add('is-departing'); dialog.dataset.departing = 'true';
     try {
-      if (!isSoft()) await new Promise(resolve => setTimeout(resolve, 280));
-      if (!matched.has(id)) return;
-      const opened = dialog.open && await onRead(id, star?.isConnected ? star : trigger);
-      if (!opened && dialog.open) feedback.textContent = '这篇文章暂时无法加载，请重试。';
+      // Start the request at the click. Keep the complete departure beat,
+      // including when a cached article or a fast failure settles first.
+      const departure = isSoft() ? Promise.resolve() : new Promise(resolve => setTimeout(resolve, 280));
+      const version = openingVersion;
+      const canOpen = () => version === openingVersion && dialog.open && matched.has(id);
+      const opened = await onRead(id, star?.isConnected ? star : trigger, departure, canOpen);
+      if (!opened && canOpen()) feedback.textContent = '这篇文章暂时无法加载，请重试。';
     } finally {
       reading = false; dialog.removeAttribute('aria-busy');
       star?.classList.remove('is-departing'); delete dialog.dataset.departing;
@@ -599,7 +609,7 @@ export function createArticleSearch({ articles, getScene, onRead, onOpen, onClos
   input.addEventListener('input', event => { if (!composing && !event.isComposing) changed(); });
   dialog.querySelector('form').addEventListener('submit', event => {
     event.preventDefault(); if (composing) return; setIndex(true);
-    if (loadError) void loadDocuments();
+    if (loadError && input.value.trim()) void loadDocuments();
     changed();
     if (matchMedia('(pointer: coarse)').matches) input.blur();
   });
@@ -620,6 +630,7 @@ export function createArticleSearch({ articles, getScene, onRead, onOpen, onClos
   return {
     prepare,
     get isOpen() { return dialog.open; },
+    get animating() { return Boolean(dialogAnimation); },
     suspend() { openingVersion++; dialog.removeAttribute('aria-busy'); closing = false; cancelDialogAnimation(); dialog.close(); setUnfold(0); setBackdrop(0, isSoft()); },
     resume() {
       if (!session || dialog.open) return;
@@ -634,8 +645,9 @@ export function createArticleSearch({ articles, getScene, onRead, onOpen, onClos
     abandon() { openingVersion++; dialog.removeAttribute('aria-busy'); session = false; closing = false; cancelDialogAnimation(); if (dialog.open) dialog.close(); setUnfold(0); setBackdrop(0, isSoft()); },
     update(now, active) {
       tickDialog(now);
-      entry.hidden = !active || dialog.open;
-      if (!entry.hidden) astrolabe.update(getScene().camera);
+      const hidden = !active || dialog.open;
+      if (entry.hidden !== hidden) entry.hidden = hidden;
+      if (!hidden) astrolabe.update(getScene().camera);
     },
   };
 }

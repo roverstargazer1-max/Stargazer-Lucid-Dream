@@ -72,6 +72,37 @@ test('a failed speculative request is consumed and a later READ retries', async 
   assert.equal(calls, 2);
 });
 
+test('an indexed reader fragment serves both selection and READ without requesting the page', async () => {
+  const item = { ...article, readerUrl: '/starfield/starry/articles/dream.json' };
+  const calls = [];
+  const loader = createArticleLoader({
+    urlFor: () => article.path,
+    request: async url => { calls.push(url); return { ok: true, json: async () => ({ html: '<article/>' }) }; },
+    parsePage: (html, selected, fragment) => { assert.equal(selected, item); assert.equal(fragment, true); return html; },
+  });
+  await loader.prefetch(item);
+  assert.equal(await loader.load(item), '<article/>');
+  assert.deepEqual(calls, [item.readerUrl]);
+});
+
+test('a missing or mismatched reader fragment falls back to the canonical page in the same request budget', async () => {
+  const item = { ...article, readerUrl: '/starry/articles/dream.json' };
+  for (const stale of [{ ok: false }, { ok: true, json: async () => ({ html: '<wrong/>' }) }]) {
+    const calls = [];
+    const loader = createArticleLoader({
+      urlFor: () => article.path,
+      request: async (url, options) => { calls.push([url, options.signal]); return url === item.readerUrl ? stale : response; },
+      parsePage: (html, selected, fragment) => {
+        if (fragment) throw new Error('Wrong article identity');
+        return html;
+      },
+    });
+    assert.match(await loader.load(item), /readable text/);
+    assert.deepEqual(calls.map(([url]) => url), [item.readerUrl, article.path]);
+    assert.equal(calls[0][1], calls[1][1]);
+  }
+});
+
 test('invalid article pages are rejected and direct-entry content avoids a new request', async () => {
   let calls = 0;
   const loader = createArticleLoader({
