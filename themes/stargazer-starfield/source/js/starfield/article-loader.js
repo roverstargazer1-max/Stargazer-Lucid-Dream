@@ -9,7 +9,20 @@ export function createArticleLoader({ urlFor, request = fetch, parsePage = parse
     const controller = new AbortController();
     let timer;
     const work = (async () => {
-      const response = await request(urlFor(article), { credentials: 'same-origin', signal: controller.signal });
+      const options = { credentials: 'same-origin', signal: controller.signal };
+      if (article.readerUrl) {
+        try {
+          const response = await request(article.readerUrl, options);
+          if (response.ok) {
+            const { html } = await response.json();
+            return parsePage(html, article, true);
+          }
+        } catch (error) {
+          if (controller.signal.aborted) throw error;
+          // A stale index or mixed deployment can still use the public permalink.
+        }
+      }
+      const response = await request(urlFor(article), options);
       if (!response.ok) throw new Error(`Article request failed: ${response.status}`);
       return parsePage(await response.text(), article);
     })();
@@ -40,10 +53,12 @@ export function createArticleLoader({ urlFor, request = fetch, parsePage = parse
   };
 }
 
-function parseArticlePage(html, article) {
+function parseArticlePage(html, article, fragment = false) {
   const copy = new DOMParser().parseFromString(html, 'text/html');
-  if (copy.body.dataset.starryArticleId !== article.id) throw new Error('The article page did not match the starfield index.');
-  const node = copy.querySelector(`#static-article-fallback .article[data-starry-id="${CSS.escape(article.id)}"]`);
-  if (!node) throw new Error('The static article body is missing.');
+  const node = fragment ? copy.body.firstElementChild : copy.querySelector('#static-article-fallback > article.article');
+  if (!node?.matches('article.article') || node.dataset.starryId !== article.id ||
+      (!fragment && copy.body.dataset.starryArticleId !== article.id)) {
+    throw new Error('The article page did not match the starfield index.');
+  }
   return document.importNode(node, true);
 }

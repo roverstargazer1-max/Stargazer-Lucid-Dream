@@ -34,6 +34,8 @@ test('every published real article has its original address, readable body and s
     const $ = load(fs.readFileSync(path.join(root, article.path, 'index.html'), 'utf8'));
     assert.equal($('#reader-title').text(), post.title);
     assert.ok($('#reader-content').text().trim().length > 0);
+    const fragment = JSON.parse(fs.readFileSync(path.join(root, article.readerUrl), 'utf8'));
+    assert.equal(fragment.html, $.html($('#static-article-fallback > article')), 'The reader must get the entire canonical article, without the scene');
     $('#reader-content img').each((_, image) => {
       const src = $(image).attr('src');
       if (!/^(https?:|data:)/.test(src)) assert.ok(fs.existsSync(path.join(root, decodeURIComponent(new URL(src, 'http://local/' + article.path).pathname))), `Missing image ${src}`);

@@ -131,6 +131,12 @@ test('an ordinary post builds in both themes, survives a fresh checkout, and sup
     assert.equal(decodeURI(page(article.path)('[data-blog-theme-switch]').first().attr('href')), `/starfield/${article.path}`);
     assert.equal(decodeURI(page(`starfield/${article.path}`)('[data-blog-theme-switch]').first().attr('href')), `/${article.path}`);
     assertResources(page(`starfield/${article.path}`), `starfield/${article.path}`);
+    const alternateIndex = JSON.parse(fs.readFileSync(path.join(fixture, 'public/starfield/starry/index.json')));
+    const alternateReader = alternateIndex.articles.find(item => item.id === article.id).readerUrl;
+    assert.ok(alternateReader.startsWith('/starfield/'));
+    const fragment = JSON.parse(fs.readFileSync(path.join(fixture, 'public', alternateReader), 'utf8'));
+    const canonical = page(`starfield/${article.path}`);
+    assert.equal(fragment.html, canonical.html(canonical('#static-article-fallback > article')));
     assertResources(page('starfield/journal'), 'starfield/journal/');
     assert.equal(page('starfield/journal')('.journal-entry').length, 1);
     assert.equal(new URL(page('starfield/journal')('link[rel="canonical"]').attr('href')).pathname, '/starfield/journal/');

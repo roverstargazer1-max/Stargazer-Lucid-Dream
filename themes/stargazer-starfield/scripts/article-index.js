@@ -3,6 +3,9 @@ const { normalizeStar } = require('../lib/star');
 const { articleTimeOrder } = require('../lib/article-order');
 const { readCatalogueNumbers, makeDisplayId } = require('../lib/catalogue');
 const { load } = require('cheerio');
+const { text } = require('node:stream/consumers');
+
+const readerPath = id => `starry/articles/${id}.json`;
 
 hexo.extend.generator.register('starry-article-index', function (locals) {
   if (hexo.config.theme !== 'stargazer-starfield') return [];
@@ -61,6 +64,7 @@ hexo.extend.generator.register('starry-article-index', function (locals) {
       timeOrder: articleTimeOrder(post),
       path,
       url: String(post.permalink),
+      readerUrl: hexo.config.root + readerPath(id),
       position: saved.position,
       ...star,
       constellation: typeof post.starry_constellation === 'string' ? post.starry_constellation.trim() : '',
@@ -88,6 +92,23 @@ hexo.extend.generator.register('starry-article-index', function (locals) {
     path: 'starry/index.json',
     data: JSON.stringify({ version: 2, featuredArticleId, articles, archivePeriods: [...archivePeriods.values()], relations }),
   };
+});
+
+hexo.extend.generator.register('starry-reader-fragments', function (locals) {
+  if (hexo.config.theme !== 'stargazer-starfield') return [];
+  // Extract the final, rendered article so pagers, scoped styles, embeds and
+  // alternate-theme URLs always match what a direct visitor receives.
+  return locals.posts.toArray().filter(post => post.published !== false).map(post => ({
+    path: readerPath(post.starry_id),
+    async data() {
+      const $ = load(await text(hexo.route.get(post.path)));
+      const node = $('#static-article-fallback > article.article');
+      if (node.length !== 1 || node.attr('data-starry-id') !== post.starry_id) {
+        throw new Error(`Missing rendered article for ${post.path}`);
+      }
+      return JSON.stringify({ html: $.html(node) });
+    },
+  }));
 });
 
 hexo.extend.generator.register('starry-search-index', function (locals) {
