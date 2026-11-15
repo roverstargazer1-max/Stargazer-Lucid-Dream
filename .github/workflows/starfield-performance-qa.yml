@@ -28,3 +28,24 @@ jobs:
           export PLAYWRIGHT_MODULE="$RUNNER_TEMP/starfield-browser/node_modules/playwright/index.mjs"
           evidence=.scratch/starry-blog/evidence/search-transitions-20261029
           node .scratch/starry-blog/article-timing-qa-20261114.mjs
+
+  verify-reader:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: b0fd0461f525fbacf59ef7beef3d2198f101f09d
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          path: qa-harness
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.19.0'
+      - run: npm ci
+      - run: npm test
+      - run: npm install --prefix "$RUNNER_TEMP/starfield-browser" playwright@1.55.1
+      - name: Compare production and preview article navigation
+        run: node qa-harness/.scratch/starry-blog/perf-qa-20261114.mjs

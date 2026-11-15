@@ -10,7 +10,12 @@ async function check(name, url, width, height, candidate) {
   try {
     const page = await context.newPage();
     const errors = [];
-    let docs = 0;
+    let docs = 0, readerFragments = 0, fullPageFetches = 0;
+    page.on('response', response => {
+      const path = new URL(response.url()).pathname;
+      if (path.includes('/starry/articles/') && path.endsWith('.json') && response.status() === 200) readerFragments++;
+      if (response.request().resourceType() === 'fetch' && /^\/\d{4}\//.test(path)) fullPageFetches++;
+    });
     page.on('request', req => { if(new URL(req.url()).pathname.endsWith('/starry/search.json')) docs++; });
     page.on('pageerror', err=> errors.push(err.message));
     await page.addInitScript(() => {
@@ -48,6 +53,10 @@ async function check(name, url, width, height, candidate) {
     await page.waitForFunction(()=>document.body.dataset.reading==='open');
     const articleTitle=await page.locator('#reader #reader-title').textContent();
     assert.ok(articleTitle);
+    if (candidate) {
+      assert.equal(readerFragments, 1, 'read the generated article fragment');
+      assert.equal(fullPageFetches, 0, 'avoid the full page fetch');
+    }
     await page.locator('#close-reader').click();
     await settled();
     assert.equal(await page.locator('#search-query').inputValue(),'SLD-0001');
@@ -62,7 +71,7 @@ async function check(name, url, width, height, candidate) {
     await page.waitForFunction(()=>!document.querySelector('#reader').open);
     assert.deepEqual(errors,[]);
     if(candidate){assert.equal(room,0);assert.equal(chart,0);}
-    const result={name,width,readyMs,roomCallbacks2s:room,chartCallbacks2s:chart,docsOnOpen,articleTitle,errors};
+    const result={name,width,readyMs,roomCallbacks2s:room,chartCallbacks2s:chart,docsOnOpen,readerFragments,fullPageFetches,articleTitle,errors};
     console.log('PERF '+JSON.stringify(result));summary.push(result);
   } finally { await context.close(); }
 }
