@@ -85,8 +85,8 @@
 .search-index-columns { position:absolute; inset:0 0 auto; height:calc(var(--chart-width) * 37 / 1440); }
 .search-name-heading { position:absolute; left:0; top:calc(var(--chart-width) * 16 / 1440); width:calc(var(--chart-width) * 74 / 1440); height:auto; }
 .search-id-heading { position:absolute; right:0; top:0; width:calc(var(--chart-width) * 30 / 1440); height:auto; }
-/* Keep the titles aligned with NAME, with an unclipped gutter for the selection mark. */
-#search-results { position:absolute; inset:calc(var(--chart-width) * 65 / 1440) 0 48px -28px; padding-left:28px; overflow-y:auto; overscroll-behavior:contain; scrollbar-width:thin; scrollbar-color:#4480de transparent; }
+/* Leave room outside the rows for the selection mark and the overlay scrollbar. */
+#search-results { position:absolute; inset:calc(var(--chart-width) * 65 / 1440) -10px 48px -28px; padding:0 14px 0 28px; overflow-y:auto; overscroll-behavior:contain; scrollbar-width:thin; scrollbar-color:#4480de transparent; }
 .search-result { position:relative; display:flex; align-items:center; justify-content:space-between; gap:12px; min-height:64px; padding:12px 2px; color:var(--ink); border-bottom:1px solid rgb(157 201 255 / .12); text-decoration:none; font-size:clamp(14px,1.05vw,17px); line-height:1.6; transition:color var(--dur-hover) var(--ease-enter); }
 .search-result-name { flex:1; min-width:0; overflow-wrap:anywhere; }
 .search-result-name > span { font-family:var(--display); font-weight:400; font-synthesis:none; }
@@ -300,7 +300,7 @@ body:not(.starry-ready) #search-entry { display:none; }
 
 /* Index panel: unrolls from the chart's edge instead of fading as a block. */
 #search-index { clip-path:inset(0 100% 0 0); transform:none; transition:clip-path var(--dur-quick) var(--ease-exit), opacity var(--dur-quick) var(--ease-exit), visibility 0s var(--dur-quick); }
-[data-index-open=true] #search-index { clip-path:inset(0 0 0 -28px); transform:none; transition:clip-path var(--dur-scene) var(--ease-settle) 60ms, opacity var(--dur-quick) var(--ease-enter) 60ms, visibility 0s; }
+[data-index-open=true] #search-index { clip-path:inset(0 -10px 0 -28px); transform:none; transition:clip-path var(--dur-scene) var(--ease-settle) 60ms, opacity var(--dur-quick) var(--ease-enter) 60ms, visibility 0s; }
 /* The initial sidebar joins the moving chart, without its own delayed settle. */
 #star-search[data-motion=opening][data-index-open=true] #search-index { transition:clip-path var(--dur-panel) var(--ease-enter), opacity var(--dur-hover) var(--ease-enter), visibility 0s; }
 #star-search { transition:width var(--dur-panel) var(--ease-settle); }
