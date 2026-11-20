@@ -1119,27 +1119,15 @@ async function start() {
       }
     }
     ctx.restore();
-    const visible = [...starTargets.values()].some(target => !target.hidden);
     const hint = hints[0];
-    if (phase === 'moving' || lineOpacity < .5) {
+    if (!hint || selected || phase === 'moving' || lineOpacity < .5) {
       edgeGuide.present(null);
       return;
     }
-    let guideState = null;
-    if (hint && !selected) {
-      const obstacles = [...document.querySelectorAll('#world nav,#world nav .mode-switch,#world header,#preview,.signal-egg,#search-entry,.friends-entry-sky,.journal-sky-entry')].filter(el => !el.hidden).map(el => el.getBoundingClientRect());
-      if (!obstacles.some(rect => hint.point.x + 24 > rect.left && hint.point.x - 24 < rect.right && hint.point.y + 24 > rect.top && hint.point.y - 24 < rect.bottom)) {
-        guideState = { left: hint.point.x + 'px', top: hint.point.y + 'px', text: '›', articleId: hint.id };
-      }
-    } else if (!visible && articles.length) {
-      const target = articles.reduce((nearest, item) => {
-        const point = positionOf(item), ray = direction(camera.yaw, camera.pitch);
-        const score = (point.x * ray.x + point.y * ray.y + point.z * ray.z) / Math.hypot(point.x, point.y, point.z);
-        return !nearest || score > nearest.score ? { item, score } : nearest;
-      }, null).item;
-      guideState = { left: '50%', top: 'calc(100% - 110px)', text: '✧', articleId: target.id };
-    }
-    edgeGuide.present(guideState);
+    const obstacles = [...document.querySelectorAll('#world nav,#world nav .mode-switch,#world header,#preview,.signal-egg,#search-entry,.friends-entry-sky,.journal-sky-entry')].filter(el => !el.hidden).map(el => el.getBoundingClientRect());
+    const { x, y } = hint.point;
+    const obstructed = obstacles.some(rect => x + 24 > rect.left && x - 24 < rect.right && y + 24 > rect.top && y - 24 < rect.bottom);
+    edgeGuide.present(obstructed ? null : { left: x + 'px', top: y + 'px', articleId: hint.id });
   }
 
   function drawGuideLine(origin, target) {

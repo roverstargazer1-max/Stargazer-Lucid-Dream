@@ -15,7 +15,6 @@ export function createEdgeGuide(element, activate) {
       })) {
         if (element.style[property] !== value) element.style[property] = value;
       }
-      if (element.textContent !== state.text) element.textContent = state.text;
       if (element.hidden) element.hidden = false;
     },
   };
