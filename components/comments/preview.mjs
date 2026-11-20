@@ -26,6 +26,10 @@ export function previewComments(filename) {
     try {
       const query = new URL(req.url, 'http://localhost').searchParams;
       if (req.method === 'GET') {
+        if (query.get('type') === 'recent') {
+          const rows = db().prepare('SELECT * FROM comments ORDER BY insertedAt DESC, rowid DESC LIMIT 50').all();
+          return send(200, rows.map(render));
+        }
         const article = query.get('path');
         const page = Math.max(1, Math.min(100000, parseInt(query.get('page'), 10) || 1));
         const count = db().prepare('SELECT count(*) AS count FROM comments WHERE url = ?').get(article).count;

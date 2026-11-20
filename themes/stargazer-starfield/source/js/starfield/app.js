@@ -1,3 +1,4 @@
+import { createCommentMeteors } from './comment-meteors.js';
 import { createInteractiveClouds, prepareInteractiveClouds } from './interactive-clouds.js';
 import { createRoom, paintCloudVeil, paintPaintedSky, paintPaintedStar, preparePaintedScene } from './painted.js';
 import { HOME_ELEVATION, MIN_SKY_ZOOM, clamp, domeDestination, direction, domePosition, projectDome, createDomeProjector } from './dome.js';
@@ -140,6 +141,7 @@ async function start() {
   const meteors = [];
   const commentSky = document.getElementById('comment-sky');
   const loadCommentModule = () => import(commentSky.dataset.module);
+  let commentMeteors;
   let unmountComments;
   let commentMountVersion = 0;
   const egg = document.getElementById('egg-dialog');
@@ -313,9 +315,15 @@ async function start() {
     },
     onClose() { restingFrameDrawn = false; updateUI(); },
   });
+  commentMeteors = createCommentMeteors({
+    layer: commentSky, articles: articles.filter(item => item.comments !== false), getSelected: () => selected, isSoft: () => reducedMotion || readingMotionPreference.matches,
+    getScene: () => ({ camera, width, height, settings: projectionSettings() }),
+    loadModule: loadCommentModule, open: openMeteorComment,
+  });
   wireControls();
   for (const name of ['starry:journal', 'starry:friends']) {
     document.addEventListener(name, event => {
+      syncMeteors();
       if (event.detail.open) { interrupt(); pointers.clear(); press = null; labelPointer = null; }
       restingFrameDrawn = false;
       scheduleFrame();
@@ -560,7 +568,36 @@ async function start() {
     });
   }
 
+  function syncMeteors() {
+    commentMeteors?.setActive(!world.hidden && body.dataset.room === 'outside' && !arrival && !roomScene?.active &&
+      !document.hidden && !reader.open && !collectionOpen && !articleSearch?.isOpen && !egg.open &&
+      body.dataset.journalOpen !== 'true' && body.dataset.friendsOpen !== 'true');
+  }
+
+  async function openMeteorComment(targetArticle, anchor, trigger) {
+    if (reader.open || trigger.getAttribute('aria-busy') === 'true') return;
+    trigger.setAttribute('aria-busy', 'true');
+    interrupt();
+    const version = ++readerRequestVersion;
+    try {
+      await articleLoader.load(targetArticle);
+      if (version !== readerRequestVersion || reader.open || !trigger.isConnected) return;
+      readerTrigger = selected ? starTargets.get(selected) : homeButton;
+      history.pushState({ starryView: 'reader', starryArticleId: targetArticle.id, mode }, '',
+        localArticleUrl(targetArticle).pathname + '#' + anchor);
+      window.blogThemeSwitch?.refresh();
+      await openReaderFromHistory(targetArticle.id);
+    } catch {
+      if (version === readerRequestVersion && trigger.isConnected) {
+        trigger.querySelector('.meteor-note span').textContent = '加载失败，点击重试';
+      }
+    } finally {
+      trigger.removeAttribute('aria-busy');
+    }
+  }
+
   function updateUI() {
+    syncMeteors();
     scheduleFrame();
     const isSelected = Boolean(article && selected === article.id);
     const shouldPreparePreview = isSelected && (animationStarted || !isDirectEntry) && !reader.open && !collectionOpen && !articleSearch?.isOpen;
@@ -1094,6 +1131,7 @@ async function start() {
       });
       if (selected === item.id) starMotion.paintFocus(ctx, point);
     }
+    commentMeteors.paint(ctx, now, projectStar, width, height);
     paintCloudVeil(ctx, width, height, camera, settings);
     clouds?.update(Math.min(.05, (now - lastFrame) / 1000 || 0), Boolean(reader.open || arrival || roomScene?.active || egg.open));
     clouds?.paint(ctx, width, height, camera, settings);
@@ -1152,6 +1190,7 @@ async function start() {
     document.getElementById('egg-title').textContent = title;
     document.getElementById('egg-copy').textContent = copy;
     egg.showModal();
+    syncMeteors();
   }
 
   function showTimeCue(item) {
@@ -1330,6 +1369,7 @@ async function start() {
 
   function wireControls() {
     document.addEventListener('starry:fallback', () => {
+      commentMeteors.setActive(false);
       commentMountVersion++;
       unmountComments?.();
       unmountComments = null;
@@ -1340,7 +1380,10 @@ async function start() {
       unmountComments?.();
       unmountComments = null;
     });
+    egg.addEventListener('close', syncMeteors);
+    readingMotionPreference.addEventListener('change', () => { commentMeteors.setActive(false); syncMeteors(); });
     document.addEventListener('visibilitychange', () => {
+      syncMeteors();
       restingFrameDrawn = false;
       lastFrame = 0;
       if (document.hidden) {

@@ -26,6 +26,23 @@ async function request(api, query, options = {}) {
   }
 }
 
+// A small recent feed is one request. For a larger site, also draw a page
+// from a random article so older comments stay discoverable without a full crawl.
+export async function meteorComments(api, articles, signal) {
+  const rows = await request(api, { type: 'recent', count: 50 }, { signal });
+  if (rows.length >= 50 && articles.length) {
+    const article = articles[Math.floor(Math.random() * articles.length)];
+    const query = { path: article.id, pageSize: 20, sortBy: 'insertedAt_desc' };
+    let sample = await request(api, { ...query, page: 1 }, { signal });
+    const page = 1 + Math.floor(Math.random() * sample.totalPages);
+    if (page > 1) sample = await request(api, { ...query, page }, { signal });
+    for (const row of sample.data) rows.push(row, ...(row.children || []));
+  }
+  return [...new Map(rows.map(row => [String(row.objectId), {
+    id: String(row.objectId), articleId: row.url, excerpt: commentText(row.comment),
+  }])).values()].filter(row => row.excerpt);
+}
+
 export function mountComments(section, api, anchor = '') {
   const articleId = section.closest('[data-starry-id]').dataset.starryId;
   const form = section.querySelector('form');
