@@ -14,6 +14,7 @@ import { createObservationPanel } from './observation.js';
 import { createPolyhedron } from './polyhedron.js';
 import { createSilhouetteWalker } from './silhouette-walker.js';
 import { readingProgress } from './reading-progress.js';
+import { setupReaderZoom } from './reader-zoom.js';
 import { constrainSkyCamera, skyProjection } from './camera-bounds.js';
 import { createArticleSearch } from './search.js';
 import { prepareReaderArt } from './reader-art.js';
@@ -1368,6 +1369,7 @@ async function start() {
   }
 
   function wireControls() {
+    setupReaderZoom(reader, scroller);
     document.addEventListener('starry:fallback', () => {
       commentMeteors.setActive(false);
       commentMountVersion++;

@@ -113,6 +113,12 @@
   <div class="reading-frame">
     <header class="reading-header">
       <span id="reading-window-title" class="sr-only">观星者的清醒梦</span>
+      <button id="reader-zoom-toggle" type="button" popovertarget="reader-zoom-panel">缩放</button>
+      <div id="reader-zoom-panel" popover>
+        <div class="reader-zoom-label"><label for="reader-zoom">版面缩放</label><span id="reader-zoom-value" aria-hidden="true">100%</span></div>
+        <input id="reader-zoom" type="range" min="60" max="120" step="1" value="100">
+        <div class="reader-zoom-options"><span>60%</span><button id="reader-zoom-reset" type="button">恢复默认</button><span>120%</span></div>
+      </div>
       <% const readerThemeSwitch = blog_theme_switch(page); if (readerThemeSwitch) { %>
       <a class="blog-theme-switch" data-blog-theme-switch href="<%= readerThemeSwitch.href %>"><%= readerThemeSwitch.label %></a>
       <% } %>
