@@ -86,6 +86,13 @@
 			}) %>
 		<% } %>
 	</div>
+	<% if (page.starry_id && page.comments !== false) { %>
+  <div class="kira-post-footer" data-kira-comments data-starry-id="<%= page.starry_id %>" data-api="<%= blog_comment_api() %>">
+    <link rel="stylesheet" href="<%= url_for('css/article-comments.css') %>">
+    <%- blog_comment_thread() %>
+    <script type="module" src="<%= url_for('js/article-comments.js') %>"></script>
+  </div>
+  <% } %>
 	<% if (page.comments){ %>
 	<div class="kira-post-footer">
 		<%- partial('components/comments/gitalk') %>

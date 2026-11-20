@@ -100,6 +100,7 @@ theme: stargazer-starfield
 
 # npm run build publishes both themes. Choose which one occupies the root URL.
 blog:
+  comments_server: "" # 正式 Waline 服务地址；本地双主题预览使用自己的评论库
   default_theme: starfield # starfield or legacy; the other theme gets a subdirectory
 
 # Deployment

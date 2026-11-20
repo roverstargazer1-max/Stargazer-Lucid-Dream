@@ -36,6 +36,7 @@ function buildBlog({ preview = false } = {}) {
         url: new URL(routeRoot, config.url).href,
         public_dir: path.join(output, routeRoot.slice(1)),
         starry_journal_preview: preview,
+        blog_comments_preview: preview,
         dual_theme: { current_root: routeRoot, target_root: roots[name === 'starfield' ? 'legacy' : 'starfield'] },
       }));
       const args = ['--config', `_config.yml,${override}`];

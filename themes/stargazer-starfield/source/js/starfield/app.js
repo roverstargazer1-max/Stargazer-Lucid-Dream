@@ -138,6 +138,10 @@ async function start() {
   let renderQualityPending = false;
   let foregroundQualityPending = false;
   const meteors = [];
+  const commentSky = document.getElementById('comment-sky');
+  const loadCommentModule = () => import(commentSky.dataset.module);
+  let unmountComments;
+  let commentMountVersion = 0;
   const egg = document.getElementById('egg-dialog');
   const renderBudget = createRenderBudget({ hardwareConcurrency: navigator.hardwareConcurrency,
     deviceMemory: navigator.deviceMemory, roomBlur: body.dataset.passageBlur === 'on' });
@@ -732,6 +736,9 @@ async function start() {
   }
 
   function showReader(origin) {
+    const version = ++commentMountVersion;
+    unmountComments?.();
+    unmountComments = null;
     document.getElementById('reading-window-title').textContent = `${article.title} · 观星者的清醒梦`;
     if (!reader.open) reader.showModal();
     scroller.scrollTop = 0;
@@ -742,6 +749,13 @@ async function start() {
     starMotion.open(origin, () => {
       phase = 'reading';
       updateProgress();
+      const section = readerSlot.querySelector('.article-comments');
+      if (section) loadCommentModule().then(({ mountComments }) => {
+        if (version !== commentMountVersion || !reader.open || !section.isConnected) return;
+        const anchor = location.hash.slice(1);
+        unmountComments = mountComments(section, commentSky.dataset.api,
+          /^(article-comments|comment-[\w-]+)$/.test(anchor) ? anchor : '');
+      }).catch(() => { section.querySelector('[data-comment-status]').textContent = '评论组件暂时无法加载。'; });
     });
     document.getElementById('close-reader').focus({ preventScroll: true });
     updateUI();
@@ -1315,6 +1329,17 @@ async function start() {
   }
 
   function wireControls() {
+    document.addEventListener('starry:fallback', () => {
+      commentMountVersion++;
+      unmountComments?.();
+      unmountComments = null;
+    }, { once: true });
+    reader.addEventListener('close', () => {
+      if (reader.open) return;
+      commentMountVersion++;
+      unmountComments?.();
+      unmountComments = null;
+    });
     document.addEventListener('visibilitychange', () => {
       restingFrameDrawn = false;
       lastFrame = 0;
@@ -1556,6 +1581,7 @@ function setText(element, value) {
 }
 
 function fallback(error) {
+  document.dispatchEvent(new Event('starry:fallback'));
   window.starfieldStartup?.fail();
   if (error) console.error('Starfield enhancement stayed in the readable fallback.', error);
   pauseEmbeddedMedia();
@@ -1568,6 +1594,11 @@ function fallback(error) {
       document.body.append(staticArticle);
     }
     staticArticle.replaceChildren(articleNode);
+    const section = articleNode.querySelector('.article-comments');
+    const sky = document.getElementById('comment-sky');
+    if (section && sky) import(sky.dataset.module).then(({ mountComments }) => {
+      mountComments(section, sky.dataset.api, location.hash.slice(1));
+    }).catch(() => { section.querySelector('[data-comment-status]').textContent = '评论组件暂时无法加载。'; });
     document.getElementById('home-fallback')?.setAttribute('hidden', '');
   }
   document.getElementById('reader')?.open && document.getElementById('reader').close();

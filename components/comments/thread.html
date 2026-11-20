@@ -1,0 +1,25 @@
+<section class="article-comments" id="article-comments" aria-label="文章评论" tabindex="-1">
+  <div class="comment-heading">
+    <h2>文章留言</h2>
+    <span class="comment-total" data-comment-total hidden></span>
+    <span class="comment-orbit" aria-hidden="true"><i></i></span>
+  </div>
+  <form class="comment-form">
+    <label class="comment-message">
+      <span class="comment-label">留言内容</span>
+      <textarea name="comment" required maxlength="2000" rows="3" placeholder="读到这里，有什么想说的？"></textarea>
+    </label>
+    <div class="comment-form-foot">
+      <label class="comment-signature">
+        <span>昵称</span>
+        <input name="nick" required maxlength="40" autocomplete="nickname" placeholder="怎么称呼你？">
+      </label>
+      <button class="comment-send" type="submit" disabled>发表留言<span aria-hidden="true">↗</span></button>
+    </div>
+  </form>
+  <p role="status" class="comment-feedback" data-comment-status></p>
+  <ol class="comment-list" aria-label="已有评论"></ol>
+  <p class="comment-list-status" role="status"></p>
+  <button type="button" data-comment-more hidden>查看更多</button>
+  <noscript>开启 JavaScript 后可以查看和发表留言。</noscript>
+</section>

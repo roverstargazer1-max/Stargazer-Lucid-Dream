@@ -22,6 +22,7 @@
         </li><% } %></ul><% } %>
       </section>
       <%- partial('partial/article-pagination') %>
+      <% if (page.comments !== false) { %><%- blog_comment_thread() %><% } %>
     </article>
   </main>
 <% } else { %>
