@@ -102,6 +102,7 @@ body[data-room="inside"] #world, body[data-room="entering"] #world > :not(#sky),
 .article-meta { display: flex; flex-wrap: wrap; gap: 8px 16px; color: var(--paper-muted); font-size: 12px; line-height: 1.7; letter-spacing: .5px; }
 .article h1 { margin: 20px 0; color: #293e5b; font: 400 clamp(28px, 3vw, 38px)/1.5 var(--serif); letter-spacing: .5px; text-wrap: balance; overflow-wrap: anywhere; }
 .article-intro { color: var(--paper-muted); font: 15px/2 var(--serif); }
+.article-feed-link { display: inline-flex; align-items: center; justify-self: start; min-height: 44px; color: inherit; font: var(--step-small)/1.5 var(--sans); text-decoration: underline; text-underline-offset: .2em; }
 .article-media { max-width: 100%; margin: 22px 0 28px; overflow: hidden; }
 .article-rule { width: 32px; height: 1px; margin: 24px 0; background: #98a1aa; transform-origin: left; }
 #reader-content, .article-content { color: var(--paper-ink); }
@@ -139,7 +140,6 @@ body[data-room="inside"] #world, body[data-room="entering"] #world > :not(#sky),
 .fallback-actions { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 32px; margin-top: 28px; }
 .fallback-retry, .fallback-legacy { display: inline-flex; min-height: 44px; align-items: center; justify-content: center; padding: 8px 0; color: var(--ink-soft); font: 14px/1.6 var(--sans); text-decoration: underline; text-decoration-color: #cfe0f260; text-underline-offset: 6px; }
 .fallback-retry:hover, .fallback-legacy:hover { color: var(--ink); text-decoration-color: currentColor; }
-body:has(#home-fallback):not(.starry-ready) > .blog-theme-switch-fixed { display: none; }
 .fallback-articles { margin-top: 24px; text-align: left; }
 .fallback-articles summary { display: flex; min-height: 44px; align-items: center; justify-content: center; gap: 8px; color: var(--ink-soft); font-size: 13px; cursor: pointer; list-style: none; }
 .fallback-articles summary::-webkit-details-marker { display: none; }

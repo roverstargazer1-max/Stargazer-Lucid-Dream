@@ -79,7 +79,7 @@ export function createCommentMeteors({ layer, articles, getSelected, getScene, l
   async function shower(version) {
     if (!active || generation !== version) return;
     try {
-      if (layer.dataset.api && Date.now() - refreshed > 45000) {
+      if (Date.now() - refreshed > 45000) {
         request = new AbortController();
         const module = await loadModule();
         if (version !== generation) return;
@@ -211,6 +211,7 @@ export function createCommentMeteors({ layer, articles, getSelected, getScene, l
   }
 
   function setActive(value) {
+    if (!layer.dataset.api) return;
     if (value === active) return;
     active = value;
     generation++;

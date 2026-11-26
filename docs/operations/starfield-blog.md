@@ -1,6 +1,6 @@
 # 星空博客的写作、预览与发布
 
-更新日期：2026-10-23。当前 `master` 分支统一构建两个主题：新版在 `/`，旧 Kira 在 `/legacy/`。同一份 Markdown 同时渲染，文章原地址由新版承接；旧版对应地址加上 `/legacy/`。两边的切换入口保留当前文章、归档、标签或页面位置，新版正文阅读窗口内也有入口。
+更新日期：2026-10-23。当前 `master` 分支统一构建两个主题：新版在 `/`，旧 Kira 在 `/legacy/`。同一份 Markdown 同时渲染，文章原地址由新版承接；旧版对应地址加上 `/legacy/`。新版的「旧版」入口位于星空探索页右上角。Kira 的「新版」入口可打开对应内容。
 
 这些是仓库配置与本地输出关系，不代表线上已经切换。V20 模拟文章原型仍独立在 4173；真实博客预览使用 4175。
 
@@ -42,6 +42,14 @@ npm run preview:starfield
 日常先本地预览，将更新后的文章与 `source/_data/starry-layout.json` 一起提交，才能让编号在后续新增、删除和更名时延续。新文章只填原字段也能在 Netlify 构建：身份由文件路径确定，相同源内容与已有登记可复现；托管构建中生成的文件不会自动写回 GitHub，不能代替提交登记结果。
 
 草稿放在 `source/_drafts/`，正常构建不发布。用 `npx hexo publish "草稿文件名"` 发布后，两边下一次构建同时加入该文章。
+
+## RSS 订阅与文章直达
+
+上线后，将正式域名下的 `/rss.xml` 添加到阅读器即可订阅最近 20 篇公开文章。读者也可以从归档、文章末尾或 Kira 侧栏找到「RSS 订阅」。两个主题共用这一个地址，切换默认主题后仍有效。本地双主题预览可打开 [RSS](http://127.0.0.1:4175/rss.xml)。
+
+订阅按文章的 `date` 倒序，沿用 `starry_excerpt` 及已登记的文章原地址。置顶设置只影响站内展示。写作时间统一使用 `Asia/Shanghai`，订阅文件将它换算为 GMT。手记单独展示于窗边和手记页。
+
+从分享链接直接读文章时，书页先显示正文。带章节名称的链接会定位到相应标题，退出书页时再准备房间和星空控件。
 
 ## 窗边手记
 
@@ -172,9 +180,9 @@ blog:
 Netlify 中具体操作：
 
 1. 打开现有项目的 **Project configuration → Build & deploy → Continuous deployment**（部分界面归在 **Developer settings**），确认仓库为本项目，Base directory 为仓库根目录／留空，Build command 为 `npm run netlify`，Publish directory 为 `public`。
-2. 作者已于 2026-10-10 确认 Production branch 为 `master`。保留该绑定，将 `codex/starfield-personal` 的此次改动提交为指向 `master` 的 PR；验证预览后合并。无需把生产分支改为开发分支。可在 **Branches and deploy contexts** 核对绑定是否仍为 `master`。
-3. 确认 Deploy Previews 开启。先通过指向生产分支的 PR 验证远程预览；检查 `/`、`/legacy/`、原中文文章直达和刷新、对应旧文章、双向切换、归档／标签与图片。
-4. 将代码、正文和本地生成的元信息提交并推送到所选生产分支，或合并已验收的 PR，Netlify 自动构建。构建日志应包含两个主题及最终 `Both themes built`，发布目录应同时有两套 HTML。
+2. 作者已于 2026-10-10 确认 Production branch 为 `master`。在 **Branches and deploy contexts** 核对绑定。在 `dev` 上开发和测试，确认后推送 `dev` 并向 `master` 发起 PR。
+3. 确认 Deploy Previews 开启。PR 的 Blog checks 工作流运行 `npm test` 和双主题生产构建。在预览核对 `/`、`/legacy/`、`/rss.xml`、`/sitemap.xml`、中文文章和章节直达、主题切换、归档／标签及图片。
+4. 合并通过检查的 PR 后，Netlify 自动构建。构建日志应包含两个主题及最终 `Both themes built`，发布目录应同时有两套 HTML。
 5. 发布完成后在正式域名重复核对上述地址。需要回滚可先在 **Deploys** 中将此前成功的部署重新发布；如果希望之后每次构建都保持旧版根主页，再提交 `blog.default_theme: legacy`。只需原主题的应急构建可将 TOML 中构建命令改为 `npm run build:legacy`，Deploy Preview 覆盖也需同步处理。
 
 同名设置以 `netlify.toml` 为准，只改平台界面的构建命令不能覆盖文件中的命令；生产分支绑定仍需在平台设置。依据：[Netlify 文件配置与优先级](https://docs.netlify.com/build/configure-builds/file-based-configuration/)。

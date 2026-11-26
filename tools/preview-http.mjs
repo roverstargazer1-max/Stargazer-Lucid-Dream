@@ -7,6 +7,7 @@ const types = new Map([
   ['.html', 'text/html; charset=utf-8'],
   ['.js', 'text/javascript; charset=utf-8'],
   ['.json', 'application/json; charset=utf-8'],
+  ['.xml', 'application/xml; charset=utf-8'],
   ['.png', 'image/png'],
   ['.svg', 'image/svg+xml'],
   ['.webp', 'image/webp'],
@@ -36,7 +37,8 @@ export function createPreviewHandler(projectRoot, { statFile = stat, openFile = 
       if (metadata.isDirectory()) throw new Error('Preview index is a directory.');
       if (response.destroyed) return;
       response.writeHead(200, {
-        'Content-Type': types.get(path.extname(file).toLowerCase()) || 'application/octet-stream',
+        'Content-Type': pathname === '/rss.xml' ? 'application/rss+xml; charset=utf-8'
+          : types.get(path.extname(file).toLowerCase()) || 'application/octet-stream',
         'Content-Length': metadata.size,
         'Cache-Control': 'no-store',
         'X-Content-Type-Options': 'nosniff',

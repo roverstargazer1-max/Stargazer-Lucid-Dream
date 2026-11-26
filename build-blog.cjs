@@ -2,6 +2,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { execFileSync } = require('node:child_process');
 const { installBuildOutput } = require('./tools/install-build-output.cjs');
+const { writeSitemap } = require('./tools/write-sitemap.cjs');
 const resolveHexo = name => require.resolve(name, { paths: [path.dirname(require.resolve('hexo'))] });
 const yaml = require(resolveHexo('js-yaml'));
 
@@ -43,6 +44,7 @@ function buildBlog({ preview = false } = {}) {
       run(hexoCli, ['clean', ...args]);
       run(hexoCli, ['generate', '--bail', ...args]);
     }
+    writeSitemap(output, config.url);
     // Never replace a usable preview with only half of a successful build.
     installBuildOutput(output, target);
     console.log(`Both themes built: ${path.relative(root, target)} (${defaultTheme} at /, ${defaultTheme === 'starfield' ? 'Kira at /legacy/' : 'starfield at /starfield/'}).`);

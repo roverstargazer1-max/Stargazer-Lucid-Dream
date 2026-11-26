@@ -5,11 +5,11 @@
 # Site
 title: Stargazer's LucidDream
 subtitle: ''
-description: ''
+description: 从窗边的星空出发，读观星者关于日常生活、阅读与思考的随笔。
 keywords:
 author: Diamond_boy
-language: cn
-timezone: ''
+language: zh-CN
+timezone: Asia/Shanghai
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'

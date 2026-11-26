@@ -11,6 +11,23 @@ const sourceFiles = fs.readdirSync('source/_posts').filter(name => name.endsWith
 const posts = sourceFiles.map(name => parse(fs.readFileSync(path.join('source/_posts', name), 'utf8').replace(/\r\n/g, '\n'))).filter(post => post.published !== false);
 const index = JSON.parse(fs.readFileSync(path.join(root, 'starry/index.json'), 'utf8'));
 
+test('home pagination lists the same articles as its Kira counterpart and links back to the first page', () => {
+  const home = load(fs.readFileSync(path.join(root, 'index.html')));
+  assert.equal(home('title').text(), home('body').attr('data-site-title'));
+  assert.ok(home('meta[name="description"]').attr('content'));
+  const pages = path.join(root, 'legacy/page');
+  if (!fs.existsSync(pages)) return;
+  for (const number of fs.readdirSync(pages)) {
+    const route = path.join('page', number, 'index.html');
+    const page = load(fs.readFileSync(path.join(root, route)));
+    const kira = load(fs.readFileSync(path.join(root, 'legacy', route)));
+    const articles = page('#static-collection-fallback .archive-list a').map((_, a) => page(a).text()).get();
+    assert.deepEqual(articles, kira('.kira-post-cover h1').map((_, h1) => kira(h1).text()).get());
+    assert.equal(page('body').attr('data-starry-collection-kind'), 'archive');
+    if (number === '2') assert.equal(page('.collection-pagination a').first().attr('href'), '/');
+  }
+});
+
 test('the homepage requests and preloads a room URL versioned by its actual image content', () => {
   const imagePath = 'image/starfield/room-poster-detail-v20.webp';
   const version = require('node:crypto').createHash('sha256').update(fs.readFileSync(path.join('source', imagePath))).digest('hex').slice(0, 16);
@@ -18,6 +35,12 @@ test('the homepage requests and preloads a room URL versioned by its actual imag
   const src = home('.room-image').attr('src');
   assert.equal(new URL(src, 'https://local/').searchParams.get('v'), version, 'Replacing the room illustration must bypass cached previous bytes');
   assert.equal(home('link[rel="preload"][as="image"]').toArray().filter(link => home(link).attr('href') === src).length, 1);
+  for (const route of [index.articles[0].path, 'archives/']) {
+    const direct = load(fs.readFileSync(path.join(root, route, 'index.html'), 'utf8'));
+    assert.equal(direct('.room-image').attr('src'), undefined);
+    assert.equal(direct('.room-image').attr('data-room-src'), src);
+    assert.ok(direct('link[rel="preload"][as="image"]').toArray().every(link => direct(link).attr('href') !== src));
+  }
 });
 
 test('every published real article has its original address, readable body and saved star', () => {

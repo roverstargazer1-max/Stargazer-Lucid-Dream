@@ -98,7 +98,6 @@ test('deep links locate older comments across pages and handle a removed target'
 test('comment meteors fade along varied sky paths, follow the camera and retain their comment links', async t => {
   const { win, module } = browser(t);
   const layer = win.document.querySelector('#sky');
-  layer.dataset.api = endpoint;
   layer.dataset.speed = 40;
   let task, target, now = 0, random = .6;
   win.setTimeout = callback => { task = callback; return 1; };
@@ -134,6 +133,9 @@ test('comment meteors fade along varied sky paths, follow the camera and retain 
     element.dispatchEvent(new win.MouseEvent('click', { bubbles: true, detail: 1 }));
     return down.defaultPrevented;
   }
+  setActive(true);
+  assert.equal(task, undefined, 'An unconfigured production service never schedules an invitation');
+  layer.dataset.api = endpoint;
   setActive(true);
   await task();
   const star = layer.querySelector('button');

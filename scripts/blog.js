@@ -2,6 +2,9 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { load } = require('cheerio');
 const { url_for } = require('hexo-util');
+// Hexo's permalink and archive generators also format dates in the process timezone.
+// Keep their calendar dates aligned with the author's front matter on any build host.
+if (hexo.config.timezone) process.env.TZ = hexo.config.timezone;
 const pageRoute = page => String(page.current_url || page.path || '')
   .replace(/^\/+/, '').replace(/(?:^|\/)index\.html$/, '/').replace(/^\/+/, '');
 
@@ -34,6 +37,12 @@ hexo.extend.helper.register('blog_theme_switch', function (page) {
 hexo.extend.helper.register('blog_canonical', function (page) {
   const route = pageRoute(page);
   return new URL(`/${route}`, hexo.config.url).href;
+});
+
+hexo.extend.helper.register('blog_noindex', function (page) {
+  if (page.published === false) return true;
+  if (page.layout === 'journal' && page.journal) return page.journal.demo || !page.journal.months.length;
+  return pageRoute(page) === 'pages/mine/' && !String(page.content || '').trim();
 });
 
 hexo.extend.generator.register('blog-theme-switch-assets', function () {

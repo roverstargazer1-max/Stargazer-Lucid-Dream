@@ -39,7 +39,8 @@ test('the panel and standalone page preserve every existing friend, order, desti
       assert.match(link.attr('rel'), /noopener/);
       if (friend.avatar) {
         const image = link.find('img');
-        assert.equal(decodeURI(image.attr('src')), friend.avatar);
+        assert.equal(decodeURI(image.attr(route ? 'src' : 'data-src')), friend.avatar);
+        if (!route) assert.equal(image.attr('src'), undefined, 'Closed dialog avatars do not download, even without JavaScript');
         assert.equal(image.attr('loading'), 'lazy');
         assert.equal(image.attr('width'), '44');
         assert.equal(image.attr('height'), '44');

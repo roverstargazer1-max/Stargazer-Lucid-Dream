@@ -15,6 +15,7 @@ import { createPolyhedron } from './polyhedron.js';
 import { createSilhouetteWalker } from './silhouette-walker.js';
 import { readingProgress } from './reading-progress.js';
 import { setupReaderZoom } from './reader-zoom.js';
+import { createPageIdentity, revealArticleFragment } from './reader-navigation.js';
 import { constrainSkyCamera, skyProjection } from './camera-bounds.js';
 import { createArticleSearch } from './search.js';
 import { prepareReaderArt } from './reader-art.js';
@@ -60,9 +61,15 @@ async function start() {
   const prepareSkyFurniture = () => Promise.all([
     '.masthead', '.sky-polyhedron', '#exploration-controls', '#search-entry',
   ].map(selector => prepareImages(document.querySelector(selector))));
-  // The room has already painted. Prepare the next scene concurrently with its
-  // sky rather than starting a new download only after the first window click.
-  const furnitureReady = settleWithin(prepareSkyFurniture());
+  // The homepage needs these controls for the first window crossing. A direct
+  // reader or collection only needs them when it gives way to exploration.
+  const furnitureReady = startsOutside ? null : settleWithin(prepareSkyFurniture());
+  function prepareDirectExit() {
+    if (!roomImage?.dataset.roomSrc) return;
+    roomImage.src = roomImage.dataset.roomSrc;
+    delete roomImage.dataset.roomSrc;
+    void prepareSkyFurniture();
+  }
   const relationModeButton = document.getElementById('relation-mode');
   const timeModeButton = document.getElementById('time-mode');
   const backDockButton = document.getElementById('back-dock');
@@ -76,6 +83,7 @@ async function start() {
   if (isDirectEntry) void prepareReaderArt(document.getElementById('reader-title')?.textContent || '', 'high');
   const collectionMode = collectionKind === 'archive' ? 'time' : 'relation';
   const collectionPath = body.dataset.starryCollectionPath || location.pathname;
+  const syncPageIdentity = createPageIdentity(document);
   const staticCollection = document.getElementById('static-collection-fallback');
   const collectionFirstId = staticCollection?.querySelector('[data-starry-article-id]')?.dataset.starryArticleId || '';
   const collectionDialog = document.getElementById('collection-panel');
@@ -120,6 +128,7 @@ async function start() {
   const dockCursorByMode = new Map();
   let readerTrigger = null;
   let internalArticleHistory = false;
+  let readerPath = '', readerDepth = 0;
   let historyNavigationVersion = 0;
   let directCloseInProgress = false;
   let collectionOpen = isDirectCollection;
@@ -209,7 +218,6 @@ async function start() {
 
   resize();
   await furnitureReady;
-  if (startsOutside) await waitForImage(roomImage);
   if (window.starfieldStartup?.failed) return;
   clouds = createInteractiveClouds(world, () => reducedMotion || !renderBudget.current.ambientMotion);
   starMotion = createStarMotion({ preview, reader, scroller, isSoft: () => reducedMotion });
@@ -510,11 +518,12 @@ async function start() {
     updateUI();
   }
 
-  function closeCollectionPanel() {
+  function closeCollectionPanel(pushHistory = true) {
     if (!collectionDialog.open) return;
+    prepareDirectExit();
     collectionOpen = false;
     collectionDialog.close();
-    history.pushState({ starryView: 'sky', mode }, '', body.dataset.starryRoot);
+    if (pushHistory) history.pushState({ starryView: 'sky', mode }, '', body.dataset.starryRoot);
     window.blogThemeSwitch?.refresh();
     updateUI();
     homeButton.focus({ preventScroll: true });
@@ -598,6 +607,7 @@ async function start() {
   }
 
   function updateUI() {
+    if (body.classList.contains('starry-ready')) syncPageIdentity(reader.open && article, collectionOpen);
     syncMeteors();
     scheduleFrame();
     const isSelected = Boolean(article && selected === article.id);
@@ -770,11 +780,14 @@ async function start() {
 
   function openDirectArticle() {
     readerTrigger = document.getElementById('home');
+    history.replaceState({ starryView: 'reader', starryArticleId: article.id, mode, starryReaderDepth: 0 }, '', location.href);
     showReader(project(positionOf(article)));
   }
 
   function showReader(origin) {
     const version = ++commentMountVersion;
+    readerPath = location.pathname;
+    readerDepth = history.state?.starryReaderDepth ?? (internalArticleHistory ? 1 : 0);
     unmountComments?.();
     unmountComments = null;
     document.getElementById('reading-window-title').textContent = `${article.title} · 观星者的清醒梦`;
@@ -786,6 +799,7 @@ async function start() {
     phase = 'reading';
     starMotion.open(origin, () => {
       phase = 'reading';
+      revealArticleFragment(scroller, location.hash);
       updateProgress();
       const section = readerSlot.querySelector('.article-comments');
       if (section) loadCommentModule().then(({ mountComments }) => {
@@ -801,6 +815,7 @@ async function start() {
 
   function closeReaderFromDirect() {
     if (!reader.open || directCloseInProgress) return;
+    prepareDirectExit();
     historyNavigationVersion += 1;
     pauseEmbeddedMedia();
     directCloseInProgress = true;
@@ -834,6 +849,7 @@ async function start() {
     pauseEmbeddedMedia();
     const returnToCollection = Boolean(readingSnapshot?.collectionOpen);
     const returnToSearch = Boolean(readingSnapshot?.searchOpen);
+    if (!returnToCollection && !returnToSearch) prepareDirectExit();
     phase = 'closing';
     starMotion.close(() => {
       reader.close();
@@ -1016,8 +1032,28 @@ async function start() {
     announce('正在返回上一个自动停靠点。');
   }
 
-  function enterHome() {
+  async function enterHome() {
     if (reader.open || roomScene?.active) return;
+    if (startsOutside && !(roomImage.complete && roomImage.naturalWidth)) {
+      prepareDirectExit();
+      // The reader can close and the visitor can click Home before the image
+      // arrives. Only the most recent interaction may finish this navigation.
+      const intent = new AbortController();
+      const cancel = () => intent.abort();
+      const options = { once: true, capture: true, signal: intent.signal };
+      document.addEventListener('pointerdown', cancel, options);
+      document.addEventListener('keydown', cancel, options);
+      window.addEventListener('popstate', cancel, options);
+      window.addEventListener('pagehide', cancel, options);
+      const ready = await settleWithin(roomImage.decode(), 1500);
+      const superseded = intent.signal.aborted || document.querySelector('dialog[open]');
+      intent.abort();
+      if (superseded) return;
+      if (!ready) {
+        location.assign(body.dataset.starryRoot);
+        return;
+      }
+    }
     roomScene?.returnHome();
   }
 
@@ -1421,7 +1457,7 @@ async function start() {
     timeModeButton.addEventListener('click', () => switchMode('time'));
     backDockButton.addEventListener('click', returnToPreviousDock);
     homeButton.addEventListener('click', enterHome);
-    document.getElementById('close-collection').addEventListener('click', closeCollectionPanel);
+    document.getElementById('close-collection').addEventListener('click', () => closeCollectionPanel());
     collectionDialog.addEventListener('cancel', (event) => {
       event.preventDefault();
       closeCollectionPanel();
@@ -1449,6 +1485,7 @@ async function start() {
       const target = link && articleById.get(link.dataset.starryArticleId);
       if (!reader.open || !target || event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
       event.preventDefault();
+      prepareDirectExit();
       pauseEmbeddedMedia(); phase = 'closing';
       starMotion.close(() => {
         reader.close(); collectionOpen = false; collectionDialog.close();
@@ -1466,14 +1503,33 @@ async function start() {
     });
     window.addEventListener('popstate', (event) => {
       if (event.state?.mode === 'relation' || event.state?.mode === 'time') mode = event.state.mode;
-      if (reader.open && event.state?.starryView === 'reader' && event.state.starryArticleId) {
-        void openReaderFromHistory(event.state.starryArticleId);
-      } else if (reader.open) closeReaderAfterPop();
-      else if (event.state?.starryView === 'reader' && event.state.starryArticleId) {
-        void openReaderFromHistory(event.state.starryArticleId);
+      if (reader.open && readerPath === location.pathname && !event.state) {
+        // A native fragment link adds an unmarked entry. Count it so closing
+        // the reader still returns to the original collection, search or sky.
+        readerDepth++;
+        history.replaceState({ starryView: 'reader', starryArticleId: article.id, mode, starryReaderDepth: readerDepth }, '', location.href);
+      }
+      if (history.state?.starryView === 'reader' && history.state.starryArticleId) {
+        if (reader.open && history.state.starryArticleId === article.id) {
+          historyNavigationVersion++;
+          readerDepth = history.state.starryReaderDepth ?? 1;
+          if (phase === 'closing') {
+            directCloseInProgress = false;
+            showReader(project(positionOf(article)));
+          }
+          return;
+        }
+        void openReaderFromHistory(history.state.starryArticleId);
+      } else if (reader.open) {
+        closeReaderAfterPop();
       } else if (event.state?.starryView === 'collection') {
         openCollectionPanel();
+      } else if (event.state?.starryView === 'sky' && collectionDialog.open) {
+        closeCollectionPanel(false);
       }
+    });
+    window.addEventListener('hashchange', () => {
+      if (reader.open && readerPath === location.pathname && !reader.dataset.motion) revealArticleFragment(scroller, location.hash);
     });
 
     world.addEventListener('pointermove', (event) => {

@@ -1,17 +1,18 @@
 <%
   const isJournalPage = page.layout === 'journal';
   const isFriendsPage = page.layout === 'friends';
-  const themeSwitch = isJournalPage ? null : blog_theme_switch(page);
   const isPost = page.layout === 'post' && page.title;
   const isStarryArticle = isPost && page.starry_id;
-  const collectionKind = page.archive || page.layout === 'archives' ? 'archive' : page.tag ? 'tag' : page.category ? 'category' : '';
+  const isIndexPage = is_home() && page.current > 1;
+  const collectionKind = isIndexPage || page.archive || page.layout === 'archives' ? 'archive' : page.tag ? 'tag' : page.category ? 'category' : '';
   const isStarryCollection = Boolean(collectionKind);
   const hasStarfield = is_home() || isStarryArticle || isStarryCollection;
+  const themeSwitch = hasStarfield && blog_theme_switch(page);
   const collectionRoute = isStarryCollection
     ? String(page.current_url || page.path || '').replace(/\/index\.html$/, '/')
     : '';
   const collectionUrl = collectionRoute.startsWith('/') ? collectionRoute : `/${collectionRoute}`;
-  let collectionTitle = '文章归档';
+  let collectionTitle = isIndexPage ? `文章列表 · 第 ${page.current} 页` : '文章归档';
   if (page.tag) collectionTitle = `标签 · ${page.tag}`;
   else if (page.category) collectionTitle = `分类 · ${page.category}`;
   else if (page.year) collectionTitle = page.month
@@ -34,9 +35,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="color-scheme" content="dark light">
-  <title><%= title %> · <%= config.title %></title>
+  <title><%= title === config.title ? title : title + ' · ' + config.title %></title>
   <% if (description) { %><meta name="description" content="<%= description %>"><% } %>
   <% if (canonical) { %><link rel="canonical" href="<%= canonical %>"><% } %>
+  <link rel="alternate" type="application/rss+xml" title="<%= config.title %> · RSS" href="<%= blog_canonical({ path: 'rss.xml' }) %>">
+  <% if (blog_noindex(page)) { %><meta name="robots" content="noindex"><% } %>
   <meta property="og:type" content="<%= isPost ? 'article' : 'website' %>">
   <meta property="og:title" content="<%= title %>">
   <% if (description) { %><meta property="og:description" content="<%= description %>"><% } %>
@@ -49,7 +52,7 @@
   <% if (isStarryArticle) { for (const font of starry_title_fonts(page.title)) { %>
   <link rel="preload" as="font" type="font/woff2" href="<%= font %>" crossorigin>
   <% } } %>
-  <% if (is_home()) { %>
+  <% if (is_home_first_page()) { %>
   <link rel="preload" as="image" type="image/svg+xml" href="<%= url_for(theme.scene.window_mask) %>" fetchpriority="high">
   <link rel="preload" as="image" href="<%= starry_room_url() %>" fetchpriority="high">
   <style>
@@ -86,6 +89,7 @@
   <% if (themeSwitch) { %><link rel="stylesheet" href="<%= url_for('css/blog-theme-switch.css') %>"><% } %>
 </head>
 <body class="<%= isStarryArticle || isStarryCollection ? 'has-starry-experience' : '' %><%= isStarryArticle ? ' article-page' : '' %><%= isJournalPage ? ' journal-page' : '' %><%= isFriendsPage ? ' friends-page' : '' %>"
+      data-site-title="<%= config.title %>"
       data-blog-current-root="<%= config.dual_theme?.current_root || '' %>"
       data-blog-target-root="<%= config.dual_theme?.target_root || '' %>"
       data-scene="painted"
@@ -105,10 +109,7 @@
       data-window-mask="<%= url_for(theme.scene.window_mask) %>"
       style="--window-mask:url('<%= url_for(theme.scene.window_mask) %>');--reader-sheet:url('<%= starry_interface_url('images/reader/sheet.webp') %>');--reader-continuation:url('<%= starry_interface_url('images/reader/continuation.webp') %>');--reader-track:url('<%= starry_interface_url('images/reader/progress-track.webp') %>')">
   <%- body %>
-  <% if (themeSwitch) { %>
-  <a class="blog-theme-switch blog-theme-switch-fixed" data-blog-theme-switch href="<%= themeSwitch.href %>"><%= themeSwitch.label %></a>
-  <script src="<%= url_for('js/blog-theme-switch.js') %>"></script>
-  <% } %>
+  <% if (themeSwitch) { %><script src="<%= url_for('js/blog-theme-switch.js') %>"></script><% } %>
   <% if (hasStarfield || isJournalPage) { %><script type="module" src="<%= starry_script_url('journal') %>"></script><% } %>
 </body>
 </html>

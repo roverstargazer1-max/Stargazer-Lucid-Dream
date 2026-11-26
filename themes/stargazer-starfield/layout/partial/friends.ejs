@@ -14,7 +14,7 @@
       <% friends.forEach((friend, index) => { %>
       <li><a class="friends-link" href="<%= friend.link %>" target="_blank" rel="noopener noreferrer" tabindex="0" aria-describedby="friends-new-window">
         <span class="friends-number" aria-hidden="true"><%= String(index + 1).padStart(2, '0') %></span>
-        <% if (friend.avatar) { %><img class="friends-avatar" src="<%= friend.avatar.startsWith('http') ? friend.avatar : url_for(friend.avatar) %>" alt="" width="44" height="44" loading="lazy" decoding="async" referrerpolicy="no-referrer"><% } else { %><span class="friends-avatar friends-avatar-empty" aria-hidden="true">◦</span><% } %>
+        <% if (friend.avatar) { %><img class="friends-avatar" <%= standalone ? 'src' : 'data-src' %>="<%= friend.avatar.startsWith('http') ? friend.avatar : url_for(friend.avatar) %>" alt="" width="44" height="44" loading="lazy" decoding="async" referrerpolicy="no-referrer"><% } else { %><span class="friends-avatar friends-avatar-empty" aria-hidden="true">◦</span><% } %>
         <span class="friends-copy"><strong><%= friend.name %></strong><span><%= friend.desc || '' %></span></span>
         <svg class="friends-visit" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19 19 5M7 5h12v12"/></svg>
       </a></li>

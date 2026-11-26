@@ -29,9 +29,6 @@ body[data-scene=painted] .collection-header button {
 body[data-scene=painted] .collection-header button:hover {
   color: var(--ink); border-bottom-color: var(--panel-line-strong);
 }
-body[data-scene=painted] .collection-header .blog-theme-switch { color: var(--ink-muted); }
-body[data-scene=painted] .collection-header .blog-theme-switch { flex-shrink: 0; white-space: nowrap; }
-body[data-scene=painted] .collection-header .blog-theme-switch:hover { color: var(--ink-soft); }
 body[data-scene=painted] #collection-scroll { scrollbar-color: rgb(114 191 232 / .53) transparent; }
 
 /* The archive list is the panel's main content: same date/title rhythm as before,

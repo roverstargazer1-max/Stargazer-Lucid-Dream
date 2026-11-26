@@ -84,6 +84,18 @@ test('GET streams every image byte and keeps decoded directory indexes and respo
   assert.equal(article.body.toString(), '<p>原来的正文</p>');
 });
 
+test('RSS advertises its feed MIME type on GET and HEAD', async t => {
+  const { port, root } = await fixture(t);
+  const feed = '<rss version="2.0"><channel/></rss>';
+  fs.writeFileSync(path.join(root, 'rss.xml'), feed);
+  for (const method of ['GET', 'HEAD']) {
+    const result = await request(port, '/rss.xml?refresh=1', method);
+    assert.equal(result.status, 200);
+    assert.equal(result.headers['content-type'], 'application/rss+xml; charset=utf-8');
+    assert.equal(result.body.toString(), method === 'GET' ? feed : '');
+  }
+});
+
 test('missing indexes, directory indexes, malformed encoding and outside paths retain their statuses for GET and HEAD', async t => {
   const { port } = await fixture(t);
   for (const method of ['GET', 'HEAD']) {
