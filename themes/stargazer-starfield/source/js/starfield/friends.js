@@ -29,6 +29,10 @@ export function createFriendsPanel() {
     document.body.dataset.friendsOpen = 'true';
     entries.forEach(entry => entry.setAttribute('aria-expanded', 'true'));
     dialog.querySelector('[data-friends-return]').textContent = document.body.dataset.room === 'inside' ? '回到窗边' : '回到星空';
+    for (const image of dialog.querySelectorAll('img[data-src]')) {
+      image.src = image.dataset.src;
+      delete image.dataset.src;
+    }
     dialog.showModal();
     closeButton.focus({ preventScroll: true });
     const bounds = dialog.getBoundingClientRect(), origin = source.getBoundingClientRect();

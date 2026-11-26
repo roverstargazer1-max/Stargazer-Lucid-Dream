@@ -46,6 +46,10 @@ test('an ordinary post builds in both themes, survives a fresh checkout, and sup
       }
     }
     function page(relative) { return load(fs.readFileSync(path.join(fixture, 'public', relative, 'index.html'), 'utf8')); }
+    function assertSkyThemeSwitch($, target) {
+      assert.equal($('[data-blog-theme-switch]').length, 1, 'Starfield must only render the switch in its sky controls');
+      assert.equal(decodeURI($('#exploration-controls [data-blog-theme-switch]').attr('href')), target);
+    }
     function assertLegacyAssets(prefix) {
       const icons = path.join(fixture, 'public', prefix, 'lib/iconfont');
       for (const name of ['demo_index.html', 'demo.css', 'iconfont.js', 'iconfont.json']) {
@@ -66,6 +70,17 @@ test('an ordinary post builds in both themes, survives a fresh checkout, and sup
     build();
     const prepared = parse(fs.readFileSync(postFile, 'utf8'));
     const index = JSON.parse(fs.readFileSync(path.join(fixture, 'public/starry/index.json')));
+    const feedFile = path.join(fixture, 'public/rss.xml');
+    const feedXml = fs.readFileSync(feedFile, 'utf8');
+    const feed = load(feedXml, { xmlMode: true });
+    const items = feed('channel > item');
+    assert.equal(items.length, Math.min(index.articles.length, 20));
+    for (const item of items) {
+      const link = feed(item).children('link').text();
+      const route = decodeURIComponent(new URL(link).pathname);
+      assert.equal(page(route)('link[rel="canonical"]').attr('href'), link);
+      assert.equal(feed(item).children('guid').text(), link);
+    }
     const article = index.articles.find(item => item.id === prepared.starry_id);
     assert.ok(article);
     assert.match(article.catalogNumber, /^SLD-\d{4,}$/);
@@ -74,6 +89,7 @@ test('an ordinary post builds in both themes, survives a fresh checkout, and sup
     assert.equal(index.articles.length, publishedCount + 1);
     assert.equal(prepared._content, parse(mediaPost)._content);
     assert.ok(page('')('#room').length);
+    assertSkyThemeSwitch(page(''), '/legacy/');
     assert.ok(page('legacy')('.kira-posts').length);
     assertLegacyAssets('legacy');
     const journal = page('journal');
@@ -93,13 +109,18 @@ test('an ordinary post builds in both themes, survives a fresh checkout, and sup
       assert.equal($('.CodePenLink').attr('href'), 'https://codepen.io/example/pen/test');
       assert.ok($('iframe[src^="https://player.bilibili.com/"]').length);
       assert.equal($('meting-js, .aplayer').length, 0);
-      const target = route.startsWith('legacy/') ? `/${article.path}` : `/legacy/${article.path}`;
-      assert.equal(decodeURI($('[data-blog-theme-switch]').first().attr('href')), target);
+      if (route.startsWith('legacy/')) {
+        assert.equal(decodeURI($('[data-blog-theme-switch]').first().attr('href')), `/${article.path}`);
+      } else {
+        assertSkyThemeSwitch($, `/legacy/${article.path}`);
+      }
       assertResources($, route);
       assert.equal(new URL($('link[rel="canonical"]').attr('href')).pathname, encodeURI(`/${article.path}`));
     }
     const legacyTags = page('legacy/tags/双主题验证');
     assert.ok(legacyTags('a').toArray().some(link => decodeURI(legacyTags(link).attr('href') || '') === `/legacy/${article.path}`));
+    assertSkyThemeSwitch(page('archives/2026/10'), '/legacy/archives/2026/10/');
+    assert.equal(page('pages/friends')('[data-blog-theme-switch]').length, 0);
     for (const route of ['archives/2026/10', 'legacy/archives/2026/10', 'pages/friends', 'legacy/pages/friends', 'legacy/pages/mine']) assertResources(page(route), route + '/');
     const layoutFile = path.join(fixture, 'source/_data/starry-layout.json');
     const preparedLayout = JSON.parse(fs.readFileSync(layoutFile));
@@ -127,9 +148,12 @@ test('an ordinary post builds in both themes, survives a fresh checkout, and sup
     build();
     assert.ok(page('')('.kira-posts').length);
     assert.ok(page('starfield')('#room').length);
+    assert.equal(fs.readFileSync(feedFile, 'utf8'), feedXml, 'Switching the default theme preserves every subscription item');
+    assert.equal(fs.existsSync(path.join(fixture, 'public/starfield/rss.xml')), false);
+    assertSkyThemeSwitch(page('starfield'), '/');
     assertLegacyAssets('');
     assert.equal(decodeURI(page(article.path)('[data-blog-theme-switch]').first().attr('href')), `/starfield/${article.path}`);
-    assert.equal(decodeURI(page(`starfield/${article.path}`)('[data-blog-theme-switch]').first().attr('href')), `/${article.path}`);
+    assertSkyThemeSwitch(page(`starfield/${article.path}`), `/${article.path}`);
     assertResources(page(`starfield/${article.path}`), `starfield/${article.path}`);
     const alternateIndex = JSON.parse(fs.readFileSync(path.join(fixture, 'public/starfield/starry/index.json')));
     const alternateReader = alternateIndex.articles.find(item => item.id === article.id).readerUrl;

@@ -1,5 +1,6 @@
 featured_article_id: dream-begins
 scene:
+  meteor_speed: 36 # 评论流星速度，单位为 CSS 像素/秒
   motion: full # full：镜头推进；soft：轻过渡
   passage_blur: false # 微小房间模糊在大幅缩放时合成成本高；true 可恢复
   painted_sky: image/starfield/painted-sky-v11.webp

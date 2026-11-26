@@ -1,3 +1,4 @@
+import { createCommentMeteors } from './comment-meteors.js';
 import { createInteractiveClouds, prepareInteractiveClouds } from './interactive-clouds.js';
 import { createRoom, paintCloudVeil, paintPaintedSky, paintPaintedStar, preparePaintedScene } from './painted.js';
 import { HOME_ELEVATION, MIN_SKY_ZOOM, clamp, domeDestination, direction, domePosition, projectDome, createDomeProjector } from './dome.js';
@@ -13,6 +14,8 @@ import { createObservationPanel } from './observation.js';
 import { createPolyhedron } from './polyhedron.js';
 import { createSilhouetteWalker } from './silhouette-walker.js';
 import { readingProgress } from './reading-progress.js';
+import { setupReaderZoom } from './reader-zoom.js';
+import { createPageIdentity, revealArticleFragment } from './reader-navigation.js';
 import { constrainSkyCamera, skyProjection } from './camera-bounds.js';
 import { createArticleSearch } from './search.js';
 import { prepareReaderArt } from './reader-art.js';
@@ -58,9 +61,15 @@ async function start() {
   const prepareSkyFurniture = () => Promise.all([
     '.masthead', '.sky-polyhedron', '#exploration-controls', '#search-entry',
   ].map(selector => prepareImages(document.querySelector(selector))));
-  // The room has already painted. Prepare the next scene concurrently with its
-  // sky rather than starting a new download only after the first window click.
-  const furnitureReady = settleWithin(prepareSkyFurniture());
+  // The homepage needs these controls for the first window crossing. A direct
+  // reader or collection only needs them when it gives way to exploration.
+  const furnitureReady = startsOutside ? null : settleWithin(prepareSkyFurniture());
+  function prepareDirectExit() {
+    if (!roomImage?.dataset.roomSrc) return;
+    roomImage.src = roomImage.dataset.roomSrc;
+    delete roomImage.dataset.roomSrc;
+    void prepareSkyFurniture();
+  }
   const relationModeButton = document.getElementById('relation-mode');
   const timeModeButton = document.getElementById('time-mode');
   const backDockButton = document.getElementById('back-dock');
@@ -74,6 +83,7 @@ async function start() {
   if (isDirectEntry) void prepareReaderArt(document.getElementById('reader-title')?.textContent || '', 'high');
   const collectionMode = collectionKind === 'archive' ? 'time' : 'relation';
   const collectionPath = body.dataset.starryCollectionPath || location.pathname;
+  const syncPageIdentity = createPageIdentity(document);
   const staticCollection = document.getElementById('static-collection-fallback');
   const collectionFirstId = staticCollection?.querySelector('[data-starry-article-id]')?.dataset.starryArticleId || '';
   const collectionDialog = document.getElementById('collection-panel');
@@ -118,6 +128,7 @@ async function start() {
   const dockCursorByMode = new Map();
   let readerTrigger = null;
   let internalArticleHistory = false;
+  let readerPath = '', readerDepth = 0;
   let historyNavigationVersion = 0;
   let directCloseInProgress = false;
   let collectionOpen = isDirectCollection;
@@ -138,6 +149,11 @@ async function start() {
   let renderQualityPending = false;
   let foregroundQualityPending = false;
   const meteors = [];
+  const commentSky = document.getElementById('comment-sky');
+  const loadCommentModule = () => import(commentSky.dataset.module);
+  let commentMeteors;
+  let unmountComments;
+  let commentMountVersion = 0;
   const egg = document.getElementById('egg-dialog');
   const renderBudget = createRenderBudget({ hardwareConcurrency: navigator.hardwareConcurrency,
     deviceMemory: navigator.deviceMemory, roomBlur: body.dataset.passageBlur === 'on' });
@@ -202,7 +218,6 @@ async function start() {
 
   resize();
   await furnitureReady;
-  if (startsOutside) await waitForImage(roomImage);
   if (window.starfieldStartup?.failed) return;
   clouds = createInteractiveClouds(world, () => reducedMotion || !renderBudget.current.ambientMotion);
   starMotion = createStarMotion({ preview, reader, scroller, isSoft: () => reducedMotion });
@@ -309,9 +324,15 @@ async function start() {
     },
     onClose() { restingFrameDrawn = false; updateUI(); },
   });
+  commentMeteors = createCommentMeteors({
+    layer: commentSky, articles: articles.filter(item => item.comments !== false), getSelected: () => selected, isSoft: () => reducedMotion || readingMotionPreference.matches,
+    getScene: () => ({ camera, width, height, settings: projectionSettings() }),
+    loadModule: loadCommentModule, open: openMeteorComment,
+  });
   wireControls();
   for (const name of ['starry:journal', 'starry:friends']) {
     document.addEventListener(name, event => {
+      syncMeteors();
       if (event.detail.open) { interrupt(); pointers.clear(); press = null; labelPointer = null; }
       restingFrameDrawn = false;
       scheduleFrame();
@@ -497,11 +518,12 @@ async function start() {
     updateUI();
   }
 
-  function closeCollectionPanel() {
+  function closeCollectionPanel(pushHistory = true) {
     if (!collectionDialog.open) return;
+    prepareDirectExit();
     collectionOpen = false;
     collectionDialog.close();
-    history.pushState({ starryView: 'sky', mode }, '', body.dataset.starryRoot);
+    if (pushHistory) history.pushState({ starryView: 'sky', mode }, '', body.dataset.starryRoot);
     window.blogThemeSwitch?.refresh();
     updateUI();
     homeButton.focus({ preventScroll: true });
@@ -556,7 +578,37 @@ async function start() {
     });
   }
 
+  function syncMeteors() {
+    commentMeteors?.setActive(!world.hidden && body.dataset.room === 'outside' && !arrival && !roomScene?.active &&
+      !document.hidden && !reader.open && !collectionOpen && !articleSearch?.isOpen && !egg.open &&
+      body.dataset.journalOpen !== 'true' && body.dataset.friendsOpen !== 'true');
+  }
+
+  async function openMeteorComment(targetArticle, anchor, trigger) {
+    if (reader.open || trigger.getAttribute('aria-busy') === 'true') return;
+    trigger.setAttribute('aria-busy', 'true');
+    interrupt();
+    const version = ++readerRequestVersion;
+    try {
+      await articleLoader.load(targetArticle);
+      if (version !== readerRequestVersion || reader.open || !trigger.isConnected) return;
+      readerTrigger = selected ? starTargets.get(selected) : homeButton;
+      history.pushState({ starryView: 'reader', starryArticleId: targetArticle.id, mode }, '',
+        localArticleUrl(targetArticle).pathname + '#' + anchor);
+      window.blogThemeSwitch?.refresh();
+      await openReaderFromHistory(targetArticle.id);
+    } catch {
+      if (version === readerRequestVersion && trigger.isConnected) {
+        trigger.querySelector('.meteor-note span').textContent = '加载失败，点击重试';
+      }
+    } finally {
+      trigger.removeAttribute('aria-busy');
+    }
+  }
+
   function updateUI() {
+    if (body.classList.contains('starry-ready')) syncPageIdentity(reader.open && article, collectionOpen);
+    syncMeteors();
     scheduleFrame();
     const isSelected = Boolean(article && selected === article.id);
     const shouldPreparePreview = isSelected && (animationStarted || !isDirectEntry) && !reader.open && !collectionOpen && !articleSearch?.isOpen;
@@ -728,10 +780,16 @@ async function start() {
 
   function openDirectArticle() {
     readerTrigger = document.getElementById('home');
+    history.replaceState({ starryView: 'reader', starryArticleId: article.id, mode, starryReaderDepth: 0 }, '', location.href);
     showReader(project(positionOf(article)));
   }
 
   function showReader(origin) {
+    const version = ++commentMountVersion;
+    readerPath = location.pathname;
+    readerDepth = history.state?.starryReaderDepth ?? (internalArticleHistory ? 1 : 0);
+    unmountComments?.();
+    unmountComments = null;
     document.getElementById('reading-window-title').textContent = `${article.title} · 观星者的清醒梦`;
     if (!reader.open) reader.showModal();
     scroller.scrollTop = 0;
@@ -741,7 +799,15 @@ async function start() {
     phase = 'reading';
     starMotion.open(origin, () => {
       phase = 'reading';
+      revealArticleFragment(scroller, location.hash);
       updateProgress();
+      const section = readerSlot.querySelector('.article-comments');
+      if (section) loadCommentModule().then(({ mountComments }) => {
+        if (version !== commentMountVersion || !reader.open || !section.isConnected) return;
+        const anchor = location.hash.slice(1);
+        unmountComments = mountComments(section, commentSky.dataset.api,
+          /^(article-comments|comment-[\w-]+)$/.test(anchor) ? anchor : '');
+      }).catch(() => { section.querySelector('[data-comment-status]').textContent = '评论组件暂时无法加载。'; });
     });
     document.getElementById('close-reader').focus({ preventScroll: true });
     updateUI();
@@ -749,6 +815,7 @@ async function start() {
 
   function closeReaderFromDirect() {
     if (!reader.open || directCloseInProgress) return;
+    prepareDirectExit();
     historyNavigationVersion += 1;
     pauseEmbeddedMedia();
     directCloseInProgress = true;
@@ -782,6 +849,7 @@ async function start() {
     pauseEmbeddedMedia();
     const returnToCollection = Boolean(readingSnapshot?.collectionOpen);
     const returnToSearch = Boolean(readingSnapshot?.searchOpen);
+    if (!returnToCollection && !returnToSearch) prepareDirectExit();
     phase = 'closing';
     starMotion.close(() => {
       reader.close();
@@ -964,8 +1032,28 @@ async function start() {
     announce('正在返回上一个自动停靠点。');
   }
 
-  function enterHome() {
+  async function enterHome() {
     if (reader.open || roomScene?.active) return;
+    if (startsOutside && !(roomImage.complete && roomImage.naturalWidth)) {
+      prepareDirectExit();
+      // The reader can close and the visitor can click Home before the image
+      // arrives. Only the most recent interaction may finish this navigation.
+      const intent = new AbortController();
+      const cancel = () => intent.abort();
+      const options = { once: true, capture: true, signal: intent.signal };
+      document.addEventListener('pointerdown', cancel, options);
+      document.addEventListener('keydown', cancel, options);
+      window.addEventListener('popstate', cancel, options);
+      window.addEventListener('pagehide', cancel, options);
+      const ready = await settleWithin(roomImage.decode(), 1500);
+      const superseded = intent.signal.aborted || document.querySelector('dialog[open]');
+      intent.abort();
+      if (superseded) return;
+      if (!ready) {
+        location.assign(body.dataset.starryRoot);
+        return;
+      }
+    }
     roomScene?.returnHome();
   }
 
@@ -1080,6 +1168,7 @@ async function start() {
       });
       if (selected === item.id) starMotion.paintFocus(ctx, point);
     }
+    commentMeteors.paint(ctx, now, projectStar, width, height);
     paintCloudVeil(ctx, width, height, camera, settings);
     clouds?.update(Math.min(.05, (now - lastFrame) / 1000 || 0), Boolean(reader.open || arrival || roomScene?.active || egg.open));
     clouds?.paint(ctx, width, height, camera, settings);
@@ -1119,27 +1208,15 @@ async function start() {
       }
     }
     ctx.restore();
-    const visible = [...starTargets.values()].some(target => !target.hidden);
     const hint = hints[0];
-    if (phase === 'moving' || lineOpacity < .5) {
+    if (!hint || selected || phase === 'moving' || lineOpacity < .5) {
       edgeGuide.present(null);
       return;
     }
-    let guideState = null;
-    if (hint && !selected) {
-      const obstacles = [...document.querySelectorAll('#world nav,#world nav .mode-switch,#world header,#preview,.signal-egg,#search-entry,.friends-entry-sky,.journal-sky-entry')].filter(el => !el.hidden).map(el => el.getBoundingClientRect());
-      if (!obstacles.some(rect => hint.point.x + 24 > rect.left && hint.point.x - 24 < rect.right && hint.point.y + 24 > rect.top && hint.point.y - 24 < rect.bottom)) {
-        guideState = { left: hint.point.x + 'px', top: hint.point.y + 'px', text: '›', articleId: hint.id };
-      }
-    } else if (!visible && articles.length) {
-      const target = articles.reduce((nearest, item) => {
-        const point = positionOf(item), ray = direction(camera.yaw, camera.pitch);
-        const score = (point.x * ray.x + point.y * ray.y + point.z * ray.z) / Math.hypot(point.x, point.y, point.z);
-        return !nearest || score > nearest.score ? { item, score } : nearest;
-      }, null).item;
-      guideState = { left: '50%', top: 'calc(100% - 110px)', text: '✧', articleId: target.id };
-    }
-    edgeGuide.present(guideState);
+    const obstacles = [...document.querySelectorAll('#world nav,#world nav .mode-switch,#world header,#preview,.signal-egg,#search-entry,.friends-entry-sky,.journal-sky-entry')].filter(el => !el.hidden).map(el => el.getBoundingClientRect());
+    const { x, y } = hint.point;
+    const obstructed = obstacles.some(rect => x + 24 > rect.left && x - 24 < rect.right && y + 24 > rect.top && y - 24 < rect.bottom);
+    edgeGuide.present(obstructed ? null : { left: x + 'px', top: y + 'px', articleId: hint.id });
   }
 
   function drawGuideLine(origin, target) {
@@ -1150,6 +1227,7 @@ async function start() {
     document.getElementById('egg-title').textContent = title;
     document.getElementById('egg-copy').textContent = copy;
     egg.showModal();
+    syncMeteors();
   }
 
   function showTimeCue(item) {
@@ -1327,7 +1405,23 @@ async function start() {
   }
 
   function wireControls() {
+    setupReaderZoom(reader, scroller);
+    document.addEventListener('starry:fallback', () => {
+      commentMeteors.setActive(false);
+      commentMountVersion++;
+      unmountComments?.();
+      unmountComments = null;
+    }, { once: true });
+    reader.addEventListener('close', () => {
+      if (reader.open) return;
+      commentMountVersion++;
+      unmountComments?.();
+      unmountComments = null;
+    });
+    egg.addEventListener('close', syncMeteors);
+    readingMotionPreference.addEventListener('change', () => { commentMeteors.setActive(false); syncMeteors(); });
     document.addEventListener('visibilitychange', () => {
+      syncMeteors();
       restingFrameDrawn = false;
       lastFrame = 0;
       if (document.hidden) {
@@ -1363,7 +1457,7 @@ async function start() {
     timeModeButton.addEventListener('click', () => switchMode('time'));
     backDockButton.addEventListener('click', returnToPreviousDock);
     homeButton.addEventListener('click', enterHome);
-    document.getElementById('close-collection').addEventListener('click', closeCollectionPanel);
+    document.getElementById('close-collection').addEventListener('click', () => closeCollectionPanel());
     collectionDialog.addEventListener('cancel', (event) => {
       event.preventDefault();
       closeCollectionPanel();
@@ -1391,6 +1485,7 @@ async function start() {
       const target = link && articleById.get(link.dataset.starryArticleId);
       if (!reader.open || !target || event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
       event.preventDefault();
+      prepareDirectExit();
       pauseEmbeddedMedia(); phase = 'closing';
       starMotion.close(() => {
         reader.close(); collectionOpen = false; collectionDialog.close();
@@ -1408,14 +1503,33 @@ async function start() {
     });
     window.addEventListener('popstate', (event) => {
       if (event.state?.mode === 'relation' || event.state?.mode === 'time') mode = event.state.mode;
-      if (reader.open && event.state?.starryView === 'reader' && event.state.starryArticleId) {
-        void openReaderFromHistory(event.state.starryArticleId);
-      } else if (reader.open) closeReaderAfterPop();
-      else if (event.state?.starryView === 'reader' && event.state.starryArticleId) {
-        void openReaderFromHistory(event.state.starryArticleId);
+      if (reader.open && readerPath === location.pathname && !event.state) {
+        // A native fragment link adds an unmarked entry. Count it so closing
+        // the reader still returns to the original collection, search or sky.
+        readerDepth++;
+        history.replaceState({ starryView: 'reader', starryArticleId: article.id, mode, starryReaderDepth: readerDepth }, '', location.href);
+      }
+      if (history.state?.starryView === 'reader' && history.state.starryArticleId) {
+        if (reader.open && history.state.starryArticleId === article.id) {
+          historyNavigationVersion++;
+          readerDepth = history.state.starryReaderDepth ?? 1;
+          if (phase === 'closing') {
+            directCloseInProgress = false;
+            showReader(project(positionOf(article)));
+          }
+          return;
+        }
+        void openReaderFromHistory(history.state.starryArticleId);
+      } else if (reader.open) {
+        closeReaderAfterPop();
       } else if (event.state?.starryView === 'collection') {
         openCollectionPanel();
+      } else if (event.state?.starryView === 'sky' && collectionDialog.open) {
+        closeCollectionPanel(false);
       }
+    });
+    window.addEventListener('hashchange', () => {
+      if (reader.open && readerPath === location.pathname && !reader.dataset.motion) revealArticleFragment(scroller, location.hash);
     });
 
     world.addEventListener('pointermove', (event) => {
@@ -1568,6 +1682,7 @@ function setText(element, value) {
 }
 
 function fallback(error) {
+  document.dispatchEvent(new Event('starry:fallback'));
   window.starfieldStartup?.fail();
   if (error) console.error('Starfield enhancement stayed in the readable fallback.', error);
   pauseEmbeddedMedia();
@@ -1580,6 +1695,11 @@ function fallback(error) {
       document.body.append(staticArticle);
     }
     staticArticle.replaceChildren(articleNode);
+    const section = articleNode.querySelector('.article-comments');
+    const sky = document.getElementById('comment-sky');
+    if (section && sky) import(sky.dataset.module).then(({ mountComments }) => {
+      mountComments(section, sky.dataset.api, location.hash.slice(1));
+    }).catch(() => { section.querySelector('[data-comment-status]').textContent = '评论组件暂时无法加载。'; });
     document.getElementById('home-fallback')?.setAttribute('hidden', '');
   }
   document.getElementById('reader')?.open && document.getElementById('reader').close();

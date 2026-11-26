@@ -15,7 +15,9 @@ function buildAssets(themeSource) {
     friends: [...core, 'friends'],
   };
   for (const [name, styles] of Object.entries(groups)) {
-    const text = styles.map(style => fs.readFileSync(path.join(themeSource, `css/starry/${style}.css`), 'utf8')).join('\n');
+    const sheets = styles.map(style => fs.readFileSync(path.join(themeSource, `css/starry/${style}.css`), 'utf8'));
+    if (name === 'world') sheets.push(fs.readFileSync(path.join(__dirname, '../../../components/comments/thread.css'), 'utf8'));
+    const text = sheets.join('\n');
     // The output stays beside the source styles, retaining every relative URL.
     files.set(`css/starry/${name}.bundle.css`, transformSync(text, { loader: 'css', minify: true, charset: 'utf8', legalComments: 'inline' }).code);
   }

@@ -11,7 +11,7 @@ npm ci
 npm start
 ```
 
-同时打开 [新版](http://127.0.0.1:4175/)和 [旧版](http://127.0.0.1:4175/legacy/)。两边文章／归档均可切换到对应内容。写作仍只改 `source/_posts/`，修改后执行 `npm run preview:starfield` 并刷新；统一入口自动准备星位和生成两个主题。
+同时打开 [新版](http://127.0.0.1:4175/)和 [旧版](http://127.0.0.1:4175/legacy/)。从旧版文章或归档可进入新版对应内容。新版的「旧版」入口位于星空探索页右上角。写作仍只改 `source/_posts/`，修改后执行 `npm run preview:starfield` 并刷新；统一入口自动准备星位和生成两个主题。
 
 新文章仍使用 `npx hexo new post "文章标题"`，会预填常用字段并保留中文注释。旧版使用 `cover`、`cover_mobile`、`subheading` 等字段；新增的 `related`、`star` 和自动摘要设置服务于新版，保留默认值可正常生成两边。字段默认值、手填规则与元信息提交方法见 [写作指南](starfield-blog.md#首次运行与日常写作)。
 

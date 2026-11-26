@@ -1,4 +1,9 @@
-<%
+<% if (page.current > 1) { %>
+<%- partial('partial/collection-list', {
+  collectionKind: 'archive', collectionTitle: `文章列表 · 第 ${page.current} 页`,
+  posts: page.posts, pagination: page,
+}) %>
+<% } else {
   const posts = [];
   site.posts.each((post) => {
     posts.push(post);
@@ -31,3 +36,4 @@
     <% } %>
   </div>
 </main>
+<% } %>

@@ -1,26 +1,47 @@
 /* The author's layered PNG sheet, with a fixed reading journey underneath. */
 #reader {
   --paper-ink: #f0f8ff; --paper-muted: #c5e5ff;
+  --reader-scale: 1;
   color-scheme: dark; position: fixed; z-index: 60; inset: 0;
-  width: min(940px, calc(100% - 80px)); height: calc(100dvh - 48px);
-  max-width: none; max-height: none; margin: auto; padding: 0; overflow: hidden;
+  width: min(calc(min(940px, 100% - 80px) * var(--reader-scale)), calc(100% - 80px)); height: calc(100dvh - 48px);
+  max-width: none; max-height: none; margin: auto; padding: 0; overflow: clip; transition-property: none;
   color: var(--paper-ink); background: #075ac0;
   border: 0; border-radius: 0; box-shadow: 0 18px 55px #03063f59;
 }
 #reader::backdrop { background: rgb(6 13 48 / .15); backdrop-filter: blur(2.4px); }
 #reader .reading-frame { position: relative; display: flex; width: 100%; height: 100%; flex-direction: column; background: #075ac0; }
-#reader .reading-header { position: absolute; z-index: 3; top: 8px; right: 12px; }
+#reader .reading-header { position: absolute; z-index: 3; top: 8px; right: 12px; display: flex; align-items: center; gap: 6px; }
+#reader-zoom-toggle {
+  min-width: 44px; min-height: 44px; padding: 0 5px; color: #e2edff;
+  font: 12px/1.4 var(--sans); letter-spacing: .05em; text-shadow: 0 1px 4px #032886;
+}
+#reader-zoom-panel {
+  --panel-width: min(232px, 100vw - 16px);
+  position: fixed; inset: auto; top: var(--zoom-panel-top);
+  right: clamp(8px, var(--zoom-panel-right), 100vw - var(--panel-width) - 8px);
+  width: var(--panel-width); margin: 0; padding: 12px 16px 4px;
+  color: #eef7ff; background: linear-gradient(125deg, #103a89, #081e54);
+  border: 1px solid #508dd2; border-top: 2px solid #70d4ff; border-radius: 3px;
+  box-shadow: 0 6px 20px #020d4566; font: 13px/1.5 var(--sans); font-variant-numeric: tabular-nums;
+}
+.reader-zoom-label, .reader-zoom-options { display: flex; align-items: center; justify-content: space-between; }
+#reader-zoom-value { color: #a6edff; }
+#reader-zoom { display: block; width: 100%; height: 44px; margin: 0; accent-color: #79dbff; cursor: pointer; }
+.reader-zoom-options { font-size: 11px; color: #b8d6f5; }
+#reader-zoom-reset { min-height: 44px; padding: 0 8px; color: #e2edff; font-size: 12px; }
+#reader-zoom-toggle:hover, #reader-zoom-reset:hover { color: #a6edff; text-decoration: underline; text-underline-offset: .25em; }
 #close-reader { display: grid; place-items: center; width: 44px; height: 44px; padding: 9px; background: transparent; }
 #close-reader img { display: block; width: 100%; height: 100%; object-fit: contain; }
 #reading-scroll {
-  container-type: inline-size; min-height: 0; flex: 1 1 auto; margin: 0; overflow: auto;
+  /* Keep positioned article content and anchor scrolling inside the page. */
+  position: relative; container-type: inline-size; min-height: 0; flex: 1 1 auto; margin: 0; overflow: auto;
   overscroll-behavior: contain; touch-action: pan-y; outline-offset: -4px;
   background: #075ac0; scrollbar-width: thin; scrollbar-color: #62caff #1139bf;
 }
 #reading-scroll::-webkit-scrollbar { width: 6px; height: 6px; }
 #reading-scroll::-webkit-scrollbar-track { background: #1139bf; }
 #reading-scroll::-webkit-scrollbar-thumb { background: #62caff; }
-#reading-content-slot { min-height: 100%; }
+#reading-content-slot { min-height: 100%; container-type: inline-size; zoom: var(--reader-scale); transition-property: none; }
 #reader .article {
   max-width: none; min-height: calc(100dvh - 48px); margin: 0; padding: 0 0 var(--space-7);
   display: grid; grid-template-columns: 14% minmax(0, 1fr) 14%; align-content: start;
@@ -62,11 +83,11 @@
 #reader .reading-relations p { font-family: var(--sans); }
 .article-pagination {
   display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-6);
-  margin-top: var(--space-6); padding-top: var(--space-4); border-top: 1px solid var(--paper-line);
+  margin-top: var(--space-5); padding-top: var(--space-1); border-top: 1px solid var(--paper-line);
 }
 .article-pagination-link {
-  display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-2);
-  min-width: 0; min-height: var(--tap); padding-block: var(--space-3);
+  display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-1);
+  min-width: 0; min-height: var(--tap); padding-block: var(--space-2);
   color: var(--paper-heading); text-decoration: none; cursor: pointer;
 }
 .article-pagination-next { grid-column: 2; align-items: flex-end; text-align: right; }
@@ -78,7 +99,7 @@
 .article-pagination-arrow { display: inline-block; transition: transform 220ms ease; }
 .article-pagination-title {
   max-width: 100%; color: inherit; font: 400 var(--step-h3)/1.7 var(--display);
-  overflow-wrap: anywhere; transition: color 220ms ease;
+  overflow: hidden; white-space: nowrap; text-overflow: ellipsis; transition: color 220ms ease;
 }
 .article-pagination-date { color: var(--paper-muted); font: var(--step-caption)/1.7 var(--sans); font-variant-numeric: tabular-nums; letter-spacing: var(--tracking-mark); }
 .article-pagination-link:is(:hover, :focus-visible) .article-pagination-title { text-decoration: underline; text-underline-offset: .3em; text-decoration-thickness: 1px; }
@@ -89,8 +110,9 @@
 #reader .article-pagination { border-color: var(--panel-line-strong); }
 #reader .article-pagination-link { color: var(--paper-ink); text-decoration: none; }
 #reader .article-pagination-link:is(:hover, :focus-visible) .article-pagination-title { color: var(--accent-cyan); }
+.article-pagination + .article-comments { margin-top: var(--space-3); }
 @media (max-width: 520px) {
-  .article-pagination { gap: var(--space-4); margin-top: var(--space-5); }
+  .article-pagination { gap: var(--space-4); }
 }
 @media (prefers-reduced-motion: reduce) {
   .article-pagination-arrow, .article-pagination-title { transition: none; }
@@ -154,4 +176,7 @@
   #reader .article-title-banner .article-meta { margin-top: 8px; }
   #reader-content p, #reader-content :is(ul, ol) { font-size: 1rem; }
   #reader .reading-footer { padding-inline: calc(2.8% + 5px); }
+}
+@media (max-width: 760px) and (orientation: landscape) {
+  #reader { width: min(100%, calc(100% * var(--reader-scale))); }
 }

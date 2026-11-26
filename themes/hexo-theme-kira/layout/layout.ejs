@@ -60,6 +60,8 @@
 		page.category; } else if (is_tag()){ title=__('count.tags') + '：' + page.tag; } %>
 		<title><% if (title){ %> <%= title %> - <% } %> <%= config.title %></title>
 		<% if (config.dual_theme) { %><link rel="canonical" href="<%= blog_canonical(page) %>"><% } %>
+		<link rel="alternate" type="application/rss+xml" title="<%= config.title %> · RSS" href="<%= blog_canonical({ path: 'rss.xml' }) %>">
+		<% if (blog_noindex(page)) { %><meta name="robots" content="noindex"><% } %>
 		<!-- <link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css" /> -->
 		<%- css("lib/mdui/mdui.min") %>
 		<script src="<%- url_for('/lib/mdui/mdui.min.js') %>" defer></script>

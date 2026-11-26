@@ -4,7 +4,7 @@ import { createEdgeGuide } from '../themes/stargazer-starfield/source/js/starfie
 
 test('unchanged frame presentation does not mutate a hidden or visible navigation hint', () => {
   const writes = [];
-  const values = { hidden: true, textContent: '' };
+  const values = { hidden: true, textContent: '›' };
   const element = { style: new Proxy({}, { set(target, key, value) {
     writes.push([key, value]); target[key] = value; return true;
   } }) };
@@ -16,7 +16,7 @@ test('unchanged frame presentation does not mutate a hidden or visible navigatio
   for (let i = 0; i < 120; i++) guide.present(null);
   assert.deepEqual(writes, [], 'a stationary hidden hint must not be rewritten each frame');
 
-  const state = { left: '52px', top: '110px', text: '›', articleId: 'first' };
+  const state = { left: '52px', top: '110px', articleId: 'first' };
   guide.present(state);
   const initialWrites = writes.length;
   for (let i = 0; i < 120; i++) guide.present(state);
@@ -27,9 +27,9 @@ test('unchanged frame presentation does not mutate a hidden or visible navigatio
   assert.deepEqual(activated, ['first', 'next'], 'the click follows the latest destination even at the same position');
   assert.equal(writes.length, initialWrites);
 
-  guide.present({ left: '50%', top: 'calc(100% - 110px)', text: '✧', articleId: 'nearest' });
-  assert.equal(element.style.top, 'calc(100% - 110px)');
-  assert.equal(element.textContent, '✧');
+  guide.present({ ...state, top: '220px' });
+  assert.equal(element.style.top, '220px');
+  assert.equal(element.textContent, '›');
   assert.equal(element.hidden, false);
   guide.present(null);
   const hiddenWrites = writes.length;

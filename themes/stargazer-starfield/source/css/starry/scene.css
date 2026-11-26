@@ -18,7 +18,6 @@ body[data-render-quality=low] .signal-egg{animation:none}
 /* Final painted scene from the accepted V20 prototype. */
 body[data-scene=painted]{background:#042b68;--type-main:#edf1ec;--type-soft:#d9e3eb;--type-muted:#c4d4e1;--type-line:#bbd0e433;--paper:#e4eaf5;--paper-ink:#34485e;--paper-muted:#4f6375}
 #room{position:fixed;inset:0;z-index:40;overflow:clip;background:transparent}
-body[data-room=entering]>.blog-theme-switch-fixed,body[data-room=returning]>.blog-theme-switch-fixed,body[data-arrival]>.blog-theme-switch-fixed{visibility:hidden}
 .room-stage{position:absolute;width:max(100vw,177.683vh);height:max(56.28vw,100vh);left:50%;top:50%;margin-left:min(-50vw,-88.8415vh);margin-top:min(-28.14vw,-50vh);will-change:transform,opacity}
 /* Large filtered room surfaces compete with the moving sky on constrained GPUs.
    Keep the camera passage; omit only its slight blur after measured overload. */
@@ -177,3 +176,62 @@ body[data-scene=painted] #egg-dialog p{font-size:.875rem;line-height:2}
   .time-cue{top:96px;left:20px;right:auto;transform:none}
 }
 @media(prefers-reduced-motion:reduce){.time-cue{animation:none}}
+
+/* The canvas paints the flight. Only the hit target and its preview sit here. */
+#comment-sky { position: absolute; z-index: 3; inset: 0; pointer-events: none; }
+.comment-meteor {
+  position: absolute; width: 44px; height: 44px; transform: translate(-50%, -50%);
+  padding: 0; border: 0; border-radius: 50%; background: transparent;
+  cursor: default; pointer-events: auto; touch-action: manipulation;
+}
+.comment-meteor.is-caught::before {
+  content: ''; position: absolute; inset: 15px; border: 1px solid #b7f4ffbc; border-radius: 50%; pointer-events: none;
+}
+/* Keep the straight pointer path from the star to either end of its card reachable. */
+.comment-meteor.is-caught::after {
+  content: ''; position: absolute; top: 50%; left: calc(50% + var(--meteor-note-offset, -12px));
+  width: var(--meteor-note-width); height: 35%;
+  clip-path: polygon(calc(0px - var(--meteor-note-offset, -12px)) 0, 100% 100%, 0 100%);
+}
+.comment-meteor.is-caught.is-note-above::after { top: auto; bottom: 50%; transform: scaleY(-1); }
+.meteor-note {
+  --note-corner: 12px;
+  --note-outline: polygon(0 0, calc(100% - var(--note-corner)) 0, 100% var(--note-corner),
+    100% 100%, var(--note-corner) 100%, 0 calc(100% - var(--note-corner)));
+  position: absolute; top: 85%; left: 50%; isolation: isolate;
+  transform: translateX(var(--meteor-note-offset, -12px));
+  width: max-content; max-width: min(18rem, calc(100vw - 24px));
+  padding: 13px 18px 13px 32px; visibility: hidden; cursor: pointer;
+  color: #dbeeff; text-align: start; font: 400 .875rem/1.6 var(--sans); overflow-wrap: anywhere;
+  filter: drop-shadow(0 4px 8px #02103b99);
+}
+.meteor-note::before, .meteor-note::after {
+  content: ''; position: absolute; clip-path: var(--note-outline); pointer-events: none;
+}
+.meteor-note::before {
+  inset: 0; z-index: -2;
+  background: linear-gradient(118deg, #52c5ff, #277bec 34%, #214ea9 70%, #318fe8);
+}
+.meteor-note::after {
+  inset: 1px; z-index: -1;
+  background:
+    linear-gradient(125deg, #78d6ff, #2a9dff 96%, transparent 97%) top left / 42% 3px no-repeat,
+    repeating-linear-gradient(128deg, transparent 0 4px, #5bb6ff38 4px 5px) top right / 44px 21px no-repeat,
+    linear-gradient(90deg, transparent, #4eb6ff) bottom right / 33% 1px no-repeat,
+    linear-gradient(114deg, #123faa, #092474 67%, #071b50);
+}
+.comment-meteor.is-caught .meteor-note { visibility: visible; }
+.comment-meteor.is-note-above .meteor-note { top: auto; bottom: 85%; }
+.meteor-note > strong {
+  position: relative; display: block; color: #f5fbff;
+  font: 400 1rem/1.45 var(--display); letter-spacing: .02em;
+}
+.meteor-note > strong::before {
+  content: ''; position: absolute; top: .43em; left: -19px; width: 11px; height: 9px;
+  background: #d8ff42; clip-path: polygon(0 0, 100% 50%, 0 100%, 30% 50%);
+}
+.meteor-note > span {
+  display: -webkit-box; margin-top: 4px;
+  -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+}
+.meteor-note > span:empty { display: none; }

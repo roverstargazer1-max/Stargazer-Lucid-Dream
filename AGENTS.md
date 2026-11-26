@@ -1,5 +1,9 @@
 # Repository instructions
 
+## 开发分支流程
+
+开始修改前确认当前分支为 `dev`；开发、测试和确认均在 `dev` 上进行。确认改动后，推送 `dev` 并通过拉取请求合并到主分支 `master`。不要直接在 `master` 上修改或推送；`master` 的分支保护对管理员同样生效。
+
 ## Context7
 
 <!-- context7 -->

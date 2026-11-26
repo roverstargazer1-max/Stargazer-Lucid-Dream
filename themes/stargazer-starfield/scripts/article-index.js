@@ -54,6 +54,7 @@ hexo.extend.generator.register('starry-article-index', function (locals) {
     const categories = (post.categories?.toArray() || []).map(category => String(category.name));
     articles.push({
       id,
+      ...(post.comments === false ? { comments: false } : {}),
       catalogNumber,
       displayId: makeDisplayId(catalogNumber, star.magnitude),
       title: String(post.title || ''),
